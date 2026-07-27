@@ -4,3 +4,7 @@
 
 node_modules/
 .DS_Store
+
+# Walkthrough screenshots — regenerable with `npm run walkthrough`, and they
+# churn on every run.
+docs/screens/

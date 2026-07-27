@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "generatedAt": "2026-07-27T18:15:06.312Z",
+    "generator": "pipeline/fetch-images.js",
+    "source": "Wikimedia Commons",
+    "note": "Openly licensed photographs of everyday scenes in Luxembourg, used for the A2 image-description task. INLL exam images are copyrighted and are not reproduced; the app links to their published examples instead. Every image keeps its author and licence.",
+    "count": 16,
+    "bytes": 5683832
+  },
+  "items": [
+    {
+      "id": "img-13860945",
+      "type": "image",
+      "topic": "iessen",
+      "title_en": "ChBernhoeft Le Luxembourg pittoresque 104",
+      "imageUrl": "assets/img/img-13860945.jpg",
+      "imageCredit": "Charles Bernhoeft",
+      "imageLicence": "Public domain",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:ChBernhoeft_Le_Luxembourg_pittoresque_104.jpg"
+    },
+    {
+      "id": "img-16567061",
+      "type": "image",
+      "topic": "iessen",
+      "title_en": "D300 Bichermaart",
+      "imageUrl": "assets/img/img-16567061.jpg",
+      "imageCredit": "Jwh",
+      "imageLicence": "CC BY-SA 3.0 lu",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:D300_Bichermaart.JPG"
+    },
+    {
+      "id": "img-75819280",
+      "type": "image",
+      "topic": "iessen",
+      "title_en": "Biergerkräiz, Kopstal (104)",
+      "imageUrl": "assets/img/img-75819280.jpg",
+      "imageCredit": "GilPe",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Biergerkr%C3%A4iz,_Kopstal_(104).jpg"
+    },
+    {
+      "id": "img-75819295",
+      "type": "image",
+      "topic": "iessen",
+      "title_en": "Biergerkräiz, Kopstal (105)",
+      "imageUrl": "assets/img/img-75819295.jpg",
+      "imageCredit": "GilPe",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Biergerkr%C3%A4iz,_Kopstal_(105).jpg"
+    },
+    {
+      "id": "img-50195768",
+      "type": "image",
+      "topic": "transport",
+      "title_en": "Secretary Kerry Joins Bike Ride in Luxembourg (27733804394)",
+      "imageUrl": "assets/img/img-50195768.jpg",
+      "imageCredit": "U.S. Department of State from United States",
+      "imageLicence": "Public domain",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Secretary_Kerry_Joins_Bike_Ride_in_Luxembourg_(27733804394).jpg"
+    },
+    {
+      "id": "img-50195772",
+      "type": "image",
+      "topic": "transport",
+      "title_en": "Secretary Kerry Joins Bike Ride in Luxembourg (27734237143)",
+      "imageUrl": "assets/img/img-50195772.jpg",
+      "imageCredit": "U.S. Department of State from United States",
+      "imageLicence": "Public domain",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Secretary_Kerry_Joins_Bike_Ride_in_Luxembourg_(27734237143).jpg"
+    },
+    {
+      "id": "img-14910879",
+      "type": "image",
+      "topic": "wunnen",
+      "title_en": "Colmar Berg House 01",
+      "imageUrl": "assets/img/img-14910879.jpg",
+      "imageCredit": "Cayambe",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Colmar-Berg_House_01.jpg"
+    },
+    {
+      "id": "img-15764894",
+      "type": "image",
+      "topic": "wunnen",
+      "title_en": "P240710 13.56",
+      "imageUrl": "assets/img/img-15764894.jpg",
+      "imageCredit": "Romankr1998",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:P240710_13.56.jpg"
+    },
+    {
+      "id": "img-18868254",
+      "type": "image",
+      "topic": "hobbyen",
+      "title_en": "Dikrech Parc",
+      "imageUrl": "assets/img/img-18868254.jpg",
+      "imageCredit": "Rdeltgen",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Dikrech-Parc.jpg"
+    },
+    {
+      "id": "img-21195644",
+      "type": "image",
+      "topic": "hobbyen",
+      "title_en": "Bur Mompech Park w",
+      "imageUrl": "assets/img/img-21195644.jpg",
+      "imageCredit": "Gemeng Mompech",
+      "imageLicence": "CC BY-SA 1.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Bur-Mompech-Park--w.jpg"
+    },
+    {
+      "id": "img-17412031",
+      "type": "image",
+      "topic": "joreszäiten",
+      "title_en": "WeierHub",
+      "imageUrl": "assets/img/img-17412031.jpg",
+      "imageCredit": "Johnny Chicago at lb.wikipedia",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:WeierHub.JPG"
+    },
+    {
+      "id": "img-50480072",
+      "type": "image",
+      "topic": "aarbecht",
+      "title_en": "LUX Esch Alzette 011 2016",
+      "imageUrl": "assets/img/img-50480072.jpg",
+      "imageCredit": "-wuppertaler",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:LUX_Esch-Alzette_011_2016.jpg"
+    },
+    {
+      "id": "img-50592982",
+      "type": "image",
+      "topic": "aarbecht",
+      "title_en": "LUX Diekirch 028 2016",
+      "imageUrl": "assets/img/img-50592982.jpg",
+      "imageCredit": "-wuppertaler",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:LUX_Diekirch_028_2016.jpg"
+    },
+    {
+      "id": "img-56625566",
+      "type": "image",
+      "topic": "famill",
+      "title_en": "A Seminar for Diplomats (01311731) (13756415065)",
+      "imageUrl": "assets/img/img-56625566.jpg",
+      "imageCredit": "IAEA Imagebank",
+      "imageLicence": "CC BY-SA 2.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:A_Seminar_for_Diplomats_(01311731)_(13756415065).jpg"
+    },
+    {
+      "id": "img-15170250",
+      "type": "image",
+      "topic": "liesen",
+      "title_en": "Ourdall Bibliotheik bannen",
+      "imageUrl": "assets/img/img-15170250.jpg",
+      "imageCredit": "PlayMistyForMe at Luxembourgish Wikipedia",
+      "imageLicence": "CC BY-SA 3.0 lu",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Ourdall_Bibliotheik_bannen.jpg"
+    },
+    {
+      "id": "img-103110973",
+      "type": "image",
+      "topic": "liesen",
+      "title_en": "Schengen, Schwebsange (109)",
+      "imageUrl": "assets/img/img-103110973.jpg",
+      "imageCredit": "GilPe",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Schengen,_Schwebsange_(109).jpg"
+    }
+  ]
+}

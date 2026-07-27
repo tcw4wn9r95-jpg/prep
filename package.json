@@ -10,13 +10,19 @@
   "scripts": {
     "fetch": "node pipeline/fetch-lod.js",
     "fetch:audio": "node pipeline/fetch-audio.js",
+    "fetch:images": "node pipeline/fetch-images.js",
     "build": "node --max-old-space-size=6144 pipeline/build-corpus.js",
+    "build:items": "node pipeline/build-items.js",
+    "mirror:audio": "node pipeline/mirror-audio.js",
     "validate": "node pipeline/validate.js",
     "test": "node --test 'pipeline/test/*.test.js'",
+    "walkthrough": "node pipeline/test/app-walkthrough.js",
     "calibrate": "node --max-old-space-size=4096 pipeline/test/calibrate.js",
     "evidence": "node --max-old-space-size=4096 pipeline/test/nrule-evidence.js --write",
-    "content": "npm run fetch && npm run build && npm run fetch:audio && npm run build && npm run validate"
+    "serve": "node -e \"const h=require('http'),f=require('fs'),p=require('path'),M={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.m4a':'audio/mp4','.webmanifest':'application/manifest+json'};h.createServer((q,s)=>{let x=p.join('app',decodeURIComponent(new URL(q.url,'http://x').pathname));if(x.endsWith('/')||x==='app')x=p.join(x,'index.html');f.readFile(x,(e,d)=>e?s.writeHead(404).end():(s.writeHead(200,{'content-type':M[p.extname(x)]||'application/octet-stream'}),s.end(d)))}).listen(8080,()=>console.log('http://localhost:8080'))\"",
+    "content": "npm run fetch && npm run build && npm run fetch:audio && npm run build && npm run build:items && npm run mirror:audio && npm run fetch:images && npm run validate"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "playwright-core": "^1.62.0"
+  }
 }

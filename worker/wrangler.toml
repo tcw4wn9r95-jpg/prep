@@ -1,0 +1,19 @@
+name = "sproochentest-duel"
+main = "src/index.js"
+compatibility_date = "2026-07-01"
+
+# The shared duel state. Create with:
+#   npx wrangler kv namespace create DUEL
+# then paste the id below.
+[[kv_namespaces]]
+binding = "DUEL"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+
+[vars]
+# The GitHub Pages origin the app is served from. CORS is pinned to it, so a
+# wildcard is never needed and never safe here — the secret travels in the URL.
+ALLOWED_ORIGIN = "https://REPLACE.github.io"
+
+# SHARED_SECRET is NOT set here on purpose: it must be a secret, not a var.
+#   npx wrangler secret put SHARED_SECRET
+# The Worker refuses every request until it is set.

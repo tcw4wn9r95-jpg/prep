@@ -82,6 +82,17 @@ const FREE_TEXT_FIELDS = new Set([
   'entryIds',
   'createdAt',
   'seed',
+  // item structure (pipeline/build-items.js)
+  'kind',
+  'phase',
+  'audioSrc',
+  'format',
+  // image-description items
+  'image',
+  'imageUrl',
+  'imageCredit',
+  'imageLicence',
+  'imageSource',
 ]);
 
 /* ------------------------------------------------------------------ gate 1 */

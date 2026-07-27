@@ -19,8 +19,12 @@ Or step by step:
 | `npm run fetch` | resolves the newest release of each of the three LOD datasets on data.public.lu, downloads and unzips it | `.cache/lod/*.xml`, `manifest.json` |
 | `npm run build` | streams the XML into the corpus and the accepted-form lexicon | `content/corpus.json`, `content/lexicon.json` |
 | `npm run fetch:audio` | resolves native example recordings per entry from the LOD public API | `.cache/lod/audio.json` |
+| `npm run build:items` | generates the exercises, gating each clip through the validator as it builds | `content/items/*.json`, `app/data/*.json` |
+| `npm run mirror:audio` | downloads the AAC the shipped items reference | `app/assets/audio/` |
+| `npm run fetch:images` | openly licensed photos for the image-description task | `app/assets/img/`, `images.json` |
 | `npm run validate` | the gate. Exit 1 on any error | — |
 | `npm test` | proves the gate catches what it must (23 tests) | — |
+| `npm run walkthrough` | drives the real app in Chromium at iPhone size | `docs/screens/*.png` |
 | `npm run calibrate` | measures the gate against LOD's own sentences | — |
 | `npm run evidence` | regenerates `docs/n-rule-evidence.md` | that file |
 
@@ -28,7 +32,27 @@ Or step by step:
 build selected; `build` then runs again to fold the recordings in. The audio
 cache is resumable, so an interrupted run costs nothing.
 
-No dependencies. Node 22+, `fetch` and `node:test` are built in.
+No runtime dependencies. Node 22+, `fetch` and `node:test` are built in. One
+devDependency, `playwright-core`, drives the Chromium already installed in the environment
+for `npm run walkthrough`; it ships no browser of its own.
+
+## Generating items
+
+`build-items.js` obeys one rule: **it never authors Luxembourgish.** Every Luxembourgish
+string it emits is a LOD example sentence verbatim, a LOD headword or published inflected
+form, or one of two question stems checked against LOD usage first. That restriction exists
+because the validator is a *form-level* gate — generating novel sentences would produce
+items that pass the gate and still teach the wrong thing.
+
+It also gates its own output: each candidate clip goes through `checkLexicon` and
+`checkNRule` before it can become an item, which currently drops 112 of 10,577 recorded
+sentences (1.06%). LOD is not perfectly self-consistent — a few of its examples carry proper
+names it never indexes, or an n-rule the rest of the corpus contradicts. Dropping those
+costs a handful of clips; loosening the gate would cost the gate.
+
+Interview prompts are LOD example sentences that are already questions addressed to a
+person, matched to a topic by the words they contain. Two topics come out thin
+(`joreszäiten` 1 prompt, `famill` 3) because few LOD questions mention their vocabulary.
 
 ## The files it produces
 

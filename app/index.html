@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--
+  viewport-fit=cover lets the layout reach under the notch and home indicator;
+  base.css then pays that back with env(safe-area-inset-*) padding.
+  user-scalable is left alone on purpose — blocking zoom fails accessibility.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Practice for the Sproochentest Lëtzebuergesch — the INLL language exam for Luxembourg naturalisation.">
+<meta name="theme-color" content="#eef2f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121b24" media="(prefers-color-scheme: dark)">
+
+<!-- Add to Home Screen on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Sproochentest">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+
+<title>Sproochentest Duel</title>
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/amelie.css">
+</head>
+<body>
+<div class="offline-banner" role="status">Offline — practice still works, scores sync later.</div>
+
+<div id="app">
+  <main id="screen" class="screen" tabindex="-1"></main>
+  <nav id="tabbar" class="tabbar" hidden aria-label="Sections"></nav>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -386,8 +386,17 @@ async function main() {
     nRuleForms: nRuleFormList,
     // Spellings LOD explicitly flags as wrong. Hitting one is a better error
     // message than "unknown word".
+    //
+    // The flags are per-entry, not global: LOD lists "hir" as an erroneous
+    // spelling of "hier" (HIER2) while "hir" is at the same time the correct
+    // possessive (HIR3). So a form only counts as erroneous when it is not a
+    // verified form of some other entry - otherwise the gate rejects perfectly
+    // good words.
     erroneousSpellings: Object.fromEntries(
-      [...index.erroneous.entries()].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)).map(([form, id]) => [form.toLowerCase(), id]),
+      [...index.erroneous.entries()]
+        .filter(([form]) => !forms.has(form.toLowerCase()))
+        .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+        .map(([form, id]) => [form.toLowerCase(), id]),
     ),
     nRuleRetentionExceptions: exceptions,
   };
