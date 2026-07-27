@@ -1,0 +1,10 @@
+# Upstream LOD data: ~200 MB of XML, re-fetchable with `npm run fetch`.
+# .cache/lod/manifest.json records exactly which release produced content/.
+.cache/
+
+node_modules/
+.DS_Store
+
+# Walkthrough screenshots — regenerable with `npm run walkthrough`, and they
+# churn on every run.
+docs/screens/

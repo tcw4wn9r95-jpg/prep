@@ -1,0 +1,2094 @@
+{
+  "meta": {
+    "generatedAt": "2026-07-27T14:57:44.543Z",
+    "generator": "pipeline/build-items.js",
+    "seed": 20260727,
+    "corpus": {
+      "art": {
+        "dataset": "letzebuerger-online-dictionnaire-lod-linguistesch-daten",
+        "resourceId": "2d20bba9-5073-48a4-aae5-f0d5c9a0d955",
+        "resource": "260727-new-lod-art.zip",
+        "xmlSha256": "9cfc68aac67296832d96a12919aef5cc3609a530514831751374b104df4a2eab"
+      },
+      "search": {
+        "dataset": "letzebuerger-online-dictionnaire-lod-index-vun-der-sich-funktioun",
+        "resourceId": "1debbba3-079c-4400-96b0-79b74e97a7ce",
+        "resource": "260727-new-lod-search.zip",
+        "xmlSha256": "30e10b28aa3df88950e1abcb499e7daa0ea5a264bfc6718b526472f59c0dc589"
+      },
+      "tab": {
+        "dataset": "letzebuerger-online-dictionnaire-lod-flexiounstabellen",
+        "resourceId": "27d65808-3ff7-4e39-b01e-b1af1e847cc4",
+        "resource": "260727-new-lod-tab.zip",
+        "xmlSha256": "27200fd7a47d4d16a8df81f9eb6162029fdc0898375d4ac97acfc8623ede8c17"
+      }
+    },
+    "license": "CC0-1.0",
+    "attribution": "Lëtzebuerger Online Dictionnaire (LOD), Zenter fir d'Lëtzebuerger Sprooch, via data.public.lu",
+    "examFormat": {
+      "source": "https://www.inll.lu/fr/sproochentest/",
+      "listening": "CEFR B1, ~35 min, three exercises of 5 + 7 + 4 multiple-choice questions",
+      "speaking": "CEFR A2, ~10 min: interview on a chosen topic, then description of a chosen image",
+      "rubric": [
+        "Lexik",
+        "Morphosyntax",
+        "Phoneetik",
+        "Aufgabenerfëllung"
+      ],
+      "rubricBands": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "examinerWeighting": {
+        "interlocuteur": 0.2,
+        "assessor": 0.8
+      },
+      "passRule": "Over 50% on the speaking part, or over 50% overall",
+      "note": "Structure taken from INLL published material. No INLL content is reproduced here."
+    }
+  },
+  "items": [
+    {
+      "id": "interview-sport",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "sport",
+      "title_en": "Sport",
+      "title_fr": "Sport",
+      "title_lb": "Sport",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-16cnsit",
+              "prompt_lb": "wéi kanns de nëmme schaarf op esou e Mann sinn?",
+              "audioId": "6fa6b65a1e9e703b049e4bfa371234fe",
+              "entryIds": [
+                "SCHAARF1"
+              ]
+            },
+            {
+              "id": "iq-9ycty1",
+              "prompt_lb": "kanns du um Réck schwammen?",
+              "audioId": "2d07a9520f8cd84bf86b43e4cb097a62",
+              "entryIds": [
+                "RECK1"
+              ]
+            },
+            {
+              "id": "iq-1h1427i",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mir däi Bläistëft léinen?",
+              "audioId": "049baec664144c94a80d220f24ef06c0",
+              "entryIds": [
+                "SCHREIWEN1"
+              ]
+            },
+            {
+              "id": "iq-1uh2wl3",
+              "prompt_lb": "gees de mat op de Fussball?",
+              "audioId": "e81e12e5e687cf3af0336ba64ee01b7e",
+              "entryIds": [
+                "FUSSBALL1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-fe98nd",
+              "prompt_lb": "hues de net gemierkt, datt déi de Geck mat der gemaach hunn?",
+              "audioId": "55013d66ee510fd531f4125264d52eb8",
+              "entryIds": [
+                "MIERKEN1"
+              ]
+            },
+            {
+              "id": "iq-da3wtr",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+              "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+              "entryIds": [
+                "BIC1"
+              ]
+            },
+            {
+              "id": "iq-er93yt",
+              "prompt_lb": "wéi konnt ech nëmmen esou an de Boune sinn?",
+              "audioId": "89f74ba9c85b4caa2348a319e4b5327a",
+              "entryIds": [
+                "BOUN1"
+              ]
+            },
+            {
+              "id": "iq-c2lhzq",
+              "prompt_lb": "sinn Är Pijen och gutt säfteg?",
+              "audioId": "b73559dbae2aa0c145cde1973f343cd7",
+              "entryIds": [
+                "SAFTEG1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-d2zy4c",
+              "prompt_lb": "ech hunn e Kannersëtz a mengem Auto, hues du och een an dengem?",
+              "audioId": "e23978e134dc54b5cf02a8c5ba772ebd",
+              "entryIds": [
+                "DENGEM1"
+              ]
+            },
+            {
+              "id": "iq-1t5mnn6",
+              "prompt_lb": "ech hunn de géien Honger, solle mer eppes iesse goen?",
+              "audioId": "9b65062cf56bc02f3f0c92ea1c3b60eb",
+              "entryIds": [
+                "HONGER1"
+              ]
+            },
+            {
+              "id": "iq-2nful7",
+              "prompt_lb": "pardon, sinn ech Iech elo grad op de Fouss getrëppelt?",
+              "audioId": "ef46efe13bc4e649caad1c1ea9a02977",
+              "entryIds": [
+                "PARDON2"
+              ]
+            },
+            {
+              "id": "iq-18ztl9u",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic léinen?",
+              "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943",
+              "entryIds": [
+                "LEINEN1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-aarbecht",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "aarbecht",
+      "title_en": "Work",
+      "title_fr": "Travail",
+      "title_lb": "Aarbecht",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-1belcbu",
+              "prompt_lb": "bass de endlech fäerdeg mat denger Aarbecht?",
+              "audioId": "7eb32405e552d36d947af5d9a749c4c4",
+              "entryIds": [
+                "FAERDEG1"
+              ]
+            },
+            {
+              "id": "iq-1t5mnn6",
+              "prompt_lb": "ech hunn de géien Honger, solle mer eppes iesse goen?",
+              "audioId": "9b65062cf56bc02f3f0c92ea1c3b60eb",
+              "entryIds": [
+                "HONGER1"
+              ]
+            },
+            {
+              "id": "iq-jnsyjr",
+              "prompt_lb": "wat ass dech ugaangen, fir däi Kolleeg virun esou ville Leit blousszestellen?",
+              "audioId": "ef018697ee6176ad84b379a6499b6e0a",
+              "entryIds": [
+                "ESOU1"
+              ]
+            },
+            {
+              "id": "iq-cars65",
+              "prompt_lb": "wien ass de Chef vun dësem Service?",
+              "audioId": "79a7c1e5b69d23ad979d924168bdb68e",
+              "entryIds": [
+                "VUN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-dvk13v",
+              "prompt_lb": "gees de no der Aarbecht mat een huelen?",
+              "audioId": "fed348094a041f68b704a6d000be34db",
+              "entryIds": [
+                "HUELEN1"
+              ]
+            },
+            {
+              "id": "iq-1h1427i",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mir däi Bläistëft léinen?",
+              "audioId": "049baec664144c94a80d220f24ef06c0",
+              "entryIds": [
+                "SCHREIWEN1"
+              ]
+            },
+            {
+              "id": "iq-d2zy4c",
+              "prompt_lb": "ech hunn e Kannersëtz a mengem Auto, hues du och een an dengem?",
+              "audioId": "e23978e134dc54b5cf02a8c5ba772ebd",
+              "entryIds": [
+                "DENGEM1"
+              ]
+            },
+            {
+              "id": "iq-da3wtr",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+              "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+              "entryIds": [
+                "BIC1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-1naebq8",
+              "prompt_lb": "wat schaffen deng Elteren?",
+              "audioId": "f3f12aaf611d638884a27434b8fc2e37",
+              "entryIds": [
+                "SCHAFFEN3"
+              ]
+            },
+            {
+              "id": "iq-mby373",
+              "prompt_lb": "wat ass däi Frënd vu Beruff?",
+              "audioId": "6e3bb0158783c04aa22c9f94836ba2e6",
+              "entryIds": [
+                "BERUFF1"
+              ]
+            },
+            {
+              "id": "iq-19zezyn",
+              "prompt_lb": "bass du nach ëmmer net u mat denger Aarbecht?",
+              "audioId": "b4492d1d90e40349f88793777f5ad90d",
+              "entryIds": [
+                "UN2"
+              ]
+            },
+            {
+              "id": "iq-fe98nd",
+              "prompt_lb": "hues de net gemierkt, datt déi de Geck mat der gemaach hunn?",
+              "audioId": "55013d66ee510fd531f4125264d52eb8",
+              "entryIds": [
+                "MIERKEN1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-vakanz",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "vakanz",
+      "title_en": "Travel and holidays",
+      "title_fr": "Voyages et vacances",
+      "title_lb": "Vakanz",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-er93yt",
+              "prompt_lb": "wéi konnt ech nëmmen esou an de Boune sinn?",
+              "audioId": "89f74ba9c85b4caa2348a319e4b5327a",
+              "entryIds": [
+                "BOUN1"
+              ]
+            },
+            {
+              "id": "iq-2nful7",
+              "prompt_lb": "pardon, sinn ech Iech elo grad op de Fouss getrëppelt?",
+              "audioId": "ef46efe13bc4e649caad1c1ea9a02977",
+              "entryIds": [
+                "PARDON2"
+              ]
+            },
+            {
+              "id": "iq-16cnsit",
+              "prompt_lb": "wéi kanns de nëmme schaarf op esou e Mann sinn?",
+              "audioId": "6fa6b65a1e9e703b049e4bfa371234fe",
+              "entryIds": [
+                "SCHAARF1"
+              ]
+            },
+            {
+              "id": "iq-6m8oc",
+              "prompt_lb": "bréngs de mer eppes aus der Vakanz mat?",
+              "audioId": "f6d9ba9950c8cf81f2693edaeb659993",
+              "entryIds": [
+                "MATBRENGEN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-cz6xgy",
+              "prompt_lb": "wat fir e Buch hues de an der Vakanz gelies?",
+              "audioId": "eb67d6243a42f10f2afc2c5aa90f69b3",
+              "entryIds": [
+                "WAT1"
+              ]
+            },
+            {
+              "id": "iq-1u4znb5",
+              "prompt_lb": "op wat fir e Bierg sidd dir an der Vakanz geklommen?",
+              "audioId": "266accdfbba0160deabe107656131106",
+              "entryIds": [
+                "WAT1"
+              ]
+            },
+            {
+              "id": "iq-c2lhzq",
+              "prompt_lb": "sinn Är Pijen och gutt säfteg?",
+              "audioId": "b73559dbae2aa0c145cde1973f343cd7",
+              "entryIds": [
+                "SAFTEG1"
+              ]
+            },
+            {
+              "id": "iq-lpo1xq",
+              "prompt_lb": "entschëllegt, sinn ech Iech elo grad op de Fouss getrëppelt?",
+              "audioId": "e372544efe53f91a1415b1528d90ad5a",
+              "entryIds": [
+                "ENTSCHELLEGEN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-10nrl6h",
+              "prompt_lb": "bass du schonn eng Kéier mam Fliger geflunn?",
+              "audioId": "0143d71890086d98cca501e4a8b5e9b5",
+              "entryIds": [
+                "KEIER1"
+              ]
+            },
+            {
+              "id": "iq-13t85se",
+              "prompt_lb": "weess du, aus wéi enger Epoch déi heite Miwwele sinn?",
+              "audioId": "684f4f8636c317155acbe211d2b85e0a",
+              "entryIds": [
+                "WEI3"
+              ]
+            },
+            {
+              "id": "iq-1ybj4tp",
+              "prompt_lb": "wat sinn Är Projete fir déi nächst Vakanz?",
+              "audioId": "dfc5929537fc019ee99672ca39f48e05",
+              "entryIds": [
+                "PROJET1"
+              ]
+            },
+            {
+              "id": "iq-12obpsc",
+              "prompt_lb": "sinn ech dir nach Sue schëlleg?",
+              "audioId": "1ccd2817b03c3311204ce816b4e748db",
+              "entryIds": [
+                "SU1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-gesondheet",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "gesondheet",
+      "title_en": "Healthy living",
+      "title_fr": "Vivre sainement",
+      "title_lb": "Gesondheet",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-da3wtr",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+              "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+              "entryIds": [
+                "BIC1"
+              ]
+            },
+            {
+              "id": "iq-fe98nd",
+              "prompt_lb": "hues de net gemierkt, datt déi de Geck mat der gemaach hunn?",
+              "audioId": "55013d66ee510fd531f4125264d52eb8",
+              "entryIds": [
+                "MIERKEN1"
+              ]
+            },
+            {
+              "id": "iq-1t5mnn6",
+              "prompt_lb": "ech hunn de géien Honger, solle mer eppes iesse goen?",
+              "audioId": "9b65062cf56bc02f3f0c92ea1c3b60eb",
+              "entryIds": [
+                "HONGER1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-1h1427i",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mir däi Bläistëft léinen?",
+              "audioId": "049baec664144c94a80d220f24ef06c0",
+              "entryIds": [
+                "SCHREIWEN1"
+              ]
+            },
+            {
+              "id": "iq-1k2to4s",
+              "prompt_lb": "hues de matkritt, wat gesot gouf, oder hues de erëm geschlof?",
+              "audioId": "71a71a1f23831fe11ff4113850756a9c",
+              "entryIds": [
+                "SCHLOFEN1"
+              ]
+            },
+            {
+              "id": "iq-10fi0r0",
+              "prompt_lb": "ech hunn eng Fläsch ëmgehäit, kanns de mer soen, wou d'Botzgeschier steet?",
+              "audioId": "ff97885b371cb2869c425e3ea4657bf4",
+              "entryIds": [
+                "BOTZGESCHIER1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-1kpaj7y",
+              "prompt_lb": "bass du krank?",
+              "audioId": "cfc3503bff27d36f7cd7b5703b3c6812",
+              "entryIds": [
+                "KRANK1"
+              ]
+            },
+            {
+              "id": "iq-lujhz7",
+              "prompt_lb": "hunn deng Pneuen nach genuch Profil?",
+              "audioId": "28ace1f54e8889c3aa83f49787cef47a",
+              "entryIds": [
+                "PROFIL1"
+              ]
+            },
+            {
+              "id": "iq-18ztl9u",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic léinen?",
+              "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943",
+              "entryIds": [
+                "LEINEN1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-wunnen",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "wunnen",
+      "title_en": "My living space",
+      "title_fr": "Mon logement",
+      "title_lb": "Wunnen",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-10fi0r0",
+              "prompt_lb": "ech hunn eng Fläsch ëmgehäit, kanns de mer soen, wou d'Botzgeschier steet?",
+              "audioId": "ff97885b371cb2869c425e3ea4657bf4",
+              "entryIds": [
+                "BOTZGESCHIER1"
+              ]
+            },
+            {
+              "id": "iq-fe98nd",
+              "prompt_lb": "hues de net gemierkt, datt déi de Geck mat der gemaach hunn?",
+              "audioId": "55013d66ee510fd531f4125264d52eb8",
+              "entryIds": [
+                "MIERKEN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-1t5mnn6",
+              "prompt_lb": "ech hunn de géien Honger, solle mer eppes iesse goen?",
+              "audioId": "9b65062cf56bc02f3f0c92ea1c3b60eb",
+              "entryIds": [
+                "HONGER1"
+              ]
+            },
+            {
+              "id": "iq-1h1427i",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mir däi Bläistëft léinen?",
+              "audioId": "049baec664144c94a80d220f24ef06c0",
+              "entryIds": [
+                "SCHREIWEN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-d2zy4c",
+              "prompt_lb": "ech hunn e Kannersëtz a mengem Auto, hues du och een an dengem?",
+              "audioId": "e23978e134dc54b5cf02a8c5ba772ebd",
+              "entryIds": [
+                "DENGEM1"
+              ]
+            },
+            {
+              "id": "iq-lujhz7",
+              "prompt_lb": "hunn deng Pneuen nach genuch Profil?",
+              "audioId": "28ace1f54e8889c3aa83f49787cef47a",
+              "entryIds": [
+                "PROFIL1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-transport",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "transport",
+      "title_en": "Transport",
+      "title_fr": "Transports",
+      "title_lb": "Transport",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-er93yt",
+              "prompt_lb": "wéi konnt ech nëmmen esou an de Boune sinn?",
+              "audioId": "89f74ba9c85b4caa2348a319e4b5327a",
+              "entryIds": [
+                "BOUN1"
+              ]
+            },
+            {
+              "id": "iq-1ybj4tp",
+              "prompt_lb": "wat sinn Är Projete fir déi nächst Vakanz?",
+              "audioId": "dfc5929537fc019ee99672ca39f48e05",
+              "entryIds": [
+                "PROJET1"
+              ]
+            },
+            {
+              "id": "iq-16cnsit",
+              "prompt_lb": "wéi kanns de nëmme schaarf op esou e Mann sinn?",
+              "audioId": "6fa6b65a1e9e703b049e4bfa371234fe",
+              "entryIds": [
+                "SCHAARF1"
+              ]
+            },
+            {
+              "id": "iq-lpo1xq",
+              "prompt_lb": "entschëllegt, sinn ech Iech elo grad op de Fouss getrëppelt?",
+              "audioId": "e372544efe53f91a1415b1528d90ad5a",
+              "entryIds": [
+                "ENTSCHELLEGEN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-esn4xp",
+              "prompt_lb": "kanns de wannechgelift am Wierderbuch den Artikel „Zuch“ nosichen?",
+              "audioId": "50a7bfa13623373e5fe015fbcf1454d9",
+              "entryIds": [
+                "ARTIKEL1"
+              ]
+            },
+            {
+              "id": "iq-r16u3v",
+              "prompt_lb": "wéi vill hues de fir deen Auto ginn?",
+              "audioId": "8b174113391139cba61964378dce2ad3",
+              "entryIds": [
+                "GINN1"
+              ]
+            },
+            {
+              "id": "iq-1yjl0lm",
+              "prompt_lb": "wat fir eng Musek lauschters du am Auto?",
+              "audioId": "5c6ef87256d2d5bcaee2e43514f24aeb",
+              "entryIds": [
+                "WAT1"
+              ]
+            },
+            {
+              "id": "iq-15shaa8",
+              "prompt_lb": "mäin Auto streikt erëm, kann ech mat dir fueren?",
+              "audioId": "5b767af88efdeb6b9c086f69594666e2",
+              "entryIds": [
+                "STREIKEN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-2nful7",
+              "prompt_lb": "pardon, sinn ech Iech elo grad op de Fouss getrëppelt?",
+              "audioId": "ef46efe13bc4e649caad1c1ea9a02977",
+              "entryIds": [
+                "PARDON2"
+              ]
+            },
+            {
+              "id": "iq-c2lhzq",
+              "prompt_lb": "sinn Är Pijen och gutt säfteg?",
+              "audioId": "b73559dbae2aa0c145cde1973f343cd7",
+              "entryIds": [
+                "SAFTEG1"
+              ]
+            },
+            {
+              "id": "iq-13t85se",
+              "prompt_lb": "weess du, aus wéi enger Epoch déi heite Miwwele sinn?",
+              "audioId": "684f4f8636c317155acbe211d2b85e0a",
+              "entryIds": [
+                "WEI3"
+              ]
+            },
+            {
+              "id": "iq-1hltk70",
+              "prompt_lb": "kënnt Dir eis net eppes um Präis vum Auto ausdoen?",
+              "audioId": "ff9d98b3b9abaa5f2caaa00d808460c9",
+              "entryIds": [
+                "AUSDOEN1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-hobbyen",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "hobbyen",
+      "title_en": "Hobbies",
+      "title_fr": "Loisirs",
+      "title_lb": "Hobbyen",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-10fi0r0",
+              "prompt_lb": "ech hunn eng Fläsch ëmgehäit, kanns de mer soen, wou d'Botzgeschier steet?",
+              "audioId": "ff97885b371cb2869c425e3ea4657bf4",
+              "entryIds": [
+                "BOTZGESCHIER1"
+              ]
+            },
+            {
+              "id": "iq-lujhz7",
+              "prompt_lb": "hunn deng Pneuen nach genuch Profil?",
+              "audioId": "28ace1f54e8889c3aa83f49787cef47a",
+              "entryIds": [
+                "PROFIL1"
+              ]
+            },
+            {
+              "id": "iq-d2zy4c",
+              "prompt_lb": "ech hunn e Kannersëtz a mengem Auto, hues du och een an dengem?",
+              "audioId": "e23978e134dc54b5cf02a8c5ba772ebd",
+              "entryIds": [
+                "DENGEM1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-1h1427i",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mir däi Bläistëft léinen?",
+              "audioId": "049baec664144c94a80d220f24ef06c0",
+              "entryIds": [
+                "SCHREIWEN1"
+              ]
+            },
+            {
+              "id": "iq-1njxuh7",
+              "prompt_lb": "kanns de net liesen?",
+              "audioId": "bdee9d4bfa496a991a20cb4b79244756",
+              "entryIds": [
+                "LIESEN1"
+              ]
+            },
+            {
+              "id": "iq-fe98nd",
+              "prompt_lb": "hues de net gemierkt, datt déi de Geck mat der gemaach hunn?",
+              "audioId": "55013d66ee510fd531f4125264d52eb8",
+              "entryIds": [
+                "MIERKEN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-cz6xgy",
+              "prompt_lb": "wat fir e Buch hues de an der Vakanz gelies?",
+              "audioId": "eb67d6243a42f10f2afc2c5aa90f69b3",
+              "entryIds": [
+                "WAT1"
+              ]
+            },
+            {
+              "id": "iq-da3wtr",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+              "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+              "entryIds": [
+                "BIC1"
+              ]
+            },
+            {
+              "id": "iq-u0vbqa",
+              "prompt_lb": "muss du ëmmer aus der Rei danzen?",
+              "audioId": "8e6e3ae4a67b90d919e5271c2fc21ab7",
+              "entryIds": [
+                "REI2"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-stot",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "stot",
+      "title_en": "Household chores",
+      "title_fr": "Tâches ménagères",
+      "title_lb": "Stot",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-19purx2",
+              "prompt_lb": "mat wat hues du d'Kachplack gebotzt?",
+              "audioId": "d7841c0b68506dec11cd06219aef800a",
+              "entryIds": [
+                "WAT1"
+              ]
+            },
+            {
+              "id": "iq-lujhz7",
+              "prompt_lb": "hunn deng Pneuen nach genuch Profil?",
+              "audioId": "28ace1f54e8889c3aa83f49787cef47a",
+              "entryIds": [
+                "PROFIL1"
+              ]
+            },
+            {
+              "id": "iq-da3wtr",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+              "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+              "entryIds": [
+                "BIC1"
+              ]
+            },
+            {
+              "id": "iq-n7gfyr",
+              "prompt_lb": "wat hues de haut gekacht?",
+              "audioId": "c3c6a4ced9d61daef99d1ff41ca21c8a",
+              "entryIds": [
+                "WAT1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-1rtcuba",
+              "prompt_lb": "hues du d'Mauséiercherszalot scho gebotzt?",
+              "audioId": "0bb85ccfbc5a2667d1060aca888600da",
+              "entryIds": [
+                "BOTZEN1"
+              ]
+            },
+            {
+              "id": "iq-13acp4y",
+              "prompt_lb": "wollts du net schonn zënter Laangem däi Späicher raumen?",
+              "audioId": "155256438faaac074fca1c78b1099e65",
+              "entryIds": [
+                "LAANG1"
+              ]
+            },
+            {
+              "id": "iq-ry5b34",
+              "prompt_lb": "wéini hues de wëlles, deng Kummer ze raumen?",
+              "audioId": "4b90c10f95d029c54eb4ff26ba144832",
+              "entryIds": [
+                "RAUMEN1"
+              ]
+            },
+            {
+              "id": "iq-18ztl9u",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic léinen?",
+              "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943",
+              "entryIds": [
+                "LEINEN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-1h1427i",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mir däi Bläistëft léinen?",
+              "audioId": "049baec664144c94a80d220f24ef06c0",
+              "entryIds": [
+                "SCHREIWEN1"
+              ]
+            },
+            {
+              "id": "iq-d2zy4c",
+              "prompt_lb": "ech hunn e Kannersëtz a mengem Auto, hues du och een an dengem?",
+              "audioId": "e23978e134dc54b5cf02a8c5ba772ebd",
+              "entryIds": [
+                "DENGEM1"
+              ]
+            },
+            {
+              "id": "iq-1t5mnn6",
+              "prompt_lb": "ech hunn de géien Honger, solle mer eppes iesse goen?",
+              "audioId": "9b65062cf56bc02f3f0c92ea1c3b60eb",
+              "entryIds": [
+                "HONGER1"
+              ]
+            },
+            {
+              "id": "iq-10fi0r0",
+              "prompt_lb": "ech hunn eng Fläsch ëmgehäit, kanns de mer soen, wou d'Botzgeschier steet?",
+              "audioId": "ff97885b371cb2869c425e3ea4657bf4",
+              "entryIds": [
+                "BOTZGESCHIER1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-kreativitéit",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "kreativitéit",
+      "title_en": "Creativity",
+      "title_fr": "Créativité",
+      "title_lb": "Konschthandwierk",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-d2zy4c",
+              "prompt_lb": "ech hunn e Kannersëtz a mengem Auto, hues du och een an dengem?",
+              "audioId": "e23978e134dc54b5cf02a8c5ba772ebd",
+              "entryIds": [
+                "DENGEM1"
+              ]
+            },
+            {
+              "id": "iq-zuh10o",
+              "prompt_lb": "häss de gären eng Foto vu mer?",
+              "audioId": "28008e431a53a300f0bf2753d0cf5a8f",
+              "entryIds": [
+                "FOTO1"
+              ]
+            },
+            {
+              "id": "iq-lujhz7",
+              "prompt_lb": "hunn deng Pneuen nach genuch Profil?",
+              "audioId": "28ace1f54e8889c3aa83f49787cef47a",
+              "entryIds": [
+                "PROFIL1"
+              ]
+            },
+            {
+              "id": "iq-1t5mnn6",
+              "prompt_lb": "ech hunn de géien Honger, solle mer eppes iesse goen?",
+              "audioId": "9b65062cf56bc02f3f0c92ea1c3b60eb",
+              "entryIds": [
+                "HONGER1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-18ztl9u",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic léinen?",
+              "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943",
+              "entryIds": [
+                "LEINEN1"
+              ]
+            },
+            {
+              "id": "iq-1qd4b4n",
+              "prompt_lb": "wéi eng Musek lauschters du am Auto?",
+              "audioId": "917c1142ec9228eded8b1b304c26dd27",
+              "entryIds": [
+                "WEI3"
+              ]
+            },
+            {
+              "id": "iq-fe98nd",
+              "prompt_lb": "hues de net gemierkt, datt déi de Geck mat der gemaach hunn?",
+              "audioId": "55013d66ee510fd531f4125264d52eb8",
+              "entryIds": [
+                "MIERKEN1"
+              ]
+            },
+            {
+              "id": "iq-10fi0r0",
+              "prompt_lb": "ech hunn eng Fläsch ëmgehäit, kanns de mer soen, wou d'Botzgeschier steet?",
+              "audioId": "ff97885b371cb2869c425e3ea4657bf4",
+              "entryIds": [
+                "BOTZGESCHIER1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-1yjl0lm",
+              "prompt_lb": "wat fir eng Musek lauschters du am Auto?",
+              "audioId": "5c6ef87256d2d5bcaee2e43514f24aeb",
+              "entryIds": [
+                "WAT1"
+              ]
+            },
+            {
+              "id": "iq-1h1427i",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mir däi Bläistëft léinen?",
+              "audioId": "049baec664144c94a80d220f24ef06c0",
+              "entryIds": [
+                "SCHREIWEN1"
+              ]
+            },
+            {
+              "id": "iq-10f91zi",
+              "prompt_lb": "wat fir e Programm benotz du, fir d'Gréisst vun denge Fotoen unzepassen?",
+              "audioId": "970c970dbc075b8a93ada1c308f35fa7",
+              "entryIds": [
+                "GREISST1"
+              ]
+            },
+            {
+              "id": "iq-da3wtr",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+              "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+              "entryIds": [
+                "BIC1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-sproochen",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "sproochen",
+      "title_en": "Languages",
+      "title_fr": "Langues",
+      "title_lb": "Sproochen",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-d2zy4c",
+              "prompt_lb": "ech hunn e Kannersëtz a mengem Auto, hues du och een an dengem?",
+              "audioId": "e23978e134dc54b5cf02a8c5ba772ebd",
+              "entryIds": [
+                "DENGEM1"
+              ]
+            },
+            {
+              "id": "iq-zuqm5t",
+              "prompt_lb": "kenns du e Synonym fir dëst Wuert?",
+              "audioId": "92c8b4e31571553884bcdc55e47cea7b",
+              "entryIds": [
+                "FIR2"
+              ]
+            },
+            {
+              "id": "iq-da3wtr",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+              "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+              "entryIds": [
+                "BIC1"
+              ]
+            },
+            {
+              "id": "iq-1t5mnn6",
+              "prompt_lb": "ech hunn de géien Honger, solle mer eppes iesse goen?",
+              "audioId": "9b65062cf56bc02f3f0c92ea1c3b60eb",
+              "entryIds": [
+                "HONGER1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-fe98nd",
+              "prompt_lb": "hues de net gemierkt, datt déi de Geck mat der gemaach hunn?",
+              "audioId": "55013d66ee510fd531f4125264d52eb8",
+              "entryIds": [
+                "MIERKEN1"
+              ]
+            },
+            {
+              "id": "iq-abx3n3",
+              "prompt_lb": "firwat hues de mer kee Wuert vergonnt?",
+              "audioId": "23e70ee42c62cec4eb435cac8cc4896e",
+              "entryIds": [
+                "WUERT2"
+              ]
+            },
+            {
+              "id": "iq-10fi0r0",
+              "prompt_lb": "ech hunn eng Fläsch ëmgehäit, kanns de mer soen, wou d'Botzgeschier steet?",
+              "audioId": "ff97885b371cb2869c425e3ea4657bf4",
+              "entryIds": [
+                "BOTZGESCHIER1"
+              ]
+            },
+            {
+              "id": "iq-1h1427i",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mir däi Bläistëft léinen?",
+              "audioId": "049baec664144c94a80d220f24ef06c0",
+              "entryIds": [
+                "SCHREIWEN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-18ztl9u",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic léinen?",
+              "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943",
+              "entryIds": [
+                "LEINEN1"
+              ]
+            },
+            {
+              "id": "iq-19wetwe",
+              "prompt_lb": "wien huet dech dat geléiert?",
+              "audioId": "764d570ea828d956ca333b1d81a223f8",
+              "entryIds": [
+                "LEIEREN2"
+              ]
+            },
+            {
+              "id": "iq-1hy39fq",
+              "prompt_lb": "hues de scho mat engem Psycholog iwwer deng Problemer geschwat?",
+              "audioId": "ca3af2fa41546091760ce89914c9ef93",
+              "entryIds": [
+                "PSYCHOLOG1"
+              ]
+            },
+            {
+              "id": "iq-lujhz7",
+              "prompt_lb": "hunn deng Pneuen nach genuch Profil?",
+              "audioId": "28ace1f54e8889c3aa83f49787cef47a",
+              "entryIds": [
+                "PROFIL1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-liesen",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "liesen",
+      "title_en": "Reading",
+      "title_fr": "Lecture",
+      "title_lb": "Liesen",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-fe98nd",
+              "prompt_lb": "hues de net gemierkt, datt déi de Geck mat der gemaach hunn?",
+              "audioId": "55013d66ee510fd531f4125264d52eb8",
+              "entryIds": [
+                "MIERKEN1"
+              ]
+            },
+            {
+              "id": "iq-1h1427i",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mir däi Bläistëft léinen?",
+              "audioId": "049baec664144c94a80d220f24ef06c0",
+              "entryIds": [
+                "SCHREIWEN1"
+              ]
+            },
+            {
+              "id": "iq-cz6xgy",
+              "prompt_lb": "wat fir e Buch hues de an der Vakanz gelies?",
+              "audioId": "eb67d6243a42f10f2afc2c5aa90f69b3",
+              "entryIds": [
+                "WAT1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-e566mw",
+              "prompt_lb": "hues de d'Adress op d'Enveloppe geschriwwen?",
+              "audioId": "b9e645f5e98317f66b7ae4c62fae0bb3",
+              "entryIds": [
+                "ADRESS1"
+              ]
+            },
+            {
+              "id": "iq-da3wtr",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+              "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+              "entryIds": [
+                "BIC1"
+              ]
+            },
+            {
+              "id": "iq-1t5mnn6",
+              "prompt_lb": "ech hunn de géien Honger, solle mer eppes iesse goen?",
+              "audioId": "9b65062cf56bc02f3f0c92ea1c3b60eb",
+              "entryIds": [
+                "HONGER1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-lujhz7",
+              "prompt_lb": "hunn deng Pneuen nach genuch Profil?",
+              "audioId": "28ace1f54e8889c3aa83f49787cef47a",
+              "entryIds": [
+                "PROFIL1"
+              ]
+            },
+            {
+              "id": "iq-10fi0r0",
+              "prompt_lb": "ech hunn eng Fläsch ëmgehäit, kanns de mer soen, wou d'Botzgeschier steet?",
+              "audioId": "ff97885b371cb2869c425e3ea4657bf4",
+              "entryIds": [
+                "BOTZGESCHIER1"
+              ]
+            },
+            {
+              "id": "iq-d2zy4c",
+              "prompt_lb": "ech hunn e Kannersëtz a mengem Auto, hues du och een an dengem?",
+              "audioId": "e23978e134dc54b5cf02a8c5ba772ebd",
+              "entryIds": [
+                "DENGEM1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-medien",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "medien",
+      "title_en": "Media and technology",
+      "title_fr": "Médias et technologie",
+      "title_lb": "Medien",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-sntha1",
+              "prompt_lb": "hues du de Moien de Radio gelauschtert?",
+              "audioId": "4baecf86c904acb21ed87df1a3d2986e",
+              "entryIds": [
+                "LAUSCHTEREN1"
+              ]
+            },
+            {
+              "id": "iq-pm642m",
+              "prompt_lb": "den Telefon schellt, kanns du ophiewen?",
+              "audioId": "b9a6727cd46ecf7965f5fd1046c0280e",
+              "entryIds": [
+                "SCHELLEN1"
+              ]
+            },
+            {
+              "id": "iq-10hbi8u",
+              "prompt_lb": "hues de dee Film scho gesinn?",
+              "audioId": "128ce6e4aff099d901a15efe91f225cd",
+              "entryIds": [
+                "GESINN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-1op87f4",
+              "prompt_lb": "schafft däi Jong net beim Film?",
+              "audioId": "72bf6a6283e709865877662d60da0a30",
+              "entryIds": [
+                "FILM1"
+              ]
+            },
+            {
+              "id": "iq-1eecxfh",
+              "prompt_lb": "firwat fënns de dee Film net gutt?",
+              "audioId": "877f1285bfa85a9895ad62c05e2b1480",
+              "entryIds": [
+                "FANNEN1"
+              ]
+            },
+            {
+              "id": "iq-68ysfs",
+              "prompt_lb": "wéi, hues du keen Internet?",
+              "audioId": "0e2d686ed6cfc70ecb9cae8c8f5193a3",
+              "entryIds": [
+                "INTERNET1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-bghr2j",
+              "prompt_lb": "weess du, a wéi een Dossier de Computer déi eenzel Downloaden ofspäichert?",
+              "audioId": "f50534abd83e554a45ae16d9007e65f8",
+              "entryIds": [
+                "DOSSIER1"
+              ]
+            },
+            {
+              "id": "iq-1kqlqel",
+              "prompt_lb": "ech kommen einfach net un däi Brudder, ass säin Telefon iere futti?",
+              "audioId": "08834cdcf78d47602ca68f58101a3214",
+              "entryIds": [
+                "TELEFON1"
+              ]
+            },
+            {
+              "id": "iq-1qt4twb",
+              "prompt_lb": "ass de Film schonn un?",
+              "audioId": "fb45a2348b39b4573b6c0749feb6d12f",
+              "entryIds": [
+                "UN2"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-joreszäiten",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "joreszäiten",
+      "title_en": "Summer and winter",
+      "title_fr": "Été et hiver",
+      "title_lb": "Joreszäiten",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-1wpzixh",
+              "prompt_lb": "gees de am Summer mat an d'Bierger wanderen?",
+              "audioId": "f9ae9e6972406564bc13b28218099e97",
+              "entryIds": [
+                "WANDEREN1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-kaddoen",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "kaddoen",
+      "title_en": "Giving gifts",
+      "title_fr": "Offrir des cadeaux",
+      "title_lb": "Kaddoen",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-vo17z5",
+              "prompt_lb": "soll ech de Präis vum Kaddo erofhuelen?",
+              "audioId": "4b69fa06a6802014e7091ab90ff2a01e",
+              "entryIds": [
+                "PRAIS1"
+              ]
+            },
+            {
+              "id": "iq-18ztl9u",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic léinen?",
+              "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943",
+              "entryIds": [
+                "LEINEN1"
+              ]
+            },
+            {
+              "id": "iq-lujhz7",
+              "prompt_lb": "hunn deng Pneuen nach genuch Profil?",
+              "audioId": "28ace1f54e8889c3aa83f49787cef47a",
+              "entryIds": [
+                "PROFIL1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-1t5mnn6",
+              "prompt_lb": "ech hunn de géien Honger, solle mer eppes iesse goen?",
+              "audioId": "9b65062cf56bc02f3f0c92ea1c3b60eb",
+              "entryIds": [
+                "HONGER1"
+              ]
+            },
+            {
+              "id": "iq-10fi0r0",
+              "prompt_lb": "ech hunn eng Fläsch ëmgehäit, kanns de mer soen, wou d'Botzgeschier steet?",
+              "audioId": "ff97885b371cb2869c425e3ea4657bf4",
+              "entryIds": [
+                "BOTZGESCHIER1"
+              ]
+            },
+            {
+              "id": "iq-1h1427i",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mir däi Bläistëft léinen?",
+              "audioId": "049baec664144c94a80d220f24ef06c0",
+              "entryIds": [
+                "SCHREIWEN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-da3wtr",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+              "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+              "entryIds": [
+                "BIC1"
+              ]
+            },
+            {
+              "id": "iq-fe98nd",
+              "prompt_lb": "hues de net gemierkt, datt déi de Geck mat der gemaach hunn?",
+              "audioId": "55013d66ee510fd531f4125264d52eb8",
+              "entryIds": [
+                "MIERKEN1"
+              ]
+            },
+            {
+              "id": "iq-d2zy4c",
+              "prompt_lb": "ech hunn e Kannersëtz a mengem Auto, hues du och een an dengem?",
+              "audioId": "e23978e134dc54b5cf02a8c5ba772ebd",
+              "entryIds": [
+                "DENGEM1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-iessen",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "iessen",
+      "title_en": "Food and drink",
+      "title_fr": "Manger et boire",
+      "title_lb": "Iessen",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-18ztl9u",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic léinen?",
+              "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943",
+              "entryIds": [
+                "LEINEN1"
+              ]
+            },
+            {
+              "id": "iq-fe98nd",
+              "prompt_lb": "hues de net gemierkt, datt déi de Geck mat der gemaach hunn?",
+              "audioId": "55013d66ee510fd531f4125264d52eb8",
+              "entryIds": [
+                "MIERKEN1"
+              ]
+            },
+            {
+              "id": "iq-5ompng",
+              "prompt_lb": "kenns du een, dee Waasser mat enger Rutt ka fannen?",
+              "audioId": "31246d10686d2ed9c40ff39a8288fe97",
+              "entryIds": [
+                "RUTT1"
+              ]
+            },
+            {
+              "id": "iq-niwws1",
+              "prompt_lb": "ëm wéi vill Auer gëtt bei iech zu Nuecht giess?",
+              "audioId": "2ff5fe81d16fe2da9467d8d85f9cae9e",
+              "entryIds": [
+                "AUER1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-jfntjh",
+              "prompt_lb": "wuer gi mer de Mëtteg iessen?",
+              "audioId": "439f0336ee842407538d6aae778a69c4",
+              "entryIds": [
+                "WUER2"
+              ]
+            },
+            {
+              "id": "iq-1fquoel",
+              "prompt_lb": "drénks du däi Kaffi ouni Mëllech?",
+              "audioId": "25e7d1dbc1dc2fed9b6913ad43479164",
+              "entryIds": [
+                "OUNI1"
+              ]
+            },
+            {
+              "id": "iq-1s79ygt",
+              "prompt_lb": "hues de haut schonn eppes giess?",
+              "audioId": "aab09ca0b0ed292c03b1f198705c0873",
+              "entryIds": [
+                "SCHONN1"
+              ]
+            },
+            {
+              "id": "iq-10fi0r0",
+              "prompt_lb": "ech hunn eng Fläsch ëmgehäit, kanns de mer soen, wou d'Botzgeschier steet?",
+              "audioId": "ff97885b371cb2869c425e3ea4657bf4",
+              "entryIds": [
+                "BOTZGESCHIER1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-k4k2xz",
+              "prompt_lb": "kanns de dat Waasser vum Buedem opbotzen?",
+              "audioId": "020b79eba1a59b8fcb0b8665ae9d3ea9",
+              "entryIds": [
+                "OPBOTZEN1"
+              ]
+            },
+            {
+              "id": "iq-da3wtr",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+              "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+              "entryIds": [
+                "BIC1"
+              ]
+            },
+            {
+              "id": "iq-1t5mnn6",
+              "prompt_lb": "ech hunn de géien Honger, solle mer eppes iesse goen?",
+              "audioId": "9b65062cf56bc02f3f0c92ea1c3b60eb",
+              "entryIds": [
+                "HONGER1"
+              ]
+            },
+            {
+              "id": "iq-1hbcc3m",
+              "prompt_lb": "wien huet all de Schockela giess?",
+              "audioId": "b95a5fec08c4bea153b7f04bf60f7f20",
+              "entryIds": [
+                "ALL2"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-kleeder",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "kleeder",
+      "title_en": "Clothes",
+      "title_fr": "Vêtements",
+      "title_lb": "Kleeder",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-18ztl9u",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic léinen?",
+              "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943",
+              "entryIds": [
+                "LEINEN1"
+              ]
+            },
+            {
+              "id": "iq-d2zy4c",
+              "prompt_lb": "ech hunn e Kannersëtz a mengem Auto, hues du och een an dengem?",
+              "audioId": "e23978e134dc54b5cf02a8c5ba772ebd",
+              "entryIds": [
+                "DENGEM1"
+              ]
+            },
+            {
+              "id": "iq-da3wtr",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+              "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+              "entryIds": [
+                "BIC1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-10fi0r0",
+              "prompt_lb": "ech hunn eng Fläsch ëmgehäit, kanns de mer soen, wou d'Botzgeschier steet?",
+              "audioId": "ff97885b371cb2869c425e3ea4657bf4",
+              "entryIds": [
+                "BOTZGESCHIER1"
+              ]
+            },
+            {
+              "id": "iq-lujhz7",
+              "prompt_lb": "hunn deng Pneuen nach genuch Profil?",
+              "audioId": "28ace1f54e8889c3aa83f49787cef47a",
+              "entryIds": [
+                "PROFIL1"
+              ]
+            },
+            {
+              "id": "iq-fe98nd",
+              "prompt_lb": "hues de net gemierkt, datt déi de Geck mat der gemaach hunn?",
+              "audioId": "55013d66ee510fd531f4125264d52eb8",
+              "entryIds": [
+                "MIERKEN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-23nj4o",
+              "prompt_lb": "kënnt Der mer déi Jackett bis e Samschdeg op d'Säit leeën, wannechgelift?",
+              "audioId": "968e46cfc05fbf8c3bb0cbd926d38415",
+              "entryIds": [
+                "SAIT1"
+              ]
+            },
+            {
+              "id": "iq-1t5mnn6",
+              "prompt_lb": "ech hunn de géien Honger, solle mer eppes iesse goen?",
+              "audioId": "9b65062cf56bc02f3f0c92ea1c3b60eb",
+              "entryIds": [
+                "HONGER1"
+              ]
+            },
+            {
+              "id": "iq-1h1427i",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mir däi Bläistëft léinen?",
+              "audioId": "049baec664144c94a80d220f24ef06c0",
+              "entryIds": [
+                "SCHREIWEN1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-feierdeeg",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "feierdeeg",
+      "title_en": "Holidays and celebrations",
+      "title_fr": "Fêtes et jours fériés",
+      "title_lb": "Feierdeeg",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-fe98nd",
+              "prompt_lb": "hues de net gemierkt, datt déi de Geck mat der gemaach hunn?",
+              "audioId": "55013d66ee510fd531f4125264d52eb8",
+              "entryIds": [
+                "MIERKEN1"
+              ]
+            },
+            {
+              "id": "iq-10fi0r0",
+              "prompt_lb": "ech hunn eng Fläsch ëmgehäit, kanns de mer soen, wou d'Botzgeschier steet?",
+              "audioId": "ff97885b371cb2869c425e3ea4657bf4",
+              "entryIds": [
+                "BOTZGESCHIER1"
+              ]
+            },
+            {
+              "id": "iq-18ztl9u",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic léinen?",
+              "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943",
+              "entryIds": [
+                "LEINEN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-1h1427i",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mir däi Bläistëft léinen?",
+              "audioId": "049baec664144c94a80d220f24ef06c0",
+              "entryIds": [
+                "SCHREIWEN1"
+              ]
+            },
+            {
+              "id": "iq-lujhz7",
+              "prompt_lb": "hunn deng Pneuen nach genuch Profil?",
+              "audioId": "28ace1f54e8889c3aa83f49787cef47a",
+              "entryIds": [
+                "PROFIL1"
+              ]
+            },
+            {
+              "id": "iq-da3wtr",
+              "prompt_lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+              "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+              "entryIds": [
+                "BIC1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-d2zy4c",
+              "prompt_lb": "ech hunn e Kannersëtz a mengem Auto, hues du och een an dengem?",
+              "audioId": "e23978e134dc54b5cf02a8c5ba772ebd",
+              "entryIds": [
+                "DENGEM1"
+              ]
+            },
+            {
+              "id": "iq-1t5mnn6",
+              "prompt_lb": "ech hunn de géien Honger, solle mer eppes iesse goen?",
+              "audioId": "9b65062cf56bc02f3f0c92ea1c3b60eb",
+              "entryIds": [
+                "HONGER1"
+              ]
+            },
+            {
+              "id": "iq-43xwn1",
+              "prompt_lb": "hutt dir nach ëmmer Kontakt mat ärer Famill an Amerika?",
+              "audioId": "6c17f6436839c71dbab59bddca6c1eec",
+              "entryIds": [
+                "HUNN1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interview-famill",
+      "module": "schwaetzen",
+      "type": "interview",
+      "level": "A2",
+      "topic": "famill",
+      "title_en": "Family and people",
+      "title_fr": "Famille et personnes",
+      "title_lb": "Famill",
+      "source": "LOD example sentences (CC0)",
+      "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+      "notes": "Prompts are LOD example sentences that are already questions addressed to a person, so the Luxembourgish is native. The real INLL topic sheets run ~21 questions in three phases with branching; the app links to the official examples and can load your own set locally.",
+      "phases": [
+        {
+          "phase": "general",
+          "title_en": "Warm-up",
+          "title_fr": "Mise en route",
+          "hint_en": "Answer in a full sentence, then add one more detail.",
+          "questions": [
+            {
+              "id": "iq-43xwn1",
+              "prompt_lb": "hutt dir nach ëmmer Kontakt mat ärer Famill an Amerika?",
+              "audioId": "6c17f6436839c71dbab59bddca6c1eec",
+              "entryIds": [
+                "HUNN1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "past",
+          "title_en": "The past",
+          "title_fr": "Le passé",
+          "hint_en": "Use the perfect: hunn / sinn plus the participle.",
+          "questions": [
+            {
+              "id": "iq-mby373",
+              "prompt_lb": "wat ass däi Frënd vu Beruff?",
+              "audioId": "6e3bb0158783c04aa22c9f94836ba2e6",
+              "entryIds": [
+                "BERUFF1"
+              ]
+            }
+          ]
+        },
+        {
+          "phase": "present",
+          "title_en": "Your situation now",
+          "title_fr": "Votre situation actuelle",
+          "hint_en": "Compare then and now if you can.",
+          "questions": [
+            {
+              "id": "iq-1qw1aaw",
+              "prompt_lb": "wie vun iech Kanner ka gutt rechnen?",
+              "audioId": "e602b62565c4f0e8d0b9f0f3fb50a4c8",
+              "entryIds": [
+                "RECHNEN1"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

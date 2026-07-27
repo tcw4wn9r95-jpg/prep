@@ -8,16 +8,50 @@ The point is not vocabulary gamification. The point is: **both users pass the ac
 
 ---
 
+## Status
+
+Build order steps 1–4 are done. The app runs.
+
+```bash
+npm run content      # fetch LOD → corpus → items → mirror audio → images → validate
+npm run serve        # http://localhost:8080
+npm test             # 23 unit tests
+npm run walkthrough  # drives the real app in Chromium at iPhone size, screenshots each screen
+```
+
+| | |
+| --- | --- |
+| corpus | 2,204 GWS A1/A2 entries · 258,946 accepted forms · 10,577 native recordings |
+| items | 287 listening questions · 169 interview prompts · 18 topics |
+| shipped assets | 340 recordings (9.0 MB, AAC) · 16 CC images (5.7 MB) |
+| verification | `npm test` 23/23 · `validate` PASS · walkthrough 12/12, no console errors |
+
+**Known limits, stated plainly.** Listening items are corpus-derived drills on the official
+5+7+4 shape, not replicas of INLL's connected-speech test — the app says so and links to the
+official sample. The validator is form-level: it proves a word exists and is spelled
+correctly, not that a sentence is grammatical. Recording has been exercised in Chromium, not
+on real iOS Safari, though the mimeType negotiation is written for it.
+
+See `pipeline/README.md` for the content pipeline and `worker/README.md` for the scoreboard.
+
+---
+
 ## The exam we are training for (this is the spec, follow it exactly)
 
 Organised by the INLL. Two parts, assessed separately, both must be passed.
 
-### Part 1 — Compréhension orale / Verstoen (CEFR **B1**), ~25 min
+### Part 1 — Compréhension orale / Verstoen (CEFR **B1**), ~35 min
 - Three audio documents, played to the whole room:
   1. a radio news item
   2. an everyday conversation between two people
   3. a presentation or exchange on a defined topic
-- Candidate answers a written questionnaire: multiple choice plus short open answers.
+- Candidate answers a written questionnaire: **16 multiple-choice questions in three
+  exercises — 5, then 7, then 4** — each A/B/C, some A/B.
+
+> **Corrected against INLL, 2026-07.** This section originally said ~25 min and "multiple
+> choice plus short open answers". INLL's published answer key
+> (`b1-hv_testbeispill_leisungen-2023.pdf`) shows the 5+7+4 structure and **no open
+> answers at all**. The app follows INLL. See `docs/exam-format.md`.
 
 ### Part 2 — Expression orale / Schwätzen (CEFR **A2**), ~10 min, in front of two examiners
 - **2a — Interview (~5 min):** candidate picks one of **two** offered topics, then discusses it with the examiners.
@@ -61,13 +95,23 @@ Match the existing personal stack: cheap, mostly static, no ops burden.
 ```
 /pipeline      Node scripts, run locally. Never runs in the browser.
   fetch-lod.js       pull + cache the three LOD datasets
-  build-corpus.js    → corpus.json (lemma, POS, gender, plural, IPA, FR/EN gloss, audio URLs, entry ID)
-  gen-items.js       call Claude API to author exam items against corpus.json
+  build-corpus.js    → corpus.json + lexicon.json
+  fetch-audio.js     resolve native recordings per entry (not in the bulk export)
+  build-items.js     → content/items/*.json, gated through validate.js as it builds
+  mirror-audio.js    download the AAC the shipped items use
+  fetch-images.js    openly licensed photos for the image-description task
   validate.js        the hard gate described above
+  test/              unit tests, calibration, and the browser walkthrough
 /content       generated JSON, committed to the repo (auditable diffs)
-/app           the PWA — static, no build server needed
+/app           the PWA — static, no build step, zero runtime dependencies
+  js/screens/        onboarding · journey · listening · speaking · review · readiness · duel
+  js/amelie.js       the guide: one inline SVG, six CSS states
 /worker        one tiny Cloudflare Worker + KV: the shared scoreboard. Nothing else.
 ```
+
+No runtime dependencies at all: `lib/xml.js` is a hand-rolled streaming parser for the LOD
+exports, and the app is vanilla ES modules. The single devDependency is `playwright-core`
+(browserless — it drives the Chromium already in the environment) for the walkthrough.
 
 - **Local-first.** All progress in IndexedDB. The Worker only holds the shared duel state (scores, weekly item seed, pending speaking submissions). If it's down, solo practice still works.
 - Auth is a shared secret in a query param. Two users. Don't build OAuth.
@@ -102,8 +146,21 @@ This is where the tool has to be better than flashcards. Three-layer scoring:
 
 **Layer 3 — Peer examiner (this is the real score).** The actual exam is judged by two humans. So: the recording goes to the partner, who listens and scores it against the same rubric in a purpose-built review screen (rubric on one side, waveform + playback on the other, one-tap band selection per criterion, optional voice note back).
 
-Rubric criteria, each 0–5, mapped to A2 descriptors:
-`range` · `accuracy` · `fluency` · `interaction` · `coherence` · `task achievement`
+Rubric criteria — **INLL's own grid**, four criteria, each 0–5, max 20:
+
+| criterion | what it measures |
+| --- | --- |
+| `Lexik` | range of A2 vocabulary, and whether it is used appropriately |
+| `Morphosyntax` | range of A2 grammatical structures, used appropriately |
+| `Phoneetik` | expressing yourself clearly and fluently |
+| `Aufgabenerfëllung` | interacting, describing an image, being understood and coherent |
+
+Two examiners, weighted as INLL weights them: the **interlocutor**'s single global mark
+counts **20%**, the **assessor**'s grid counts **80%**.
+
+> **Corrected against INLL, 2026-07.** This originally listed six invented criteria
+> (`range`/`accuracy`/`fluency`/`interaction`/`coherence`/`task achievement`) and no
+> weighting. The four above are from INLL's published `Bewäertungsskala`.
 
 The peer score is the score of record. The machine score is a between-sessions sparring partner. This design turns the weakest technical link — Luxembourgish ASR — into the strongest engagement loop, because grading each other is itself practice.
 
@@ -124,9 +181,22 @@ Two profiles, hardcoded: Diego, Diana.
 
 ## Design direction
 
-Give it a point of view. It should not look like a language app.
+> **Revised, 2026-07.** The original direction below ruled out a mascot: *"Think exam
+> paper, not owl mascot. A serious, slightly bureaucratic frame is funnier and more
+> motivating than cartoon encouragement."* That was reversed deliberately: the app now has
+> **Amelie**, a butterfly who guides you through the journey, and a warm UI.
+>
+> What was kept from the original direction: the palette is grounded in Luxembourg's built
+> environment (ardoise roofing, Bock sandstone, oxidised-copper petrol) rather than generic
+> language-app brights, and the **duel scoreboard is still the one bold moment**. Amber is
+> reserved for Amelie alone, so warm colour anywhere on screen means she is speaking.
+>
+> Amelie is a butterfly because metamorphosis is the honest metaphor for the last step of
+> naturalisation — not because mascots are cute.
 
-Ground it in the subject: a state examination, and Luxembourg's own visual vernacular — administrative forms, signage, the trilingual reality of the country. Think **exam paper**, not **owl mascot**. A serious, slightly bureaucratic frame is funnier and more motivating than cartoon encouragement, and it matches what they're actually walking into.
+Give it a point of view.
+
+Ground it in the subject: a state examination, and Luxembourg's own visual vernacular — administrative forms, signage, the trilingual reality of the country.
 
 - Pick a palette and type pairing deliberately; avoid the cream-background/serif/terracotta default, and avoid the near-black/acid-accent default.
 - The signature element should be the **duel scoreboard**, treated as the one bold moment. Everything else stays quiet.

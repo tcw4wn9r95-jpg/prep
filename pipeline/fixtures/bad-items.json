@@ -1,0 +1,52 @@
+{
+  "_comment": [
+    "Deliberately broken items. Each one exists to prove a specific gate fires;",
+    "pipeline/test/validator.test.js asserts on the codes below. Nothing here is",
+    "correct Luxembourgish - do not copy anything out of this file.",
+    "Every 'bad' string is a one-character-class corruption of a real LOD sentence,",
+    "so a gate that passes it is a gate that would pass a real authoring mistake."
+  ],
+  "items": [
+    {
+      "id": "fixture-misspelling",
+      "module": "verstoen",
+      "type": "mcq",
+      "notes": "expects lexicon/unknown - 'Aarbescht' is a deliberate misspelling of 'Aarbecht' (AARBECHT1)",
+      "transcript": "huet däi Brudder endlech eng Aarbescht fonnt?",
+      "question_en": "Control: this sentence is LOD verbatim except for one corrupted noun."
+    },
+    {
+      "id": "fixture-erroneous-spelling",
+      "module": "verstoen",
+      "type": "mcq",
+      "notes": "expects lexicon/erroneous - LOD itself flags this spelling as wrong",
+      "transcript": "ech hunn eng Aarbechtserlaabnes gefrot",
+      "question_en": "Control: a spelling LOD explicitly marks reason=\"erroneous-spelling\"."
+    },
+    {
+      "id": "fixture-n-rule",
+      "module": "verstoen",
+      "type": "mcq",
+      "notes": "expects n-rule/keep - LOD writes 'ech maache reegelméisseg Sport'; the n must drop before the s",
+      "transcript": "ech maachen reegelméisseg Sport",
+      "question_en": "Control: correct words, wrong sandhi."
+    },
+    {
+      "id": "fixture-missing-audio",
+      "module": "verstoen",
+      "type": "mcq",
+      "notes": "expects audio/unresolved - the id is not a recording in corpus.json",
+      "audioId": "0000000000000000000000000000dead",
+      "transcript": "an zwou Wochen ass endlech Vakanz!",
+      "question_en": "Control: valid Luxembourgish, dangling audio reference."
+    },
+    {
+      "id": "fixture-unknown-field",
+      "module": "verstoen",
+      "type": "mcq",
+      "notes": "expects schema/unknown-field - an unclassified field would otherwise skip validation entirely",
+      "subtitle": "eng Aarbescht ouni Kontroll",
+      "question_en": "Control: text smuggled into a field the validator does not know about."
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+/**
+ * Service worker.
+ *
+ * The requirement is blunt: this has to work on a phone with no signal. So the
+ * shell, the generated items and every mirrored recording are precached on
+ * install, and the app is served cache-first afterwards.
+ *
+ * The audio manifest is fetched at install time rather than inlined, so adding
+ * recordings does not mean hand-editing this file.
+ */
+
+const VERSION = 'v1';
+const SHELL_CACHE = `shell-${VERSION}`;
+const AUDIO_CACHE = `audio-${VERSION}`;
+
+const SHELL = [
+  './',
+  'index.html',
+  'manifest.webmanifest',
+  'css/tokens.css',
+  'css/base.css',
+  'css/components.css',
+  'css/amelie.css',
+  'js/main.js',
+  'js/dom.js',
+  'js/store.js',
+  'js/audio.js',
+  'js/amelie.js',
+  'js/content.js',
+  'js/recorder.js',
+  'js/sync.js',
+  'js/screens/onboarding.js',
+  'js/screens/journey.js',
+  'js/screens/listening.js',
+  'js/screens/speaking.js',
+  'js/screens/review.js',
+  'js/screens/readiness.js',
+  'js/screens/duel.js',
+  'data/topics.json',
+  'data/listening.json',
+  'data/interviews.json',
+  'data/images.json',
+  'assets/icon.svg',
+  'assets/icon-180.png',
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    (async () => {
+      const shell = await caches.open(SHELL_CACHE);
+      // addAll is atomic: one 404 and nothing is cached, which would leave the
+      // app half-offline. Add individually and let optional files fail.
+      await Promise.all(
+        SHELL.map((url) => shell.add(url).catch((error) => console.warn('[sw] skipped', url, error.message))),
+      );
+
+      // Recordings and images: many files, so they get their own cache and a
+      // best-effort pass. A missing clip degrades one question, not the app.
+      const media = await caches.open(AUDIO_CACHE);
+
+      try {
+        const response = await fetch('data/audio-manifest.json');
+        if (response.ok) {
+          const { files } = await response.json();
+          await Promise.all(files.map((url) => media.add(url).catch(() => {})));
+        }
+      } catch (error) {
+        console.warn('[sw] audio precache skipped', error.message);
+      }
+
+      // Image-description photos, so part 2b works with no signal too.
+      try {
+        const response = await fetch('data/images.json');
+        if (response.ok) {
+          const { items } = await response.json();
+          await Promise.all(
+            (items ?? [])
+              .map((item) => item.imageUrl)
+              .filter((url) => url && !/^https?:/i.test(url))
+              .map((url) => media.add(url).catch(() => {})),
+          );
+        }
+      } catch (error) {
+        console.warn('[sw] image precache skipped', error.message);
+      }
+
+      await self.skipWaiting();
+    })(),
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    (async () => {
+      const keep = new Set([SHELL_CACHE, AUDIO_CACHE]);
+      for (const key of await caches.keys()) {
+        if (!keep.has(key)) await caches.delete(key);
+      }
+      await self.clients.claim();
+    })(),
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+  if (request.method !== 'GET') return;
+
+  const url = new URL(request.url);
+  // Never cache the Worker: shared state must not be served stale.
+  if (url.origin !== self.location.origin) return;
+
+  event.respondWith(
+    (async () => {
+      const cached = await caches.match(request, { ignoreSearch: true });
+      if (cached) return cached;
+
+      try {
+        const response = await fetch(request);
+        // Cache generated content and audio as they are first used.
+        if (response.ok && (url.pathname.includes('/assets/audio/') || url.pathname.includes('/data/'))) {
+          const cache = await caches.open(url.pathname.includes('/assets/audio/') ? AUDIO_CACHE : SHELL_CACHE);
+          cache.put(request, response.clone());
+        }
+        return response;
+      } catch (error) {
+        // Offline and not cached: for a navigation, fall back to the shell so
+        // the app still boots and can explain itself.
+        if (request.mode === 'navigate') {
+          const shell = await caches.match('index.html');
+          if (shell) return shell;
+        }
+        throw error;
+      }
+    })(),
+  );
+});
