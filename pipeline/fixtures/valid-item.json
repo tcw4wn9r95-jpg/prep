@@ -1,0 +1,19 @@
+{
+  "id": "fixture-valid-1",
+  "module": "verstoen",
+  "type": "mcq",
+  "level": "A2",
+  "topic": "sports",
+  "source": "LOD example sentences (CC0)",
+  "attribution": "Lëtzebuerger Online Dictionnaire, Zenter fir d'Lëtzebuerger Sprooch",
+  "entryIds": ["SPORT1", "AARBECHT1"],
+  "audioId": "fe0f05cac51195df10d8abdbebeeb928",
+  "transcript": "ech maache reegelméisseg Sport, fir a Form ze bleiwen",
+  "question_en": "What does the speaker say they do regularly?",
+  "question_fr": "Que dit le locuteur faire régulièrement ?",
+  "options_lb": ["Sport maachen", "an d'Vakanz fueren", "am Büro schaffen"],
+  "correct": 0,
+  "explanation_en": "\"ech maache reegelméisseg Sport\" — literally \"I do sport regularly\". Note the dropped n on \"maache\": the Eifeler Regel drops it before the s of \"reegelméisseg\".",
+  "explanation_fr": "« ech maache reegelméisseg Sport » — « je fais du sport régulièrement ». Le n de « maache » tombe devant le s de « reegelméisseg » (Eifeler Regel).",
+  "notes": "Every Luxembourgish string is LOD verbatim. Used by pipeline/test/validator.test.js as the positive control."
+}

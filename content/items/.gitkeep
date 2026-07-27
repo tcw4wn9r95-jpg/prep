@@ -1,0 +1,3 @@
+Generated exam items land here (build order steps 2 and 6).
+`npm run validate` gates this directory; it is empty until items exist.
+Fixtures that prove the gate live in pipeline/fixtures/ instead.
