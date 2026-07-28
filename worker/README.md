@@ -38,6 +38,17 @@ else about the app changes. This calls two paid third-party APIs per tap
 automatic, and results are cached in KV so re-opening the same recording
 doesn't re-bill it.
 
+### Optional: sentence explanations in Learn
+
+`POST /explain` gives a short, learner-focused explanation of a Learn
+vocab/verb example sentence — not a translation, but a note on word order, an
+idiom, or a false friend. It reuses `ANTHROPIC_API_KEY` above; no new secret.
+Unlike the machine estimate, the result is the same for everyone who sees a
+given sentence, so it's cached in KV by content and never re-billed once any
+one player has seen it. Without `ANTHROPIC_API_KEY` set, it returns `503` and
+the "Explain this sentence" button shows the same plain "not configured"
+message.
+
 ## Endpoints
 
 | method | path | purpose |
@@ -49,6 +60,7 @@ doesn't re-bill it.
 | PUT | `/submission/:id` | upload a recording (≤20 MB) |
 | GET | `/submission/:id` | fetch a recording to score |
 | POST | `/feedback/:id` | optional machine estimate (Whisper + Claude); `503` if unconfigured |
+| POST | `/explain` | optional Learn sentence explanation (Claude); `503` if unconfigured |
 
 ## Security notes, stated plainly
 
@@ -64,3 +76,6 @@ doesn't re-bill it.
   that one recording's audio to OpenAI and the transcript to Anthropic —
   outside the pair's own Worker, unlike everything else here. It only happens
   on an explicit tap, never automatically.
+- If `/explain` is configured, a tap on "Explain this sentence" sends that
+  sentence's text (already public LOD content, no recordings involved) to
+  Anthropic. Same explicit-tap-only rule.

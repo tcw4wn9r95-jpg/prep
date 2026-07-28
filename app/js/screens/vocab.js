@@ -14,7 +14,8 @@ import { el, fill, screenHead, button } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
 import { loadVocab } from '../content.js';
-import { getLearnDeckState, recordLearnResult, pickDue, POINTS } from '../store.js';
+import { getLearnDeckState, recordLearnResult, pickDue, getSentenceExplanation, saveSentenceExplanation, POINTS } from '../store.js';
+import { requestExplanation } from '../sync.js';
 
 const SESSION_SIZE = 10;
 
@@ -73,32 +74,75 @@ export async function render(root, { settings, navigate }) {
     const audioId = item.example?.audioId ?? null;
     if (audioId) clip = new Clip(audioId);
 
+    const playNote = el('p', { class: 'card__note', hidden: true });
+    const playButton = audioId
+      ? el(
+          'button',
+          {
+            type: 'button',
+            class: 'player__play',
+            'aria-label': 'Hear the example sentence',
+            onclick: async () => {
+              unlock();
+              playButton.classList.add('is-playing');
+              playNote.hidden = true;
+              const ok = await clip.play();
+              if (!ok) {
+                playButton.classList.remove('is-playing');
+                playNote.textContent = 'Audio would not play — try tapping again.';
+                playNote.hidden = false;
+              }
+            },
+          },
+          el(
+            'svg',
+            { viewBox: '0 0 24 24', width: '22', height: '22', 'aria-hidden': 'true', fill: 'currentColor' },
+            el('path', { d: 'M8 5 L19 12 L8 19 Z' }),
+          ),
+        )
+      : null;
+    if (clip) clip.on('ended', () => playButton.classList.remove('is-playing'));
+
+    const explainNote = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s2)', textAlign: 'left' }, hidden: true });
+    const explainButton = item.example
+      ? button('Explain this sentence', {
+          variant: 'secondary',
+          class: 'btn btn--secondary',
+          style: { marginBlockStart: 'var(--s3)' },
+          onclick: async () => {
+            explainButton.disabled = true;
+            const cached = await getSentenceExplanation(item.id);
+            if (cached) {
+              explainNote.textContent = cached;
+              explainNote.hidden = false;
+              explainButton.hidden = true;
+              return;
+            }
+            explainNote.textContent = 'Asking…';
+            explainNote.hidden = false;
+            const result = await requestExplanation(settings, { lb: item.example.lb, word: item.lb, en: item.en });
+            if (result.ok) {
+              await saveSentenceExplanation(item.id, result.explanation);
+              explainNote.textContent = result.explanation;
+              explainButton.hidden = true;
+            } else {
+              explainNote.textContent = result.message;
+              explainButton.disabled = false;
+            }
+          },
+        })
+      : null;
+
     const word = el(
       'div',
       { class: 'card', style: { textAlign: 'center' } },
       el('p', { class: 'meter__label' }, item.pos === 'SUBST' ? 'noun' : item.pos === 'VRB' ? 'verb' : item.pos === 'ADJ' ? 'adjective' : 'word'),
       el('p', { class: 'screen__title', style: { marginBlockStart: 'var(--s1)' } }, item.article ? `${item.article} ${item.lb}` : item.lb),
       item.example ? el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s3)', fontStyle: 'italic' } }, `“${item.example.lb}”`) : null,
-      audioId
-        ? el(
-            'button',
-            {
-              type: 'button',
-              class: 'player__play',
-              style: { marginBlockStart: 'var(--s3)' },
-              'aria-label': 'Hear the example sentence',
-              onclick: async () => {
-                unlock();
-                await clip.play();
-              },
-            },
-            el(
-              'svg',
-              { viewBox: '0 0 24 24', width: '22', height: '22', 'aria-hidden': 'true', fill: 'currentColor' },
-              el('path', { d: 'M8 5 L19 12 L8 19 Z' }),
-            ),
-          )
-        : null,
+      playButton ? el('div', { style: { marginBlockStart: 'var(--s3)' } }, playButton) : null,
+      playNote,
+      explainButton,
+      explainNote,
     );
 
     const optionsEl = el('div', { class: 'options' });

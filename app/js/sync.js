@@ -144,3 +144,25 @@ export async function requestMachineFeedback(settings, recording) {
     return { ok: false, message: `Could not get a machine estimate (${error.message}).` };
   }
 }
+
+/**
+ * An on-demand explanation of one Learn example sentence — not a translation,
+ * notes on why it's put together the way it is. Same soft-fail shape as the
+ * rest of this module. Unlike the machine estimate, this has no audio to
+ * upload first: it's a plain JSON round trip.
+ */
+export async function requestExplanation(settings, { lb, word, en }) {
+  if (!settings.workerUrl) {
+    return { ok: false, message: 'No Worker configured — explanations need one, the same as the machine estimate does.' };
+  }
+  if (!navigator.onLine) {
+    return { ok: false, message: 'Offline. Try again once you are back online.' };
+  }
+
+  try {
+    const body = await request(settings, '/explain', { method: 'POST', body: JSON.stringify({ lb, word, en }) });
+    return { ok: true, explanation: body.explanation };
+  } catch (error) {
+    return { ok: false, message: `Could not get an explanation (${error.message}).` };
+  }
+}
