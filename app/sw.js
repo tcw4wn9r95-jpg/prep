@@ -9,7 +9,7 @@
  * recordings does not mean hand-editing this file.
  */
 
-const VERSION = 'v1';
+const VERSION = 'v2';
 const SHELL_CACHE = `shell-${VERSION}`;
 const AUDIO_CACHE = `audio-${VERSION}`;
 
@@ -31,6 +31,9 @@ const SHELL = [
   'js/sync.js',
   'js/screens/onboarding.js',
   'js/screens/journey.js',
+  'js/screens/learn.js',
+  'js/screens/vocab.js',
+  'js/screens/verbs.js',
   'js/screens/listening.js',
   'js/screens/speaking.js',
   'js/screens/review.js',
@@ -40,6 +43,8 @@ const SHELL = [
   'data/listening.json',
   'data/interviews.json',
   'data/images.json',
+  'data/vocab.json',
+  'data/verbs.json',
   'assets/icon.svg',
   'assets/icon-180.png',
 ];
