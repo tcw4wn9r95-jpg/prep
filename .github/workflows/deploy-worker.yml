@@ -41,13 +41,35 @@ jobs:
           cache: npm
           cache-dependency-path: worker/package-lock.json
 
+      # Everything is checked here, before anything is created, so a missing
+      # secret can't leave a deployed Worker with no SHARED_SECRET — which
+      # would reject every request from both phones.
       - name: Check required secrets
+        env:
+          SHARED_SECRET: ${{ secrets.DUEL_SHARED_SECRET }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
+          # Presence only — no value is ever printed.
+          report() { [ -n "$2" ] && echo "  present  $1" || echo "  MISSING  $1"; }
+          echo "Repository secrets this workflow can see:"
+          report CLOUDFLARE_API_TOKEN "$CLOUDFLARE_API_TOKEN"
+          report DUEL_SHARED_SECRET "$SHARED_SECRET"
+          report "CLOUDFLARE_ACCOUNT_ID (needed only for multi-account tokens)" "$CLOUDFLARE_ACCOUNT_ID"
+          report "OPENAI_API_KEY (optional)" "$OPENAI_API_KEY"
+          report "ANTHROPIC_API_KEY (optional)" "$ANTHROPIC_API_KEY"
+
           missing=""
           [ -n "$CLOUDFLARE_API_TOKEN" ] || missing="$missing CLOUDFLARE_API_TOKEN"
+          [ -n "$SHARED_SECRET" ] || missing="$missing DUEL_SHARED_SECRET"
           if [ -n "$missing" ]; then
-            echo "::error::Missing repo secret(s):$missing"
-            echo "Add them under Settings → Secrets and variables → Actions." >&2
+            {
+              echo "Add them at Settings → Secrets and variables → Actions, on the"
+              echo "**Secrets** tab — not the Variables tab next to it, and not an"
+              echo "Environment secret; this job reads repository secrets."
+              echo "Names must match exactly, including the L in CLOUDFLARE."
+            } >&2
+            echo "::error::Missing repository secret(s):$missing"
             exit 1
           fi
 
