@@ -21,24 +21,7 @@ const path = require('node:path');
 const paths = require('./lib/paths');
 const xml = require('./lib/xml');
 const { writeJson } = require('./lib/write-json');
-const { checkLexicon, checkNRule } = require('./validate');
-const { createChecker } = require('./lib/nrule');
-
-/** Same gate build-items.js and build-vocab.js use: drop rather than ship a
- * form the validator would reject. A handful of separable verbs' bare stems
- * ("reegen" for "opreegen") are not independently indexed by LOD. */
-function makeGate(lexicon) {
-  const checker = createChecker({
-    nRuleForms: new Set(lexicon.nRuleForms),
-    retentionExceptions: new Set(Object.keys(lexicon.nRuleRetentionExceptions ?? {})),
-  });
-  return function isClean(text) {
-    const findings = [];
-    checkLexicon(lexicon, text, 'form', findings);
-    checkNRule(checker, text, 'form', findings);
-    return findings.every((finding) => finding.severity !== 'error');
-  };
-}
+const { makeGate, primaryExample } = require('./lib/gate');
 
 const PERSONS = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'];
 const PRONOUNS = { p1: 'ech', p2: 'du', p3: 'hien/si/hatt', p4: 'mir', p5: 'dir', p6: 'si' };
@@ -105,13 +88,21 @@ async function main() {
 
   const items = [];
   let droppedUnclean = 0;
+  let droppedExamples = 0;
   for (const [infinitive, table] of tables) {
     const corpusEntry = corpusVerbs.get(infinitive.toLowerCase());
     if (!corpusEntry) continue; // outside the A1/A2 Grondwuertschatz, out of scope for a beginner drill
-    if (!PERSONS.every((p) => isClean(table.present[p]))) {
+    if (!PERSONS.every((p) => isClean(table.present[p], 'form'))) {
       droppedUnclean += 1;
       continue;
     }
+
+    let example = primaryExample(corpusEntry);
+    if (example && !isClean(example.lb, 'example')) {
+      example = null;
+      droppedExamples += 1;
+    }
+
     items.push({
       id: table.id,
       infinitive: table.infinitive,
@@ -120,6 +111,7 @@ async function main() {
       level: corpusEntry.level,
       en: corpusEntry.glosses?.en?.[0] ?? null,
       present: table.present,
+      example,
     });
   }
 
@@ -140,7 +132,7 @@ async function main() {
   const appData = path.join(paths.ROOT, 'app', 'data');
   await writeJson(path.join(appData, 'verbs.json'), payload);
 
-  console.log(`verbs: ${items.length} conjugation sets (${meta.counts.a1} A1, ${meta.counts.a2} A2), ${droppedUnclean} dropped by the gate`);
+  console.log(`verbs: ${items.length} conjugation sets (${meta.counts.a1} A1, ${meta.counts.a2} A2), ${droppedUnclean} dropped by the gate, ${droppedExamples} example sentences dropped`);
 }
 
 main().catch((error) => {
