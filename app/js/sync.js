@@ -104,3 +104,43 @@ export async function fetchSeed(settings) {
     return null;
   }
 }
+
+/**
+ * "Layer 2" — an optional, formative machine estimate of a speaking
+ * recording. Same soft-fail shape as the rest of this module: never throws,
+ * always returns something the UI can show directly.
+ *
+ * Uploads the recording first (idempotent — the Worker just overwrites), so
+ * this works the moment after recording rather than depending on the general
+ * outbox sync timing.
+ */
+export async function requestMachineFeedback(settings, recording) {
+  if (!settings.workerUrl) {
+    return { ok: false, message: 'No Worker configured — the machine estimate needs one, the same as score sync does.' };
+  }
+  if (!navigator.onLine) {
+    return { ok: false, message: 'Offline. Try again once you are back online.' };
+  }
+
+  try {
+    const uploadUrl = new URL(`${settings.workerUrl}/submission/${recording.id}`);
+    if (settings.secret) uploadUrl.searchParams.set('k', settings.secret);
+    const meta = { playerId: recording.playerId, topic: recording.topic, recordingKind: recording.kind, durationMs: recording.durationMs };
+    const uploadResponse = await fetch(uploadUrl, {
+      method: 'PUT',
+      headers: { 'content-type': recording.mime || 'audio/mp4', 'x-meta': encodeURIComponent(JSON.stringify(meta)) },
+      body: recording.blob,
+    });
+    if (!uploadResponse.ok) throw new Error(`${uploadResponse.status} uploading the recording`);
+
+    const feedbackUrl = new URL(`${settings.workerUrl}/feedback/${recording.id}`);
+    if (settings.secret) feedbackUrl.searchParams.set('k', settings.secret);
+    const feedbackResponse = await fetch(feedbackUrl, { method: 'POST' });
+    const body = await feedbackResponse.json().catch(() => null);
+    if (!feedbackResponse.ok) throw new Error(body?.error ?? `${feedbackResponse.status} ${feedbackResponse.statusText}`);
+
+    return { ok: true, feedback: body };
+  } catch (error) {
+    return { ok: false, message: `Could not get a machine estimate (${error.message}).` };
+  }
+}

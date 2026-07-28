@@ -606,6 +606,17 @@
 .chip--ok { background: var(--ok-wash); color: var(--ok); border-color: color-mix(in srgb, var(--ok) 25%, transparent); }
 .chip--warn { background: var(--amelie-wash); color: var(--amelie-deep); border-color: color-mix(in srgb, var(--amelie) 25%, transparent); }
 
+/*
+ * The machine estimate gets its own colour — deliberately neither Amelie's
+ * reserved amber nor the app's petrol accent, so it reads at a glance as
+ * "neither the guide nor the real score."
+ */
+.chip--machine { background: var(--purple-100); color: var(--purple-600); border-color: color-mix(in srgb, var(--purple-600) 25%, transparent); }
+
+.machine-card {
+  border: 2px dashed color-mix(in srgb, var(--purple-600) 35%, transparent);
+}
+
 .empty {
   display: flex;
   flex-direction: column;

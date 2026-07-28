@@ -14,7 +14,8 @@ import { el, fill, screenHead, button, formatClock } from '../dom.js';
 import { Amelie, AMELIE_LINES } from '../amelie.js';
 import { interviewForTopic, loadInterviews, loadImages, topicIcon, modelInterviewsForTopic, loadModelAnswers } from '../content.js';
 import { Recorder, isSupported, unsupportedReason } from '../recorder.js';
-import { saveRecording, touchStreak, otherPlayer, POINTS } from '../store.js';
+import { saveRecording, touchStreak, otherPlayer, POINTS, CRITERIA, getMachineFeedback, saveMachineFeedback } from '../store.js';
+import { requestMachineFeedback } from '../sync.js';
 
 const PREP_SECONDS = 30;
 const MAX_MS = 5 * 60 * 1000;
@@ -333,9 +334,85 @@ function runSpeakingTask(root, { settings, navigate, kind, topic, title, sub, qu
           audio,
         ),
         el('p', { class: 'source-note' }, `${partner.name} scores this on the official grid: four criteria, 0 to 5 each. That score is the one that counts.`),
+        machineEstimateSection(record),
         button('Record another', { variant: 'secondary', class: 'btn btn--secondary btn--block', onclick: () => navigate('#/speaking') }),
         button('See readiness', { variant: 'primary', class: 'btn btn--primary btn--block', onclick: () => navigate('#/readiness') }),
       ),
+    );
+  }
+
+  /**
+   * "Layer 2" from the brief: an optional, opt-in, formative machine
+   * estimate — never shown to the reviewer, only here, on the speaker's own
+   * screen, so it can't anchor their partner's independent scoring.
+   */
+  function machineEstimateSection(record) {
+    const wrap = el('div', { class: 'card machine-card' });
+    fill(wrap, machineEstimatePrompt());
+
+    getMachineFeedback(record.id).then((cached) => {
+      if (cached) fill(wrap, machineEstimateResult(cached));
+    });
+
+    function machineEstimatePrompt() {
+      return el(
+        'div',
+        { class: 'stack' },
+        el('div', { class: 'row row--between' }, el('span', { class: 'card__title' }, 'Machine estimate'), el('span', { class: 'chip chip--machine' }, 'beta')),
+        el('p', { class: 'card__note' }, 'A rough, automated guess at your score — not the real one, and Luxembourgish speech recognition is unreliable. Optional.'),
+        button('Get a machine estimate', {
+          variant: 'secondary',
+          onclick: async (event) => {
+            event.currentTarget.disabled = true;
+            event.currentTarget.textContent = 'Listening…';
+            const result = await requestMachineFeedback(settings, record);
+            if (!result.ok) {
+              fill(wrap, machineEstimatePrompt(), el('p', { class: 'source-note' }, result.message));
+              return;
+            }
+            await saveMachineFeedback(record.id, result.feedback);
+            fill(wrap, machineEstimateResult(result.feedback));
+          },
+        }),
+      );
+    }
+
+    return wrap;
+  }
+
+  function machineEstimateResult(feedback) {
+    if (feedback.error) {
+      return el(
+        'div',
+        { class: 'stack' },
+        el('span', { class: 'card__title' }, 'Machine estimate'),
+        el('p', { class: 'card__note' }, feedback.error),
+      );
+    }
+    return el(
+      'div',
+      { class: 'stack' },
+      el('div', { class: 'row row--between' }, el('span', { class: 'card__title' }, 'Machine estimate'), el('span', { class: 'chip chip--machine' }, `${feedback.confidence} confidence`)),
+      el(
+        'div',
+        { class: 'stack', style: { gap: 'var(--s2)' } },
+        ...CRITERIA.map((criterion) =>
+          el(
+            'div',
+            { class: 'row row--between' },
+            el('span', { class: 'meter__label' }, criterion.name),
+            el('span', { class: 'chip chip--machine' }, feedback.bands?.[criterion.id] ?? '—'),
+          ),
+        ),
+      ),
+      feedback.note ? el('p', { class: 'card__note' }, feedback.note) : null,
+      el(
+        'details',
+        {},
+        el('summary', { class: 'source-note' }, 'What it heard'),
+        el('p', { class: 'source-note', style: { marginBlockStart: 'var(--s2)' } }, feedback.transcript),
+      ),
+      el('p', { class: 'source-note' }, 'Formative only — not the score of record. Automated speech recognition for Luxembourgish is genuinely unreliable, so treat this as a rough sparring partner, not a verdict.'),
     );
   }
 
