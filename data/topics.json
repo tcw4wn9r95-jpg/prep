@@ -1,0 +1,323 @@
+{
+  "meta": {
+    "generatedAt": "2026-07-27T14:57:44.543Z",
+    "generator": "pipeline/build-items.js",
+    "seed": 20260727,
+    "corpus": {
+      "art": {
+        "dataset": "letzebuerger-online-dictionnaire-lod-linguistesch-daten",
+        "resourceId": "2d20bba9-5073-48a4-aae5-f0d5c9a0d955",
+        "resource": "260727-new-lod-art.zip",
+        "xmlSha256": "9cfc68aac67296832d96a12919aef5cc3609a530514831751374b104df4a2eab"
+      },
+      "search": {
+        "dataset": "letzebuerger-online-dictionnaire-lod-index-vun-der-sich-funktioun",
+        "resourceId": "1debbba3-079c-4400-96b0-79b74e97a7ce",
+        "resource": "260727-new-lod-search.zip",
+        "xmlSha256": "30e10b28aa3df88950e1abcb499e7daa0ea5a264bfc6718b526472f59c0dc589"
+      },
+      "tab": {
+        "dataset": "letzebuerger-online-dictionnaire-lod-flexiounstabellen",
+        "resourceId": "27d65808-3ff7-4e39-b01e-b1af1e847cc4",
+        "resource": "260727-new-lod-tab.zip",
+        "xmlSha256": "27200fd7a47d4d16a8df81f9eb6162029fdc0898375d4ac97acfc8623ede8c17"
+      }
+    },
+    "license": "CC0-1.0",
+    "attribution": "Lëtzebuerger Online Dictionnaire (LOD), Zenter fir d'Lëtzebuerger Sprooch, via data.public.lu",
+    "examFormat": {
+      "source": "https://www.inll.lu/fr/sproochentest/",
+      "listening": "CEFR B1, ~35 min, three exercises of 5 + 7 + 4 multiple-choice questions",
+      "speaking": "CEFR A2, ~10 min: interview on a chosen topic, then description of a chosen image",
+      "rubric": [
+        "Lexik",
+        "Morphosyntax",
+        "Phoneetik",
+        "Aufgabenerfëllung"
+      ],
+      "rubricBands": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "examinerWeighting": {
+        "interlocuteur": 0.2,
+        "assessor": 0.8
+      },
+      "passRule": "Over 50% on the speaking part, or over 50% overall",
+      "note": "Structure taken from INLL published material. No INLL content is reproduced here."
+    }
+  },
+  "items": [
+    {
+      "id": "sport",
+      "type": "topic",
+      "title_lb": "Sport",
+      "title_en": "Sport",
+      "title_fr": "Sport",
+      "entryIds": [
+        "SPORT1",
+        "FUSSBALL1",
+        "SPILLEN1",
+        "LAFEN1",
+        "SCHWAMMEN1",
+        "TRAINING1"
+      ]
+    },
+    {
+      "id": "aarbecht",
+      "type": "topic",
+      "title_lb": "Aarbecht",
+      "title_en": "Work",
+      "title_fr": "Travail",
+      "entryIds": [
+        "AARBECHT1",
+        "SCHAFFEN3",
+        "BURO1",
+        "CHEF1",
+        "KOLLEEG1",
+        "BERUFF1"
+      ]
+    },
+    {
+      "id": "vakanz",
+      "type": "topic",
+      "title_lb": "Vakanz",
+      "title_en": "Travel and holidays",
+      "title_fr": "Voyages et vacances",
+      "entryIds": [
+        "VAKANZ1",
+        "REESEN1",
+        "REES1",
+        "HOTEL1",
+        "FLIGER1",
+        "MIER1"
+      ]
+    },
+    {
+      "id": "gesondheet",
+      "type": "topic",
+      "title_lb": "Gesondheet",
+      "title_en": "Healthy living",
+      "title_fr": "Vivre sainement",
+      "entryIds": [
+        "GESONDHEET1",
+        "KRANK1",
+        "DOKTER1",
+        "SPIDOL1",
+        "SPORT1",
+        "SCHLOFEN1"
+      ]
+    },
+    {
+      "id": "wunnen",
+      "type": "topic",
+      "title_lb": "Wunnen",
+      "title_en": "My living space",
+      "title_fr": "Mon logement",
+      "entryIds": [
+        "HAUS1",
+        "WUNNENG1",
+        "ZEMMER1",
+        "KICHEN1",
+        "GAART1",
+        "WUNNEN1"
+      ]
+    },
+    {
+      "id": "transport",
+      "type": "topic",
+      "title_lb": "Transport",
+      "title_en": "Transport",
+      "title_fr": "Transports",
+      "entryIds": [
+        "AUTO1",
+        "ZUCH1",
+        "BUS1",
+        "FUEREN1",
+        "VELO1",
+        "STROOSS1"
+      ]
+    },
+    {
+      "id": "hobbyen",
+      "type": "topic",
+      "title_lb": "Hobbyen",
+      "title_en": "Hobbies",
+      "title_fr": "Loisirs",
+      "entryIds": [
+        "HOBBY1",
+        "SPILLEN1",
+        "LIESEN1",
+        "DANZEN1",
+        "SANGEN1",
+        "FRAIZAIT1"
+      ]
+    },
+    {
+      "id": "stot",
+      "type": "topic",
+      "title_lb": "Stot",
+      "title_en": "Household chores",
+      "title_fr": "Tâches ménagères",
+      "entryIds": [
+        "BOTZEN1",
+        "WASCHEN1",
+        "KACHEN2",
+        "KICHEN1",
+        "RAUMEN1",
+        "AKAFEN1"
+      ]
+    },
+    {
+      "id": "kreativitéit",
+      "type": "topic",
+      "title_lb": "Konschthandwierk",
+      "title_en": "Creativity",
+      "title_fr": "Créativité",
+      "entryIds": [
+        "MOLEN1",
+        "BILD1",
+        "FAARF1",
+        "MUSEK1",
+        "THEATER1",
+        "FOTO1"
+      ]
+    },
+    {
+      "id": "sproochen",
+      "type": "topic",
+      "title_lb": "Sproochen",
+      "title_en": "Languages",
+      "title_fr": "Langues",
+      "entryIds": [
+        "SPROOCH1",
+        "LETZEBUERGESCH2",
+        "LEIEREN2",
+        "SCHWATZEN1",
+        "WUERT2",
+        "VERSTOEN1"
+      ]
+    },
+    {
+      "id": "liesen",
+      "type": "topic",
+      "title_lb": "Liesen",
+      "title_en": "Reading",
+      "title_fr": "Lecture",
+      "entryIds": [
+        "LIESEN1",
+        "BUCH1",
+        "ZEITUNG2",
+        "TEXT1",
+        "BIBLIOTHEIK1",
+        "SCHREIWEN1"
+      ]
+    },
+    {
+      "id": "medien",
+      "type": "topic",
+      "title_lb": "Medien",
+      "title_en": "Media and technology",
+      "title_fr": "Médias et technologie",
+      "entryIds": [
+        "INTERNET1",
+        "COMPUTER1",
+        "TELEFON1",
+        "FILM1",
+        "RADIO1",
+        "NORIICHT1"
+      ]
+    },
+    {
+      "id": "joreszäiten",
+      "type": "topic",
+      "title_lb": "Joreszäiten",
+      "title_en": "Summer and winter",
+      "title_fr": "Été et hiver",
+      "entryIds": [
+        "WANTER1",
+        "SUMMER1",
+        "SCHNEI1",
+        "KAL1",
+        "WAARM1",
+        "WIEDER1"
+      ]
+    },
+    {
+      "id": "kaddoen",
+      "type": "topic",
+      "title_lb": "Kaddoen",
+      "title_en": "Giving gifts",
+      "title_fr": "Offrir des cadeaux",
+      "entryIds": [
+        "KADDO1",
+        "SCHENKEN1",
+        "GEBUERTSDAG1",
+        "FEIEREN1",
+        "FEST1"
+      ]
+    },
+    {
+      "id": "iessen",
+      "type": "topic",
+      "title_lb": "Iessen",
+      "title_en": "Food and drink",
+      "title_fr": "Manger et boire",
+      "entryIds": [
+        "IESSEN1",
+        "IESSEN3",
+        "BROUT1",
+        "WAASSER2",
+        "KAFFI1",
+        "RESTAURANT1"
+      ]
+    },
+    {
+      "id": "kleeder",
+      "type": "topic",
+      "title_lb": "Kleeder",
+      "title_en": "Clothes",
+      "title_fr": "Vêtements",
+      "entryIds": [
+        "KLEED1",
+        "SCHONG1",
+        "HIEM1",
+        "JACKETT1",
+        "UNDOEN1"
+      ]
+    },
+    {
+      "id": "feierdeeg",
+      "type": "topic",
+      "title_lb": "Feierdeeg",
+      "title_en": "Holidays and celebrations",
+      "title_fr": "Fêtes et jours fériés",
+      "entryIds": [
+        "FEIERDAG1",
+        "CHRESCHTDAG1",
+        "FEIEREN1",
+        "FEST1",
+        "FAMILL1"
+      ]
+    },
+    {
+      "id": "famill",
+      "type": "topic",
+      "title_lb": "Famill",
+      "title_en": "Family and people",
+      "title_fr": "Famille et personnes",
+      "entryIds": [
+        "FAMILL1",
+        "KAND1",
+        "FREND1",
+        "MAMM1",
+        "PAPP1",
+        "FRA1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+/*
+ * Amelie's styles.
+ *
+ * All six states are pure CSS on the root `.amelie` element. The global
+ * reduced-motion rule in tokens.css already flattens every animation here, so
+ * nothing needs to branch in JavaScript.
+ */
+
+.amelie {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  pointer-events: none;
+}
+
+.amelie__figure {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+.amelie__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.amelie--sm .amelie__figure { width: 40px; }
+.amelie--md .amelie__figure { width: 68px; }
+.amelie--lg .amelie__figure { width: 120px; }
+
+/* --- the drawing ------------------------------------------------------ */
+
+.amelie__wing-upper { fill: url(#amelie-wing-upper); }
+.amelie__wing-lower { fill: url(#amelie-wing-lower); }
+
+.amelie__wing-upper,
+.amelie__wing-lower {
+  stroke: var(--amelie-deep);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.amelie__spot {
+  fill: var(--surface);
+  opacity: 0.55;
+}
+
+.amelie__thorax,
+.amelie__head {
+  fill: var(--ardoise-800);
+}
+
+.amelie__eye {
+  fill: var(--surface);
+}
+
+.amelie__antenna {
+  fill: none;
+  stroke: var(--ardoise-800);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.amelie__antenna-tip { fill: var(--amelie); }
+
+.amelie__sparkle {
+  fill: var(--amelie);
+  opacity: 0;
+}
+
+/* --- flutter ----------------------------------------------------------
+ * Wings pivot on the body axis (x = 60 in the viewBox), so scaling X reads
+ * as a flap rather than a squash.
+ */
+
+.amelie__wing {
+  transform-origin: 60px 58px;
+  transform-box: view-box;
+}
+
+@keyframes amelie-flap-soft {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.86); }
+}
+
+@keyframes amelie-flap-fast {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.5); }
+}
+
+@keyframes amelie-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5%); }
+}
+
+@keyframes amelie-rise {
+  0% { transform: translateY(0) rotate(0deg); }
+  40% { transform: translateY(-16%) rotate(-4deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes amelie-sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.4); }
+  35% { opacity: 1; transform: scale(1.15); }
+  70% { opacity: 0; transform: scale(0.8); }
+}
+
+@keyframes amelie-antenna-twitch {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(-5deg); }
+  60% { transform: rotate(4deg); }
+}
+
+@keyframes amelie-bubble-in {
+  from { opacity: 0; transform: translateY(4px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+/* idle — barely moving, so she never competes with the exercise */
+.amelie.is-idle .amelie__figure { animation: amelie-bob 4.5s var(--ease) infinite; }
+.amelie.is-idle .amelie__wing { animation: amelie-flap-soft 4.5s var(--ease) infinite; }
+
+/* flying — travelling between nodes on the journey */
+.amelie.is-flying .amelie__figure { animation: amelie-bob 0.9s var(--ease) infinite; }
+.amelie.is-flying .amelie__wing { animation: amelie-flap-fast 0.32s linear infinite; }
+
+/* listening — held still, attentive */
+.amelie.is-listening .amelie__figure { animation: amelie-bob 3s var(--ease) infinite; }
+.amelie.is-listening .amelie__wing { animation: amelie-flap-soft 3s var(--ease) infinite; }
+.amelie.is-listening .amelie__svg { transform: rotate(-5deg); transition: transform 0.4s var(--ease); }
+
+/* thinking — antennae working while the prep timer runs */
+.amelie.is-thinking .amelie__body { animation: amelie-antenna-twitch 1.6s var(--ease) infinite; transform-origin: 60px 60px; transform-box: view-box; }
+.amelie.is-thinking .amelie__wing { animation: amelie-flap-soft 2.4s var(--ease) infinite; }
+
+/* celebrating — the one moment she is allowed to be loud */
+.amelie.is-celebrating .amelie__figure { animation: amelie-rise 0.75s var(--ease-back) 2; }
+.amelie.is-celebrating .amelie__wing { animation: amelie-flap-fast 0.22s linear infinite; }
+.amelie.is-celebrating .amelie__sparkle { animation: amelie-sparkle 1.1s var(--ease) 2; }
+.amelie.is-celebrating .amelie__sparkle:nth-child(2) { animation-delay: 0.16s; }
+.amelie.is-celebrating .amelie__sparkle:nth-child(3) { animation-delay: 0.32s; }
+
+/* encouraging — leaning in, not scolding */
+.amelie.is-encouraging .amelie__svg { transform: rotate(4deg); transition: transform 0.4s var(--ease); }
+.amelie.is-encouraging .amelie__wing { animation: amelie-flap-soft 2s var(--ease) infinite; }
+
+/* --- speech bubble ---------------------------------------------------- */
+
+.amelie__bubble {
+  position: relative;
+  margin: 0;
+  padding: var(--s3) var(--s4);
+  background: var(--amelie-wash);
+  color: var(--text);
+  border-radius: var(--r-md);
+  border-start-start-radius: var(--s1);
+  font-size: var(--size-base);
+  line-height: var(--lh-snug);
+  box-shadow: var(--shadow-sm);
+  max-width: 34ch;
+}
+
+.amelie__bubble.is-new {
+  animation: amelie-bubble-in 0.28s var(--ease-back);
+}
+
+/* Stacked layout for the wide hero placements. */
+.amelie--stack {
+  flex-direction: column;
+  text-align: center;
+}
+
+.amelie--stack .amelie__bubble {
+  border-start-start-radius: var(--r-md);
+  border-start-end-radius: var(--r-md);
+}
