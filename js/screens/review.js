@@ -215,7 +215,7 @@ function renderGrid(root, { record, remaining, settings, navigate }) {
 
   function showResult(saved) {
     const done = new Amelie({ size: 'lg', bubble: true });
-    done.el.classList.add('amelie--stack');
+    done.el.classList.add('amelie--stack', 'amelie--hero');
     done.celebrate(AMELIE_LINES.reviewDone);
     fill(
       body,
