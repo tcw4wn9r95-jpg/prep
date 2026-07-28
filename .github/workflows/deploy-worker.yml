@@ -78,19 +78,21 @@ jobs:
       - name: Resolve the DUEL KV namespace
         id: kv
         run: |
-          set -uo pipefail
+          # GitHub Actions runs every `run:` block as `bash -e {0}` — errexit
+          # is on from the shell invocation itself, before this script's own
+          # `set` line executes. `set -u` or `set -o pipefail` only touch the
+          # flags they name, they do NOT clear a flag already on, so a plain
+          # `set -uo pipefail` here leaves errexit exactly as inherited. It
+          # has to be turned off explicitly, or `x=$(cmd)` still aborts the
+          # whole script the instant cmd fails — before `$?` is captured or
+          # the output is echoed, which is the bug this step exists to avoid.
+          set +e
+          set -u -o pipefail
           title="sproochentest-duel-DUEL"
 
           # Look for an existing namespace first, so re-runs don't pile up
           # duplicates. The id is written into wrangler.toml for this run only;
           # nothing is committed back.
-          #
-          # errexit is off for the calls to wrangler itself: with `set -e`,
-          # `x=$(cmd)` aborts the script the instant cmd fails, before the
-          # captured output — including wrangler's actual error message — is
-          # ever printed. Capturing the exit code manually and echoing the
-          # output first means a real failure here is diagnosable instead of
-          # a bare "Process completed with exit code 1".
           list_output=$(npx wrangler kv namespace list 2>&1)
           list_status=$?
           if [ "$list_status" -ne 0 ]; then
@@ -139,6 +141,10 @@ jobs:
             }
             fs.writeFileSync(file, updated);
           ' wrangler.toml "$id"
+          if [ $? -ne 0 ]; then
+            echo "::error::Failed to write the KV namespace id into wrangler.toml."
+            exit 1
+          fi
 
           echo "id=$id" >> "$GITHUB_OUTPUT"
           echo "Using KV namespace $id"
