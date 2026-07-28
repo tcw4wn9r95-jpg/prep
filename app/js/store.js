@@ -184,6 +184,20 @@ export async function saveMachineFeedback(recordingId, feedback) {
   return feedback;
 }
 
+/**
+ * Local cache of a Learn example-sentence explanation, keyed by the vocab or
+ * verb item id. The explanation is the same for everyone, so once fetched it
+ * never needs to be re-requested from this device.
+ */
+export async function getSentenceExplanation(itemId) {
+  return get('meta', `explain:${itemId}`);
+}
+
+export async function saveSentenceExplanation(itemId, explanation) {
+  await put('meta', explanation, `explain:${itemId}`);
+  return explanation;
+}
+
 export async function markReviewed(recordingId) {
   const record = await getRecording(recordingId);
   if (!record) return;

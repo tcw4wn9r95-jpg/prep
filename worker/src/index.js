@@ -64,6 +64,8 @@ async function route(request, url, env) {
   const feedbackMatch = path.match(/^\/feedback\/([\w-]+)$/);
   if (feedbackMatch && request.method === 'POST') return postFeedback(env, feedbackMatch[1]);
 
+  if (path === '/explain' && request.method === 'POST') return postExplain(request, env);
+
   return json({ error: 'not found' }, 404);
 }
 
@@ -345,6 +347,89 @@ async function grade(env, transcript) {
     note: typeof parsed.note === 'string' ? parsed.note : '',
     confidence: ['low', 'medium', 'high'].includes(parsed.confidence) ? parsed.confidence : 'low',
   };
+}
+
+/* ------------------------------------------------------- sentence explain
+ * Learn's vocab and verb cards show a real LOD example sentence. A gloss of
+ * the headword is already free; what a beginner actually wants next is why
+ * the sentence is put together the way it is — word order, an idiom, a false
+ * friend — not a second, redundant translation. That needs an LLM. The
+ * explanation is the same for everyone who sees a given sentence, so unlike
+ * the machine estimate (per-recording, per-user) this is cached forever by
+ * content, not by id, and never re-billed once generated.
+ */
+
+async function postExplain(request, env) {
+  if (!env.ANTHROPIC_API_KEY) {
+    return json({ error: 'sentence explanations are not configured on this Worker' }, 503);
+  }
+
+  const body = await request.json().catch(() => ({}));
+  const lb = String(body.lb ?? '').trim();
+  const word = String(body.word ?? '').trim();
+  const en = String(body.en ?? '').trim();
+  if (!lb) return json({ error: 'missing "lb" sentence' }, 400);
+
+  const cacheKey = `ex:${await sha256hex(`${lb}|${word}`)}`;
+  const cached = await env.DUEL.get(cacheKey, 'json');
+  if (cached) return json({ ...cached, cached: true });
+
+  let explanation;
+  try {
+    explanation = await explain(env, { lb, word, en });
+  } catch (error) {
+    return json({ error: `explanation failed: ${error.message}` }, 502);
+  }
+
+  const payload = { explanation, at: new Date().toISOString() };
+  // Evergreen content, not tied to a user or a recording — no expiry.
+  await env.DUEL.put(cacheKey, JSON.stringify(payload));
+  return json(payload);
+}
+
+const EXPLAIN_SYSTEM_PROMPT = `You help an English-speaking A1/A2 learner of Luxembourgish understand one real example sentence from a dictionary. You are told the sentence, the headword it illustrates, and that word's English gloss.
+
+Do NOT just translate the sentence — the learner already has the gloss. Instead, in 2-3 short sentences, help them understand and remember it: point out word order, a grammatical structure worth noticing, an idiom or figurative meaning, a false friend, or how the headword's form here relates to its dictionary form. Be concrete and specific to this sentence, not generic advice.
+
+Respond with ONLY a JSON object, no prose outside it: {"explanation": "..."}`;
+
+/** Claude explains one sentence; cheap and cacheable, so Haiku is the right fit. */
+async function explain(env, { lb, word, en }) {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-api-key': env.ANTHROPIC_API_KEY,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 250,
+      system: EXPLAIN_SYSTEM_PROMPT,
+      messages: [{ role: 'user', content: `Sentence: ${lb}\nHeadword: ${word}\nHeadword gloss: ${en || '(none given)'}` }],
+    }),
+  });
+  if (!response.ok) throw new Error(`Claude ${response.status}: ${(await response.text()).slice(0, 200)}`);
+  const body = await response.json();
+  const text = body.content?.[0]?.text ?? '';
+
+  let parsed;
+  try {
+    parsed = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
+  } catch {
+    throw new Error('could not parse the model response as JSON');
+  }
+  if (typeof parsed.explanation !== 'string' || !parsed.explanation.trim()) {
+    throw new Error('model response had no explanation text');
+  }
+  return parsed.explanation.trim();
+}
+
+/** SHA-256 hex digest, for a stable cache key derived from sentence content. */
+async function sha256hex(text) {
+  const bytes = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
 function ensurePlayer(state, id) {

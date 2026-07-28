@@ -346,6 +346,17 @@
   box-shadow: 0 1px 0 var(--accent-strong);
 }
 
+/* Standalone play buttons (Learn's vocab/verb cards) pulse while a clip is
+   playing, so a repeat tap reads as "still going" rather than "did nothing". */
+.player__play.is-playing {
+  animation: player-play-pulse 0.9s var(--ease) infinite;
+}
+
+@keyframes player-play-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
 .player__bars {
   display: flex;
   align-items: center;
