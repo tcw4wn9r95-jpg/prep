@@ -17,6 +17,17 @@ const MAX_SUBMISSION_BYTES = 20 * 1024 * 1024; // KV's ceiling is 25 MB
 const SUBMISSION_TTL_S = 60 * 60 * 24 * 30;
 const PLAYERS = new Set(['diego', 'diana']);
 
+/**
+ * The INLL A2 speaking grid, mirrored from app/js/store.js CRITERIA so the
+ * machine estimate is scored against the same rubric the peer reviewer uses.
+ */
+const CRITERIA = [
+  { id: 'lexik', name: 'Lexik', desc: 'Range of A2 vocabulary, and whether it is used appropriately.' },
+  { id: 'morphosyntax', name: 'Morphosyntax', desc: 'Range of A2 grammatical structures, and whether they are used appropriately.' },
+  { id: 'phoneetik', name: 'Phoneetik', desc: 'Expressing yourself clearly and fluently.' },
+  { id: 'aufgabenerfellung', name: 'Aufgabenerfëllung', desc: 'Interacting in a conversation, describing an image, being understood and coherent.' },
+];
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -49,6 +60,9 @@ async function route(request, url, env) {
     if (request.method === 'PUT') return putSubmission(request, env, submissionMatch[1]);
     if (request.method === 'GET') return getSubmission(env, submissionMatch[1]);
   }
+
+  const feedbackMatch = path.match(/^\/feedback\/([\w-]+)$/);
+  if (feedbackMatch && request.method === 'POST') return postFeedback(env, feedbackMatch[1]);
 
   return json({ error: 'not found' }, 404);
 }
@@ -221,6 +235,116 @@ async function getSubmission(env, id) {
       'cache-control': 'private, max-age=300',
     },
   });
+}
+
+/* ------------------------------------------------------- machine feedback
+ * "Layer 2" from the brief: a formative, honestly-unreliable estimate — never
+ * the score of record. Whisper transcribes (Luxembourgish support is genuinely
+ * poor; that is stated to the user, not hidden), Claude grades the transcript
+ * against the same rubric the peer reviewer uses, told explicitly to treat
+ * transcription noise as noise rather than as a language mistake.
+ */
+
+async function postFeedback(env, id) {
+  if (!env.OPENAI_API_KEY || !env.ANTHROPIC_API_KEY) {
+    return json({ error: 'machine feedback is not configured on this Worker' }, 503);
+  }
+
+  const cached = await env.DUEL.get(`fb:${id}`, 'json');
+  if (cached) return json({ ...cached, cached: true });
+
+  const { value: audio, metadata } = await env.DUEL.getWithMetadata(`sub:${id}`, 'arrayBuffer');
+  if (!audio) {
+    return json({ error: 'recording not found — it may already have been scored and removed' }, 404);
+  }
+
+  let transcript;
+  try {
+    transcript = await transcribe(env, audio, metadata?.mime ?? 'audio/mp4');
+  } catch (error) {
+    return json({ error: `transcription failed: ${error.message}` }, 502);
+  }
+
+  if (!transcript.trim()) {
+    return json({ error: 'transcription came back empty — the recording may be silent or too short' }, 422);
+  }
+
+  let result;
+  try {
+    result = await grade(env, transcript);
+  } catch (error) {
+    return json({ error: `grading failed: ${error.message}` }, 502);
+  }
+
+  const payload = { transcript, ...result, at: new Date().toISOString() };
+  await env.DUEL.put(`fb:${id}`, JSON.stringify(payload), { expirationTtl: SUBMISSION_TTL_S });
+  return json(payload);
+}
+
+/** Whisper's own multi-language model, told explicitly this is Luxembourgish. */
+async function transcribe(env, audio, mime) {
+  const extension = mime.includes('webm') ? 'webm' : mime.includes('ogg') ? 'ogg' : 'm4a';
+  const form = new FormData();
+  form.append('file', new Blob([audio], { type: mime }), `recording.${extension}`);
+  form.append('model', 'whisper-1');
+  form.append('language', 'lb');
+  form.append('response_format', 'json');
+
+  const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
+    method: 'POST',
+    headers: { authorization: `Bearer ${env.OPENAI_API_KEY}` },
+    body: form,
+  });
+  if (!response.ok) throw new Error(`Whisper ${response.status}: ${(await response.text()).slice(0, 200)}`);
+  const body = await response.json();
+  return body.text ?? '';
+}
+
+const GRADE_SYSTEM_PROMPT = `You are giving a beginner an honest, formative, unofficial estimate of a Luxembourgish A2 speaking answer, transcribed by automatic speech recognition. Luxembourgish ASR quality is low — the transcript is noisy. Do not penalise probable transcription artefacts (garbled words, missing punctuation, odd spacing); only flag things you are reasonably confident are genuine language issues, and say so if you are unsure rather than inventing errors.
+
+Score against these four criteria, each 0-5, the same rubric a human peer will use:
+${CRITERIA.map((criterion) => `- ${criterion.id} (${criterion.name}): ${criterion.desc}`).join('\n')}
+
+Respond with ONLY a JSON object, no prose outside it, shaped exactly like:
+{"bands": {"lexik": 0-5, "morphosyntax": 0-5, "phoneetik": 0-5, "aufgabenerfellung": 0-5}, "note": "one short, encouraging, actionable sentence in English", "confidence": "low"|"medium"|"high"}
+
+"confidence" reflects how much the ASR noise limits your judgement — be honest, most Luxembourgish transcripts warrant "low" or "medium".`;
+
+async function grade(env, transcript) {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-api-key': env.ANTHROPIC_API_KEY,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 300,
+      system: GRADE_SYSTEM_PROMPT,
+      messages: [{ role: 'user', content: `Transcript:\n${transcript}` }],
+    }),
+  });
+  if (!response.ok) throw new Error(`Claude ${response.status}: ${(await response.text()).slice(0, 200)}`);
+  const body = await response.json();
+  const text = body.content?.[0]?.text ?? '';
+
+  let parsed;
+  try {
+    parsed = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
+  } catch {
+    throw new Error('could not parse the model response as JSON');
+  }
+  const bands = {};
+  for (const criterion of CRITERIA) {
+    const value = Number(parsed.bands?.[criterion.id]);
+    bands[criterion.id] = Number.isFinite(value) ? Math.max(0, Math.min(5, Math.round(value))) : null;
+  }
+  return {
+    bands,
+    note: typeof parsed.note === 'string' ? parsed.note : '',
+    confidence: ['low', 'medium', 'high'].includes(parsed.confidence) ? parsed.confidence : 'low',
+  };
 }
 
 function ensurePlayer(state, id) {
