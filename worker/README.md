@@ -9,15 +9,78 @@ writes locally and pushes them on the next sync.
 
 ## Deploy
 
+Two ways in, doing the same thing. Use CI if you don't have a machine with a
+terminal to hand — it needs nothing but a browser.
+
+### From CI (no computer needed)
+
+`.github/workflows/deploy-worker.yml` runs the whole bootstrap on a GitHub
+runner. Add these under **Settings → Secrets and variables → Actions**:
+
+| secret | required | what it is |
+| --- | --- | --- |
+| `CLOUDFLARE_API_TOKEN` | yes | scoped token, see below |
+| `CLOUDFLARE_ACCOUNT_ID` | if your token can see more than one account | from the Cloudflare dashboard sidebar |
+| `DUEL_SHARED_SECRET` | yes | the string both phones type into Duel settings |
+| `OPENAI_API_KEY` | no | enables `/feedback` |
+| `ANTHROPIC_API_KEY` | no | enables `/feedback` and `/explain` |
+
+Create the token at **My Profile → API Tokens → Create Token** using the
+*Edit Cloudflare Workers* template — that grants Workers Scripts: Edit and
+Workers KV Storage: Edit, which is all this needs. Don't use the Global API
+Key; it has no scope limit.
+
+Then run the **Deploy Worker** workflow from the Actions tab. It resolves (or
+creates) the `DUEL` KV namespace, deploys, and pushes the secrets in — none of
+which touch the repo or the build log. The Worker URL is printed in the run
+summary. It's idempotent: re-run it any time. After the first run it also
+redeploys automatically on any push to `main` that touches `worker/`.
+
+### From a terminal
+
+```bash
+cd worker
+npm install
+npx wrangler login   # or export CLOUDFLARE_API_TOKEN
+npm run setup
+```
+
+`npm run setup` does the whole bootstrap: creates the `DUEL` KV namespace and
+writes its id into `wrangler.toml`, deploys, then prompts for `SHARED_SECRET`
+(offering to generate one) and the optional AI keys. It is idempotent — re-run
+it any time; it reuses the existing namespace. Commit the KV id it writes back;
+that id is not a secret. Secrets are piped straight to `wrangler secret put`
+and never written to disk.
+
+Doing it by hand instead:
+
 ```bash
 npx wrangler kv namespace create DUEL     # paste the id into wrangler.toml
 npx wrangler secret put SHARED_SECRET     # the same string both phones enter
-# set ALLOWED_ORIGIN in wrangler.toml to your Pages origin
 npx wrangler deploy
 ```
 
+### Either way, afterwards
+
+`ALLOWED_ORIGIN` in `wrangler.toml` is the origin the app is served from —
+scheme and host only, no path. It is set to the GitHub Pages origin; change it
+if you move the app to a custom domain. Note that CORS pins the origin, not the
+path: it covers every project site on that `github.io` account, which is the
+finest granularity CORS offers.
+
 Then open the app, tap through to **Duel settings** on the first screen, and
 enter the Worker URL and the same secret on both phones.
+
+### Running it locally
+
+```bash
+cp .dev.vars.example .dev.vars   # gitignored; set a throwaway SHARED_SECRET
+npm run dev
+```
+
+`wrangler dev` uses a local, simulated KV, so local runs never touch the pair's
+real scoreboard. `npm run tail` streams live request logs from the deployed
+Worker; `npm run deploy` pushes a code change.
 
 ### Optional: the machine estimate
 

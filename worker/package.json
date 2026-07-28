@@ -1,0 +1,20 @@
+{
+  "name": "sproochentest-duel-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The shared scoreboard for the Sproochentest duel. Cloudflare Worker + KV.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "setup": "bash setup.sh",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "whoami": "wrangler whoami"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

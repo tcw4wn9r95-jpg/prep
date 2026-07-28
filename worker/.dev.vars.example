@@ -1,0 +1,9 @@
+# Local-only secrets for `npm run dev`. Copy to `.dev.vars` — which is
+# gitignored — and fill in. Deployed secrets are set with `wrangler secret put`
+# instead; this file never leaves your machine.
+SHARED_SECRET="local-dev-secret"
+
+# Optional. Without these, /feedback and /explain return 503 locally, exactly
+# as they do in production when unconfigured.
+# OPENAI_API_KEY=""
+# ANTHROPIC_API_KEY=""

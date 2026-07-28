@@ -1,0 +1,160 @@
+name: Deploy Worker
+
+# Deploys the shared scoreboard Worker from CI, so the whole setup can be done
+# from a phone: add the repo secrets, then run this workflow.
+#
+# It is the same flow as worker/setup.sh, made non-interactive. Idempotent —
+# re-running it reuses the existing KV namespace and just redeploys.
+
+on:
+  workflow_dispatch:
+    inputs:
+      update_secrets:
+        description: "Push SHARED_SECRET (and any AI keys) to the Worker"
+        type: boolean
+        default: true
+  push:
+    branches: [main]
+    paths:
+      - "worker/**"
+      - ".github/workflows/deploy-worker.yml"
+
+concurrency:
+  group: deploy-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: worker
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: worker/package-lock.json
+
+      - name: Check required secrets
+        run: |
+          missing=""
+          [ -n "$CLOUDFLARE_API_TOKEN" ] || missing="$missing CLOUDFLARE_API_TOKEN"
+          if [ -n "$missing" ]; then
+            echo "::error::Missing repo secret(s):$missing"
+            echo "Add them under Settings → Secrets and variables → Actions." >&2
+            exit 1
+          fi
+
+      - run: npm ci
+
+      - name: Resolve the DUEL KV namespace
+        id: kv
+        run: |
+          set -euo pipefail
+          title="sproochentest-duel-DUEL"
+
+          # Look for an existing namespace first, so re-runs don't pile up
+          # duplicates. The id is written into wrangler.toml for this run only;
+          # nothing is committed back.
+          id=$(npx wrangler kv namespace list 2>/dev/null | node -e '
+            let raw = "";
+            process.stdin.on("data", (chunk) => { raw += chunk; });
+            process.stdin.on("end", () => {
+              const start = raw.indexOf("[");
+              let list = [];
+              try { list = JSON.parse(raw.slice(start, raw.lastIndexOf("]") + 1)); } catch {}
+              const wanted = list.find((entry) => entry.title === process.argv[1]);
+              process.stdout.write(wanted ? wanted.id : "");
+            });
+          ' "$title" || true)
+
+          if [ -z "$id" ]; then
+            echo "No $title namespace yet — creating it."
+            output=$(npx wrangler kv namespace create DUEL 2>&1)
+            echo "$output"
+            id=$(printf '%s' "$output" | grep -oE '[0-9a-f]{32}' | head -n1 || true)
+          fi
+
+          if [ -z "$id" ]; then
+            echo "::error::Could not determine the DUEL KV namespace id."
+            exit 1
+          fi
+
+          node -e '
+            const fs = require("fs");
+            const [file, id] = process.argv.slice(1);
+            const toml = fs.readFileSync(file, "utf8");
+            const updated = toml.replace(/(\[\[kv_namespaces\]\][\s\S]*?^\s*id\s*=\s*)"[^"]*"/m, `$1"${id}"`);
+            if (updated === toml) {
+              console.error("could not rewrite the kv_namespaces id in " + file);
+              process.exit(1);
+            }
+            fs.writeFileSync(file, updated);
+          ' wrangler.toml "$id"
+
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "Using KV namespace $id"
+
+      - name: Deploy
+        id: deploy
+        run: |
+          set -euo pipefail
+          npx wrangler deploy 2>&1 | tee deploy.log
+          url=$(grep -oE 'https://[a-zA-Z0-9._-]+\.workers\.dev' deploy.log | head -n1 || true)
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      # Secrets are piped straight into wrangler and never land in the log or
+      # in wrangler.toml. The Worker rejects every request until SHARED_SECRET
+      # is set, so the first run must include this step.
+      - name: Set Worker secrets
+        if: github.event_name != 'workflow_dispatch' || inputs.update_secrets
+        env:
+          SHARED_SECRET: ${{ secrets.DUEL_SHARED_SECRET }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "$SHARED_SECRET" ]; then
+            echo "::error::DUEL_SHARED_SECRET is not set — the Worker will reject all requests."
+            exit 1
+          fi
+          printf '%s' "$SHARED_SECRET" | npx wrangler secret put SHARED_SECRET
+          echo "SHARED_SECRET set."
+
+          # Optional. Absent keys leave /feedback and /explain returning 503,
+          # which is the documented unconfigured behaviour.
+          if [ -n "$OPENAI_API_KEY" ]; then
+            printf '%s' "$OPENAI_API_KEY" | npx wrangler secret put OPENAI_API_KEY
+            echo "OPENAI_API_KEY set."
+          else
+            echo "OPENAI_API_KEY not provided — /feedback stays off."
+          fi
+          if [ -n "$ANTHROPIC_API_KEY" ]; then
+            printf '%s' "$ANTHROPIC_API_KEY" | npx wrangler secret put ANTHROPIC_API_KEY
+            echo "ANTHROPIC_API_KEY set."
+          else
+            echo "ANTHROPIC_API_KEY not provided — /feedback and /explain stay off."
+          fi
+
+      - name: Summary
+        run: |
+          {
+            echo "### Worker deployed"
+            echo
+            if [ -n "${{ steps.deploy.outputs.url }}" ]; then
+              echo "**URL:** \`${{ steps.deploy.outputs.url }}\`"
+            else
+              echo "URL not found in the deploy output — check the Deploy step's log."
+            fi
+            echo
+            echo "KV namespace: \`${{ steps.kv.outputs.id }}\`"
+            echo
+            echo "On both phones: open the app → **Duel settings** on the first screen →"
+            echo "enter that URL and the shared secret."
+          } >> "$GITHUB_STEP_SUMMARY"
