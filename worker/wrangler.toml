@@ -2,25 +2,30 @@ name = "sproochentest-duel"
 main = "src/index.js"
 compatibility_date = "2026-07-01"
 
-# The shared duel state. Create with:
+[observability]
+enabled = true
+
+# The shared duel state. `npm run setup` creates this and writes the id back
+# here; the id is not a secret, so commit it once it's filled in. To do it by
+# hand instead:
 #   npx wrangler kv namespace create DUEL
-# then paste the id below.
 [[kv_namespaces]]
 binding = "DUEL"
 id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
 
 [vars]
-# The GitHub Pages origin the app is served from. CORS is pinned to it, so a
-# wildcard is never needed and never safe here — the secret travels in the URL.
-ALLOWED_ORIGIN = "https://REPLACE.github.io"
+# The GitHub Pages origin the app is served from — scheme and host only, no
+# path. CORS is pinned to it, so a wildcard is never needed and never safe
+# here: the secret travels in the URL.
+ALLOWED_ORIGIN = "https://tcw4wn9r95-jpg.github.io"
 
 # SHARED_SECRET is NOT set here on purpose: it must be a secret, not a var.
 #   npx wrangler secret put SHARED_SECRET
 # The Worker refuses every request until it is set.
 
 # OPENAI_API_KEY and ANTHROPIC_API_KEY power the optional /feedback endpoint
-# (the "machine estimate" — see README.md). Also secrets, also optional: the
-# rest of the app works with neither set, and POST /feedback/:id just returns
-# 503 until both are configured.
+# (the "machine estimate" — see README.md); ANTHROPIC_API_KEY alone powers
+# /explain. Also secrets, also optional: the rest of the app works with neither
+# set, and those endpoints just return 503 until they are configured.
 #   npx wrangler secret put OPENAI_API_KEY
 #   npx wrangler secret put ANTHROPIC_API_KEY

@@ -8,3 +8,8 @@ node_modules/
 # Walkthrough screenshots — regenerable with `npm run walkthrough`, and they
 # churn on every run.
 docs/screens/
+
+# Wrangler's local state, and local-only Worker secrets. Deployed secrets live
+# in Cloudflare (`wrangler secret put`) and never touch the repo.
+.wrangler/
+worker/.dev.vars
