@@ -126,9 +126,10 @@ export class Amelie {
     this.bubble.classList.add('is-new');
   }
 
-  /** Celebrate, then settle back to idle. */
+  /** Celebrate, then settle back to idle. Fires a confetti burst. */
   celebrate(text) {
     this.say(text ?? null, 'celebrating');
+    burstConfetti(this.figure);
     window.clearTimeout(this._settle);
     this._settle = window.setTimeout(() => this.setState('idle'), 2200);
   }
@@ -143,13 +144,14 @@ export const AMELIE_LINES = {
   pickPlayer: 'Who is practising today?',
   journey: 'Pick a topic. Listening builds your B1, speaking builds your A2.',
   listeningStart: 'Listen once, answer, then listen again to check. The transcript is there when you want it.',
-  correct: ['Yes, that one.', 'Correct.', 'That is it.', 'Right — next.'],
+  correct: ['Yes, that one!', 'Correct!', 'Nailed it!', 'Right — keep going!', 'That is it!'],
   wrong: [
     'Not that one. Play it once more and listen to the ending.',
-    'Close. Read the transcript, then try the next one.',
+    'Close! Read the transcript, then try the next one.',
     'That was a different word. Tap the transcript to see it written down.',
+    'Almost! Listen again — the answer is in the middle of the sentence.',
   ],
-  setDone: 'Set finished. Your listening score just moved.',
+  setDone: 'Great work! Your listening score just moved.',
   interviewPrep: 'You have 30 seconds to think. Plan two sentences, not ten.',
   interviewGo: 'Answer out loud, in full sentences. I am recording.',
   interviewDone: 'Recorded. Your partner will score it against the real grid.',
@@ -159,6 +161,35 @@ export const AMELIE_LINES = {
   offline: 'You are offline. Practice still works; scores will sync when you are back.',
   readiness: 'This is what the examiners would see today.',
 };
+
+const CONFETTI_COLORS = ['#e8a33d', '#f0b95e', '#0e6b7d', '#3ba876', '#7c4dbd', '#c1272d'];
+
+function burstConfetti(anchor) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const rect = anchor.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  const container = document.createElement('div');
+  container.className = 'confetti';
+  document.body.append(container);
+
+  for (let i = 0; i < 18; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti__piece';
+    const angle = (Math.PI * 2 * i) / 18 + (Math.random() - 0.5) * 0.4;
+    const dist = 60 + Math.random() * 80;
+    piece.style.setProperty('--cx', `${cx}px`);
+    piece.style.setProperty('--cy', `${cy}px`);
+    piece.style.setProperty('--ex', `${cx + Math.cos(angle) * dist}px`);
+    piece.style.setProperty('--ey', `${cy + Math.sin(angle) * dist - 30}px`);
+    piece.style.setProperty('--cr', `${Math.random() * 360}deg`);
+    piece.style.background = CONFETTI_COLORS[i % CONFETTI_COLORS.length];
+    piece.style.animationDelay = `${Math.random() * 0.15}s`;
+    container.append(piece);
+  }
+
+  setTimeout(() => container.remove(), 1200);
+}
 
 /** Deterministic-ish pick so she does not repeat herself twice running. */
 let lastPick = -1;

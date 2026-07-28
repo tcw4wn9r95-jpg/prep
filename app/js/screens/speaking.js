@@ -308,7 +308,7 @@ function runSpeakingTask(root, { settings, navigate, kind, topic, title, sub, qu
   function showDone(record, durationMs) {
     const partner = otherPlayer(settings.playerId);
     const done = new Amelie({ size: 'lg', bubble: true });
-    done.el.classList.add('amelie--stack');
+    done.el.classList.add('amelie--stack', 'amelie--hero');
     done.celebrate(AMELIE_LINES.interviewDone);
 
     const audio = el('audio', { controls: '', src: URL.createObjectURL(record.blob), style: { width: '100%' } });

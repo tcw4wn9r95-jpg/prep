@@ -26,9 +26,14 @@
   overflow: visible;
 }
 
-.amelie--sm .amelie__figure { width: 40px; }
-.amelie--md .amelie__figure { width: 68px; }
-.amelie--lg .amelie__figure { width: 120px; }
+.amelie--sm .amelie__figure { width: 48px; }
+.amelie--md .amelie__figure { width: 80px; }
+.amelie--lg .amelie__figure { width: 140px; }
+
+.amelie__figure {
+  filter: drop-shadow(0 4px 8px rgb(232 163 61 / 20%));
+  transition: filter 0.3s var(--ease);
+}
 
 /* --- the drawing ------------------------------------------------------ */
 
@@ -96,9 +101,10 @@
 }
 
 @keyframes amelie-rise {
-  0% { transform: translateY(0) rotate(0deg); }
-  40% { transform: translateY(-16%) rotate(-4deg); }
-  100% { transform: translateY(0) rotate(0deg); }
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  30% { transform: translateY(-22%) rotate(-6deg) scale(1.1); }
+  60% { transform: translateY(-8%) rotate(3deg) scale(1.05); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
 }
 
 @keyframes amelie-sparkle {
@@ -136,11 +142,14 @@
 .amelie.is-thinking .amelie__wing { animation: amelie-flap-soft 2.4s var(--ease) infinite; }
 
 /* celebrating — the one moment she is allowed to be loud */
-.amelie.is-celebrating .amelie__figure { animation: amelie-rise 0.75s var(--ease-back) 2; }
-.amelie.is-celebrating .amelie__wing { animation: amelie-flap-fast 0.22s linear infinite; }
-.amelie.is-celebrating .amelie__sparkle { animation: amelie-sparkle 1.1s var(--ease) 2; }
-.amelie.is-celebrating .amelie__sparkle:nth-child(2) { animation-delay: 0.16s; }
-.amelie.is-celebrating .amelie__sparkle:nth-child(3) { animation-delay: 0.32s; }
+.amelie.is-celebrating .amelie__figure {
+  animation: amelie-rise 0.85s var(--ease-bounce) 2;
+  filter: drop-shadow(0 6px 16px rgb(232 163 61 / 35%));
+}
+.amelie.is-celebrating .amelie__wing { animation: amelie-flap-fast 0.18s linear infinite; }
+.amelie.is-celebrating .amelie__sparkle { animation: amelie-sparkle 0.9s var(--ease) 3; }
+.amelie.is-celebrating .amelie__sparkle:nth-child(2) { animation-delay: 0.12s; }
+.amelie.is-celebrating .amelie__sparkle:nth-child(3) { animation-delay: 0.24s; }
 
 /* encouraging — leaning in, not scolding */
 .amelie.is-encouraging .amelie__svg { transform: rotate(4deg); transition: transform 0.4s var(--ease); }
@@ -154,11 +163,13 @@
   padding: var(--s3) var(--s4);
   background: var(--amelie-wash);
   color: var(--text);
-  border-radius: var(--r-md);
+  border-radius: var(--r-lg);
   border-start-start-radius: var(--s1);
+  border: 2px solid color-mix(in srgb, var(--amelie) 25%, transparent);
   font-size: var(--size-base);
+  font-weight: 550;
   line-height: var(--lh-snug);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--amelie) 15%, transparent);
   max-width: 34ch;
 }
 
@@ -173,6 +184,42 @@
 }
 
 .amelie--stack .amelie__bubble {
-  border-start-start-radius: var(--r-md);
-  border-start-end-radius: var(--r-md);
+  border-start-start-radius: var(--r-lg);
+  border-start-end-radius: var(--r-lg);
+}
+
+/* --- confetti burst ---------------------------------------------------- */
+
+@keyframes confetti-pop {
+  0% { transform: translate(var(--cx), var(--cy)) scale(0) rotate(0deg); opacity: 1; }
+  50% { opacity: 1; }
+  100% { transform: translate(var(--ex), var(--ey)) scale(1) rotate(var(--cr)); opacity: 0; }
+}
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.confetti__piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  animation: confetti-pop 0.9s var(--ease-back) forwards;
+}
+
+/* --- entrance bounce for hero Amelie ----------------------------------- */
+
+@keyframes amelie-entrance {
+  0% { transform: scale(0.3) translateY(40px); opacity: 0; }
+  50% { transform: scale(1.08) translateY(-8px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.amelie--hero .amelie__figure {
+  animation: amelie-entrance 0.6s var(--ease-bounce);
 }
