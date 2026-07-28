@@ -9,6 +9,7 @@
 
 import { el, fill, screenHead, button } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
+import { Clip, unlock } from '../audio.js';
 import { loadVerbs } from '../content.js';
 import { getLearnDeckState, recordLearnResult, pickDue, POINTS } from '../store.js';
 
@@ -40,6 +41,7 @@ export async function render(root, { settings, navigate }) {
 
   let index = 0;
   let correctCount = 0;
+  let clip = null;
 
   const amelie = new Amelie({ size: 'sm', bubble: true });
   const progressFill = el('div', { class: 'progress__fill', style: { width: '0%' } });
@@ -51,7 +53,15 @@ export async function render(root, { settings, navigate }) {
     body,
   );
 
+  function destroyClip() {
+    if (clip) {
+      clip.destroy();
+      clip = null;
+    }
+  }
+
   function renderCard() {
+    destroyClip();
     const item = session[index];
     progressFill.style.width = `${(index / session.length) * 100}%`;
 
@@ -60,12 +70,36 @@ export async function render(root, { settings, navigate }) {
     const options = shuffle([correctForm, ...pickDistractors(allItems, item, person, 3)]);
     let answered = false;
 
+    const audioId = item.example?.audioId ?? null;
+    if (audioId) clip = new Clip(audioId);
+
     const prompt = el(
       'div',
       { class: 'card', style: { textAlign: 'center' } },
       el('p', { class: 'meter__label' }, item.en ?? 'verb'),
       el('p', { class: 'screen__title', style: { marginBlockStart: 'var(--s1)' } }, item.infinitive),
       el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s3)', fontSize: 'var(--size-lg)', fontWeight: '700' } }, `${PRONOUNS[person]} ___`),
+      item.example ? el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s3)', fontStyle: 'italic' } }, `“${item.example.lb}”`) : null,
+      audioId
+        ? el(
+            'button',
+            {
+              type: 'button',
+              class: 'player__play',
+              style: { marginBlockStart: 'var(--s3)' },
+              'aria-label': 'Hear the example sentence',
+              onclick: async () => {
+                unlock();
+                await clip.play();
+              },
+            },
+            el(
+              'svg',
+              { viewBox: '0 0 24 24', width: '22', height: '22', 'aria-hidden': 'true', fill: 'currentColor' },
+              el('path', { d: 'M8 5 L19 12 L8 19 Z' }),
+            ),
+          )
+        : null,
     );
 
     const optionsEl = el('div', { class: 'options' });
@@ -105,6 +139,7 @@ export async function render(root, { settings, navigate }) {
   }
 
   function finish() {
+    destroyClip();
     progressFill.style.width = '100%';
     progressFill.classList.add('progress__fill--ok');
 
@@ -133,7 +168,7 @@ export async function render(root, { settings, navigate }) {
   }
 
   renderCard();
-  return { destroy() {} };
+  return { destroy: destroyClip };
 }
 
 /** Wrong answers: other persons' forms of the *same* verb, deduped against the

@@ -16,27 +16,7 @@ const fsp = require('node:fs/promises');
 const path = require('node:path');
 const paths = require('./lib/paths');
 const { writeJson } = require('./lib/write-json');
-const { checkLexicon, checkNRule } = require('./validate');
-const { createChecker } = require('./lib/nrule');
-
-/**
- * Same gate build-items.js uses: LOD's own example sentences occasionally
- * carry a compound word the corpus does not separately index. Rather than
- * ship a flashcard with an example that would fail the validator, drop the
- * example — the word itself still ships, just without a sentence.
- */
-function makeGate(lexicon) {
-  const checker = createChecker({
-    nRuleForms: new Set(lexicon.nRuleForms),
-    retentionExceptions: new Set(Object.keys(lexicon.nRuleRetentionExceptions ?? {})),
-  });
-  return function isClean(text) {
-    const findings = [];
-    checkLexicon(lexicon, text, 'example', findings);
-    checkNRule(checker, text, 'example', findings);
-    return findings.every((finding) => finding.severity !== 'error');
-  };
-}
+const { makeGate, primaryExample } = require('./lib/gate');
 
 // Parts of speech worth a flashcard. Skip articles, numerals and particles —
 // too little content per card — and interjections, which rarely have a clean
@@ -47,15 +27,6 @@ const LEARNABLE_POS = new Set(['SUBST', 'VRB', 'ADJ', 'ADV', 'PRON', 'PREP', 'CO
 // that vary by speaker or usage. The article picked for those is the LOD-listed
 // first gender's — good enough for a flashcard, not authoritative grammar.
 const GENDER_ARTICLE = { M: 'de', F: 'd\'', N: 'd\'', MF: 'de', MN: 'de', FN: 'd\'' };
-
-function primaryExample(entry) {
-  for (const meaning of entry.meanings ?? []) {
-    for (const example of meaning.examples ?? []) {
-      if (example.text) return { lb: example.text, audio: example.audio ?? null };
-    }
-  }
-  return null;
-}
 
 async function main() {
   const corpus = require(paths.CORPUS_PATH);
