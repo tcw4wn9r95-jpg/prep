@@ -44,6 +44,17 @@ const LUXEMBOURGISH_FIELDS = new Set([
   'options_lb',
   'answer_lb',
   'title_lb',
+  // pipeline/build-verbs.js — present-tense forms and the infinitive/
+  // participle/auxiliary LOD lists on the same verbConjugation table.
+  'infinitive',
+  'pastParticiple',
+  'auxiliaryVerb',
+  'p1',
+  'p2',
+  'p3',
+  'p4',
+  'p5',
+  'p6',
 ]);
 
 const FREE_TEXT_FIELDS = new Set([
@@ -93,6 +104,17 @@ const FREE_TEXT_FIELDS = new Set([
   'imageCredit',
   'imageLicence',
   'imageSource',
+  // pipeline/build-vocab.js — translations and metadata, not Luxembourgish.
+  'pos',
+  'gender',
+  'article',
+  'en',
+  'fr',
+  'de',
+  // LOD example-sentence audio references (pipeline/build-vocab.js)
+  'ogg',
+  'aac',
+  'entryId',
 ]);
 
 /* ------------------------------------------------------------------ gate 1 */

@@ -27,6 +27,14 @@ export const loadListening = () => loadJson('listening').then((file) => file.ite
 export const loadInterviews = () => loadJson('interviews').then((file) => file.items);
 export const loadImages = () => loadJson('images').then((file) => file.items).catch(() => []);
 export const loadMeta = () => loadJson('topics').then((file) => file.meta);
+export const loadVocab = () => loadJson('vocab').then((file) => file.items);
+export const loadVerbs = () => loadJson('verbs').then((file) => file.items);
+export const loadModelAnswers = () => loadJson('model-answers').catch(() => ({ interviews: [], imageDescriptions: [] }));
+
+export async function modelInterviewsForTopic(topicId) {
+  const { interviews } = await loadModelAnswers();
+  return interviews.filter((entry) => entry.topic === topicId);
+}
 
 export async function listeningForTopic(topicId) {
   const items = await loadListening();

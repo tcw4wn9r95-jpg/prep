@@ -1,0 +1,5883 @@
+{
+  "meta": {
+    "generatedAt": "2026-07-28T06:58:27.274Z",
+    "generator": "pipeline/build-verbs.js",
+    "license": "CC0-1.0",
+    "corpus": {
+      "art": {
+        "dataset": "letzebuerger-online-dictionnaire-lod-linguistesch-daten",
+        "resourceId": "2d20bba9-5073-48a4-aae5-f0d5c9a0d955",
+        "resource": "260727-new-lod-art.zip",
+        "xmlSha256": "9cfc68aac67296832d96a12919aef5cc3609a530514831751374b104df4a2eab"
+      },
+      "search": {
+        "dataset": "letzebuerger-online-dictionnaire-lod-index-vun-der-sich-funktioun",
+        "resourceId": "1debbba3-079c-4400-96b0-79b74e97a7ce",
+        "resource": "260727-new-lod-search.zip",
+        "xmlSha256": "30e10b28aa3df88950e1abcb499e7daa0ea5a264bfc6718b526472f59c0dc589"
+      },
+      "tab": {
+        "dataset": "letzebuerger-online-dictionnaire-lod-flexiounstabellen",
+        "resourceId": "27d65808-3ff7-4e39-b01e-b1af1e847cc4",
+        "resource": "260727-new-lod-tab.zip",
+        "xmlSha256": "27200fd7a47d4d16a8df81f9eb6162029fdc0898375d4ac97acfc8623ede8c17"
+      }
+    },
+    "attribution": "Lëtzebuerger Online Dictionnaire (LOD), Zenter fir d'Lëtzebuerger Sprooch, via data.public.lu — Flexiounstabellen",
+    "pronouns": {
+      "p1": "ech",
+      "p2": "du",
+      "p3": "hien/si/hatt",
+      "p4": "mir",
+      "p5": "dir",
+      "p6": "si"
+    },
+    "counts": {
+      "items": 365,
+      "a1": 111,
+      "a2": 254
+    }
+  },
+  "items": [
+    {
+      "id": "AKAFEN1",
+      "infinitive": "akafen",
+      "pastParticiple": "akaaft / akaf",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to buy",
+      "present": {
+        "p1": "kafen an",
+        "p2": "keefs an",
+        "p3": "keeft an",
+        "p4": "kafen an",
+        "p5": "kaaft an",
+        "p6": "kafen an"
+      }
+    },
+    {
+      "id": "AMESEIEREN1",
+      "infinitive": "ameséieren",
+      "pastParticiple": "ameséiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to amuse",
+      "present": {
+        "p1": "ameséieren",
+        "p2": "ameséiers",
+        "p3": "ameséiert",
+        "p4": "ameséieren",
+        "p5": "ameséiert",
+        "p6": "ameséieren"
+      }
+    },
+    {
+      "id": "ANTWEREN1",
+      "infinitive": "äntweren",
+      "pastParticiple": "geäntwert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to answer",
+      "present": {
+        "p1": "äntweren",
+        "p2": "äntwers",
+        "p3": "äntwert",
+        "p4": "äntweren",
+        "p5": "äntwert",
+        "p6": "äntweren"
+      }
+    },
+    {
+      "id": "BAKEN1",
+      "infinitive": "baken",
+      "pastParticiple": "gebak",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to bake",
+      "present": {
+        "p1": "baken",
+        "p2": "baaks",
+        "p3": "baakt",
+        "p4": "baken",
+        "p5": "baakt",
+        "p6": "baken"
+      }
+    },
+    {
+      "id": "BASTELEN1",
+      "infinitive": "bastelen",
+      "pastParticiple": "gebastelt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to make",
+      "present": {
+        "p1": "bastelen",
+        "p2": "bastels",
+        "p3": "bastelt",
+        "p4": "bastelen",
+        "p5": "bastelt",
+        "p6": "bastelen"
+      }
+    },
+    {
+      "id": "BESICHEN1",
+      "infinitive": "besichen",
+      "pastParticiple": "besicht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to visit",
+      "present": {
+        "p1": "besichen",
+        "p2": "besichs",
+        "p3": "besicht",
+        "p4": "besichen",
+        "p5": "besicht",
+        "p6": "besichen"
+      }
+    },
+    {
+      "id": "BESTELLEN1",
+      "infinitive": "bestellen",
+      "pastParticiple": "bestallt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to order",
+      "present": {
+        "p1": "bestellen",
+        "p2": "bestells",
+        "p3": "bestellt",
+        "p4": "bestellen",
+        "p5": "bestellt",
+        "p6": "bestellen"
+      }
+    },
+    {
+      "id": "BESTOEN1",
+      "infinitive": "bestoen",
+      "pastParticiple": "bestanen / bestan",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to exist",
+      "present": {
+        "p1": "bestinn",
+        "p2": "bestees",
+        "p3": "besteet",
+        "p4": "bestinn",
+        "p5": "bestitt",
+        "p6": "bestinn"
+      }
+    },
+    {
+      "id": "BEZUELEN1",
+      "infinitive": "bezuelen",
+      "pastParticiple": "bezuelt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to pay",
+      "present": {
+        "p1": "bezuelen",
+        "p2": "bezils",
+        "p3": "bezilt",
+        "p4": "bezuelen",
+        "p5": "bezuelt",
+        "p6": "bezuelen"
+      }
+    },
+    {
+      "id": "BLEIWEN1",
+      "infinitive": "bleiwen",
+      "pastParticiple": "bliwwen",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to stay",
+      "present": {
+        "p1": "bleiwen",
+        "p2": "bleifs",
+        "p3": "bleift",
+        "p4": "bleiwen",
+        "p5": "bleift",
+        "p6": "bleiwen"
+      }
+    },
+    {
+      "id": "BRAUCHEN1",
+      "infinitive": "brauchen",
+      "pastParticiple": "gebraucht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": null,
+      "present": {
+        "p1": "brauch",
+        "p2": "brauchs",
+        "p3": "brauch",
+        "p4": "brauchen",
+        "p5": "braucht",
+        "p6": "brauchen"
+      }
+    },
+    {
+      "id": "BRENGEN1",
+      "infinitive": "bréngen",
+      "pastParticiple": "bruecht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to deliver",
+      "present": {
+        "p1": "bréngen",
+        "p2": "bréngs",
+        "p3": "bréngt",
+        "p4": "bréngen",
+        "p5": "bréngt",
+        "p6": "bréngen"
+      }
+    },
+    {
+      "id": "BRODEN1",
+      "infinitive": "broden",
+      "pastParticiple": "gebroden",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to fry",
+      "present": {
+        "p1": "broden",
+        "p2": "bréits",
+        "p3": "bréit",
+        "p4": "broden",
+        "p5": "brot",
+        "p6": "broden"
+      }
+    },
+    {
+      "id": "BUSCHTAWEIEREN1",
+      "infinitive": "buschtawéieren",
+      "pastParticiple": "buschtawéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to spell",
+      "present": {
+        "p1": "buschtawéieren",
+        "p2": "buschtawéiers",
+        "p3": "buschtawéiert",
+        "p4": "buschtawéieren",
+        "p5": "buschtawéiert",
+        "p6": "buschtawéieren"
+      }
+    },
+    {
+      "id": "DAERFEN1",
+      "infinitive": "däerfen",
+      "pastParticiple": "däerfen",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "can",
+      "present": {
+        "p1": "däerf",
+        "p2": "däerfs",
+        "p3": "däerf",
+        "p4": "däerfen",
+        "p5": "däerft",
+        "p6": "däerfen"
+      }
+    },
+    {
+      "id": "DANZEN1",
+      "infinitive": "danzen",
+      "pastParticiple": "gedanzt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to dance",
+      "present": {
+        "p1": "danzen",
+        "p2": "danz",
+        "p3": "danzt",
+        "p4": "danzen",
+        "p5": "danzt",
+        "p6": "danzen"
+      }
+    },
+    {
+      "id": "DECKEN2",
+      "infinitive": "decken",
+      "pastParticiple": "gedeckt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to cover",
+      "present": {
+        "p1": "decken",
+        "p2": "decks",
+        "p3": "deckt",
+        "p4": "decken",
+        "p5": "deckt",
+        "p6": "decken"
+      }
+    },
+    {
+      "id": "DOHEEMBLEIWEN1",
+      "infinitive": "doheembleiwen",
+      "pastParticiple": "doheembliwwen",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to stay at home",
+      "present": {
+        "p1": "bleiwen doheem",
+        "p2": "bleifs doheem",
+        "p3": "bleift doheem",
+        "p4": "bleiwen doheem",
+        "p5": "bleift doheem",
+        "p6": "bleiwen doheem"
+      }
+    },
+    {
+      "id": "DRENKEN1",
+      "infinitive": "drénken",
+      "pastParticiple": "gedronk",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to drink",
+      "present": {
+        "p1": "drénken",
+        "p2": "drénks",
+        "p3": "drénkt",
+        "p4": "drénken",
+        "p5": "drénkt",
+        "p6": "drénken"
+      }
+    },
+    {
+      "id": "DUSCHEN1",
+      "infinitive": "duschen",
+      "pastParticiple": "geduscht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to shower",
+      "present": {
+        "p1": "duschen",
+        "p2": "duschs",
+        "p3": "duscht",
+        "p4": "duschen",
+        "p5": "duscht",
+        "p6": "duschen"
+      }
+    },
+    {
+      "id": "ERWACHEN1",
+      "infinitive": "erwächen",
+      "pastParticiple": "erwächt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to wake (up)",
+      "present": {
+        "p1": "erwächen",
+        "p2": "erwächs",
+        "p3": "erwächt",
+        "p4": "erwächen",
+        "p5": "erwächt",
+        "p6": "erwächen"
+      }
+    },
+    {
+      "id": "FANKEN1",
+      "infinitive": "fänken",
+      "pastParticiple": "gefaangen / gefaang",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to catch",
+      "present": {
+        "p1": "fänken",
+        "p2": "fänks",
+        "p3": "fänkt",
+        "p4": "fänken",
+        "p5": "fänkt",
+        "p6": "fänken"
+      }
+    },
+    {
+      "id": "FANNEN1",
+      "infinitive": "fannen",
+      "pastParticiple": "fonnt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to find",
+      "present": {
+        "p1": "fannen",
+        "p2": "fënns",
+        "p3": "fënnt",
+        "p4": "fannen",
+        "p5": "fannt",
+        "p6": "fannen"
+      }
+    },
+    {
+      "id": "FEIEREN1",
+      "infinitive": "feieren",
+      "pastParticiple": "gefeiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to celebrate",
+      "present": {
+        "p1": "feieren",
+        "p2": "feiers",
+        "p3": "feiert",
+        "p4": "feieren",
+        "p5": "feiert",
+        "p6": "feieren"
+      }
+    },
+    {
+      "id": "FIERWEN1",
+      "infinitive": "fierwen",
+      "pastParticiple": "gefierft",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to colour",
+      "present": {
+        "p1": "fierwen",
+        "p2": "fierfs",
+        "p3": "fierft",
+        "p4": "fierwen",
+        "p5": "fierft",
+        "p6": "fierwen"
+      }
+    },
+    {
+      "id": "FORTFUEREN1",
+      "infinitive": "fortfueren",
+      "pastParticiple": "fortgefuer",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to leave",
+      "present": {
+        "p1": "fuere fort",
+        "p2": "fiers fort",
+        "p3": "fiert fort",
+        "p4": "fuere fort",
+        "p5": "fuert fort",
+        "p6": "fuere fort"
+      }
+    },
+    {
+      "id": "FRAIHUNN1",
+      "infinitive": "fräihunn",
+      "pastParticiple": "fräigehat",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to be free",
+      "present": {
+        "p1": "hu fräi",
+        "p2": "hues fräi",
+        "p3": "huet fräi",
+        "p4": "hu fräi",
+        "p5": "hutt fräi",
+        "p6": "hu fräi"
+      }
+    },
+    {
+      "id": "FROEN1",
+      "infinitive": "froen",
+      "pastParticiple": "gefrot",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to ask",
+      "present": {
+        "p1": "froen",
+        "p2": "frees",
+        "p3": "freet",
+        "p4": "froen",
+        "p5": "frot",
+        "p6": "froen"
+      }
+    },
+    {
+      "id": "FUEREN1",
+      "infinitive": "fueren",
+      "pastParticiple": "gefuer",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to drive",
+      "present": {
+        "p1": "fueren",
+        "p2": "fiers",
+        "p3": "fiert",
+        "p4": "fueren",
+        "p5": "fuert",
+        "p6": "fueren"
+      }
+    },
+    {
+      "id": "GINN1",
+      "infinitive": "ginn",
+      "pastParticiple": "ginn",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "there is",
+      "present": {
+        "p1": "ginn",
+        "p2": "gëss",
+        "p3": "gëtt",
+        "p4": "ginn",
+        "p5": "gitt",
+        "p6": "ginn"
+      }
+    },
+    {
+      "id": "GOEN1",
+      "infinitive": "goen",
+      "pastParticiple": "gaangen / gaang",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to go",
+      "present": {
+        "p1": "ginn",
+        "p2": "gees",
+        "p3": "geet",
+        "p4": "ginn",
+        "p5": "gitt",
+        "p6": "ginn"
+      }
+    },
+    {
+      "id": "GRILLEN1",
+      "infinitive": "grillen",
+      "pastParticiple": "gegrillt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to have a barbecue",
+      "present": {
+        "p1": "grillen",
+        "p2": "grills",
+        "p3": "grillt",
+        "p4": "grillen",
+        "p5": "grillt",
+        "p6": "grillen"
+      }
+    },
+    {
+      "id": "HEEMFUEREN1",
+      "infinitive": "heemfueren",
+      "pastParticiple": "heemgefuer",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to drive home",
+      "present": {
+        "p1": "fueren heem",
+        "p2": "fiers heem",
+        "p3": "fiert heem",
+        "p4": "fueren heem",
+        "p5": "fuert heem",
+        "p6": "fueren heem"
+      }
+    },
+    {
+      "id": "HEESCHEN1",
+      "infinitive": "heeschen",
+      "pastParticiple": "geheescht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to be called",
+      "present": {
+        "p1": "heeschen",
+        "p2": "heeschs",
+        "p3": "heescht",
+        "p4": "heeschen",
+        "p5": "heescht",
+        "p6": "heeschen"
+      }
+    },
+    {
+      "id": "HEIEREN1",
+      "infinitive": "héieren",
+      "pastParticiple": "héieren",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to hear",
+      "present": {
+        "p1": "héieren",
+        "p2": "héiers",
+        "p3": "héiert",
+        "p4": "héieren",
+        "p5": "héiert",
+        "p6": "héieren"
+      }
+    },
+    {
+      "id": "HELLEFEN1",
+      "infinitive": "hëllefen",
+      "pastParticiple": "gehollef",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to help",
+      "present": {
+        "p1": "hëllefen",
+        "p2": "hëllefs",
+        "p3": "hëlleft",
+        "p4": "hëllefen",
+        "p5": "hëlleft",
+        "p6": "hëllefen"
+      }
+    },
+    {
+      "id": "HUELEN1",
+      "infinitive": "huelen",
+      "pastParticiple": "geholl",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to take",
+      "present": {
+        "p1": "huelen",
+        "p2": "hëls",
+        "p3": "hëlt",
+        "p4": "huelen",
+        "p5": "huelt",
+        "p6": "huelen"
+      }
+    },
+    {
+      "id": "HUNN1",
+      "infinitive": "hunn",
+      "pastParticiple": "gehat",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to have",
+      "present": {
+        "p1": "hunn",
+        "p2": "hues",
+        "p3": "huet",
+        "p4": "hunn",
+        "p5": "hutt",
+        "p6": "hunn"
+      }
+    },
+    {
+      "id": "IESSEN3",
+      "infinitive": "iessen",
+      "pastParticiple": "giess",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to eat",
+      "present": {
+        "p1": "iessen",
+        "p2": "ëss",
+        "p3": "ësst",
+        "p4": "iessen",
+        "p5": "iesst",
+        "p6": "iessen"
+      }
+    },
+    {
+      "id": "IWWERSETZEN1",
+      "infinitive": "iwwersetzen",
+      "pastParticiple": "iwwersat",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to translate",
+      "present": {
+        "p1": "iwwersetzen",
+        "p2": "iwwersetz",
+        "p3": "iwwersetzt",
+        "p4": "iwwersetzen",
+        "p5": "iwwersetzt",
+        "p6": "iwwersetzen"
+      }
+    },
+    {
+      "id": "KACHEN2",
+      "infinitive": "kachen",
+      "pastParticiple": "gekacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to cook",
+      "present": {
+        "p1": "kachen",
+        "p2": "kachs",
+        "p3": "kacht",
+        "p4": "kachen",
+        "p5": "kacht",
+        "p6": "kachen"
+      }
+    },
+    {
+      "id": "KAFEN1",
+      "infinitive": "kafen",
+      "pastParticiple": "kaaft / kaf",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to buy",
+      "present": {
+        "p1": "kafen",
+        "p2": "keefs",
+        "p3": "keeft",
+        "p4": "kafen",
+        "p5": "kaaft",
+        "p6": "kafen"
+      }
+    },
+    {
+      "id": "KASCHTEN2",
+      "infinitive": "kaschten",
+      "pastParticiple": "kascht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to cost",
+      "present": {
+        "p1": "kaschten",
+        "p2": "kaschts",
+        "p3": "kascht",
+        "p4": "kaschten",
+        "p5": "kascht",
+        "p6": "kaschten"
+      }
+    },
+    {
+      "id": "KENNEN1",
+      "infinitive": "kënnen",
+      "pastParticiple": "kënnen",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to be responsible for",
+      "present": {
+        "p1": "kann",
+        "p2": "kanns",
+        "p3": "kann",
+        "p4": "kënnen",
+        "p5": "kënnt",
+        "p6": "kënnen"
+      }
+    },
+    {
+      "id": "KOMMEN1",
+      "infinitive": "kommen",
+      "pastParticiple": "komm",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to come",
+      "present": {
+        "p1": "kommen",
+        "p2": "kënns",
+        "p3": "kënnt",
+        "p4": "kommen",
+        "p5": "kommt",
+        "p6": "kommen"
+      }
+    },
+    {
+      "id": "KONTROLLEIEREN1",
+      "infinitive": "kontrolléieren",
+      "pastParticiple": "kontrolléiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to keep a watch on",
+      "present": {
+        "p1": "kontrolléieren",
+        "p2": "kontrolléiers",
+        "p3": "kontrolléiert",
+        "p4": "kontrolléieren",
+        "p5": "kontrolléiert",
+        "p6": "kontrolléieren"
+      }
+    },
+    {
+      "id": "KREIEN1",
+      "infinitive": "kréien",
+      "pastParticiple": "gekréit",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to get",
+      "present": {
+        "p1": "kréien",
+        "p2": "kréis",
+        "p3": "kréit",
+        "p4": "kréien",
+        "p5": "kréit",
+        "p6": "kréien"
+      }
+    },
+    {
+      "id": "KUCKEN1",
+      "infinitive": "kucken",
+      "pastParticiple": "gekuckt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to look",
+      "present": {
+        "p1": "kucken",
+        "p2": "kucks",
+        "p3": "kuckt",
+        "p4": "kucken",
+        "p5": "kuckt",
+        "p6": "kucken"
+      }
+    },
+    {
+      "id": "LAFEN1",
+      "infinitive": "lafen",
+      "pastParticiple": "gelaf",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to run",
+      "present": {
+        "p1": "lafen",
+        "p2": "leefs",
+        "p3": "leeft",
+        "p4": "lafen",
+        "p5": "laaft",
+        "p6": "lafen"
+      }
+    },
+    {
+      "id": "LAUSCHTEREN1",
+      "infinitive": "lauschteren",
+      "pastParticiple": "gelauschtert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to listen to",
+      "present": {
+        "p1": "lauschteren",
+        "p2": "lauschters",
+        "p3": "lauschtert",
+        "p4": "lauschteren",
+        "p5": "lauschtert",
+        "p6": "lauschteren"
+      }
+    },
+    {
+      "id": "LEIEN2",
+      "infinitive": "leien",
+      "pastParticiple": "geleeën",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to lie",
+      "present": {
+        "p1": "leien",
+        "p2": "läis",
+        "p3": "läit",
+        "p4": "leien",
+        "p5": "leit",
+        "p6": "leien"
+      }
+    },
+    {
+      "id": "LEIEREN2",
+      "infinitive": "léieren",
+      "pastParticiple": "geléiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to learn",
+      "present": {
+        "p1": "léieren",
+        "p2": "léiers",
+        "p3": "léiert",
+        "p4": "léieren",
+        "p5": "léiert",
+        "p6": "léieren"
+      }
+    },
+    {
+      "id": "LIESEN1",
+      "infinitive": "liesen",
+      "pastParticiple": "gelies",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to read",
+      "present": {
+        "p1": "liesen",
+        "p2": "lies",
+        "p3": "liest",
+        "p4": "liesen",
+        "p5": "liest",
+        "p6": "liesen"
+      }
+    },
+    {
+      "id": "LIICHTEN1",
+      "infinitive": "liichten",
+      "pastParticiple": "geliicht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to shine",
+      "present": {
+        "p1": "liichten",
+        "p2": "liichts",
+        "p3": "liicht",
+        "p4": "liichten",
+        "p5": "liicht",
+        "p6": "liichten"
+      }
+    },
+    {
+      "id": "MAACHEN1",
+      "infinitive": "maachen",
+      "pastParticiple": "gemaach / gemaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to do",
+      "present": {
+        "p1": "maachen",
+        "p2": "méchs",
+        "p3": "mécht",
+        "p4": "maachen",
+        "p5": "maacht",
+        "p6": "maachen"
+      }
+    },
+    {
+      "id": "MATGOEN1",
+      "infinitive": "matgoen",
+      "pastParticiple": "matgaangen / matgaang",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to go along",
+      "present": {
+        "p1": "gi mat",
+        "p2": "gees mat",
+        "p3": "geet mat",
+        "p4": "gi mat",
+        "p5": "gitt mat",
+        "p6": "gi mat"
+      }
+    },
+    {
+      "id": "MATHUELEN1",
+      "infinitive": "mathuelen",
+      "pastParticiple": "matgeholl",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to take",
+      "present": {
+        "p1": "huele mat",
+        "p2": "hëls mat",
+        "p3": "hëlt mat",
+        "p4": "huele mat",
+        "p5": "huelt mat",
+        "p6": "huele mat"
+      }
+    },
+    {
+      "id": "MENGEN1",
+      "infinitive": "mengen",
+      "pastParticiple": "gemengt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to think",
+      "present": {
+        "p1": "mengen",
+        "p2": "mengs",
+        "p3": "mengt",
+        "p4": "mengen",
+        "p5": "mengt",
+        "p6": "mengen"
+      }
+    },
+    {
+      "id": "MESCHEN1",
+      "infinitive": "mëschen",
+      "pastParticiple": "gemëscht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to mix",
+      "present": {
+        "p1": "mëschen",
+        "p2": "mëschs",
+        "p3": "mëscht",
+        "p4": "mëschen",
+        "p5": "mëscht",
+        "p6": "mëschen"
+      }
+    },
+    {
+      "id": "MOLEN1",
+      "infinitive": "molen",
+      "pastParticiple": "gemoolt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to paint",
+      "present": {
+        "p1": "molen",
+        "p2": "mools",
+        "p3": "moolt",
+        "p4": "molen",
+        "p5": "moolt",
+        "p6": "molen"
+      }
+    },
+    {
+      "id": "MUSSEN1",
+      "infinitive": "mussen",
+      "pastParticiple": "missen / mussen",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to have to",
+      "present": {
+        "p1": "muss",
+        "p2": "muss",
+        "p3": "muss",
+        "p4": "mussen",
+        "p5": "musst",
+        "p6": "mussen"
+      }
+    },
+    {
+      "id": "NOTEIEREN1",
+      "infinitive": "notéieren",
+      "pastParticiple": "notéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to note",
+      "present": {
+        "p1": "notéieren",
+        "p2": "notéiers",
+        "p3": "notéiert",
+        "p4": "notéieren",
+        "p5": "notéiert",
+        "p6": "notéieren"
+      }
+    },
+    {
+      "id": "OFSCHMAACHEN1",
+      "infinitive": "ofschmaachen",
+      "pastParticiple": "ofgeschmaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": null,
+      "present": {
+        "p1": "schmaachen of",
+        "p2": "schmaachs of",
+        "p3": "schmaacht of",
+        "p4": "schmaachen of",
+        "p5": "schmaacht of",
+        "p6": "schmaachen of"
+      }
+    },
+    {
+      "id": "OPHALEN1",
+      "infinitive": "ophalen",
+      "pastParticiple": "opgehalen / opgehal",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to hold open",
+      "present": {
+        "p1": "halen op",
+        "p2": "häls op",
+        "p3": "hält op",
+        "p4": "halen op",
+        "p5": "haalt op",
+        "p6": "halen op"
+      }
+    },
+    {
+      "id": "OPSTOEN2",
+      "infinitive": "opstoen",
+      "pastParticiple": "opgestanen / opgestan",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to rise",
+      "present": {
+        "p1": "stinn op",
+        "p2": "stees op",
+        "p3": "steet op",
+        "p4": "stinn op",
+        "p5": "stitt op",
+        "p6": "stinn op"
+      }
+    },
+    {
+      "id": "PACSEN1",
+      "infinitive": "pacsen",
+      "pastParticiple": "gepacst",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to register as Civil Partners",
+      "present": {
+        "p1": "pacsen",
+        "p2": "pacs",
+        "p3": "pacst",
+        "p4": "pacsen",
+        "p5": "pacst",
+        "p6": "pacsen"
+      }
+    },
+    {
+      "id": "PICKNICKEN1",
+      "infinitive": "picknicken",
+      "pastParticiple": "picknickt / gepicknickt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to picnic",
+      "present": {
+        "p1": "picknicken",
+        "p2": "picknicks",
+        "p3": "picknickt",
+        "p4": "picknicken",
+        "p5": "picknickt",
+        "p6": "picknicken"
+      }
+    },
+    {
+      "id": "PLATTDRECKEN1",
+      "infinitive": "plattdrécken",
+      "pastParticiple": "plattgedréckt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to flatten",
+      "present": {
+        "p1": "drécke platt",
+        "p2": "drécks platt",
+        "p3": "dréckt platt",
+        "p4": "drécke platt",
+        "p5": "dréckt platt",
+        "p6": "drécke platt"
+      }
+    },
+    {
+      "id": "PLENNEREN2",
+      "infinitive": "plënneren",
+      "pastParticiple": "geplënnert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to move",
+      "present": {
+        "p1": "plënneren",
+        "p2": "plënners",
+        "p3": "plënnert",
+        "p4": "plënneren",
+        "p5": "plënnert",
+        "p6": "plënneren"
+      }
+    },
+    {
+      "id": "PREPAREIEREN1",
+      "infinitive": "preparéieren",
+      "pastParticiple": "preparéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to prepare",
+      "present": {
+        "p1": "preparéieren",
+        "p2": "preparéiers",
+        "p3": "preparéiert",
+        "p4": "preparéieren",
+        "p5": "preparéiert",
+        "p6": "preparéieren"
+      }
+    },
+    {
+      "id": "PRESENTEIEREN1",
+      "infinitive": "presentéieren",
+      "pastParticiple": "presentéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to present",
+      "present": {
+        "p1": "presentéieren",
+        "p2": "presentéiers",
+        "p3": "presentéiert",
+        "p4": "presentéieren",
+        "p5": "presentéiert",
+        "p6": "presentéieren"
+      }
+    },
+    {
+      "id": "RAPPEN1",
+      "infinitive": "rappen",
+      "pastParticiple": "gerappt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to grate",
+      "present": {
+        "p1": "rappen",
+        "p2": "rapps",
+        "p3": "rappt",
+        "p4": "rappen",
+        "p5": "rappt",
+        "p6": "rappen"
+      }
+    },
+    {
+      "id": "REPAREIEREN1",
+      "infinitive": "reparéieren",
+      "pastParticiple": "reparéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to repair",
+      "present": {
+        "p1": "reparéieren",
+        "p2": "reparéiers",
+        "p3": "reparéiert",
+        "p4": "reparéieren",
+        "p5": "reparéiert",
+        "p6": "reparéieren"
+      }
+    },
+    {
+      "id": "SAMMELEN1",
+      "infinitive": "sammelen",
+      "pastParticiple": "gesammelt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to collect",
+      "present": {
+        "p1": "sammelen",
+        "p2": "sammels",
+        "p3": "sammelt",
+        "p4": "sammelen",
+        "p5": "sammelt",
+        "p6": "sammelen"
+      }
+    },
+    {
+      "id": "SANGEN1",
+      "infinitive": "sangen",
+      "pastParticiple": "gesongen / gesong",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to sing",
+      "present": {
+        "p1": "sangen",
+        "p2": "séngs",
+        "p3": "séngt",
+        "p4": "sangen",
+        "p5": "sangt",
+        "p6": "sangen"
+      }
+    },
+    {
+      "id": "SCHAFFEN3",
+      "infinitive": "schaffen",
+      "pastParticiple": "geschafft",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to work",
+      "present": {
+        "p1": "schaffen",
+        "p2": "schaffs",
+        "p3": "schafft",
+        "p4": "schaffen",
+        "p5": "schafft",
+        "p6": "schaffen"
+      }
+    },
+    {
+      "id": "SCHIELEN1",
+      "infinitive": "schielen",
+      "pastParticiple": "geschielt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to peel",
+      "present": {
+        "p1": "schielen",
+        "p2": "schiels",
+        "p3": "schielt",
+        "p4": "schielen",
+        "p5": "schielt",
+        "p6": "schielen"
+      }
+    },
+    {
+      "id": "SCHLOFEN1",
+      "infinitive": "schlofen",
+      "pastParticiple": "geschlof",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to sleep",
+      "present": {
+        "p1": "schlofen",
+        "p2": "schléifs",
+        "p3": "schléift",
+        "p4": "schlofen",
+        "p5": "schlooft",
+        "p6": "schlofen"
+      }
+    },
+    {
+      "id": "SCHMAACHEN1",
+      "infinitive": "schmaachen",
+      "pastParticiple": "geschmaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to taste",
+      "present": {
+        "p1": "schmaachen",
+        "p2": "schmaachs",
+        "p3": "schmaacht",
+        "p4": "schmaachen",
+        "p5": "schmaacht",
+        "p6": "schmaachen"
+      }
+    },
+    {
+      "id": "SCHNEIDEN1",
+      "infinitive": "schneiden",
+      "pastParticiple": "geschnidden",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to cut",
+      "present": {
+        "p1": "schneiden",
+        "p2": "schneits",
+        "p3": "schneit",
+        "p4": "schneiden",
+        "p5": "schneit",
+        "p6": "schneiden"
+      }
+    },
+    {
+      "id": "SCHREIWEN1",
+      "infinitive": "schreiwen",
+      "pastParticiple": "geschriwwen",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to write",
+      "present": {
+        "p1": "schreiwen",
+        "p2": "schreifs",
+        "p3": "schreift",
+        "p4": "schreiwen",
+        "p5": "schreift",
+        "p6": "schreiwen"
+      }
+    },
+    {
+      "id": "SCHWAMMEN1",
+      "infinitive": "schwammen",
+      "pastParticiple": "geschwommen / geschwomm",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to swim",
+      "present": {
+        "p1": "schwammen",
+        "p2": "schwëmms",
+        "p3": "schwëmmt",
+        "p4": "schwammen",
+        "p5": "schwammt",
+        "p6": "schwammen"
+      }
+    },
+    {
+      "id": "SCHWATZEN1",
+      "infinitive": "schwätzen",
+      "pastParticiple": "geschwat",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to speak",
+      "present": {
+        "p1": "schwätzen",
+        "p2": "schwätz",
+        "p3": "schwätzt",
+        "p4": "schwätzen",
+        "p5": "schwätzt",
+        "p6": "schwätzen"
+      }
+    },
+    {
+      "id": "SENGEN2",
+      "infinitive": "sengen",
+      "pastParticiple": "gesengt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to singe",
+      "present": {
+        "p1": "sengen",
+        "p2": "sengs",
+        "p3": "sengt",
+        "p4": "sengen",
+        "p5": "sengt",
+        "p6": "sengen"
+      }
+    },
+    {
+      "id": "SHOPPEN1",
+      "infinitive": "shoppen",
+      "pastParticiple": "geshoppt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to go shopping",
+      "present": {
+        "p1": "shoppen",
+        "p2": "shopps",
+        "p3": "shoppt",
+        "p4": "shoppen",
+        "p5": "shoppt",
+        "p6": "shoppen"
+      }
+    },
+    {
+      "id": "SICHEN1",
+      "infinitive": "sichen",
+      "pastParticiple": "gesicht",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to look for",
+      "present": {
+        "p1": "sichen",
+        "p2": "sichs",
+        "p3": "sicht",
+        "p4": "sichen",
+        "p5": "sicht",
+        "p6": "sichen"
+      }
+    },
+    {
+      "id": "SINN1",
+      "infinitive": "sinn",
+      "pastParticiple": "gewiescht",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to be",
+      "present": {
+        "p1": "sinn",
+        "p2": "bass",
+        "p3": "ass",
+        "p4": "sinn",
+        "p5": "sidd",
+        "p6": "sinn"
+      }
+    },
+    {
+      "id": "SOLLEN1",
+      "infinitive": "sollen",
+      "pastParticiple": "sollen",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "should",
+      "present": {
+        "p1": "soll",
+        "p2": "solls",
+        "p3": "soll",
+        "p4": "sollen",
+        "p5": "sollt",
+        "p6": "sollen"
+      }
+    },
+    {
+      "id": "SPADSEIEREN1",
+      "infinitive": "spadséieren",
+      "pastParticiple": "spadséiert",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to go for a walk",
+      "present": {
+        "p1": "spadséieren",
+        "p2": "spadséiers",
+        "p3": "spadséiert",
+        "p4": "spadséieren",
+        "p5": "spadséiert",
+        "p6": "spadséieren"
+      }
+    },
+    {
+      "id": "SPILLEN1",
+      "infinitive": "spillen",
+      "pastParticiple": "gespillt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to play",
+      "present": {
+        "p1": "spillen",
+        "p2": "spills",
+        "p3": "spillt",
+        "p4": "spillen",
+        "p5": "spillt",
+        "p6": "spillen"
+      }
+    },
+    {
+      "id": "SPRANGEN1",
+      "infinitive": "sprangen",
+      "pastParticiple": "gesprongen / gesprong",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to jump",
+      "present": {
+        "p1": "sprangen",
+        "p2": "spréngs",
+        "p3": "spréngt",
+        "p4": "sprangen",
+        "p5": "sprangt",
+        "p6": "sprangen"
+      }
+    },
+    {
+      "id": "STAUBSAUGEN1",
+      "infinitive": "staubsaugen",
+      "pastParticiple": "gestaubsaugt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to hoover",
+      "present": {
+        "p1": "staubsaugen",
+        "p2": "staubsaugs",
+        "p3": "staubsaugt",
+        "p4": "staubsaugen",
+        "p5": "staubsaugt",
+        "p6": "staubsaugen"
+      }
+    },
+    {
+      "id": "STEMMEN1",
+      "infinitive": "stëmmen",
+      "pastParticiple": "gestëmmt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to pass",
+      "present": {
+        "p1": "stëmmen",
+        "p2": "stëmms",
+        "p3": "stëmmt",
+        "p4": "stëmmen",
+        "p5": "stëmmt",
+        "p6": "stëmmen"
+      }
+    },
+    {
+      "id": "STIERWEN2",
+      "infinitive": "stierwen",
+      "pastParticiple": "gestuerwen",
+      "auxiliaryVerb": "sinn",
+      "level": "A1",
+      "en": "to die",
+      "present": {
+        "p1": "stierwen",
+        "p2": "stierfs",
+        "p3": "stierft",
+        "p4": "stierwen",
+        "p5": "stierft",
+        "p6": "stierwen"
+      }
+    },
+    {
+      "id": "STOEN1",
+      "infinitive": "stoen",
+      "pastParticiple": "gestanen / gestan",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to stand",
+      "present": {
+        "p1": "stinn",
+        "p2": "stees",
+        "p3": "steet",
+        "p4": "stinn",
+        "p5": "stitt",
+        "p6": "stinn"
+      }
+    },
+    {
+      "id": "STUDEIEREN1",
+      "infinitive": "studéieren",
+      "pastParticiple": "studéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to study",
+      "present": {
+        "p1": "studéieren",
+        "p2": "studéiers",
+        "p3": "studéiert",
+        "p4": "studéieren",
+        "p5": "studéiert",
+        "p6": "studéieren"
+      }
+    },
+    {
+      "id": "TANKEN1",
+      "infinitive": "tanken",
+      "pastParticiple": "getankt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to fill up with",
+      "present": {
+        "p1": "tanken",
+        "p2": "tanks",
+        "p3": "tankt",
+        "p4": "tanken",
+        "p5": "tankt",
+        "p6": "tanken"
+      }
+    },
+    {
+      "id": "TELEFONEIEREN1",
+      "infinitive": "telefonéieren",
+      "pastParticiple": "telefonéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to be on the phone (with)",
+      "present": {
+        "p1": "telefonéieren",
+        "p2": "telefonéiers",
+        "p3": "telefonéiert",
+        "p4": "telefonéieren",
+        "p5": "telefonéiert",
+        "p6": "telefonéieren"
+      }
+    },
+    {
+      "id": "TRAINEIEREN1",
+      "infinitive": "trainéieren",
+      "pastParticiple": "trainéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to train",
+      "present": {
+        "p1": "trainéieren",
+        "p2": "trainéiers",
+        "p3": "trainéiert",
+        "p4": "trainéieren",
+        "p5": "trainéiert",
+        "p6": "trainéieren"
+      }
+    },
+    {
+      "id": "UFANKEN1",
+      "infinitive": "ufänken",
+      "pastParticiple": "ugefaangen / ugefaang",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to start",
+      "present": {
+        "p1": "fänken un",
+        "p2": "fänks un",
+        "p3": "fänkt un",
+        "p4": "fänken un",
+        "p5": "fänkt un",
+        "p6": "fänken un"
+      }
+    },
+    {
+      "id": "UMELLEN1",
+      "infinitive": "umellen",
+      "pastParticiple": "ugemellt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to register",
+      "present": {
+        "p1": "mellen un",
+        "p2": "mells un",
+        "p3": "mellt un",
+        "p4": "mellen un",
+        "p5": "mellt un",
+        "p6": "mellen un"
+      }
+    },
+    {
+      "id": "VERGIESSEN1",
+      "infinitive": "vergiessen",
+      "pastParticiple": "vergiess",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to forget",
+      "present": {
+        "p1": "vergiessen",
+        "p2": "vergëss",
+        "p3": "vergësst",
+        "p4": "vergiessen",
+        "p5": "vergiesst",
+        "p6": "vergiessen"
+      }
+    },
+    {
+      "id": "VERKAFEN1",
+      "infinitive": "verkafen",
+      "pastParticiple": "verkaaft / verkaf",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to sell",
+      "present": {
+        "p1": "verkafen",
+        "p2": "verkeefs",
+        "p3": "verkeeft",
+        "p4": "verkafen",
+        "p5": "verkaaft",
+        "p6": "verkafen"
+      }
+    },
+    {
+      "id": "WAARDEN1",
+      "infinitive": "waarden",
+      "pastParticiple": "gewaart",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to wait",
+      "present": {
+        "p1": "waarden",
+        "p2": "waarts",
+        "p3": "waart",
+        "p4": "waarden",
+        "p5": "waart",
+        "p6": "waarden"
+      }
+    },
+    {
+      "id": "WAERTEN1",
+      "infinitive": "wäerten",
+      "pastParticiple": null,
+      "auxiliaryVerb": null,
+      "level": "A1",
+      "en": "will",
+      "present": {
+        "p1": "wäert",
+        "p2": "wäerts",
+        "p3": "wäert",
+        "p4": "wäerten",
+        "p5": "wäert",
+        "p6": "wäerten"
+      }
+    },
+    {
+      "id": "WASCHEN1",
+      "infinitive": "wäschen",
+      "pastParticiple": "gewäsch",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to wash",
+      "present": {
+        "p1": "wäschen",
+        "p2": "wäschs",
+        "p3": "wäscht",
+        "p4": "wäschen",
+        "p5": "wäscht",
+        "p6": "wäschen"
+      }
+    },
+    {
+      "id": "WEISEN1",
+      "infinitive": "weisen",
+      "pastParticiple": "gewisen",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to show",
+      "present": {
+        "p1": "weisen",
+        "p2": "weis",
+        "p3": "weist",
+        "p4": "weisen",
+        "p5": "weist",
+        "p6": "weisen"
+      }
+    },
+    {
+      "id": "WELLEN1",
+      "infinitive": "wëllen",
+      "pastParticiple": "gewollt / wollt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to want",
+      "present": {
+        "p1": "wëll",
+        "p2": "wëlls",
+        "p3": "wëllt",
+        "p4": "wëllen",
+        "p5": "wëllt",
+        "p6": "wëllen"
+      }
+    },
+    {
+      "id": "WESSEN2",
+      "infinitive": "wëssen",
+      "pastParticiple": "gewosst / gewousst",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to know",
+      "present": {
+        "p1": "weess",
+        "p2": "weess",
+        "p3": "weess",
+        "p4": "wëssen",
+        "p5": "wësst",
+        "p6": "wëssen"
+      }
+    },
+    {
+      "id": "WIDDERHUELEN1",
+      "infinitive": "widderhuelen",
+      "pastParticiple": "widderholl",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to repeat",
+      "present": {
+        "p1": "widderhuelen",
+        "p2": "widderhëls",
+        "p3": "widderhëlt",
+        "p4": "widderhuelen",
+        "p5": "widderhuelt",
+        "p6": "widderhuelen"
+      }
+    },
+    {
+      "id": "WUNNEN1",
+      "infinitive": "wunnen",
+      "pastParticiple": "gewunnt",
+      "auxiliaryVerb": "hunn",
+      "level": "A1",
+      "en": "to live",
+      "present": {
+        "p1": "wunnen",
+        "p2": "wunns",
+        "p3": "wunnt",
+        "p4": "wunnen",
+        "p5": "wunnt",
+        "p6": "wunnen"
+      }
+    },
+    {
+      "id": "AGINN1",
+      "infinitive": "aginn",
+      "pastParticiple": "aginn",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to administer",
+      "present": {
+        "p1": "ginn an",
+        "p2": "gëss an",
+        "p3": "gëtt an",
+        "p4": "ginn an",
+        "p5": "gitt an",
+        "p6": "ginn an"
+      }
+    },
+    {
+      "id": "ANHANKEN1",
+      "infinitive": "anhänken",
+      "pastParticiple": "agehaangen / agehaang",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to fix",
+      "present": {
+        "p1": "hänken an",
+        "p2": "hänks an",
+        "p3": "hänkt an",
+        "p4": "hänken an",
+        "p5": "hänkt an",
+        "p6": "hänken an"
+      }
+    },
+    {
+      "id": "ANNEREN1",
+      "infinitive": "änneren",
+      "pastParticiple": "geännert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to change",
+      "present": {
+        "p1": "änneren",
+        "p2": "änners",
+        "p3": "ännert",
+        "p4": "änneren",
+        "p5": "ännert",
+        "p6": "änneren"
+      }
+    },
+    {
+      "id": "ANNULEIEREN1",
+      "infinitive": "annuléieren",
+      "pastParticiple": "annuléiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to cancel",
+      "present": {
+        "p1": "annuléieren",
+        "p2": "annuléiers",
+        "p3": "annuléiert",
+        "p4": "annuléieren",
+        "p5": "annuléiert",
+        "p6": "annuléieren"
+      }
+    },
+    {
+      "id": "APAKEN1",
+      "infinitive": "apaken",
+      "pastParticiple": "agepaakt / agepak",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to wrap",
+      "present": {
+        "p1": "paken an",
+        "p2": "paaks",
+        "p3": "paakt",
+        "p4": "paken an",
+        "p5": "paakt an",
+        "p6": "paken an"
+      }
+    },
+    {
+      "id": "ARAUMEN1",
+      "infinitive": "araumen",
+      "pastParticiple": "ageraumt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to put away",
+      "present": {
+        "p1": "raumen an",
+        "p2": "raums an",
+        "p3": "raumt an",
+        "p4": "raumen an",
+        "p5": "raumt an",
+        "p6": "raumen an"
+      }
+    },
+    {
+      "id": "ASCHLOFEN1",
+      "infinitive": "aschlofen",
+      "pastParticiple": "ageschlof",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to fall asleep",
+      "present": {
+        "p1": "schlofen an",
+        "p2": "schléifs an",
+        "p3": "schléift an",
+        "p4": "schlofen an",
+        "p5": "schlooft an",
+        "p6": "schlofen an"
+      }
+    },
+    {
+      "id": "ASCHREIWEN1",
+      "infinitive": "aschreiwen",
+      "pastParticiple": "ageschriwwen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to note",
+      "present": {
+        "p1": "schreiwen an",
+        "p2": "schreifs an",
+        "p3": "schreift an",
+        "p4": "schreiwen an",
+        "p5": "schreift an",
+        "p6": "schreiwen an"
+      }
+    },
+    {
+      "id": "ASTELLEN1",
+      "infinitive": "astellen",
+      "pastParticiple": "agestallt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to take on",
+      "present": {
+        "p1": "stellen an",
+        "p2": "stells an",
+        "p3": "stellt an",
+        "p4": "stellen an",
+        "p5": "stellt an",
+        "p6": "stellen an"
+      }
+    },
+    {
+      "id": "AUSDOEN1",
+      "infinitive": "ausdoen",
+      "pastParticiple": "ausgedoen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to take off",
+      "present": {
+        "p1": "doen",
+        "p2": "dees aus",
+        "p3": "deet aus",
+        "p4": "doen",
+        "p5": "dot",
+        "p6": "doen"
+      }
+    },
+    {
+      "id": "AUSFELLEN1",
+      "infinitive": "ausfëllen",
+      "pastParticiple": "ausgefëllt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to fill in",
+      "present": {
+        "p1": "fëllen aus",
+        "p2": "fëlls aus",
+        "p3": "fëllt aus",
+        "p4": "fëllen aus",
+        "p5": "fëllt aus",
+        "p6": "fëllen aus"
+      }
+    },
+    {
+      "id": "AUSGESINN1",
+      "infinitive": "ausgesinn",
+      "pastParticiple": "ausgesinn",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to look (like)",
+      "present": {
+        "p1": "gesinn aus",
+        "p2": "gesäis aus",
+        "p3": "gesäit aus",
+        "p4": "gesinn aus",
+        "p5": "gesitt aus",
+        "p6": "gesinn aus"
+      }
+    },
+    {
+      "id": "AUSGINN1",
+      "infinitive": "ausginn",
+      "pastParticiple": "ausginn",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to spend",
+      "present": {
+        "p1": "ginn aus",
+        "p2": "gëss aus",
+        "p3": "gëtt aus",
+        "p4": "ginn aus",
+        "p5": "gitt aus",
+        "p6": "ginn aus"
+      }
+    },
+    {
+      "id": "AUSKENNEN1",
+      "infinitive": "auskennen",
+      "pastParticiple": "auskannt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to be familiar with",
+      "present": {
+        "p1": "kenne mech aus",
+        "p2": "kenns dech aus",
+        "p3": "kennt sech aus",
+        "p4": "kennen eis aus",
+        "p5": "kennt iech aus",
+        "p6": "kennen sech aus"
+      }
+    },
+    {
+      "id": "AUSLEINEN1",
+      "infinitive": "ausléinen",
+      "pastParticiple": "ausgeléint",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to make available",
+      "present": {
+        "p1": "léinen aus",
+        "p2": "léins aus",
+        "p3": "léint aus",
+        "p4": "léinen aus",
+        "p5": "léint aus",
+        "p6": "léinen aus"
+      }
+    },
+    {
+      "id": "AUSMAACHEN1",
+      "infinitive": "ausmaachen",
+      "pastParticiple": "ausgemaach / ausgemaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to turn off",
+      "present": {
+        "p1": "maachen aus",
+        "p2": "méchs aus",
+        "p3": "mécht aus",
+        "p4": "maachen aus",
+        "p5": "maacht aus",
+        "p6": "maachen aus"
+      }
+    },
+    {
+      "id": "AUSPAKEN1",
+      "infinitive": "auspaken",
+      "pastParticiple": "ausgepaakt / ausgepak",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to unwrap",
+      "present": {
+        "p1": "paken aus",
+        "p2": "paaks",
+        "p3": "paakt",
+        "p4": "paken aus",
+        "p5": "paakt aus",
+        "p6": "paken aus"
+      }
+    },
+    {
+      "id": "AUSSCHWATZEN1",
+      "infinitive": "ausschwätzen",
+      "pastParticiple": "ausgeschwat",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to say",
+      "present": {
+        "p1": "schwätzen aus",
+        "p2": "schwätz aus",
+        "p3": "schwätzt aus",
+        "p4": "schwätzen aus",
+        "p5": "schwätzt aus",
+        "p6": "schwätzen aus"
+      }
+    },
+    {
+      "id": "BAIKOMMEN1",
+      "infinitive": "bäikommen",
+      "pastParticiple": "bäikomm",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to be added",
+      "present": {
+        "p1": "komme bäi",
+        "p2": "kënns bäi",
+        "p3": "kënnt bäi",
+        "p4": "komme bäi",
+        "p5": "kommt bäi",
+        "p6": "komme bäi"
+      }
+    },
+    {
+      "id": "BECKEN2",
+      "infinitive": "bécken",
+      "pastParticiple": "gebéckt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to bend",
+      "present": {
+        "p1": "bécken",
+        "p2": "bécks",
+        "p3": "béckt",
+        "p4": "bécken",
+        "p5": "béckt",
+        "p6": "bécken"
+      }
+    },
+    {
+      "id": "BENOTZEN1",
+      "infinitive": "benotzen",
+      "pastParticiple": "benotzt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to use",
+      "present": {
+        "p1": "benotzen",
+        "p2": "benotz",
+        "p3": "benotzt",
+        "p4": "benotzen",
+        "p5": "benotzt",
+        "p6": "benotzen"
+      }
+    },
+    {
+      "id": "BESCHREIWEN1",
+      "infinitive": "beschreiwen",
+      "pastParticiple": "beschriwwen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to describe",
+      "present": {
+        "p1": "beschreiwen",
+        "p2": "beschreifs",
+        "p3": "beschreift",
+        "p4": "beschreiwen",
+        "p5": "beschreift",
+        "p6": "beschreiwen"
+      }
+    },
+    {
+      "id": "BESETZEN1",
+      "infinitive": "besetzen",
+      "pastParticiple": "besat",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to reserve",
+      "present": {
+        "p1": "besetzen",
+        "p2": "besetz",
+        "p3": "besetzt",
+        "p4": "besetzen",
+        "p5": "besetzt",
+        "p6": "besetzen"
+      }
+    },
+    {
+      "id": "BESTUEDEN1",
+      "infinitive": "bestueden",
+      "pastParticiple": "bestuet",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to marry",
+      "present": {
+        "p1": "bestueden",
+        "p2": "bestiits",
+        "p3": "bestit",
+        "p4": "bestueden",
+        "p5": "bestuet",
+        "p6": "bestueden"
+      }
+    },
+    {
+      "id": "BEWEEGEN1",
+      "infinitive": "beweegen",
+      "pastParticiple": "beweegt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to move",
+      "present": {
+        "p1": "beweegen",
+        "p2": "beweegs",
+        "p3": "beweegt",
+        "p4": "beweegen",
+        "p5": "beweegt",
+        "p6": "beweegen"
+      }
+    },
+    {
+      "id": "BLETZEN1",
+      "infinitive": "blëtzen",
+      "pastParticiple": "geblëtzt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "there is (a flash of) lightning",
+      "present": {
+        "p1": "blëtzen",
+        "p2": "blëtz",
+        "p3": "blëtzt",
+        "p4": "blëtzen",
+        "p5": "blëtzt",
+        "p6": "blëtzen"
+      }
+    },
+    {
+      "id": "BLOSEN1",
+      "infinitive": "blosen",
+      "pastParticiple": "geblosen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to blow",
+      "present": {
+        "p1": "blosen",
+        "p2": "bléis",
+        "p3": "bléist",
+        "p4": "blosen",
+        "p5": "bloost",
+        "p6": "blosen"
+      }
+    },
+    {
+      "id": "BOTZEN1",
+      "infinitive": "botzen",
+      "pastParticiple": "gebotzt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to clean",
+      "present": {
+        "p1": "botzen",
+        "p2": "botz",
+        "p3": "botzt",
+        "p4": "botzen",
+        "p5": "botzt",
+        "p6": "botzen"
+      }
+    },
+    {
+      "id": "BRIECHEN1",
+      "infinitive": "briechen",
+      "pastParticiple": "gebrach",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to break",
+      "present": {
+        "p1": "briechen",
+        "p2": "bréchs",
+        "p3": "brécht",
+        "p4": "briechen",
+        "p5": "briecht",
+        "p6": "briechen"
+      }
+    },
+    {
+      "id": "BUCHEN1",
+      "infinitive": "buchen",
+      "pastParticiple": "gebucht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to book",
+      "present": {
+        "p1": "buchen",
+        "p2": "buchs",
+        "p3": "bucht",
+        "p4": "buchen",
+        "p5": "bucht",
+        "p6": "buchen"
+      }
+    },
+    {
+      "id": "CHECKEN1",
+      "infinitive": "checken",
+      "pastParticiple": "gecheckt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to check",
+      "present": {
+        "p1": "checken",
+        "p2": "checks",
+        "p3": "checkt",
+        "p4": "checken",
+        "p5": "checkt",
+        "p6": "checken"
+      }
+    },
+    {
+      "id": "CHILLEN1",
+      "infinitive": "chillen",
+      "pastParticiple": "gechillt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to chill out",
+      "present": {
+        "p1": "chillen",
+        "p2": "chills",
+        "p3": "chillt",
+        "p4": "chillen",
+        "p5": "chillt",
+        "p6": "chillen"
+      }
+    },
+    {
+      "id": "COIFFEIEREN1",
+      "infinitive": "coifféieren",
+      "pastParticiple": "coifféiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to do one's hair",
+      "present": {
+        "p1": "coifféieren",
+        "p2": "coifféiers",
+        "p3": "coifféiert",
+        "p4": "coifféieren",
+        "p5": "coifféiert",
+        "p6": "coifféieren"
+      }
+    },
+    {
+      "id": "DEELEN1",
+      "infinitive": "deelen",
+      "pastParticiple": "gedeelt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to share",
+      "present": {
+        "p1": "deelen",
+        "p2": "deels",
+        "p3": "deelt",
+        "p4": "deelen",
+        "p5": "deelt",
+        "p6": "deelen"
+      }
+    },
+    {
+      "id": "DENKEN1",
+      "infinitive": "denken",
+      "pastParticiple": "geduecht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to think",
+      "present": {
+        "p1": "denken",
+        "p2": "denks",
+        "p3": "denkt",
+        "p4": "denken",
+        "p5": "denkt",
+        "p6": "denken"
+      }
+    },
+    {
+      "id": "DEPRIMEIEREN1",
+      "infinitive": "depriméieren",
+      "pastParticiple": "depriméiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to depress",
+      "present": {
+        "p1": "depriméieren",
+        "p2": "depriméiers",
+        "p3": "depriméiert",
+        "p4": "depriméieren",
+        "p5": "depriméiert",
+        "p6": "depriméieren"
+      }
+    },
+    {
+      "id": "DESINFIZEIEREN1",
+      "infinitive": "desinfizéieren",
+      "pastParticiple": "desinfizéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to disinfect",
+      "present": {
+        "p1": "desinfizéieren",
+        "p2": "desinfizéiers",
+        "p3": "desinfizéiert",
+        "p4": "desinfizéieren",
+        "p5": "desinfizéiert",
+        "p6": "desinfizéieren"
+      }
+    },
+    {
+      "id": "DISKUTEIEREN1",
+      "infinitive": "diskutéieren",
+      "pastParticiple": "diskutéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to discuss",
+      "present": {
+        "p1": "diskutéieren",
+        "p2": "diskutéiers",
+        "p3": "diskutéiert",
+        "p4": "diskutéieren",
+        "p5": "diskutéiert",
+        "p6": "diskutéieren"
+      }
+    },
+    {
+      "id": "DRECKEN1",
+      "infinitive": "drécken",
+      "pastParticiple": "gedréckt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to push",
+      "present": {
+        "p1": "drécken",
+        "p2": "drécks",
+        "p3": "dréckt",
+        "p4": "drécken",
+        "p5": "dréckt",
+        "p6": "drécken"
+      }
+    },
+    {
+      "id": "DREEMEN1",
+      "infinitive": "dreemen",
+      "pastParticiple": "gedreemt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to dream",
+      "present": {
+        "p1": "dreemen",
+        "p2": "dreems",
+        "p3": "dreemt",
+        "p4": "dreemen",
+        "p5": "dreemt",
+        "p6": "dreemen"
+      }
+    },
+    {
+      "id": "DREINEN1",
+      "infinitive": "dréinen",
+      "pastParticiple": "gedréint",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": null,
+      "present": {
+        "p1": "dréinen",
+        "p2": "dréins",
+        "p3": "dréint",
+        "p4": "dréinen",
+        "p5": "dréint",
+        "p6": "dréinen"
+      }
+    },
+    {
+      "id": "DROPMAACHEN1",
+      "infinitive": "dropmaachen",
+      "pastParticiple": "dropgemaach / dropgemaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to waste",
+      "present": {
+        "p1": "maachen drop",
+        "p2": "méchs drop",
+        "p3": "mécht drop",
+        "p4": "maachen drop",
+        "p5": "maacht drop",
+        "p6": "maachen drop"
+      }
+    },
+    {
+      "id": "DUERCHSTRAICHEN1",
+      "infinitive": "duerchsträichen",
+      "pastParticiple": "duerchgestrach",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to cross out",
+      "present": {
+        "p1": "sträichen duerch",
+        "p2": "sträichs duerch",
+        "p3": "sträicht duerch",
+        "p4": "sträichen duerch",
+        "p5": "sträicht duerch",
+        "p6": "sträichen duerch"
+      }
+    },
+    {
+      "id": "EIDELMAACHEN1",
+      "infinitive": "eidel maachen",
+      "pastParticiple": "eidel gemaach / eidel gemaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to empty",
+      "present": {
+        "p1": "maachen eidel",
+        "p2": "méchs eidel",
+        "p3": "mécht eidel",
+        "p4": "maachen eidel",
+        "p5": "maacht eidel",
+        "p6": "maachen eidel"
+      }
+    },
+    {
+      "id": "EMDREINEN1",
+      "infinitive": "ëmdréinen",
+      "pastParticiple": "ëmgedréint",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": null,
+      "present": {
+        "p1": "dréinen ëm",
+        "p2": "dréins ëm",
+        "p3": "dréint ëm",
+        "p4": "dréinen ëm",
+        "p5": "dréint ëm",
+        "p6": "dréinen ëm"
+      }
+    },
+    {
+      "id": "EMKLAMMEN1",
+      "infinitive": "ëmklammen",
+      "pastParticiple": "ëmgeklommen / ëmgeklomm",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to change",
+      "present": {
+        "p1": "klammen ëm",
+        "p2": "klëmms ëm",
+        "p3": "klëmmt ëm",
+        "p4": "klammen ëm",
+        "p5": "klammt ëm",
+        "p6": "klammen ëm"
+      }
+    },
+    {
+      "id": "ENGAGEIEREN1",
+      "infinitive": "engagéieren",
+      "pastParticiple": "engagéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to hire",
+      "present": {
+        "p1": "engagéieren",
+        "p2": "engagéiers",
+        "p3": "engagéiert",
+        "p4": "engagéieren",
+        "p5": "engagéiert",
+        "p6": "engagéieren"
+      }
+    },
+    {
+      "id": "ENNERSCHREIWEN1",
+      "infinitive": "ënnerschreiwen",
+      "pastParticiple": "ënnerschriwwen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to sign",
+      "present": {
+        "p1": "ënnerschreiwen",
+        "p2": "ënnerschreifs",
+        "p3": "ënnerschreift",
+        "p4": "ënnerschreiwen",
+        "p5": "ënnerschreift",
+        "p6": "ënnerschreiwen"
+      }
+    },
+    {
+      "id": "ENNERSICHEN1",
+      "infinitive": "ënnersichen",
+      "pastParticiple": "ënnersicht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to analyse",
+      "present": {
+        "p1": "ënnersichen",
+        "p2": "ënnersichs",
+        "p3": "ënnersicht",
+        "p4": "ënnersichen",
+        "p5": "ënnersicht",
+        "p6": "ënnersichen"
+      }
+    },
+    {
+      "id": "ENTDECKEN1",
+      "infinitive": "entdecken",
+      "pastParticiple": "entdeckt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to discover",
+      "present": {
+        "p1": "entdecken",
+        "p2": "entdecks",
+        "p3": "entdeckt",
+        "p4": "entdecken",
+        "p5": "entdeckt",
+        "p6": "entdecken"
+      }
+    },
+    {
+      "id": "ENTSCHELLEGEN1",
+      "infinitive": "entschëllegen",
+      "pastParticiple": "entschëllegt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to excuse",
+      "present": {
+        "p1": "entschëllegen",
+        "p2": "entschëllegs",
+        "p3": "entschëllegt",
+        "p4": "entschëllegen",
+        "p5": "entschëllegt",
+        "p6": "entschëllegen"
+      }
+    },
+    {
+      "id": "ENTSPANEN1",
+      "infinitive": "entspanen",
+      "pastParticiple": "entspaant",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to defuse",
+      "present": {
+        "p1": "entspanen",
+        "p2": "entspaans",
+        "p3": "entspaant",
+        "p4": "entspanen",
+        "p5": "entspaant",
+        "p6": "entspanen"
+      }
+    },
+    {
+      "id": "ERAFUEREN1",
+      "infinitive": "erafueren",
+      "pastParticiple": "eragefuer",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to drive in",
+      "present": {
+        "p1": "fueren eran",
+        "p2": "fiers eran",
+        "p3": "fiert eran",
+        "p4": "fueren eran",
+        "p5": "fuert eran",
+        "p6": "fueren eran"
+      }
+    },
+    {
+      "id": "ERAGOEN1",
+      "infinitive": "eragoen",
+      "pastParticiple": "eragaangen / eragaang",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to go in",
+      "present": {
+        "p1": "ginn eran",
+        "p2": "gees eran",
+        "p3": "geet eran",
+        "p4": "ginn eran",
+        "p5": "gitt eran",
+        "p6": "ginn eran"
+      }
+    },
+    {
+      "id": "ERAKLAMMEN1",
+      "infinitive": "eraklammen",
+      "pastParticiple": "erageklommen / erageklomm",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to climb in",
+      "present": {
+        "p1": "klammen eran",
+        "p2": "klëmms eran",
+        "p3": "klëmmt eran",
+        "p4": "klammen eran",
+        "p5": "klammt eran",
+        "p6": "klammen eran"
+      }
+    },
+    {
+      "id": "ERAUSGOEN1",
+      "infinitive": "erausgoen",
+      "pastParticiple": "erausgaangen / erausgaang",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to go out",
+      "present": {
+        "p1": "ginn eraus",
+        "p2": "gees eraus",
+        "p3": "geet eraus",
+        "p4": "ginn eraus",
+        "p5": "gitt eraus",
+        "p6": "ginn eraus"
+      }
+    },
+    {
+      "id": "ERAUSKLAMMEN1",
+      "infinitive": "erausklammen",
+      "pastParticiple": "erausgeklommen / erausgeklomm",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to climb out",
+      "present": {
+        "p1": "klammen eraus",
+        "p2": "klëmms eraus",
+        "p3": "klëmmt eraus",
+        "p4": "klammen eraus",
+        "p5": "klammt eraus",
+        "p6": "klammen eraus"
+      }
+    },
+    {
+      "id": "ERENNEREN1",
+      "infinitive": "erënneren",
+      "pastParticiple": "erënnert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to remind of",
+      "present": {
+        "p1": "erënneren",
+        "p2": "erënners",
+        "p3": "erënnert",
+        "p4": "erënneren",
+        "p5": "erënnert",
+        "p6": "erënneren"
+      }
+    },
+    {
+      "id": "ERKALEN1",
+      "infinitive": "erkalen",
+      "pastParticiple": "erkaalt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to catch a cold",
+      "present": {
+        "p1": "erkalen",
+        "p2": "erkaals",
+        "p3": "erkaalt",
+        "p4": "erkalen",
+        "p5": "erkaalt",
+        "p6": "erkalen"
+      }
+    },
+    {
+      "id": "ERKLAREN1",
+      "infinitive": "erklären",
+      "pastParticiple": "erkläert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to explain",
+      "present": {
+        "p1": "erklären",
+        "p2": "erkläers",
+        "p3": "erkläert",
+        "p4": "erklären",
+        "p5": "erkläert",
+        "p6": "erklären"
+      }
+    },
+    {
+      "id": "ERLABEN1",
+      "infinitive": "erlaben",
+      "pastParticiple": "erlaabt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to allow",
+      "present": {
+        "p1": "erlaben",
+        "p2": "erlaabs",
+        "p3": "erlaabt",
+        "p4": "erlaben",
+        "p5": "erlaabt",
+        "p6": "erlaben"
+      }
+    },
+    {
+      "id": "ERREECHEN1",
+      "infinitive": "erreechen",
+      "pastParticiple": "erreecht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to reach",
+      "present": {
+        "p1": "erreechen",
+        "p2": "erreechs",
+        "p3": "erreecht",
+        "p4": "erreechen",
+        "p5": "erreecht",
+        "p6": "erreechen"
+      }
+    },
+    {
+      "id": "ERZIELEN1",
+      "infinitive": "erzielen",
+      "pastParticiple": "erzielt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to tell",
+      "present": {
+        "p1": "erzielen",
+        "p2": "erziels",
+        "p3": "erzielt",
+        "p4": "erzielen",
+        "p5": "erzielt",
+        "p6": "erzielen"
+      }
+    },
+    {
+      "id": "EWECHGEHEIEN1",
+      "infinitive": "ewechgeheien",
+      "pastParticiple": "ewechgeheit / ewechgehäit",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to throw away",
+      "present": {
+        "p1": "geheien ewech",
+        "p2": "geheis",
+        "p3": "geheit",
+        "p4": "geheien ewech",
+        "p5": "geheit ewech",
+        "p6": "geheien ewech"
+      }
+    },
+    {
+      "id": "EWECHGINN1",
+      "infinitive": "ewechginn",
+      "pastParticiple": "ewechginn",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to give away",
+      "present": {
+        "p1": "ginn ewech",
+        "p2": "gëss ewech",
+        "p3": "gëtt ewech",
+        "p4": "ginn ewech",
+        "p5": "gitt ewech",
+        "p6": "ginn ewech"
+      }
+    },
+    {
+      "id": "EWECHHUELEN1",
+      "infinitive": "ewechhuelen",
+      "pastParticiple": "ewechgeholl",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to take away from",
+      "present": {
+        "p1": "huelen ewech",
+        "p2": "hëls ewech",
+        "p3": "hëlt ewech",
+        "p4": "huelen ewech",
+        "p5": "huelt ewech",
+        "p6": "huelen ewech"
+      }
+    },
+    {
+      "id": "EWECHLEEEN1",
+      "infinitive": "ewechleeën",
+      "pastParticiple": "ewechgeluecht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to put away",
+      "present": {
+        "p1": "leeën ewech",
+        "p2": "lees ewech",
+        "p3": "leet ewech",
+        "p4": "leeën ewech",
+        "p5": "leet ewech",
+        "p6": "leeën ewech"
+      }
+    },
+    {
+      "id": "FAERTEN1",
+      "infinitive": "fäerten",
+      "pastParticiple": "gefaart",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to be scared of",
+      "present": {
+        "p1": "fäerten",
+        "p2": "fäerts",
+        "p3": "fäert",
+        "p4": "fäerten",
+        "p5": "fäert",
+        "p6": "fäerten"
+      }
+    },
+    {
+      "id": "FALEN1",
+      "infinitive": "falen",
+      "pastParticiple": "gefall",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to fall",
+      "present": {
+        "p1": "falen",
+        "p2": "fäls",
+        "p3": "fält",
+        "p4": "falen",
+        "p5": "faalt",
+        "p6": "falen"
+      }
+    },
+    {
+      "id": "FAVORISEIEREN1",
+      "infinitive": "favoriséieren",
+      "pastParticiple": "favoriséiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to favour",
+      "present": {
+        "p1": "favoriséieren",
+        "p2": "favoriséiers",
+        "p3": "favoriséiert",
+        "p4": "favoriséieren",
+        "p5": "favoriséiert",
+        "p6": "favoriséieren"
+      }
+    },
+    {
+      "id": "FEELEN1",
+      "infinitive": "feelen",
+      "pastParticiple": "gefeelt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to be absent",
+      "present": {
+        "p1": "feelen",
+        "p2": "feels",
+        "p3": "feelt",
+        "p4": "feelen",
+        "p5": "feelt",
+        "p6": "feelen"
+      }
+    },
+    {
+      "id": "FEMMEN1",
+      "infinitive": "fëmmen",
+      "pastParticiple": "gefëmmt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to smoke",
+      "present": {
+        "p1": "fëmmen",
+        "p2": "fëmms",
+        "p3": "fëmmt",
+        "p4": "fëmmen",
+        "p5": "fëmmt",
+        "p6": "fëmmen"
+      }
+    },
+    {
+      "id": "FIDDEREN1",
+      "infinitive": "fidderen",
+      "pastParticiple": "gefiddert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to line",
+      "present": {
+        "p1": "fidderen",
+        "p2": "fidders",
+        "p3": "fiddert",
+        "p4": "fidderen",
+        "p5": "fiddert",
+        "p6": "fidderen"
+      }
+    },
+    {
+      "id": "FILLEN1",
+      "infinitive": "fillen",
+      "pastParticiple": "gefillt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to feel",
+      "present": {
+        "p1": "fillen",
+        "p2": "fills",
+        "p3": "fillt",
+        "p4": "fillen",
+        "p5": "fillt",
+        "p6": "fillen"
+      }
+    },
+    {
+      "id": "FLEEGEN1",
+      "infinitive": "fleegen",
+      "pastParticiple": "gefleegt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to look after",
+      "present": {
+        "p1": "fleegen",
+        "p2": "fleegs",
+        "p3": "fleegt",
+        "p4": "fleegen",
+        "p5": "fleegt",
+        "p6": "fleegen"
+      }
+    },
+    {
+      "id": "FLEIEN1",
+      "infinitive": "fléien",
+      "pastParticiple": "geflunn",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to fly",
+      "present": {
+        "p1": "fléien",
+        "p2": "flitts",
+        "p3": "flitt",
+        "p4": "fléien",
+        "p5": "flitt",
+        "p6": "fléien"
+      }
+    },
+    {
+      "id": "FOTOGRAFEIEREN1",
+      "infinitive": "fotograféieren",
+      "pastParticiple": "fotograféiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to photograph",
+      "present": {
+        "p1": "fotograféieren",
+        "p2": "fotograféiers",
+        "p3": "fotograféiert",
+        "p4": "fotograféieren",
+        "p5": "fotograféiert",
+        "p6": "fotograféieren"
+      }
+    },
+    {
+      "id": "FREEEN1",
+      "infinitive": "freeën",
+      "pastParticiple": "gefreet",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to be pleased",
+      "present": {
+        "p1": "freeën",
+        "p2": "frees",
+        "p3": "freet",
+        "p4": "freeën",
+        "p5": "freet",
+        "p6": "freeën"
+      }
+    },
+    {
+      "id": "FREIEREN1",
+      "infinitive": "fréieren",
+      "pastParticiple": "gefruer",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to freeze",
+      "present": {
+        "p1": "fréieren",
+        "p2": "fréiers",
+        "p3": "fréiert",
+        "p4": "fréieren",
+        "p5": "fréiert",
+        "p6": "fréieren"
+      }
+    },
+    {
+      "id": "GEFALEN1",
+      "infinitive": "gefalen",
+      "pastParticiple": "gefall",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to appeal to",
+      "present": {
+        "p1": "gefalen",
+        "p2": "gefäls",
+        "p3": "gefält",
+        "p4": "gefalen",
+        "p5": "gefaalt",
+        "p6": "gefalen"
+      }
+    },
+    {
+      "id": "GENEISSEN1",
+      "infinitive": "genéissen",
+      "pastParticiple": "genoss",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to savour",
+      "present": {
+        "p1": "genéissen",
+        "p2": "genéiss",
+        "p3": "genéisst",
+        "p4": "genéissen",
+        "p5": "genéisst",
+        "p6": "genéissen"
+      }
+    },
+    {
+      "id": "GESINN1",
+      "infinitive": "gesinn",
+      "pastParticiple": "gesinn",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to see",
+      "present": {
+        "p1": "gesinn",
+        "p2": "gesäis",
+        "p3": "gesäit",
+        "p4": "gesinn",
+        "p5": "gesitt",
+        "p6": "gesinn"
+      }
+    },
+    {
+      "id": "GEWANNEN1",
+      "infinitive": "gewannen",
+      "pastParticiple": "gewonnen / gewonn",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to win",
+      "present": {
+        "p1": "gewannen",
+        "p2": "gewënns",
+        "p3": "gewënnt",
+        "p4": "gewannen",
+        "p5": "gewannt",
+        "p6": "gewannen"
+      }
+    },
+    {
+      "id": "GRATULEIEREN1",
+      "infinitive": "gratuléieren",
+      "pastParticiple": "gratuléiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to congratulate",
+      "present": {
+        "p1": "gratuléieren",
+        "p2": "gratuléiers",
+        "p3": "gratuléiert",
+        "p4": "gratuléieren",
+        "p5": "gratuléiert",
+        "p6": "gratuléieren"
+      }
+    },
+    {
+      "id": "HALEN1",
+      "infinitive": "halen",
+      "pastParticiple": "gehalen / gehal",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to hold",
+      "present": {
+        "p1": "halen",
+        "p2": "häls",
+        "p3": "hält",
+        "p4": "halen",
+        "p5": "haalt",
+        "p6": "halen"
+      }
+    },
+    {
+      "id": "HANKEN1",
+      "infinitive": "hänken",
+      "pastParticiple": "gehaangen / gehaang",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to hang (up)",
+      "present": {
+        "p1": "hänken",
+        "p2": "hänks",
+        "p3": "hänkt",
+        "p4": "hänken",
+        "p5": "hänkt",
+        "p6": "hänken"
+      }
+    },
+    {
+      "id": "HANNERLOOSSEN1",
+      "infinitive": "hannerloossen",
+      "pastParticiple": "hannerlooss",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to leave (behind)",
+      "present": {
+        "p1": "hannerloossen",
+        "p2": "hannerléiss",
+        "p3": "hannerléisst",
+        "p4": "hannerloossen",
+        "p5": "hannerloosst",
+        "p6": "hannerloossen"
+      }
+    },
+    {
+      "id": "HEEMKOMMEN1",
+      "infinitive": "heemkommen",
+      "pastParticiple": "heemkomm",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to come home",
+      "present": {
+        "p1": "kommen heem",
+        "p2": "kënns heem",
+        "p3": "kënnt heem",
+        "p4": "kommen heem",
+        "p5": "kommt heem",
+        "p6": "kommen heem"
+      }
+    },
+    {
+      "id": "HOFFEN1",
+      "infinitive": "hoffen",
+      "pastParticiple": "gehofft",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to hope",
+      "present": {
+        "p1": "hoffen",
+        "p2": "hoffs",
+        "p3": "hofft",
+        "p4": "hoffen",
+        "p5": "hofft",
+        "p6": "hoffen"
+      }
+    },
+    {
+      "id": "HOUSCHTEN1",
+      "infinitive": "houschten",
+      "pastParticiple": "gehouscht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to cough",
+      "present": {
+        "p1": "houschten",
+        "p2": "houschts",
+        "p3": "houscht",
+        "p4": "houschten",
+        "p5": "houscht",
+        "p6": "houschten"
+      }
+    },
+    {
+      "id": "IEREN2",
+      "infinitive": "ieren",
+      "pastParticiple": "geiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to make a mistake",
+      "present": {
+        "p1": "iere mech",
+        "p2": "iers dech",
+        "p3": "iert sech",
+        "p4": "ieren eis",
+        "p5": "iert iech",
+        "p6": "ieren sech"
+      }
+    },
+    {
+      "id": "IMPROVISEIEREN1",
+      "infinitive": "improviséieren",
+      "pastParticiple": "improviséiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to improvise",
+      "present": {
+        "p1": "improviséieren",
+        "p2": "improviséiers",
+        "p3": "improviséiert",
+        "p4": "improviséieren",
+        "p5": "improviséiert",
+        "p6": "improviséieren"
+      }
+    },
+    {
+      "id": "INFORMEIEREN1",
+      "infinitive": "informéieren",
+      "pastParticiple": "informéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to inform",
+      "present": {
+        "p1": "informéieren",
+        "p2": "informéiers",
+        "p3": "informéiert",
+        "p4": "informéieren",
+        "p5": "informéiert",
+        "p6": "informéieren"
+      }
+    },
+    {
+      "id": "INTERESSEIEREN1",
+      "infinitive": "interesséieren",
+      "pastParticiple": "interesséiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to interest",
+      "present": {
+        "p1": "interesséieren",
+        "p2": "interesséiers",
+        "p3": "interesséiert",
+        "p4": "interesséieren",
+        "p5": "interesséiert",
+        "p6": "interesséieren"
+      }
+    },
+    {
+      "id": "INTRESSEIEREN1",
+      "infinitive": "intresséieren",
+      "pastParticiple": "intresséiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": null,
+      "present": {
+        "p1": "intresséieren",
+        "p2": "intresséiers",
+        "p3": "intresséiert",
+        "p4": "intresséieren",
+        "p5": "intresséiert",
+        "p6": "intresséieren"
+      }
+    },
+    {
+      "id": "INVITEIEREN1",
+      "infinitive": "invitéieren",
+      "pastParticiple": "invitéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to invite",
+      "present": {
+        "p1": "invitéieren",
+        "p2": "invitéiers",
+        "p3": "invitéiert",
+        "p4": "invitéieren",
+        "p5": "invitéiert",
+        "p6": "invitéieren"
+      }
+    },
+    {
+      "id": "IWWERRASCHEN1",
+      "infinitive": "iwwerraschen",
+      "pastParticiple": "iwwerrascht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to surprise",
+      "present": {
+        "p1": "iwwerraschen",
+        "p2": "iwwerraschs",
+        "p3": "iwwerrascht",
+        "p4": "iwwerraschen",
+        "p5": "iwwerrascht",
+        "p6": "iwwerraschen"
+      }
+    },
+    {
+      "id": "IWWERWEISEN1",
+      "infinitive": "iwwerweisen",
+      "pastParticiple": "iwwerwisen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to transfer",
+      "present": {
+        "p1": "iwwerweisen",
+        "p2": "iwwerweis",
+        "p3": "iwwerweist",
+        "p4": "iwwerweisen",
+        "p5": "iwwerweist",
+        "p6": "iwwerweisen"
+      }
+    },
+    {
+      "id": "JOGGEN1",
+      "infinitive": "joggen",
+      "pastParticiple": "gejoggt",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to jog",
+      "present": {
+        "p1": "joggen",
+        "p2": "joggs",
+        "p3": "joggt",
+        "p4": "joggen",
+        "p5": "joggt",
+        "p6": "joggen"
+      }
+    },
+    {
+      "id": "KAMMEN1",
+      "infinitive": "kämmen",
+      "pastParticiple": "gekämmt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to comb",
+      "present": {
+        "p1": "kämmen",
+        "p2": "kämms",
+        "p3": "kämmt",
+        "p4": "kämmen",
+        "p5": "kämmt",
+        "p6": "kämmen"
+      }
+    },
+    {
+      "id": "KEMMEREN1",
+      "infinitive": "këmmeren",
+      "pastParticiple": "gekëmmert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to look after",
+      "present": {
+        "p1": "këmmere mech",
+        "p2": "këmmers dech",
+        "p3": "këmmert sech",
+        "p4": "këmmeren eis",
+        "p5": "këmmert iech",
+        "p6": "këmmeren sech"
+      }
+    },
+    {
+      "id": "KENNELEIEREN1",
+      "infinitive": "kenne léieren",
+      "pastParticiple": "kenne geléiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to meet",
+      "present": {
+        "p1": "léiere kennen",
+        "p2": "léiers kennen",
+        "p3": "léiert kennen",
+        "p4": "léiere kennen",
+        "p5": "léiert kennen",
+        "p6": "léiere kennen"
+      }
+    },
+    {
+      "id": "KENNEN2",
+      "infinitive": "kennen",
+      "pastParticiple": "kannt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to know",
+      "present": {
+        "p1": "kennen",
+        "p2": "kenns",
+        "p3": "kennt",
+        "p4": "kennen",
+        "p5": "kennt",
+        "p6": "kennen"
+      }
+    },
+    {
+      "id": "KLAKEN1",
+      "infinitive": "klaken",
+      "pastParticiple": "geklaakt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to slam",
+      "present": {
+        "p1": "klaken",
+        "p2": "klaaks",
+        "p3": "klaakt",
+        "p4": "klaken",
+        "p5": "klaakt",
+        "p6": "klaken"
+      }
+    },
+    {
+      "id": "KLAMMEN1",
+      "infinitive": "klammen",
+      "pastParticiple": "geklommen / geklomm",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to climb",
+      "present": {
+        "p1": "klammen",
+        "p2": "klëmms",
+        "p3": "klëmmt",
+        "p4": "klammen",
+        "p5": "klammt",
+        "p6": "klammen"
+      }
+    },
+    {
+      "id": "KOMBINEIEREN1",
+      "infinitive": "kombinéieren",
+      "pastParticiple": "kombinéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to combine",
+      "present": {
+        "p1": "kombinéieren",
+        "p2": "kombinéiers",
+        "p3": "kombinéiert",
+        "p4": "kombinéieren",
+        "p5": "kombinéiert",
+        "p6": "kombinéieren"
+      }
+    },
+    {
+      "id": "KONTAKTEIEREN1",
+      "infinitive": "kontaktéieren",
+      "pastParticiple": "kontaktéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to contact",
+      "present": {
+        "p1": "kontaktéieren",
+        "p2": "kontaktéiers",
+        "p3": "kontaktéiert",
+        "p4": "kontaktéieren",
+        "p5": "kontaktéiert",
+        "p6": "kontaktéieren"
+      }
+    },
+    {
+      "id": "KRAISCHEN1",
+      "infinitive": "kräischen",
+      "pastParticiple": "gekrasch",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to cry",
+      "present": {
+        "p1": "kräischen",
+        "p2": "kräischs",
+        "p3": "kräischt",
+        "p4": "kräischen",
+        "p5": "kräischt",
+        "p6": "kräischen"
+      }
+    },
+    {
+      "id": "KRANKSCHREIWEN1",
+      "infinitive": "krankschreiwen",
+      "pastParticiple": "krankgeschriwwen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to give a sick note",
+      "present": {
+        "p1": "schreiwe krank",
+        "p2": "schreifs krank",
+        "p3": "schreift krank",
+        "p4": "schreiwe krank",
+        "p5": "schreift krank",
+        "p6": "schreiwe krank"
+      }
+    },
+    {
+      "id": "LAACHEN1",
+      "infinitive": "laachen",
+      "pastParticiple": "gelaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to laugh",
+      "present": {
+        "p1": "laachen",
+        "p2": "laachs",
+        "p3": "laacht",
+        "p4": "laachen",
+        "p5": "laacht",
+        "p6": "laachen"
+      }
+    },
+    {
+      "id": "LAANSCHTKOMMEN1",
+      "infinitive": "laanschtkommen",
+      "pastParticiple": "laanschtkomm",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to come by",
+      "present": {
+        "p1": "komme laanscht",
+        "p2": "kënns laanscht",
+        "p3": "kënnt laanscht",
+        "p4": "komme laanscht",
+        "p5": "kommt laanscht",
+        "p6": "komme laanscht"
+      }
+    },
+    {
+      "id": "LEEDDOEN1",
+      "infinitive": "leeddoen",
+      "pastParticiple": "leedgedoen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to feel sorry for",
+      "present": {
+        "p1": "doen",
+        "p2": "dees leed",
+        "p3": "deet leed",
+        "p4": "doen",
+        "p5": "dot",
+        "p6": "doen"
+      }
+    },
+    {
+      "id": "LEEEN1",
+      "infinitive": "leeën",
+      "pastParticiple": "geluecht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to lay flat",
+      "present": {
+        "p1": "leeën",
+        "p2": "lees",
+        "p3": "leet",
+        "p4": "leeën",
+        "p5": "leet",
+        "p6": "leeën"
+      }
+    },
+    {
+      "id": "LEINEN1",
+      "infinitive": "léinen",
+      "pastParticiple": "geléint",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to lend",
+      "present": {
+        "p1": "léinen",
+        "p2": "léins",
+        "p3": "léint",
+        "p4": "léinen",
+        "p5": "léint",
+        "p6": "léinen"
+      }
+    },
+    {
+      "id": "LIEWEN2",
+      "infinitive": "liewen",
+      "pastParticiple": "gelieft",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to live",
+      "present": {
+        "p1": "liewen",
+        "p2": "liefs",
+        "p3": "lieft",
+        "p4": "liewen",
+        "p5": "lieft",
+        "p6": "liewen"
+      }
+    },
+    {
+      "id": "LOOSSEN1",
+      "infinitive": "loossen",
+      "pastParticiple": "gelooss",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to leave",
+      "present": {
+        "p1": "loossen",
+        "p2": "léiss",
+        "p3": "léisst",
+        "p4": "loossen",
+        "p5": "loosst",
+        "p6": "loossen"
+      }
+    },
+    {
+      "id": "LOUNEN1",
+      "infinitive": "lounen",
+      "pastParticiple": "gelount",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to rent",
+      "present": {
+        "p1": "lounen",
+        "p2": "louns",
+        "p3": "lount",
+        "p4": "lounen",
+        "p5": "lount",
+        "p6": "lounen"
+      }
+    },
+    {
+      "id": "MATBRENGEN1",
+      "infinitive": "matbréngen",
+      "pastParticiple": "matbruecht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to bring",
+      "present": {
+        "p1": "brénge mat",
+        "p2": "bréngs mat",
+        "p3": "bréngt mat",
+        "p4": "brénge mat",
+        "p5": "bréngt mat",
+        "p6": "brénge mat"
+      }
+    },
+    {
+      "id": "MATKOMMEN1",
+      "infinitive": "matkommen",
+      "pastParticiple": "matkomm",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to come",
+      "present": {
+        "p1": "komme mat",
+        "p2": "kënns mat",
+        "p3": "kënnt mat",
+        "p4": "komme mat",
+        "p5": "kommt mat",
+        "p6": "komme mat"
+      }
+    },
+    {
+      "id": "MATLAFEN1",
+      "infinitive": "matlafen",
+      "pastParticiple": "matgelaf",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to run",
+      "present": {
+        "p1": "lafe mat",
+        "p2": "leefs mat",
+        "p3": "leeft mat",
+        "p4": "lafe mat",
+        "p5": "laaft mat",
+        "p6": "lafe mat"
+      }
+    },
+    {
+      "id": "MATMAACHEN1",
+      "infinitive": "matmaachen",
+      "pastParticiple": "matgemaach / matgemaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to attend",
+      "present": {
+        "p1": "maache mat",
+        "p2": "méchs mat",
+        "p3": "mécht mat",
+        "p4": "maache mat",
+        "p5": "maacht mat",
+        "p6": "maache mat"
+      }
+    },
+    {
+      "id": "MATSCHECKEN1",
+      "infinitive": "matschécken",
+      "pastParticiple": "matgeschéckt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to enclose",
+      "present": {
+        "p1": "schécke mat",
+        "p2": "schécks mat",
+        "p3": "schéckt mat",
+        "p4": "schécke mat",
+        "p5": "schéckt mat",
+        "p6": "schécke mat"
+      }
+    },
+    {
+      "id": "MATSPILLEN1",
+      "infinitive": "matspillen",
+      "pastParticiple": "matgespillt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to play",
+      "present": {
+        "p1": "spille mat",
+        "p2": "spills mat",
+        "p3": "spillt mat",
+        "p4": "spille mat",
+        "p5": "spillt mat",
+        "p6": "spille mat"
+      }
+    },
+    {
+      "id": "MECKEREN1",
+      "infinitive": "meckeren",
+      "pastParticiple": "gemeckert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to bleat",
+      "present": {
+        "p1": "meckeren",
+        "p2": "meckers",
+        "p3": "meckert",
+        "p4": "meckeren",
+        "p5": "meckert",
+        "p6": "meckeren"
+      }
+    },
+    {
+      "id": "MEDITEIEREN1",
+      "infinitive": "meditéieren",
+      "pastParticiple": "meditéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to meditate",
+      "present": {
+        "p1": "meditéieren",
+        "p2": "meditéiers",
+        "p3": "meditéiert",
+        "p4": "meditéieren",
+        "p5": "meditéiert",
+        "p6": "meditéieren"
+      }
+    },
+    {
+      "id": "MELLEN1",
+      "infinitive": "mellen",
+      "pastParticiple": "gemellt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to announce",
+      "present": {
+        "p1": "mellen",
+        "p2": "mells",
+        "p3": "mellt",
+        "p4": "mellen",
+        "p5": "mellt",
+        "p6": "mellen"
+      }
+    },
+    {
+      "id": "MIERKEN1",
+      "infinitive": "mierken",
+      "pastParticiple": "gemierkt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to notice",
+      "present": {
+        "p1": "mierken",
+        "p2": "mierks",
+        "p3": "mierkt",
+        "p4": "mierken",
+        "p5": "mierkt",
+        "p6": "mierken"
+      }
+    },
+    {
+      "id": "MIWWELEIEREN1",
+      "infinitive": "miwweléieren",
+      "pastParticiple": "miwweléiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to furnish",
+      "present": {
+        "p1": "miwweléieren",
+        "p2": "miwweléiers",
+        "p3": "miwweléiert",
+        "p4": "miwweléieren",
+        "p5": "miwweléiert",
+        "p6": "miwweléieren"
+      }
+    },
+    {
+      "id": "MONTEIEREN1",
+      "infinitive": "montéieren",
+      "pastParticiple": "montéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to assemble",
+      "present": {
+        "p1": "montéieren",
+        "p2": "montéiers",
+        "p3": "montéiert",
+        "p4": "montéieren",
+        "p5": "montéiert",
+        "p6": "montéieren"
+      }
+    },
+    {
+      "id": "MOOSSEN1",
+      "infinitive": "moossen",
+      "pastParticiple": "gemooss",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to take",
+      "present": {
+        "p1": "moossen",
+        "p2": "mooss",
+        "p3": "moosst",
+        "p4": "moossen",
+        "p5": "moosst",
+        "p6": "moossen"
+      }
+    },
+    {
+      "id": "MOTIVEIEREN1",
+      "infinitive": "motivéieren",
+      "pastParticiple": "motivéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to motivate",
+      "present": {
+        "p1": "motivéieren",
+        "p2": "motivéiers",
+        "p3": "motivéiert",
+        "p4": "motivéieren",
+        "p5": "motivéiert",
+        "p6": "motivéieren"
+      }
+    },
+    {
+      "id": "NATZEN1",
+      "infinitive": "nätzen",
+      "pastParticiple": "genat / genätzt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to water",
+      "present": {
+        "p1": "nätzen",
+        "p2": "nätz",
+        "p3": "nätzt",
+        "p4": "nätzen",
+        "p5": "nätzt",
+        "p6": "nätzen"
+      }
+    },
+    {
+      "id": "NOKUCKEN1",
+      "infinitive": "nokucken",
+      "pastParticiple": "nogekuckt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to watch",
+      "present": {
+        "p1": "kucken no",
+        "p2": "kucks no",
+        "p3": "kuckt no",
+        "p4": "kucken no",
+        "p5": "kuckt no",
+        "p6": "kucken no"
+      }
+    },
+    {
+      "id": "NOLAUSCHTEREN1",
+      "infinitive": "nolauschteren",
+      "pastParticiple": "nogelauschtert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to listen (to)",
+      "present": {
+        "p1": "lauschteren no",
+        "p2": "lauschters no",
+        "p3": "lauschtert no",
+        "p4": "lauschteren no",
+        "p5": "lauschtert no",
+        "p6": "lauschteren no"
+      }
+    },
+    {
+      "id": "NOMAACHEN1",
+      "infinitive": "nomaachen",
+      "pastParticiple": "nogemaach / nogemaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to ape",
+      "present": {
+        "p1": "maachen no",
+        "p2": "méchs no",
+        "p3": "mécht no",
+        "p4": "maachen no",
+        "p5": "maacht no",
+        "p6": "maachen no"
+      }
+    },
+    {
+      "id": "NUMMEREIEREN1",
+      "infinitive": "nummeréieren",
+      "pastParticiple": "nummeréiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to number",
+      "present": {
+        "p1": "nummeréieren",
+        "p2": "nummeréiers",
+        "p3": "nummeréiert",
+        "p4": "nummeréieren",
+        "p5": "nummeréiert",
+        "p6": "nummeréieren"
+      }
+    },
+    {
+      "id": "OFGINN1",
+      "infinitive": "ofginn",
+      "pastParticiple": "ofginn",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to hand in",
+      "present": {
+        "p1": "ginn of",
+        "p2": "gëss of",
+        "p3": "gëtt of",
+        "p4": "ginn of",
+        "p5": "gitt of",
+        "p6": "ginn of"
+      }
+    },
+    {
+      "id": "OFHUELEN1",
+      "infinitive": "ofhuelen",
+      "pastParticiple": "ofgeholl",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to pick up",
+      "present": {
+        "p1": "huelen of",
+        "p2": "hëls of",
+        "p3": "hëlt of",
+        "p4": "huelen of",
+        "p5": "huelt of",
+        "p6": "huelen of"
+      }
+    },
+    {
+      "id": "OFLAUSCHTEREN1",
+      "infinitive": "oflauschteren",
+      "pastParticiple": "ofgelauschtert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to auscultate",
+      "present": {
+        "p1": "lauschteren of",
+        "p2": "lauschters of",
+        "p3": "lauschtert of",
+        "p4": "lauschteren of",
+        "p5": "lauschtert of",
+        "p6": "lauschteren of"
+      }
+    },
+    {
+      "id": "OFSOEN1",
+      "infinitive": "ofsoen",
+      "pastParticiple": "ofgesot",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to cancel",
+      "present": {
+        "p1": "soen of",
+        "p2": "sees of",
+        "p3": "seet of",
+        "p4": "soen of",
+        "p5": "sot of",
+        "p6": "soen of"
+      }
+    },
+    {
+      "id": "OPBOTZEN1",
+      "infinitive": "opbotzen",
+      "pastParticiple": "opgebotzt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to mop up",
+      "present": {
+        "p1": "botzen op",
+        "p2": "botz op",
+        "p3": "botzt op",
+        "p4": "botzen op",
+        "p5": "botzt op",
+        "p6": "botzen op"
+      }
+    },
+    {
+      "id": "OPEREIEREN1",
+      "infinitive": "operéieren",
+      "pastParticiple": "operéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to operate (on)",
+      "present": {
+        "p1": "operéieren",
+        "p2": "operéiers",
+        "p3": "operéiert",
+        "p4": "operéieren",
+        "p5": "operéiert",
+        "p6": "operéieren"
+      }
+    },
+    {
+      "id": "OPGOEN1",
+      "infinitive": "opgoen",
+      "pastParticiple": "opgaangen / opgaang",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to rise",
+      "present": {
+        "p1": "ginn op",
+        "p2": "gees op",
+        "p3": "geet op",
+        "p4": "ginn op",
+        "p5": "gitt op",
+        "p6": "ginn op"
+      }
+    },
+    {
+      "id": "OPHANKEN1",
+      "infinitive": "ophänken",
+      "pastParticiple": "opgehaangen / opgehaang",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to hang (up)",
+      "present": {
+        "p1": "hänken op",
+        "p2": "hänks op",
+        "p3": "hänkt op",
+        "p4": "hänken op",
+        "p5": "hänkt op",
+        "p6": "hänken op"
+      }
+    },
+    {
+      "id": "OPHIEWEN1",
+      "infinitive": "ophiewen",
+      "pastParticiple": "opgehuewen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to pick up",
+      "present": {
+        "p1": "hiewen op",
+        "p2": "hiefs op",
+        "p3": "hieft op",
+        "p4": "hiewen op",
+        "p5": "hieft op",
+        "p6": "hiewen op"
+      }
+    },
+    {
+      "id": "OPMAACHEN1",
+      "infinitive": "opmaachen",
+      "pastParticiple": "opgemaach / opgemaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to open",
+      "present": {
+        "p1": "maachen op",
+        "p2": "méchs op",
+        "p3": "mécht op",
+        "p4": "maachen op",
+        "p5": "maacht op",
+        "p6": "maachen op"
+      }
+    },
+    {
+      "id": "OPPASSEN1",
+      "infinitive": "oppassen",
+      "pastParticiple": "opgepasst",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to watch out",
+      "present": {
+        "p1": "passen op",
+        "p2": "pass op",
+        "p3": "passt op",
+        "p4": "passen op",
+        "p5": "passt op",
+        "p6": "passen op"
+      }
+    },
+    {
+      "id": "OPPECHEN1",
+      "infinitive": "oppechen",
+      "pastParticiple": "opgepecht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to stick on",
+      "present": {
+        "p1": "pechen op",
+        "p2": "pechs op",
+        "p3": "pecht op",
+        "p4": "pechen op",
+        "p5": "pecht op",
+        "p6": "pechen op"
+      }
+    },
+    {
+      "id": "OPSCHREIWEN1",
+      "infinitive": "opschreiwen",
+      "pastParticiple": "opgeschriwwen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to write down",
+      "present": {
+        "p1": "schreiwen op",
+        "p2": "schreifs op",
+        "p3": "schreift op",
+        "p4": "schreiwen op",
+        "p5": "schreift op",
+        "p6": "schreiwen op"
+      }
+    },
+    {
+      "id": "OPSPAREN1",
+      "infinitive": "opspären",
+      "pastParticiple": "opgespaart",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": null,
+      "present": {
+        "p1": "spären op",
+        "p2": "späers op",
+        "p3": "späert op",
+        "p4": "spären op",
+        "p5": "späert op",
+        "p6": "spären op"
+      }
+    },
+    {
+      "id": "ORGANISEIEREN1",
+      "infinitive": "organiséieren",
+      "pastParticiple": "organiséiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to organize",
+      "present": {
+        "p1": "organiséieren",
+        "p2": "organiséiers",
+        "p3": "organiséiert",
+        "p4": "organiséieren",
+        "p5": "organiséiert",
+        "p6": "organiséieren"
+      }
+    },
+    {
+      "id": "PACKEN1",
+      "infinitive": "packen",
+      "pastParticiple": "gepackt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to manage to carry",
+      "present": {
+        "p1": "packen",
+        "p2": "packs",
+        "p3": "packt",
+        "p4": "packen",
+        "p5": "packt",
+        "p6": "packen"
+      }
+    },
+    {
+      "id": "PAKEN1",
+      "infinitive": "paken",
+      "pastParticiple": "gepaakt / gepak",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to pack",
+      "present": {
+        "p1": "paken",
+        "p2": "paaks",
+        "p3": "paakt",
+        "p4": "paken",
+        "p5": "paakt",
+        "p6": "paken"
+      }
+    },
+    {
+      "id": "PARKEN1",
+      "infinitive": "parken",
+      "pastParticiple": "geparkt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to park",
+      "present": {
+        "p1": "parken",
+        "p2": "parks",
+        "p3": "parkt",
+        "p4": "parken",
+        "p5": "parkt",
+        "p6": "parken"
+      }
+    },
+    {
+      "id": "PASSEN2",
+      "infinitive": "passen",
+      "pastParticiple": "gepasst",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to fit",
+      "present": {
+        "p1": "passen",
+        "p2": "pass",
+        "p3": "passt",
+        "p4": "passen",
+        "p5": "passt",
+        "p6": "passen"
+      }
+    },
+    {
+      "id": "PLANGEN1",
+      "infinitive": "plangen",
+      "pastParticiple": "geplangt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to plan",
+      "present": {
+        "p1": "plangen",
+        "p2": "plangs",
+        "p3": "plangt",
+        "p4": "plangen",
+        "p5": "plangt",
+        "p6": "plangen"
+      }
+    },
+    {
+      "id": "PROBEIEREN1",
+      "infinitive": "probéieren",
+      "pastParticiple": "probéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to try",
+      "present": {
+        "p1": "probéieren",
+        "p2": "probéiers",
+        "p3": "probéiert",
+        "p4": "probéieren",
+        "p5": "probéiert",
+        "p6": "probéieren"
+      }
+    },
+    {
+      "id": "PRODUZEIEREN1",
+      "infinitive": "produzéieren",
+      "pastParticiple": "produzéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to produce",
+      "present": {
+        "p1": "produzéieren",
+        "p2": "produzéiers",
+        "p3": "produzéiert",
+        "p4": "produzéieren",
+        "p5": "produzéiert",
+        "p6": "produzéieren"
+      }
+    },
+    {
+      "id": "PROFITEIEREN1",
+      "infinitive": "profitéieren",
+      "pastParticiple": "profitéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to use",
+      "present": {
+        "p1": "profitéieren",
+        "p2": "profitéiers",
+        "p3": "profitéiert",
+        "p4": "profitéieren",
+        "p5": "profitéiert",
+        "p6": "profitéieren"
+      }
+    },
+    {
+      "id": "RASCHTEN2",
+      "infinitive": "raschten",
+      "pastParticiple": "gerascht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to rest",
+      "present": {
+        "p1": "raschten",
+        "p2": "raschts",
+        "p3": "rascht",
+        "p4": "raschten",
+        "p5": "rascht",
+        "p6": "raschten"
+      }
+    },
+    {
+      "id": "RASEIEREN1",
+      "infinitive": "raséieren",
+      "pastParticiple": "raséiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to shave",
+      "present": {
+        "p1": "raséieren",
+        "p2": "raséiers",
+        "p3": "raséiert",
+        "p4": "raséieren",
+        "p5": "raséiert",
+        "p6": "raséieren"
+      }
+    },
+    {
+      "id": "RAUMEN1",
+      "infinitive": "raumen",
+      "pastParticiple": "geraumt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to tidy up",
+      "present": {
+        "p1": "raumen",
+        "p2": "raums",
+        "p3": "raumt",
+        "p4": "raumen",
+        "p5": "raumt",
+        "p6": "raumen"
+      }
+    },
+    {
+      "id": "REAGEIEREN1",
+      "infinitive": "reagéieren",
+      "pastParticiple": "reagéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to react (to)",
+      "present": {
+        "p1": "reagéieren",
+        "p2": "reagéiers",
+        "p3": "reagéiert",
+        "p4": "reagéieren",
+        "p5": "reagéiert",
+        "p6": "reagéieren"
+      }
+    },
+    {
+      "id": "REALISEIEREN1",
+      "infinitive": "realiséieren",
+      "pastParticiple": "realiséiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to realize",
+      "present": {
+        "p1": "realiséieren",
+        "p2": "realiséiers",
+        "p3": "realiséiert",
+        "p4": "realiséieren",
+        "p5": "realiséiert",
+        "p6": "realiséieren"
+      }
+    },
+    {
+      "id": "RECHNEN1",
+      "infinitive": "rechnen",
+      "pastParticiple": "gerechent",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to calculate",
+      "present": {
+        "p1": "rechnen",
+        "p2": "rechens",
+        "p3": "rechent",
+        "p4": "rechnen",
+        "p5": "rechent",
+        "p6": "rechnen"
+      }
+    },
+    {
+      "id": "RECKELEN1",
+      "infinitive": "réckelen",
+      "pastParticiple": "geréckelt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to move",
+      "present": {
+        "p1": "réckelen",
+        "p2": "réckels",
+        "p3": "réckelt",
+        "p4": "réckelen",
+        "p5": "réckelt",
+        "p6": "réckelen"
+      }
+    },
+    {
+      "id": "RECOMMANDEIEREN1",
+      "infinitive": "recommandéieren",
+      "pastParticiple": "recommandéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to recommend",
+      "present": {
+        "p1": "recommandéieren",
+        "p2": "recommandéiers",
+        "p3": "recommandéiert",
+        "p4": "recommandéieren",
+        "p5": "recommandéiert",
+        "p6": "recommandéieren"
+      }
+    },
+    {
+      "id": "REESEN1",
+      "infinitive": "reesen",
+      "pastParticiple": "gereest",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to travel",
+      "present": {
+        "p1": "reesen",
+        "p2": "rees",
+        "p3": "reest",
+        "p4": "reesen",
+        "p5": "reest",
+        "p6": "reesen"
+      }
+    },
+    {
+      "id": "REIDEN1",
+      "infinitive": "reiden",
+      "pastParticiple": "geridden",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to ride",
+      "present": {
+        "p1": "reiden",
+        "p2": "reits",
+        "p3": "reit",
+        "p4": "reiden",
+        "p5": "reit",
+        "p6": "reiden"
+      }
+    },
+    {
+      "id": "REKLAMEIEREN1",
+      "infinitive": "reklaméieren",
+      "pastParticiple": "reklaméiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to demand",
+      "present": {
+        "p1": "reklaméieren",
+        "p2": "reklaméiers",
+        "p3": "reklaméiert",
+        "p4": "reklaméieren",
+        "p5": "reklaméiert",
+        "p6": "reklaméieren"
+      }
+    },
+    {
+      "id": "RELAXEN1",
+      "infinitive": "relaxen",
+      "pastParticiple": "relaxt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to relax",
+      "present": {
+        "p1": "relaxen",
+        "p2": "relax",
+        "p3": "relaxt",
+        "p4": "relaxen",
+        "p5": "relaxt",
+        "p6": "relaxen"
+      }
+    },
+    {
+      "id": "RESERVEIEREN1",
+      "infinitive": "reservéieren",
+      "pastParticiple": "reservéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to reserve",
+      "present": {
+        "p1": "reservéieren",
+        "p2": "reservéiers",
+        "p3": "reservéiert",
+        "p4": "reservéieren",
+        "p5": "reservéiert",
+        "p6": "reservéieren"
+      }
+    },
+    {
+      "id": "RESPEKTEIEREN1",
+      "infinitive": "respektéieren",
+      "pastParticiple": "respektéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to respect",
+      "present": {
+        "p1": "respektéieren",
+        "p2": "respektéiers",
+        "p3": "respektéiert",
+        "p4": "respektéieren",
+        "p5": "respektéiert",
+        "p6": "respektéieren"
+      }
+    },
+    {
+      "id": "RICHEN1",
+      "infinitive": "richen",
+      "pastParticiple": "gericht / geroch",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to smell",
+      "present": {
+        "p1": "richen",
+        "p2": "richs",
+        "p3": "richt",
+        "p4": "richen",
+        "p5": "richt",
+        "p6": "richen"
+      }
+    },
+    {
+      "id": "RODEN1",
+      "infinitive": "roden",
+      "pastParticiple": "geroden",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to guess",
+      "present": {
+        "p1": "roden",
+        "p2": "réits",
+        "p3": "réit",
+        "p4": "roden",
+        "p5": "rot",
+        "p6": "roden"
+      }
+    },
+    {
+      "id": "RUFFEN1",
+      "infinitive": "ruffen",
+      "pastParticiple": "geruff",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to call",
+      "present": {
+        "p1": "ruffen",
+        "p2": "riffs",
+        "p3": "rifft",
+        "p4": "ruffen",
+        "p5": "rufft",
+        "p6": "ruffen"
+      }
+    },
+    {
+      "id": "SABBELEN1",
+      "infinitive": "sabbelen",
+      "pastParticiple": "gesabbelt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to spill",
+      "present": {
+        "p1": "sabbelen",
+        "p2": "sabbels",
+        "p3": "sabbelt",
+        "p4": "sabbelen",
+        "p5": "sabbelt",
+        "p6": "sabbelen"
+      }
+    },
+    {
+      "id": "SCHECKEN1",
+      "infinitive": "schécken",
+      "pastParticiple": "geschéckt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to send",
+      "present": {
+        "p1": "schécken",
+        "p2": "schécks",
+        "p3": "schéckt",
+        "p4": "schécken",
+        "p5": "schéckt",
+        "p6": "schécken"
+      }
+    },
+    {
+      "id": "SCHELLEN1",
+      "infinitive": "schellen",
+      "pastParticiple": "geschellt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to ring",
+      "present": {
+        "p1": "schellen",
+        "p2": "schells",
+        "p3": "schellt",
+        "p4": "schellen",
+        "p5": "schellt",
+        "p6": "schellen"
+      }
+    },
+    {
+      "id": "SCHENGEN1",
+      "infinitive": "schéngen",
+      "pastParticiple": "geschéngt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to shine",
+      "present": {
+        "p1": "schéngen",
+        "p2": "schéngs",
+        "p3": "schéngt",
+        "p4": "schéngen",
+        "p5": "schéngt",
+        "p6": "schéngen"
+      }
+    },
+    {
+      "id": "SCHENKEN1",
+      "infinitive": "schenken",
+      "pastParticiple": "geschenkt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to give",
+      "present": {
+        "p1": "schenken",
+        "p2": "schenks",
+        "p3": "schenkt",
+        "p4": "schenken",
+        "p5": "schenkt",
+        "p6": "schenken"
+      }
+    },
+    {
+      "id": "SCHMIDDEN1",
+      "infinitive": "schmidden",
+      "pastParticiple": "geschmitt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to forge",
+      "present": {
+        "p1": "schmidden",
+        "p2": "schmitts",
+        "p3": "schmitt",
+        "p4": "schmidden",
+        "p5": "schmitt",
+        "p6": "schmidden"
+      }
+    },
+    {
+      "id": "SCHMINKEN1",
+      "infinitive": "schminken",
+      "pastParticiple": "geschminkt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to put make-up on",
+      "present": {
+        "p1": "schminken",
+        "p2": "schminks",
+        "p3": "schminkt",
+        "p4": "schminken",
+        "p5": "schminkt",
+        "p6": "schminken"
+      }
+    },
+    {
+      "id": "SCHNAIZEN1",
+      "infinitive": "schnäizen",
+      "pastParticiple": "geschnäizt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to blow (the nose of)",
+      "present": {
+        "p1": "schnäizen",
+        "p2": "schnäiz",
+        "p3": "schnäizt",
+        "p4": "schnäizen",
+        "p5": "schnäizt",
+        "p6": "schnäizen"
+      }
+    },
+    {
+      "id": "SETZEN2",
+      "infinitive": "setzen",
+      "pastParticiple": "gesat",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to put",
+      "present": {
+        "p1": "setzen",
+        "p2": "setz",
+        "p3": "setzt",
+        "p4": "setzen",
+        "p5": "setzt",
+        "p6": "setzen"
+      }
+    },
+    {
+      "id": "SETZEN1",
+      "infinitive": "sëtzen",
+      "pastParticiple": "gesiess",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to sit",
+      "present": {
+        "p1": "sëtzen",
+        "p2": "sëtz",
+        "p3": "sëtzt",
+        "p4": "sëtzen",
+        "p5": "sëtzt",
+        "p6": "sëtzen"
+      }
+    },
+    {
+      "id": "SOEN1",
+      "infinitive": "soen",
+      "pastParticiple": "gesot",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to say",
+      "present": {
+        "p1": "soen",
+        "p2": "sees",
+        "p3": "seet",
+        "p4": "soen",
+        "p5": "sot",
+        "p6": "soen"
+      }
+    },
+    {
+      "id": "SPAICHEREN1",
+      "infinitive": "späicheren",
+      "pastParticiple": "gespäichert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to store",
+      "present": {
+        "p1": "späicheren",
+        "p2": "späichers",
+        "p3": "späichert",
+        "p4": "späicheren",
+        "p5": "späichert",
+        "p6": "späicheren"
+      }
+    },
+    {
+      "id": "SPAREN1",
+      "infinitive": "spären",
+      "pastParticiple": "gespaart",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to close",
+      "present": {
+        "p1": "spären",
+        "p2": "späers",
+        "p3": "späert",
+        "p4": "spären",
+        "p5": "späert",
+        "p6": "spären"
+      }
+    },
+    {
+      "id": "SPUEREN1",
+      "infinitive": "spueren",
+      "pastParticiple": "gespuert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to save",
+      "present": {
+        "p1": "spueren",
+        "p2": "spuers",
+        "p3": "spuert",
+        "p4": "spueren",
+        "p5": "spuert",
+        "p6": "spueren"
+      }
+    },
+    {
+      "id": "SPULLEN1",
+      "infinitive": "spullen",
+      "pastParticiple": "gespullt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to wash up",
+      "present": {
+        "p1": "spullen",
+        "p2": "spulls",
+        "p3": "spullt",
+        "p4": "spullen",
+        "p5": "spullt",
+        "p6": "spullen"
+      }
+    },
+    {
+      "id": "STEBSEN1",
+      "infinitive": "stëbsen",
+      "pastParticiple": "gestëbst",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to dust",
+      "present": {
+        "p1": "stëbsen",
+        "p2": "stëbs",
+        "p3": "stëbst",
+        "p4": "stëbsen",
+        "p5": "stëbst",
+        "p6": "stëbsen"
+      }
+    },
+    {
+      "id": "STEIEREN1",
+      "infinitive": "stéieren",
+      "pastParticiple": "gestéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to disturb",
+      "present": {
+        "p1": "stéieren",
+        "p2": "stéiers",
+        "p3": "stéiert",
+        "p4": "stéieren",
+        "p5": "stéiert",
+        "p6": "stéieren"
+      }
+    },
+    {
+      "id": "STELLEN1",
+      "infinitive": "stellen",
+      "pastParticiple": "gestallt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to stand",
+      "present": {
+        "p1": "stellen",
+        "p2": "stells",
+        "p3": "stellt",
+        "p4": "stellen",
+        "p5": "stellt",
+        "p6": "stellen"
+      }
+    },
+    {
+      "id": "STENKEN1",
+      "infinitive": "sténken",
+      "pastParticiple": "gestonk",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to smell (of)",
+      "present": {
+        "p1": "sténken",
+        "p2": "sténks",
+        "p3": "sténkt",
+        "p4": "sténken",
+        "p5": "sténkt",
+        "p6": "sténken"
+      }
+    },
+    {
+      "id": "STRECKEN1",
+      "infinitive": "strecken",
+      "pastParticiple": "gestreckt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to iron",
+      "present": {
+        "p1": "strecken",
+        "p2": "strecks",
+        "p3": "streckt",
+        "p4": "strecken",
+        "p5": "streckt",
+        "p6": "strecken"
+      }
+    },
+    {
+      "id": "STRECKEN2",
+      "infinitive": "strécken",
+      "pastParticiple": "gestréckt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to knit",
+      "present": {
+        "p1": "strécken",
+        "p2": "strécks",
+        "p3": "stréckt",
+        "p4": "strécken",
+        "p5": "stréckt",
+        "p6": "strécken"
+      }
+    },
+    {
+      "id": "STREIDEN1",
+      "infinitive": "streiden",
+      "pastParticiple": "gestridden",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to quarrel (with)",
+      "present": {
+        "p1": "streiden",
+        "p2": "streits",
+        "p3": "streit",
+        "p4": "streiden",
+        "p5": "streit",
+        "p6": "streiden"
+      }
+    },
+    {
+      "id": "STREIKEN1",
+      "infinitive": "streiken",
+      "pastParticiple": "gestreikt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to strike",
+      "present": {
+        "p1": "streiken",
+        "p2": "streiks",
+        "p3": "streikt",
+        "p4": "streiken",
+        "p5": "streikt",
+        "p6": "streiken"
+      }
+    },
+    {
+      "id": "SUERGEN1",
+      "infinitive": "suergen",
+      "pastParticiple": "gesuergt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to provide for",
+      "present": {
+        "p1": "suergen",
+        "p2": "suergs",
+        "p3": "suergt",
+        "p4": "suergen",
+        "p5": "suergt",
+        "p6": "suergen"
+      }
+    },
+    {
+      "id": "SURFEN1",
+      "infinitive": "surfen",
+      "pastParticiple": "gesurft",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to surf",
+      "present": {
+        "p1": "surfen",
+        "p2": "surfs",
+        "p3": "surft",
+        "p4": "surfen",
+        "p5": "surft",
+        "p6": "surfen"
+      }
+    },
+    {
+      "id": "TAASCHTEN1",
+      "infinitive": "taaschten",
+      "pastParticiple": "getaascht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to grope",
+      "present": {
+        "p1": "taaschten",
+        "p2": "taaschts",
+        "p3": "taascht",
+        "p4": "taaschten",
+        "p5": "taascht",
+        "p6": "taaschten"
+      }
+    },
+    {
+      "id": "TATOWEIEREN1",
+      "infinitive": "tätowéieren",
+      "pastParticiple": "tätowéiert",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to tattoo",
+      "present": {
+        "p1": "tätowéieren",
+        "p2": "tätowéiers",
+        "p3": "tätowéiert",
+        "p4": "tätowéieren",
+        "p5": "tätowéiert",
+        "p6": "tätowéieren"
+      }
+    },
+    {
+      "id": "TOMMELEN1",
+      "infinitive": "tommelen",
+      "pastParticiple": "getommelt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to hurry",
+      "present": {
+        "p1": "tommele mech",
+        "p2": "tommels dech",
+        "p3": "tommelt sech",
+        "p4": "tommelen eis",
+        "p5": "tommelt iech",
+        "p6": "tommelen sech"
+      }
+    },
+    {
+      "id": "TREFFEN1",
+      "infinitive": "treffen",
+      "pastParticiple": "getraff",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to hit",
+      "present": {
+        "p1": "treffen",
+        "p2": "trëffs",
+        "p3": "trëfft",
+        "p4": "treffen",
+        "p5": "trefft",
+        "p6": "treffen"
+      }
+    },
+    {
+      "id": "TREPPELEN2",
+      "infinitive": "trëppelen",
+      "pastParticiple": "getrëppelt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to step on",
+      "present": {
+        "p1": "trëppelen",
+        "p2": "trëppels",
+        "p3": "trëppelt",
+        "p4": "trëppelen",
+        "p5": "trëppelt",
+        "p6": "trëppelen"
+      }
+    },
+    {
+      "id": "UFROEN1",
+      "infinitive": "ufroen",
+      "pastParticiple": "ugefrot",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to request",
+      "present": {
+        "p1": "froen un",
+        "p2": "frees un",
+        "p3": "freet un",
+        "p4": "froen un",
+        "p5": "frot un",
+        "p6": "froen un"
+      }
+    },
+    {
+      "id": "UKLICKEN1",
+      "infinitive": "uklicken",
+      "pastParticiple": "ugeklickt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to click (on)",
+      "present": {
+        "p1": "klicken un",
+        "p2": "klicks un",
+        "p3": "klickt un",
+        "p4": "klicken un",
+        "p5": "klickt un",
+        "p6": "klicken un"
+      }
+    },
+    {
+      "id": "UKOMMEN1",
+      "infinitive": "ukommen",
+      "pastParticiple": "ukomm",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to arrive",
+      "present": {
+        "p1": "kommen un",
+        "p2": "kënns un",
+        "p3": "kënnt un",
+        "p4": "kommen un",
+        "p5": "kommt un",
+        "p6": "kommen un"
+      }
+    },
+    {
+      "id": "UMAACHEN1",
+      "infinitive": "umaachen",
+      "pastParticiple": "ugemaach / ugemaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to fix",
+      "present": {
+        "p1": "maachen un",
+        "p2": "méchs un",
+        "p3": "mécht un",
+        "p4": "maachen un",
+        "p5": "maacht un",
+        "p6": "maachen un"
+      }
+    },
+    {
+      "id": "UMOOSSEN1",
+      "infinitive": "umoossen",
+      "pastParticiple": "ugemooss",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to try on",
+      "present": {
+        "p1": "moossen un",
+        "p2": "mooss un",
+        "p3": "moosst un",
+        "p4": "moossen un",
+        "p5": "moosst un",
+        "p6": "moossen un"
+      }
+    },
+    {
+      "id": "UNDOEN1",
+      "infinitive": "undoen",
+      "pastParticiple": "ugedoen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to put on",
+      "present": {
+        "p1": "doen",
+        "p2": "dees un",
+        "p3": "deet un",
+        "p4": "doen",
+        "p5": "dot",
+        "p6": "doen"
+      }
+    },
+    {
+      "id": "UNHALEN1",
+      "infinitive": "unhalen",
+      "pastParticiple": "ugehalen / ugehal",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to stop",
+      "present": {
+        "p1": "halen un",
+        "p2": "häls un",
+        "p3": "hält un",
+        "p4": "halen un",
+        "p5": "haalt un",
+        "p6": "halen un"
+      }
+    },
+    {
+      "id": "UNHUNN1",
+      "infinitive": "unhunn",
+      "pastParticiple": "ugehat",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to wear",
+      "present": {
+        "p1": "hunn un",
+        "p2": "hues un",
+        "p3": "huet un",
+        "p4": "hunn un",
+        "p5": "hutt un",
+        "p6": "hunn un"
+      }
+    },
+    {
+      "id": "URUFFEN1",
+      "infinitive": "uruffen",
+      "pastParticiple": "ugeruff",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to call",
+      "present": {
+        "p1": "ruffen un",
+        "p2": "riffs un",
+        "p3": "rifft un",
+        "p4": "ruffen un",
+        "p5": "rufft un",
+        "p6": "ruffen un"
+      }
+    },
+    {
+      "id": "USTIECHEN1",
+      "infinitive": "ustiechen",
+      "pastParticiple": "ugestach",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to pass on",
+      "present": {
+        "p1": "stiechen un",
+        "p2": "stéchs un",
+        "p3": "stécht un",
+        "p4": "stiechen un",
+        "p5": "stiecht un",
+        "p6": "stiechen un"
+      }
+    },
+    {
+      "id": "USTRAICHEN1",
+      "infinitive": "usträichen",
+      "pastParticiple": "ugestrach",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to paint",
+      "present": {
+        "p1": "sträichen un",
+        "p2": "sträichs un",
+        "p3": "sträicht un",
+        "p4": "sträichen un",
+        "p5": "sträicht un",
+        "p6": "sträichen un"
+      }
+    },
+    {
+      "id": "VERBANNEN1",
+      "infinitive": "verbannen",
+      "pastParticiple": "verbonnen / verbonn",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to bandage",
+      "present": {
+        "p1": "verbannen",
+        "p2": "verbënns",
+        "p3": "verbënnt",
+        "p4": "verbannen",
+        "p5": "verbannt",
+        "p6": "verbannen"
+      }
+    },
+    {
+      "id": "VERBIDDEN1",
+      "infinitive": "verbidden",
+      "pastParticiple": "verbueden / verbuet",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to forbid",
+      "present": {
+        "p1": "verbidden",
+        "p2": "verbitts",
+        "p3": "verbitt",
+        "p4": "verbidden",
+        "p5": "verbitt",
+        "p6": "verbidden"
+      }
+    },
+    {
+      "id": "VERBRENGEN1",
+      "infinitive": "verbréngen",
+      "pastParticiple": "verbruecht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to spend",
+      "present": {
+        "p1": "verbréngen",
+        "p2": "verbréngs",
+        "p3": "verbréngt",
+        "p4": "verbréngen",
+        "p5": "verbréngt",
+        "p6": "verbréngen"
+      }
+    },
+    {
+      "id": "VERBRENNEN1",
+      "infinitive": "verbrennen",
+      "pastParticiple": "verbrannt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to burn",
+      "present": {
+        "p1": "verbrennen",
+        "p2": "verbrenns",
+        "p3": "verbrennt",
+        "p4": "verbrennen",
+        "p5": "verbrennt",
+        "p6": "verbrennen"
+      }
+    },
+    {
+      "id": "VERDENGEN1",
+      "infinitive": "verdéngen",
+      "pastParticiple": "verdéngt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to earn",
+      "present": {
+        "p1": "verdéngen",
+        "p2": "verdéngs",
+        "p3": "verdéngt",
+        "p4": "verdéngen",
+        "p5": "verdéngt",
+        "p6": "verdéngen"
+      }
+    },
+    {
+      "id": "VERDROEN1",
+      "infinitive": "verdroen",
+      "pastParticiple": "verdroen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to stomach",
+      "present": {
+        "p1": "verdroen",
+        "p2": "verdréis",
+        "p3": "verdréit",
+        "p4": "verdroen",
+        "p5": "verdrot",
+        "p6": "verdroen"
+      }
+    },
+    {
+      "id": "VERGLAICHEN1",
+      "infinitive": "vergläichen",
+      "pastParticiple": "verglach",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to compare (to)",
+      "present": {
+        "p1": "vergläichen",
+        "p2": "vergläichs",
+        "p3": "vergläicht",
+        "p4": "vergläichen",
+        "p5": "vergläicht",
+        "p6": "vergläichen"
+      }
+    },
+    {
+      "id": "VERHALEN1",
+      "infinitive": "verhalen",
+      "pastParticiple": "verhalen / verhal",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to remember",
+      "present": {
+        "p1": "verhalen",
+        "p2": "verhäls",
+        "p3": "verhält",
+        "p4": "verhalen",
+        "p5": "verhaalt",
+        "p6": "verhalen"
+      }
+    },
+    {
+      "id": "VERLEIEREN1",
+      "infinitive": "verléieren",
+      "pastParticiple": "verluer",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to lose",
+      "present": {
+        "p1": "verléieren",
+        "p2": "verléiers",
+        "p3": "verléiert",
+        "p4": "verléieren",
+        "p5": "verléiert",
+        "p6": "verléieren"
+      }
+    },
+    {
+      "id": "VERLOUNEN1",
+      "infinitive": "verlounen",
+      "pastParticiple": "verlount",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to let (to)",
+      "present": {
+        "p1": "verlounen",
+        "p2": "verlouns",
+        "p3": "verlount",
+        "p4": "verlounen",
+        "p5": "verlount",
+        "p6": "verlounen"
+      }
+    },
+    {
+      "id": "VERPASSEN1",
+      "infinitive": "verpassen",
+      "pastParticiple": "verpasst",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to miss",
+      "present": {
+        "p1": "verpassen",
+        "p2": "verpass",
+        "p3": "verpasst",
+        "p4": "verpassen",
+        "p5": "verpasst",
+        "p6": "verpassen"
+      }
+    },
+    {
+      "id": "VERRECKELEN1",
+      "infinitive": "verréckelen",
+      "pastParticiple": "verréckelt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to postpone",
+      "present": {
+        "p1": "verréckelen",
+        "p2": "verréckels",
+        "p3": "verréckelt",
+        "p4": "verréckelen",
+        "p5": "verréckelt",
+        "p6": "verréckelen"
+      }
+    },
+    {
+      "id": "VERSCHREIWEN1",
+      "infinitive": "verschreiwen",
+      "pastParticiple": "verschriwwen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to prescribe",
+      "present": {
+        "p1": "verschreiwen",
+        "p2": "verschreifs",
+        "p3": "verschreift",
+        "p4": "verschreiwen",
+        "p5": "verschreift",
+        "p6": "verschreiwen"
+      }
+    },
+    {
+      "id": "VERSPILLEN1",
+      "infinitive": "verspillen",
+      "pastParticiple": "verspillt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to be held back (a school year)",
+      "present": {
+        "p1": "verspillen",
+        "p2": "verspills",
+        "p3": "verspillt",
+        "p4": "verspillen",
+        "p5": "verspillt",
+        "p6": "verspillen"
+      }
+    },
+    {
+      "id": "VERSTAUCHEN1",
+      "infinitive": "verstauchen",
+      "pastParticiple": "verstaucht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to sprain something",
+      "present": {
+        "p1": "verstauchen",
+        "p2": "verstauchs",
+        "p3": "verstaucht",
+        "p4": "verstauchen",
+        "p5": "verstaucht",
+        "p6": "verstauchen"
+      }
+    },
+    {
+      "id": "VERSTOEN1",
+      "infinitive": "verstoen",
+      "pastParticiple": "verstanen / verstan",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to understand",
+      "present": {
+        "p1": "verstinn",
+        "p2": "verstees",
+        "p3": "versteet",
+        "p4": "verstinn",
+        "p5": "verstitt",
+        "p6": "verstinn"
+      }
+    },
+    {
+      "id": "VERSTOPPEN1",
+      "infinitive": "verstoppen",
+      "pastParticiple": "verstoppt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to hide",
+      "present": {
+        "p1": "verstoppen",
+        "p2": "verstopps",
+        "p3": "verstoppt",
+        "p4": "verstoppen",
+        "p5": "verstoppt",
+        "p6": "verstoppen"
+      }
+    },
+    {
+      "id": "VERZICHTEN1",
+      "infinitive": "verzichten",
+      "pastParticiple": "verzicht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to forgo",
+      "present": {
+        "p1": "verzichten",
+        "p2": "verzichts",
+        "p3": "verzicht",
+        "p4": "verzichten",
+        "p5": "verzicht",
+        "p6": "verzichten"
+      }
+    },
+    {
+      "id": "WANDEREN1",
+      "infinitive": "wanderen",
+      "pastParticiple": "gewandert",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to hike",
+      "present": {
+        "p1": "wanderen",
+        "p2": "wanders",
+        "p3": "wandert",
+        "p4": "wanderen",
+        "p5": "wandert",
+        "p6": "wanderen"
+      }
+    },
+    {
+      "id": "WEIDERGOEN1",
+      "infinitive": "weidergoen",
+      "pastParticiple": "weidergaangen / weidergaang",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to go on",
+      "present": {
+        "p1": "gi weider",
+        "p2": "gees weider",
+        "p3": "geet weider",
+        "p4": "gi weider",
+        "p5": "gitt weider",
+        "p6": "gi weider"
+      }
+    },
+    {
+      "id": "WEIDERHELLEFEN1",
+      "infinitive": "weiderhëllefen",
+      "pastParticiple": "weidergehollef",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to help (along)",
+      "present": {
+        "p1": "hëllefe weider",
+        "p2": "hëllefs weider",
+        "p3": "hëlleft weider",
+        "p4": "hëllefe weider",
+        "p5": "hëlleft weider",
+        "p6": "hëllefe weider"
+      }
+    },
+    {
+      "id": "WEIDERMAACHEN1",
+      "infinitive": "weidermaachen",
+      "pastParticiple": "weidergemaach / weidergemaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to continue (with)",
+      "present": {
+        "p1": "maache weider",
+        "p2": "méchs weider",
+        "p3": "mécht weider",
+        "p4": "maache weider",
+        "p5": "maacht weider",
+        "p6": "maache weider"
+      }
+    },
+    {
+      "id": "WEIDINN1",
+      "infinitive": "wéidinn",
+      "pastParticiple": "wéigedoen",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": null,
+      "present": {
+        "p1": "dinn",
+        "p2": "dees wéi",
+        "p3": "deet wéi",
+        "p4": "dinn",
+        "p5": "ditt",
+        "p6": "dinn"
+      }
+    },
+    {
+      "id": "WENSCHEN1",
+      "infinitive": "wënschen",
+      "pastParticiple": "gewënscht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to wish",
+      "present": {
+        "p1": "wënschen",
+        "p2": "wënschs",
+        "p3": "wënscht",
+        "p4": "wënschen",
+        "p5": "wënscht",
+        "p6": "wënschen"
+      }
+    },
+    {
+      "id": "WIELEN1",
+      "infinitive": "wielen",
+      "pastParticiple": "gewielt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to pick",
+      "present": {
+        "p1": "wielen",
+        "p2": "wiels",
+        "p3": "wielt",
+        "p4": "wielen",
+        "p5": "wielt",
+        "p6": "wielen"
+      }
+    },
+    {
+      "id": "WIERKEN1",
+      "infinitive": "wierken",
+      "pastParticiple": "gewierkt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to work",
+      "present": {
+        "p1": "wierken",
+        "p2": "wierks",
+        "p3": "wierkt",
+        "p4": "wierken",
+        "p5": "wierkt",
+        "p6": "wierken"
+      }
+    },
+    {
+      "id": "WIESSELEN1",
+      "infinitive": "wiesselen",
+      "pastParticiple": "gewiesselt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to change",
+      "present": {
+        "p1": "wiesselen",
+        "p2": "wiessels",
+        "p3": "wiesselt",
+        "p4": "wiesselen",
+        "p5": "wiesselt",
+        "p6": "wiesselen"
+      }
+    },
+    {
+      "id": "ZEECHNEN1",
+      "infinitive": "zeechnen",
+      "pastParticiple": "gezeechent",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to draw",
+      "present": {
+        "p1": "zeechnen",
+        "p2": "zeechens",
+        "p3": "zeechent",
+        "p4": "zeechnen",
+        "p5": "zeechent",
+        "p6": "zeechnen"
+      }
+    },
+    {
+      "id": "ZERECKFUEREN1",
+      "infinitive": "zeréckfueren",
+      "pastParticiple": "zeréckgefuer",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to drive back",
+      "present": {
+        "p1": "fueren zeréck",
+        "p2": "fiers zeréck",
+        "p3": "fiert zeréck",
+        "p4": "fueren zeréck",
+        "p5": "fuert zeréck",
+        "p6": "fueren zeréck"
+      }
+    },
+    {
+      "id": "ZERECKGOEN1",
+      "infinitive": "zeréckgoen",
+      "pastParticiple": "zeréckgaangen / zeréckgaang",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to go back",
+      "present": {
+        "p1": "ginn zeréck",
+        "p2": "gees zeréck",
+        "p3": "geet zeréck",
+        "p4": "ginn zeréck",
+        "p5": "gitt zeréck",
+        "p6": "ginn zeréck"
+      }
+    },
+    {
+      "id": "ZERECKKOMMEN1",
+      "infinitive": "zeréckkommen",
+      "pastParticiple": "zeréckkomm",
+      "auxiliaryVerb": "sinn",
+      "level": "A2",
+      "en": "to come back",
+      "present": {
+        "p1": "kommen zeréck",
+        "p2": "kënns zeréck",
+        "p3": "kënnt zeréck",
+        "p4": "kommen zeréck",
+        "p5": "kommt zeréck",
+        "p6": "kommen zeréck"
+      }
+    },
+    {
+      "id": "ZERECKRUFFEN1",
+      "infinitive": "zeréckruffen",
+      "pastParticiple": "zeréckgeruff",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to recall",
+      "present": {
+        "p1": "ruffen zeréck",
+        "p2": "riffs zeréck",
+        "p3": "rifft zeréck",
+        "p4": "ruffen zeréck",
+        "p5": "rufft zeréck",
+        "p6": "ruffen zeréck"
+      }
+    },
+    {
+      "id": "ZIELEN1",
+      "infinitive": "zielen",
+      "pastParticiple": "gezielt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to tell",
+      "present": {
+        "p1": "zielen",
+        "p2": "ziels",
+        "p3": "zielt",
+        "p4": "zielen",
+        "p5": "zielt",
+        "p6": "zielen"
+      }
+    },
+    {
+      "id": "ZOUHUELEN1",
+      "infinitive": "zouhuelen",
+      "pastParticiple": "zougeholl",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to put on (weight)",
+      "present": {
+        "p1": "huelen zou",
+        "p2": "hëls zou",
+        "p3": "hëlt zou",
+        "p4": "huelen zou",
+        "p5": "huelt zou",
+        "p6": "huelen zou"
+      }
+    },
+    {
+      "id": "ZOUKREIEN1",
+      "infinitive": "zoukréien",
+      "pastParticiple": "zoukritt",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to manage to fasten",
+      "present": {
+        "p1": "kréien zou",
+        "p2": "kriss zou",
+        "p3": "kritt zou",
+        "p4": "kréien zou",
+        "p5": "kritt zou",
+        "p6": "kréien zou"
+      }
+    },
+    {
+      "id": "ZOUMAACHEN1",
+      "infinitive": "zoumaachen",
+      "pastParticiple": "zougemaach / zougemaacht",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to close",
+      "present": {
+        "p1": "maachen zou",
+        "p2": "méchs zou",
+        "p3": "mécht zou",
+        "p4": "maachen zou",
+        "p5": "maacht zou",
+        "p6": "maachen zou"
+      }
+    },
+    {
+      "id": "ZOUSPAREN1",
+      "infinitive": "zouspären",
+      "pastParticiple": "zougespaart",
+      "auxiliaryVerb": "hunn",
+      "level": "A2",
+      "en": "to lock",
+      "present": {
+        "p1": "spären zou",
+        "p2": "späers zou",
+        "p3": "späert zou",
+        "p4": "spären zou",
+        "p5": "späert zou",
+        "p6": "spären zou"
+      }
+    }
+  ]
+}
