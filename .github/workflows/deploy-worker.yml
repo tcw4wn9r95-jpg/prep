@@ -78,28 +78,48 @@ jobs:
       - name: Resolve the DUEL KV namespace
         id: kv
         run: |
-          set -euo pipefail
+          set -uo pipefail
           title="sproochentest-duel-DUEL"
 
           # Look for an existing namespace first, so re-runs don't pile up
           # duplicates. The id is written into wrangler.toml for this run only;
           # nothing is committed back.
-          id=$(npx wrangler kv namespace list 2>/dev/null | node -e '
-            let raw = "";
-            process.stdin.on("data", (chunk) => { raw += chunk; });
-            process.stdin.on("end", () => {
-              const start = raw.indexOf("[");
-              let list = [];
-              try { list = JSON.parse(raw.slice(start, raw.lastIndexOf("]") + 1)); } catch {}
-              const wanted = list.find((entry) => entry.title === process.argv[1]);
-              process.stdout.write(wanted ? wanted.id : "");
-            });
-          ' "$title" || true)
+          #
+          # errexit is off for the calls to wrangler itself: with `set -e`,
+          # `x=$(cmd)` aborts the script the instant cmd fails, before the
+          # captured output — including wrangler's actual error message — is
+          # ever printed. Capturing the exit code manually and echoing the
+          # output first means a real failure here is diagnosable instead of
+          # a bare "Process completed with exit code 1".
+          list_output=$(npx wrangler kv namespace list 2>&1)
+          list_status=$?
+          if [ "$list_status" -ne 0 ]; then
+            echo "Could not list existing KV namespaces — continuing to create one:"
+            echo "$list_output"
+            id=""
+          else
+            id=$(printf '%s' "$list_output" | node -e '
+              let raw = "";
+              process.stdin.on("data", (chunk) => { raw += chunk; });
+              process.stdin.on("end", () => {
+                const start = raw.indexOf("[");
+                let list = [];
+                try { list = JSON.parse(raw.slice(start, raw.lastIndexOf("]") + 1)); } catch {}
+                const wanted = list.find((entry) => entry.title === process.argv[1]);
+                process.stdout.write(wanted ? wanted.id : "");
+              });
+            ' "$title")
+          fi
 
           if [ -z "$id" ]; then
             echo "No $title namespace yet — creating it."
             output=$(npx wrangler kv namespace create DUEL 2>&1)
+            create_status=$?
             echo "$output"
+            if [ "$create_status" -ne 0 ]; then
+              echo "::error::wrangler kv namespace create failed — see output above."
+              exit 1
+            fi
             id=$(printf '%s' "$output" | grep -oE '[0-9a-f]{32}' | head -n1 || true)
           fi
 
