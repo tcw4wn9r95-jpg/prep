@@ -8,16 +8,22 @@
 
 import { el, screenHead, formatPercent, plural, weekLabel } from '../dom.js';
 import { Amelie, AMELIE_LINES } from '../amelie.js';
-import { loadTopics, topicIcon, orderTopicsForWeek } from '../content.js';
-import { listAttempts, listRecordings, listReviews, readinessFor, weekSeed, getStreak, PLAYERS } from '../store.js';
+import { loadTopics, loadVocab, loadVerbs, topicIcon, orderTopicsForWeek } from '../content.js';
+import { listAttempts, listRecordings, listReviews, readinessFor, learnProgress, weekSeed, getStreak, PLAYERS } from '../store.js';
 
 export async function render(root, { settings, navigate }) {
-  const [topics, attempts, recordings, reviews, streak] = await Promise.all([
+  const [topics, attempts, recordings, reviews, streak, vocabItems, verbItems] = await Promise.all([
     loadTopics(),
     listAttempts(),
     listRecordings(),
     listReviews(),
     getStreak(settings.playerId),
+    loadVocab(),
+    loadVerbs(),
+  ]);
+  const [vocabProgress, verbProgress] = await Promise.all([
+    learnProgress(settings.playerId, 'vocab', vocabItems.length),
+    learnProgress(settings.playerId, 'verb', verbItems.length),
   ]);
 
   const seed = weekSeed();
@@ -53,6 +59,10 @@ export async function render(root, { settings, navigate }) {
     ),
   );
 
+  root.append(basicsSection(vocabItems, vocabProgress, verbItems, verbProgress));
+
+  root.append(el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, '2 · Listening'));
+
   const list = el(
     'ol',
     { class: 'journey__list' },
@@ -86,6 +96,9 @@ export async function render(root, { settings, navigate }) {
 
   root.append(el('div', { class: 'journey' }, el('div', { class: 'journey__trail', 'aria-hidden': 'true' }), list));
 
+  root.append(el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, '3 · Speaking'));
+  root.append(speakingSection(ready));
+
   root.append(
     el(
       'p',
@@ -104,6 +117,68 @@ export async function render(root, { settings, navigate }) {
 
   void navigate;
   return { destroy() {} };
+}
+
+/** Compact "1 · Basics" summary card — vocab + verb progress combined, linking to Learn. */
+function basicsSection(vocabItems, vocabProgress, verbItems, verbProgress) {
+  const totalItems = vocabItems.length + verbItems.length;
+  const totalMastered = vocabProgress.mastered + verbProgress.mastered;
+  const pct = totalItems === 0 ? 0 : Math.round((totalMastered / totalItems) * 100);
+
+  return el(
+    'div',
+    { class: 'stack', style: { marginBlockStart: 'var(--s5)' } },
+    el('p', { class: 'meter__label' }, '1 · Basics'),
+    el(
+      'a',
+      { class: 'card', href: '#/learn', style: { display: 'block' } },
+      el(
+        'div',
+        { class: 'row' },
+        el('span', { style: { fontSize: '28px' } }, '📇'),
+        el(
+          'div',
+          { class: 'spacer' },
+          el('p', { class: 'card__title' }, 'Vocabulary & verbs'),
+          el('p', { class: 'card__note' }, `${totalMastered} of ${totalItems} words and verbs mastered`),
+        ),
+        el('span', { class: 'meter__value' }, `${pct}%`),
+      ),
+      el(
+        'div',
+        { class: 'meter__track', style: { marginBlockStart: 'var(--s3)' } },
+        el('div', { class: `meter__fill${pct > 50 ? ' is-pass' : ''}`, style: { width: `${pct}%` } }),
+      ),
+    ),
+  );
+}
+
+/** Compact "3 · Speaking" summary card, linking to Schwätzen. */
+function speakingSection(ready) {
+  return el(
+    'div',
+    { class: 'stack' },
+    el(
+      'a',
+      { class: 'card', href: '#/speaking', style: { display: 'block' } },
+      el(
+        'div',
+        { class: 'row' },
+        el('span', { style: { fontSize: '28px' } }, '🎤'),
+        el(
+          'div',
+          { class: 'spacer' },
+          el('p', { class: 'card__title' }, 'Speaking'),
+          el(
+            'p',
+            { class: 'card__note' },
+            ready.reviewCount === 0 ? 'Not started yet' : `${plural(ready.reviewCount, 'peer score')} · pass mark 50%`,
+          ),
+        ),
+        el('span', { class: 'meter__value' }, formatPercent(ready.speakingPct)),
+      ),
+    ),
+  );
 }
 
 /** A small Amelie perched on the current node. */
