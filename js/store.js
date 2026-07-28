@@ -171,6 +171,19 @@ export async function saveRecording({ playerId, kind, topic, blob, mime, duratio
 export const listRecordings = () => all('recordings');
 export const getRecording = (id) => get('recordings', id);
 
+/**
+ * Local cache of a machine estimate, so it survives without re-hitting the
+ * Worker (and re-billing the API calls) once you've seen it for a recording.
+ */
+export async function getMachineFeedback(recordingId) {
+  return get('meta', `mf:${recordingId}`);
+}
+
+export async function saveMachineFeedback(recordingId, feedback) {
+  await put('meta', feedback, `mf:${recordingId}`);
+  return feedback;
+}
+
 export async function markReviewed(recordingId) {
   const record = await getRecording(recordingId);
   if (!record) return;
