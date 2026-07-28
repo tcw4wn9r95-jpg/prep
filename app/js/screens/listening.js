@@ -227,7 +227,7 @@ export async function render(root, { params, settings, navigate }) {
 
     const pct = Math.round((correctCount / questions.length) * 100);
     const done = new Amelie({ size: 'lg', bubble: true });
-    done.el.classList.add('amelie--stack');
+    done.el.classList.add('amelie--stack', 'amelie--hero');
     done.celebrate(AMELIE_LINES.setDone);
 
     fill(

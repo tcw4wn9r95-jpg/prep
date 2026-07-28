@@ -12,7 +12,7 @@
  */
 
 const DB_NAME = 'sproochentest';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 /** @type {Promise<IDBDatabase>|null} */
 let dbPromise = null;
@@ -41,6 +41,12 @@ function openDb() {
       }
       if (!db.objectStoreNames.contains('outbox')) {
         db.createObjectStore('outbox', { keyPath: 'id', autoIncrement: true });
+      }
+      if (!db.objectStoreNames.contains('learn')) {
+        // One row per player+deck+item: a tiny Leitner box. Key is a composite
+        // string rather than a keyPath object so byPlayerDeck can range-query it.
+        const store = db.createObjectStore('learn', { keyPath: 'key' });
+        store.createIndex('byPlayerDeck', 'playerDeck');
       }
     };
     request.onsuccess = () => resolve(request.result);
@@ -245,6 +251,9 @@ export const POINTS = {
   // Reviewing is weighted generously on purpose: if reviews get skipped the
   // whole peer-examiner loop collapses, and it is itself good practice.
   perReview: 25,
+  // Deliberately small — a vocab/verb session is dozens of cards, and the
+  // exam-facing modules should stay the bigger score.
+  perLearnCorrect: 1,
 };
 
 /* ----------------------------------------------------------- sync outbox */
@@ -353,4 +362,82 @@ export async function touchStreak(playerId) {
 
 export async function getStreak(playerId) {
   return (await get('meta', `streak:${playerId}`)) ?? { days: [], current: 0, best: 0 };
+}
+
+/* ------------------------------------------------------------ vocab & verbs
+ * A small Leitner box per item: five boxes, each with a longer review gap.
+ * Right answer promotes a box; wrong answer drops straight back to box 0.
+ * This is the whole spaced-repetition system — no scheduling library, just an
+ * array of day-offsets, which is all a two-person app needs.
+ */
+
+const LEITNER_DAYS = [0, 1, 3, 7, 16];
+export const LEARN_DECKS = { vocab: 'vocab', verb: 'verb' };
+
+function learnKey(playerId, deck, itemId) {
+  return `${playerId}:${deck}:${itemId}`;
+}
+
+/** @param {'vocab'|'verb'} deck */
+export async function getLearnState(playerId, deck, itemId) {
+  const row = await get('learn', learnKey(playerId, deck, itemId));
+  return row ?? { box: 0, dueAt: 0, seen: 0, correct: 0 };
+}
+
+/** All progress rows for a player's deck, keyed by item id. */
+export async function getLearnDeckState(playerId, deck) {
+  const rows = await allByIndex('learn', 'byPlayerDeck', `${playerId}:${deck}`);
+  return new Map(rows.map((row) => [row.itemId, row]));
+}
+
+/**
+ * Chooses a study session: items never seen, plus items whose box is due,
+ * new-first so a beginner always has fresh material, capped to `limit`.
+ */
+export function pickDue(items, stateByItemId, limit) {
+  const now = Date.now();
+  const fresh = [];
+  const due = [];
+  for (const item of items) {
+    const state = stateByItemId.get(item.id);
+    if (!state) fresh.push(item);
+    else if (state.dueAt <= now) due.push(item);
+  }
+  shuffle(fresh);
+  shuffle(due);
+  return [...fresh, ...due].slice(0, limit);
+}
+
+function shuffle(list) {
+  for (let i = list.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [list[i], list[j]] = [list[j], list[i]];
+  }
+}
+
+/** @param {'vocab'|'verb'} deck */
+export async function recordLearnResult(playerId, deck, itemId, correct) {
+  const previous = await getLearnState(playerId, deck, itemId);
+  const box = correct ? Math.min(previous.box + 1, LEITNER_DAYS.length - 1) : 0;
+  const dueAt = Date.now() + LEITNER_DAYS[box] * 86400000;
+  const record = {
+    key: learnKey(playerId, deck, itemId),
+    playerDeck: `${playerId}:${deck}`,
+    itemId,
+    box,
+    dueAt,
+    seen: previous.seen + 1,
+    correct: previous.correct + (correct ? 1 : 0),
+  };
+  await put('learn', record);
+  if (correct) await queue({ kind: 'learn', deck, itemId, playerId });
+  return record;
+}
+
+/** Mastered = reached the last box at least once. Used for the Learn hub's progress bar. */
+export async function learnProgress(playerId, deck, totalItems) {
+  const rows = await allByIndex('learn', 'byPlayerDeck', `${playerId}:${deck}`);
+  const mastered = rows.filter((row) => row.box === LEITNER_DAYS.length - 1).length;
+  const started = rows.length;
+  return { started, mastered, total: totalItems, pct: totalItems === 0 ? 0 : (mastered / totalItems) * 100 };
 }

@@ -12,7 +12,7 @@
 
 import { el, fill, screenHead, button, formatClock } from '../dom.js';
 import { Amelie, AMELIE_LINES } from '../amelie.js';
-import { interviewForTopic, loadInterviews, loadImages, topicIcon } from '../content.js';
+import { interviewForTopic, loadInterviews, loadImages, topicIcon, modelInterviewsForTopic, loadModelAnswers } from '../content.js';
 import { Recorder, isSupported, unsupportedReason } from '../recorder.js';
 import { saveRecording, touchStreak, otherPlayer, POINTS } from '../store.js';
 
@@ -84,6 +84,7 @@ async function renderInterview(root, { topicId, settings, navigate }) {
   }
 
   const questions = item.phases.flatMap((phase) => phase.questions.map((question) => ({ ...question, phase })));
+  const modelEntries = await modelInterviewsForTopic(item.topic);
   return runSpeakingTask(root, {
     settings,
     navigate,
@@ -93,6 +94,7 @@ async function renderInterview(root, { topicId, settings, navigate }) {
     sub: `${item.title_en} · part 2a · A2`,
     questions,
     prepLine: AMELIE_LINES.interviewPrep,
+    modelAnswers: modelEntries.length > 0 ? { kind: 'interview', entries: modelEntries } : null,
     stage: (question) =>
       el(
         'div',
@@ -162,8 +164,10 @@ async function renderImageTask(root, { settings, navigate }) {
   const body = el('div', { class: 'stack stack--lg' }, el('div', { class: 'card' }, amelie.el), grid);
   root.append(screenHead({ title: 'Describe an image', sub: 'Part 2b · A2', back: '#/speaking' }), body);
 
-  function start() {
+  async function start() {
     fill(body);
+    const { imageDescriptions } = await loadModelAnswers();
+    const example = imageDescriptions.length > 0 ? imageDescriptions[Math.floor(Math.random() * imageDescriptions.length)] : null;
     runSpeakingTask(body, {
       settings,
       navigate,
@@ -173,6 +177,7 @@ async function renderImageTask(root, { settings, navigate }) {
       sub: 'Part 2b · A2',
       questions: [{ id: chosen.id, prompt_lb: null }],
       prepLine: 'Look at the image for 30 seconds. Plan what is where, who is doing what.',
+      modelAnswers: example ? { kind: 'image', example } : null,
       stage: () => el('img', { src: chosen.imageUrl, alt: chosen.title_en ?? 'Exam image', style: { width: '100%', borderRadius: 'var(--r-lg)' } }),
     });
   }
@@ -186,7 +191,7 @@ async function renderImageTask(root, { settings, navigate }) {
  * Prep timer → record → save. Shared by 2a and 2b because the exam treats them
  * the same way: pick, think briefly, then talk for up to five minutes.
  */
-function runSpeakingTask(root, { settings, navigate, kind, topic, title, sub, questions, prepLine, stage }) {
+function runSpeakingTask(root, { settings, navigate, kind, topic, title, sub, questions, prepLine, stage, modelAnswers }) {
   const amelie = new Amelie({ size: 'sm', bubble: true });
   const body = el('div', { class: 'stack stack--lg' });
   let recorder = null;
@@ -235,6 +240,7 @@ function runSpeakingTask(root, { settings, navigate, kind, topic, title, sub, qu
       button('Start now', { variant: 'secondary', onclick: () => { window.clearInterval(prepTimer); beginRecording(); } }),
     ),
     amelie.el,
+    modelAnswers ? modelAnswerBlock(modelAnswers) : null,
   );
 
   /* --- phase 2: recording, questions revealed one at a time */
@@ -308,7 +314,7 @@ function runSpeakingTask(root, { settings, navigate, kind, topic, title, sub, qu
   function showDone(record, durationMs) {
     const partner = otherPlayer(settings.playerId);
     const done = new Amelie({ size: 'lg', bubble: true });
-    done.el.classList.add('amelie--stack');
+    done.el.classList.add('amelie--stack', 'amelie--hero');
     done.celebrate(AMELIE_LINES.interviewDone);
 
     const audio = el('audio', { controls: '', src: URL.createObjectURL(record.blob), style: { width: '100%' } });
@@ -339,4 +345,42 @@ function runSpeakingTask(root, { settings, navigate, kind, topic, title, sub, qu
       recorder?.destroy();
     },
   };
+}
+
+/**
+ * Collapsed by default so it never spoils prep unless you open it. Content
+ * here is hand-authored study notes the user supplied, not LOD-validated like
+ * the rest of the app's Luxembourgish — the disclaimer says so plainly.
+ */
+function modelAnswerBlock(modelAnswers) {
+  const body =
+    modelAnswers.kind === 'interview'
+      ? modelAnswers.entries.map((entry) =>
+          el(
+            'div',
+            { class: 'stack', style: { marginBlockStart: 'var(--s3)' } },
+            el('p', { class: 'card__title', style: { fontSize: 'var(--size-sm)' } }, entry.title_en),
+            ...entry.questions.map((question) =>
+              el(
+                'div',
+                { class: 'stack', style: { gap: 'var(--s1)' } },
+                el('p', { style: { fontWeight: '650' } }, question.lb),
+                ...question.answers_lb.map((answer) => el('p', { class: 'card__note' }, answer)),
+              ),
+            ),
+          ),
+        )
+      : [el('p', {}, modelAnswers.example.text_lb)];
+
+  return el(
+    'details',
+    { class: 'card card--flat', style: { marginBlockStart: 'var(--s3)' } },
+    el('summary', { class: 'card__title' }, 'See a model answer'),
+    el(
+      'div',
+      { class: 'stack', style: { marginBlockStart: 'var(--s3)' } },
+      el('p', { class: 'source-note' }, 'Study notes provided by the user — not checked against the LOD corpus like the rest of this app. Read for structure and vocabulary, not as an official reference.'),
+      ...body,
+    ),
+  );
 }

@@ -10,6 +10,9 @@ import { getSettings, saveSettings } from './store.js';
 import { el } from './dom.js';
 import * as onboarding from './screens/onboarding.js';
 import * as journey from './screens/journey.js';
+import * as learn from './screens/learn.js';
+import * as vocab from './screens/vocab.js';
+import * as verbs from './screens/verbs.js';
 import * as listening from './screens/listening.js';
 import * as speaking from './screens/speaking.js';
 import * as review from './screens/review.js';
@@ -19,6 +22,9 @@ import * as duel from './screens/duel.js';
 const ROUTES = {
   '': journey,
   journey,
+  learn,
+  vocab,
+  verbs,
   listening,
   speaking,
   review,
@@ -29,6 +35,7 @@ const ROUTES = {
 
 const TABS = [
   { route: 'journey', label: 'Journey', icon: 'M4 19 L9 5 L14 15 L20 8' },
+  { route: 'learn', label: 'Learn', icon: 'M4 6 L12 3 L20 6 L12 9 Z M4 6 v9 L12 18 L20 15 v-9 M12 9 v9' },
   { route: 'speaking', label: 'Speak', icon: 'M12 3 v10 M12 3 a3 3 0 0 1 3 3 v4 a3 3 0 0 1 -6 0 v-4 a3 3 0 0 1 3 -3 Z M5 11 a7 7 0 0 0 14 0 M12 18 v3' },
   { route: 'review', label: 'Review', icon: 'M4 6 h16 M4 12 h16 M4 18 h10 M18 17 l2 2 4 -4' },
   { route: 'duel', label: 'Duel', icon: 'M5 20 L19 6 M14 4 h6 v6 M9 20 H4 v-5' },

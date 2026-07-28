@@ -16,7 +16,7 @@ export async function render(root, { navigate }) {
   let picked = settings.playerId ?? null;
 
   const amelie = new Amelie({ size: 'lg', bubble: true });
-  amelie.el.classList.add('amelie--stack');
+  amelie.el.classList.add('amelie--stack', 'amelie--hero');
   amelie.say(AMELIE_LINES.welcome, 'idle');
 
   const secret = el('input', {
