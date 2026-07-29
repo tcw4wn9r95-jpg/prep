@@ -31,6 +31,8 @@ const { locateTarget } = require('./lib/cloze');
 const { topicsFor, makeSeedIndex } = require('./lib/topic-tag');
 const { cueFor } = require('./lib/cues');
 const { TOPICS } = require('./lib/topics');
+const { applyStarters } = require('./lib/starters');
+const { countEntries, rankDeck, STAGES } = require('./lib/frequency');
 
 const APP_DATA_DIR = path.join(paths.ROOT, 'app', 'data');
 
@@ -97,17 +99,43 @@ function emptyStats() {
   };
 }
 
-function report(label, total, stats) {
+function report(label, items, stats, seeded) {
   const tagged = stats.topics.category + stats.topics.seed + stats.topics.gloss;
   const cloze = stats.cloze.lexicon + stats.cloze.surface;
+  const stageLine = STAGES.map((stage) => `${stage.n}:${items.filter((item) => item.stage === stage.n).length}`).join(' ');
   console.log(
-    `${label}: ${total} items\n` +
+    `${label}: ${items.length} items${seeded.promoted + seeded.added > 0 ? ` (${seeded.promoted} starters promoted, ${seeded.added} added)` : ''}\n` +
+      `  stages ${stageLine}\n` +
+      `  first  ${items.slice(0, 8).map((item) => item.lb ?? item.infinitive).join(', ')}\n` +
       `  topics ${tagged} tagged (${stats.topics.category} category, ${stats.topics.seed} seed, ${stats.topics.gloss} gloss), ${stats.topics.none} left untagged\n` +
       `  cues   ${stats.cues} with a visual cue\n` +
       `  cloze  ${cloze} located (${stats.cloze.lexicon} lexicon, ${stats.cloze.surface} surface), ${stats.cloze.none} without` +
       (stats.clozeRejected > 0 ? `, ${stats.clozeRejected} rejected by the gate` : ''),
   );
 }
+
+/**
+ * Collapses items that are the same word with the same translation, keeping
+ * whichever carries the most for a learner to work with: a recorded example
+ * beats a silent one, and any example beats none.
+ */
+function dedupe(items, lemmaOf) {
+  const best = new Map();
+  const order = [];
+  for (const item of items) {
+    const key = `${String(lemmaOf(item)).toLowerCase()}|${String(item.en ?? '').toLowerCase()}`;
+    const existing = best.get(key);
+    if (!existing) {
+      best.set(key, item);
+      order.push(key);
+      continue;
+    }
+    if (score(item) > score(existing)) best.set(key, item);
+  }
+  return order.map((key) => best.get(key));
+}
+
+const score = (item) => (item.example?.audioId ? 2 : 0) + (item.example ? 1 : 0);
 
 /** Every topic id an item can be tagged with must exist in the taxonomy. */
 function assertTopicsResolve(items, known) {
@@ -136,23 +164,57 @@ async function main() {
   const seedIndex = makeSeedIndex(TOPICS);
   const known = new Set(TOPICS.map((topic) => topic.id));
 
+  // How common each word actually is, measured across the corpus's own example
+  // sentences. This is what decides the order a beginner meets them in.
+  const counts = countEntries(corpus, lexicon);
+
   const decks = [
-    { name: 'vocab', lemmaOf: (item) => item.lb },
-    { name: 'verbs', lemmaOf: (item) => item.infinitive },
+    { name: 'vocab', lemmaOf: (item) => item.lb, withStarters: true },
+    { name: 'verbs', lemmaOf: (item) => item.infinitive, withStarters: false },
   ];
 
   for (const deck of decks) {
     const { payload } = await readItems(deck.name);
     const stats = emptyStats();
-    const items = enrich(payload.items, { lemmaOf: deck.lemmaOf, index, seedIndex, lexicon, isClean, stats });
+
+    // LOD lists some words under several record ids with the same translation
+    // (two `hunn` entries, both "to have"). They are one thing to learn, and
+    // shipping them as two cards wastes a slot in a deck a beginner is trying
+    // to get through. Genuinely distinct senses — `ginn` "to give" versus
+    // `ginn` "there is" — differ in their gloss and are kept.
+    // Drop anything a previous run of this script synthesised. Without this the
+    // step reads its own output and the added starters accumulate, which makes
+    // it silently non-idempotent — it reported "0 added" on the second run
+    // because it had found the first run's work and called it corpus data.
+    const source = payload.items.filter((item) => !String(item.id).startsWith('START-'));
+    const deduped = dedupe(source.map((item) => ({ ...item, starter: undefined })), deck.lemmaOf);
+
+    // The pronouns the Grondwuertschatz filter drops entirely, plus the
+    // sentence-skeleton words it does have, marked so they come first.
+    const seeded = deck.withStarters ? applyStarters(deduped, lexicon, isClean) : { items: deduped, promoted: 0, added: 0 };
+
+    const items = rankDeck(
+      enrich(seeded.items, { lemmaOf: deck.lemmaOf, index, seedIndex, lexicon, isClean, stats }),
+      counts,
+    ).sort((a, b) => a.stage - b.stage || a.rank - b.rank);
     assertTopicsResolve(items, known);
 
     const enriched = {
       meta: {
         ...payload.meta,
+        counts: { ...payload.meta.counts, items: items.length },
         learn: {
           enrichedAt: new Date().toISOString(),
           enricher: 'pipeline/build-learn.js',
+          starters: { promoted: seeded.promoted, added: seeded.added },
+          stages: STAGES.map((stage) => ({
+            ...stage,
+            items: items.filter((item) => item.stage === stage.n).length,
+          })),
+          frequency: {
+            source: 'occurrences across the 10,777 LOD example sentences in content/corpus.json',
+            caveat: 'dictionary examples, not a spoken corpus - good enough to order a deck, not a citable frequency list',
+          },
           topics: stats.topics,
           cues: stats.cues,
           cloze: stats.cloze,
@@ -161,7 +223,7 @@ async function main() {
       items,
     };
     await writeBoth(deck.name, enriched);
-    report(deck.name, items.length, stats);
+    report(deck.name, items, stats, seeded);
   }
 }
 

@@ -539,7 +539,12 @@ export function buildSession(items, states, { limit = 12, newTarget = DAILY_NEW_
   }
 
   shuffle(reviews);
-  shuffle(fresh);
+
+  // New words are taken in order, never shuffled. The deck is sorted so that
+  // the sentence skeleton comes first and the rest follows how often the word
+  // actually occurs, so "the next few" is always the most useful few. Shuffling
+  // here was what put `Wunngemeinschaft` in front of a beginner before `ech`.
+  fresh.sort((a, b) => (a.item.stage ?? 9) - (b.item.stage ?? 9) || (a.item.rank ?? 0) - (b.item.rank ?? 0));
 
   const newSlots = Math.max(0, Math.min(newTarget, limit));
   const chosen = [...reviews.slice(0, Math.max(0, limit - Math.min(fresh.length, newSlots))), ...fresh.slice(0, newSlots)];

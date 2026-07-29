@@ -26,7 +26,7 @@ Or step by step:
 | `npm run mirror:audio` | downloads the AAC the shipped items reference | `app/assets/audio/` |
 | `npm run fetch:images` | openly licensed photos for the image-description task | `app/assets/img/`, `images.json` |
 | `npm run validate` | the gate. Exit 1 on any error | — |
-| `npm test` | proves the gate catches what it must, plus the Learn deck generators and the card ladder (71 tests) | — |
+| `npm test` | proves the gate catches what it must, plus the Learn deck generators, ordering and the card ladder (84 tests) | — |
 | `npm run walkthrough` | drives the real app in Chromium at iPhone size | `docs/screens/*.png` |
 | `npm run calibrate` | measures the gate against LOD's own sentences | — |
 | `npm run evidence` | regenerates `docs/n-rule-evidence.md` | that file |
@@ -74,23 +74,40 @@ person, matched to a topic by the words they contain. Two topics come out thin
 LOD's own `GWS A1` / `GWS A2` basic-vocabulary tags, with IPA, gender, plural,
 FR/EN/DE/PT glosses, 10,777 example sentences and 10,577 native recordings.
 
-**`content/items/vocab.json` and `verbs.json`** — the Learn decks. Beyond the
-lemma, gloss and example, `build-learn.js` adds three fields to each item:
+**`content/items/vocab.json` and `verbs.json`** — the Learn decks, in the order
+a learner should meet them. Beyond the lemma, gloss and example,
+`build-learn.js` adds:
+
+- `freq` / `rank` / `stage` — how often the word occurs across the corpus's own
+  10,777 example sentences, its position in that ranking, and which of the five
+  stages it falls in. Dictionary examples are not a spoken corpus, so this is an
+  ordering heuristic and not a citable frequency list — but it puts `ech`,
+  `hunn` and `sinn` at the top and `Wunngemeinschaft` a long way down, which is
+  all it needs to do.
+- `starter` / `lodId` — the sentence skeleton from `lib/starters.js`. LOD gives
+  the personal pronouns no dictionary entry, so `ech`, `du`, `mir` and seven
+  others are named by hand there; each must resolve in the lexicon or the build
+  fails, and `lodId` records which LOD record it resolved to. Skeleton words the
+  corpus *does* have are promoted in place, keeping their recording, rather than
+  duplicated.
 
 - `topics` / `topicVia` — exam topics, plus which of the three evidence layers
   produced them (`category` from LOD's own semantic tags, `seed` from the topic
-  headwords, `gloss` from a translation keyword). 1,796 of 2,413 items are
+  headwords, `gloss` from a translation keyword). 1,791 of 2,414 items are
   tagged; the rest carry `[]` and `null` rather than a guess.
-- `cue` — a single emoji, for concrete nouns only. 359 items.
+- `cue` — a single emoji, for concrete nouns only. 358 items.
 - `cloze` — `{ before, form, after, via }`, the item's own example sentence
   split around the word so the drill can gap it. `form` is the **inflected**
   form as the corpus wrote it (AKAFEN1's example contains `akaaft`, not
-  `akafen`), found through the lexicon's form index. 2,246 located; the other
-  167 ship no cloze rather than an approximate one.
+  `akafen`), found through the lexicon's form index. 2,240 located; the other
+  174 ship no cloze rather than an approximate one.
 
 All three slices of `cloze` are declared Luxembourgish in `validate.js` and get
 the full lexicon and n-rule treatment — splitting a validated sentence invents
 a boundary, and the n-rule is a sandhi rule across exactly such boundaries.
+
+`build-learn.js` is idempotent: it strips anything a previous run synthesised
+before it starts, so re-running produces no diff beyond its timestamp.
 
 Both are committed so mistakes show up in diffs. `lexicon.json` writes its big
 maps one form per line for exactly that reason.

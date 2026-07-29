@@ -304,6 +304,41 @@ async function main() {
     await shot('16-learn-hub');
   });
 
+  await step('a beginner meets the sentence skeleton first, not random A1 nouns', async () => {
+    await clearLearn();
+    await openFresh('#/vocab');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+
+    const met = [];
+    for (let guard = 0; guard < 6; guard += 1) {
+      const word = await page.evaluate(() => document.querySelector('.card .screen__title')?.textContent?.trim());
+      if (word) met.push(word);
+      await page.locator('.options .option').first().click();
+      const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+      await next.waitFor({ state: 'visible', timeout: 3000 });
+      if ((await next.textContent())?.trim() === 'Finish') break;
+      await next.click();
+    }
+    // Stage 1 is 28 words, so a fresh learner's first cards must all come from
+    // it. This is the regression guard on the ordering: before the deck was
+    // ranked, the first card was as likely to be "Wunngemeinschaft" as "ech".
+    const STAGE_ONE = ['ech', 'du', 'hien', 'si', 'hatt', 'mir', 'dir', 'jo', 'nee', 'net', 'wat', 'wien', 'wou',
+      'wéini', 'firwat', 'an', 'awer', 'well', 'och', 'elo', 'haut', 'muer', 'gëschter', 'hei', 'vill', 'wéineg', 'gutt', 'schlecht'];
+    const strays = met.filter((word) => !STAGE_ONE.includes(word.replace(/^(de|d')\s+/, '')));
+    if (strays.length > 0) throw new Error(`first cards were not stage-one words: ${strays.join(', ')} (saw ${met.join(', ')})`);
+    process.stdout.write(`  first words: ${met.join(', ')}\n`);
+  });
+
+  await step('the learn hub shows the path and where you are on it', async () => {
+    await openFresh('#/learn');
+    await page.waitForSelector('.stage', { timeout: 5000 });
+    const stages = await page.locator('.stage').count();
+    if (stages !== 5) throw new Error(`expected 5 stages, found ${stages}`);
+    const current = await page.locator('.stage.is-current .card__title').textContent();
+    if (current?.trim() !== 'First words') throw new Error(`a fresh learner should be on First words, not "${current}"`);
+    await shot('16b-learn-path');
+  });
+
   await step('vocabulary drill introduces a new word as a gloss choice', async () => {
     await openFresh('#/vocab');
     await page.waitForSelector('.options .option', { timeout: 5000 });

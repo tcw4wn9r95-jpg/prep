@@ -23,18 +23,20 @@ npm run walkthrough  # drives the real app in Chromium at iPhone size, screensho
 | --- | --- |
 | corpus | 2,204 GWS A1/A2 entries · 258,946 accepted forms · 10,577 native recordings |
 | items | 287 listening questions · 169 interview prompts · 18 topics |
-| learn decks | 2,048 words · 365 verbs · 1,796 topic-tagged · 2,246 cloze targets · 359 visual cues |
+| learn decks | 2,049 words · 365 verbs · frequency-ranked into 5 stages · 1,791 topic-tagged · 2,240 cloze targets · 358 visual cues |
 | shipped assets | 2,263 recordings (68 MB, AAC) · 16 CC images (5.5 MB) |
-| verification | `npm test` 71/71 · `validate` PASS · walkthrough 17/17, no console errors |
+| verification | `npm test` 84/84 · `validate` PASS · walkthrough 19/19, no console errors |
 
 **Known limits, stated plainly.** Listening items are corpus-derived drills on the official
 5+7+4 shape, not replicas of INLL's connected-speech test — the app says so and links to the
 official sample. The validator is form-level: it proves a word exists and is spelled
 correctly, not that a sentence is grammatical. Recording has been exercised in Chromium, not
-on real iOS Safari, though the mimeType negotiation is written for it. 617 of the 2,413
-Learn items carry no topic tag and 167 no cloze target, because the dictionary gave no
+on real iOS Safari, though the mimeType negotiation is written for it. 623 of the 2,414
+Learn items carry no topic tag and 174 no cloze target, because the dictionary gave no
 reliable evidence for one — they stay in the all-words deck rather than being given a
-guessed tag.
+guessed tag. Word ordering is driven by frequency across LOD's own example sentences,
+which are dictionary examples rather than a spoken corpus — good enough to order a
+beginner deck, not a citable frequency list.
 
 See `pipeline/README.md` for the content pipeline and `worker/README.md` for the scoreboard.
 
@@ -180,8 +182,32 @@ The peer score is the score of record. The machine score is a between-sessions s
 > **Added 2026-07.** The exam modules assume a vocabulary the candidate does not have yet.
 > This is where it gets built.
 
-The deck is the A1/A2 Grondwuertschatz: 2,048 words and 365 verbs, every one a corpus lemma
-with a translation LOD itself publishes. What matters is not the deck but the questions.
+The deck is the A1/A2 Grondwuertschatz: 2,049 words and 365 verbs, every one a corpus lemma
+with a translation LOD itself publishes. Two things matter: the order they arrive in, and
+what each card asks.
+
+**The order.** The deck shipped alphabetically within A1 then A2, which offered
+`Wunngemeinschaft` ("houseshare") before `ech` ("I"). Worse, the Grondwuertschatz filter
+excludes the personal pronouns entirely — LOD gives them no dictionary entry of their own —
+so the deck had no sentence skeleton at all and nothing you learned from it could be
+assembled into a sentence.
+
+Now: `pipeline/lib/starters.js` names the skeleton (pronouns, `net`, yes/no, question words,
+connectors). Words the corpus already has are promoted in place, keeping their recording;
+only the ten it genuinely lacks are synthesised, and each must resolve in the lexicon or the
+build fails. Everything else is ranked by how often it occurs across the corpus's 10,777
+example sentences, and banded into five stages:
+
+| stage | | size |
+| --- | --- | --- |
+| 1 | **First words** — who is doing what, yes/no, question words | 28 |
+| 2 | **Everyday verbs** — the verbs that carry most sentences | 120 |
+| 3 | **Everyday words** — the nouns and adjectives you reach for constantly | 150 |
+| 4 | the rest of A1 | 785 |
+| 5 | A2 — the level the speaking exam is set at | 1,331 |
+
+New words are introduced in that order and never shuffled, so the first session is `ech`,
+`du`, `mir`, `net` — and the Learn hub draws the path with your position on it.
 
 **Two strands per word, not one score.** Learners recognise two to three times more words
 than they can produce, and the A2 speaking part credits only production. So each item carries
