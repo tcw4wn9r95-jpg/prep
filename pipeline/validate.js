@@ -55,6 +55,15 @@ const LUXEMBOURGISH_FIELDS = new Set([
   'p4',
   'p5',
   'p6',
+  // pipeline/build-learn.js — the three slices of a cloze card. `form` is the
+  // word the learner has to produce and `before`/`after` are the rest of the
+  // corpus example sentence, so all three are Luxembourgish and all three get
+  // the full lexicon and n-rule treatment. Splitting a validated sentence is
+  // exactly the operation that could break the n-rule, which is a sandhi rule
+  // across a boundary the split has just invented.
+  'before',
+  'form',
+  'after',
 ]);
 
 const FREE_TEXT_FIELDS = new Set([
@@ -98,6 +107,13 @@ const FREE_TEXT_FIELDS = new Set([
   'phase',
   'audioSrc',
   'format',
+  // Learn deck enrichment (pipeline/build-learn.js). These are all machine
+  // labels rather than prose: `topics` holds taxonomy ids, `topicVia` and
+  // `via` name which evidence layer fired, and `cue` is a single emoji.
+  'topics',
+  'topicVia',
+  'cue',
+  'via',
   // image-description items
   'image',
   'imageUrl',

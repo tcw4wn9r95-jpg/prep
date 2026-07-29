@@ -9,7 +9,7 @@
 import { el, screenHead, formatPercent, plural, weekLabel } from '../dom.js';
 import { Amelie, AMELIE_LINES } from '../amelie.js';
 import { loadTopics, loadVocab, loadVerbs, topicIcon, orderTopicsForWeek } from '../content.js';
-import { listAttempts, listRecordings, listReviews, readinessFor, learnProgress, weekSeed, getStreak, PLAYERS } from '../store.js';
+import { listAttempts, listRecordings, listReviews, readinessFor, learnProgress, weekSeed, getStreak, PLAYERS, STRANDS } from '../store.js';
 
 export async function render(root, { settings, navigate }) {
   const [topics, attempts, recordings, reviews, streak, vocabItems, verbItems] = await Promise.all([
@@ -21,9 +21,11 @@ export async function render(root, { settings, navigate }) {
     loadVocab(),
     loadVerbs(),
   ]);
+  // Productive mastery, not receptive: this card sits above the speaking
+  // module on the journey, and being able to say a word is what feeds it.
   const [vocabProgress, verbProgress] = await Promise.all([
-    learnProgress(settings.playerId, 'vocab', vocabItems.length),
-    learnProgress(settings.playerId, 'verb', verbItems.length),
+    learnProgress(settings.playerId, 'vocab', STRANDS.prod, vocabItems.length),
+    learnProgress(settings.playerId, 'verb', STRANDS.prod, verbItems.length),
   ]);
 
   const seed = weekSeed();
@@ -140,7 +142,7 @@ function basicsSection(vocabItems, vocabProgress, verbItems, verbProgress) {
           'div',
           { class: 'spacer' },
           el('p', { class: 'card__title' }, 'Vocabulary & verbs'),
-          el('p', { class: 'card__note' }, `${totalMastered} of ${totalItems} words and verbs mastered`),
+          el('p', { class: 'card__note' }, `${totalMastered} of ${totalItems} you can say without help`),
         ),
         el('span', { class: 'meter__value' }, `${pct}%`),
       ),

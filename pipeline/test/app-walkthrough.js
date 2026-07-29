@@ -224,6 +224,170 @@ async function main() {
     await shot('13-readiness');
   });
 
+  // The Learn drill escalates a word from "pick the meaning" to "type it" as
+  // its box rises, so the only way to see the hard card types is to seed the
+  // box state first. Each pass below plants one word at one box and asserts the
+  // card that comes back is the one the ladder promises.
+  // goto() with a hash that already matches is a same-document navigation, so
+  // the app never re-renders and the previous card stays on screen. Every
+  // drill step below starts a genuinely fresh session, so force a reload.
+  const openFresh = async (hash) => {
+    await page.goto(`${base}${hash}`, { waitUntil: 'networkidle' });
+    await page.reload({ waitUntil: 'networkidle' });
+    // A reload replays the boot splash, which holds for 1.5s and would
+    // otherwise be what every screenshot below captures.
+    await page.waitForSelector('.splash.is-hidden', { timeout: 5000 }).catch(() => {});
+  };
+
+  /**
+   * Plant one word at one box.
+   *
+   * The box is reached by calling the real scheduler, so the row shape, key and
+   * promotion rules are the app's own rather than a fixture's guess. Only the
+   * clock is then moved: a correct answer schedules the next review days out,
+   * and the test cannot wait three days to see the card it is asserting on.
+   */
+  const seedLearn = async (playerId, deck, strand, itemId, box, { due = true } = {}) => {
+    await page.evaluate(
+      async ({ playerId, deck, strand, itemId, box, due }) => {
+        const store = await import('./js/store.js');
+        for (let i = 0; i < box; i += 1) {
+          await store.recordLearnResult(playerId, deck, strand, itemId, { correct: true });
+        }
+        if (!due) return;
+        const db = await new Promise((resolve, reject) => {
+          const request = indexedDB.open('sproochentest');
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error);
+        });
+        const key = `${playerId}:${deck}:${strand}:${itemId}`;
+        await new Promise((resolve, reject) => {
+          const store2 = db.transaction('learn', 'readwrite').objectStore('learn');
+          const read = store2.get(key);
+          read.onsuccess = () => {
+            const row = read.result;
+            row.dueAt = Date.now() - 1000;
+            const write = store2.put(row);
+            write.onsuccess = () => resolve();
+            write.onerror = () => reject(write.error);
+          };
+          read.onerror = () => reject(read.error);
+        });
+        db.close();
+      },
+      { playerId, deck, strand, itemId, box, due },
+    );
+  };
+
+  /** Wipe learn progress so a seeded card is not competing with a backlog. */
+  const clearLearn = async () => {
+    await page.evaluate(async () => {
+      const db = await new Promise((resolve) => {
+        const request = indexedDB.open('sproochentest');
+        request.onsuccess = () => resolve(request.result);
+      });
+      await new Promise((resolve) => {
+        const clear = db.transaction('learn', 'readwrite').objectStore('learn').clear();
+        clear.onsuccess = () => resolve();
+      });
+      db.close();
+    });
+  };
+
+  await step('learn hub separates receptive from productive mastery', async () => {
+    await openFresh('#/learn');
+    await page.waitForSelector('.topic-grid .topic-tile', { timeout: 5000 });
+    const bars = await page.locator('.card__note', { hasText: /^(Understand|Say)$/ }).count();
+    if (bars < 4) throw new Error(`expected two strand bars per deck, found ${bars}`);
+    const tiles = await page.locator('.topic-tile').count();
+    if (tiles < 10) throw new Error(`expected topic tiles for most of the taxonomy, found ${tiles}`);
+    await shot('16-learn-hub');
+  });
+
+  await step('vocabulary drill introduces a new word as a gloss choice', async () => {
+    await openFresh('#/vocab');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+    await shot('17-drill-gloss');
+    await page.locator('.options .option').first().click();
+    await page.getByRole('button', { name: /^(Next|Finish)$/ }).waitFor({ timeout: 3000 });
+  });
+
+  // One well-known word, drilled to the point where it has to be typed.
+  const TYPED_WORD = 'AARBECHT1';
+  await step('a strong word escalates to a typed production card', async () => {
+    await clearLearn();
+    // Recognised well (box 4, not due) but only twice produced — which is
+    // exactly the state the ladder answers with a typed card.
+    await seedLearn('diego', 'vocab', 'recv', TYPED_WORD, 4, { due: false });
+    await seedLearn('diego', 'vocab', 'prod', TYPED_WORD, 2);
+    await openFresh('#/vocab');
+
+    // Walk the session until the seeded word comes up as a typed card.
+    let sawField = false;
+    for (let guard = 0; guard < 14 && !sawField; guard += 1) {
+      await page.waitForSelector('.options .option, .field, .bank__tile', { timeout: 5000 });
+      if ((await page.locator('.field').count()) > 0) {
+        sawField = true;
+        break;
+      }
+      if ((await page.locator('.bank__tile').count()) > 0) {
+        await page.locator('.bank__tile').first().click();
+        await page.getByRole('button', { name: 'Check' }).click();
+      } else {
+        await page.locator('.options .option').first().click();
+      }
+      const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+      await next.waitFor({ state: 'visible', timeout: 3000 });
+      if ((await next.textContent())?.trim() === 'Finish') break;
+      await next.click();
+    }
+    if (!sawField) throw new Error('never reached a typed production card');
+    await shot('18-drill-type');
+
+    // The article picker is the only place gender is ever tested.
+    if ((await page.locator('.chip--pick').count()) !== 2) throw new Error('noun production card is missing the de / d’ picker');
+    await page.locator('.chip--pick').first().click();
+    await page.locator('.field').fill('Aarbecht');
+    await page.getByRole('button', { name: 'Check' }).click();
+    await page.getByRole('button', { name: /^(Next|Finish)$/ }).waitFor({ timeout: 3000 });
+    await shot('19-drill-type-answered');
+  });
+
+  await step('a missed card is re-queued inside the same session', async () => {
+    await openFresh('#/vocab');
+    await page.waitForSelector('.options .option, .field, .bank__tile', { timeout: 5000 });
+    // Answer the first card wrong where possible, then look for the "again" chip.
+    const wrong = page.locator('.options .option').filter({ hasNot: page.locator('.is-correct') });
+    if ((await wrong.count()) > 0) {
+      await wrong.first().click();
+      await page.getByRole('button', { name: /^(Next|Finish)$/ }).click();
+      // The retest lands a few cards later; walk forward looking for it.
+      let sawRetry = false;
+      for (let guard = 0; guard < 12 && !sawRetry; guard += 1) {
+        if ((await page.locator('.chip', { hasText: 'again' }).count()) > 0) {
+          sawRetry = true;
+          break;
+        }
+        if ((await page.locator('.options .option').count()) === 0) break;
+        await page.locator('.options .option').first().click();
+        const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+        await next.waitFor({ state: 'visible', timeout: 3000 });
+        if ((await next.textContent())?.trim() === 'Finish') break;
+        await next.click();
+      }
+      if (!sawRetry) throw new Error('a missed card never came back inside the session');
+      await shot('20-drill-retest');
+    }
+  });
+
+  await step('a topic-scoped session only draws from that topic', async () => {
+    await openFresh('#/vocab/stot');
+    await page.waitForSelector('.screen__sub', { timeout: 5000 });
+    const sub = await page.locator('.screen__sub').first().textContent();
+    if (!/this topic/.test(sub ?? '')) throw new Error(`topic session did not announce itself: ${sub}`);
+    await shot('21-drill-topic');
+  });
+
   await step('duel scoreboard renders both players', async () => {
     await page.goto(`${base}#/duel`, { waitUntil: 'networkidle' });
     await page.waitForSelector('.scoreboard', { timeout: 5000 });
@@ -251,7 +415,12 @@ async function main() {
   server.close();
 
   process.stdout.write(`\n${results.join('\n')}\n`);
-  const noisy = problems.filter((problem) => !/favicon|manifest/i.test(problem));
+  // ERR_ABORTED is not a failure: it means a request was still in flight when
+  // we navigated or moved to the next card. The walkthrough drives the app far
+  // faster than a person does, so it aborts the splash icon on reload and the
+  // odd example-sentence clip when it skips past a listening card. A real
+  // broken asset shows up as ERR_FAILED or a 404, which is still caught.
+  const noisy = problems.filter((problem) => !/favicon|manifest/i.test(problem) && !/ERR_ABORTED/.test(problem));
   if (noisy.length > 0) {
     process.stdout.write(`\nBrowser problems (${noisy.length}):\n${[...new Set(noisy)].slice(0, 15).map((p) => `  ${p}`).join('\n')}\n`);
   }

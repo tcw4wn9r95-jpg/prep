@@ -23,14 +23,18 @@ npm run walkthrough  # drives the real app in Chromium at iPhone size, screensho
 | --- | --- |
 | corpus | 2,204 GWS A1/A2 entries · 258,946 accepted forms · 10,577 native recordings |
 | items | 287 listening questions · 169 interview prompts · 18 topics |
-| shipped assets | 340 recordings (9.0 MB, AAC) · 16 CC images (5.7 MB) |
-| verification | `npm test` 23/23 · `validate` PASS · walkthrough 12/12, no console errors |
+| learn decks | 2,048 words · 365 verbs · 1,796 topic-tagged · 2,246 cloze targets · 359 visual cues |
+| shipped assets | 2,263 recordings (68 MB, AAC) · 16 CC images (5.5 MB) |
+| verification | `npm test` 71/71 · `validate` PASS · walkthrough 17/17, no console errors |
 
 **Known limits, stated plainly.** Listening items are corpus-derived drills on the official
 5+7+4 shape, not replicas of INLL's connected-speech test — the app says so and links to the
 official sample. The validator is form-level: it proves a word exists and is spelled
 correctly, not that a sentence is grammatical. Recording has been exercised in Chromium, not
-on real iOS Safari, though the mimeType negotiation is written for it.
+on real iOS Safari, though the mimeType negotiation is written for it. 617 of the 2,413
+Learn items carry no topic tag and 167 no cloze target, because the dictionary gave no
+reliable evidence for one — they stay in the all-words deck rather than being given a
+guessed tag.
 
 See `pipeline/README.md` for the content pipeline and `worker/README.md` for the scoreboard.
 
@@ -98,13 +102,18 @@ Match the existing personal stack: cheap, mostly static, no ops burden.
   build-corpus.js    → corpus.json + lexicon.json
   fetch-audio.js     resolve native recordings per entry (not in the bulk export)
   build-items.js     → content/items/*.json, gated through validate.js as it builds
+  build-vocab.js     → the A1/A2 word deck
+  build-verbs.js     → the present-tense verb deck (needs the cached LOD tables)
+  build-learn.js     adds topics, visual cues and cloze targets to both decks
   mirror-audio.js    download the AAC the shipped items use
   fetch-images.js    openly licensed photos for the image-description task
   validate.js        the hard gate described above
   test/              unit tests, calibration, and the browser walkthrough
 /content       generated JSON, committed to the repo (auditable diffs)
 /app           the PWA — static, no build step, zero runtime dependencies
-  js/screens/        onboarding · journey · listening · speaking · review · readiness · duel
+  js/screens/        onboarding · journey · learn · vocab · verbs · listening · speaking ·
+                     review · readiness · duel
+  js/drill/          the Learn engine: one session runner, seven card types
   js/amelie.js       the guide: one inline SVG, six CSS states
 /worker        one tiny Cloudflare Worker + KV: the shared scoreboard. Nothing else.
 ```
@@ -163,6 +172,56 @@ counts **20%**, the **assessor**'s grid counts **80%**.
 > weighting. The four above are from INLL's published `Bewäertungsskala`.
 
 The peer score is the score of record. The machine score is a between-sessions sparring partner. This design turns the weakest technical link — Luxembourgish ASR — into the strongest engagement loop, because grading each other is itself practice.
+
+---
+
+## Module 0 — Learn (the vocabulary foundation)
+
+> **Added 2026-07.** The exam modules assume a vocabulary the candidate does not have yet.
+> This is where it gets built.
+
+The deck is the A1/A2 Grondwuertschatz: 2,048 words and 365 verbs, every one a corpus lemma
+with a translation LOD itself publishes. What matters is not the deck but the questions.
+
+**Two strands per word, not one score.** Learners recognise two to three times more words
+than they can produce, and the A2 speaking part credits only production. So each item carries
+two Leitner boxes — `recv` (understand it) and `prod` (say it) — and the Learn hub shows two
+bars. The gap between them is the number worth reading. `prod` stays locked until `recv`
+reaches box 2.
+
+**The question escalates with the box.** By strand:
+
+| box | receptive | productive |
+| --- | --- | --- |
+| 0 | see the word, pick the meaning | see the meaning, pick the word |
+| 1 | **hear the sentence, no text**, pick the meaning | build the word from letter tiles |
+| 2+ | the sentence with the word gapped | type the word — **and its article, for nouns** |
+| 3+ | | type the inflected form into the gap (verbs: conjugate) |
+
+A card type whose data is missing is skipped, never faked: no recording → no listening card,
+no locatable cloze → no cloze card. An item that cannot answer any rung is filtered out of
+the deck entirely (`isDrillable`), which is what happens to the seven LOD verbs that carry no
+English gloss.
+
+**Why audio and not photographs.** The repo already ships 2,263 native recordings covering
+the example sentence of 2,019 of 2,048 words. For an exam that tests listening and speaking,
+that is the better second encoding channel than a 30 MB photo set, and it is already paid
+for. Concrete nouns additionally get a single emoji cue — the useful part of a picture is
+distinctiveness, not photography — and abstract words get none rather than a decorative one.
+
+**Topic decks.** Every word is tagged against the same 18-topic taxonomy the speaking module
+uses, from three layers of evidence (LOD semantic category, topic seed headword, gloss
+keyword), with the winning layer recorded in the JSON so the tagging is auditable. `#/vocab/<topic>`
+drills one topic. Words with no reliable evidence stay untagged.
+
+Two smaller rules that matter more than they look:
+
+- A missed card comes back three cards later and must be answered before the session ends.
+  The retry is practice, not evidence, so it is not graded — otherwise a word could be
+  promoted by the second attempt at the same question in the same minute.
+- A typed answer right apart from its diacritics counts as correct but holds its box. On a
+  phone `ë`/`é`/`ä` are several taps deep, and failing someone over that turns a vocabulary
+  drill into a keyboard drill. The exact spelling is shown, and the word comes back.
 
 ---
 

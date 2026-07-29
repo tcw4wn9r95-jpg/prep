@@ -1,248 +1,58 @@
 /**
- * Verbs — present-tense conjugation drills.
+ * Verbs — a drill session over the A1/A2 verbs with a complete present tense.
  *
- * Every form comes verbatim from LOD's Flexiounstabellen (pipeline/build-verbs.js);
- * the drill only decides which cell to ask about and which other cells of the
- * *same* verb to offer as wrong answers. That keeps the choice meaningful —
- * you are picking the right person, not spotting an unrelated word.
+ * Same engine as the vocabulary deck. Conjugation has not gone away: it is now
+ * a rung on the production ladder (drill/cards.js), reached once the verb
+ * itself is known, rather than the only question the deck ever asks. Every form
+ * still comes verbatim from LOD's Flexiounstabellen.
  */
 
-import { el, fill, screenHead, button } from '../dom.js';
-import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
-import { Clip, unlock } from '../audio.js';
-import { loadVerbs } from '../content.js';
-import { getLearnDeckState, recordLearnResult, pickDue, getSentenceExplanation, saveSentenceExplanation, POINTS } from '../store.js';
-import { requestExplanation } from '../sync.js';
+import { loadVerbs, loadTopics } from '../content.js';
+import { getLearnDeckStates, buildSession } from '../store.js';
+import { DECKS, isDrillable } from '../drill/cards.js';
+import { runSession, nothingDue } from '../drill/engine.js';
 
-const SESSION_SIZE = 10;
-const PRONOUNS = { p1: 'ech', p2: 'du', p3: 'hie / si / hatt', p4: 'mir', p5: 'dir', p6: 'si' };
-const PERSONS = Object.keys(PRONOUNS);
+const SESSION_SIZE = 12;
 
-const VERB_LINES = {
-  intro: 'Pick the form that matches the pronoun.',
-  correct: ['Right.', 'Yes!', 'Correct.', 'Good conjugating.'],
-  wrong: ['Not that form — this verb comes back soon.', 'Close. You will see this one again.'],
-};
-
-export async function render(root, { settings, navigate }) {
-  const [allItems, stateByItemId] = await Promise.all([
+export async function render(root, { params, settings, navigate }) {
+  const topicId = params?.[0] ?? null;
+  const [everything, states, topics] = await Promise.all([
     loadVerbs(),
-    getLearnDeckState(settings.playerId, 'verb'),
+    getLearnDeckStates(settings.playerId, 'verb'),
+    topicId ? loadTopics() : Promise.resolve([]),
   ]);
 
-  const session = pickDue(allItems, stateByItemId, SESSION_SIZE);
+  // A few LOD entries carry no English gloss, so there is nothing to ask about
+  // them in either direction. They stay in the data and out of the drill.
+  const all = everything.filter((item) => isDrillable(item, 'verb'));
+  const pool = topicId ? all.filter((item) => item.topics?.includes(topicId)) : all;
+  const topic = topics.find((candidate) => candidate.id === topicId) ?? null;
+  const title = topic ? `${topic.title_en ?? topic.en} verbs` : 'Verbs';
+  const again = topicId ? `#/verbs/${encodeURIComponent(topicId)}` : '#/verbs';
 
-  if (session.length === 0) {
-    root.append(
-      screenHead({ title: 'Verbs', back: '#/learn' }),
-      el('div', { class: 'empty' }, el('p', {}, 'Nothing due right now — you are caught up.'), button('Back to Learn', { variant: 'secondary', onclick: () => navigate('#/learn') })),
-    );
-    return { destroy() {} };
-  }
+  const plan = buildSession(pool, states, { limit: SESSION_SIZE });
+  if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total: pool.length });
 
-  let index = 0;
-  let correctCount = 0;
-  let clip = null;
-
-  const amelie = new Amelie({ size: 'sm', bubble: true });
-  const progressFill = el('div', { class: 'progress__fill', style: { width: '0%' } });
-  const body = el('div', { class: 'stack stack--lg' });
-
-  root.append(
-    screenHead({ title: 'Verbs', sub: `${session.length} verbs`, back: '#/learn' }),
-    el('div', { class: 'progress', role: 'progressbar', 'aria-label': 'Progress' }, progressFill),
-    body,
-  );
-
-  function destroyClip() {
-    if (clip) {
-      clip.destroy();
-      clip = null;
-    }
-  }
-
-  function renderCard() {
-    destroyClip();
-    const item = session[index];
-    progressFill.style.width = `${(index / session.length) * 100}%`;
-
-    const person = PERSONS[Math.floor(Math.random() * PERSONS.length)];
-    const correctForm = item.present[person];
-    const options = shuffle([correctForm, ...pickDistractors(allItems, item, person, 3)]);
-    let answered = false;
-
-    const audioId = item.example?.audioId ?? null;
-    if (audioId) clip = new Clip(audioId);
-
-    const playNote = el('p', { class: 'card__note', hidden: true });
-    const playButton = audioId
-      ? el(
-          'button',
-          {
-            type: 'button',
-            class: 'player__play',
-            'aria-label': 'Hear the example sentence',
-            onclick: async () => {
-              unlock();
-              playButton.classList.add('is-playing');
-              playNote.hidden = true;
-              const ok = await clip.play();
-              if (!ok) {
-                playButton.classList.remove('is-playing');
-                playNote.textContent = 'Audio would not play — try tapping again.';
-                playNote.hidden = false;
-              }
-            },
-          },
-          el(
-            'svg',
-            { viewBox: '0 0 24 24', width: '22', height: '22', 'aria-hidden': 'true', fill: 'currentColor' },
-            el('path', { d: 'M8 5 L19 12 L8 19 Z' }),
-          ),
-        )
-      : null;
-    if (clip) clip.on('ended', () => playButton.classList.remove('is-playing'));
-
-    const explainNote = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s2)', textAlign: 'left' }, hidden: true });
-    const explainButton = item.example
-      ? button('Explain this sentence', {
-          variant: 'secondary',
-          class: 'btn btn--secondary',
-          style: { marginBlockStart: 'var(--s3)' },
-          onclick: async () => {
-            explainButton.disabled = true;
-            const cached = await getSentenceExplanation(item.id);
-            if (cached) {
-              explainNote.textContent = cached;
-              explainNote.hidden = false;
-              explainButton.hidden = true;
-              return;
-            }
-            explainNote.textContent = 'Asking…';
-            explainNote.hidden = false;
-            const result = await requestExplanation(settings, { lb: item.example.lb, word: item.infinitive, en: item.en });
-            if (result.ok) {
-              await saveSentenceExplanation(item.id, result.explanation);
-              explainNote.textContent = result.explanation;
-              explainButton.hidden = true;
-            } else {
-              explainNote.textContent = result.message;
-              explainButton.disabled = false;
-            }
-          },
-        })
-      : null;
-
-    const prompt = el(
-      'div',
-      { class: 'card', style: { textAlign: 'center' } },
-      el('p', { class: 'meter__label' }, item.en ?? 'verb'),
-      el('p', { class: 'screen__title', style: { marginBlockStart: 'var(--s1)' } }, item.infinitive),
-      el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s3)', fontSize: 'var(--size-lg)', fontWeight: '700' } }, `${PRONOUNS[person]} ___`),
-      item.example ? el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s3)', fontStyle: 'italic' } }, `“${item.example.lb}”`) : null,
-      playButton ? el('div', { style: { marginBlockStart: 'var(--s3)' } }, playButton) : null,
-      playNote,
-      explainButton,
-      explainNote,
-    );
-
-    const optionsEl = el('div', { class: 'options' });
-    const optionButtons = options.map((form) =>
-      el('button', { type: 'button', class: 'option', onclick: () => answer(form) }, el('span', {}, form)),
-    );
-    fill(optionsEl, ...optionButtons);
-
-    const next = button(index === session.length - 1 ? 'Finish' : 'Next', {
-      variant: 'primary',
-      class: 'btn btn--primary btn--block',
-      hidden: true,
-      onclick: () => {
-        if (index === session.length - 1) finish();
-        else { index += 1; renderCard(); }
-      },
-    });
-
-    function answer(chosen) {
-      if (answered) return;
-      answered = true;
-      optionsEl.classList.add('is-answered');
-      const isRight = chosen === correctForm;
-      if (isRight) correctCount += 1;
-
-      optionButtons[options.indexOf(correctForm)].classList.add('is-correct');
-      if (!isRight) optionButtons[options.indexOf(chosen)].classList.add('is-wrong');
-
-      recordLearnResult(settings.playerId, 'verb', item.id, isRight);
-      amelie.say(pickLine(isRight ? VERB_LINES.correct : VERB_LINES.wrong), isRight ? 'celebrating' : 'encouraging');
-      next.hidden = false;
-      next.focus();
-    }
-
-    fill(body, prompt, optionsEl, amelie.el, next);
-    if (index === 0) amelie.say(VERB_LINES.intro, 'idle');
-  }
-
-  function finish() {
-    destroyClip();
-    progressFill.style.width = '100%';
-    progressFill.classList.add('progress__fill--ok');
-
-    const pct = Math.round((correctCount / session.length) * 100);
-    const done = new Amelie({ size: 'lg', bubble: true });
-    done.el.classList.add('amelie--stack', 'amelie--hero');
-    done.celebrate(AMELIE_LINES.setDone);
-
-    fill(
-      body,
-      el(
-        'div',
-        { class: 'stack stack--lg', style: { paddingBlockStart: 'var(--s5)' } },
-        done.el,
-        el(
-          'div',
-          { class: 'card', style: { textAlign: 'center' } },
-          el('p', { class: 'meter__label' }, 'This session'),
-          el('p', { class: 'meter__value' }, `${correctCount} / ${session.length}`),
-          el('p', { class: 'card__note' }, `${pct}% · +${correctCount * POINTS.perLearnCorrect} points`),
-        ),
-        button('Conjugate more verbs', { variant: 'primary', class: 'btn btn--primary btn--block', onclick: () => navigate('#/verbs') }),
-        button('Back to Learn', { variant: 'secondary', class: 'btn btn--secondary btn--block', onclick: () => navigate('#/learn') }),
-      ),
-    );
-  }
-
-  renderCard();
-  return { destroy: destroyClip };
+  return runSession({
+    root,
+    plan,
+    deck: DECKS.verb,
+    pool: all,
+    boxes: boxIndex(states),
+    settings,
+    navigate,
+    title,
+    sub: `${plan.length} cards${topic ? ' · this topic' : ''}`,
+    back: '#/learn',
+    again,
+  });
 }
 
-/** Wrong answers: other persons' forms of the *same* verb, deduped against the
- * right answer. Tops up with forms from other verbs if a verb's persons are too
- * uniform (several Luxembourgish verbs share a form across p1/p4/p6). */
-function pickDistractors(allItems, item, person, count) {
-  const correctForm = item.present[person];
-  const sameVerb = PERSONS.filter((p) => p !== person)
-    .map((p) => item.present[p])
-    .filter((form, i, arr) => form !== correctForm && arr.indexOf(form) === i);
-
-  const picks = shuffle(sameVerb).slice(0, count);
-  if (picks.length >= count) return picks;
-
-  const filler = [];
-  const others = allItems.filter((candidate) => candidate.id !== item.id);
-  for (let attempt = 0; attempt < 50 && picks.length + filler.length < count && others.length > 0; attempt += 1) {
-    const other = others[Math.floor(Math.random() * others.length)];
-    const otherPerson = PERSONS[Math.floor(Math.random() * PERSONS.length)];
-    const form = other.present[otherPerson];
-    if (form !== correctForm && !picks.includes(form) && !filler.includes(form)) filler.push(form);
+/** `strand:itemId` → box, which is how the card ladder picks a question type. */
+function boxIndex(states) {
+  const boxes = new Map();
+  for (const [strand, rows] of Object.entries(states)) {
+    for (const [itemId, row] of rows) boxes.set(`${strand}:${itemId}`, row.box);
   }
-  return [...picks, ...filler];
-}
-
-function shuffle(list) {
-  const copy = [...list];
-  for (let i = copy.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
+  return boxes;
 }

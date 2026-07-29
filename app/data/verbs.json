@@ -36,6 +36,22 @@
       "items": 365,
       "a1": 111,
       "a2": 254
+    },
+    "learn": {
+      "enrichedAt": "2026-07-29T13:57:16.021Z",
+      "enricher": "pipeline/build-learn.js",
+      "topics": {
+        "category": 55,
+        "seed": 207,
+        "gloss": 14,
+        "none": 89
+      },
+      "cues": 8,
+      "cloze": {
+        "lexicon": 277,
+        "surface": 22,
+        "none": 66
+      }
     }
   },
   "items": [
@@ -57,6 +73,17 @@
       "example": {
         "lb": "de Grosist huet seng Wueren zu engem gënschtege Präis akaaft",
         "audioId": "63bf40942e85933735acdbe500374d84"
+      },
+      "topics": [
+        "stot"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "de Grosist huet seng Wueren zu engem gënschtege Präis ",
+        "form": "akaaft",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -77,6 +104,15 @@
       "example": {
         "lb": "de Clown ameséiert esouwuel d'Kanner ewéi och hir Elteren",
         "audioId": "a734944030829cc2dc98827a881809c7"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "de Clown ",
+        "form": "ameséiert",
+        "after": " esouwuel d'Kanner ewéi och hir Elteren",
+        "via": "lexicon"
       }
     },
     {
@@ -97,6 +133,15 @@
       "example": {
         "lb": "äntwer iergendeppes, hien ass souwisou hallef daf!",
         "audioId": "87d26d534ea75fcb54228db7231a7f80"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "",
+        "form": "äntwer",
+        "after": " iergendeppes, hien ass souwisou hallef daf!",
+        "via": "lexicon"
       }
     },
     {
@@ -117,6 +162,17 @@
       "example": {
         "lb": "de Bäcker huet fir e Client fofzeg Baguettë gebak",
         "audioId": "18aed6852f23359cd45f78e7b0faba5f"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "de Bäcker huet fir e Client fofzeg Baguettë ",
+        "form": "gebak",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -137,6 +193,18 @@
       "example": {
         "lb": "mir bastelen e Päerdchen aus Drot, dat ech an enger Zeitung fonnt hunn",
         "audioId": "b15ba43fd19adf8cc480ea76669f1554"
+      },
+      "topics": [
+        "kaddoen",
+        "liesen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mir ",
+        "form": "bastelen",
+        "after": " e Päerdchen aus Drot, dat ech an enger Zeitung fonnt hunn",
+        "via": "lexicon"
       }
     },
     {
@@ -157,6 +225,15 @@
       "example": {
         "lb": "kommt eis dach emol besichen!",
         "audioId": "5a64ac7759757a0cde7ebe05a4dc2837"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "kommt eis dach emol ",
+        "form": "besichen",
+        "after": "!",
+        "via": "lexicon"
       }
     },
     {
@@ -177,6 +254,17 @@
       "example": {
         "lb": "eist Klengt huet sech ganz eleng bei der Serveuse en Dessert bestallt",
         "audioId": "8b9aaad288e4ebbf30b90db1226fbc71"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "eist Klengt huet sech ganz eleng bei der Serveuse en Dessert ",
+        "form": "bestallt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -197,6 +285,17 @@
       "example": {
         "lb": "dëse Buttek besteet schonn zënter méi ewéi 100 Joer",
         "audioId": "c47f0ca9c2aee76d2c51278e5c045d9d"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "dëse Buttek ",
+        "form": "besteet",
+        "after": " schonn zënter méi ewéi 100 Joer",
+        "via": "lexicon"
       }
     },
     {
@@ -217,6 +316,17 @@
       "example": {
         "lb": "de Client huet d'Wuer boer bezuelt",
         "audioId": "b4106f74ed76cd8508de17a6bbfc6935"
+      },
+      "topics": [
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "de Client huet d'Wuer boer ",
+        "form": "bezuelt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -237,6 +347,19 @@
       "example": {
         "lb": "ech kann net laang bleiwen, ech hunn ëm zwou Auer e Rendez-vous",
         "audioId": "22be5faf3350cb4add29d0b92b09ff75"
+      },
+      "topics": [
+        "famill",
+        "feierdeeg",
+        "iessen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech kann net laang ",
+        "form": "bleiwen",
+        "after": ", ech hunn ëm zwou Auer e Rendez-vous",
+        "via": "lexicon"
       }
     },
     {
@@ -257,7 +380,13 @@
       "example": {
         "lb": "bei dësem Dokter brauch een net laang ze waarden, fir e Rendez-vous ze kréien",
         "audioId": "7e01e818396f83e68e8cc8096e815198"
-      }
+      },
+      "topics": [
+        "hobbyen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "BRENGEN1",
@@ -277,6 +406,17 @@
       "example": {
         "lb": "eisen Noper bréngt eis haut eng Kouert Holz",
         "audioId": "b8cc05655ac37a3366d9b070245e5396"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "eisen Noper ",
+        "form": "bréngt",
+        "after": " eis haut eng Kouert Holz",
+        "via": "lexicon"
       }
     },
     {
@@ -297,7 +437,11 @@
       "example": {
         "lb": "de Kach bréit d'Gromperen an enger gossener Pan",
         "audioId": "75e7d985f843781b8cfc6d2be1a5d23f"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "BUSCHTAWEIEREN1",
@@ -317,6 +461,15 @@
       "example": {
         "lb": "d'Joffer buschtawéiert de Kanner déi schwéier Wierder",
         "audioId": "39d848bb4f08d4bf9d6a10247d1e3be7"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "d'Joffer ",
+        "form": "buschtawéiert",
+        "after": " de Kanner déi schwéier Wierder",
+        "via": "lexicon"
       }
     },
     {
@@ -337,6 +490,15 @@
       "example": {
         "lb": "an enger Demokratie däerf all Bierger seng Meenung soen",
         "audioId": "6dad4644aa33441ad1b87bb9948b7429"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "an enger Demokratie ",
+        "form": "däerf",
+        "after": " all Bierger seng Meenung soen",
+        "via": "lexicon"
       }
     },
     {
@@ -357,6 +519,17 @@
       "example": {
         "lb": "d'Brautpuer huet eng Walz gedanzt",
         "audioId": "5bdd1d3c05e47e7b0f0e11a06b649d4e"
+      },
+      "topics": [
+        "hobbyen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Brautpuer huet eng Walz ",
+        "form": "gedanzt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -377,6 +550,17 @@
       "example": {
         "lb": "den Daach vum Haus muss nach virum Wanter nei gedeckt ginn",
         "audioId": "c236889e29b39a35b7c0774dcaa95601"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "den Daach vum Haus muss nach virum Wanter nei ",
+        "form": "gedeckt",
+        "after": " ginn",
+        "via": "lexicon"
       }
     },
     {
@@ -397,7 +581,13 @@
       "example": {
         "lb": "d'Consignen an de Message vun der Regierung si ganz kloer: Bleift doheem!",
         "audioId": "162aefafe18860bb16b3bb48b3241ccf"
-      }
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "DRENKEN1",
@@ -417,6 +607,20 @@
       "example": {
         "lb": "ech drénke just e Glas Waasser",
         "audioId": "8ef1572e3a9716211d5a00aa4d1eca5f"
+      },
+      "topics": [
+        "famill",
+        "gesondheet",
+        "iessen",
+        "joreszäiten"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech ",
+        "form": "drénke",
+        "after": " just e Glas Waasser",
+        "via": "lexicon"
       }
     },
     {
@@ -437,6 +641,17 @@
       "example": {
         "lb": "d'Mamm duscht d'Kanner all Owend",
         "audioId": "68a7dcd05d6890a56c78aeeb31f80ea0"
+      },
+      "topics": [
+        "famill"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Mamm ",
+        "form": "duscht",
+        "after": " d'Kanner all Owend",
+        "via": "lexicon"
       }
     },
     {
@@ -457,6 +672,17 @@
       "example": {
         "lb": "erwäch mech muer de Moien ëm siwen Auer!",
         "audioId": "9bd1640635f4d3031bc70763e5aa8694"
+      },
+      "topics": [
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "",
+        "form": "erwäch",
+        "after": " mech muer de Moien ëm siwen Auer!",
+        "via": "lexicon"
       }
     },
     {
@@ -477,6 +703,15 @@
       "example": {
         "lb": "d'Zaldoten hunn dräi Partisane gefaangen",
         "audioId": "b2cfcbd78390ffe9ee0f2257129e3e51"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "d'Zaldoten hunn dräi Partisane ",
+        "form": "gefaangen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -497,6 +732,19 @@
       "example": {
         "lb": "ech hunn am Bësch eng Auer fonnt",
         "audioId": "a30c14d3c55cd2dc4b5589f9fbe017fb"
+      },
+      "topics": [
+        "aarbecht",
+        "medien",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn am Bësch eng Auer ",
+        "form": "fonnt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -517,6 +765,17 @@
       "example": {
         "lb": "e Samschdeg feieren ech mäi Gebuertsdag",
         "audioId": "2f5d63b5d9c3185d82947c1da1408c34"
+      },
+      "topics": [
+        "kaddoen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "e Samschdeg ",
+        "form": "feieren",
+        "after": " ech mäi Gebuertsdag",
+        "via": "surface"
       }
     },
     {
@@ -537,6 +796,18 @@
       "example": {
         "lb": "eis Léierin huet hir Neel ëmmer rout gefierft",
         "audioId": "d8ccfaa44e41599a05224f570aaa916d"
+      },
+      "topics": [
+        "kreativitéit",
+        "sport"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": {
+        "before": "eis Léierin huet hir Neel ëmmer rout ",
+        "form": "gefierft",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -557,6 +828,17 @@
       "example": {
         "lb": "ech muss spéitstens ëm siwen Auer fortfueren, fir matzäit op der Aarbecht ze sinn",
         "audioId": "f840b983d3b94f5e5f7dcf5885190401"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech muss spéitstens ëm siwen Auer ",
+        "form": "fortfueren",
+        "after": ", fir matzäit op der Aarbecht ze sinn",
+        "via": "lexicon"
       }
     },
     {
@@ -577,7 +859,11 @@
       "example": {
         "lb": "de Mëtteg hunn d'Schüler fräi",
         "audioId": "6020bef9f6518dd819f09917b855eb1e"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "FROEN1",
@@ -597,6 +883,18 @@
       "example": {
         "lb": "et huet keen dech eppes gefrot!",
         "audioId": "975b057d120842ac1da5a1a4d582908b"
+      },
+      "topics": [
+        "aarbecht",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "et huet keen dech eppes ",
+        "form": "gefrot",
+        "after": "!",
+        "via": "lexicon"
       }
     },
     {
@@ -617,6 +915,17 @@
       "example": {
         "lb": "all Dag fueren Dausende vun Automobilisten iwwer dës Bréck",
         "audioId": "fb796442cdb0a87946c592af55abc89c"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "all Dag ",
+        "form": "fueren",
+        "after": " Dausende vun Automobilisten iwwer dës Bréck",
+        "via": "surface"
       }
     },
     {
@@ -637,6 +946,19 @@
       "example": {
         "lb": "et gëtt ëmmer méi Leit, déi un Allergië leiden",
         "audioId": "9b68905f0b6363db54494f25234069a4"
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "et ",
+        "form": "gëtt",
+        "after": " ëmmer méi Leit, déi un Allergië leiden",
+        "via": "lexicon"
       }
     },
     {
@@ -657,7 +979,13 @@
       "example": {
         "lb": "géi méi séier, soss verpass de den Zuch!",
         "audioId": "8190ef4a1f594b8ddf2f698ec1f55543"
-      }
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "GRILLEN1",
@@ -677,6 +1005,15 @@
       "example": {
         "lb": "den Owend gi mer bei den Noper grillen",
         "audioId": "7eeff11e70ae496b4b7800e79c470291"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "den Owend gi mer bei den Noper ",
+        "form": "grillen",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -697,6 +1034,18 @@
       "example": {
         "lb": "drénk net esou vill, du muss nach heemfueren!",
         "audioId": "ae4c659826e0c87e63563cc93010823f"
+      },
+      "topics": [
+        "joreszäiten",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "drénk net esou vill, du muss nach ",
+        "form": "heemfueren",
+        "after": "!",
+        "via": "lexicon"
       }
     },
     {
@@ -717,6 +1066,18 @@
       "example": {
         "lb": "wéi heeschs du?",
         "audioId": "1b3d09cd6408058d530540cd16c578a6"
+      },
+      "topics": [
+        "sproochen",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wéi ",
+        "form": "heeschs",
+        "after": " du?",
+        "via": "lexicon"
       }
     },
     {
@@ -737,6 +1098,17 @@
       "example": {
         "lb": "wéinst dem Kaméidi huet keen héieren, wat de Riedner gesot huet",
         "audioId": "46e16a36352c1a27b618b96766cc97e9"
+      },
+      "topics": [
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wéinst dem Kaméidi huet keen ",
+        "form": "héieren",
+        "after": ", wat de Riedner gesot huet",
+        "via": "surface"
       }
     },
     {
@@ -757,6 +1129,18 @@
       "example": {
         "lb": "hie steet do, näischt ze maachen, amplaz ze hëllefen",
         "audioId": "6929fa5a42fe706a167a9453c0ccc821"
+      },
+      "topics": [
+        "gesondheet",
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "hie steet do, näischt ze maachen, amplaz ze ",
+        "form": "hëllefen",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -777,7 +1161,13 @@
       "example": {
         "lb": "huel (der) e Stull, et sinn der genuch do!",
         "audioId": "08c307a9ed816b77a81923758ad2d7a6"
-      }
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": "🥤",
+      "cloze": null
     },
     {
       "id": "HUNN1",
@@ -797,6 +1187,25 @@
       "example": {
         "lb": "de Schrëftsteller huet de Verlag gewiesselt",
         "audioId": "a2eed5d4d441b5572aac95187722cc08"
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "feierdeeg",
+        "gesondheet",
+        "iessen",
+        "joreszäiten",
+        "transport",
+        "vakanz",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "de Schrëftsteller ",
+        "form": "huet",
+        "after": " de Verlag gewiesselt",
+        "via": "lexicon"
       }
     },
     {
@@ -817,6 +1226,17 @@
       "example": {
         "lb": "mir iessen de Mëtteg Nuddelen",
         "audioId": "5e9519e356633c585228f11ac2ada6c6"
+      },
+      "topics": [
+        "iessen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mir ",
+        "form": "iessen",
+        "after": " de Mëtteg Nuddelen",
+        "via": "lexicon"
       }
     },
     {
@@ -837,6 +1257,18 @@
       "example": {
         "lb": "ech hat nach keng Zäit, fir däin Text op Lëtzebuergesch ze iwwersetzen",
         "audioId": "b27574edb287cac178d0b439bd043aec"
+      },
+      "topics": [
+        "liesen",
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech hat nach keng Zäit, fir däin Text op Lëtzebuergesch ze ",
+        "form": "iwwersetzen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -857,6 +1289,17 @@
       "example": {
         "lb": "du hues d'Nuddelen eng Grimmel ze laang gekacht",
         "audioId": "af46df71d62338f1eff54f9585d652a1"
+      },
+      "topics": [
+        "iessen"
+      ],
+      "topicVia": "category",
+      "cue": "🍳",
+      "cloze": {
+        "before": "du hues d'Nuddelen eng Grimmel ze laang ",
+        "form": "gekacht",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -877,6 +1320,17 @@
       "example": {
         "lb": "ech kafe mir elo eng gutt Mettwurscht!",
         "audioId": "159b2f3bc7e5931b96528aaf9cf947bf"
+      },
+      "topics": [
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech ",
+        "form": "kafe",
+        "after": " mir elo eng gutt Mettwurscht!",
+        "via": "lexicon"
       }
     },
     {
@@ -897,6 +1351,17 @@
       "example": {
         "lb": "d'Renovatiounsaarbechte kaschten ëm déi 50.000 Euro",
         "audioId": "7e1ff90a83e77de8cd00d8b29e529d21"
+      },
+      "topics": [
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Renovatiounsaarbechte ",
+        "form": "kaschten",
+        "after": " ëm déi 50.000 Euro",
+        "via": "lexicon"
       }
     },
     {
@@ -917,6 +1382,19 @@
       "example": {
         "lb": "ech kann net dofir!",
         "audioId": "56b116b5babd2e8ca667a34cff16cec5"
+      },
+      "topics": [
+        "famill",
+        "iessen",
+        "sport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech ",
+        "form": "kann",
+        "after": " net dofir!",
+        "via": "lexicon"
       }
     },
     {
@@ -937,7 +1415,15 @@
       "example": {
         "lb": "kenns du de Mann, deen do kënnt?",
         "audioId": "3b91a88196c6697376f2dee572489987"
-      }
+      },
+      "topics": [
+        "aarbecht",
+        "medien",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "KONTROLLEIEREN1",
@@ -957,6 +1443,17 @@
       "example": {
         "lb": "nom Uschlag huet d'Police all Ausgäng vun der Gare kontrolléiert",
         "audioId": "a9cfc3d7744eb2d7f4119178d020e419"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "nom Uschlag huet d'Police all Ausgäng vun der Gare ",
+        "form": "kontrolléiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -977,7 +1474,20 @@
       "example": {
         "lb": "ech hunn haut näischt mat der Post kritt",
         "audioId": "8969e16f13a19de0abafa23509036b12"
-      }
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "gesondheet",
+        "iessen",
+        "kreativitéit",
+        "medien",
+        "transport",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "KUCKEN1",
@@ -997,7 +1507,15 @@
       "example": {
         "lb": "kuck mech emol an d'Aen!",
         "audioId": "37674f1846b21b43bd187db7040b8ec1"
-      }
+      },
+      "topics": [
+        "famill",
+        "gesondheet",
+        "iessen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "LAFEN1",
@@ -1017,6 +1535,17 @@
       "example": {
         "lb": "du kanns méi séier lafen ewéi ech",
         "audioId": "c7af9f0278417e0d2f2e06f76b445e96"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "du kanns méi séier ",
+        "form": "lafen",
+        "after": " ewéi ech",
+        "via": "lexicon"
       }
     },
     {
@@ -1037,6 +1566,18 @@
       "example": {
         "lb": "hues du de Moien de Radio gelauschtert?",
         "audioId": "4baecf86c904acb21ed87df1a3d2986e"
+      },
+      "topics": [
+        "kreativitéit",
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "hues du de Moien de Radio ",
+        "form": "gelauschtert",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -1057,6 +1598,17 @@
       "example": {
         "lb": "d'Kanner leie schonn am Bett",
         "audioId": "59c8b1899ae7d98796e8073bd99d6fa6"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": "🤵",
+      "cloze": {
+        "before": "d'Kanner ",
+        "form": "leie",
+        "after": " schonn am Bett",
+        "via": "lexicon"
       }
     },
     {
@@ -1077,6 +1629,17 @@
       "example": {
         "lb": "ech sinn an engem Cours, fir Lëtzebuergesch ze léieren",
         "audioId": "d9bdb5dab947d1ebae3ba6167867c58a"
+      },
+      "topics": [
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech sinn an engem Cours, fir Lëtzebuergesch ze ",
+        "form": "léieren",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1097,7 +1660,13 @@
       "example": {
         "lb": "ech liese grad e spannend Buch",
         "audioId": "755618236ed389a5c7293b44a41a3c68"
-      }
+      },
+      "topics": [
+        "hobbyen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "LIICHTEN1",
@@ -1117,7 +1686,11 @@
       "example": {
         "lb": "meng Auer liicht an der Däischtert",
         "audioId": "76306f68da4ec82fd87028b4cb5339f1"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "MAACHEN1",
@@ -1137,6 +1710,24 @@
       "example": {
         "lb": "wat méchs du do?",
         "audioId": "054d8836b1f67d8500ce82dad3d2fab1"
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "joreszäiten",
+        "kaddoen",
+        "sport",
+        "sproochen",
+        "vakanz",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wat ",
+        "form": "méchs",
+        "after": " du do?",
+        "via": "lexicon"
       }
     },
     {
@@ -1157,6 +1748,17 @@
       "example": {
         "lb": "wëllt däi Brudder net matgoen?",
         "audioId": "940829d74f5d9c5c89332d00c5a16396"
+      },
+      "topics": [
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wëllt däi Brudder net ",
+        "form": "matgoen",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -1177,6 +1779,18 @@
       "example": {
         "lb": "an der Hetz hat ech vergiess, e Prabbeli matzehuelen",
         "audioId": "0512952a2607b6057faec213e5799653"
+      },
+      "topics": [
+        "iessen",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "an der Hetz hat ech vergiess, e Prabbeli ",
+        "form": "matzehuelen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1197,7 +1811,14 @@
       "example": {
         "lb": "meng net, ech géif dech fäerten!",
         "audioId": "d4a77362dfdf3ce60f4f84a0fec4b53b"
-      }
+      },
+      "topics": [
+        "sproochen",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "MESCHEN1",
@@ -1217,6 +1838,15 @@
       "example": {
         "lb": "bei deem Rezept muss de fir d'éischt Zocker an Eeër mëschen",
         "audioId": "c1db0fbb6f75a2a3e62f4c68c5f6e8e9"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "bei deem Rezept muss de fir d'éischt Zocker an Eeër ",
+        "form": "mëschen",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -1237,6 +1867,17 @@
       "example": {
         "lb": "et huet e Kënschtler e Portrait vu mir gemoolt",
         "audioId": "b189c9e17511362d939e9ec86c79cd39"
+      },
+      "topics": [
+        "kreativitéit"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "et huet e Kënschtler e Portrait vu mir ",
+        "form": "gemoolt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1257,6 +1898,21 @@
       "example": {
         "lb": "jidderee muss d'Sécherheetsvirschrëften anhalen",
         "audioId": "d8ef652277c9024816702029b75efacc"
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "gesondheet",
+        "joreszäiten",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "jidderee ",
+        "form": "muss",
+        "after": " d'Sécherheetsvirschrëften anhalen",
+        "via": "lexicon"
       }
     },
     {
@@ -1277,6 +1933,15 @@
       "example": {
         "lb": "de Sekretär huet eis Iwwerleeungen all notéiert",
         "audioId": "28cd9f540626262ec689fa27967e980d"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "de Sekretär huet eis Iwwerleeungen all ",
+        "form": "notéiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1294,7 +1959,11 @@
         "p5": "schmaacht of",
         "p6": "schmaachen of"
       },
-      "example": null
+      "example": null,
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "OPHALEN1",
@@ -1314,6 +1983,17 @@
       "example": {
         "lb": "hien huet der Madamm d'Dier opgehalen",
         "audioId": "e55f34cf1c4dda1f845875a7e7c77378"
+      },
+      "topics": [
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "hien huet der Madamm d'Dier ",
+        "form": "opgehalen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1334,6 +2014,18 @@
       "example": {
         "lb": "d'Leit sinn opgestanen, wéi d'Nationalhymn gespillt gouf",
         "audioId": "542bdd14508d32346b30f1ce021e9b23"
+      },
+      "topics": [
+        "gesondheet",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Leit sinn ",
+        "form": "opgestanen",
+        "after": ", wéi d'Nationalhymn gespillt gouf",
+        "via": "lexicon"
       }
     },
     {
@@ -1354,6 +2046,15 @@
       "example": {
         "lb": "de Buergermeeschter huet d'Koppel gepacst",
         "audioId": "db0f01835e9e06980d117ac4346c1c54"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "de Buergermeeschter huet d'Koppel ",
+        "form": "gepacst",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1374,6 +2075,15 @@
       "example": {
         "lb": "e Sonndeg gi mer mat Frënn picknicken",
         "audioId": "ab8dd12e5d3da9fb7f1ee32411b49bb7"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "e Sonndeg gi mer mat Frënn ",
+        "form": "picknicken",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -1394,7 +2104,11 @@
       "example": {
         "lb": "esoubal ech eng Spann gesinn, drécken ech se platt",
         "audioId": "0277ba19ea9d271b7ebf4280d3b2c226"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "PLENNEREN2",
@@ -1414,6 +2128,17 @@
       "example": {
         "lb": "dëse Weekend muss ech e puer Miwwele plënneren",
         "audioId": "456f271b18a9c8e0ca918e69923e7ed2"
+      },
+      "topics": [
+        "wunnen"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": {
+        "before": "dëse Weekend muss ech e puer Miwwele ",
+        "form": "plënneren",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -1434,6 +2159,15 @@
       "example": {
         "lb": "d'Politikerin hat hir Ried gutt preparéiert",
         "audioId": "5ad6e0f4965d4b27a9553e38ea1f3cf1"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "d'Politikerin hat hir Ried gutt ",
+        "form": "preparéiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1454,6 +2188,17 @@
       "example": {
         "lb": "um Enn presentéiere mir d'Conclusioune vun eiser Diskussioun",
         "audioId": "fb6338e20110a8c37c615ad92816939b"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "um Enn ",
+        "form": "presentéiere",
+        "after": " mir d'Conclusioune vun eiser Diskussioun",
+        "via": "lexicon"
       }
     },
     {
@@ -1474,6 +2219,15 @@
       "example": {
         "lb": "mäi Mixer huet en Opsaz, fir Geméis ze rappen",
         "audioId": "e3de8adb65f8624aa6df69124baca265"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "mäi Mixer huet en Opsaz, fir Geméis ze ",
+        "form": "rappen",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -1494,6 +2248,18 @@
       "example": {
         "lb": "den Elektriker weess net, ob en de Radio nach ka reparéieren",
         "audioId": "e035530dbb5dcff461dc47ebc4ee8a73"
+      },
+      "topics": [
+        "medien",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "den Elektriker weess net, ob en de Radio nach ka ",
+        "form": "reparéieren",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1514,6 +2280,17 @@
       "example": {
         "lb": "am Hierscht sammelen d'Kaweechelcher äifereg Nëss an Eechelen",
         "audioId": "51835657953e65ca41ce2fdfccf4540a"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "am Hierscht ",
+        "form": "sammelen",
+        "after": " d'Kaweechelcher äifereg Nëss an Eechelen",
+        "via": "lexicon"
       }
     },
     {
@@ -1534,6 +2311,17 @@
       "example": {
         "lb": "fir Chrëschtdag huet de Chouer all déi bekannt Lidder gesongen",
         "audioId": "5805a84d6e0e2577b7f1ad587e5f72e4"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "fir Chrëschtdag huet de Chouer all déi bekannt Lidder ",
+        "form": "gesongen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1554,6 +2342,17 @@
       "example": {
         "lb": "d'Aarbechter hu séier an effikass geschafft",
         "audioId": "cdb190c1cb670f8aa5050814a6c186bd"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Aarbechter hu séier an effikass ",
+        "form": "geschafft",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1574,6 +2373,15 @@
       "example": {
         "lb": "hëllefs de mer d'Grompere schielen?",
         "audioId": "e3f8fc6db146320ba0b3808245cdb6df"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "hëllefs de mer d'Grompere ",
+        "form": "schielen",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -1594,6 +2402,17 @@
       "example": {
         "lb": "ech leie gär um Bauch fir ze schlofen",
         "audioId": "3c78dc5384f52f01dacad72006d5aacd"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "ech leie gär um Bauch fir ze ",
+        "form": "schlofen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1614,6 +2433,18 @@
       "example": {
         "lb": "dee Fësch huet e komesche Goût, schmaachs de dat net?",
         "audioId": "0501746efdfad220aea7bdf52c87b4d1"
+      },
+      "topics": [
+        "aarbecht",
+        "iessen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "dee Fësch huet e komesche Goût, ",
+        "form": "schmaachs",
+        "after": " de dat net?",
+        "via": "lexicon"
       }
     },
     {
@@ -1634,6 +2465,18 @@
       "example": {
         "lb": "du muss d'Fleesch géint de Fuedem schneiden",
         "audioId": "610a2bb4680edfb6d667c4a1b7c9f9eb"
+      },
+      "topics": [
+        "transport",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "du muss d'Fleesch géint de Fuedem ",
+        "form": "schneiden",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1654,6 +2497,17 @@
       "example": {
         "lb": "den Expediteur hat vergiess, seng Adress op de Pak ze schreiwen",
         "audioId": "3f78d4da1da3a60d92eb8714ba4ba988"
+      },
+      "topics": [
+        "liesen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "den Expediteur hat vergiess, seng Adress op de Pak ze ",
+        "form": "schreiwen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1674,6 +2528,17 @@
       "example": {
         "lb": "meng Mamm huet eréischt spéit schwamme geléiert",
         "audioId": "ccf3f795ea2040424f1c23c53bd7e4c0"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "meng Mamm huet eréischt spéit ",
+        "form": "schwamme",
+        "after": " geléiert",
+        "via": "lexicon"
       }
     },
     {
@@ -1694,6 +2559,17 @@
       "example": {
         "lb": "mäi Monni schwätzt fléissend véier Sproochen",
         "audioId": "59444f1440aa975ceca1079a26e7ed3b"
+      },
+      "topics": [
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mäi Monni ",
+        "form": "schwätzt",
+        "after": " fléissend véier Sproochen",
+        "via": "lexicon"
       }
     },
     {
@@ -1714,6 +2590,15 @@
       "example": {
         "lb": "ech hu meng nei Blus beim Strecke gesengt",
         "audioId": "8aac4f926407dcb165343890692cfa53"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "ech hu meng nei Blus beim Strecke ",
+        "form": "gesengt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1734,6 +2619,15 @@
       "example": {
         "lb": "hues de Loscht, muer de Mëtteg mat mir an d'Stad shoppen ze goen?",
         "audioId": "1bf4f537bfcfd089f9b9e62830f7abc4"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "hues de Loscht, muer de Mëtteg mat mir an d'Stad ",
+        "form": "shoppen",
+        "after": " ze goen?",
+        "via": "surface"
       }
     },
     {
@@ -1754,6 +2648,17 @@
       "example": {
         "lb": "ech hunn de ganzen Dag mäi Liesbrëll gesicht",
         "audioId": "fc69c112a55b36e9d710bbd30832682c"
+      },
+      "topics": [
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn de ganzen Dag mäi Liesbrëll ",
+        "form": "gesicht",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1774,6 +2679,20 @@
       "example": {
         "lb": "d'Vëloskette war mer erofgesprongen",
         "audioId": "c845b15c9a740cbe62b39519eee1c6d0"
+      },
+      "topics": [
+        "joreszäiten",
+        "kreativitéit",
+        "sport",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Vëloskette ",
+        "form": "war",
+        "after": " mer erofgesprongen",
+        "via": "lexicon"
       }
     },
     {
@@ -1794,6 +2713,22 @@
       "example": {
         "lb": "du solls follegen, wann deng Elteren der eppes soen!",
         "audioId": "2e95aa85637a3558536c4cf6df34159c"
+      },
+      "topics": [
+        "gesondheet",
+        "iessen",
+        "joreszäiten",
+        "medien",
+        "transport",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "du ",
+        "form": "solls",
+        "after": " follegen, wann deng Elteren der eppes soen!",
+        "via": "lexicon"
       }
     },
     {
@@ -1814,6 +2749,15 @@
       "example": {
         "lb": "mir ginn all Sonndeg an de Bësch spadséieren",
         "audioId": "675bcdc0762e2cac17f765c8de8797de"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "mir ginn all Sonndeg an de Bësch ",
+        "form": "spadséieren",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1834,6 +2778,19 @@
       "example": {
         "lb": "d'Kanner spillen an der Paus gär Fänkches",
         "audioId": "a5e7b9abacf2c150e58940b217b42a98"
+      },
+      "topics": [
+        "kreativitéit",
+        "medien",
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "d'Kanner ",
+        "form": "spillen",
+        "after": " an der Paus gär Fänkches",
+        "via": "lexicon"
       }
     },
     {
@@ -1854,6 +2811,17 @@
       "example": {
         "lb": "ech ka méi héich sprangen ewéi mäi Brudder",
         "audioId": "7b09927d28bcde38c65d080bc969fbb2"
+      },
+      "topics": [
+        "iessen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech ka méi héich ",
+        "form": "sprangen",
+        "after": " ewéi mäi Brudder",
+        "via": "lexicon"
       }
     },
     {
@@ -1874,6 +2842,15 @@
       "example": {
         "lb": "hues du d'Stuff scho gestaubsaugt?",
         "audioId": "1f7f7b22853d5c62f1ee4f9ab7f77d09"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "hues du d'Stuff scho ",
+        "form": "gestaubsaugt",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -1894,6 +2871,15 @@
       "example": {
         "lb": "d'Gesetz gouf vun der Majoritéit gestëmmt",
         "audioId": "a644a61e57238ae4829ca21cf8c67337"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "d'Gesetz gouf vun der Majoritéit ",
+        "form": "gestëmmt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1914,6 +2900,17 @@
       "example": {
         "lb": "fréier si méi Leit un enger Blinddarmentzündung gestuerwen ewéi haut",
         "audioId": null
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "fréier si méi Leit un enger Blinddarmentzündung ",
+        "form": "gestuerwen",
+        "after": " ewéi haut",
+        "via": "lexicon"
       }
     },
     {
@@ -1934,6 +2931,24 @@
       "example": {
         "lb": "no deem laange Sëtze war ech frou, emol nees ze stoen",
         "audioId": "51daeb980d8091f2f8353aa98cd1accd"
+      },
+      "topics": [
+        "famill",
+        "gesondheet",
+        "iessen",
+        "kleeder",
+        "liesen",
+        "sproochen",
+        "transport",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "no deem laange Sëtze war ech frou, emol nees ze ",
+        "form": "stoen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -1954,6 +2969,17 @@
       "example": {
         "lb": "ech studéiere Chimie op enger auslännescher Universitéit",
         "audioId": "1981e5ee743b2efdd22d263f2c8db0dd"
+      },
+      "topics": [
+        "liesen"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": {
+        "before": "ech ",
+        "form": "studéiere",
+        "after": " Chimie op enger auslännescher Universitéit",
+        "via": "lexicon"
       }
     },
     {
@@ -1974,7 +3000,13 @@
       "example": {
         "lb": "ech tanke kee Bensinn, mäin Auto ass en Diesel",
         "audioId": "f2d406c0f34ef392712391f97ed19801"
-      }
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "TELEFONEIEREN1",
@@ -1994,6 +3026,17 @@
       "example": {
         "lb": "déi zwou Frëndinnen telefonéieren heiansdo stonnelaang mateneen",
         "audioId": "b106e28b6f2f5b49d5b1bd66d5bb9134"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "déi zwou Frëndinnen ",
+        "form": "telefonéieren",
+        "after": " heiansdo stonnelaang mateneen",
+        "via": "lexicon"
       }
     },
     {
@@ -2014,6 +3057,17 @@
       "example": {
         "lb": "wien trainéiert déi Jonk an Ärem Club?",
         "audioId": "985d9f80b654f124532990b8d595b96e"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": "🚆",
+      "cloze": {
+        "before": "wien ",
+        "form": "trainéiert",
+        "after": " déi Jonk an Ärem Club?",
+        "via": "lexicon"
       }
     },
     {
@@ -2034,6 +3088,22 @@
       "example": {
         "lb": "ier s de deng Ried ufänks, muss de der Gehéier verschafen",
         "audioId": "d5db3ceed5d91e433f8b5d69bcccc60c"
+      },
+      "topics": [
+        "aarbecht",
+        "feierdeeg",
+        "iessen",
+        "joreszäiten",
+        "liesen",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ier s de deng Ried ",
+        "form": "ufänks",
+        "after": ", muss de der Gehéier verschafen",
+        "via": "lexicon"
       }
     },
     {
@@ -2054,6 +3124,19 @@
       "example": {
         "lb": "de Papp ass ganz houfereg seng Zwillingen op d'Gemeng umelle gaangen",
         "audioId": "0d09f2d6908ac6213cc6b12dfb456cd8"
+      },
+      "topics": [
+        "famill",
+        "kaddoen",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "de Papp ass ganz houfereg seng Zwillingen op d'Gemeng ",
+        "form": "umelle",
+        "after": " gaangen",
+        "via": "lexicon"
       }
     },
     {
@@ -2074,7 +3157,14 @@
       "example": {
         "lb": "hien huet eise Rendez-vous vun de Mueren doudsécher vergiess",
         "audioId": "381b5f26b0ef4c1ee962093c69d740d8"
-      }
+      },
+      "topics": [
+        "gesondheet",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "VERKAFEN1",
@@ -2094,6 +3184,17 @@
       "example": {
         "lb": "wa meng Aktie bis geklomme sinn, verkafen ech se!",
         "audioId": "8d8469197700ede9bf652b0bd8b6ee07"
+      },
+      "topics": [
+        "liesen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wa meng Aktie bis geklomme sinn, ",
+        "form": "verkafen",
+        "after": " ech se!",
+        "via": "lexicon"
       }
     },
     {
@@ -2114,7 +3215,13 @@
       "example": {
         "lb": "waart, bis de geruff gëss!",
         "audioId": "5422904ca656361822715f881b1d9188"
-      }
+      },
+      "topics": [
+        "iessen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "WAERTEN1",
@@ -2134,6 +3241,21 @@
       "example": {
         "lb": "si wäerten ni en Amateur fannen, wann se de Präis vum Haus net erofsetzen",
         "audioId": "7c9d6b6b1bf60b8959fa26686c15889f"
+      },
+      "topics": [
+        "iessen",
+        "joreszäiten",
+        "kreativitéit",
+        "transport",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "si ",
+        "form": "wäerten",
+        "after": " ni en Amateur fannen, wann se de Präis vum Haus net erofsetzen",
+        "via": "lexicon"
       }
     },
     {
@@ -2154,7 +3276,13 @@
       "example": {
         "lb": "géi wäsch deng knaschteg Fangeren!",
         "audioId": "28cfe814bb5b3c7a821b0d98e2b10394"
-      }
+      },
+      "topics": [
+        "stot"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "WEISEN1",
@@ -2174,6 +3302,21 @@
       "example": {
         "lb": "ech weisen der de Plang vum Haus, fir datt s de der kanns eng Iddi dervu maachen",
         "audioId": "edfcfac7ccaefa5950bbb4a073559890"
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "gesondheet",
+        "medien",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech ",
+        "form": "weisen",
+        "after": " der de Plang vum Haus, fir datt s de der kanns eng Iddi dervu maachen",
+        "via": "surface"
       }
     },
     {
@@ -2194,7 +3337,15 @@
       "example": {
         "lb": "trotz staarke Protester wëllt d'Regierung un der Reform festhalen",
         "audioId": "079adf149c1fc25ff1ba6898964a61da"
-      }
+      },
+      "topics": [
+        "aarbecht",
+        "transport",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "WESSEN2",
@@ -2214,7 +3365,15 @@
       "example": {
         "lb": "eise Professer weess vill iwwer déi griichesch Mythologie",
         "audioId": "9e6ae23bdfe895924e9541d969345e02"
-      }
+      },
+      "topics": [
+        "hobbyen",
+        "transport",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "WIDDERHUELEN1",
@@ -2234,6 +3393,15 @@
       "example": {
         "lb": "kanns de däi leschte Saz wannechgelift widderhuelen?",
         "audioId": "43967de58a6d09d4d3c4046b235836e4"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "kanns de däi leschte Saz wannechgelift ",
+        "form": "widderhuelen",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -2254,6 +3422,17 @@
       "example": {
         "lb": "mir wunnen an enger aler Millen, déi mer restauréiert hunn",
         "audioId": "7901a74ac5b46d5b2c0ec4562b8b88d1"
+      },
+      "topics": [
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mir ",
+        "form": "wunnen",
+        "after": " an enger aler Millen, déi mer restauréiert hunn",
+        "via": "lexicon"
       }
     },
     {
@@ -2274,6 +3453,18 @@
       "example": {
         "lb": "et ass net einfach, engem klenge Kand e Sirop anzeginn",
         "audioId": "52b2dd39b58242245b8222b26682e66b"
+      },
+      "topics": [
+        "famill",
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "et ass net einfach, engem klenge Kand e Sirop ",
+        "form": "anzeginn",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2294,6 +3485,17 @@
       "example": {
         "lb": "hëllefs de mer wannechgelift, déi zwou Fënsteren anzehänken?",
         "audioId": "d1d70aaf5deeeb0d06074631409b7925"
+      },
+      "topics": [
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "hëllefs de mer wannechgelift, déi zwou Fënsteren ",
+        "form": "anzehänken",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -2314,6 +3516,17 @@
       "example": {
         "lb": "deen Text ass schonn zweemol geännert ginn",
         "audioId": "4165b987d34fb0ba95c4584d5515735f"
+      },
+      "topics": [
+        "joreszäiten"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "deen Text ass schonn zweemol ",
+        "form": "geännert",
+        "after": " ginn",
+        "via": "lexicon"
       }
     },
     {
@@ -2334,6 +3547,17 @@
       "example": {
         "lb": "et hate sech esou wéineg Leit ageschriwwen, datt d'Formatioun annuléiert gouf",
         "audioId": "8281af9312999fc9ec614095749efb6c"
+      },
+      "topics": [
+        "joreszäiten"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "et hate sech esou wéineg Leit ageschriwwen, datt d'Formatioun ",
+        "form": "annuléiert",
+        "after": " gouf",
+        "via": "lexicon"
       }
     },
     {
@@ -2354,6 +3578,19 @@
       "example": {
         "lb": "ech loosse mer d'Vas als Kaddo apaken",
         "audioId": "801228e0fd7ed210ce2a146520bbca79"
+      },
+      "topics": [
+        "famill",
+        "joreszäiten",
+        "kaddoen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech loosse mer d'Vas als Kaddo ",
+        "form": "apaken",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2374,7 +3611,13 @@
       "example": {
         "lb": "dëse Weekend raumen ech mäin Handwierksgeschier propper an",
         "audioId": "aba8980e3bf11c7c623eccd06e326c82"
-      }
+      },
+      "topics": [
+        "stot"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "ASCHLOFEN1",
@@ -2394,6 +3637,15 @@
       "example": {
         "lb": "no deem ganzen Dag an der frëscher Loft sinn d'Kanner owes direkt ageschlof",
         "audioId": "4dc4940ad79bf036a628393c6dbc36c8"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "no deem ganzen Dag an der frëscher Loft sinn d'Kanner owes direkt ",
+        "form": "ageschlof",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2414,7 +3666,13 @@
       "example": {
         "lb": "de Personalchef schreift all Dag d'Absencen an",
         "audioId": "fdc128f1d3ef1a470270a67e44082f7a"
-      }
+      },
+      "topics": [
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "ASTELLEN1",
@@ -2434,7 +3692,13 @@
       "example": {
         "lb": "d'Firma stellt 20 nei Aarbechter an",
         "audioId": "7d80f203236b0ef58a86bde0fb0eed9c"
-      }
+      },
+      "topics": [
+        "joreszäiten"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "AUSDOEN1",
@@ -2454,7 +3718,15 @@
       "example": {
         "lb": "ditt är knaschteg Schong aus, wannechgelift!",
         "audioId": "a86ed207ea64e1c9784ee8ae61711eec"
-      }
+      },
+      "topics": [
+        "gesondheet",
+        "kleeder",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "AUSFELLEN1",
@@ -2474,6 +3746,17 @@
       "example": {
         "lb": "et brauch ee just fënnef Minutten, fir de Questionnaire auszefëllen",
         "audioId": "31108f7631a606c8fdd707faf6d1d071"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "et brauch ee just fënnef Minutten, fir de Questionnaire ",
+        "form": "auszefëllen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2494,7 +3777,11 @@
       "example": {
         "lb": "mäi Schwéierpapp gesäit nach ëmmer richteg jonk aus",
         "audioId": "6628a967bf1d7aaa906c31a687b54b40"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "AUSGINN1",
@@ -2514,7 +3801,13 @@
       "example": {
         "lb": "ech ginn am Stot déi mannst Suen aus",
         "audioId": "45ffb99d33bdf97603bf6655dc3c88f3"
-      }
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "AUSKENNEN1",
@@ -2534,7 +3827,11 @@
       "example": {
         "lb": "hie kennt sech a ville Groussstied aus",
         "audioId": "658bcde5cd53c3b785bf3643fba2f0d5"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "AUSLEINEN1",
@@ -2554,6 +3851,17 @@
       "example": {
         "lb": "de Sportsclub kann eis déi néideg Ausrüstung ausléinen",
         "audioId": "de61a9ad756af1fec0810873aaaf75ba"
+      },
+      "topics": [
+        "liesen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "de Sportsclub kann eis déi néideg Ausrüstung ",
+        "form": "ausléinen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2574,6 +3882,18 @@
       "example": {
         "lb": "am Fliger muss een den Handy ausmaachen",
         "audioId": "50a3fcfcdc0286c6f235ff6a094ca61b"
+      },
+      "topics": [
+        "medien",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "am Fliger muss een den Handy ",
+        "form": "ausmaachen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2594,7 +3914,13 @@
       "example": {
         "lb": "d'Kanner paken d'Kaddoen aus",
         "audioId": "01adfdc57a45a8f60bb827311200c595"
-      }
+      },
+      "topics": [
+        "liesen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "AUSSCHWATZEN1",
@@ -2614,6 +3940,17 @@
       "example": {
         "lb": "mengem Brudder seng kleng Duechter kann hiren Numm scho richteg ausschwätzen",
         "audioId": "6eb24ed99d5b5a2c2184fee0359d9be8"
+      },
+      "topics": [
+        "sproochen"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": {
+        "before": "mengem Brudder seng kleng Duechter kann hiren Numm scho richteg ",
+        "form": "ausschwätzen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2634,7 +3971,13 @@
       "example": {
         "lb": "an dësem Schouljoer kënnt fir eist Jéngst Englesch als Fach bäi",
         "audioId": "1e4f081199c8a5795df4985aabce4cbd"
-      }
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "BECKEN2",
@@ -2654,6 +3997,18 @@
       "example": {
         "lb": "du muss de Kapp bécken, fir duerch d'Dier ze kommen",
         "audioId": "832428342cb99cb2445860657f495d53"
+      },
+      "topics": [
+        "famill",
+        "kreativitéit"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "du muss de Kapp ",
+        "form": "bécken",
+        "after": ", fir duerch d'Dier ze kommen",
+        "via": "lexicon"
       }
     },
     {
@@ -2674,6 +4029,17 @@
       "example": {
         "lb": "dat Wuert gëtt bal ni benotzt",
         "audioId": "ba475ecade153bef72bb6f29f623fb48"
+      },
+      "topics": [
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "dat Wuert gëtt bal ni ",
+        "form": "benotzt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2694,6 +4060,15 @@
       "example": {
         "lb": "ech kann der net beschreiwen, wéi ech mech opgereegt hunn!",
         "audioId": "b731c0d6051f4ece60b2763b1f2d2557"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "ech kann der net ",
+        "form": "beschreiwen",
+        "after": ", wéi ech mech opgereegt hunn!",
+        "via": "lexicon"
       }
     },
     {
@@ -2714,6 +4089,15 @@
       "example": {
         "lb": "mäi Brudder huet eng Plaz um Dësch fir seng Frëndin besat",
         "audioId": "a3c7a8a57115428fc712b7322f6498ba"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "mäi Brudder huet eng Plaz um Dësch fir seng Frëndin ",
+        "form": "besat",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2734,7 +4118,13 @@
       "example": {
         "lb": "de Buergermeeschter huet déi jonk Koppel bestuet",
         "audioId": "c2a0199999b0444b84081d39d4465569"
-      }
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "BEWEEGEN1",
@@ -2754,6 +4144,18 @@
       "example": {
         "lb": "nom Accident konnt mäi Papp säi rietst Been net méi beweegen",
         "audioId": "539a24af9f991004371a9f9ff383c9d9"
+      },
+      "topics": [
+        "famill",
+        "gesondheet"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "nom Accident konnt mäi Papp säi rietst Been net méi ",
+        "form": "beweegen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2774,6 +4176,17 @@
       "example": {
         "lb": "et blëtzt an donnert, mee nach reent et net!",
         "audioId": "6204c83f12eb845fd54f7eb18ae43695"
+      },
+      "topics": [
+        "joreszäiten"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "et ",
+        "form": "blëtzt",
+        "after": " an donnert, mee nach reent et net!",
+        "via": "lexicon"
       }
     },
     {
@@ -2794,6 +4207,17 @@
       "example": {
         "lb": "gëschter huet e staarke Wand geblosen",
         "audioId": "fd787b000cc9e89746df79aaa0d81b47"
+      },
+      "topics": [
+        "joreszäiten"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "gëschter huet e staarke Wand ",
+        "form": "geblosen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2814,6 +4238,17 @@
       "example": {
         "lb": "meng Mamm huet gëschter dat ganzt Haus gebotzt",
         "audioId": "e576bdf315205394209c18dfbbb5bd96"
+      },
+      "topics": [
+        "stot"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "meng Mamm huet gëschter dat ganzt Haus ",
+        "form": "gebotzt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2834,6 +4269,17 @@
       "example": {
         "lb": "d'Kanner hu beim Spillen eng Vas gebrach",
         "audioId": "7a4d07a58f9df3e0b0cef3d995fae357"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "d'Kanner hu beim Spillen eng Vas ",
+        "form": "gebrach",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2854,6 +4300,17 @@
       "example": {
         "lb": "mir hunn eis Rees dräi Méint am Viraus gebucht",
         "audioId": "4d909da09ce29ae45433908922307783"
+      },
+      "topics": [
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mir hunn eis Rees dräi Méint am Viraus ",
+        "form": "gebucht",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2874,6 +4331,15 @@
       "example": {
         "lb": "mer mussen nach checken, ob mer näischt vun eiser Lëscht vergiess hunn",
         "audioId": "593b1de02c32da8a0f61410199a863b5"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "mer mussen nach ",
+        "form": "checken",
+        "after": ", ob mer näischt vun eiser Lëscht vergiess hunn",
+        "via": "lexicon"
       }
     },
     {
@@ -2894,6 +4360,17 @@
       "example": {
         "lb": "ech hu mer virgeholl, iwwer d'Feierdeeg weider näischt ze maachen, ewéi ze chillen",
         "audioId": null
+      },
+      "topics": [
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech hu mer virgeholl, iwwer d'Feierdeeg weider näischt ze maachen, ewéi ze ",
+        "form": "chillen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2914,6 +4391,15 @@
       "example": {
         "lb": "si huet vill Zäit gebraucht, fir sech ze coifféieren",
         "audioId": "0360ccec72262d6e9b3b5e339c215625"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "si huet vill Zäit gebraucht, fir sech ze ",
+        "form": "coifféieren",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2934,6 +4420,20 @@
       "example": {
         "lb": "dat Klengt huet säi Schockela mat senge Frëndinne gedeelt",
         "audioId": "ba6f20a5030f139d5a3b6c2c88f98888"
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "feierdeeg",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "dat Klengt huet säi Schockela mat senge Frëndinne ",
+        "form": "gedeelt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2954,6 +4454,20 @@
       "example": {
         "lb": "ech ka vu Middegkeet net méi kloer denken",
         "audioId": "c457e876713f1d375386b2b84e6d8564"
+      },
+      "topics": [
+        "famill",
+        "gesondheet",
+        "vakanz",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech ka vu Middegkeet net méi kloer ",
+        "form": "denken",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -2974,6 +4488,15 @@
       "example": {
         "lb": "dat Abrëllswieder depriméiert mech",
         "audioId": "761e6fbd758fd40870979eb27a0fae33"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "dat Abrëllswieder ",
+        "form": "depriméiert",
+        "after": " mech",
+        "via": "lexicon"
       }
     },
     {
@@ -2994,6 +4517,17 @@
       "example": {
         "lb": "de Chirurg desinfizéiert seng Hänn, ier en operéiert",
         "audioId": "fed2dcd770c1d9940caf1db1291292f9"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "de Chirurg ",
+        "form": "desinfizéiert",
+        "after": " seng Hänn, ier en operéiert",
+        "via": "lexicon"
       }
     },
     {
@@ -3014,6 +4548,17 @@
       "example": {
         "lb": "haut gëtt dat neit Gesetz an der Chamber diskutéiert",
         "audioId": "6ecf9348d1d5a68a1b5f49573f024708"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "haut gëtt dat neit Gesetz an der Chamber ",
+        "form": "diskutéiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3034,6 +4579,22 @@
       "example": {
         "lb": "du muss de Knäppchen drécken, soss bleift de Bus net halen!",
         "audioId": "effeab39832204c195e6ed5a81b9306b"
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "iessen",
+        "kaddoen",
+        "kleeder",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "du muss de Knäppchen ",
+        "form": "drécken",
+        "after": ", soss bleift de Bus net halen!",
+        "via": "surface"
       }
     },
     {
@@ -3054,6 +4615,17 @@
       "example": {
         "lb": "ech dreemen déi lescht Zäit ëmmer nees dat selwecht",
         "audioId": "8a706396080fe501e5bcec1e7cd658d7"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech ",
+        "form": "dreemen",
+        "after": " déi lescht Zäit ëmmer nees dat selwecht",
+        "via": "lexicon"
       }
     },
     {
@@ -3071,7 +4643,11 @@
         "p5": "dréint",
         "p6": "dréinen"
       },
-      "example": null
+      "example": null,
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "DROPMAACHEN1",
@@ -3091,6 +4667,18 @@
       "example": {
         "lb": "hatt huet an der Vakanz seng ganz Pai dropgemaach",
         "audioId": "30244821499deb01306fd1818dd53cc0"
+      },
+      "topics": [
+        "gesondheet",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "hatt huet an der Vakanz seng ganz Pai ",
+        "form": "dropgemaach",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3111,7 +4699,11 @@
       "example": {
         "lb": "sträich dee Saz duerch a schreif en nei!",
         "audioId": "f32a127344f16d2fd9398b90de59a842"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "EIDELMAACHEN1",
@@ -3131,7 +4723,13 @@
       "example": {
         "lb": "meng Fra huet gëschter mat enger Frëndin zesummen eng ganz Fläsch Porto eidel gemaach",
         "audioId": "7cd188bd9b7d6a4fa13f16374092a1a2"
-      }
+      },
+      "topics": [
+        "famill"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "EMDREINEN1",
@@ -3148,7 +4746,11 @@
         "p5": "dréint ëm",
         "p6": "dréinen ëm"
       },
-      "example": null
+      "example": null,
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "EMKLAMMEN1",
@@ -3168,6 +4770,18 @@
       "example": {
         "lb": "wann ech mam Bus op d'Aarbecht fueren, muss ech zweemol ëmklammen",
         "audioId": "48738a9689eb7c670b0a3cb3bf5c66a9"
+      },
+      "topics": [
+        "aarbecht",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wann ech mam Bus op d'Aarbecht fueren, muss ech zweemol ",
+        "form": "ëmklammen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3188,7 +4802,11 @@
       "example": {
         "lb": "d'Koppel huet en Detektiv engagéiert",
         "audioId": "a92fe68d0e8ec8a539537e4dda20ec9a"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "ENNERSCHREIWEN1",
@@ -3208,6 +4826,15 @@
       "example": {
         "lb": "de Kontrakt muss nach haut ënnerschriwwe ginn",
         "audioId": "b2aafa59270c6b026d01ad8bbf3af61a"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "de Kontrakt muss nach haut ",
+        "form": "ënnerschriwwe",
+        "after": " ginn",
+        "via": "lexicon"
       }
     },
     {
@@ -3228,6 +4855,17 @@
       "example": {
         "lb": "de Laborant huet d'Buedemprouwen ënnersicht",
         "audioId": "55fa4932187020b39ba0b288235ca5d4"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "de Laborant huet d'Buedemprouwen ",
+        "form": "ënnersicht",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3248,6 +4886,18 @@
       "example": {
         "lb": "et ass eng nei Orchideeënzort entdeckt ginn",
         "audioId": "457e2e69d067bb229c60e91d87ff5975"
+      },
+      "topics": [
+        "iessen",
+        "liesen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "et ass eng nei Orchideeënzort ",
+        "form": "entdeckt",
+        "after": " ginn",
+        "via": "lexicon"
       }
     },
     {
@@ -3268,6 +4918,15 @@
       "example": {
         "lb": "entschëllegt den Derangement, wannechgelift!",
         "audioId": "34d48ca19399d071f1b58f3a6eaeb492"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "",
+        "form": "entschëllegt",
+        "after": " den Derangement, wannechgelift!",
+        "via": "lexicon"
       }
     },
     {
@@ -3288,6 +4947,15 @@
       "example": {
         "lb": "mir hunn alles gemaach, fir d'Situatioun ze entspanen",
         "audioId": "5b20105d05bce24625b399d62cbccbf1"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "mir hunn alles gemaach, fir d'Situatioun ze ",
+        "form": "entspanen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3308,6 +4976,17 @@
       "example": {
         "lb": "du muss méi wäit mam Auto erafueren, soss geet d'Paart net ganz zou",
         "audioId": "d7c169d2900bba9c997d25a05c4b77e5"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "du muss méi wäit mam Auto ",
+        "form": "erafueren",
+        "after": ", soss geet d'Paart net ganz zou",
+        "via": "lexicon"
       }
     },
     {
@@ -3328,7 +5007,11 @@
       "example": {
         "lb": "gitt schonn eran, mir kommen no!",
         "audioId": "0987cda4a008a51d45a97d299689a9f6"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "ERAKLAMMEN1",
@@ -3348,6 +5031,17 @@
       "example": {
         "lb": "d'Abriecher sinn duerch d'Kichefënster erageklommen",
         "audioId": "86db5323defea9b37904d519533da9b9"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Abriecher sinn duerch d'Kichefënster ",
+        "form": "erageklommen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3368,6 +5062,19 @@
       "example": {
         "lb": "wann et der an der Sauna ze waarm gëtt, muss de erausgoen!",
         "audioId": "568f02c4c1c694a75103ba72bf37766c"
+      },
+      "topics": [
+        "joreszäiten",
+        "sport",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wann et der an der Sauna ze waarm gëtt, muss de ",
+        "form": "erausgoen",
+        "after": "!",
+        "via": "lexicon"
       }
     },
     {
@@ -3388,6 +5095,15 @@
       "example": {
         "lb": "well d'Dier net méi opgoung, si mir zur Fënster erausgeklommen",
         "audioId": "c6e947649b1c08bd4aed1c0e5c4a5a2a"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "well d'Dier net méi opgoung, si mir zur Fënster ",
+        "form": "erausgeklommen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3408,6 +5124,18 @@
       "example": {
         "lb": "d'Mamm erënnert d'Kanner un hire Rendez-vous beim Coiffer",
         "audioId": "97198e7787e59742cfba42def3924c81"
+      },
+      "topics": [
+        "famill",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Mamm ",
+        "form": "erënnert",
+        "after": " d'Kanner un hire Rendez-vous beim Coiffer",
+        "via": "lexicon"
       }
     },
     {
@@ -3428,6 +5156,18 @@
       "example": {
         "lb": "bei deem Wieder ass et kee Wonner, datt mir eis all erkaalt hunn",
         "audioId": "49a4a21e9bedf37272d768451ed60a07"
+      },
+      "topics": [
+        "gesondheet",
+        "joreszäiten"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "bei deem Wieder ass et kee Wonner, datt mir eis all ",
+        "form": "erkaalt",
+        "after": " hunn",
+        "via": "lexicon"
       }
     },
     {
@@ -3448,6 +5188,15 @@
       "example": {
         "lb": "erklär eis dat emol an aller Rou!",
         "audioId": "8c85a5959c67f453d7713c6fec611bc1"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "",
+        "form": "erklär",
+        "after": " eis dat emol an aller Rou!",
+        "via": "lexicon"
       }
     },
     {
@@ -3468,6 +5217,15 @@
       "example": {
         "lb": "d'Elteren hunn hirem Jong erlaabt, an Amerika ze fléien",
         "audioId": "0609860027a950a8801c4f159ab0de5e"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "d'Elteren hunn hirem Jong ",
+        "form": "erlaabt",
+        "after": ", an Amerika ze fléien",
+        "via": "lexicon"
       }
     },
     {
@@ -3488,6 +5246,17 @@
       "example": {
         "lb": "du kanns mech dëse Weekend um Handy erreechen",
         "audioId": "12909fa006fabf591d73a9af7668b29a"
+      },
+      "topics": [
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "du kanns mech dëse Weekend um Handy ",
+        "form": "erreechen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3508,6 +5277,15 @@
       "example": {
         "lb": "de Grousspapp erzielt sengem Enkelkand all Dag eng Geschicht",
         "audioId": "92732d29e8b5ca3977023d1bc6fb6af9"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "de Grousspapp ",
+        "form": "erzielt",
+        "after": " sengem Enkelkand all Dag eng Geschicht",
+        "via": "lexicon"
       }
     },
     {
@@ -3528,6 +5306,17 @@
       "example": {
         "lb": "bei eis doheem gëtt näischt ewechgehäit",
         "audioId": "2adda0e0f1e62ffc659d69fa2d93bd56"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "bei eis doheem gëtt näischt ",
+        "form": "ewechgehäit",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3548,6 +5337,17 @@
       "example": {
         "lb": "mäi Brudder huet säin ale Vëlo ewechginn",
         "audioId": "01af57594853c76a7654e3148920f27f"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mäi Brudder huet säin ale Vëlo ",
+        "form": "ewechginn",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3568,6 +5368,18 @@
       "example": {
         "lb": "d'Mamm huet hirem klenge Bouf d'Täschemesser ewechgeholl",
         "audioId": "679a41d5f66309fae6eb418415c50b30"
+      },
+      "topics": [
+        "famill",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Mamm huet hirem klenge Bouf d'Täschemesser ",
+        "form": "ewechgeholl",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3588,6 +5400,19 @@
       "example": {
         "lb": "d'Sekretärin huet d'Zeitung ewechgeluecht, wéi hire Chef erakoum",
         "audioId": "5ee3ebb2d8c875c730bf493395ee8ac9"
+      },
+      "topics": [
+        "aarbecht",
+        "liesen",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Sekretärin huet d'Zeitung ",
+        "form": "ewechgeluecht",
+        "after": ", wéi hire Chef erakoum",
+        "via": "lexicon"
       }
     },
     {
@@ -3608,6 +5433,17 @@
       "example": {
         "lb": "d'Kanner fäerten den Houseker",
         "audioId": "062a94ae1cb38c621e485e0399b92f98"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "d'Kanner ",
+        "form": "fäerten",
+        "after": " den Houseker",
+        "via": "lexicon"
       }
     },
     {
@@ -3628,6 +5464,21 @@
       "example": {
         "lb": "pass op, d'Äsche vun denger Zigarett falen op de Buedem!",
         "audioId": "98054ed24ea6003364e5117c6c77d5d8"
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "feierdeeg",
+        "joreszäiten",
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "pass op, d'Äsche vun denger Zigarett ",
+        "form": "falen",
+        "after": " op de Buedem!",
+        "via": "surface"
       }
     },
     {
@@ -3648,6 +5499,17 @@
       "example": {
         "lb": "dëse Steiersystem favoriséiert déi Leit, déi net vill verdéngen",
         "audioId": "86edc831c39acd90f69546ad52dc1883"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "dëse Steiersystem ",
+        "form": "favoriséiert",
+        "after": " déi Leit, déi net vill verdéngen",
+        "via": "lexicon"
       }
     },
     {
@@ -3668,6 +5530,17 @@
       "example": {
         "lb": "wie feelt haut?",
         "audioId": "6a20362e75cbb5198a836949be1cc8d1"
+      },
+      "topics": [
+        "joreszäiten"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wie ",
+        "form": "feelt",
+        "after": " haut?",
+        "via": "lexicon"
       }
     },
     {
@@ -3688,6 +5561,17 @@
       "example": {
         "lb": "mäi Bop fëmmt d'Päif",
         "audioId": "6a202251b07c1b96dcf20175a53de65a"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mäi Bop ",
+        "form": "fëmmt",
+        "after": " d'Päif",
+        "via": "lexicon"
       }
     },
     {
@@ -3708,7 +5592,13 @@
       "example": {
         "lb": "ech hu mer meng Liederjackett nei fiddere gelooss",
         "audioId": "0ca6ad5369c2ddecca2511bd008e11a5"
-      }
+      },
+      "topics": [
+        "famill"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "FILLEN1",
@@ -3728,6 +5618,19 @@
       "example": {
         "lb": "nom Iesse fillen ech dacks en Drock am Mo",
         "audioId": "108a73d00997d5337ab1daa8f8a9bd31"
+      },
+      "topics": [
+        "gesondheet",
+        "iessen",
+        "joreszäiten"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "nom Iesse ",
+        "form": "fillen",
+        "after": " ech dacks en Drock am Mo",
+        "via": "lexicon"
       }
     },
     {
@@ -3748,6 +5651,17 @@
       "example": {
         "lb": "et ass net einfach, en Doudkranke richteg ze fleegen",
         "audioId": "ec21ff1b9e778ce85be700184ac94362"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": "🚗",
+      "cloze": {
+        "before": "et ass net einfach, en Doudkranke richteg ze ",
+        "form": "fleegen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3768,6 +5682,18 @@
       "example": {
         "lb": "d'Schmuebele fléien héich iwwer den Haiser",
         "audioId": "3eb7328da6921ab94585b6a73d3e4bcc"
+      },
+      "topics": [
+        "aarbecht",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Schmuebele ",
+        "form": "fléien",
+        "after": " héich iwwer den Haiser",
+        "via": "lexicon"
       }
     },
     {
@@ -3788,6 +5714,17 @@
       "example": {
         "lb": "et ass schwéier, d'Déieren an der Natur ze fotograféieren",
         "audioId": "3db501990246bb32b8a529c9e03ee682"
+      },
+      "topics": [
+        "kreativitéit"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": {
+        "before": "et ass schwéier, d'Déieren an der Natur ze ",
+        "form": "fotograféieren",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3808,6 +5745,17 @@
       "example": {
         "lb": "et géif eis freeën, wa mer eng Kéier zesumme géifen iesse goen",
         "audioId": "6cd0eb96511188b4423298d8c7f0d154"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "et géif eis ",
+        "form": "freeën",
+        "after": ", wa mer eng Kéier zesumme géifen iesse goen",
+        "via": "lexicon"
       }
     },
     {
@@ -3828,6 +5776,17 @@
       "example": {
         "lb": "dëse Wanter ass de Buedem dacks gefruer",
         "audioId": "74666a87c4d8a7d84984d10f5b1566c5"
+      },
+      "topics": [
+        "joreszäiten"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "dëse Wanter ass de Buedem dacks ",
+        "form": "gefruer",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3848,6 +5807,17 @@
       "example": {
         "lb": "dat ass e Film, deen dir bestëmmt gefält",
         "audioId": "f61ca645daa3a1b58007cefe61936320"
+      },
+      "topics": [
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "dat ass e Film, deen dir bestëmmt ",
+        "form": "gefält",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3868,6 +5838,18 @@
       "example": {
         "lb": "ech hunn de Kuch ganz lues giess, ech hunn e richteg genoss",
         "audioId": "a8e3ae35d6337a7fbbb732eea88f2361"
+      },
+      "topics": [
+        "famill",
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn de Kuch ganz lues giess, ech hunn e richteg ",
+        "form": "genoss",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3888,6 +5870,17 @@
       "example": {
         "lb": "vu menger Fënster aus gesinn ech d'Kathedral",
         "audioId": "d5118ae56baba0e2014ad54e5c85abd3"
+      },
+      "topics": [
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "vu menger Fënster aus ",
+        "form": "gesinn",
+        "after": " ech d'Kathedral",
+        "via": "lexicon"
       }
     },
     {
@@ -3908,6 +5901,17 @@
       "example": {
         "lb": "eis Basketsekipp huet dës Saison all Match gewonnen",
         "audioId": "b0ca5a20b96a2bf60a5830859a48f6d3"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "eis Basketsekipp huet dës Saison all Match ",
+        "form": "gewonnen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3928,6 +5932,15 @@
       "example": {
         "lb": "de Jury huet dem Gewënner vum Museksconcours gratuléiert",
         "audioId": "b382dd751d3c5bfadc8099c614862270"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "de Jury huet dem Gewënner vum Museksconcours ",
+        "form": "gratuléiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3948,7 +5961,19 @@
       "example": {
         "lb": "ech schëdden, hal du den Triichter!",
         "audioId": "38f31a00f6504d7909895ee58cf09c13"
-      }
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "joreszäiten",
+        "medien",
+        "sport",
+        "transport",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "HANKEN1",
@@ -3968,6 +5993,20 @@
       "example": {
         "lb": "ech hunn eis zwee nei Tabloen an de Salon gehaangen",
         "audioId": "1721481b6c52b02ec90919abb3128683"
+      },
+      "topics": [
+        "joreszäiten",
+        "medien",
+        "transport",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn eis zwee nei Tabloen an de Salon ",
+        "form": "gehaangen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -3988,6 +6027,15 @@
       "example": {
         "lb": "d'Kanner hunn doheem e risege Chaos hannerlooss",
         "audioId": "d9db7db0c5db4a5a2e6fd33055a91ceb"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "d'Kanner hunn doheem e risege Chaos ",
+        "form": "hannerlooss",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4008,6 +6056,17 @@
       "example": {
         "lb": "wann ech owes no der Aarbecht heemkommen, da raschten ech gär e bëssen",
         "audioId": "de1083318f4c366a03d811a494142345"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wann ech owes no der Aarbecht ",
+        "form": "heemkommen",
+        "after": ", da raschten ech gär e bëssen",
+        "via": "lexicon"
       }
     },
     {
@@ -4028,6 +6087,17 @@
       "example": {
         "lb": "ech hoffen, datt mer d'Wallissen all an den Auto kréien",
         "audioId": "a768c83cbee70a3fd7aabc86f4ac936e"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech ",
+        "form": "hoffen",
+        "after": ", datt mer d'Wallissen all an den Auto kréien",
+        "via": "lexicon"
       }
     },
     {
@@ -4048,6 +6118,17 @@
       "example": {
         "lb": "wann ech muer nach ëmmer esou vill muss houschten, da ginn ech bei den Dokter",
         "audioId": "91736e7768c46f290c6c860df64adc75"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": "🤧",
+      "cloze": {
+        "before": "wann ech muer nach ëmmer esou vill muss ",
+        "form": "houschten",
+        "after": ", da ginn ech bei den Dokter",
+        "via": "lexicon"
       }
     },
     {
@@ -4068,6 +6149,15 @@
       "example": {
         "lb": "all Mënsch ka sech emol ieren",
         "audioId": "a2037f9c989cf18c3feee4bf4f5fc0f8"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "all Mënsch ka sech emol ",
+        "form": "ieren",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4088,6 +6178,17 @@
       "example": {
         "lb": "well ech keng Zäit hat, mech virzebereeden, hunn ech meng Ried missen improviséieren",
         "audioId": null
+      },
+      "topics": [
+        "kreativitéit"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "well ech keng Zäit hat, mech virzebereeden, hunn ech meng Ried missen ",
+        "form": "improviséieren",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4108,6 +6209,17 @@
       "example": {
         "lb": "et huet keen eis informéiert, datt d'Strooss gespaart ass",
         "audioId": "0fd9e96abbdd68360c7505240776459b"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "et huet keen eis ",
+        "form": "informéiert",
+        "after": ", datt d'Strooss gespaart ass",
+        "via": "lexicon"
       }
     },
     {
@@ -4128,6 +6240,17 @@
       "example": {
         "lb": "dee Film interesséiert kee Mënsch",
         "audioId": "bb036b159ad5d2d1fd2ce956794ebcff"
+      },
+      "topics": [
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "dee Film ",
+        "form": "interesséiert",
+        "after": " kee Mënsch",
+        "via": "lexicon"
       }
     },
     {
@@ -4145,7 +6268,11 @@
         "p5": "intresséiert",
         "p6": "intresséieren"
       },
-      "example": null
+      "example": null,
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "INVITEIEREN1",
@@ -4165,6 +6292,17 @@
       "example": {
         "lb": "ech hunn zwanzeg Leit op mäi Gebuertsdag invitéiert",
         "audioId": "d7745ca99cbc03a00bed698fd632fbba"
+      },
+      "topics": [
+        "kaddoen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn zwanzeg Leit op mäi Gebuertsdag ",
+        "form": "invitéiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4185,6 +6323,17 @@
       "example": {
         "lb": "mäi Mann huet mech mat engem Bijou iwwerrascht",
         "audioId": "06b0c3e30282542f7e092a4185556e1b"
+      },
+      "topics": [
+        "joreszäiten"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mäi Mann huet mech mat engem Bijou ",
+        "form": "iwwerrascht",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4205,6 +6354,17 @@
       "example": {
         "lb": "mäi Monni huet mir fir mäi Gebuertsdag e schéint Stéck Geld iwwerwisen",
         "audioId": "bce1a9e87e384d2ee8ed126dd3e6116b"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "mäi Monni huet mir fir mäi Gebuertsdag e schéint Stéck Geld ",
+        "form": "iwwerwisen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4225,6 +6385,15 @@
       "example": {
         "lb": "solle mer an de Bësch fuere fir ze joggen?",
         "audioId": "345f5792b93663b6b2512a850d0159d6"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "solle mer an de Bësch fuere fir ze ",
+        "form": "joggen",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -4245,6 +6414,15 @@
       "example": {
         "lb": "ier mer ginn, muss ech mech nach kämmen",
         "audioId": "6f53ea25da3c851d862816f3af6b69c0"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "ier mer ginn, muss ech mech nach ",
+        "form": "kämmen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4265,6 +6443,17 @@
       "example": {
         "lb": "d'Elteren hu sech vill ëm hir Kanner gekëmmert",
         "audioId": "245b495fbad3424507374d5c4ae3cfb3"
+      },
+      "topics": [
+        "iessen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Elteren hu sech vill ëm hir Kanner ",
+        "form": "gekëmmert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4285,7 +6474,14 @@
       "example": {
         "lb": "et géif eis freeën, däin neie Frënd kennen ze léieren",
         "audioId": "bee06b8b8f32a0f891d74147d36bdba4"
-      }
+      },
+      "topics": [
+        "famill",
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "KENNEN2",
@@ -4305,6 +6501,17 @@
       "example": {
         "lb": "mir kennen eis zënter e puer Joer",
         "audioId": "04b1b2a7bdd9e7a9019944be941b7dd0"
+      },
+      "topics": [
+        "famill"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mir ",
+        "form": "kennen",
+        "after": " eis zënter e puer Joer",
+        "via": "lexicon"
       }
     },
     {
@@ -4325,6 +6532,17 @@
       "example": {
         "lb": "klak d'Dieren net esou!",
         "audioId": "cc36790f85403584b88dc9be7f4aba92"
+      },
+      "topics": [
+        "famill"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "",
+        "form": "klak",
+        "after": " d'Dieren net esou!",
+        "via": "lexicon"
       }
     },
     {
@@ -4345,6 +6563,17 @@
       "example": {
         "lb": "fir kënnen ze klammen, muss e Ballon mat waarmer Loft gefëllt ginn",
         "audioId": "294c093e4000d2b63dd8757add93c372"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "fir kënnen ze ",
+        "form": "klammen",
+        "after": ", muss e Ballon mat waarmer Loft gefëllt ginn",
+        "via": "lexicon"
       }
     },
     {
@@ -4365,6 +6594,15 @@
       "example": {
         "lb": "hatt huet hell an donkel Kleeder flott matenee kombinéiert",
         "audioId": "3ce162bc3274162bd0c42201aac8f501"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "hatt huet hell an donkel Kleeder flott matenee ",
+        "form": "kombinéiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4385,6 +6623,15 @@
       "example": {
         "lb": "fir eppes gewuer ze ginn, muss de déi richteg Leit kontaktéieren!",
         "audioId": "a2979c78ee9741b71c4ba9bf14413da8"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "fir eppes gewuer ze ginn, muss de déi richteg Leit ",
+        "form": "kontaktéieren",
+        "after": "!",
+        "via": "lexicon"
       }
     },
     {
@@ -4405,6 +6652,15 @@
       "example": {
         "lb": "de klenge Bouf huet haart gekrasch, well e vun der Klunsch gefall war",
         "audioId": "94d499706683623ccca890d109c5cadf"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "de klenge Bouf huet haart ",
+        "form": "gekrasch",
+        "after": ", well e vun der Klunsch gefall war",
+        "via": "lexicon"
       }
     },
     {
@@ -4425,6 +6681,17 @@
       "example": {
         "lb": "no menger Operatioun huet d'Doktesch mech sechs Woche krankgeschriwwen",
         "audioId": "89faefbaaa9857020689cb6582befafb"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "no menger Operatioun huet d'Doktesch mech sechs Woche ",
+        "form": "krankgeschriwwen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4445,6 +6712,17 @@
       "example": {
         "lb": "hie laacht, datt em d'Tréinen d'Baken eroflafen!",
         "audioId": "44061fb85b6ec4c7b101db5235213b87"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "hie ",
+        "form": "laacht",
+        "after": ", datt em d'Tréinen d'Baken eroflafen!",
+        "via": "lexicon"
       }
     },
     {
@@ -4465,7 +6743,13 @@
       "example": {
         "lb": "ech kommen den Owend nach laanscht",
         "audioId": "a2bfe8b41ff30623979b2d39bd467f67"
-      }
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "LEEDDOEN1",
@@ -4485,7 +6769,11 @@
       "example": {
         "lb": "dee Mënsch deet mer wierklech leed!",
         "audioId": "45f3c33fc06b91a3925a6e039ae638a9"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "LEEEN1",
@@ -4505,6 +6793,17 @@
       "example": {
         "lb": "fir dës Übung musst Der Iech flaach op de Buedem leeën",
         "audioId": "7991401eb96bd8b451eb6b39620dc92c"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "fir dës Übung musst Der Iech flaach op de Buedem ",
+        "form": "leeën",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -4525,6 +6824,17 @@
       "example": {
         "lb": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic léinen?",
         "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943"
+      },
+      "topics": [
+        "liesen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic ",
+        "form": "léinen",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -4545,6 +6855,17 @@
       "example": {
         "lb": "ären Hond gesäit schlecht aus, ech mengen, dee lieft net méi laang",
         "audioId": "26df6680160ae140374d4e0520384dd0"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "ären Hond gesäit schlecht aus, ech mengen, dee ",
+        "form": "lieft",
+        "after": " net méi laang",
+        "via": "lexicon"
       }
     },
     {
@@ -4565,6 +6886,21 @@
       "example": {
         "lb": "kanns de mer d'Buch bis muer loossen?",
         "audioId": "0a5287e7adb232b8d9e402ee9b8e0fc1"
+      },
+      "topics": [
+        "iessen",
+        "liesen",
+        "transport",
+        "vakanz",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "kanns de mer d'Buch bis muer ",
+        "form": "loossen",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -4585,6 +6921,17 @@
       "example": {
         "lb": "déi jonk Koppel iwwerleet, ob si en Appartement soll kafen oder lounen",
         "audioId": "13422ee5b25bf38df3560a8289de04a9"
+      },
+      "topics": [
+        "wunnen"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": {
+        "before": "déi jonk Koppel iwwerleet, ob si en Appartement soll kafen oder ",
+        "form": "lounen",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -4605,7 +6952,13 @@
       "example": {
         "lb": "bréng e puer Fläsche Béier aus dem Keller mat!",
         "audioId": "1fffbefd373a90407ff99b2dcd39201f"
-      }
+      },
+      "topics": [
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "MATKOMMEN1",
@@ -4625,6 +6978,18 @@
       "example": {
         "lb": "mäi Frënd ass net matkomm, well en huet misse schaffen",
         "audioId": "1b428fe0bbaa32a3ede8d6bd230ee1c0"
+      },
+      "topics": [
+        "aarbecht",
+        "famill"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mäi Frënd ass net ",
+        "form": "matkomm",
+        "after": ", well en huet misse schaffen",
+        "via": "lexicon"
       }
     },
     {
@@ -4645,6 +7010,17 @@
       "example": {
         "lb": "well ech mäi Knéi wéi hunn, weess ech net, ob ech de Marathon ka matlafen",
         "audioId": "ba4e3b4b4955ebba25d83ee5c6d0dcea"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": {
+        "before": "well ech mäi Knéi wéi hunn, weess ech net, ob ech de Marathon ka ",
+        "form": "matlafen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4665,6 +7041,18 @@
       "example": {
         "lb": "well en d'Formatioun net matgemaach huet, kann en am Betrib net avancéieren!",
         "audioId": "7fea93afe88a7f69728dccb82f96967a"
+      },
+      "topics": [
+        "aarbecht",
+        "gesondheet"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "well en d'Formatioun net ",
+        "form": "matgemaach",
+        "after": " huet, kann en am Betrib net avancéieren!",
+        "via": "lexicon"
       }
     },
     {
@@ -4685,6 +7073,15 @@
       "example": {
         "lb": "mir hunn Iech d'Dokumentatioun matgeschéckt",
         "audioId": "a596f079efd56f5b558be9cbf2927fb5"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "mir hunn Iech d'Dokumentatioun ",
+        "form": "matgeschéckt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4705,7 +7102,13 @@
       "example": {
         "lb": "ech spillen nach eng Partie Kaart mat, an da ginn ech heem",
         "audioId": "337ea86b0c575b9e228f5d5a8e06efdb"
-      }
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "MECKEREN1",
@@ -4725,6 +7128,15 @@
       "example": {
         "lb": "et héiert een d'Geessen am Stall meckeren",
         "audioId": "9ab84305ed3795beda942acaafac8c5e"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "et héiert een d'Geessen am Stall ",
+        "form": "meckeren",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4745,6 +7157,15 @@
       "example": {
         "lb": "ech huele mer all Dag zéng Minutten Zäit fir ze meditéieren",
         "audioId": "c9bb91a6d651b2fe5ef4edcb6d677301"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "ech huele mer all Dag zéng Minutten Zäit fir ze ",
+        "form": "meditéieren",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4765,6 +7186,19 @@
       "example": {
         "lb": "de Radio mellt fir muer Kontrollen op de Stroossen",
         "audioId": "5749c6ad698eada5d7c953b7d87c70db"
+      },
+      "topics": [
+        "famill",
+        "medien",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "de Radio ",
+        "form": "mellt",
+        "after": " fir muer Kontrollen op de Stroossen",
+        "via": "lexicon"
       }
     },
     {
@@ -4785,6 +7219,15 @@
       "example": {
         "lb": "ech hunn net gemierkt, wéi den Täschendéif mer de Portmonni aus der Täsch gezunn huet",
         "audioId": "5c6d72ac68182bf096e7f69ddfaff988"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn net ",
+        "form": "gemierkt",
+        "after": ", wéi den Täschendéif mer de Portmonni aus der Täsch gezunn huet",
+        "via": "lexicon"
       }
     },
     {
@@ -4805,6 +7248,17 @@
       "example": {
         "lb": "d'Kummeren um zweete Stack mussen nach miwweléiert ginn",
         "audioId": "cf98d0cec9851307a5be9fb103b2a65a"
+      },
+      "topics": [
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Kummeren um zweete Stack mussen nach ",
+        "form": "miwweléiert",
+        "after": " ginn",
+        "via": "lexicon"
       }
     },
     {
@@ -4825,6 +7279,15 @@
       "example": {
         "lb": "ech hu mäi Schaf selwer montéiert",
         "audioId": "8b8b094635b410308cc656fd4ba0e551"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "ech hu mäi Schaf selwer ",
+        "form": "montéiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4845,6 +7308,19 @@
       "example": {
         "lb": "den Dokter huet dem Blesséierten de Bols geholl an de Bluttdrock gemooss",
         "audioId": "af3e6bd5f363172b85bb8e4fc65b2846"
+      },
+      "topics": [
+        "gesondheet",
+        "joreszäiten",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "den Dokter huet dem Blesséierten de Bols geholl an de Bluttdrock ",
+        "form": "gemooss",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4865,6 +7341,15 @@
       "example": {
         "lb": "vun der Cheffin geet eng Energie aus, déi de ganze Betrib motivéiert",
         "audioId": "11c933f32124e21b2ed8bdd5b5862cbe"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "vun der Cheffin geet eng Energie aus, déi de ganze Betrib ",
+        "form": "motivéiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4885,6 +7370,15 @@
       "example": {
         "lb": "ech hunn d'Blumme mat der Strenz genat",
         "audioId": "4d33425d298ce3f40850fabb437896be"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn d'Blumme mat der Strenz ",
+        "form": "genat",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4905,6 +7399,18 @@
       "example": {
         "lb": "ech hunn dem Schëff nogekuckt, bis et um Horizont verschwonne war",
         "audioId": "e214edbe311813b2a5043da4466c1cf0"
+      },
+      "topics": [
+        "sport",
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn dem Schëff ",
+        "form": "nogekuckt",
+        "after": ", bis et um Horizont verschwonne war",
+        "via": "lexicon"
       }
     },
     {
@@ -4925,7 +7431,11 @@
       "example": {
         "lb": "lauschter mir gutt no, ech soen der et keng zweemol!",
         "audioId": "101b3405d901ab9890c452ee2aec4245"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "NOMAACHEN1",
@@ -4945,6 +7455,17 @@
       "example": {
         "lb": "dee freche Bouf huet d'Joffer nogemaach",
         "audioId": "011376bfb441c87f643cecbce0a36b29"
+      },
+      "topics": [
+        "famill"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "dee freche Bouf huet d'Joffer ",
+        "form": "nogemaach",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4965,6 +7486,15 @@
       "example": {
         "lb": "du muss d'Këschten nummeréieren",
         "audioId": "bad5d39c8ce15e5bd63bf18c38b6fef8"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "du muss d'Këschten ",
+        "form": "nummeréieren",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -4985,6 +7515,17 @@
       "example": {
         "lb": "en éierleche Mënsch huet Äre Portmonni bei der Police ofginn",
         "audioId": "822e647d6a307f859957f845f275d52a"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "en éierleche Mënsch huet Äre Portmonni bei der Police ",
+        "form": "ofginn",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5005,6 +7546,20 @@
       "example": {
         "lb": "ech muss nach e Pak op der Post ofhuelen",
         "audioId": "c56b1df8fabe5aa6de05d8578cd6fb8a"
+      },
+      "topics": [
+        "famill",
+        "iessen",
+        "liesen",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech muss nach e Pak op der Post ",
+        "form": "ofhuelen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5025,6 +7580,17 @@
       "example": {
         "lb": "d'Doktesch huet mech ofgelauschtert",
         "audioId": "96426c72f487d80b84f42fc89a36cef7"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "d'Doktesch huet mech ",
+        "form": "ofgelauschtert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5045,6 +7611,17 @@
       "example": {
         "lb": "d'Federatioun huet all d'Matcher wéinst dem schlechte Wieder ofgesot",
         "audioId": "d6b316d0d759b525836f322a8e2c3be8"
+      },
+      "topics": [
+        "joreszäiten"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Federatioun huet all d'Matcher wéinst dem schlechte Wieder ",
+        "form": "ofgesot",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5065,6 +7642,17 @@
       "example": {
         "lb": "kanns de dat Waasser vum Buedem opbotzen?",
         "audioId": "020b79eba1a59b8fcb0b8665ae9d3ea9"
+      },
+      "topics": [
+        "iessen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "kanns de dat Waasser vum Buedem ",
+        "form": "opbotzen",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -5085,6 +7673,17 @@
       "example": {
         "lb": "ech ginn d'nächst Woch operéiert",
         "audioId": "8ca16054fcc6c35f945b4727372835c5"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "ech ginn d'nächst Woch ",
+        "form": "operéiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5105,7 +7704,14 @@
       "example": {
         "lb": "d'Sonn geet geschwënn op",
         "audioId": "2671b4b700440329d799e7f698e31455"
-      }
+      },
+      "topics": [
+        "aarbecht",
+        "joreszäiten"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "OPHANKEN1",
@@ -5125,6 +7731,19 @@
       "example": {
         "lb": "wou solle mer dat Bild hei ophänken?",
         "audioId": "3e83a7ca6643f1ed4cba327d6f935bfa"
+      },
+      "topics": [
+        "famill",
+        "kreativitéit",
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wou solle mer dat Bild hei ",
+        "form": "ophänken",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -5145,7 +7764,13 @@
       "example": {
         "lb": "hief déi Këscht op a stell se an d'Regal!",
         "audioId": "1e472ff6699939ca80c9811ff66f28a9"
-      }
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "OPMAACHEN1",
@@ -5165,6 +7790,20 @@
       "example": {
         "lb": "hien huet d'Fënster opgemaach, fir den Donst erauszeloossen",
         "audioId": "4792739ee70116080ab10a73599c58d5"
+      },
+      "topics": [
+        "joreszäiten",
+        "kleeder",
+        "liesen",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "hien huet d'Fënster ",
+        "form": "opgemaach",
+        "after": ", fir den Donst erauszeloossen",
+        "via": "lexicon"
       }
     },
     {
@@ -5185,7 +7824,13 @@
       "example": {
         "lb": "pass op, datt s de net fäls!",
         "audioId": "72ba758e6ea7ab0a70b376ad9d881a65"
-      }
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "OPPECHEN1",
@@ -5205,6 +7850,15 @@
       "example": {
         "lb": "déi Logoen hei si geduecht fir opzepechen",
         "audioId": "69d919d2b9e6498a07c70bcde427772b"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "déi Logoen hei si geduecht fir ",
+        "form": "opzepechen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5225,6 +7879,17 @@
       "example": {
         "lb": "ech hat vergiess, mer deng Telefonsnummer opzeschreiwen",
         "audioId": "0ab869b69f3c2112c58867a4eff93bfe"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "ech hat vergiess, mer deng Telefonsnummer ",
+        "form": "opzeschreiwen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5245,6 +7910,15 @@
       "example": {
         "lb": "de Gardien huet eis d'Dier opgespaart",
         "audioId": "4285f8f9a9b5b6c56b4280649a086eec"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "de Gardien huet eis d'Dier ",
+        "form": "opgespaart",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5265,6 +7939,15 @@
       "example": {
         "lb": "d'Gemeng organiséiert all Joer eng grouss Botzaktioun",
         "audioId": "c0e2b95189f57bcc129f0320a49cbd1e"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "d'Gemeng ",
+        "form": "organiséiert",
+        "after": " all Joer eng grouss Botzaktioun",
+        "via": "lexicon"
       }
     },
     {
@@ -5285,6 +7968,19 @@
       "example": {
         "lb": "wa Grëffer um Cageot wieren, géif ech e besser packen",
         "audioId": "f11d137ffe2e6e787e94fc6f2c462a94"
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "joreszäiten"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wa Grëffer um Cageot wieren, géif ech e besser ",
+        "form": "packen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5305,7 +8001,14 @@
       "example": {
         "lb": "pak däi Schoulsak owes, da brauchs de dech mueres net esou ze fläissen!",
         "audioId": "20a63aa3a8536ab96a9ae01b58931329"
-      }
+      },
+      "topics": [
+        "aarbecht",
+        "famill"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "PARKEN1",
@@ -5322,7 +8025,13 @@
         "p5": "parkt",
         "p6": "parken"
       },
-      "example": null
+      "example": null,
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "PASSEN2",
@@ -5342,7 +8051,13 @@
       "example": {
         "lb": "dës Schong passe mer net, se sinn eng Nummer ze kleng",
         "audioId": "903c868a931992847894bdfac741784e"
-      }
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": "🤵",
+      "cloze": null
     },
     {
       "id": "PLANGEN1",
@@ -5362,6 +8077,18 @@
       "example": {
         "lb": "d'Rees huet vill méi deier kascht, wéi mer et geplangt haten",
         "audioId": "926bc376360d671ee31b68733d4e6782"
+      },
+      "topics": [
+        "transport",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Rees huet vill méi deier kascht, wéi mer et ",
+        "form": "geplangt",
+        "after": " haten",
+        "via": "lexicon"
       }
     },
     {
@@ -5382,6 +8109,17 @@
       "example": {
         "lb": "probéier emol en anert Medikament!",
         "audioId": "13d2f82508a808b563cf9d6cc4922cbd"
+      },
+      "topics": [
+        "kleeder"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "",
+        "form": "probéier",
+        "after": " emol en anert Medikament!",
+        "via": "lexicon"
       }
     },
     {
@@ -5402,6 +8140,15 @@
       "example": {
         "lb": "dës Molkerei produzéiert verschidden Zorte Kéis",
         "audioId": "13c5aa01947880ecd685f63e42e19e46"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "dës Molkerei ",
+        "form": "produzéiert",
+        "after": " verschidden Zorte Kéis",
+        "via": "lexicon"
       }
     },
     {
@@ -5422,6 +8169,18 @@
       "example": {
         "lb": "mir hunn zwar eng Buedbidden, mee mer profitéieren se ni",
         "audioId": "8c62d3a29719a852a93351418f942b2f"
+      },
+      "topics": [
+        "hobbyen",
+        "liesen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mir hunn zwar eng Buedbidden, mee mer ",
+        "form": "profitéieren",
+        "after": " se ni",
+        "via": "lexicon"
       }
     },
     {
@@ -5442,7 +8201,11 @@
       "example": {
         "lb": "nom Mëttegiesse rascht de Bopi gewéinlech eng Stonn",
         "audioId": "8fb6d8ade5a897cfe62a3b8e4addf544"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "RASEIEREN1",
@@ -5462,6 +8225,15 @@
       "example": {
         "lb": "d'Prisonéier kruten de Kapp raséiert",
         "audioId": "b70078d7ec8b4f06640d988a53566cb2"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "d'Prisonéier kruten de Kapp ",
+        "form": "raséiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5482,6 +8254,17 @@
       "example": {
         "lb": "wéini hues de wëlles, deng Kummer ze raumen?",
         "audioId": "4b90c10f95d029c54eb4ff26ba144832"
+      },
+      "topics": [
+        "stot"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wéini hues de wëlles, deng Kummer ze ",
+        "form": "raumen",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -5502,6 +8285,15 @@
       "example": {
         "lb": "hien huet net op mäi Bréif reagéiert",
         "audioId": "94fe69f6dca03978eec0d9c076a5ce7e"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "hien huet net op mäi Bréif ",
+        "form": "reagéiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5522,6 +8314,15 @@
       "example": {
         "lb": "ech hunn nach ëmmer net realiséiert, datt ech pensionéiert sinn",
         "audioId": "7771192ec06fc4cb2e8a93379799421f"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn nach ëmmer net ",
+        "form": "realiséiert",
+        "after": ", datt ech pensionéiert sinn",
+        "via": "lexicon"
       }
     },
     {
@@ -5542,6 +8343,22 @@
       "example": {
         "lb": "erklär mer emol, wéi een d'Fläch vun engem Dräieck rechent!",
         "audioId": "5c44496ff83768baf7a6e9a33fed3633"
+      },
+      "topics": [
+        "aarbecht",
+        "joreszäiten",
+        "kaddoen",
+        "kleeder",
+        "transport",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "erklär mer emol, wéi een d'Fläch vun engem Dräieck ",
+        "form": "rechent",
+        "after": "!",
+        "via": "lexicon"
       }
     },
     {
@@ -5562,6 +8379,17 @@
       "example": {
         "lb": "wa mer den Dësch bei d'Mauer réckelen, komme mer besser laanscht",
         "audioId": "7455925659b624c2e63dcd572c55b662"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wa mer den Dësch bei d'Mauer ",
+        "form": "réckelen",
+        "after": ", komme mer besser laanscht",
+        "via": "lexicon"
       }
     },
     {
@@ -5582,6 +8410,17 @@
       "example": {
         "lb": "ech kann Iech deen Dokter nëmme recommandéieren!",
         "audioId": "db6438905ef3f456f62b8b5fafc6c082"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech kann Iech deen Dokter nëmme ",
+        "form": "recommandéieren",
+        "after": "!",
+        "via": "lexicon"
       }
     },
     {
@@ -5602,6 +8441,17 @@
       "example": {
         "lb": "mäi Papp reest d'nächst Woch an Amerika",
         "audioId": "35aaa6aa288543fcc437bd0a5feb9708"
+      },
+      "topics": [
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mäi Papp ",
+        "form": "reest",
+        "after": " d'nächst Woch an Amerika",
+        "via": "lexicon"
       }
     },
     {
@@ -5622,6 +8472,17 @@
       "example": {
         "lb": "meng kleng Schwëster léiert zënter enger Woch reiden",
         "audioId": "b4b02a5325f24468f0a01ecbb96f9e76"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "meng kleng Schwëster léiert zënter enger Woch ",
+        "form": "reiden",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5642,6 +8503,15 @@
       "example": {
         "lb": "mir kruten e Bréif, an deem d'Bank hir Sue reklaméiert",
         "audioId": "83d9cfec3710fbecdd65ee12cf21c67c"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "mir kruten e Bréif, an deem d'Bank hir Sue ",
+        "form": "reklaméiert",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5662,6 +8532,17 @@
       "example": {
         "lb": "an der Vakanz kann een esou richteg relaxen",
         "audioId": "73cf87d2b392c5c52f62d18cd58ee3b7"
+      },
+      "topics": [
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "an der Vakanz kann een esou richteg ",
+        "form": "relaxen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5682,7 +8563,14 @@
       "example": {
         "lb": "mir hu fir eng Woch en Zëmmer mat Hallefpensioun reservéiert",
         "audioId": "e5d222571b3041a2a4893b9aa3d03e65"
-      }
+      },
+      "topics": [
+        "iessen",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "RESPEKTEIEREN1",
@@ -5702,6 +8590,15 @@
       "example": {
         "lb": "ech respektéieren hie fir seng Éierlechkeet",
         "audioId": "878aab3186da9dbd3ca8ea6dd243d76d"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "ech ",
+        "form": "respektéieren",
+        "after": " hie fir seng Éierlechkeet",
+        "via": "lexicon"
       }
     },
     {
@@ -5722,6 +8619,19 @@
       "example": {
         "lb": "ech richen Zigarettendamp, wien huet hei gefëmmt?",
         "audioId": "ce5729bedc7fcc9b125365ee44e128c2"
+      },
+      "topics": [
+        "famill",
+        "kaddoen",
+        "kleeder"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech ",
+        "form": "richen",
+        "after": " Zigarettendamp, wien huet hei gefëmmt?",
+        "via": "lexicon"
       }
     },
     {
@@ -5742,6 +8652,18 @@
       "example": {
         "lb": "du réits ni, wiem ech an der Stad begéint sinn!",
         "audioId": "c1eb517e91628ed23c38e6e772172dcf"
+      },
+      "topics": [
+        "vakanz",
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "du ",
+        "form": "réits",
+        "after": " ni, wiem ech an der Stad begéint sinn!",
+        "via": "lexicon"
       }
     },
     {
@@ -5762,7 +8684,15 @@
       "example": {
         "lb": "ruff mech, wann d'Iesse fäerdeg ass!",
         "audioId": "8faf4d6f32d706eece1b3d64a40df4ad"
-      }
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "gesondheet"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "SABBELEN1",
@@ -5782,7 +8712,13 @@
       "example": {
         "lb": "sabbel kee Roude Wäin op den Teppech, déi Flecke ginn net méi eraus!",
         "audioId": "073a6aab700c7ec8a103ecf1125ec85f"
-      }
+      },
+      "topics": [
+        "iessen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "SCHECKEN1",
@@ -5802,6 +8738,17 @@
       "example": {
         "lb": "du muss de Krankeschäin op d'Krankekeess schécken",
         "audioId": "39514f52b3e78cb81e55db3a446cc2de"
+      },
+      "topics": [
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "du muss de Krankeschäin op d'Krankekeess ",
+        "form": "schécken",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5822,6 +8769,17 @@
       "example": {
         "lb": "den Telefon schellt, kanns du ophiewen?",
         "audioId": "b9a6727cd46ecf7965f5fd1046c0280e"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "den Telefon ",
+        "form": "schellt",
+        "after": ", kanns du ophiewen?",
+        "via": "lexicon"
       }
     },
     {
@@ -5842,6 +8800,18 @@
       "example": {
         "lb": "d'Sonn schéngt iwwer Bierg an Dall",
         "audioId": "c6364cff147c6aaec7503f7540fa687d"
+      },
+      "topics": [
+        "famill",
+        "joreszäiten"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Sonn ",
+        "form": "schéngt",
+        "after": " iwwer Bierg an Dall",
+        "via": "lexicon"
       }
     },
     {
@@ -5862,6 +8832,17 @@
       "example": {
         "lb": "wat kënne mer dem Papp fir säi Gebuertsdag schenken?",
         "audioId": "4eb9678ab321f83f7567e3d5f8dbacaf"
+      },
+      "topics": [
+        "kaddoen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wat kënne mer dem Papp fir säi Gebuertsdag ",
+        "form": "schenken",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -5882,6 +8863,15 @@
       "example": {
         "lb": "de Gesell huet d'Eise geschmitt, esoulaang et nach gliddeg war",
         "audioId": "1760824a1d93908b8b627be4919dcaee"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "de Gesell huet d'Eise ",
+        "form": "geschmitt",
+        "after": ", esoulaang et nach gliddeg war",
+        "via": "lexicon"
       }
     },
     {
@@ -5902,6 +8892,17 @@
       "example": {
         "lb": "ech schminke mech all Mueren, fir méi e frëschen Teint ze hunn",
         "audioId": "676fad5a2220b0d16152119b666f8856"
+      },
+      "topics": [
+        "kreativitéit"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": {
+        "before": "ech ",
+        "form": "schminke",
+        "after": " mech all Mueren, fir méi e frëschen Teint ze hunn",
+        "via": "lexicon"
       }
     },
     {
@@ -5922,6 +8923,19 @@
       "example": {
         "lb": "de Papp huet de Kanner d'Nues geschnäizt, wéi se aus dem Waasser koumen",
         "audioId": "c8b24fe524414c20976f809f727f235a"
+      },
+      "topics": [
+        "famill",
+        "iessen",
+        "kaddoen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "de Papp huet de Kanner d'Nues ",
+        "form": "geschnäizt",
+        "after": ", wéi se aus dem Waasser koumen",
+        "via": "lexicon"
       }
     },
     {
@@ -5942,6 +8956,17 @@
       "example": {
         "lb": "setz den Auto an d'Garage, ier et reent!",
         "audioId": "02ec7802b08ff4846a41efa44f974d7d"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "",
+        "form": "setz",
+        "after": " den Auto an d'Garage, ier et reent!",
+        "via": "lexicon"
       }
     },
     {
@@ -5962,6 +8987,18 @@
       "example": {
         "lb": "no deem laange Stoen deet et gutt, emol erëm kënnen ze sëtzen",
         "audioId": "f520258ee403079d11b714f81de868e0"
+      },
+      "topics": [
+        "famill",
+        "gesondheet"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "no deem laange Stoen deet et gutt, emol erëm kënnen ze ",
+        "form": "sëtzen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -5982,6 +9019,23 @@
       "example": {
         "lb": "eist Klengt ka schonn eng ganz Partie Wierder soen",
         "audioId": "f2469768c8c9982341d52ce46a3b3492"
+      },
+      "topics": [
+        "famill",
+        "feierdeeg",
+        "joreszäiten",
+        "kaddoen",
+        "sproochen",
+        "transport",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "eist Klengt ka schonn eng ganz Partie Wierder ",
+        "form": "soen",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -6002,6 +9056,17 @@
       "example": {
         "lb": "e Kacheluewe späichert d'Hëtzt besser ewéi eng Schminni",
         "audioId": "88a65e2fd0755c15e66fad59cde9cb86"
+      },
+      "topics": [
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "e Kacheluewe ",
+        "form": "späichert",
+        "after": " d'Hëtzt besser ewéi eng Schminni",
+        "via": "lexicon"
       }
     },
     {
@@ -6022,6 +9087,17 @@
       "example": {
         "lb": "d'Bréck gouf gespaart, well se baufälleg ass",
         "audioId": "b4f2981f7dfb23e732e9a5f1c3820a36"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "d'Bréck gouf ",
+        "form": "gespaart",
+        "after": ", well se baufälleg ass",
+        "via": "lexicon"
       }
     },
     {
@@ -6042,6 +9118,18 @@
       "example": {
         "lb": "duerch dës Moossnam wäerte mer vill Sue spueren",
         "audioId": "73be578e5dc31feedfd0a2cfe6229be4"
+      },
+      "topics": [
+        "kreativitéit",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "duerch dës Moossnam wäerte mer vill Sue ",
+        "form": "spueren",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -6062,6 +9150,17 @@
       "example": {
         "lb": "huel frëscht Waasser, fir d'Glieser ze spullen!",
         "audioId": "1c2e83a9482b907b754133ad4bd3826a"
+      },
+      "topics": [
+        "iessen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "huel frëscht Waasser, fir d'Glieser ze ",
+        "form": "spullen",
+        "after": "!",
+        "via": "surface"
       }
     },
     {
@@ -6082,6 +9181,17 @@
       "example": {
         "lb": "ech misst d'Bicher an der Etagère emol nees stëbsen",
         "audioId": "12eef5338b8e1fee642e0b9e3678278c"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech misst d'Bicher an der Etagère emol nees ",
+        "form": "stëbsen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6102,6 +9212,20 @@
       "example": {
         "lb": "ech wëll de Moien um Büro net gestéiert ginn",
         "audioId": "ab649a2c20b34d08ed476df841f8678c"
+      },
+      "topics": [
+        "aarbecht",
+        "iessen",
+        "kreativitéit",
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech wëll de Moien um Büro net ",
+        "form": "gestéiert",
+        "after": " ginn",
+        "via": "lexicon"
       }
     },
     {
@@ -6122,6 +9246,17 @@
       "example": {
         "lb": "fir de Wäin ze versuergen, soll een d'Fläsche leeën, net stellen",
         "audioId": "7aeadf45728b81092d4bcc5020a35c30"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "fir de Wäin ze versuergen, soll een d'Fläsche leeën, net ",
+        "form": "stellen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6142,6 +9277,15 @@
       "example": {
         "lb": "wat sténkt hei esou?",
         "audioId": "e275c96d620d5fde914709d4fa31a20c"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "wat ",
+        "form": "sténkt",
+        "after": " hei esou?",
+        "via": "lexicon"
       }
     },
     {
@@ -6162,6 +9306,17 @@
       "example": {
         "lb": "mäi Brudder wäscht a streckt seng Kleeder selwer",
         "audioId": "dbeeb82a35f7acc9fea212c273fac041"
+      },
+      "topics": [
+        "stot"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": {
+        "before": "mäi Brudder wäscht a ",
+        "form": "streckt",
+        "after": " seng Kleeder selwer",
+        "via": "lexicon"
       }
     },
     {
@@ -6182,6 +9337,18 @@
       "example": {
         "lb": "ech bräicht chinéiert Woll, fir mer e Pullover ze strécken",
         "audioId": "0edfed55ec09ef2da76285dc6358768f"
+      },
+      "topics": [
+        "joreszäiten",
+        "kleeder"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech bräicht chinéiert Woll, fir mer e Pullover ze ",
+        "form": "strécken",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -6202,6 +9369,15 @@
       "example": {
         "lb": "esoubal d'Kanner ugefaangen hunn ze streiden, huet de Schoulmeeschter agegraff",
         "audioId": "80dc68a6633949bc4d7d9a43cf6b9613"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "esoubal d'Kanner ugefaangen hunn ze ",
+        "form": "streiden",
+        "after": ", huet de Schoulmeeschter agegraff",
+        "via": "lexicon"
       }
     },
     {
@@ -6222,6 +9398,17 @@
       "example": {
         "lb": "d'Aarbechter streiken, well se dëse Mount nach keng Pai kruten",
         "audioId": "78798f50f7d0028dff91a0f4d7b100f9"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Aarbechter ",
+        "form": "streiken",
+        "after": ", well se dëse Mount nach keng Pai kruten",
+        "via": "surface"
       }
     },
     {
@@ -6242,6 +9429,18 @@
       "example": {
         "lb": "d'Wittfra muss eleng fir den Ënnerhalt vum Stot suergen",
         "audioId": "113457c31d0e793afd53cb698a8e1619"
+      },
+      "topics": [
+        "iessen",
+        "kaddoen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Wittfra muss eleng fir den Ënnerhalt vum Stot ",
+        "form": "suergen",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -6262,6 +9461,17 @@
       "example": {
         "lb": "ouni Wellen ass net gutt surfen",
         "audioId": "596b8436bed387a8be99f48ecbf2c623"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "ouni Wellen ass net gutt ",
+        "form": "surfen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6282,6 +9492,15 @@
       "example": {
         "lb": "ech hunn an der Däischtert am Tirang getaascht, fir eng Täscheluucht ze fannen",
         "audioId": "d2badc012bb1cf77fddb55a474089a71"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn an der Däischtert am Tirang ",
+        "form": "getaascht",
+        "after": ", fir eng Täscheluucht ze fannen",
+        "via": "lexicon"
       }
     },
     {
@@ -6302,6 +9521,15 @@
       "example": {
         "lb": "ech hu mer eng Rous op d'Schëller tätowéiere gelooss",
         "audioId": "e7b350ee4d5c9debc4836e6e2178c6ed"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "ech hu mer eng Rous op d'Schëller ",
+        "form": "tätowéiere",
+        "after": " gelooss",
+        "via": "lexicon"
       }
     },
     {
@@ -6322,6 +9550,17 @@
       "example": {
         "lb": "maach gemälleg, et gëtt kee Grond, fir sech ze tommelen!",
         "audioId": "ada6a4fbf142c0aa3b48a965201ac305"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "maach gemälleg, et gëtt kee Grond, fir sech ze ",
+        "form": "tommelen",
+        "after": "!",
+        "via": "lexicon"
       }
     },
     {
@@ -6342,6 +9581,17 @@
       "example": {
         "lb": "d'Kugel huet d'Zaldotin an de Réck getraff",
         "audioId": "2b2a4364876dbb47d71a41ba6cfd1c7a"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "d'Kugel huet d'Zaldotin an de Réck ",
+        "form": "getraff",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6362,6 +9612,18 @@
       "example": {
         "lb": "do läit eng Kaz, pass op, datt s de se net trëppels!",
         "audioId": "74c37f48efe066dc80720498d14f4adf"
+      },
+      "topics": [
+        "famill",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "do läit eng Kaz, pass op, datt s de se net ",
+        "form": "trëppels",
+        "after": "!",
+        "via": "lexicon"
       }
     },
     {
@@ -6382,6 +9644,15 @@
       "example": {
         "lb": "de Journalist huet eng Entrevue bei der Ministesch ugefrot",
         "audioId": "d2817cc6f52464568be03d3c305af6ed"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "de Journalist huet eng Entrevue bei der Ministesch ",
+        "form": "ugefrot",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6402,6 +9673,15 @@
       "example": {
         "lb": "wann dir dee Link uklickt, kommt der op eis Homepage",
         "audioId": "e6f828d9fc36cd13146327e2502e9d96"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "wann dir dee Link ",
+        "form": "uklickt",
+        "after": ", kommt der op eis Homepage",
+        "via": "lexicon"
       }
     },
     {
@@ -6422,6 +9702,21 @@
       "example": {
         "lb": "et dauert zwee Deeg, bis de Bréif ukënnt",
         "audioId": "82efda5fdfa45a0f06dc8e7369c8fa2a"
+      },
+      "topics": [
+        "aarbecht",
+        "gesondheet",
+        "joreszäiten",
+        "transport",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "et dauert zwee Deeg, bis de Bréif ",
+        "form": "ukënnt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6442,6 +9737,20 @@
       "example": {
         "lb": "ech hu menger Mamm niewent der Bidden e Grëff ugemaach, fir datt se sech kann unhalen",
         "audioId": "c2aa5a0894423fe9ef358d129db0f502"
+      },
+      "topics": [
+        "famill",
+        "joreszäiten",
+        "kreativitéit",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech hu menger Mamm niewent der Bidden e Grëff ",
+        "form": "ugemaach",
+        "after": ", fir datt se sech kann unhalen",
+        "via": "lexicon"
       }
     },
     {
@@ -6462,6 +9771,15 @@
       "example": {
         "lb": "esoubal eng Kabinn fräi ass, kënnt Der d'Box umoossen",
         "audioId": "a089ce3d43c088daedf8bcf2fa2b0114"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "esoubal eng Kabinn fräi ass, kënnt Der d'Box ",
+        "form": "umoossen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6482,7 +9800,13 @@
       "example": {
         "lb": "am Summer dinn ech praktesch nëmme kuerz Boxen un",
         "audioId": "82d4fc832a62345611dc09f53c3be036"
-      }
+      },
+      "topics": [
+        "kleeder"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "UNHALEN1",
@@ -6502,6 +9826,19 @@
       "example": {
         "lb": "d'Police huet bei enger Kontroll all Auto ugehalen",
         "audioId": "2fe2bee960756e9f8adb36fe8458f15c"
+      },
+      "topics": [
+        "famill",
+        "joreszäiten",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Police huet bei enger Kontroll all Auto ",
+        "form": "ugehalen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6522,7 +9859,13 @@
       "example": {
         "lb": "fréier haten d'Schoulkanner all Schiertecher un",
         "audioId": "ff3a7a16c6e4e8d0852d426ab8ce913e"
-      }
+      },
+      "topics": [
+        "kleeder"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "URUFFEN1",
@@ -6542,7 +9885,13 @@
       "example": {
         "lb": "riffs de vun doheem aus un oder bass de ënnerwee?",
         "audioId": "0ff890a918d49bce758286e6d98e1e04"
-      }
+      },
+      "topics": [
+        "medien"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "USTIECHEN1",
@@ -6562,6 +9911,17 @@
       "example": {
         "lb": "mäi Brudder huet mech mat der Gripp ugestach",
         "audioId": "dd5a11e10a060fe66bf2dad084019cd9"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "mäi Brudder huet mech mat der Gripp ",
+        "form": "ugestach",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6582,6 +9942,17 @@
       "example": {
         "lb": "mir wëllen eis Schlofkummer mat frëndleche Faarwen usträichen",
         "audioId": "b00a876b0e374764cd1e93d79d3ff7ea"
+      },
+      "topics": [
+        "kreativitéit"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mir wëllen eis Schlofkummer mat frëndleche Faarwen ",
+        "form": "usträichen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6602,7 +9973,14 @@
       "example": {
         "lb": "de Blesséierte krut nach op der Plaz vum Accident den Aarm verbonnen",
         "audioId": "ba24abb0d373901bc96b24c21997bc89"
-      }
+      },
+      "topics": [
+        "feierdeeg",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "VERBIDDEN1",
@@ -6622,6 +10000,17 @@
       "example": {
         "lb": "wéinst der Dréchent verbitt d'Gemeng de Leit, den Auto ze wäschen",
         "audioId": "bf64d96afd5ae3ec8afc75195c98f24c"
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "wéinst der Dréchent ",
+        "form": "verbitt",
+        "after": " d'Gemeng de Leit, den Auto ze wäschen",
+        "via": "lexicon"
       }
     },
     {
@@ -6642,6 +10031,18 @@
       "example": {
         "lb": "mäi Papp verbréngt de ganzen Dag virum Computer",
         "audioId": "8752400b1541be1b1aba805051a8b5f4"
+      },
+      "topics": [
+        "famill",
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "mäi Papp ",
+        "form": "verbréngt",
+        "after": " de ganzen Dag virum Computer",
+        "via": "lexicon"
       }
     },
     {
@@ -6662,6 +10063,17 @@
       "example": {
         "lb": "ech hunn déi eidel Këschten am Gaart verbrannt",
         "audioId": "7785a203b7a839201ca914145da47c25"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn déi eidel Këschten am Gaart ",
+        "form": "verbrannt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6682,6 +10094,17 @@
       "example": {
         "lb": "den neie Steiersystem favoriséiert d'Leit, déi net vill verdéngen",
         "audioId": "e633f4f313968505865f7b91021a4901"
+      },
+      "topics": [
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "den neie Steiersystem favoriséiert d'Leit, déi net vill ",
+        "form": "verdéngen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6702,6 +10125,17 @@
       "example": {
         "lb": "ech verdroen dat fettegt Iessen net",
         "audioId": "4a81875f1751d247e978e3d075a5d7bb"
+      },
+      "topics": [
+        "iessen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech ",
+        "form": "verdroen",
+        "after": " dat fettegt Iessen net",
+        "via": "lexicon"
       }
     },
     {
@@ -6722,6 +10156,17 @@
       "example": {
         "lb": "um Internet kann ee kamoud d'Präisser (mateneen) vergläichen",
         "audioId": "727dc771d2e124d6ae8a145951d6c42a"
+      },
+      "topics": [
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "um Internet kann ee kamoud d'Präisser (mateneen) ",
+        "form": "vergläichen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6742,6 +10187,15 @@
       "example": {
         "lb": "et ass schwéier, déi onreegelméisseg Verben all ze verhalen",
         "audioId": "e1ff902306ae92d0d798a76ba0ed6649"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "et ass schwéier, déi onreegelméisseg Verben all ze ",
+        "form": "verhalen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6762,6 +10216,17 @@
       "example": {
         "lb": "wat muss ee maachen, wann ee säi Pass am Ausland verléiert?",
         "audioId": "4b151084f4fd07dec8321e3715d80c6e"
+      },
+      "topics": [
+        "sport"
+      ],
+      "topicVia": "category",
+      "cue": "🚗",
+      "cloze": {
+        "before": "wat muss ee maachen, wann ee säi Pass am Ausland ",
+        "form": "verléiert",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -6782,6 +10247,17 @@
       "example": {
         "lb": "d'Appartement gëtt fir 700 Euro ouni Chargë verlount",
         "audioId": "7d8d61fc93ef2981d2e42452eda5bb36"
+      },
+      "topics": [
+        "wunnen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "d'Appartement gëtt fir 700 Euro ouni Chargë ",
+        "form": "verlount",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6802,6 +10278,15 @@
       "example": {
         "lb": "tommel dech, soss verpasse mer de leschte Metro!",
         "audioId": "dba0cd09f36eab1750a5d72809ad8537"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "tommel dech, soss ",
+        "form": "verpasse",
+        "after": " mer de leschte Metro!",
+        "via": "lexicon"
       }
     },
     {
@@ -6822,6 +10307,15 @@
       "example": {
         "lb": "ech muss eise Rendez-vous verréckelen, well ech d'nächst Woch am Ausland sinn",
         "audioId": "3b6610c579a9c08e243290b2f3ecc72a"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "ech muss eise Rendez-vous ",
+        "form": "verréckelen",
+        "after": ", well ech d'nächst Woch am Ausland sinn",
+        "via": "lexicon"
       }
     },
     {
@@ -6842,6 +10336,17 @@
       "example": {
         "lb": "d'Mëttel, dat d'Doktesch mer verschriwwen hat, huet direkt gewierkt",
         "audioId": "0581b7603bfc421b911b7c028023feed"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "d'Mëttel, dat d'Doktesch mer ",
+        "form": "verschriwwen",
+        "after": " hat, huet direkt gewierkt",
+        "via": "lexicon"
       }
     },
     {
@@ -6862,7 +10367,13 @@
       "example": {
         "lb": "well ech nom 31. August gebuer sinn, hunn ech e Joer an der Schoul verspillt",
         "audioId": "8ca605f76ce45ee1e835944fa7539304"
-      }
+      },
+      "topics": [
+        "hobbyen"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "VERSTAUCHEN1",
@@ -6882,6 +10393,17 @@
       "example": {
         "lb": "eng vun eise beschte Spillerinnen huet sech beim Training den Enkel verstaucht",
         "audioId": "eba1a2aa29f0c90a5062602e54d3241d"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "eng vun eise beschte Spillerinnen huet sech beim Training den Enkel ",
+        "form": "verstaucht",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6902,6 +10424,17 @@
       "example": {
         "lb": "fir deen Text ze verstoen, hunn ech dacks am Dictionnaire missen nokucken",
         "audioId": "76845ac778757e02ff20dd67f858e771"
+      },
+      "topics": [
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "fir deen Text ze ",
+        "form": "verstoen",
+        "after": ", hunn ech dacks am Dictionnaire missen nokucken",
+        "via": "lexicon"
       }
     },
     {
@@ -6922,6 +10455,17 @@
       "example": {
         "lb": "eisen Hond huet e Lach gewullt, fir seng Schank ze verstoppen",
         "audioId": "8ce8ec33e74240e3bf0580ed3f9ff140"
+      },
+      "topics": [
+        "gesondheet"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "eisen Hond huet e Lach gewullt, fir seng Schank ze ",
+        "form": "verstoppen",
+        "after": "",
+        "via": "surface"
       }
     },
     {
@@ -6942,6 +10486,15 @@
       "example": {
         "lb": "d'Museker, déi um Concert fir e gudden Zweck opgetruede sinn, hunn op hir Gage verzicht",
         "audioId": "83df36f49eb0741975132dc43c1f9059"
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": {
+        "before": "d'Museker, déi um Concert fir e gudden Zweck opgetruede sinn, hunn op hir Gage ",
+        "form": "verzicht",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -6962,6 +10515,17 @@
       "example": {
         "lb": "gees de am Summer mat an d'Bierger wanderen?",
         "audioId": "f9ae9e6972406564bc13b28218099e97"
+      },
+      "topics": [
+        "joreszäiten"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "gees de am Summer mat an d'Bierger ",
+        "form": "wanderen",
+        "after": "?",
+        "via": "lexicon"
       }
     },
     {
@@ -6982,6 +10546,17 @@
       "example": {
         "lb": "déi zwee Kolleegen hu sech zoufälleg begéint a sinn zesumme weidergaangen",
         "audioId": "20d039a9c61060813fc93f556b09cafd"
+      },
+      "topics": [
+        "famill"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": {
+        "before": "déi zwee Kolleegen hu sech zoufälleg begéint a sinn zesumme ",
+        "form": "weidergaangen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -7002,6 +10577,17 @@
       "example": {
         "lb": "déi zoustänneg Verwaltung huet eis vill weidergehollef",
         "audioId": "c236922957ef0a5dcdb64bbba3206b9f"
+      },
+      "topics": [
+        "famill"
+      ],
+      "topicVia": "gloss",
+      "cue": null,
+      "cloze": {
+        "before": "déi zoustänneg Verwaltung huet eis vill ",
+        "form": "weidergehollef",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -7022,6 +10608,17 @@
       "example": {
         "lb": "wéi et opgehalen hat mat reenen, konnten d'Leit mat hirer Aarbecht weidermaachen",
         "audioId": "7feffb0bcbb593df7eb807f90bbb86c8"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wéi et opgehalen hat mat reenen, konnten d'Leit mat hirer Aarbecht ",
+        "form": "weidermaachen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -7039,7 +10636,11 @@
         "p5": "ditt",
         "p6": "dinn"
       },
-      "example": null
+      "example": null,
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "WENSCHEN1",
@@ -7059,6 +10660,17 @@
       "example": {
         "lb": "ech wënschen der, datt deng Dreem sech eng Kéier erfëllen",
         "audioId": "415d9c19cc9937bee1099a0b0655058e"
+      },
+      "topics": [
+        "feierdeeg"
+      ],
+      "topicVia": "category",
+      "cue": null,
+      "cloze": {
+        "before": "ech ",
+        "form": "wënschen",
+        "after": " der, datt deng Dreem sech eng Kéier erfëllen",
+        "via": "lexicon"
       }
     },
     {
@@ -7079,6 +10691,17 @@
       "example": {
         "lb": "bei der Reservatioun kann ee seng Plaz online wielen",
         "audioId": "f475a8726d7a352d4b97ffb00f06e3cf"
+      },
+      "topics": [
+        "sproochen"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "bei der Reservatioun kann ee seng Plaz online ",
+        "form": "wielen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -7099,6 +10722,17 @@
       "example": {
         "lb": "den Dosage muss stëmmen, fir datt d'Sprëtzmëttel wierkt",
         "audioId": "6b5d7b182d1d0a4133d4b2780c18be8d"
+      },
+      "topics": [
+        "aarbecht"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "den Dosage muss stëmmen, fir datt d'Sprëtzmëttel ",
+        "form": "wierkt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -7119,6 +10753,20 @@
       "example": {
         "lb": "de Schrëftsteller huet de Verlag gewiesselt",
         "audioId": "a2eed5d4d441b5572aac95187722cc08"
+      },
+      "topics": [
+        "aarbecht",
+        "famill",
+        "transport",
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "de Schrëftsteller huet de Verlag ",
+        "form": "gewiesselt",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -7139,6 +10787,19 @@
       "example": {
         "lb": "am Architektebüro gëtt hautdesdaags mam Computer gezeechent",
         "audioId": "5b22e3ca08e3888158c1685325855961"
+      },
+      "topics": [
+        "hobbyen",
+        "liesen",
+        "medien"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "am Architektebüro gëtt hautdesdaags mam Computer ",
+        "form": "gezeechent",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -7159,6 +10820,18 @@
       "example": {
         "lb": "wéi ech gemierkt hunn, datt ech mäi Prabbeli am Restaurant leie gelooss hat, sinn ech direkt zeréckgefuer",
         "audioId": "c4ea950c91f6843659c3cb66b9f051fd"
+      },
+      "topics": [
+        "iessen",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wéi ech gemierkt hunn, datt ech mäi Prabbeli am Restaurant leie gelooss hat, sinn ech direkt ",
+        "form": "zeréckgefuer",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -7179,6 +10852,19 @@
       "example": {
         "lb": "ech hunn eppes am Auto vergiess, ech muss nach eng Kéier zeréckgoen",
         "audioId": "82fee9343fec49c1bd0fffe85eeee1a1"
+      },
+      "topics": [
+        "gesondheet",
+        "iessen",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "ech hunn eppes am Auto vergiess, ech muss nach eng Kéier ",
+        "form": "zeréckgoen",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -7199,7 +10885,13 @@
       "example": {
         "lb": "am Fréijoer kommen d'Schmuebelen zeréck",
         "audioId": "907c44a8ee98535d91fe5112b35206b9"
-      }
+      },
+      "topics": [
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "ZERECKRUFFEN1",
@@ -7219,6 +10911,17 @@
       "example": {
         "lb": "wéinst dem Attentat huet de Premier d'Ministeren aus der Vakanz zeréckgeruff",
         "audioId": "eabb65bb551dd9fc2e8aee5a66d0b7e0"
+      },
+      "topics": [
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "wéinst dem Attentat huet de Premier d'Ministeren aus der Vakanz ",
+        "form": "zeréckgeruff",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -7236,7 +10939,13 @@
         "p5": "zielt",
         "p6": "zielen"
       },
-      "example": null
+      "example": null,
+      "topics": [
+        "famill"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "ZOUHUELEN1",
@@ -7256,6 +10965,17 @@
       "example": {
         "lb": "hien huet an der Vakanz zougeholl",
         "audioId": "6c919458a82f8e15ef096358fe9b94b8"
+      },
+      "topics": [
+        "vakanz"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": {
+        "before": "hien huet an der Vakanz ",
+        "form": "zougeholl",
+        "after": "",
+        "via": "lexicon"
       }
     },
     {
@@ -7276,7 +10996,11 @@
       "example": {
         "lb": "ech muss de Bauch anzéien, soss kréien ech meng Box net zou",
         "audioId": "5822e8c6116d3d558082f187c10b9d9a"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "ZOUMAACHEN1",
@@ -7296,7 +11020,16 @@
       "example": {
         "lb": "maach deng Jackett zou, soss gëss de kal!",
         "audioId": "b6b48e083978fdc7f2c4d7d3f179808c"
-      }
+      },
+      "topics": [
+        "famill",
+        "joreszäiten",
+        "kleeder",
+        "transport"
+      ],
+      "topicVia": "seed",
+      "cue": null,
+      "cloze": null
     },
     {
       "id": "ZOUSPAREN1",
@@ -7316,7 +11049,11 @@
       "example": {
         "lb": "spär d'Viischt Dier zou, wann s de schlofe gees!",
         "audioId": "ecf04dc55d910b5ba44c06c5a4d97b04"
-      }
+      },
+      "topics": [],
+      "topicVia": null,
+      "cue": null,
+      "cloze": null
     }
   ]
 }
