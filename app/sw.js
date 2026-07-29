@@ -9,7 +9,7 @@
  * recordings does not mean hand-editing this file.
  */
 
-const VERSION = 'v3';
+const VERSION = 'v4';
 const SHELL_CACHE = `shell-${VERSION}`;
 const AUDIO_CACHE = `audio-${VERSION}`;
 
@@ -39,6 +39,7 @@ const SHELL = [
   'js/screens/review.js',
   'js/screens/readiness.js',
   'js/screens/duel.js',
+  'js/screens/settings.js',
   'data/topics.json',
   'data/listening.json',
   'data/interviews.json',

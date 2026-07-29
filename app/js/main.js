@@ -18,6 +18,7 @@ import * as speaking from './screens/speaking.js';
 import * as review from './screens/review.js';
 import * as readiness from './screens/readiness.js';
 import * as duel from './screens/duel.js';
+import * as settings from './screens/settings.js';
 
 const ROUTES = {
   '': journey,
@@ -30,6 +31,7 @@ const ROUTES = {
   review,
   readiness,
   duel,
+  settings,
   onboarding,
 };
 
@@ -130,6 +132,23 @@ async function route() {
   // Move focus to the screen so a screen reader announces the change without
   // trapping the user at the top of the document.
   screenEl.focus({ preventScroll: true });
+  hideSplash();
+}
+
+/**
+ * Removes the splash covering the app frame during the first render. A no-op
+ * once it has already run once — every route after the first finds nothing
+ * to remove — so it is safe to call from every path that can complete a
+ * first paint (the normal boot, the onboarding redirect, and the error path).
+ */
+function hideSplash() {
+  const splashEl = document.getElementById('splash');
+  if (!splashEl) return;
+  splashEl.classList.add('is-hidden');
+  splashEl.addEventListener('transitionend', () => splashEl.remove(), { once: true });
+  // Belt and suspenders: prefers-reduced-motion zeroes the transition, and a
+  // removed/replaced node never fires transitionend either way.
+  window.setTimeout(() => splashEl.remove(), 500);
 }
 
 export function navigate(hash) {
@@ -177,6 +196,7 @@ async function boot() {
 
 boot().catch((error) => {
   console.error(error);
+  hideSplash();
   screenEl.replaceChildren(
     el('div', { class: 'empty' }, el('p', {}, 'The app failed to start.'), el('p', { class: 'source-note' }, String(error.message ?? error))),
   );
