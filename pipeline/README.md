@@ -20,10 +20,13 @@ Or step by step:
 | `npm run build` | streams the XML into the corpus and the accepted-form lexicon | `content/corpus.json`, `content/lexicon.json` |
 | `npm run fetch:audio` | resolves native example recordings per entry from the LOD public API | `.cache/lod/audio.json` |
 | `npm run build:items` | generates the exercises, gating each clip through the validator as it builds | `content/items/*.json`, `app/data/*.json` |
+| `npm run build:vocab` | the A1/A2 word deck, gated as it builds | `content/items/vocab.json`, `app/data/vocab.json` |
+| `npm run build:verbs` | the present-tense verb deck, from the Flexiounstabellen | `content/items/verbs.json`, `app/data/verbs.json` |
+| `npm run build:learn` | adds exam topics, visual cues and cloze targets to both decks | the same two files, in place |
 | `npm run mirror:audio` | downloads the AAC the shipped items reference | `app/assets/audio/` |
 | `npm run fetch:images` | openly licensed photos for the image-description task | `app/assets/img/`, `images.json` |
 | `npm run validate` | the gate. Exit 1 on any error | — |
-| `npm test` | proves the gate catches what it must (23 tests) | — |
+| `npm test` | proves the gate catches what it must, plus the Learn deck generators and the card ladder (71 tests) | — |
 | `npm run walkthrough` | drives the real app in Chromium at iPhone size | `docs/screens/*.png` |
 | `npm run calibrate` | measures the gate against LOD's own sentences | — |
 | `npm run evidence` | regenerates `docs/n-rule-evidence.md` | that file |
@@ -70,6 +73,24 @@ person, matched to a topic by the words they contain. Two topics come out thin
 **`content/corpus.json`** — the authoring vocabulary: 2,204 entries carrying
 LOD's own `GWS A1` / `GWS A2` basic-vocabulary tags, with IPA, gender, plural,
 FR/EN/DE/PT glosses, 10,777 example sentences and 10,577 native recordings.
+
+**`content/items/vocab.json` and `verbs.json`** — the Learn decks. Beyond the
+lemma, gloss and example, `build-learn.js` adds three fields to each item:
+
+- `topics` / `topicVia` — exam topics, plus which of the three evidence layers
+  produced them (`category` from LOD's own semantic tags, `seed` from the topic
+  headwords, `gloss` from a translation keyword). 1,796 of 2,413 items are
+  tagged; the rest carry `[]` and `null` rather than a guess.
+- `cue` — a single emoji, for concrete nouns only. 359 items.
+- `cloze` — `{ before, form, after, via }`, the item's own example sentence
+  split around the word so the drill can gap it. `form` is the **inflected**
+  form as the corpus wrote it (AKAFEN1's example contains `akaaft`, not
+  `akafen`), found through the lexicon's form index. 2,246 located; the other
+  167 ship no cloze rather than an approximate one.
+
+All three slices of `cloze` are declared Luxembourgish in `validate.js` and get
+the full lexicon and n-rule treatment — splitting a validated sentence invents
+a boundary, and the n-rule is a sandhi rule across exactly such boundaries.
 
 Both are committed so mistakes show up in diffs. `lexicon.json` writes its big
 maps one form per line for exactly that reason.
