@@ -114,6 +114,9 @@ export async function getSettings() {
       playerId: null,
       secret: '',
       workerUrl: '',
+      // Anthropic key for this device, used only when no Worker is configured.
+      // app/js/anthropic.js documents what storing it here does and does not cost.
+      apiKey: '',
       transcriptDefault: false,
     }
   );
