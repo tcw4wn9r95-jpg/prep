@@ -9,7 +9,10 @@
  * recordings does not mean hand-editing this file.
  */
 
-const VERSION = 'v5';
+// Bump this on every change to the shell. The app is served cache-first, so a
+// stale version is not a slow update — it is a returning user permanently
+// looking at the old app while wondering where their changes went.
+const VERSION = 'v6';
 const SHELL_CACHE = `shell-${VERSION}`;
 const AUDIO_CACHE = `audio-${VERSION}`;
 
@@ -40,6 +43,10 @@ const SHELL = [
   'js/screens/readiness.js',
   'js/screens/duel.js',
   'js/screens/settings.js',
+  'js/drill/engine.js',
+  'js/drill/cards.js',
+  'js/drill/inputs.js',
+  'js/drill/match.js',
   'data/topics.json',
   'data/listening.json',
   'data/interviews.json',
