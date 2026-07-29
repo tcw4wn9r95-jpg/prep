@@ -423,6 +423,14 @@ export const MAX_BOX = LEITNER_DAYS.length - 1;
 /** Recognise a word twice before being asked to produce it. */
 export const PROD_UNLOCK_BOX = 2;
 
+/**
+ * Box 3 is a week's interval — far enough apart that surviving it means the
+ * word is holding rather than merely fresh. `mastered` (the last box) is a
+ * sixteen-day claim and takes a month to earn, which makes it useless as
+ * week-one feedback.
+ */
+export const STRONG_BOX = 3;
+
 /** New words introduced per day. Above roughly ten, retention falls faster
  * than the extra intake gains. Reviews are on top of this and uncapped. */
 export const DAILY_NEW_TARGET = 8;
@@ -519,26 +527,50 @@ export function pickDue(items, stateByItemId, limit) {
  * @param {Array} items
  * @param {{recv: Map, prod: Map}} states
  */
-export function buildSession(items, states, { limit = 12, newTarget = DAILY_NEW_TARGET, now = Date.now() } = {}) {
+export function buildSession(items, states, options = {}) {
+  return buildMixedSession([{ items, states }], options);
+}
+
+/**
+ * The same plan, but drawn from several decks at once.
+ *
+ * A learner does not think in decks. "The next words I have not met" is a fact
+ * about the whole vocabulary — the sentence skeleton is in the vocab deck, the
+ * verbs that carry those sentences are in the verb deck, and the frames that
+ * join them are in the phrase deck. Asking someone to pick a deck first is
+ * asking them to answer a question about our data model before they can
+ * practise.
+ *
+ * Each plan entry therefore carries the deck it came from, so the engine can
+ * grade it against the right ladder and the right progress row.
+ *
+ * @param {Array<{deck?: object, pool?: Array, items: Array, states: {recv: Map, prod: Map}}>} groups
+ */
+export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TARGET, now = Date.now() } = {}) {
   const reviews = [];
   const fresh = [];
 
-  for (const item of items) {
-    const recv = states.recv.get(item.id);
-    const prod = states.prod.get(item.id);
+  for (const group of groups) {
+    const { items, states, deck, pool } = group;
+    const from = (item, strand, isNew) => ({ item, strand, isNew, deck, pool: pool ?? items });
 
-    if (!recv) {
-      fresh.push({ item, strand: STRANDS.recv, isNew: true });
-      continue;
+    for (const item of items) {
+      const recv = states.recv.get(item.id);
+      const prod = states.prod.get(item.id);
+
+      if (!recv) {
+        fresh.push(from(item, STRANDS.recv, true));
+        continue;
+      }
+      if (recv.dueAt <= now) reviews.push(from(item, STRANDS.recv, false));
+
+      // Production only opens once the word is recognised, and an unseen prod
+      // strand on an unlocked word is itself a review — the word is known, the
+      // skill is not.
+      if (recv.box < PROD_UNLOCK_BOX) continue;
+      if (!prod) reviews.push(from(item, STRANDS.prod, false));
+      else if (prod.dueAt <= now) reviews.push(from(item, STRANDS.prod, false));
     }
-    if (recv.dueAt <= now) reviews.push({ item, strand: STRANDS.recv, isNew: false });
-
-    // Production only opens once the word is recognised, and an unseen prod
-    // strand on an unlocked word is itself a review — the word is known, the
-    // skill is not.
-    if (recv.box < PROD_UNLOCK_BOX) continue;
-    if (!prod) reviews.push({ item, strand: STRANDS.prod, isNew: false });
-    else if (prod.dueAt <= now) reviews.push({ item, strand: STRANDS.prod, isNew: false });
   }
 
   shuffle(reviews);
@@ -622,7 +654,18 @@ export async function recordLearnResult(playerId, deck, strand, itemId, outcome)
 export async function learnProgress(playerId, deck, strand, totalItems) {
   const rows = await allByIndex('learn', 'byPlayerDeck', playerDeckKey(playerId, deck, strand));
   const mastered = rows.filter((row) => row.box === MAX_BOX).length;
-  return { started: rows.length, mastered, total: totalItems, pct: totalItems === 0 ? 0 : (mastered / totalItems) * 100 };
+  const strong = rows.filter((row) => row.box >= STRONG_BOX).length;
+  return {
+    started: rows.length,
+    strong,
+    mastered,
+    total: totalItems,
+    pct: totalItems === 0 ? 0 : (mastered / totalItems) * 100,
+    // Of the words actually met so far, how many have stuck. This is the number
+    // that moves after a single session; `pct` against a 2,000-word deck does
+    // not, and a bar that never moves reads as "nothing was saved".
+    heldPct: rows.length === 0 ? 0 : (strong / rows.length) * 100,
+  };
 }
 
 /**

@@ -113,8 +113,8 @@ Match the existing personal stack: cheap, mostly static, no ops burden.
   test/              unit tests, calibration, and the browser walkthrough
 /content       generated JSON, committed to the repo (auditable diffs)
 /app           the PWA — static, no build step, zero runtime dependencies
-  js/screens/        onboarding · today · journey · learn · vocab · verbs · phrases ·
-                     listening · speaking · review · readiness · duel · settings
+  js/screens/        onboarding · today · journey · learn · session · vocab · verbs ·
+                     phrases · listening · speaking · review · readiness · duel · settings
   js/anthropic.js    direct Claude calls, for when there is no Worker
   js/drill/          the Learn engine: one session runner, seven card types
   js/amelie.js       the guide: one inline SVG, six CSS states
@@ -260,6 +260,13 @@ distinctiveness, not photography — and abstract words get none rather than a d
 uses, from three layers of evidence (LOD semantic category, topic seed headword, gloss
 keyword), with the winning layer recorded in the JSON so the tagging is auditable. `#/vocab/<topic>`
 drills one topic. Words with no reliable evidence stay untagged.
+
+**One session, three decks.** Vocabulary, verbs and sentence frames are three files, and
+"the next words I have not met" is one fact that spans all of them — so `#/session` draws
+from all three in path order and `#/session/<n>` restricts that to one step of the path.
+Every card carries the deck it came from, so it is still graded on the right ladder and
+written to the right progress row. Asking a beginner which deck to open is asking them to
+answer a question about our data model before they can practise.
 
 Two smaller rules that matter more than they look:
 

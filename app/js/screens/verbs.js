@@ -9,7 +9,7 @@
 
 import { loadVerbs, loadTopics } from '../content.js';
 import { getLearnDeckStates, buildSession } from '../store.js';
-import { DECKS, isDrillable } from '../drill/cards.js';
+import { DECKS, isDrillable, boxIndex } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
 const SESSION_SIZE = 12;
@@ -38,7 +38,7 @@ export async function render(root, { params, settings, navigate }) {
     plan,
     deck: DECKS.verb,
     pool: all,
-    boxes: boxIndex(states),
+    boxes: boxIndex('verb', states),
     settings,
     navigate,
     title,
@@ -48,11 +48,3 @@ export async function render(root, { params, settings, navigate }) {
   });
 }
 
-/** `strand:itemId` → box, which is how the card ladder picks a question type. */
-function boxIndex(states) {
-  const boxes = new Map();
-  for (const [strand, rows] of Object.entries(states)) {
-    for (const [itemId, row] of rows) boxes.set(`${strand}:${itemId}`, row.box);
-  }
-  return boxes;
-}

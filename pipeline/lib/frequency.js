@@ -59,7 +59,9 @@ function countEntries(corpus, lexicon) {
  * you can say anything at all.
  */
 const STAGES = [
-  { n: 1, id: 'starters', title: 'First words', blurb: 'Who is doing what, yes, no, and the question words.' },
+  // Step 1 spans two decks: the skeleton words and the sentence frames they
+  // slot into, which are stage 1 in build-phrases.js for the same reason.
+  { n: 1, id: 'starters', title: 'First words', blurb: 'Who is doing what, yes, no, the question words — and the frames they slot into.' },
   { n: 2, id: 'verbs', title: 'Everyday verbs', blurb: 'The verbs that carry most sentences.', size: 60 },
   { n: 3, id: 'core', title: 'Everyday words', blurb: 'The nouns and adjectives you will reach for constantly.', size: 150 },
   { n: 4, id: 'a1', title: 'The rest of A1', blurb: 'Filling out the basic vocabulary.' },

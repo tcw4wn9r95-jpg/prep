@@ -140,3 +140,53 @@ test('srs: sessions interleave strands rather than blocking them together', asyn
   ).some((session) => session.some((card, index) => index > 0 && card.strand !== session[index - 1].strand));
   assert.ok(anyInterleaved, 'strands should be shuffled together, not run in blocks');
 });
+
+/* --------------------------------------------------------- buildMixedSession */
+
+const emptyStates = () => ({ recv: new Map(), prod: new Map() });
+
+test('srs: a mixed session takes the next words across decks, in path order', async () => {
+  // The bug this guards: "the next words to learn" is a fact about the whole
+  // vocabulary, but the decks are three files. A session that could only see
+  // one of them made the learner pick a file before they could practise, and
+  // the correct pick ("whichever holds word 29") is not knowable.
+  const groups = [
+    { deck: { id: 'vocab' }, items: [{ id: 'V1', stage: 1, rank: 1 }, { id: 'V9', stage: 4, rank: 900 }], states: emptyStates() },
+    { deck: { id: 'phrase' }, items: [{ id: 'P1', stage: 1, rank: 2 }], states: emptyStates() },
+    { deck: { id: 'verb' }, items: [{ id: 'B1', stage: 2, rank: 1 }], states: emptyStates() },
+  ];
+  const session = store.buildMixedSession(groups, { limit: 3, newTarget: 3, now: NOW });
+  assert.deepEqual(session.map((card) => card.item.id).sort(), ['B1', 'P1', 'V1']);
+});
+
+test('srs: every mixed card knows which deck it came from', async () => {
+  // Without this the engine cannot grade: it would not know which ladder to
+  // use, nor which deck's progress row to write.
+  const groups = [
+    { deck: { id: 'vocab' }, items: [{ id: 'V1', stage: 1, rank: 1 }], states: emptyStates() },
+    { deck: { id: 'verb' }, items: [{ id: 'B1', stage: 1, rank: 2 }], states: emptyStates() },
+  ];
+  const session = store.buildMixedSession(groups, { limit: 2, newTarget: 2, now: NOW });
+  const byItem = new Map(session.map((card) => [card.item.id, card.deck.id]));
+  assert.equal(byItem.get('V1'), 'vocab');
+  assert.equal(byItem.get('B1'), 'verb');
+  assert.ok(session.every((card) => Array.isArray(card.pool)), 'each card carries the pool its distractors come from');
+});
+
+test('srs: a mixed session honours the daily new-word cap across all decks together', async () => {
+  // Three decks must not mean three times the intake.
+  const groups = ['vocab', 'verb', 'phrase'].map((id) => ({
+    deck: { id },
+    items: Array.from({ length: 20 }, (_, index) => ({ id: `${id}${index}`, stage: 1, rank: index })),
+    states: emptyStates(),
+  }));
+  const session = store.buildMixedSession(groups, { limit: 12, newTarget: 8, now: NOW });
+  assert.equal(session.length, 8);
+});
+
+test('srs: a single-deck session is just a mixed session with one group', async () => {
+  const deck = [{ id: 'a', stage: 1, rank: 1 }, { id: 'b', stage: 1, rank: 2 }];
+  const plain = store.buildSession(deck, emptyStates(), { limit: 2, newTarget: 2, now: NOW });
+  assert.deepEqual(plain.map((card) => card.item.id).sort(), ['a', 'b']);
+  assert.ok(plain.every((card) => card.deck === undefined), 'a single-deck plan leaves the deck to runSession');
+});

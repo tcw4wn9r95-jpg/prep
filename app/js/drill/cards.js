@@ -157,6 +157,21 @@ export function isDrillable(item, deckId = 'vocab') {
   return ['recv', 'prod'].every((strand) => cardTypeFor(item, strand, 0, deckId) !== null);
 }
 
+/**
+ * `deckId:strand:itemId` → box, which is how the engine picks a question type.
+ *
+ * The deck id is in the key because one session can mix decks, and two decks
+ * are free to use the same item id — `HUNN1` is a verb row and could just as
+ * easily be a vocab row. Pass the same map in again to accumulate several
+ * decks into one index.
+ */
+export function boxIndex(deckId, states, into = new Map()) {
+  for (const [strand, rows] of Object.entries(states)) {
+    for (const [itemId, row] of rows) into.set(`${deckId}:${strand}:${itemId}`, row.box);
+  }
+  return into;
+}
+
 const PRONOUNS = { p1: 'ech', p2: 'du', p3: 'hie / si / hatt', p4: 'mir', p5: 'dir', p6: 'si' };
 const PERSONS = Object.keys(PRONOUNS);
 

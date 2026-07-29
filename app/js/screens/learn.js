@@ -4,90 +4,98 @@
  * speaking); this hub is where someone starting from zero actually builds the
  * vocabulary those drills take for granted.
  *
- * Two things this screen refuses to do:
+ * Three things this screen refuses to do:
+ *
+ * It does not make you choose a deck before you can answer a question. There
+ * is one button, it starts the next cards, and which of the three files those
+ * cards came out of is our problem rather than the learner's.
  *
  * It does not report one mastery number. Recognising a word and being able to
  * say it are tracked separately, because the speaking part is scored on the
  * second and a combined figure would read as readiness the candidate does not
  * have.
  *
- * It does not show the whole deck as a single wall of 2,048 words. The exam
- * asks you to talk about one of fourteen topics, so the deck is offered the
- * same way.
+ * It does not measure a first session against 2,449 words. Three words out of
+ * a deck that size is a bar at zero, which reads as "nothing was saved" — so
+ * the bar that leads is the one for the step of the path you are actually on.
  */
 
-import { el, screenHead, plural, settingsButton } from '../dom.js';
+import { el, screenHead, button, plural, settingsButton } from '../dom.js';
 import { Amelie } from '../amelie.js';
 import { loadVocab, loadVerbs, loadPhrases, loadTopics, loadStages, topicIcon } from '../content.js';
 import { learnProgress, dueCounts, getLearnDeckState, STRANDS } from '../store.js';
 
-export async function render(root, { settings }) {
-  const [vocabItems, verbItems, phraseItems, topics, stages] = await Promise.all([loadVocab(), loadVerbs(), loadPhrases(), loadTopics(), loadStages()]);
-  const [vocabRecv, vocabProd, verbRecv, verbProd, due, startedVocab, startedVerb] = await Promise.all([
-    learnProgress(settings.playerId, 'vocab', STRANDS.recv, vocabItems.length),
-    learnProgress(settings.playerId, 'vocab', STRANDS.prod, vocabItems.length),
-    learnProgress(settings.playerId, 'verb', STRANDS.recv, verbItems.length),
-    learnProgress(settings.playerId, 'verb', STRANDS.prod, verbItems.length),
-    dueCounts(settings.playerId),
-    getLearnDeckState(settings.playerId, 'vocab', STRANDS.recv),
-    getLearnDeckState(settings.playerId, 'verb', STRANDS.recv),
+export async function render(root, { settings, navigate }) {
+  const [vocabItems, verbItems, phraseItems, topics, stages] = await Promise.all([
+    loadVocab(),
+    loadVerbs(),
+    loadPhrases(),
+    loadTopics(),
+    loadStages(),
   ]);
-  const [phraseRecv, phraseProd] = await Promise.all([
-    learnProgress(settings.playerId, 'phrase', STRANDS.recv, phraseItems.length),
-    learnProgress(settings.playerId, 'phrase', STRANDS.prod, phraseItems.length),
-  ]);
+  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, due, seenVocab, seenVerb, seenPhrase] =
+    await Promise.all([
+      learnProgress(settings.playerId, 'vocab', STRANDS.recv, vocabItems.length),
+      learnProgress(settings.playerId, 'vocab', STRANDS.prod, vocabItems.length),
+      learnProgress(settings.playerId, 'verb', STRANDS.recv, verbItems.length),
+      learnProgress(settings.playerId, 'verb', STRANDS.prod, verbItems.length),
+      learnProgress(settings.playerId, 'phrase', STRANDS.recv, phraseItems.length),
+      learnProgress(settings.playerId, 'phrase', STRANDS.prod, phraseItems.length),
+      dueCounts(settings.playerId),
+      getLearnDeckState(settings.playerId, 'vocab', STRANDS.recv),
+      getLearnDeckState(settings.playerId, 'verb', STRANDS.recv),
+      getLearnDeckState(settings.playerId, 'phrase', STRANDS.recv),
+    ]);
 
-  const all = [...vocabItems, ...verbItems];
-  const seen = new Set([...startedVocab.keys(), ...startedVerb.keys()]);
+  // The path runs across all three decks, because a stage does: step 1 is the
+  // 28 sentence-skeleton words *and* the 34 frames they slot into.
+  const all = [...vocabItems, ...verbItems, ...phraseItems];
+  const seen = new Set([...seenVocab.keys(), ...seenVerb.keys(), ...seenPhrase.keys()]);
   const path = stagePath(stages, all, seen);
+  const current = path.find((stage) => stage.started < stage.total) ?? null;
+  const next = nextAction(due, current);
 
   const amelie = new Amelie({ size: 'md', bubble: true });
-  amelie.say(adviceFor(due, vocabRecv, vocabProd, path), 'idle');
+  amelie.say(adviceFor(due, vocabRecv, vocabProd, current), 'idle');
 
   root.append(
     screenHead({ title: 'Learn', sub: 'A1/A2 basics, before the exam format', trailing: settingsButton('#/settings') }),
     el('div', { class: 'card' }, amelie.el),
-    todayCard(due),
+
+    // One button, like Today. It never asks which deck: the next cards are
+    // whatever the path says they are.
+    button(next.label, {
+      variant: 'primary',
+      class: 'btn btn--primary btn--block',
+      style: { marginBlockStart: 'var(--s4)' },
+      onclick: () => navigate(next.href),
+    }),
+    el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s2)', textAlign: 'center' } }, next.note),
 
     sectionLabel('Your path'),
-    el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } }, 'Words come in this order — the ones that build sentences first, then whatever turns up most often.'),
-    stageList(path),
+    el(
+      'p',
+      { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
+      'Words come in this order — the ones that build sentences first, then whatever turns up most often. Tap a step to drill just that step.',
+    ),
+    stageList(path, current),
 
-    sectionLabel('Decks'),
+    // Decks before topics, even though topics are the more exam-shaped choice:
+    // the topic grid is eighteen tiles tall, and putting it above the decks
+    // buried them off the bottom of the screen entirely.
+    sectionLabel('Or a whole deck'),
     el(
       'div',
-      { class: 'stack stack--lg' },
-      // First, because it is the deck that turns the other two into sentences.
-      deckCard({
-        href: '#/phrases',
-        icon: '💬',
-        title: 'Phrases',
-        note: `${plural(phraseItems.length, 'sentence frame')} an interview is built from`,
-        recv: phraseRecv,
-        prod: phraseProd,
-      }),
-      deckCard({
-        href: '#/vocab',
-        icon: '📇',
-        title: 'Vocabulary',
-        note: `${plural(vocabItems.length, 'word')} from the Grondwuertschatz`,
-        recv: vocabRecv,
-        prod: vocabProd,
-      }),
-      deckCard({
-        href: '#/verbs',
-        icon: '🔤',
-        title: 'Verbs',
-        note: `${plural(verbItems.length, 'verb')}, present tense`,
-        recv: verbRecv,
-        prod: verbProd,
-      }),
+      { class: 'stack' },
+      deckRow({ href: '#/phrases', icon: '💬', title: 'Phrases', total: phraseItems.length, unit: 'sentence frame', recv: phraseRecv, prod: phraseProd }),
+      deckRow({ href: '#/vocab', icon: '📇', title: 'Vocabulary', total: vocabItems.length, unit: 'word', recv: vocabRecv, prod: vocabProd }),
+      deckRow({ href: '#/verbs', icon: '🔤', title: 'Verbs', total: verbItems.length, unit: 'verb', recv: verbRecv, prod: verbProd }),
     ),
 
-    sectionLabel('By exam topic'),
-    el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } }, 'The speaking part offers you two of these. Drill the words for one.'),
-    topicGrid(topics, all),
-    untaggedNote(all),
+    sectionLabel('Or one exam topic'),
+    el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } }, 'The speaking part offers you two of these.'),
+    topicGrid(topics, [...vocabItems, ...verbItems]),
+    untaggedNote([...vocabItems, ...verbItems]),
   );
 
   return { destroy() {} };
@@ -98,9 +106,41 @@ function sectionLabel(text) {
 }
 
 /**
+ * The one thing to do now, and the number behind it.
+ *
+ * Reviews first — they are the cards about to fade, and spaced repetition only
+ * pays if they happen on the day they fall due. New words otherwise.
+ */
+function nextAction(due, current) {
+  const waiting = due.recv + due.prod;
+  if (waiting > 0) {
+    return {
+      label: `Review ${plural(waiting, 'card')}`,
+      href: '#/session',
+      note: `${due.recv} to understand · ${due.prod} to say`,
+    };
+  }
+
+  const left = Math.max(0, due.target - due.newToday);
+  if (left > 0) {
+    return {
+      label: current ? `${current.started > 0 ? 'Carry on' : 'Start'}: ${current.title}` : 'Learn new words',
+      href: '#/session',
+      note: `${left} new ${left === 1 ? 'word' : 'words'} left today · ${due.newToday} met so far`,
+    };
+  }
+
+  return {
+    label: 'Practise anyway',
+    href: '#/session',
+    note: `Today's ${due.target} new words are done and nothing is due. Anything more is a bonus.`,
+  };
+}
+
+/**
  * How far through each stage the learner is.
  *
- * "Word 812 of 2,049" tells you nothing. "You are on Everyday verbs, 14 of 60"
+ * "Word 812 of 2,449" tells you nothing. "You are on Everyday verbs, 14 of 120"
  * tells you where you are and what it is for.
  */
 function stagePath(stages, items, seen) {
@@ -113,19 +153,24 @@ function stagePath(stages, items, seen) {
     .filter((stage) => stage.total > 0);
 }
 
-function stageList(path) {
-  // The stage you are on is the first one you have not finished.
-  const currentIndex = path.findIndex((stage) => stage.started < stage.total);
+/**
+ * The path, as links.
+ *
+ * These used to be plain divs. Tapping "First words" did nothing, which is a
+ * worse failure than not offering it at all: the row looks like the way in, so
+ * an inert one reads as an app that is broken rather than as a label.
+ */
+function stageList(path, current) {
   return el(
     'div',
     { class: 'stack' },
-    ...path.map((stage, index) => {
+    ...path.map((stage) => {
       const pct = stage.total === 0 ? 0 : Math.round((stage.started / stage.total) * 100);
-      const isCurrent = index === currentIndex;
+      const isCurrent = stage === current;
       const isDone = stage.started >= stage.total;
       return el(
-        'div',
-        { class: `stage${isCurrent ? ' is-current' : ''}${isDone ? ' is-done' : ''}` },
+        'a',
+        { class: `stage${isCurrent ? ' is-current' : ''}${isDone ? ' is-done' : ''}`, href: `#/session/${stage.n}` },
         el(
           'div',
           { class: 'row' },
@@ -134,70 +179,44 @@ function stageList(path) {
             'div',
             { class: 'spacer' },
             el('p', { class: 'card__title' }, stage.title),
-            el('p', { class: 'card__note' }, isCurrent ? stage.blurb : `${stage.started} of ${stage.total}`),
+            el('p', { class: 'card__note' }, stage.blurb),
           ),
-          isCurrent ? el('span', { class: 'meter__value' }, `${stage.started}/${stage.total}`) : null,
+          el('span', { class: 'meter__value' }, `${stage.started}/${stage.total}`),
         ),
-        isCurrent
-          ? el(
-              'div',
-              { class: 'meter__track', style: { marginBlockStart: 'var(--s2)' } },
-              el('div', { class: 'meter__fill', style: { width: `${Math.max(pct, 2)}%` } }),
-            )
-          : null,
+        // Every step gets a bar, not just the current one: the whole point is
+        // that a single session visibly moves something.
+        el(
+          'div',
+          { class: 'meter__track', style: { marginBlockStart: 'var(--s2)' } },
+          el('div', { class: `meter__fill${pct >= 100 ? ' is-pass' : ''}`, style: { width: `${pct === 0 ? 0 : Math.max(pct, 2)}%` } }),
+        ),
       );
     }),
   );
 }
 
-/** What is waiting right now — the only number that should drive a session. */
-function todayCard(due) {
-  const total = due.recv + due.prod;
-  const left = Math.max(0, due.target - due.newToday);
-  return el(
-    'div',
-    { class: 'card', style: { marginBlockStart: 'var(--s4)' } },
-    el(
-      'div',
-      { class: 'row' },
-      el(
-        'div',
-        { class: 'spacer' },
-        el('p', { class: 'meter__label' }, 'Due now'),
-        el('p', { class: 'meter__value' }, String(total)),
-        el(
-          'p',
-          { class: 'card__note' },
-          total === 0
-            ? 'Nothing to review — start something new.'
-            : `${due.recv} to understand · ${due.prod} to say`,
-        ),
-      ),
-      el(
-        'div',
-        { style: { textAlign: 'right' } },
-        el('p', { class: 'meter__label' }, 'New today'),
-        el('p', { class: 'meter__value' }, `${due.newToday}/${due.target}`),
-        el('p', { class: 'card__note' }, left === 0 ? 'Target met' : `${left} left`),
-      ),
-    ),
-  );
-}
-
 /**
- * A deck row with two bars rather than one. The gap between them is the point:
- * it is normal for the productive bar to sit well below the receptive one, and
- * seeing that is what tells you which drill to open.
+ * A deck, as one compact row with two counts rather than two bars.
+ *
+ * The bar here measures the words you have *met*, not the whole deck: "0% of
+ * 2,048" is true, useless and discouraging in week one, whereas "2 of the 9
+ * words you have met are holding" is a number that moves. Deck coverage is
+ * still stated, as text, where it cannot be mistaken for progress.
  */
-function deckCard({ href, icon, title, note, recv, prod }) {
+function deckRow({ href, icon, title, total, unit, recv, prod }) {
   return el(
     'a',
     { class: 'card', href, style: { display: 'block' } },
     el(
       'div',
       { class: 'row' },
-      el('span', { style: { fontSize: '32px' } }, icon),
-      el('div', { class: 'spacer' }, el('p', { class: 'card__title' }, title), el('p', { class: 'card__note' }, note)),
+      el('span', { style: { fontSize: '28px' } }, icon),
+      el(
+        'div',
+        { class: 'spacer' },
+        el('p', { class: 'card__title' }, title),
+        el('p', { class: 'card__note' }, `${recv.started} of ${plural(total, unit)} met`),
+      ),
     ),
     strandBar('Understand', recv),
     strandBar('Say', prod),
@@ -205,7 +224,7 @@ function deckCard({ href, icon, title, note, recv, prod }) {
 }
 
 function strandBar(label, progress) {
-  const pct = Math.round(progress.pct);
+  const pct = Math.round(progress.heldPct);
   return el(
     'div',
     { style: { marginBlockStart: 'var(--s3)' } },
@@ -213,12 +232,16 @@ function strandBar(label, progress) {
       'div',
       { class: 'row row--between' },
       el('span', { class: 'card__note' }, label),
-      el('span', { class: 'card__note' }, `${progress.mastered} mastered · ${progress.started} started`),
+      el(
+        'span',
+        { class: 'card__note' },
+        progress.started === 0 ? 'not started' : `${progress.strong} of ${progress.started} holding`,
+      ),
     ),
     el(
       'div',
       { class: 'meter__track', style: { marginBlockStart: 'var(--s1)' } },
-      el('div', { class: `meter__fill${pct > 50 ? ' is-pass' : ''}`, style: { width: `${Math.max(pct, pct > 0 ? 2 : 0)}%` } }),
+      el('div', { class: `meter__fill${pct > 50 ? ' is-pass' : ''}`, style: { width: `${pct === 0 ? 0 : Math.max(pct, 2)}%` } }),
     ),
   );
 }
@@ -255,15 +278,14 @@ function untaggedNote(items) {
   return el(
     'p',
     { class: 'source-note' },
-    `${untagged} of ${items.length} words carry no topic tag — the dictionary gave no reliable evidence for one. They are all in the two decks above.`,
+    `${untagged} of ${items.length} words carry no topic tag — the dictionary gave no reliable evidence for one. They are all in the decks above.`,
   );
 }
 
-function adviceFor(due, recv, prod, path) {
+function adviceFor(due, recv, prod, current) {
   if (recv.started === 0) return 'Start at the beginning: I, you, and the words that hold a sentence together. Everything else needs those first.';
   if (due.recv + due.prod > 0) return `${due.recv + due.prod} cards are waiting. Reviews first — they are the ones about to fade.`;
-  const current = path.find((stage) => stage.started < stage.total);
-  if (prod.mastered * 2 < recv.mastered) return 'You recognise far more than you can say. The speaking part only scores what you can say.';
+  if (prod.strong * 2 < recv.strong) return 'You recognise far more than you can say. The speaking part only scores what you can say.';
   if (current) return `You are on ${current.title.toLowerCase()} — ${current.total - current.started} to go.`;
   return 'Nothing due. Pick a topic and take on new words.';
 }

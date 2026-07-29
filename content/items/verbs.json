@@ -38,7 +38,7 @@
       "a2": 254
     },
     "learn": {
-      "enrichedAt": "2026-07-29T15:05:55.927Z",
+      "enrichedAt": "2026-07-29T19:36:07.801Z",
       "enricher": "pipeline/build-learn.js",
       "starters": {
         "promoted": 0,
@@ -49,7 +49,7 @@
           "n": 1,
           "id": "starters",
           "title": "First words",
-          "blurb": "Who is doing what, yes, no, and the question words.",
+          "blurb": "Who is doing what, yes, no, the question words — and the frames they slot into.",
           "items": 0
         },
         {

@@ -302,3 +302,15 @@ test('phrases: every frame builds a card at every box', () => {
     }
   }
 });
+
+test('cards: the box index is keyed by deck as well as strand and item', () => {
+  // Item ids are unique within a deck, not across them, and one session can
+  // now mix all three. Without the deck in the key, a verb at box 4 would hand
+  // its card type to a vocabulary word that happened to share its id.
+  const boxes = cards.boxIndex('vocab', { recv: new Map([['HUNN1', { box: 4 }]]), prod: new Map() });
+  cards.boxIndex('verb', { recv: new Map([['HUNN1', { box: 0 }]]), prod: new Map() }, boxes);
+
+  assert.equal(boxes.get('vocab:recv:HUNN1'), 4);
+  assert.equal(boxes.get('verb:recv:HUNN1'), 0);
+  assert.equal(boxes.size, 2);
+});

@@ -359,6 +359,57 @@ async function main() {
     await shot('16b-learn-path');
   });
 
+  await step('tapping a step of the path actually starts that step', async () => {
+    // The bug this guards: the path rows were plain divs. Tapping "First
+    // words" did nothing at all, which reads as a broken app rather than as a
+    // label — the row looks exactly like the way in.
+    await clearLearn();
+    await openFresh('#/learn');
+    await page.waitForSelector('.stage', { timeout: 5000 });
+
+    const first = page.locator('.stage').first();
+    const href = await first.getAttribute('href');
+    if (href !== '#/session/1') throw new Error(`the first step of the path leads to "${href}", not a session`);
+
+    await first.click();
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+    const title = (await page.locator('#screen .screen__title').first().textContent())?.trim();
+    if (title !== 'First words') throw new Error(`the step session is titled "${title}"`);
+    await shot('16c-stage-session');
+  });
+
+  await step('one session moves the number the hub reports', async () => {
+    // The bug this guards: progress was saved correctly, but the hub only ever
+    // reported box-4 mastery against a 2,449-word deck. After a first session
+    // every bar still sat at zero, which reads as "nothing was saved".
+    await clearLearn();
+    await openFresh('#/session');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+
+    let answered = 0;
+    for (let guard = 0; guard < 8; guard += 1) {
+      const options = page.locator('.options .option');
+      if ((await options.count()) === 0) break;
+      await options.first().click();
+      answered += 1;
+      const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+      await next.waitFor({ state: 'visible', timeout: 3000 });
+      const label = (await next.textContent())?.trim();
+      await next.click();
+      if (label === 'Finish' || answered >= 4) break;
+    }
+    if (answered === 0) throw new Error('the mixed session offered no cards at all');
+
+    await openFresh('#/learn');
+    await page.waitForSelector('.stage', { timeout: 5000 });
+    const counter = (await page.locator('.stage').first().locator('.meter__value').textContent())?.trim() ?? '';
+    const met = Number(counter.split('/')[0]);
+    if (!(met > 0)) throw new Error(`answered ${answered} cards, but the path still reads ${counter}`);
+    const width = await page.locator('.stage').first().locator('.meter__fill').evaluate((node) => node.style.width);
+    if (width === '0%' || width === '') throw new Error(`the path bar is still empty after ${answered} cards (${width})`);
+    process.stdout.write(`  after ${answered} cards the path reads ${counter} (bar ${width})\n`);
+  });
+
   await step('vocabulary drill introduces a new word as a gloss choice', async () => {
     await openFresh('#/vocab');
     await page.waitForSelector('.options .option', { timeout: 5000 });
