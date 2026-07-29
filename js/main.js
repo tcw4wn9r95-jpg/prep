@@ -48,6 +48,8 @@ const TABS = [
 
 const screenEl = document.getElementById('screen');
 const tabbarEl = document.getElementById('tabbar');
+const updateBannerEl = document.getElementById('update-banner');
+updateBannerEl?.addEventListener('click', () => location.reload());
 
 let current = null;
 /**
@@ -135,20 +137,35 @@ async function route() {
   hideSplash();
 }
 
+// However fast the first render is, the splash stays up at least this long —
+// otherwise it reads as a flicker rather than a deliberate brand moment.
+const SPLASH_MIN_MS = 1500;
+let splashHideScheduled = false;
+
 /**
- * Removes the splash covering the app frame during the first render. A no-op
- * once it has already run once — every route after the first finds nothing
- * to remove — so it is safe to call from every path that can complete a
- * first paint (the normal boot, the onboarding redirect, and the error path).
+ * Removes the splash covering the app frame after the first render, holding
+ * it for at least SPLASH_MIN_MS from navigation start. A no-op once it has
+ * already run once — every route after the first finds nothing to remove, or
+ * the scheduled-flag short-circuits it — so it is safe to call from every
+ * path that can complete a first paint (the normal boot, the onboarding
+ * redirect, and the error path).
  */
 function hideSplash() {
+  if (splashHideScheduled) return;
   const splashEl = document.getElementById('splash');
   if (!splashEl) return;
-  splashEl.classList.add('is-hidden');
-  splashEl.addEventListener('transitionend', () => splashEl.remove(), { once: true });
-  // Belt and suspenders: prefers-reduced-motion zeroes the transition, and a
-  // removed/replaced node never fires transitionend either way.
-  window.setTimeout(() => splashEl.remove(), 500);
+  splashHideScheduled = true;
+
+  // performance.now() is already elapsed time since navigation start, i.e.
+  // since the splash first painted — no separate start timestamp needed.
+  const remaining = Math.max(0, SPLASH_MIN_MS - performance.now());
+  window.setTimeout(() => {
+    splashEl.classList.add('is-hidden');
+    splashEl.addEventListener('transitionend', () => splashEl.remove(), { once: true });
+    // Belt and suspenders: prefers-reduced-motion zeroes the transition, and
+    // a removed/replaced node never fires transitionend either way.
+    window.setTimeout(() => splashEl.remove(), 500);
+  }, remaining);
 }
 
 export function navigate(hash) {
@@ -180,7 +197,28 @@ async function boot() {
   if ('serviceWorker' in navigator) {
     // Registered after load so it never competes with the first render.
     window.addEventListener('load', () => {
+      // sw.js calls skipWaiting()+clients.claim(), so a new version takes
+      // control of this very tab as soon as the browser notices it — no
+      // waiting for every tab to close. But the page already running is
+      // still the old code; `controllerchange` is the signal that a newer
+      // worker just took over, and only a reload actually picks it up.
+      //
+      // The very first activation ever (a brand-new install, no prior
+      // controller) fires this event too, and must not show the banner —
+      // that is not an update, it is the app arriving for the first time.
+      // Only that one event is exempt: `hadController` covers a repeat visit
+      // where a worker was already active before this page even loaded, and
+      // `firstControllerChangeSeen` covers the fresh-install case, where the
+      // very first event is the exempt one and every event after it — a real
+      // second activation, however soon — is a genuine update.
+      const hadController = Boolean(navigator.serviceWorker.controller);
+      let firstControllerChangeSeen = false;
       navigator.serviceWorker.register('sw.js').catch((error) => console.warn('service worker failed', error));
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        const isGenuineUpdate = hadController || firstControllerChangeSeen;
+        firstControllerChangeSeen = true;
+        if (isGenuineUpdate && updateBannerEl) updateBannerEl.hidden = false;
+      });
     });
   }
 

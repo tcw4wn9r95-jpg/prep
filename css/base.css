@@ -256,3 +256,20 @@ img, svg {
 body.is-offline .offline-banner {
   display: block;
 }
+
+/* --- update banner ------------------------------------------------------ */
+
+.update-banner {
+  display: block;
+  width: 100%;
+  padding: var(--s2) var(--s4);
+  background: var(--accent-wash);
+  color: var(--accent-strong);
+  font-size: var(--size-sm);
+  font-weight: 700;
+  text-align: center;
+}
+
+.update-banner:active {
+  background: color-mix(in srgb, var(--accent-wash) 60%, var(--accent) 20%);
+}
