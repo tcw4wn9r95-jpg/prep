@@ -194,3 +194,35 @@ test('match: a genuinely wrong word is wrong', () => {
 test('match: an empty answer never counts as correct', () => {
   assert.equal(match.checkTyped('', 'Aarbecht').correct, false);
 });
+
+/* --------------------------------------------------------- service worker */
+
+test('sw: every app module and data file is in the precache list', async () => {
+  // A module missing here does not fail anywhere visible — the app works
+  // online and breaks only on a phone with no signal, which is the one
+  // situation the service worker exists for.
+  const fs = require('node:fs');
+  const sw = fs.readFileSync(path.join(ROOT, 'app', 'sw.js'), 'utf8');
+  const listed = new Set([...sw.matchAll(/^\s*'([^']+)',$/gm)].map((match) => match[1]));
+
+  const walk = (dir, prefix) =>
+    fs.readdirSync(path.join(ROOT, 'app', dir), { withFileTypes: true }).flatMap((entry) =>
+      entry.isDirectory() ? walk(`${dir}/${entry.name}`, `${prefix}${entry.name}/`) : [`${prefix}${entry.name}`],
+    );
+
+  const missing = [
+    ...walk('js', 'js/').filter((file) => file.endsWith('.js')),
+    ...walk('css', 'css/').filter((file) => file.endsWith('.css')),
+    ...walk('data', 'data/').filter((file) => file.endsWith('.json') && file !== 'data/audio-manifest.json' && file !== 'data/model-answers.json'),
+  ].filter((file) => !listed.has(file));
+
+  assert.deepEqual(missing, [], `not precached, so the app breaks offline: ${missing.join(', ')}`);
+});
+
+test('sw: the cache version was bumped past the last release', async () => {
+  const fs = require('node:fs');
+  const sw = fs.readFileSync(path.join(ROOT, 'app', 'sw.js'), 'utf8');
+  const version = sw.match(/const VERSION = 'v(\d+)'/)?.[1];
+  assert.ok(version, 'the service worker must declare a version');
+  assert.ok(Number(version) >= 6, `cache-first serving means a stale VERSION strands returning users on the old app (found v${version})`);
+});
