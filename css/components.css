@@ -700,3 +700,177 @@
   font-weight: 800;
   border: 3px solid color-mix(in srgb, var(--accent) 30%, transparent);
 }
+
+/* ------------------------------------------------------------------ drill */
+/* The Learn drill. Everything here is new-shape UI the exam screens do not
+   have: a visual cue, a gapped sentence, a letter bank and a typed answer.
+   Amber stays Amelie's throughout — these all sit on --accent. */
+
+.drill__instruction {
+  margin: 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--size-sm);
+  font-weight: 600;
+}
+
+.cue {
+  margin: 0;
+  font-size: var(--size-3xl);
+  line-height: 1;
+}
+
+.drill__pronoun {
+  margin-block-start: var(--s3);
+  font-size: var(--size-lg);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.drill__blank,
+.cloze__gap {
+  display: inline-block;
+  min-width: 4.5ch;
+  border-block-end: 3px solid var(--accent);
+  margin-inline: 0.25ch;
+  vertical-align: baseline;
+}
+
+/* ------------------------------------------------------------ letter bank */
+
+.slots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s2);
+  min-height: 56px;
+  padding: var(--s2);
+  border-block-end: 2px dashed var(--border-strong);
+}
+
+.slots__empty {
+  align-self: center;
+  color: var(--text-faint);
+  font-size: var(--size-sm);
+}
+
+.slots.is-correct { border-block-end-color: var(--ok); }
+.slots.is-wrong { border-block-end-color: var(--bad); }
+
+.slot,
+.bank__tile {
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--s2) var(--s3);
+  background: var(--surface);
+  border: 2.5px solid var(--border);
+  border-radius: var(--r-sm);
+  box-shadow: 0 3px 0 var(--border);
+  font-family: var(--font);
+  font-size: var(--size-md);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.slot {
+  border-color: var(--accent);
+  box-shadow: 0 3px 0 var(--accent-strong);
+}
+
+.bank {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s2);
+}
+
+.bank__tile:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--border); }
+
+.bank__tile.is-used {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------ typed answer */
+
+.field {
+  width: 100%;
+  min-height: var(--tap);
+  padding: var(--s3) var(--s4);
+  background: var(--surface);
+  border: 2.5px solid var(--border);
+  border-radius: var(--r-lg);
+  font-family: var(--font);
+  font-size: var(--size-md);
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+}
+
+.field:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-wash);
+}
+
+.field.is-correct { border-color: var(--ok); background: var(--ok-wash); }
+.field.is-partial { border-color: var(--accent); background: var(--accent-wash); }
+.field.is-wrong { border-color: var(--bad); background: var(--bad-wash); }
+
+/* The accented characters are several taps deep on an iOS keyboard. */
+.accents {
+  display: flex;
+  justify-content: center;
+  gap: var(--s2);
+}
+
+.accents__key {
+  min-width: 44px;
+  min-height: 44px;
+  background: var(--bg-sunk);
+  border: 2px solid var(--border);
+  border-radius: var(--r-sm);
+  font-family: var(--font);
+  font-size: var(--size-md);
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.chip--pick {
+  min-height: 36px;
+  padding-inline: var(--s4);
+  border: 2px solid var(--border);
+  background: var(--surface);
+  font-weight: 700;
+}
+
+.chip--pick.is-picked {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+  color: var(--accent);
+}
+
+/* ------------------------------------------------------------- topic tiles */
+
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--s3);
+}
+
+.topic-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+  min-height: var(--tap);
+  padding: var(--s3);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.topic-tile__icon { font-size: var(--size-lg); }
+.topic-tile__name { font-size: var(--size-base); font-weight: 700; }
+.topic-tile__count { font-size: var(--size-xs); color: var(--text-muted); }

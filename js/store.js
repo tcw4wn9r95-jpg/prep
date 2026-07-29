@@ -12,7 +12,7 @@
  */
 
 const DB_NAME = 'sproochentest';
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 
 /** @type {Promise<IDBDatabase>|null} */
 let dbPromise = null;
@@ -21,7 +21,7 @@ function openDb() {
   if (dbPromise) return dbPromise;
   dbPromise = new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, DB_VERSION);
-    request.onupgradeneeded = () => {
+    request.onupgradeneeded = (event) => {
       const db = request.result;
       if (!db.objectStoreNames.contains('meta')) db.createObjectStore('meta');
       if (!db.objectStoreNames.contains('attempts')) {
@@ -43,11 +43,13 @@ function openDb() {
         db.createObjectStore('outbox', { keyPath: 'id', autoIncrement: true });
       }
       if (!db.objectStoreNames.contains('learn')) {
-        // One row per player+deck+item: a tiny Leitner box. Key is a composite
-        // string rather than a keyPath object so byPlayerDeck can range-query it.
+        // One row per player+deck+strand+item: a tiny Leitner box. Key is a
+        // composite string rather than a keyPath object so byPlayerDeck can
+        // range-query it.
         const store = db.createObjectStore('learn', { keyPath: 'key' });
         store.createIndex('byPlayerDeck', 'playerDeck');
       }
+      if (event.oldVersion > 0 && event.oldVersion < 3) migrateLearnToStrands(request.transaction);
     };
     request.onsuccess = () => resolve(request.result);
     request.onerror = () => reject(request.error);
@@ -393,28 +395,95 @@ export async function getStreak(playerId) {
 
 /* ------------------------------------------------------------ vocab & verbs
  * A small Leitner box per item: five boxes, each with a longer review gap.
- * Right answer promotes a box; wrong answer drops straight back to box 0.
- * This is the whole spaced-repetition system — no scheduling library, just an
- * array of day-offsets, which is all a two-person app needs.
+ * No scheduling library, just an array of day-offsets, which is all a
+ * two-person app needs.
+ *
+ * Each item is tracked in **two strands**, because recognising a word and
+ * being able to say it are different pieces of knowledge with different
+ * schedules — learners typically recognise two to three times more words than
+ * they can produce. Collapsing them into one number would overstate readiness
+ * for the half of the exam that is scored on production.
+ *
+ *   recv — can you understand it: gloss, by ear, in a gapped sentence
+ *   prod — can you say it: choose it, build it, type it
+ *
+ * `prod` stays locked until `recv` reaches PROD_UNLOCK_BOX. Interleaving hard
+ * variants in from the first exposure overloads rather than helps; the
+ * difficulty escalates once the word is recognised, not before.
  */
 
 const LEITNER_DAYS = [0, 1, 3, 7, 16];
 export const LEARN_DECKS = { vocab: 'vocab', verb: 'verb' };
+export const STRANDS = { recv: 'recv', prod: 'prod' };
+export const MAX_BOX = LEITNER_DAYS.length - 1;
 
-function learnKey(playerId, deck, itemId) {
-  return `${playerId}:${deck}:${itemId}`;
+/** Recognise a word twice before being asked to produce it. */
+export const PROD_UNLOCK_BOX = 2;
+
+/** New words introduced per day. Above roughly ten, retention falls faster
+ * than the extra intake gains. Reviews are on top of this and uncapped. */
+export const DAILY_NEW_TARGET = 8;
+
+function learnKey(playerId, deck, strand, itemId) {
+  return `${playerId}:${deck}:${strand}:${itemId}`;
 }
 
-/** @param {'vocab'|'verb'} deck */
-export async function getLearnState(playerId, deck, itemId) {
-  const row = await get('learn', learnKey(playerId, deck, itemId));
-  return row ?? { box: 0, dueAt: 0, seen: 0, correct: 0 };
+function playerDeckKey(playerId, deck, strand) {
+  return `${playerId}:${deck}:${strand}`;
 }
 
-/** All progress rows for a player's deck, keyed by item id. */
-export async function getLearnDeckState(playerId, deck) {
-  const rows = await allByIndex('learn', 'byPlayerDeck', `${playerId}:${deck}`);
+/**
+ * v2 → v3: rows were keyed `player:deck:item` with no strand, and every one of
+ * them was written by the old four-option gloss quiz. That is receptive
+ * evidence and nothing else, so it migrates into `recv` with its box intact
+ * and `prod` starts unseen. Claiming those boxes as production knowledge would
+ * be the one dishonest way to do this.
+ */
+function migrateLearnToStrands(transaction) {
+  const store = transaction.objectStore('learn');
+  const cursorRequest = store.openCursor();
+  cursorRequest.onsuccess = () => {
+    const cursor = cursorRequest.result;
+    if (!cursor) return;
+    const row = cursor.value;
+    if (typeof row.key === 'string' && row.key.split(':').length === 3) {
+      const [playerId, deck] = row.key.split(':');
+      store.delete(cursor.primaryKey);
+      store.put({
+        ...row,
+        key: learnKey(playerId, deck, STRANDS.recv, row.itemId),
+        playerDeck: playerDeckKey(playerId, deck, STRANDS.recv),
+        strand: STRANDS.recv,
+      });
+    }
+    cursor.continue();
+  };
+}
+
+const emptyLearnState = () => ({ box: 0, dueAt: 0, seen: 0, correct: 0, lapses: 0 });
+
+/**
+ * @param {'vocab'|'verb'} deck
+ * @param {'recv'|'prod'} strand
+ */
+export async function getLearnState(playerId, deck, strand, itemId) {
+  const row = await get('learn', learnKey(playerId, deck, strand, itemId));
+  return row ?? emptyLearnState();
+}
+
+/** All progress rows for one strand of a player's deck, keyed by item id. */
+export async function getLearnDeckState(playerId, deck, strand) {
+  const rows = await allByIndex('learn', 'byPlayerDeck', playerDeckKey(playerId, deck, strand));
   return new Map(rows.map((row) => [row.itemId, row]));
+}
+
+/** Both strands at once — what the drill needs to pick a card type. */
+export async function getLearnDeckStates(playerId, deck) {
+  const [recv, prod] = await Promise.all([
+    getLearnDeckState(playerId, deck, STRANDS.recv),
+    getLearnDeckState(playerId, deck, STRANDS.prod),
+  ]);
+  return { recv, prod };
 }
 
 /**
@@ -435,6 +504,49 @@ export function pickDue(items, stateByItemId, limit) {
   return [...fresh, ...due].slice(0, limit);
 }
 
+/**
+ * The session plan: a list of `{ item, strand }` pairs.
+ *
+ * Reviews come first in the pool and new words are capped at `newTarget`, so a
+ * long backlog never gets buried under fresh intake. Everything then gets
+ * interleaved — mixing strands and decks within a session retains better than
+ * blocking one type together — except that a word being met for the very first
+ * time contributes only its receptive card, so first exposure stays simple.
+ *
+ * @param {Array} items
+ * @param {{recv: Map, prod: Map}} states
+ */
+export function buildSession(items, states, { limit = 12, newTarget = DAILY_NEW_TARGET, now = Date.now() } = {}) {
+  const reviews = [];
+  const fresh = [];
+
+  for (const item of items) {
+    const recv = states.recv.get(item.id);
+    const prod = states.prod.get(item.id);
+
+    if (!recv) {
+      fresh.push({ item, strand: STRANDS.recv, isNew: true });
+      continue;
+    }
+    if (recv.dueAt <= now) reviews.push({ item, strand: STRANDS.recv, isNew: false });
+
+    // Production only opens once the word is recognised, and an unseen prod
+    // strand on an unlocked word is itself a review — the word is known, the
+    // skill is not.
+    if (recv.box < PROD_UNLOCK_BOX) continue;
+    if (!prod) reviews.push({ item, strand: STRANDS.prod, isNew: false });
+    else if (prod.dueAt <= now) reviews.push({ item, strand: STRANDS.prod, isNew: false });
+  }
+
+  shuffle(reviews);
+  shuffle(fresh);
+
+  const newSlots = Math.max(0, Math.min(newTarget, limit));
+  const chosen = [...reviews.slice(0, Math.max(0, limit - Math.min(fresh.length, newSlots))), ...fresh.slice(0, newSlots)];
+  shuffle(chosen);
+  return chosen.slice(0, limit);
+}
+
 function shuffle(list) {
   for (let i = list.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -442,29 +554,93 @@ function shuffle(list) {
   }
 }
 
-/** @param {'vocab'|'verb'} deck */
-export async function recordLearnResult(playerId, deck, itemId, correct) {
-  const previous = await getLearnState(playerId, deck, itemId);
-  const box = correct ? Math.min(previous.box + 1, LEITNER_DAYS.length - 1) : 0;
-  const dueAt = Date.now() + LEITNER_DAYS[box] * 86400000;
+/**
+ * The box an item moves to. Pure, so the scheduling rules can be tested
+ * without a browser.
+ *
+ * @param {number} previousBox
+ * @param {{correct: boolean, partial?: boolean}} outcome
+ */
+export function nextBox(previousBox, { correct, partial = false }) {
+  if (!correct) return previousBox >= 3 ? 1 : 0;
+  if (partial) return previousBox;
+  return Math.min(previousBox + 1, MAX_BOX);
+}
+
+/**
+ * Grades one card.
+ *
+ * A wrong answer on a well-known word drops it to box 1 rather than box 0: a
+ * lapse means the memory faded, not that the word was never learned, and
+ * sending it all the way back would waste the next four reviews re-teaching
+ * something already half-known.
+ *
+ * `partial` is for a typed answer that was right apart from its accents. It
+ * counts as correct — the meaning was retrieved — but promotes no further, so
+ * the exact spelling comes round again soon.
+ *
+ * @param {'vocab'|'verb'} deck
+ * @param {'recv'|'prod'} strand
+ * @param {{correct: boolean, partial?: boolean}} outcome
+ */
+export async function recordLearnResult(playerId, deck, strand, itemId, outcome) {
+  const { correct, partial = false } = typeof outcome === 'boolean' ? { correct: outcome } : outcome;
+  const previous = await getLearnState(playerId, deck, strand, itemId);
+  const box = nextBox(previous.box, { correct, partial });
+
   const record = {
-    key: learnKey(playerId, deck, itemId),
-    playerDeck: `${playerId}:${deck}`,
+    key: learnKey(playerId, deck, strand, itemId),
+    playerDeck: playerDeckKey(playerId, deck, strand),
+    strand,
     itemId,
     box,
-    dueAt,
+    dueAt: Date.now() + LEITNER_DAYS[box] * 86400000,
     seen: previous.seen + 1,
     correct: previous.correct + (correct ? 1 : 0),
+    lapses: previous.lapses + (correct || previous.box === 0 ? 0 : 1),
   };
   await put('learn', record);
-  if (correct) await queue({ kind: 'learn', deck, itemId, playerId });
+  if (correct) await queue({ kind: 'learn', deck, strand, itemId, playerId });
   return record;
 }
 
-/** Mastered = reached the last box at least once. Used for the Learn hub's progress bar. */
-export async function learnProgress(playerId, deck, totalItems) {
-  const rows = await allByIndex('learn', 'byPlayerDeck', `${playerId}:${deck}`);
-  const mastered = rows.filter((row) => row.box === LEITNER_DAYS.length - 1).length;
-  const started = rows.length;
-  return { started, mastered, total: totalItems, pct: totalItems === 0 ? 0 : (mastered / totalItems) * 100 };
+/**
+ * Mastered = reached the last box. Reported per strand, because "I know 400
+ * words" and "I can say 400 words" are different claims and only the second
+ * one predicts the speaking mark.
+ *
+ * @param {'recv'|'prod'} strand
+ */
+export async function learnProgress(playerId, deck, strand, totalItems) {
+  const rows = await allByIndex('learn', 'byPlayerDeck', playerDeckKey(playerId, deck, strand));
+  const mastered = rows.filter((row) => row.box === MAX_BOX).length;
+  return { started: rows.length, mastered, total: totalItems, pct: totalItems === 0 ? 0 : (mastered / totalItems) * 100 };
+}
+
+/**
+ * What is waiting right now, across both decks and both strands, plus how many
+ * new words have been started today. Drives the Learn hub.
+ */
+export async function dueCounts(playerId, { now = Date.now() } = {}) {
+  const decks = Object.values(LEARN_DECKS);
+  const strands = Object.values(STRANDS);
+  const rowSets = await Promise.all(
+    decks.flatMap((deck) => strands.map((strand) => allByIndex('learn', 'byPlayerDeck', playerDeckKey(playerId, deck, strand)))),
+  );
+  const rows = rowSets.flat();
+
+  const startOfDay = new Date(now);
+  startOfDay.setHours(0, 0, 0, 0);
+  const dayStart = startOfDay.getTime();
+
+  const counts = { recv: 0, prod: 0, newToday: 0, target: DAILY_NEW_TARGET };
+  for (const row of rows) {
+    if (row.dueAt <= now) counts[row.strand] += 1;
+    // seen === 1 on a recv row means the word was met for the first time; the
+    // due date is when that first meeting was graded.
+    if (row.strand === STRANDS.recv && row.seen === 1 && row.dueAt - LEITNER_DAYS[row.box] * 86400000 >= dayStart) {
+      counts.newToday += 1;
+    }
+  }
+  return counts;
 }
