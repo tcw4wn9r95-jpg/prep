@@ -105,6 +105,32 @@ test('srs: the session never exceeds its limit', async () => {
   assert.equal(session.length, 6);
 });
 
+/* ------------------------------------------------- new words arrive in order */
+
+test('srs: new words are taken in stage then rank order, never shuffled', async () => {
+  // The bug this guards: `fresh` used to be shuffled, so a beginner's first
+  // session was a random draw from 2,000 A1 words and led with things like
+  // "Wunngemeinschaft" instead of "ech".
+  const deck = [
+    { id: 'late', stage: 5, rank: 900 },
+    { id: 'first', stage: 1, rank: 12 },
+    { id: 'third', stage: 2, rank: 40 },
+    { id: 'second', stage: 1, rank: 30 },
+    { id: 'fourth', stage: 3, rank: 5 }, // low rank but a later stage
+  ];
+  for (let run = 0; run < 10; run += 1) {
+    const session = store.buildSession(deck, { recv: new Map(), prod: new Map() }, { limit: 3, newTarget: 3, now: NOW });
+    const ids = session.map((card) => card.item.id).sort();
+    assert.deepEqual(ids, ['first', 'second', 'third'], 'the three most useful words must be the three selected');
+  }
+});
+
+test('srs: an item with no rank still sorts, at the back', async () => {
+  const deck = [{ id: 'unranked' }, { id: 'ranked', stage: 1, rank: 3 }];
+  const session = store.buildSession(deck, { recv: new Map(), prod: new Map() }, { limit: 1, newTarget: 1, now: NOW });
+  assert.equal(session[0].item.id, 'ranked');
+});
+
 test('srs: sessions interleave strands rather than blocking them together', async () => {
   const recv = new Map(items.map((item) => [item.id, seen(4, NOW - 1)]));
   const prod = new Map(items.map((item) => [item.id, seen(1, NOW - 1)]));

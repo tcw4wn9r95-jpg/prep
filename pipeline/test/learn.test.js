@@ -184,3 +184,129 @@ test('cues: the source table has no duplicate keys', () => {
   assert.deepEqual(duplicates, [], `duplicate cue keys: ${duplicates.join(', ')}`);
   assert.ok(Object.keys(EXACT).length > 200, 'the cue table should not have shrunk');
 });
+
+/* --------------------------------------------------------------- starters */
+
+const { STARTERS, applyStarters } = require('../lib/starters');
+const { rankDeck, STAGES } = require('../lib/frequency');
+
+const alwaysClean = () => true;
+
+test('starters: promotes an existing corpus entry rather than duplicating it', () => {
+  // `gutt` is in the Grondwuertschatz with an example and a recording. A
+  // hand-written stub next to it would be strictly worse, and two cards reading
+  // "gutt = good" is just a bug the learner has to live with.
+  const deck = [{ id: 'GUTT3', lb: 'gutt', en: 'good', example: { lb: 'dat ass gutt', audioId: 'x' } }];
+  const result = applyStarters(deck, LEXICON_WITH_STARTERS, alwaysClean);
+  const gutt = result.items.filter((item) => item.lb === 'gutt');
+  assert.equal(gutt.length, 1, 'gutt must not be duplicated');
+  assert.equal(gutt[0].id, 'GUTT3', 'the corpus entry is the one kept');
+  assert.equal(gutt[0].starter, true);
+  assert.equal(gutt[0].example.audioId, 'x', 'and it keeps its recording');
+});
+
+test('starters: synthesises only what the corpus genuinely lacks, with a real LOD id', () => {
+  const result = applyStarters([], LEXICON_WITH_STARTERS, alwaysClean);
+  const ech = result.items.find((item) => item.lb === 'ech');
+  assert.ok(ech, 'ech is not in the Grondwuertschatz and has to be added');
+  assert.equal(ech.id, 'START-ECH1');
+  assert.equal(ech.lodId, 'ECH1', 'the id must come from the lexicon, not be invented');
+  assert.equal(ech.starter, true);
+});
+
+test('starters: refuses to ship a word that does not resolve in the lexicon', () => {
+  // The one place Luxembourgish is named by hand, so a typo must stop the
+  // build rather than quietly drop the word.
+  assert.throws(() => applyStarters([], { forms: {} }, alwaysClean), /must trace to a LOD record/);
+});
+
+test('starters: prefers the entry that has a recording when the deck has several', () => {
+  const deck = [
+    { id: 'A', lb: 'gutt', en: 'good', example: null },
+    { id: 'B', lb: 'gutt', en: 'well', example: { lb: 'dat ass gutt', audioId: 'y' } },
+  ];
+  const result = applyStarters(deck, LEXICON_WITH_STARTERS, alwaysClean);
+  const gutt = result.items.filter((item) => item.lb === 'gutt');
+  assert.deepEqual(gutt.filter((item) => item.starter).map((item) => item.id), ['B']);
+});
+
+/** Every starter form, mapped as the real lexicon maps them. */
+const LEXICON_WITH_STARTERS = {
+  forms: Object.fromEntries(STARTERS.map((starter) => [starter.lb, `spelling:${starter.lb.toUpperCase()}1`])),
+};
+
+/* -------------------------------------------------------------- frequency */
+
+test('frequency: ranks by count, and the sentence skeleton takes stage 1', () => {
+  const items = [
+    { id: 'RARE', lb: 'Wunngemeinschaft', pos: 'SUBST', level: 'A1' },
+    { id: 'ECH', lb: 'ech', pos: 'PRON', level: 'A1', starter: true },
+    { id: 'HUNN', lb: 'hunn', pos: 'VRB', level: 'A1' },
+  ];
+  const counts = new Map([['RARE', 2], ['ECH', 2206], ['HUNN', 1655]]);
+  const ranked = rankDeck(items, counts);
+  const byId = new Map(ranked.map((item) => [item.id, item]));
+
+  assert.equal(byId.get('ECH').stage, 1, 'a starter is stage 1 whatever its frequency');
+  assert.equal(byId.get('HUNN').stage, 2, 'the most frequent verbs come next');
+  assert.ok(byId.get('RARE').stage >= 3, 'a rare noun waits');
+  assert.ok(byId.get('ECH').rank < byId.get('RARE').rank);
+  assert.equal(byId.get('RARE').freq, 2);
+});
+
+test('frequency: ranking is deterministic when counts tie', () => {
+  const items = [
+    { id: 'B', lb: 'beta', pos: 'SUBST', level: 'A1' },
+    { id: 'A', lb: 'alpha', pos: 'SUBST', level: 'A1' },
+  ];
+  const counts = new Map([['A', 5], ['B', 5]]);
+  const first = rankDeck(items, counts).map((item) => item.id);
+  const second = rankDeck([...items].reverse(), counts).map((item) => item.id);
+  assert.deepEqual(first.sort(), second.sort());
+  assert.equal(rankDeck(items, counts).find((item) => item.id === 'A').rank, 1, 'ties break on the lemma');
+});
+
+test('frequency: a word with no occurrences still gets a rank and a stage', () => {
+  const ranked = rankDeck([{ id: 'X', lb: 'zzz', pos: 'SUBST', level: 'A2' }], new Map());
+  assert.equal(ranked[0].freq, 0);
+  assert.equal(ranked[0].rank, 1);
+  assert.equal(ranked[0].stage, 5, 'unseen A2 words fall to the last stage');
+});
+
+test('frequency: the stage list is contiguous and labelled', () => {
+  assert.deepEqual(STAGES.map((stage) => stage.n), [1, 2, 3, 4, 5]);
+  for (const stage of STAGES) {
+    assert.ok(stage.title && stage.blurb, `stage ${stage.n} needs a title and a blurb`);
+  }
+});
+
+/* ------------------------------------------------- the shipped deck order */
+
+test('deck: the first words shipped are the ones you build sentences from', () => {
+  const vocab = require('../../app/data/vocab.json').items;
+  const firstTwenty = vocab.slice(0, 20).map((item) => item.lb);
+  for (const word of ['ech', 'du', 'mir', 'hien', 'net']) {
+    assert.ok(firstTwenty.includes(word), `"${word}" must be among the first words, found: ${firstTwenty.join(', ')}`);
+  }
+});
+
+test('deck: the verb deck opens with the verbs that carry sentences', () => {
+  const verbs = require('../../app/data/verbs.json').items;
+  const firstTen = verbs.slice(0, 10).map((item) => item.infinitive);
+  for (const verb of ['hunn', 'sinn', 'goen', 'kënnen']) {
+    assert.ok(firstTen.includes(verb), `"${verb}" must open the verb deck, found: ${firstTen.join(', ')}`);
+  }
+});
+
+test('deck: no word appears twice with the same translation', () => {
+  for (const name of ['vocab', 'verbs']) {
+    const items = require(`../../app/data/${name}.json`).items;
+    const seen = new Map();
+    for (const item of items) {
+      const key = `${String(item.lb ?? item.infinitive).toLowerCase()}|${String(item.en).toLowerCase()}`;
+      seen.set(key, (seen.get(key) ?? 0) + 1);
+    }
+    const dupes = [...seen.entries()].filter(([, count]) => count > 1);
+    assert.deepEqual(dupes, [], `${name} ships duplicate cards: ${dupes.map(([key]) => key).join(', ')}`);
+  }
+});

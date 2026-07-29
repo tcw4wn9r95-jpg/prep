@@ -18,28 +18,36 @@
 
 import { el, screenHead, plural, settingsButton } from '../dom.js';
 import { Amelie } from '../amelie.js';
-import { loadVocab, loadVerbs, loadTopics, topicIcon } from '../content.js';
-import { learnProgress, dueCounts, STRANDS } from '../store.js';
+import { loadVocab, loadVerbs, loadTopics, loadStages, topicIcon } from '../content.js';
+import { learnProgress, dueCounts, getLearnDeckState, STRANDS } from '../store.js';
 
 export async function render(root, { settings }) {
-  const [vocabItems, verbItems, topics] = await Promise.all([loadVocab(), loadVerbs(), loadTopics()]);
-  const [vocabRecv, vocabProd, verbRecv, verbProd, due] = await Promise.all([
+  const [vocabItems, verbItems, topics, stages] = await Promise.all([loadVocab(), loadVerbs(), loadTopics(), loadStages()]);
+  const [vocabRecv, vocabProd, verbRecv, verbProd, due, startedVocab, startedVerb] = await Promise.all([
     learnProgress(settings.playerId, 'vocab', STRANDS.recv, vocabItems.length),
     learnProgress(settings.playerId, 'vocab', STRANDS.prod, vocabItems.length),
     learnProgress(settings.playerId, 'verb', STRANDS.recv, verbItems.length),
     learnProgress(settings.playerId, 'verb', STRANDS.prod, verbItems.length),
     dueCounts(settings.playerId),
+    getLearnDeckState(settings.playerId, 'vocab', STRANDS.recv),
+    getLearnDeckState(settings.playerId, 'verb', STRANDS.recv),
   ]);
 
-  const amelie = new Amelie({ size: 'md', bubble: true });
-  amelie.say(adviceFor(due, vocabRecv, vocabProd), 'idle');
-
   const all = [...vocabItems, ...verbItems];
+  const seen = new Set([...startedVocab.keys(), ...startedVerb.keys()]);
+  const path = stagePath(stages, all, seen);
+
+  const amelie = new Amelie({ size: 'md', bubble: true });
+  amelie.say(adviceFor(due, vocabRecv, vocabProd, path), 'idle');
 
   root.append(
     screenHead({ title: 'Learn', sub: 'A1/A2 basics, before the exam format', trailing: settingsButton('#/settings') }),
     el('div', { class: 'card' }, amelie.el),
     todayCard(due),
+
+    sectionLabel('Your path'),
+    el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } }, 'Words come in this order — the ones that build sentences first, then whatever turns up most often.'),
+    stageList(path),
 
     sectionLabel('Decks'),
     el(
@@ -74,6 +82,59 @@ export async function render(root, { settings }) {
 
 function sectionLabel(text) {
   return el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, text);
+}
+
+/**
+ * How far through each stage the learner is.
+ *
+ * "Word 812 of 2,049" tells you nothing. "You are on Everyday verbs, 14 of 60"
+ * tells you where you are and what it is for.
+ */
+function stagePath(stages, items, seen) {
+  return stages
+    .map((stage) => {
+      const inStage = items.filter((item) => item.stage === stage.n);
+      const started = inStage.filter((item) => seen.has(item.id)).length;
+      return { ...stage, total: inStage.length, started };
+    })
+    .filter((stage) => stage.total > 0);
+}
+
+function stageList(path) {
+  // The stage you are on is the first one you have not finished.
+  const currentIndex = path.findIndex((stage) => stage.started < stage.total);
+  return el(
+    'div',
+    { class: 'stack' },
+    ...path.map((stage, index) => {
+      const pct = stage.total === 0 ? 0 : Math.round((stage.started / stage.total) * 100);
+      const isCurrent = index === currentIndex;
+      const isDone = stage.started >= stage.total;
+      return el(
+        'div',
+        { class: `stage${isCurrent ? ' is-current' : ''}${isDone ? ' is-done' : ''}` },
+        el(
+          'div',
+          { class: 'row' },
+          el('span', { class: 'stage__n', 'aria-hidden': 'true' }, isDone ? '✓' : String(stage.n)),
+          el(
+            'div',
+            { class: 'spacer' },
+            el('p', { class: 'card__title' }, stage.title),
+            el('p', { class: 'card__note' }, isCurrent ? stage.blurb : `${stage.started} of ${stage.total}`),
+          ),
+          isCurrent ? el('span', { class: 'meter__value' }, `${stage.started}/${stage.total}`) : null,
+        ),
+        isCurrent
+          ? el(
+              'div',
+              { class: 'meter__track', style: { marginBlockStart: 'var(--s2)' } },
+              el('div', { class: 'meter__fill', style: { width: `${Math.max(pct, 2)}%` } }),
+            )
+          : null,
+      );
+    }),
+  );
 }
 
 /** What is waiting right now — the only number that should drive a session. */
@@ -185,9 +246,11 @@ function untaggedNote(items) {
   );
 }
 
-function adviceFor(due, recv, prod) {
+function adviceFor(due, recv, prod, path) {
+  if (recv.started === 0) return 'Start at the beginning: I, you, and the words that hold a sentence together. Everything else needs those first.';
   if (due.recv + due.prod > 0) return `${due.recv + due.prod} cards are waiting. Reviews first — they are the ones about to fade.`;
-  if (recv.started === 0) return 'Start here. Build the words first, then the exam drills have something to stand on.';
+  const current = path.find((stage) => stage.started < stage.total);
   if (prod.mastered * 2 < recv.mastered) return 'You recognise far more than you can say. The speaking part only scores what you can say.';
+  if (current) return `You are on ${current.title.toLowerCase()} — ${current.total - current.started} to go.`;
   return 'Nothing due. Pick a topic and take on new words.';
 }

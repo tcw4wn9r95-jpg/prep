@@ -114,6 +114,14 @@ const FREE_TEXT_FIELDS = new Set([
   'topicVia',
   'cue',
   'via',
+  // Learn deck ordering (pipeline/lib/frequency.js, lib/starters.js). All
+  // machine labels: `lodId` is the LOD record a hand-listed starter traces to,
+  // `starter`/`freq`/`rank`/`stage` decide what order words arrive in.
+  'lodId',
+  'starter',
+  'freq',
+  'rank',
+  'stage',
   // image-description items
   'image',
   'imageUrl',

@@ -874,3 +874,44 @@
 .topic-tile__icon { font-size: var(--size-lg); }
 .topic-tile__name { font-size: var(--size-base); font-weight: 700; }
 .topic-tile__count { font-size: var(--size-xs); color: var(--text-muted); }
+
+/* ------------------------------------------------------------ stage path */
+/* The order words arrive in. Only the stage you are on is drawn in full —
+   the rest are a quiet list, so the screen reads as a path with a position
+   on it rather than five competing progress bars. */
+
+.stage {
+  padding: var(--s3);
+  border: 2px solid transparent;
+  border-radius: var(--r-md);
+  color: var(--text-muted);
+}
+
+.stage.is-current {
+  background: var(--surface);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.stage.is-done .stage__n {
+  background: var(--ok);
+  color: #fff;
+}
+
+.stage__n {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-sunk);
+  color: var(--text-muted);
+  font-size: var(--size-sm);
+  font-weight: 800;
+}
+
+.stage.is-current .stage__n {
+  background: var(--accent);
+  color: var(--text-on-accent);
+}
