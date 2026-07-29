@@ -28,6 +28,16 @@
 <link rel="stylesheet" href="css/amelie.css">
 </head>
 <body>
+<!--
+  Shown immediately, before any JS runs, so a cold load never flashes a blank
+  page while IndexedDB opens and the first screen renders. main.js removes it
+  once the first route has painted.
+-->
+<div id="splash" class="splash" aria-hidden="true">
+  <img src="assets/icon.svg" alt="" class="splash__icon" width="96" height="96">
+  <p class="splash__title">Sproochentest Duel</p>
+</div>
+
 <div class="offline-banner" role="status">Offline — practice still works, scores sync later.</div>
 
 <div id="app">
