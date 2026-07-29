@@ -11,7 +11,7 @@
  * The handicap exists because nobody keeps playing a game they always lose.
  */
 
-import { el, screenHead, formatPercent, plural, weekLabel } from '../dom.js';
+import { el, screenHead, settingsButton, formatPercent, plural, weekLabel } from '../dom.js';
 import { topicIcon } from '../content.js';
 import { syncNow, lastSyncLabel } from '../sync.js';
 import {
@@ -47,7 +47,13 @@ export async function render(root, { settings }) {
 
   const leader = weekly[0].total === weekly[1].total ? null : weekly.reduce((a, b) => (a.total > b.total ? a : b));
 
-  root.append(screenHead({ title: 'Woch-Duell', sub: `Week of ${weekLabel(seed)} · both of you get the same set` }));
+  root.append(
+    screenHead({
+      title: 'Woch-Duell',
+      sub: `Week of ${weekLabel(seed)} · both of you get the same set`,
+      trailing: settingsButton('#/settings', 'Duel settings'),
+    }),
+  );
 
   /* --- the scoreboard */
   root.append(

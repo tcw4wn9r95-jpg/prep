@@ -73,6 +73,24 @@ export function backButton(href) {
   );
 }
 
+/** A settings gear, for configuration that lives off the main flow. */
+export function settingsButton(href, label = 'Settings') {
+  const teeth = [0, 45, 90, 135, 180, 225, 270, 315].map((angle) =>
+    el('rect', { x: '10.5', y: '1.4', width: '3', height: '5', rx: '1.2', transform: `rotate(${angle} 12 12)` }),
+  );
+  return el(
+    'a',
+    { class: 'iconbtn', href, 'aria-label': label },
+    el(
+      'svg',
+      { viewBox: '0 0 24 24', width: '24', height: '24', 'aria-hidden': 'true', fill: 'none', stroke: 'currentColor', 'stroke-width': '2', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' },
+      ...teeth,
+      el('circle', { cx: '12', cy: '12', r: '7' }),
+      el('circle', { cx: '12', cy: '12', r: '2.4' }),
+    ),
+  );
+}
+
 /** Screen header: back button, title, optional subtitle, optional trailing. */
 export function screenHead({ title, sub, back, trailing }) {
   return el(
