@@ -880,17 +880,37 @@
    the rest are a quiet list, so the screen reads as a path with a position
    on it rather than five competing progress bars. */
 
+/* A step of the path is a link, not a label: it starts a session over just
+   that step. It has to look tappable, or it reads as decoration and the tap
+   never happens. */
 .stage {
+  display: block;
+  min-height: var(--tap);
   padding: var(--s3);
-  border: 2px solid transparent;
+  background: var(--surface);
+  border: 2px solid var(--border);
   border-radius: var(--r-md);
   color: var(--text-muted);
+  text-decoration: none;
 }
 
 .stage.is-current {
-  background: var(--surface);
   border-color: var(--accent);
   color: var(--text);
+}
+
+.stage.is-done {
+  color: var(--text-muted);
+}
+
+.stage:active {
+  transform: scale(0.99);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage:active {
+    transform: none;
+  }
 }
 
 .stage.is-done .stage__n {

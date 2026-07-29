@@ -12,6 +12,7 @@ import * as onboarding from './screens/onboarding.js';
 import * as today from './screens/today.js';
 import * as journey from './screens/journey.js';
 import * as learn from './screens/learn.js';
+import * as session from './screens/session.js';
 import * as vocab from './screens/vocab.js';
 import * as verbs from './screens/verbs.js';
 import * as phrases from './screens/phrases.js';
@@ -27,6 +28,7 @@ const ROUTES = {
   today,
   journey,
   learn,
+  session,
   vocab,
   verbs,
   phrases,

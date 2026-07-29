@@ -165,7 +165,9 @@ function assess({ settings, attempts, recordings, reviews, due, topics, decks })
     {
       id: 'words',
       title: 'Words',
-      href: '#/learn',
+      // Straight into the cards, not to the hub. A step that lands on another
+      // menu is a step that has not been taken.
+      href: '#/session',
       done: dueTotal === 0 && newLeft === 0,
       note:
         dueTotal > 0
@@ -220,7 +222,7 @@ function nextAction(state, partner) {
   if (!step) {
     return {
       label: 'Practise anyway',
-      href: '#/learn',
+      href: '#/session',
       why: 'Everything is done for today. Anything more is a bonus.',
     };
   }
@@ -229,12 +231,12 @@ function nextAction(state, partner) {
     return state.dueTotal > 0
       ? {
           label: `Study ${plural(state.dueTotal, 'card')}`,
-          href: '#/learn',
+          href: '#/session',
           why: `${plural(state.dueTotal, 'card')} are due. These are the ones about to fade, so they come first.`,
         }
       : {
           label: `Learn ${state.newLeft} new words`,
-          href: '#/learn',
+          href: '#/session',
           why: 'Nothing is due yet. Start with words — the listening and speaking drills assume you have them.',
         };
   }

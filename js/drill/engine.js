@@ -38,19 +38,24 @@ const INSTRUCTION_BY_STRAND = {
 };
 
 /**
+ * A plan entry may name its own `deck` and `pool`, which is what lets one
+ * session mix vocabulary, verbs and phrases: the learner meets "the next words",
+ * and which file they happen to live in stays our problem rather than theirs.
+ * A single-deck session just passes `deck` and `pool` once for all of them.
+ *
  * @param {object} options
  * @param {HTMLElement} options.root
- * @param {Array<{item: object, strand: string, isNew: boolean}>} options.plan
- * @param {object} options.deck one of cards.js DECKS
- * @param {Array} options.pool the full deck, for distractors
- * @param {Map} options.boxes item id + strand → box, for choosing card types
+ * @param {Array<{item: object, strand: string, isNew: boolean, deck?: object, pool?: Array}>} options.plan
+ * @param {object} [options.deck] one of cards.js DECKS, when the whole plan shares one
+ * @param {Array} [options.pool] the full deck, for distractors
+ * @param {Map} options.boxes deck id + strand + item id → box, for choosing card types
  * @param {object} options.settings
  * @param {(hash: string) => void} options.navigate
  * @param {string} options.title
  * @param {string} options.back
  * @param {string} options.again hash to start another session
  */
-export function runSession({ root, plan, deck, pool, boxes, settings, navigate, title, sub, back, again }) {
+export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, boxes, settings, navigate, title, sub, back, again }) {
   /** @type {Array<{item, strand, isNew, retry?: boolean}>} */
   let queue = [...plan];
   let index = 0;
@@ -83,7 +88,9 @@ export function runSession({ root, plan, deck, pool, boxes, settings, navigate, 
     }
 
     const entry = queue[index];
-    const box = boxes.get(`${entry.strand}:${entry.item.id}`) ?? 0;
+    const deck = entry.deck ?? sessionDeck;
+    const pool = entry.pool ?? sessionPool;
+    const box = boxes.get(`${deck.id}:${entry.strand}:${entry.item.id}`) ?? 0;
     const card = buildCard({ item: entry.item, strand: entry.strand, box, deck, pool });
 
     // Clear the previous card's feedback. Leaving it up makes Amelie look like
@@ -212,7 +219,7 @@ export function runSession({ root, plan, deck, pool, boxes, settings, navigate, 
     // promoted by the second attempt at the same question in the same minute,
     // which is exactly the spacing the box is supposed to enforce.
     if (!entry.retry) {
-      recordLearnResult(settings.playerId, deck.id, card.strand, card.item.id, {
+      recordLearnResult(settings.playerId, card.deck.id, card.strand, card.item.id, {
         correct: result.correct,
         partial: result.partial,
       });
