@@ -22,11 +22,12 @@ async function readJson(name) {
 }
 
 async function main() {
-  const [listening, interviews, vocab, verbs] = await Promise.all([
+  const [listening, interviews, vocab, verbs, phrases] = await Promise.all([
     readJson('listening.json'),
     readJson('interviews.json'),
     readJson('vocab.json'),
     readJson('verbs.json'),
+    readJson('phrases.json'),
   ]);
 
   const audioIds = new Set();
@@ -37,6 +38,9 @@ async function main() {
     for (const phase of interview.phases) for (const question of phase.questions) audioIds.add(question.audioId);
   }
   for (const item of vocab.items) if (item.example?.audioId) audioIds.add(item.example.audioId);
+  // Phrase frames ship several recorded examples each, all of which need
+  // mirroring and precaching or the deck is silent offline.
+  for (const item of phrases.items ?? []) for (const example of item.examples ?? []) audioIds.add(example.audioId);
   for (const item of verbs.items) if (item.example?.audioId) audioIds.add(item.example.audioId);
 
   await writeJson(path.join(paths.CONTENT_DIR, 'audio-manifest.json'), {
@@ -45,12 +49,12 @@ async function main() {
       generator: 'pipeline/build-audio-manifest.js',
       license: 'CC0-1.0',
       attribution: "Lëtzebuerger Online Dictionnaire (LOD), Zenter fir d'Lëtzebuerger Sprooch, via data.public.lu",
-      sources: ['listening.json', 'interviews.json', 'vocab.json', 'verbs.json'],
+      sources: ['listening.json', 'interviews.json', 'vocab.json', 'verbs.json', 'phrases.json'],
     },
     audioIds: [...audioIds].sort(),
   });
 
-  console.log(`audio manifest: ${audioIds.size} distinct recordings across listening, interviews, vocab and verbs`);
+  console.log(`audio manifest: ${audioIds.size} distinct recordings across listening, interviews, vocab, verbs and phrases`);
 }
 
 main().catch((error) => {

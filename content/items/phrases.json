@@ -1,0 +1,1447 @@
+{
+  "meta": {
+    "generatedAt": "2026-07-29T16:09:56.238Z",
+    "generator": "pipeline/build-phrases.js",
+    "license": "CC0-1.0",
+    "corpus": {
+      "art": {
+        "dataset": "letzebuerger-online-dictionnaire-lod-linguistesch-daten",
+        "resourceId": "2d20bba9-5073-48a4-aae5-f0d5c9a0d955",
+        "resource": "260727-new-lod-art.zip",
+        "xmlSha256": "9cfc68aac67296832d96a12919aef5cc3609a530514831751374b104df4a2eab"
+      },
+      "search": {
+        "dataset": "letzebuerger-online-dictionnaire-lod-index-vun-der-sich-funktioun",
+        "resourceId": "1debbba3-079c-4400-96b0-79b74e97a7ce",
+        "resource": "260727-new-lod-search.zip",
+        "xmlSha256": "30e10b28aa3df88950e1abcb499e7daa0ea5a264bfc6718b526472f59c0dc589"
+      },
+      "tab": {
+        "dataset": "letzebuerger-online-dictionnaire-lod-flexiounstabellen",
+        "resourceId": "27d65808-3ff7-4e39-b01e-b1af1e847cc4",
+        "resource": "260727-new-lod-tab.zip",
+        "xmlSha256": "27200fd7a47d4d16a8df81f9eb6162029fdc0898375d4ac97acfc8623ede8c17"
+      }
+    },
+    "attribution": "Lëtzebuerger Online Dictionnaire (LOD), Zenter fir d'Lëtzebuerger Sprooch, via data.public.lu",
+    "note": "Frames are selected from LOD example sentences, never authored. Each is attested at least 8 times in recorded corpus sentences and the build fails otherwise. English and French glosses are written by us.",
+    "groups": [
+      {
+        "id": "self",
+        "title": "Talking about yourself"
+      },
+      {
+        "id": "other",
+        "title": "Talking about other people"
+      },
+      {
+        "id": "pointing",
+        "title": "Pointing something out"
+      },
+      {
+        "id": "modal",
+        "title": "Can, must, want"
+      },
+      {
+        "id": "past",
+        "title": "Talking about the past"
+      },
+      {
+        "id": "polite",
+        "title": "Being polite"
+      },
+      {
+        "id": "asking",
+        "title": "Asking a question"
+      },
+      {
+        "id": "joining",
+        "title": "Joining two ideas"
+      }
+    ],
+    "counts": {
+      "items": 34,
+      "withVariant": 6
+    }
+  },
+  "items": [
+    {
+      "id": "PHRASE-ECH-HUNN",
+      "lb": "ech hunn",
+      "en": "I have",
+      "fr": "j'ai",
+      "group": "self",
+      "level": "A2",
+      "attestations": 264,
+      "variant": {
+        "lb": "ech hu",
+        "attestations": 189
+      },
+      "example": {
+        "lb": "ech hunn haut Gebuertsdag",
+        "audioId": "b49b988822e0366de882184b16585afe",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech hunn haut Gebuertsdag",
+          "audioId": "b49b988822e0366de882184b16585afe",
+          "local": true
+        },
+        {
+          "lb": "ech hunn nëmme männlech Aarbechtskolleegen",
+          "audioId": "16fa0a38e0e511a7f577e62844e7a42f",
+          "local": true
+        },
+        {
+          "lb": "ech hunn am Conservatoire Flütt geléiert",
+          "audioId": "399dd64d76133e54eb23194c5bbfba62",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech hunn",
+        "after": " haut Gebuertsdag",
+        "via": "frame"
+      },
+      "rank": 1,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-SINN",
+      "lb": "ech sinn",
+      "en": "I am",
+      "fr": "je suis",
+      "group": "self",
+      "level": "A2",
+      "attestations": 76,
+      "variant": {
+        "lb": "ech si",
+        "attestations": 51
+      },
+      "example": {
+        "lb": "ech sinn am Mäerz op d'Welt komm",
+        "audioId": "753acce09d6c9061fae6dbba0e3861a1",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech sinn am Mäerz op d'Welt komm",
+          "audioId": "753acce09d6c9061fae6dbba0e3861a1",
+          "local": true
+        },
+        {
+          "lb": "ech sinn an en anert Duerf geplënnert",
+          "audioId": "7dda1995e76523e382a8ea307de22735",
+          "local": true
+        },
+        {
+          "lb": "ech sinn där selwechter Meenung wéi hien",
+          "audioId": "3c2367ab0aada24332397c68dacae17e",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech sinn",
+        "after": " am Mäerz op d'Welt komm",
+        "via": "frame"
+      },
+      "rank": 2,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-KOMMEN",
+      "lb": "ech kommen",
+      "en": "I come",
+      "fr": "je viens",
+      "group": "self",
+      "level": "A2",
+      "attestations": 27,
+      "variant": null,
+      "example": {
+        "lb": "ech kommen den Owend nach laanscht",
+        "audioId": "a2bfe8b41ff30623979b2d39bd467f67",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech kommen den Owend nach laanscht",
+          "audioId": "a2bfe8b41ff30623979b2d39bd467f67",
+          "local": true
+        },
+        {
+          "lb": "waart op mech, ech kommen direkt!",
+          "audioId": "9d9e296ce2df778c63c0e6e50e17b1df",
+          "local": true
+        },
+        {
+          "lb": "ech kommen net un d'Saachen uewen am Schaf",
+          "audioId": "002ec2cd72f1d6b01bab9d4085947fbb",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech kommen",
+        "after": " den Owend nach laanscht",
+        "via": "frame"
+      },
+      "rank": 3,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-WEESS",
+      "lb": "ech weess",
+      "en": "I know",
+      "fr": "je sais",
+      "group": "self",
+      "level": "A2",
+      "attestations": 25,
+      "variant": null,
+      "example": {
+        "lb": "ech weess net, wéi ech mat deem Gëft a Kontakt komm sinn",
+        "audioId": "ca075981d137bde9a769212017737486",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech weess net, wéi ech mat deem Gëft a Kontakt komm sinn",
+          "audioId": "ca075981d137bde9a769212017737486",
+          "local": true
+        },
+        {
+          "lb": "ech weess, vu wat ech schwätzen",
+          "audioId": "46c617518c9503bb88dd8c7e5a5865a8",
+          "local": false
+        },
+        {
+          "lb": "ech weess e Lidd dovun ze sangen",
+          "audioId": "971b0e3df09f6b8adedf106876a34630",
+          "local": false
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech weess",
+        "after": " net, wéi ech mat deem Gëft a Kontakt komm sinn",
+        "via": "frame"
+      },
+      "rank": 4,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-WUNNEN",
+      "lb": "ech wunnen",
+      "en": "I live",
+      "fr": "j'habite",
+      "group": "self",
+      "level": "A2",
+      "attestations": 16,
+      "variant": null,
+      "example": {
+        "lb": "ech wunnen am Pafendall",
+        "audioId": "66964e70b8bf8def740a5f4e0fd01ba5",
+        "local": false
+      },
+      "examples": [
+        {
+          "lb": "ech wunnen am Pafendall",
+          "audioId": "66964e70b8bf8def740a5f4e0fd01ba5",
+          "local": false
+        },
+        {
+          "lb": "ech wunnen zu Bartreng",
+          "audioId": "7173e19bbe85e54a7a18aff5ea1dea58",
+          "local": false
+        },
+        {
+          "lb": "ech wunnen zu Beefort",
+          "audioId": "43f491d12eff558032f0ae286f77c4ce",
+          "local": false
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech wunnen",
+        "after": " am Pafendall",
+        "via": "frame"
+      },
+      "rank": 5,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-MAACHEN",
+      "lb": "ech maachen",
+      "en": "I do, I make",
+      "fr": "je fais",
+      "group": "self",
+      "level": "A2",
+      "attestations": 15,
+      "variant": null,
+      "example": {
+        "lb": "ech maachen zweemol d'Woch Aerobic am Fitness-Zenter",
+        "audioId": "22e31164b7b9ee0867f4e4b4a2213b3e",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech maachen zweemol d'Woch Aerobic am Fitness-Zenter",
+          "audioId": "22e31164b7b9ee0867f4e4b4a2213b3e",
+          "local": true
+        },
+        {
+          "lb": "ech maachen eis de Mëtteg Nuddele mat Tomatenzooss",
+          "audioId": "04424f484af03dcdd0ffb4718f362e4e",
+          "local": true
+        },
+        {
+          "lb": "dat Gemauls geet mer op de Su, ech maachen dee ganzen Theater do net méi laang mat",
+          "audioId": "89665bf77ebdb1333b6cefedb8e57d72",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech maachen",
+        "after": " zweemol d'Woch Aerobic am Fitness-Zenter",
+        "via": "frame"
+      },
+      "rank": 6,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-HIEN-HUET",
+      "lb": "hien huet",
+      "en": "he has",
+      "fr": "il a",
+      "group": "other",
+      "level": "A2",
+      "attestations": 190,
+      "variant": null,
+      "example": {
+        "lb": "hien huet ëmmer gutt Iddien",
+        "audioId": "5264d62116d7da94c6379c0a2f941143",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "hien huet ëmmer gutt Iddien",
+          "audioId": "5264d62116d7da94c6379c0a2f941143",
+          "local": true
+        },
+        {
+          "lb": "hien huet ëmmer originell Iddien",
+          "audioId": "ef18463f2dcf9523a14039b37b249760",
+          "local": true
+        },
+        {
+          "lb": "hien huet en interessanten Hobby",
+          "audioId": "74e7abf756bc458ea67b4ec4a57a6b93",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "hien huet",
+        "after": " ëmmer gutt Iddien",
+        "via": "frame"
+      },
+      "rank": 7,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-MIR-HUNN",
+      "lb": "mir hunn",
+      "en": "we have",
+      "fr": "nous avons",
+      "group": "other",
+      "level": "A2",
+      "attestations": 127,
+      "variant": {
+        "lb": "mir hu",
+        "attestations": 28
+      },
+      "example": {
+        "lb": "mir hunn doheem haart Waasser",
+        "audioId": "5312957b0615dd3031e6024543587e29",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "mir hunn doheem haart Waasser",
+          "audioId": "5312957b0615dd3031e6024543587e29",
+          "local": true
+        },
+        {
+          "lb": "mir hunn doheem haart Waasser",
+          "audioId": "5312957b0615dd3031e6024543587e29",
+          "local": true
+        },
+        {
+          "lb": "mir hunn Iech d'Dokumentatioun matgeschéckt",
+          "audioId": "a596f079efd56f5b558be9cbf2927fb5",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "mir hunn",
+        "after": " doheem haart Waasser",
+        "via": "frame"
+      },
+      "rank": 8,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-HIEN-ASS",
+      "lb": "hien ass",
+      "en": "he is",
+      "fr": "il est",
+      "group": "other",
+      "level": "A2",
+      "attestations": 104,
+      "variant": null,
+      "example": {
+        "lb": "hien ass e grousst Kand",
+        "audioId": "88a5500687dc443a39891a2243d888a2",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "hien ass e grousst Kand",
+          "audioId": "88a5500687dc443a39891a2243d888a2",
+          "local": true
+        },
+        {
+          "lb": "hien ass dem Papp säi Jong!",
+          "audioId": "918a0fcf7ba160972817e3ae95b1217e",
+          "local": true
+        },
+        {
+          "lb": "hien ass Papp vu véier Kanner",
+          "audioId": "3de76845e556a93ae5ce8196055062de",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "hien ass",
+        "after": " e grousst Kand",
+        "via": "frame"
+      },
+      "rank": 9,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-DU-HUES",
+      "lb": "du hues",
+      "en": "you have",
+      "fr": "tu as",
+      "group": "other",
+      "level": "A2",
+      "attestations": 58,
+      "variant": null,
+      "example": {
+        "lb": "du hues e schwéiere Beruff",
+        "audioId": "2ef169348f96edc3fac051881b879e87",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "du hues e schwéiere Beruff",
+          "audioId": "2ef169348f96edc3fac051881b879e87",
+          "local": true
+        },
+        {
+          "lb": "du hues bestëmmt Recht mat denger Iwwerleeung",
+          "audioId": "b17d13a7804f4c583ff25fda895e94fb",
+          "local": true
+        },
+        {
+          "lb": "du hues d'Nuddelen eng Grimmel ze laang gekacht",
+          "audioId": "af46df71d62338f1eff54f9585d652a1",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "du hues",
+        "after": " e schwéiere Beruff",
+        "via": "frame"
+      },
+      "rank": 10,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-MIR-SINN",
+      "lb": "mir sinn",
+      "en": "we are",
+      "fr": "nous sommes",
+      "group": "other",
+      "level": "A2",
+      "attestations": 40,
+      "variant": {
+        "lb": "mir si",
+        "attestations": 15
+      },
+      "example": {
+        "lb": "mir sinn op zwou Zeitungen abonéiert",
+        "audioId": "7422270e7c2d44931b7229999f6bc90d",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "mir sinn op zwou Zeitungen abonéiert",
+          "audioId": "7422270e7c2d44931b7229999f6bc90d",
+          "local": true
+        },
+        {
+          "lb": "mir sinn nomëttes an eisem Hotel ukomm",
+          "audioId": "c24b8c70f35132d135adb65b336bdfe1",
+          "local": true
+        },
+        {
+          "lb": "mir sinn nomëttes an eisem Hotel ukomm",
+          "audioId": "c24b8c70f35132d135adb65b336bdfe1",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "mir sinn",
+        "after": " op zwou Zeitungen abonéiert",
+        "via": "frame"
+      },
+      "rank": 11,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-DU-BASS",
+      "lb": "du bass",
+      "en": "you are",
+      "fr": "tu es",
+      "group": "other",
+      "level": "A2",
+      "attestations": 31,
+      "variant": null,
+      "example": {
+        "lb": "du bass e klengen, dommen, arrogante Knëff!",
+        "audioId": "8441590f7730a515c614e195eed5c090",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "du bass e klengen, dommen, arrogante Knëff!",
+          "audioId": "8441590f7730a515c614e195eed5c090",
+          "local": true
+        },
+        {
+          "lb": "du bass de Chef!",
+          "audioId": "8e5e2e528b07918441be72825359ef9e",
+          "local": false
+        },
+        {
+          "lb": "du bass mir egal!",
+          "audioId": "240ddb953a3aab1f52e661545a9dd8f1",
+          "local": false
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "du bass",
+        "after": " e klengen, dommen, arrogante Knëff!",
+        "via": "frame"
+      },
+      "rank": 12,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-SI-HUNN",
+      "lb": "si hunn",
+      "en": "they have",
+      "fr": "ils ont",
+      "group": "other",
+      "level": "A2",
+      "attestations": 23,
+      "variant": {
+        "lb": "si hu",
+        "attestations": 8
+      },
+      "example": {
+        "lb": "si hunn an deem klengen Haus eng daierlech Existenz geféiert",
+        "audioId": "c4f089f99d44c15da811404b09c6c4cb",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "si hunn an deem klengen Haus eng daierlech Existenz geféiert",
+          "audioId": "c4f089f99d44c15da811404b09c6c4cb",
+          "local": true
+        },
+        {
+          "lb": "si hunn de Mëssel gedeelt",
+          "audioId": "0ffe3e5e3486faab40682012437cb5e1",
+          "local": false
+        },
+        {
+          "lb": "si hunn eng aggressiv Verkafspolitik",
+          "audioId": "77a3764d9bc08a305b26a62a1abc3f5c",
+          "local": false
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "si hunn",
+        "after": " an deem klengen Haus eng daierlech Existenz geféiert",
+        "via": "frame"
+      },
+      "rank": 13,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ET-ASS",
+      "lb": "et ass",
+      "en": "it is",
+      "fr": "c'est",
+      "group": "pointing",
+      "level": "A2",
+      "attestations": 180,
+      "variant": null,
+      "example": {
+        "lb": "et ass Mëtteg",
+        "audioId": "c5351df9890a90a72cea875c5c8033ee",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "et ass Mëtteg",
+          "audioId": "c5351df9890a90a72cea875c5c8033ee",
+          "local": true
+        },
+        {
+          "lb": "et ass Véierel vir néng",
+          "audioId": "fea44740b6cb437c0f3e083bf1675459",
+          "local": true
+        },
+        {
+          "lb": "et ass alles an der Rei",
+          "audioId": "c651641c4e0424c54293495decb70b18",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "et ass",
+        "after": " Mëtteg",
+        "via": "frame"
+      },
+      "rank": 14,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-DAT-ASS",
+      "lb": "dat ass",
+      "en": "that is",
+      "fr": "c'est cela",
+      "group": "pointing",
+      "level": "A2",
+      "attestations": 63,
+      "variant": null,
+      "example": {
+        "lb": "dat ass eng super Iddi",
+        "audioId": "ef04e3267ad67f8c2f7ac9722bf0a9af",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "dat ass eng super Iddi",
+          "audioId": "ef04e3267ad67f8c2f7ac9722bf0a9af",
+          "local": true
+        },
+        {
+          "lb": "dat ass Musek fir meng Oueren!",
+          "audioId": "6d1d402b16f9b261e9d2445e73a0b18b",
+          "local": true
+        },
+        {
+          "lb": "Theorie a Praxis, dat ass zweeërlee",
+          "audioId": "4ce2f724cb90347387c16cd4d9341165",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "dat ass",
+        "after": " eng super Iddi",
+        "via": "frame"
+      },
+      "rank": 15,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ET-GËTT",
+      "lb": "et gëtt",
+      "en": "there is, there are",
+      "fr": "il y a",
+      "group": "pointing",
+      "level": "A2",
+      "attestations": 51,
+      "variant": null,
+      "example": {
+        "lb": "ech fäerten, et gëtt hënt Schnéi",
+        "audioId": "3fcedc9c7f1c066d53f0bad6193345cc",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech fäerten, et gëtt hënt Schnéi",
+          "audioId": "3fcedc9c7f1c066d53f0bad6193345cc",
+          "local": true
+        },
+        {
+          "lb": "et gëtt ëmmer méi kulturell Sendungen um Radio",
+          "audioId": "a0bc994a5c543c5edecda85f1bb98c5b",
+          "local": true
+        },
+        {
+          "lb": "et gëtt Reen, géi net ouni Prabbeli eraus!",
+          "audioId": "7f531732e8f3b72f3d438563952b2cb6",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "ech fäerten, ",
+        "form": "et gëtt",
+        "after": " hënt Schnéi",
+        "via": "frame"
+      },
+      "rank": 16,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-MUSS",
+      "lb": "ech muss",
+      "en": "I must, I have to",
+      "fr": "je dois",
+      "group": "modal",
+      "level": "A2",
+      "attestations": 65,
+      "variant": null,
+      "example": {
+        "lb": "ech hunn Duuscht, ech muss eppes drénken",
+        "audioId": "cbc8ecf789797ce8cd9197d6a76091f0",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech hunn Duuscht, ech muss eppes drénken",
+          "audioId": "cbc8ecf789797ce8cd9197d6a76091f0",
+          "local": true
+        },
+        {
+          "lb": "ech muss der eng witzeg Geschicht verzielen",
+          "audioId": "d4d6d7e23d58078365c07cc2a32072d0",
+          "local": true
+        },
+        {
+          "lb": "ech muss dat neit Bild nach arumme loossen",
+          "audioId": "0c3d8eaacaa57ba99c6aae70cbf807e7",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "ech hunn Duuscht, ",
+        "form": "ech muss",
+        "after": " eppes drénken",
+        "via": "frame"
+      },
+      "rank": 17,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-DU-MUSS",
+      "lb": "du muss",
+      "en": "you must",
+      "fr": "tu dois",
+      "group": "modal",
+      "level": "A2",
+      "attestations": 45,
+      "variant": null,
+      "example": {
+        "lb": "du muss d'Këschten nummeréieren",
+        "audioId": "bad5d39c8ce15e5bd63bf18c38b6fef8",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "du muss d'Këschten nummeréieren",
+          "audioId": "bad5d39c8ce15e5bd63bf18c38b6fef8",
+          "local": true
+        },
+        {
+          "lb": "du muss d'Fleesch géint de Fuedem schneiden",
+          "audioId": "610a2bb4680edfb6d667c4a1b7c9f9eb",
+          "local": true
+        },
+        {
+          "lb": "du muss däi Krankeschäin op d'Krankekeess schécken!",
+          "audioId": "b5f279b30d495f0f9b77c50edb94f1ea",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "du muss",
+        "after": " d'Këschten nummeréieren",
+        "via": "frame"
+      },
+      "rank": 18,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-DU-KANNS",
+      "lb": "du kanns",
+      "en": "you can",
+      "fr": "tu peux",
+      "group": "modal",
+      "level": "A2",
+      "attestations": 35,
+      "variant": null,
+      "example": {
+        "lb": "du kanns déi Invitatioun net refuséieren",
+        "audioId": "61d8aa9548d33a776367e5a8a42a4151",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "du kanns déi Invitatioun net refuséieren",
+          "audioId": "61d8aa9548d33a776367e5a8a42a4151",
+          "local": true
+        },
+        {
+          "lb": "du kanns méi séier lafen ewéi ech",
+          "audioId": "c7af9f0278417e0d2f2e06f76b445e96",
+          "local": true
+        },
+        {
+          "lb": "du kanns mech dëse Weekend um Handy erreechen",
+          "audioId": "12909fa006fabf591d73a9af7668b29a",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "du kanns",
+        "after": " déi Invitatioun net refuséieren",
+        "via": "frame"
+      },
+      "rank": 19,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-KANN",
+      "lb": "ech kann",
+      "en": "I can",
+      "fr": "je peux",
+      "group": "modal",
+      "level": "A2",
+      "attestations": 32,
+      "variant": {
+        "lb": "ech ka",
+        "attestations": 21
+      },
+      "example": {
+        "lb": "ech kann net dofir!",
+        "audioId": "56b116b5babd2e8ca667a34cff16cec5",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech kann net dofir!",
+          "audioId": "56b116b5babd2e8ca667a34cff16cec5",
+          "local": true
+        },
+        {
+          "lb": "ech kann d'Vullen um Fluch ënnerscheeden",
+          "audioId": "7c9bdd727be048db5e54c2535422b42a",
+          "local": true
+        },
+        {
+          "lb": "ech kann Iech deen Dokter nëmme recommandéieren!",
+          "audioId": "db6438905ef3f456f62b8b5fafc6c082",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech kann",
+        "after": " net dofir!",
+        "via": "frame"
+      },
+      "rank": 20,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-WËLL",
+      "lb": "ech wëll",
+      "en": "I want",
+      "fr": "je veux",
+      "group": "modal",
+      "level": "A2",
+      "attestations": 23,
+      "variant": null,
+      "example": {
+        "lb": "ech wëll de Moien um Büro net gestéiert ginn",
+        "audioId": "ab649a2c20b34d08ed476df841f8678c",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech wëll de Moien um Büro net gestéiert ginn",
+          "audioId": "ab649a2c20b34d08ed476df841f8678c",
+          "local": true
+        },
+        {
+          "lb": "ech hunn ze vill giess, ech wëll keen Dessert méi",
+          "audioId": "05a915f59dd0340c00345b299cfea434",
+          "local": true
+        },
+        {
+          "lb": "ech wëll!",
+          "audioId": "429ac4e5085224565fdc02c3a43de0a4",
+          "local": false
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech wëll",
+        "after": " de Moien um Büro net gestéiert ginn",
+        "via": "frame"
+      },
+      "rank": 21,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-MIR-MUSSEN",
+      "lb": "mir mussen",
+      "en": "we must",
+      "fr": "nous devons",
+      "group": "modal",
+      "level": "A2",
+      "attestations": 23,
+      "variant": null,
+      "example": {
+        "lb": "mir mussen e Pak op d'Post siche goen",
+        "audioId": "2249be3b39e01b702592de5c55af4626",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "mir mussen e Pak op d'Post siche goen",
+          "audioId": "2249be3b39e01b702592de5c55af4626",
+          "local": true
+        },
+        {
+          "lb": "mir mussen e Pak op d'Post siche goen",
+          "audioId": "2249be3b39e01b702592de5c55af4626",
+          "local": true
+        },
+        {
+          "lb": "hei si mer an enger Sakgaass, mir mussen d'Kéier maachen",
+          "audioId": "eca6ec4f9e4b0597c49212083c8a4014",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "mir mussen",
+        "after": " e Pak op d'Post siche goen",
+        "via": "frame"
+      },
+      "rank": 22,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-HAT",
+      "lb": "ech hat",
+      "en": "I had",
+      "fr": "j'avais",
+      "group": "past",
+      "level": "A2",
+      "attestations": 31,
+      "variant": null,
+      "example": {
+        "lb": "ech hat vergiess, mer deng Telefonsnummer opzeschreiwen",
+        "audioId": "0ab869b69f3c2112c58867a4eff93bfe",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech hat vergiess, mer deng Telefonsnummer opzeschreiwen",
+          "audioId": "0ab869b69f3c2112c58867a4eff93bfe",
+          "local": true
+        },
+        {
+          "lb": "ech hat an Ongedanke vergiess, fir d'Viischt Dier zouzespären",
+          "audioId": "5528b3680c22f5444a9f4e7d444f4204",
+          "local": true
+        },
+        {
+          "lb": "ech hat meng Mamm gëschter zwou Stonnen um Telefon",
+          "audioId": "6d615b6a67ad398e9f6942c43d71790c",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech hat",
+        "after": " vergiess, mer deng Telefonsnummer opzeschreiwen",
+        "via": "frame"
+      },
+      "rank": 23,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-WAR",
+      "lb": "ech war",
+      "en": "I was",
+      "fr": "j'étais",
+      "group": "past",
+      "level": "A2",
+      "attestations": 29,
+      "variant": null,
+      "example": {
+        "lb": "ech war nach ëmmer en onsportleche Mënsch",
+        "audioId": "8999dd959e6e6f5fc8a312ad34288122",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech war nach ëmmer en onsportleche Mënsch",
+          "audioId": "8999dd959e6e6f5fc8a312ad34288122",
+          "local": true
+        },
+        {
+          "lb": "ech war d'lescht Woch bei menger Tatta op Besuch",
+          "audioId": "43a4680e34a15c783fa1f5c4bfb697fa",
+          "local": true
+        },
+        {
+          "lb": "ech war glécklech, wéi ech mäin Exame gepackt hat",
+          "audioId": "23a54c6b42ea8f55e87f08f42282659e",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech war",
+        "after": " nach ëmmer en onsportleche Mënsch",
+        "via": "frame"
+      },
+      "rank": 24,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-MIR-HATEN",
+      "lb": "mir haten",
+      "en": "we had",
+      "fr": "nous avions",
+      "group": "past",
+      "level": "A2",
+      "attestations": 19,
+      "variant": null,
+      "example": {
+        "lb": "mir haten e richteg relaxe Weekend",
+        "audioId": "2f81a218f6d25cc5ca911380cfbff5f9",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "mir haten e richteg relaxe Weekend",
+          "audioId": "2f81a218f6d25cc5ca911380cfbff5f9",
+          "local": true
+        },
+        {
+          "lb": "mir haten alle béid eng Zopp als Entrée",
+          "audioId": "baae31060a51c868e629fb693760fe23",
+          "local": true
+        },
+        {
+          "lb": "mir haten haut de Mëtteg en interessant Gespréich",
+          "audioId": "6e195ce48f4328a6ffc3606d0ec0de31",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "mir haten",
+        "after": " e richteg relaxe Weekend",
+        "via": "frame"
+      },
+      "rank": 25,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-HIEN-HAT",
+      "lb": "hien hat",
+      "en": "he had",
+      "fr": "il avait",
+      "group": "past",
+      "level": "A2",
+      "attestations": 18,
+      "variant": null,
+      "example": {
+        "lb": "hien hat mer gesot, e géing mer gär hëllefen, mee e war paff, wéi ech en du beim Wuert geholl hunn",
+        "audioId": "324a0db05f91fa1ad47f10f1e8811d57",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "hien hat mer gesot, e géing mer gär hëllefen, mee e war paff, wéi ech en du beim Wuert geholl hunn",
+          "audioId": "324a0db05f91fa1ad47f10f1e8811d57",
+          "local": true
+        },
+        {
+          "lb": "hien hat kee schéinen Doud",
+          "audioId": "8d3101fddae2e295d7896a4a11f3c01f",
+          "local": false
+        },
+        {
+          "lb": "hien hat d'Dier vu banne gespaart",
+          "audioId": "ca0bb89369a3108fcaf6b4d2a00b96ae",
+          "local": false
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "hien hat",
+        "after": " mer gesot, e géing mer gär hëllefen, mee e war paff, wéi ech en du beim Wuert geholl hunn",
+        "via": "frame"
+      },
+      "rank": 26,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-HÄTT",
+      "lb": "ech hätt",
+      "en": "I would have, I would like",
+      "fr": "j'aurais",
+      "group": "polite",
+      "level": "A2",
+      "attestations": 24,
+      "variant": null,
+      "example": {
+        "lb": "ech hätt gär eng hallef Dose Mëtschen",
+        "audioId": "4f1a89c2095b1b296b9bb4951ffb2264",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech hätt gär eng hallef Dose Mëtschen",
+          "audioId": "4f1a89c2095b1b296b9bb4951ffb2264",
+          "local": true
+        },
+        {
+          "lb": "ech hätt nawell Loscht op e Stéck Taart!",
+          "audioId": "30995263336397405dc72c053cd8c796",
+          "local": true
+        },
+        {
+          "lb": "ech hätt nawell Loscht op eng gutt, frësch Mëtsch!",
+          "audioId": "64502a9c774cf1e0fe708be33bc9945e",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech hätt",
+        "after": " gär eng hallef Dose Mëtschen",
+        "via": "frame"
+      },
+      "rank": 27,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-GÉIF",
+      "lb": "ech géif",
+      "en": "I would",
+      "fr": "je ferais",
+      "group": "polite",
+      "level": "A2",
+      "attestations": 14,
+      "variant": null,
+      "example": {
+        "lb": "meng net, ech géif dech fäerten!",
+        "audioId": "d4a77362dfdf3ce60f4f84a0fec4b53b",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "meng net, ech géif dech fäerten!",
+          "audioId": "d4a77362dfdf3ce60f4f84a0fec4b53b",
+          "local": true
+        },
+        {
+          "lb": "ech géif jo alt Müüsli iessen, wa keng Korinten dra wieren!",
+          "audioId": "39708e77fb2a48579512ad9bfcc7d49e",
+          "local": true
+        },
+        {
+          "lb": "ech géif gär eng Kéier op den héchste Bierg vun der Welt klammen",
+          "audioId": "d29575f9ece2f527f2c6cd6e2feeda9a",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "meng net, ",
+        "form": "ech géif",
+        "after": " dech fäerten!",
+        "via": "frame"
+      },
+      "rank": 28,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-HUES-DU",
+      "lb": "hues du",
+      "en": "do you have",
+      "fr": "as-tu",
+      "group": "asking",
+      "level": "A2",
+      "attestations": 35,
+      "variant": null,
+      "example": {
+        "lb": "hues du d'Mauséiercherszalot scho gebotzt?",
+        "audioId": "0bb85ccfbc5a2667d1060aca888600da",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "hues du d'Mauséiercherszalot scho gebotzt?",
+          "audioId": "0bb85ccfbc5a2667d1060aca888600da",
+          "local": true
+        },
+        {
+          "lb": "hues du d'Stuff scho gestaubsaugt?",
+          "audioId": "1f7f7b22853d5c62f1ee4f9ab7f77d09",
+          "local": true
+        },
+        {
+          "lb": "wéi, hues du keen Internet?",
+          "audioId": "0e2d686ed6cfc70ecb9cae8c8f5193a3",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "hues du",
+        "after": " d'Mauséiercherszalot scho gebotzt?",
+        "via": "frame"
+      },
+      "rank": 29,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-WÉI-VILL",
+      "lb": "wéi vill",
+      "en": "how much, how many",
+      "fr": "combien",
+      "group": "asking",
+      "level": "A2",
+      "attestations": 29,
+      "variant": null,
+      "example": {
+        "lb": "wéi vill Auer ass et?",
+        "audioId": "fb5fed5032d1288bbf9bb816f0cbd1b6",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "wéi vill Auer ass et?",
+          "audioId": "fb5fed5032d1288bbf9bb816f0cbd1b6",
+          "local": true
+        },
+        {
+          "lb": "wéi vill Auer ass et?",
+          "audioId": "fb5fed5032d1288bbf9bb816f0cbd1b6",
+          "local": true
+        },
+        {
+          "lb": "wéi vill Meterkaree huet däin neit Appartement?",
+          "audioId": "ba3f5b048153e77ac2738fc398fdd94e",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "wéi vill",
+        "after": " Auer ass et?",
+        "via": "frame"
+      },
+      "rank": 30,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-WAT-FIR",
+      "lb": "wat fir",
+      "en": "what kind of",
+      "fr": "quel genre de",
+      "group": "asking",
+      "level": "A2",
+      "attestations": 26,
+      "variant": null,
+      "example": {
+        "lb": "wat fir e Genre vu Musek lauschters du?",
+        "audioId": "5cb6544794c628338035be99ee64a571",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "wat fir e Genre vu Musek lauschters du?",
+          "audioId": "5cb6544794c628338035be99ee64a571",
+          "local": true
+        },
+        {
+          "lb": "wat fir eng Musek lauschters du am Auto?",
+          "audioId": "5c6ef87256d2d5bcaee2e43514f24aeb",
+          "local": true
+        },
+        {
+          "lb": "wat fir Filmer lafen am Ament am Kino?",
+          "audioId": "9d3ddbf515df582315d8fb88a985c78e",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "wat fir",
+        "after": " e Genre vu Musek lauschters du?",
+        "via": "frame"
+      },
+      "rank": 31,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-WAT-ASS",
+      "lb": "wat ass",
+      "en": "what is",
+      "fr": "qu'est-ce que c'est",
+      "group": "asking",
+      "level": "A2",
+      "attestations": 23,
+      "variant": null,
+      "example": {
+        "lb": "wat ass däi Frënd vu Beruff?",
+        "audioId": "6e3bb0158783c04aa22c9f94836ba2e6",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "wat ass däi Frënd vu Beruff?",
+          "audioId": "6e3bb0158783c04aa22c9f94836ba2e6",
+          "local": true
+        },
+        {
+          "lb": "wat ass dat e léift Meedchen!",
+          "audioId": "48896f567a5ac9ac17e07ae3ae33fb7d",
+          "local": true
+        },
+        {
+          "lb": "wat ass dat en héicht Haus!",
+          "audioId": "9e95c218aa2180c27fe59b2f677b7cc2",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "wat ass",
+        "after": " däi Frënd vu Beruff?",
+        "via": "frame"
+      },
+      "rank": 32,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-WÉI-ECH",
+      "lb": "wéi ech",
+      "en": "when I, as I",
+      "fr": "quand je",
+      "group": "joining",
+      "level": "A2",
+      "attestations": 50,
+      "variant": null,
+      "example": {
+        "lb": "wéi ech de Mueren opgestane sinn, louch Schnéi",
+        "audioId": "6fae251032345df69accbbe5e8444ccb",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "wéi ech de Mueren opgestane sinn, louch Schnéi",
+          "audioId": "6fae251032345df69accbbe5e8444ccb",
+          "local": true
+        },
+        {
+          "lb": "ech war glécklech, wéi ech mäin Exame gepackt hat",
+          "audioId": "23a54c6b42ea8f55e87f08f42282659e",
+          "local": true
+        },
+        {
+          "lb": "ech kann der net beschreiwen, wéi ech mech opgereegt hunn!",
+          "audioId": "b731c0d6051f4ece60b2763b1f2d2557",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "wéi ech",
+        "after": " de Mueren opgestane sinn, louch Schnéi",
+        "via": "frame"
+      },
+      "rank": 33,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-WANN-ECH",
+      "lb": "wann ech",
+      "en": "if I, when I",
+      "fr": "si je",
+      "group": "joining",
+      "level": "A2",
+      "attestations": 43,
+      "variant": null,
+      "example": {
+        "lb": "wann ech fort sinn, däerfs de kengem d'Dier opmaachen!",
+        "audioId": "ae4a6b24c2e571745ac83cae5efc0699",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "wann ech fort sinn, däerfs de kengem d'Dier opmaachen!",
+          "audioId": "ae4a6b24c2e571745ac83cae5efc0699",
+          "local": true
+        },
+        {
+          "lb": "et knackt a menger Schëller, wann ech den Aarm hiewen",
+          "audioId": "48cee3b1028bd6bba97efa062aa81464",
+          "local": true
+        },
+        {
+          "lb": "wann ech Fësch kafen, loossen ech en am Geschäft botzen",
+          "audioId": "aecbd31163fc605d6888c6ea169a3056",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "wann ech",
+        "after": " fort sinn, däerfs de kengem d'Dier opmaachen!",
+        "via": "frame"
+      },
+      "rank": 34,
+      "stage": 1
+    }
+  ]
+}

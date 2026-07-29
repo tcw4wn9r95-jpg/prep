@@ -23,10 +23,11 @@ Or step by step:
 | `npm run build:vocab` | the A1/A2 word deck, gated as it builds | `content/items/vocab.json`, `app/data/vocab.json` |
 | `npm run build:verbs` | the present-tense verb deck, from the Flexiounstabellen | `content/items/verbs.json`, `app/data/verbs.json` |
 | `npm run build:learn` | adds exam topics, visual cues and cloze targets to both decks | the same two files, in place |
+| `npm run build:phrases` | the sentence-frame deck, failing if a frame is not attested in the corpus | `content/items/phrases.json`, `app/data/phrases.json` |
 | `npm run mirror:audio` | downloads the AAC the shipped items reference | `app/assets/audio/` |
 | `npm run fetch:images` | openly licensed photos for the image-description task | `app/assets/img/`, `images.json` |
 | `npm run validate` | the gate. Exit 1 on any error | — |
-| `npm test` | proves the gate catches what it must, plus the Learn deck generators, ordering and the card ladder (84 tests) | — |
+| `npm test` | proves the gate catches what it must, plus the Learn deck generators, ordering, phrases and the card ladder (92 tests) | — |
 | `npm run walkthrough` | drives the real app in Chromium at iPhone size | `docs/screens/*.png` |
 | `npm run calibrate` | measures the gate against LOD's own sentences | — |
 | `npm run evidence` | regenerates `docs/n-rule-evidence.md` | that file |
@@ -105,6 +106,17 @@ a learner should meet them. Beyond the lemma, gloss and example,
 All three slices of `cloze` are declared Luxembourgish in `validate.js` and get
 the full lexicon and n-rule treatment — splitting a validated sentence invents
 a boundary, and the n-rule is a sandhi rule across exactly such boundaries.
+
+**`content/items/phrases.json`** — 34 sentence frames. `lib/phrases.js` curates
+which frames to teach; `build-phrases.js` is the part that *proves* them, and
+fails the build if a frame occurs fewer than eight times in LOD's recorded
+example sentences. Each item carries `attestations` (the count), up to three
+recorded `examples`, a `cloze` gapping the frame out of its own sentence, and
+a `variant` when the corpus also writes the n-dropped form.
+
+Examples prefer recordings already in `app/assets/audio`, and any that are not
+yet mirrored are marked `local: false` — the app then ships that card without a
+play button rather than a 404, and `npm run content` fills the gap in.
 
 `build-learn.js` is idempotent: it strips anything a previous run synthesised
 before it starts, so re-running produces no diff beyond its timestamp.

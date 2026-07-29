@@ -18,11 +18,11 @@
 
 import { el, screenHead, plural, settingsButton } from '../dom.js';
 import { Amelie } from '../amelie.js';
-import { loadVocab, loadVerbs, loadTopics, loadStages, topicIcon } from '../content.js';
+import { loadVocab, loadVerbs, loadPhrases, loadTopics, loadStages, topicIcon } from '../content.js';
 import { learnProgress, dueCounts, getLearnDeckState, STRANDS } from '../store.js';
 
 export async function render(root, { settings }) {
-  const [vocabItems, verbItems, topics, stages] = await Promise.all([loadVocab(), loadVerbs(), loadTopics(), loadStages()]);
+  const [vocabItems, verbItems, phraseItems, topics, stages] = await Promise.all([loadVocab(), loadVerbs(), loadPhrases(), loadTopics(), loadStages()]);
   const [vocabRecv, vocabProd, verbRecv, verbProd, due, startedVocab, startedVerb] = await Promise.all([
     learnProgress(settings.playerId, 'vocab', STRANDS.recv, vocabItems.length),
     learnProgress(settings.playerId, 'vocab', STRANDS.prod, vocabItems.length),
@@ -31,6 +31,10 @@ export async function render(root, { settings }) {
     dueCounts(settings.playerId),
     getLearnDeckState(settings.playerId, 'vocab', STRANDS.recv),
     getLearnDeckState(settings.playerId, 'verb', STRANDS.recv),
+  ]);
+  const [phraseRecv, phraseProd] = await Promise.all([
+    learnProgress(settings.playerId, 'phrase', STRANDS.recv, phraseItems.length),
+    learnProgress(settings.playerId, 'phrase', STRANDS.prod, phraseItems.length),
   ]);
 
   const all = [...vocabItems, ...verbItems];
@@ -53,6 +57,15 @@ export async function render(root, { settings }) {
     el(
       'div',
       { class: 'stack stack--lg' },
+      // First, because it is the deck that turns the other two into sentences.
+      deckCard({
+        href: '#/phrases',
+        icon: '💬',
+        title: 'Phrases',
+        note: `${plural(phraseItems.length, 'sentence frame')} an interview is built from`,
+        recv: phraseRecv,
+        prod: phraseProd,
+      }),
       deckCard({
         href: '#/vocab',
         icon: '📇',

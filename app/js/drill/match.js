@@ -68,6 +68,36 @@ export function letterBank(answer, { decoys = 4, random = Math.random } = {}) {
   return shuffle([...letters, ...extra], random).map((character, index) => ({ id: `${index}:${character}`, character }));
 }
 
+/**
+ * The same idea for a multi-word answer, in whole words.
+ *
+ * A letter bank cannot express a phrase — it has nowhere to put the space, so
+ * "ech hunn" would have to be built as "echhunn". Words are also the right unit
+ * to practise here: the thing being learned about `ech hunn` is which words in
+ * which order, not how `hunn` is spelled.
+ *
+ * Decoys must come from `pool`, never from anywhere else — every word shown on
+ * screen has to be one the corpus attests, and inventing plausible-looking
+ * Luxembourgish to pad a bank is exactly what this project forbids.
+ */
+export function wordBank(answer, pool, { decoys = 3, random = Math.random } = {}) {
+  const words = String(answer).trim().split(/\s+/);
+  const seen = new Set(words.map((word) => word.toLowerCase()));
+  const candidates = [];
+  for (const phrase of pool) {
+    for (const word of String(phrase).trim().split(/\s+/)) {
+      if (seen.has(word.toLowerCase())) continue;
+      seen.add(word.toLowerCase());
+      candidates.push(word);
+    }
+  }
+  const extra = [];
+  for (let i = 0; i < decoys && candidates.length > 0; i += 1) {
+    extra.push(candidates.splice(Math.floor(random() * candidates.length), 1)[0]);
+  }
+  return shuffle([...words, ...extra], random).map((word, index) => ({ id: `${index}:${word}`, character: word }));
+}
+
 function shuffle(list, random) {
   const copy = [...list];
   for (let i = copy.length - 1; i > 0; i -= 1) {

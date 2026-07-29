@@ -23,9 +23,9 @@ npm run walkthrough  # drives the real app in Chromium at iPhone size, screensho
 | --- | --- |
 | corpus | 2,204 GWS A1/A2 entries · 258,946 accepted forms · 10,577 native recordings |
 | items | 287 listening questions · 169 interview prompts · 18 topics |
-| learn decks | 2,049 words · 365 verbs · frequency-ranked into 5 stages · 1,791 topic-tagged · 2,240 cloze targets · 358 visual cues |
+| learn decks | 34 sentence frames · 2,049 words · 365 verbs · frequency-ranked into 5 stages · 1,791 topic-tagged · 2,240 cloze targets · 358 visual cues |
 | shipped assets | 2,263 recordings (68 MB, AAC) · 16 CC images (5.5 MB) |
-| verification | `npm test` 84/84 · `validate` PASS · walkthrough 19/19, no console errors |
+| verification | `npm test` 92/92 · `validate` PASS · walkthrough 21/21, no console errors |
 
 **Known limits, stated plainly.** Listening items are corpus-derived drills on the official
 5+7+4 shape, not replicas of INLL's connected-speech test — the app says so and links to the
@@ -208,6 +208,19 @@ example sentences, and banded into five stages:
 
 New words are introduced in that order and never shuffled, so the first session is `ech`,
 `du`, `mir`, `net` — and the Learn hub draws the path with your position on it.
+
+**Phrases.** Single words are not what makes someone sound like they can speak. Formulaic
+sequences — the chunks a speaker reaches for whole — are what raters respond to, and an A2
+interview is largely a sequence of them. So there is a third deck of **34 sentence frames**
+(`ech hunn`, `ech war`, `et gëtt`, `wéi vill`), grouped by what they let you do.
+
+The safety argument is the same as everywhere else and is enforced, not asserted: each frame
+must occur **at least eight times** in LOD's own recorded example sentences or
+`build-phrases.js` fails the build. Frames are selected from the corpus, never written. Each
+ships up to three recorded sentences that use it, and the six frames LOD also writes with the
+*n* dropped (`ech hunn` / `ech hu` — the Eifeler Regel) carry that variant, again only where
+the corpus attests it often enough. Production cards use a **word** bank rather than letters,
+with decoy words taken from other frames so everything on screen is corpus-attested.
 
 **Two strands per word, not one score.** Learners recognise two to three times more words
 than they can produce, and the A2 speaking part credits only production. So each item carries

@@ -120,8 +120,16 @@ const FREE_TEXT_FIELDS = new Set([
   'lodId',
   'starter',
   'freq',
+  'local',
   'rank',
   'stage',
+  // Phrase deck (pipeline/build-phrases.js). `group` is a taxonomy id and
+  // `attestations` the count that proves the frame occurs in the corpus.
+  // Note `variant` is NOT here: it holds a Luxembourgish `lb`, which the
+  // recursion validates as Luxembourgish exactly as it should.
+  'group',
+  'attestations',
+  'examples',
   // image-description items
   'image',
   'imageUrl',

@@ -413,7 +413,7 @@ export async function getStreak(playerId) {
  */
 
 const LEITNER_DAYS = [0, 1, 3, 7, 16];
-export const LEARN_DECKS = { vocab: 'vocab', verb: 'verb' };
+export const LEARN_DECKS = { vocab: 'vocab', verb: 'verb', phrase: 'phrase' };
 export const STRANDS = { recv: 'recv', prod: 'prod' };
 export const MAX_BOX = LEITNER_DAYS.length - 1;
 

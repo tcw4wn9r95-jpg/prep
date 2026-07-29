@@ -226,3 +226,79 @@ test('sw: the cache version was bumped past the last release', async () => {
   assert.ok(version, 'the service worker must declare a version');
   assert.ok(Number(version) >= 6, `cache-first serving means a stale VERSION strands returning users on the old app (found v${version})`);
 });
+
+/* ------------------------------------------------------------ phrase deck */
+
+const phrases = require(path.join(ROOT, 'app', 'data', 'phrases.json')).items;
+
+test('phrases: every frame is attested in the corpus, not authored', () => {
+  // The whole safety argument for this deck. A frame that is not in LOD's own
+  // recorded sentences is one somebody wrote, which is what the language rule
+  // forbids — build-phrases.js fails the build, and this is the shipped proof.
+  assert.ok(phrases.length >= 30, `expected a usable frame deck, got ${phrases.length}`);
+  for (const item of phrases) {
+    assert.ok(item.attestations >= 8, `${item.lb} is only attested ${item.attestations}x`);
+    assert.ok(item.examples.length > 0, `${item.lb} ships no recorded example`);
+    for (const example of item.examples) {
+      assert.ok(example.audioId, `${item.lb} has an example with no recording`);
+      assert.ok(example.lb.toLowerCase().includes(item.lb.toLowerCase()), `${item.lb} example does not contain the frame`);
+    }
+  }
+});
+
+test('phrases: the cloze reconstructs its sentence exactly', () => {
+  for (const item of phrases.filter((candidate) => candidate.cloze)) {
+    const { before, form, after } = item.cloze;
+    assert.equal(before + form + after, item.example.lb, `${item.lb} cloze does not reassemble`);
+    assert.equal(form.toLowerCase(), item.lb.toLowerCase());
+  }
+});
+
+test('phrases: n-dropped variants are corpus-attested, never derived on faith', () => {
+  // `hunn` → `hu` is the Eifeler Regel, and guessing at it is exactly the kind
+  // of morphology this project does not trust a model with. The build only
+  // records a variant it can count in the corpus.
+  const withVariant = phrases.filter((item) => item.variant);
+  assert.ok(withVariant.length > 0, 'the deck should find some n-dropped variants');
+  for (const item of withVariant) {
+    assert.ok(item.variant.attestations >= 8, `${item.variant.lb} is not attested enough to ship`);
+    assert.notEqual(item.variant.lb, item.lb);
+  }
+});
+
+test('phrases: the ladder runs without a conjugation rung', () => {
+  const frame = phrases[0];
+  assert.equal(cards.cardTypeFor(frame, 'recv', 0, 'phrase'), 'gloss');
+  assert.equal(cards.cardTypeFor(frame, 'prod', 1, 'phrase'), 'build');
+  assert.equal(cards.cardTypeFor(frame, 'prod', 3, 'phrase'), 'produce');
+  for (let box = 0; box <= 4; box += 1) {
+    assert.notEqual(cards.cardTypeFor(frame, 'prod', box, 'phrase'), 'conjugate');
+  }
+});
+
+test('phrases: the build card uses a word bank whose decoys come from the deck', () => {
+  const card = cards.buildCard({ item: phrases[0], strand: 'prod', box: 1, deck: cards.DECKS.phrase, pool: phrases });
+  assert.equal(card.mode, 'bank');
+  assert.equal(card.bankKind, 'word');
+
+  const answerWords = card.answer.split(' ');
+  const tiles = card.bank.map((tile) => tile.character);
+  for (const word of answerWords) assert.ok(tiles.includes(word), `bank is missing "${word}"`);
+  assert.ok(card.bank.length > answerWords.length, 'a bank with exactly the right words is solvable by elimination');
+
+  // Every tile must be a word the corpus attests, via another frame.
+  const corpusWords = new Set(phrases.flatMap((item) => item.lb.split(' ')));
+  for (const tile of tiles) assert.ok(corpusWords.has(tile), `"${tile}" is not from the corpus`);
+});
+
+test('phrases: every frame builds a card at every box', () => {
+  for (const item of phrases) {
+    assert.equal(cards.isDrillable(item, 'phrase'), true, `${item.lb} is not drillable`);
+    for (const strand of ['recv', 'prod']) {
+      for (let box = 0; box <= 4; box += 1) {
+        const card = cards.buildCard({ item, strand, box, deck: cards.DECKS.phrase, pool: phrases });
+        assert.ok(card.answer, `${item.lb} ${strand} ${box} has no answer`);
+      }
+    }
+  }
+});

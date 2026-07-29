@@ -420,6 +420,49 @@ async function main() {
     }
   });
 
+  await step('the phrase deck drills whole sentence frames', async () => {
+    await clearLearn();
+    await openFresh('#/phrases');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+    const frame = await page.evaluate(() => document.querySelector('.card .screen__title')?.textContent?.trim());
+    if (!frame || !frame.includes(' ')) throw new Error(`expected a multi-word frame, got "${frame}"`);
+    process.stdout.write(`  first frame: ${frame}\n`);
+    await shot('22-phrases');
+  });
+
+  await step('a known frame is rebuilt from a word bank, not letters', async () => {
+    await clearLearn();
+    const FRAME = 'PHRASE-ECH-HUNN';
+    await seedLearn('diego', 'phrase', 'recv', FRAME, 4, { due: false });
+    await seedLearn('diego', 'phrase', 'prod', FRAME, 1);
+    await openFresh('#/phrases');
+
+    let sawBank = false;
+    for (let guard = 0; guard < 40 && !sawBank; guard += 1) {
+      await page.waitForSelector('.options .option, .bank__tile, .field', { timeout: 5000 });
+      if ((await page.locator('.bank__tile').count()) > 0) {
+        sawBank = true;
+        break;
+      }
+      if ((await page.locator('.field').count()) > 0) {
+        await page.locator('.field').fill('x');
+        await page.getByRole('button', { name: 'Check' }).click();
+      } else {
+        await page.locator('.options .option').first().click();
+      }
+      const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+      await next.waitFor({ state: 'visible', timeout: 3000 });
+      if ((await next.textContent())?.trim() === 'Finish') break;
+      await next.click();
+    }
+    if (!sawBank) throw new Error('never reached the word-bank card');
+
+    // Word tiles, not letter tiles: a letter bank cannot express the space.
+    const tiles = await page.locator('.bank__tile').allTextContents();
+    if (!tiles.some((tile) => tile.trim().length > 1)) throw new Error(`expected whole words, got letters: ${tiles.join(' ')}`);
+    await shot('23-phrase-bank');
+  });
+
   await step('a topic-scoped session only draws from that topic', async () => {
     await openFresh('#/vocab/stot');
     await page.waitForSelector('.screen__sub', { timeout: 5000 });
