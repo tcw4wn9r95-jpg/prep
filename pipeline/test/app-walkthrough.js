@@ -358,8 +358,13 @@ async function main() {
     await openFresh('#/vocab');
 
     // Walk the session until the seeded word comes up as a typed card.
+    //
+    // The guard is generous because this bot answers by clicking the first
+    // option, so it gets most cards wrong, and every miss re-queues a card
+    // three places later. A twelve-card session can grow past twenty, which
+    // can push the seeded word well beyond where it started.
     let sawField = false;
-    for (let guard = 0; guard < 14 && !sawField; guard += 1) {
+    for (let guard = 0; guard < 40 && !sawField; guard += 1) {
       await page.waitForSelector('.options .option, .field, .bank__tile', { timeout: 5000 });
       if ((await page.locator('.field').count()) > 0) {
         sawField = true;
