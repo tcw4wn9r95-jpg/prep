@@ -25,7 +25,7 @@ npm run walkthrough  # drives the real app in Chromium at iPhone size, screensho
 | items | 287 listening questions · 169 interview prompts · 18 topics |
 | learn decks | 34 sentence frames · 2,049 words · 365 verbs · frequency-ranked into 5 stages · 1,791 topic-tagged · 2,240 cloze targets · 358 visual cues |
 | shipped assets | 2,263 recordings (68 MB, AAC) · 16 CC images (5.5 MB) |
-| verification | `npm test` 92/92 · `validate` PASS · walkthrough 21/21, no console errors |
+| verification | `npm test` 92/92 · `validate` PASS · walkthrough 25/25, no console errors |
 
 **Known limits, stated plainly.** Listening items are corpus-derived drills on the official
 5+7+4 shape, not replicas of INLL's connected-speech test — the app says so and links to the
@@ -113,8 +113,9 @@ Match the existing personal stack: cheap, mostly static, no ops burden.
   test/              unit tests, calibration, and the browser walkthrough
 /content       generated JSON, committed to the repo (auditable diffs)
 /app           the PWA — static, no build step, zero runtime dependencies
-  js/screens/        onboarding · journey · learn · vocab · verbs · listening · speaking ·
-                     review · readiness · duel
+  js/screens/        onboarding · today · journey · learn · vocab · verbs · phrases ·
+                     listening · speaking · review · readiness · duel · settings
+  js/anthropic.js    direct Claude calls, for when there is no Worker
   js/drill/          the Learn engine: one session runner, seven card types
   js/amelie.js       the guide: one inline SVG, six CSS states
 /worker        one tiny Cloudflare Worker + KV: the shared scoreboard. Nothing else.
@@ -124,6 +125,13 @@ No runtime dependencies at all: `lib/xml.js` is a hand-rolled streaming parser f
 exports, and the app is vanilla ES modules. The single devDependency is `playwright-core`
 (browserless — it drives the Chromium already in the environment) for the walkthrough.
 
+- **Claude access, two ways.** Sentence explanations and the machine estimate both call
+  Claude. The Worker is the better arrangement — the key stays server-side and explanations
+  are cached once for both players — but it is a lot of setup for a two-person tool, so
+  Settings also accepts an Anthropic API key and the app calls the API directly from the
+  browser. That key lives in this device's IndexedDB and anyone with the phone unlocked can
+  read it; the Settings screen says so, and it is only ever sent to api.anthropic.com. Use a
+  spend-capped key.
 - **Local-first.** All progress in IndexedDB. The Worker only holds the shared duel state (scores, weekly item seed, pending speaking submissions). If it's down, solo practice still works.
 - Auth is a shared secret in a query param. Two users. Don't build OAuth.
 - Deploy `/app` to GitHub Pages. PWA manifest + service worker for offline — this needs to work on a phone with no signal.
@@ -274,6 +282,26 @@ Two profiles, hardcoded: Diego, Diana.
 - **Streaks, forgivingly.** Two freeze days per week, no guilt copy, no notification nagging. If a streak breaks, the app says what to do next, not how disappointing that is.
 - **Readiness, not vanity.** The headline number per player is **estimated exam readiness against the real thresholds** — speaking % and overall % — with a plain statement of what would move it most. A leaderboard that doesn't predict passing is decoration.
 - **Head-to-head history**: per-topic breakdown, so it's visible that one of you is strong on `work` and weak on `household chores`.
+
+---
+
+## Navigation
+
+> **Added 2026-07.** Six tabs — Learn, Journey, Speak, Review, Duel, Ready — were all equally
+> prominent and none of them said which to open first, so every session started with a
+> decision instead of with practice.
+
+**Today** is the home screen and the only starting point. It has exactly one primary button,
+always the single most useful thing available now, and beneath it the three steps of a day in
+the order they should be done: Words → Listening → Speaking.
+
+The button is the first unfinished step of that plan, so the two can never disagree. One
+thing jumps the queue: a partner waiting on a review, because that blocks *their* progress
+rather than yours.
+
+Four tabs: **Today · Learn · Speak · Duel**. Journey (the listening path), Review, Readiness
+and Settings are all still routable, reached from Today — they are destinations, not
+decisions.
 
 ---
 

@@ -124,6 +124,26 @@ async function main() {
   await step('choose a player and start', async () => {
     await page.locator('.player-pick__btn').filter({ hasText: 'Diego' }).first().click();
     await page.getByRole('button', { name: 'Start practising' }).click();
+    await page.waitForSelector('.plan', { timeout: 5000 });
+  });
+
+  await step('today gives exactly one next action and a three-step plan', async () => {
+    // The fix for "there is no clear journey": one primary button, and the
+    // plan beneath it in the order it should be done.
+    const primary = page.locator('#screen > .btn--primary');
+    if ((await primary.count()) !== 1) throw new Error(`expected exactly one primary action, found ${await primary.count()}`);
+    process.stdout.write(`  next action: ${(await primary.textContent())?.trim()}\n`);
+    const order = (await page.locator('.plan .card__title').allTextContents()).map((text) => text.trim());
+    if (order.join(',') !== 'Words,Listening,Speaking') throw new Error(`plan out of order: ${order.join(', ')}`);
+    await shot('00-today');
+  });
+
+  await step('the next action leads somewhere real', async () => {
+    await page.locator('#screen > .btn--primary').click();
+    await page.waitForSelector('#screen .screen__title', { timeout: 5000 });
+    const title = await page.locator('#screen .screen__title').first().textContent();
+    if (!title?.trim()) throw new Error('the primary action landed on a blank screen');
+    await page.goto(`${base}#/journey`, { waitUntil: 'networkidle' });
     await page.waitForSelector('.journey__list', { timeout: 5000 });
   });
 
@@ -469,6 +489,65 @@ async function main() {
     const sub = await page.locator('.screen__sub').first().textContent();
     if (!/this topic/.test(sub ?? '')) throw new Error(`topic session did not announce itself: ${sub}`);
     await shot('21-drill-topic');
+  });
+
+  await step('settings takes an Anthropic API key and rejects a bad one', async () => {
+    await openFresh('#/settings');
+    await page.waitForSelector('#apikey', { timeout: 5000 });
+    await page.fill('#apikey', 'not-a-key');
+    await page.getByRole('button', { name: 'Save' }).click();
+    const rejected = await page.locator('#screen [role="status"]').textContent();
+    if (!/does not look like/.test(rejected ?? '')) throw new Error(`a bad key was not rejected: ${rejected}`);
+
+    await page.fill('#apikey', 'sk-ant-api03-0000000000000000000000000000');
+    await page.getByRole('button', { name: 'Save' }).click();
+    await page.waitForFunction(() => document.querySelector('#screen [role="status"]')?.textContent === 'Saved.', { timeout: 3000 });
+
+    const stored = await page.evaluate(async () => (await (await import('./js/store.js')).getSettings()).apiKey);
+    if (!stored?.startsWith('sk-ant-')) throw new Error('the key was not persisted');
+    await shot('24-settings');
+    // Leave no key behind — later steps must not accidentally call the API.
+    await page.evaluate(async () => { await (await import('./js/store.js')).saveSettings({ apiKey: '' }); });
+  });
+
+  await step('an API key in settings makes explanations work, with no Worker', async () => {
+    // The real endpoint is never called. Intercepting it is what lets this
+    // assert the exact request the app builds — key placement, the browser
+    // access header, the model — which is the part that silently breaks.
+    let seen = null;
+    await page.route('**://api.anthropic.com/**', async (route) => {
+      const request = route.request();
+      seen = { headers: request.headers(), body: JSON.parse(request.postData() ?? '{}') };
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ content: [{ type: 'text', text: '{"explanation":"Word order is verb-second here."}' }] }),
+      });
+    });
+
+    await openFresh('#/settings');
+    await page.fill('#apikey', 'sk-ant-api03-0000000000000000000000000000');
+    await page.getByRole('button', { name: 'Save' }).click();
+    await page.waitForFunction(() => document.querySelector('#screen [role="status"]')?.textContent === 'Saved.', { timeout: 3000 });
+
+    const result = await page.evaluate(async () => {
+      const [{ getSettings }, { requestExplanation }] = await Promise.all([
+        import('./js/store.js'),
+        import('./js/sync.js'),
+      ]);
+      return requestExplanation(await getSettings(), { lb: "ech hunn d'Nues voll!", word: 'hunn', en: 'to have' });
+    });
+
+    if (!result.ok) throw new Error(`explanation failed: ${result.message}`);
+    if (!/verb-second/.test(result.explanation)) throw new Error(`unexpected explanation: ${result.explanation}`);
+    if (seen?.headers['x-api-key'] !== 'sk-ant-api03-0000000000000000000000000000') throw new Error('the key was not sent as x-api-key');
+    if (seen?.headers['anthropic-dangerous-direct-browser-access'] !== 'true') throw new Error('the browser-access header is missing — the preflight would be refused');
+    if (!seen?.headers['anthropic-version']) throw new Error('anthropic-version header is missing');
+    if (!seen?.body.model) throw new Error('no model in the request body');
+    process.stdout.write(`  explain model: ${seen.body.model}\n`);
+
+    await page.unroute('**://api.anthropic.com/**');
+    await page.evaluate(async () => { await (await import('./js/store.js')).saveSettings({ apiKey: '' }); });
   });
 
   await step('duel scoreboard renders both players', async () => {

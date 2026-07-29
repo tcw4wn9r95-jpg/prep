@@ -915,3 +915,60 @@
   background: var(--accent);
   color: var(--text-on-accent);
 }
+
+/* --------------------------------------------------------- today's plan */
+/* Three ordered steps. A done step goes quiet rather than disappearing, so
+   the shape of a day stays visible once it is finished. */
+
+.plan {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  min-height: var(--tap);
+  padding: var(--s3);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.plan.is-done {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-muted);
+}
+
+.plan.is-done .card__title { font-weight: 600; }
+
+.plan__n {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent-wash);
+  color: var(--accent);
+  font-size: var(--size-sm);
+  font-weight: 800;
+}
+
+.plan.is-done .plan__n {
+  background: var(--ok-wash);
+  color: var(--ok);
+}
+
+.plan__chevron {
+  flex: 0 0 auto;
+  color: var(--text-faint);
+}
+
+/* Title over note, not run together on one line. min-width:0 lets a long note
+   wrap inside the flex row instead of forcing the row wider than the screen. */
+.plan .spacer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}

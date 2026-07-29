@@ -8,6 +8,7 @@
  */
 
 import { listOutbox, clearOutbox, getRecording } from './store.js';
+import { explainSentence } from './anthropic.js';
 
 let lastSync = null;
 let lastMessage = 'Not synced yet.';
@@ -152,16 +153,33 @@ export async function requestMachineFeedback(settings, recording) {
  * upload first: it's a plain JSON round trip.
  */
 export async function requestExplanation(settings, { lb, word, en }) {
-  if (!settings.workerUrl) {
-    return { ok: false, message: 'No Worker configured — explanations need one, the same as the machine estimate does.' };
-  }
   if (!navigator.onLine) {
     return { ok: false, message: 'Offline. Try again once you are back online.' };
   }
 
+  // The Worker first when there is one: it keeps the key server-side and
+  // caches every explanation forever, so the second person to meet a sentence
+  // pays nothing for it. A device key is the fallback for not running a Worker
+  // at all, and it re-bills on every device.
+  if (settings.workerUrl) {
+    try {
+      const body = await request(settings, '/explain', { method: 'POST', body: JSON.stringify({ lb, word, en }) });
+      return { ok: true, explanation: body.explanation };
+    } catch (error) {
+      // A Worker deployed without ANTHROPIC_API_KEY answers 503. If this
+      // device has its own key, use it rather than reporting a dead end.
+      if (!settings.apiKey) {
+        return { ok: false, message: `Could not get an explanation (${error.message}).` };
+      }
+    }
+  }
+
+  if (!settings.apiKey) {
+    return { ok: false, message: 'Explanations need an Anthropic API key or a Worker. Add one in Settings.' };
+  }
+
   try {
-    const body = await request(settings, '/explain', { method: 'POST', body: JSON.stringify({ lb, word, en }) });
-    return { ok: true, explanation: body.explanation };
+    return await explainSentence(settings.apiKey, { lb, word, en });
   } catch (error) {
     return { ok: false, message: `Could not get an explanation (${error.message}).` };
   }

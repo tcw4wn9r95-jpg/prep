@@ -9,6 +9,7 @@
 import { getSettings, saveSettings } from './store.js';
 import { el } from './dom.js';
 import * as onboarding from './screens/onboarding.js';
+import * as today from './screens/today.js';
 import * as journey from './screens/journey.js';
 import * as learn from './screens/learn.js';
 import * as vocab from './screens/vocab.js';
@@ -22,7 +23,8 @@ import * as duel from './screens/duel.js';
 import * as settings from './screens/settings.js';
 
 const ROUTES = {
-  '': journey,
+  '': today,
+  today,
   journey,
   learn,
   vocab,
@@ -37,15 +39,15 @@ const ROUTES = {
   onboarding,
 };
 
-// Order signals the intended learning journey: basics first, then listening,
-// then speaking — the rest follow.
+// Four tabs, not six. `today` is the only starting point — it decides what to
+// do next and links onwards, so `journey` (the listening path), `review`,
+// `readiness` and `settings` are all still routable but no longer compete for
+// attention with it.
 const TABS = [
+  { route: 'today', label: 'Today', icon: 'M12 3 L20 9 v11 H4 V9 Z M9 20 v-6 h6 v6' },
   { route: 'learn', label: 'Learn', icon: 'M4 6 L12 3 L20 6 L12 9 Z M4 6 v9 L12 18 L20 15 v-9 M12 9 v9' },
-  { route: 'journey', label: 'Journey', icon: 'M4 19 L9 5 L14 15 L20 8' },
   { route: 'speaking', label: 'Speak', icon: 'M12 3 v10 M12 3 a3 3 0 0 1 3 3 v4 a3 3 0 0 1 -6 0 v-4 a3 3 0 0 1 3 -3 Z M5 11 a7 7 0 0 0 14 0 M12 18 v3' },
-  { route: 'review', label: 'Review', icon: 'M4 6 h16 M4 12 h16 M4 18 h10 M18 17 l2 2 4 -4' },
   { route: 'duel', label: 'Duel', icon: 'M5 20 L19 6 M14 4 h6 v6 M9 20 H4 v-5' },
-  { route: 'readiness', label: 'Ready', icon: 'M12 21 a9 9 0 1 1 9 -9 M8 12 l3 3 6 -7' },
 ];
 
 const screenEl = document.getElementById('screen');

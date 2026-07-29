@@ -53,7 +53,7 @@ export async function render(root, { navigate }) {
         secret: secret.value.trim(),
         workerUrl: workerUrl.value.trim().replace(/\/$/, ''),
       });
-      navigate('#/journey');
+      navigate('#/today');
     },
   });
 
