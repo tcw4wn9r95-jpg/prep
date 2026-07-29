@@ -29,6 +29,7 @@ export const loadImages = () => loadJson('images').then((file) => file.items).ca
 export const loadMeta = () => loadJson('topics').then((file) => file.meta);
 export const loadVocab = () => loadJson('vocab').then((file) => file.items);
 export const loadVerbs = () => loadJson('verbs').then((file) => file.items);
+export const loadPhrases = () => loadJson('phrases').then((file) => file.items).catch(() => []);
 /** The ordered stages a learner walks, from pipeline/lib/frequency.js. */
 export const loadStages = () => loadJson('vocab').then((file) => file.meta.learn?.stages ?? []);
 export const loadModelAnswers = () => loadJson('model-answers').catch(() => ({ interviews: [], imageDescriptions: [] }));

@@ -13,6 +13,7 @@ import * as journey from './screens/journey.js';
 import * as learn from './screens/learn.js';
 import * as vocab from './screens/vocab.js';
 import * as verbs from './screens/verbs.js';
+import * as phrases from './screens/phrases.js';
 import * as listening from './screens/listening.js';
 import * as speaking from './screens/speaking.js';
 import * as review from './screens/review.js';
@@ -26,6 +27,7 @@ const ROUTES = {
   learn,
   vocab,
   verbs,
+  phrases,
   listening,
   speaking,
   review,

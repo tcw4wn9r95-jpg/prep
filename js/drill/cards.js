@@ -25,7 +25,7 @@
  */
 
 import { STRANDS } from '../store.js';
-import { letterBank } from './match.js';
+import { letterBank, wordBank } from './match.js';
 
 /** Deck-shape differences, kept in one place. */
 export const DECKS = {
@@ -48,10 +48,23 @@ export const DECKS = {
     article: () => null,
     kindLabel: () => 'verb',
   },
+  // Sentence frames — the chunks an A2 interview is actually made of. Same
+  // engine, but the thing being learned is several words long, which is why
+  // the label says "phrase" rather than a part of speech.
+  phrase: {
+    id: 'phrase',
+    title: 'Phrases',
+    lemma: (item) => item.lb,
+    gloss: (item) => item.en,
+    article: () => null,
+    kindLabel: () => 'phrase',
+  },
 };
 
 const has = {
-  audio: (item) => Boolean(item.example?.audioId),
+  // `local === false` means the recording is referenced but not mirrored yet.
+  // Offering a play button for it would 404 on the card.
+  audio: (item) => Boolean(item.example?.audioId) && item.example.local !== false,
   cloze: (item) => Boolean(item.cloze?.form),
   gloss: (item) => Boolean(item.en),
   present: (item) => Boolean(item.present),
@@ -63,6 +76,21 @@ const has = {
  */
 const LADDER = {
   default: {
+    [STRANDS.recv]: [
+      { id: 'gloss', minBox: 0, needs: [has.gloss] },
+      { id: 'listen', minBox: 1, needs: [has.gloss, has.audio] },
+      { id: 'cloze', minBox: 2, needs: [has.cloze] },
+    ],
+    [STRANDS.prod]: [
+      { id: 'reverse', minBox: 0, needs: [has.gloss] },
+      { id: 'build', minBox: 1, needs: [has.gloss] },
+      { id: 'type', minBox: 2, needs: [has.gloss] },
+      { id: 'produce', minBox: 3, needs: [has.cloze] },
+    ],
+  },
+  // Phrases are already multi-word chunks, so there is no conjugation rung and
+  // the production bank is built from words rather than letters.
+  phrase: {
     [STRANDS.recv]: [
       { id: 'gloss', minBox: 0, needs: [has.gloss] },
       { id: 'listen', minBox: 1, needs: [has.gloss, has.audio] },
@@ -154,7 +182,7 @@ export function buildCard({ item, strand, box, deck, pool, random = Math.random 
         ...base,
         mode: 'choice',
         instruction: 'What does this mean?',
-        prompt: { word: withArticle(item, deck, lemma), sentence: item.example?.lb ?? null, audioId: item.example?.audioId ?? null },
+        prompt: { word: withArticle(item, deck, lemma), sentence: item.example?.lb ?? null, audioId: playableAudio(item) },
         options: optionsOf(item, pool, deck.gloss, random),
         answer: deck.gloss(item),
       };
@@ -176,7 +204,7 @@ export function buildCard({ item, strand, box, deck, pool, random = Math.random 
         ...base,
         mode: 'choice',
         instruction: 'Which word fills the gap?',
-        prompt: { cloze: item.cloze, audioId: item.example?.audioId ?? null },
+        prompt: { cloze: item.cloze, audioId: playableAudio(item) },
         options: optionsOf(item, pool, (candidate) => candidate.cloze?.form ?? null, random),
         answer: item.cloze.form,
       };
@@ -195,9 +223,15 @@ export function buildCard({ item, strand, box, deck, pool, random = Math.random 
       return {
         ...base,
         mode: 'bank',
-        instruction: 'Build the word.',
+        instruction: deck.id === 'phrase' ? 'Put the words in order.' : 'Build the word.',
         prompt: { gloss: deck.gloss(item) },
-        bank: letterBank(lemma, { random }),
+        // Decoy words come from other frames in the deck, so everything on
+        // screen is corpus-attested.
+        bank:
+          deck.id === 'phrase'
+            ? wordBank(lemma, pool.filter((other) => other.id !== item.id).map((other) => deck.lemma(other)), { random })
+            : letterBank(lemma, { random }),
+        bankKind: deck.id === 'phrase' ? 'word' : 'letter',
         answer: lemma,
       };
 
@@ -205,7 +239,7 @@ export function buildCard({ item, strand, box, deck, pool, random = Math.random 
       return {
         ...base,
         mode: 'type',
-        instruction: 'Type the word.',
+        instruction: deck.id === 'phrase' ? 'Type the phrase.' : 'Type the word.',
         prompt: { gloss: deck.gloss(item) },
         // Nouns must supply the article too. This is the only place gender is
         // ever tested — it has been sitting in the data unused.
@@ -218,7 +252,7 @@ export function buildCard({ item, strand, box, deck, pool, random = Math.random 
         ...base,
         mode: 'type',
         instruction: 'Type the missing word.',
-        prompt: { cloze: item.cloze, audioId: item.example?.audioId ?? null },
+        prompt: { cloze: item.cloze, audioId: playableAudio(item) },
         article: null,
         // The inflected form as it appears in the sentence, not the lemma.
         answer: item.cloze.form,
@@ -239,6 +273,11 @@ export function buildCard({ item, strand, box, deck, pool, random = Math.random 
     default:
       throw new Error(`unknown card type ${type}`);
   }
+}
+
+/** The recording to offer, or null when it is not mirrored yet. */
+function playableAudio(item) {
+  return has.audio(item) ? item.example.audioId : null;
 }
 
 function withArticle(item, deck, lemma) {

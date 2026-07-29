@@ -61,7 +61,7 @@ export function bankInput(card, onAnswer) {
     fill(
       slots,
       ...(picked.length === 0
-        ? [el('span', { class: 'slots__empty' }, 'Tap the letters in order')]
+        ? [el('span', { class: 'slots__empty' }, card.bankKind === 'word' ? 'Tap the words in order' : 'Tap the letters in order')]
         : picked.map((tile) =>
             el('button', { type: 'button', class: 'slot', 'aria-label': `Remove ${tile.character}`, onclick: () => drop(tile) }, tile.character),
           )),
@@ -86,7 +86,8 @@ export function bankInput(card, onAnswer) {
   function submit() {
     if (answered || picked.length === 0) return;
     answered = true;
-    const given = picked.map((tile) => tile.character).join('');
+    // Letters run together; words need the spaces back.
+    const given = picked.map((tile) => tile.character).join(card.bankKind === 'word' ? ' ' : '');
     const result = checkTyped(given, card.answer);
     slots.classList.add(result.correct ? 'is-correct' : 'is-wrong');
     check.hidden = true;
