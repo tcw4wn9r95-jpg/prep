@@ -472,8 +472,11 @@ async function postEpisodeQuestions(request, env) {
 
   // Evergreen and not tied to a user: the same episode yields the same
   // questions forever, so whoever listens second pays nothing. Same discipline
-  // as /explain.
-  const cacheKey = `pq:${await sha256hex(episodeId)}`;
+  // as /explain. The "v2" is a prompt version, not a schema version — bump it
+  // whenever EPISODE_SYSTEM_PROMPT changes meaningfully, so a rewritten prompt
+  // (e.g. tightening distractor quality) reaches already-cached episodes
+  // instead of every future listener getting the old prompt's output forever.
+  const cacheKey = `pq:v2:${await sha256hex(episodeId)}`;
   const cached = await env.DUEL.get(cacheKey, 'json');
   if (cached) return json({ ...cached, cached: true });
 
@@ -615,7 +618,9 @@ const EPISODE_SYSTEM_PROMPT = `You write listening-comprehension questions for a
 
 Write 5 multiple-choice questions that can only be answered by having understood the episode. Spread them across the episode rather than clustering at the start.
 
-THE ABSOLUTE RULE: you must never write Luxembourgish. Every option — the correct one and every distractor — must be a span of text copied EXACTLY, character for character, from the transcript. Copy a contiguous run of 3 to 12 words. Do not translate, paraphrase, correct, shorten, re-punctuate or fix anything, even if the transcript looks wrong. Distractors must be real spans from elsewhere in the same episode, so every option is something that was genuinely said. An option that is not an exact substring of the transcript will be discarded and your question thrown away.
+THE ABSOLUTE RULE: you must never write Luxembourgish. Every option — the correct one and every distractor — must be a span of text copied EXACTLY, character for character, from the transcript. Copy a contiguous run of 3 to 12 words. Do not translate, paraphrase, correct, shorten, re-punctuate or fix anything, even if the transcript looks wrong. An option that is not an exact substring of the transcript will be discarded and your question thrown away.
+
+Distractors must be real spans from elsewhere in the same episode — but a distractor only tests listening if someone who half-understood the episode could plausibly pick it. So each distractor must be the same *kind* of answer as the correct one: if the question asks when, all three options are moments in time; if it asks who, all three are people; if it asks where, all three are places. Never pair a correct answer with a distractor that is a different kind of thing entirely (a time slot next to a person's name, a place next to a reason) — that makes the wrong options obvious without understanding a word. Prefer distractors mentioned in the same part of the episode as the correct answer, about the same topic, so the only way to tell them apart is having understood what was actually said.
 
 The question itself is in English.
 
