@@ -53,10 +53,21 @@ export function audioUrl(audioId) {
  * Emits nothing; callers poll `isPlaying` or pass callbacks.
  */
 export class Clip {
-  constructor(audioId) {
-    this.audioId = audioId;
-    this.el = new Audio(audioUrl(audioId));
-    this.el.preload = 'auto';
+  /**
+   * @param {string} source a mirrored LOD audio id, or an absolute URL.
+   *
+   * The URL form is for the INLL podcast, which is streamed from the publisher
+   * rather than mirrored — there is no local file to name. A media element
+   * plays cross-origin without CORS, so this needs no other special handling,
+   * and the service worker leaves cross-origin requests alone, which is how
+   * "stream, never store" ends up being the default rather than a rule to
+   * enforce.
+   */
+  constructor(source) {
+    this.remote = /^https?:/i.test(source);
+    this.audioId = this.remote ? null : source;
+    this.el = new Audio(this.remote ? source : audioUrl(source));
+    this.el.preload = this.remote ? 'none' : 'auto';
     this.plays = 0;
     live.add(this);
   }
@@ -68,7 +79,11 @@ export class Clip {
   async play() {
     unlock();
     try {
-      this.el.currentTime = 0;
+      // A two-second dictionary clip is *replayed* — starting over is the
+      // whole point of the button. A nine-minute episode is *resumed*:
+      // rewinding to zero every time someone pauses to think would make a long
+      // recording unusable.
+      if (!this.remote) this.el.currentTime = 0;
       await this.el.play();
       this.plays += 1;
       return true;
@@ -77,6 +92,11 @@ export class Clip {
       // instead of leaving the user stuck with silent audio.
       return false;
     }
+  }
+
+  /** Hold position. What a pause button on long audio should do. */
+  pause() {
+    this.el.pause();
   }
 
   stop() {

@@ -32,6 +32,17 @@ export const loadVerbs = () => loadJson('verbs').then((file) => file.items);
 export const loadPhrases = () => loadJson('phrases').then((file) => file.items).catch(() => []);
 /** The 8 use-case groups phrases are sorted into (pipeline/build-phrases.js), for the cheat sheet. */
 export const loadPhraseGroups = () => loadJson('phrases').then((file) => file.meta.groups ?? []).catch(() => []);
+/**
+ * INLL podcast episodes — metadata only, written by pipeline/fetch-podcasts.js.
+ * Absent until someone runs that fetch, so this degrades to an empty section
+ * rather than a broken screen.
+ */
+export const loadPodcasts = () => loadJson('podcasts').then((file) => file.items ?? []).catch(() => []);
+
+export async function podcastEpisode(id) {
+  const items = await loadPodcasts();
+  return items.find((episode) => episode.id === id) ?? null;
+}
 /** The ordered stages a learner walks, from pipeline/lib/frequency.js. */
 export const loadStages = () => loadJson('vocab').then((file) => file.meta.learn?.stages ?? []);
 export const loadModelAnswers = () => loadJson('model-answers').catch(() => ({ interviews: [], imageDescriptions: [] }));
