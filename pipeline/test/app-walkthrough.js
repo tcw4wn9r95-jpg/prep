@@ -964,6 +964,11 @@ async function main() {
       await route.fulfill({ status: 200, contentType: 'audio/mpeg', body: Buffer.alloc(64) });
     });
 
+    // Opened here rather than inherited from the step before: this walks from
+    // the index into an episode, so it has to start on the index whatever the
+    // previous step left on screen.
+    await openFresh('#/podcasts');
+    await page.waitForSelector('a[href^="#/podcasts/"]', { timeout: 5000 });
     await page.locator('a[href^="#/podcasts/"]').first().click();
     await page.waitForSelector('#screen .btn--primary', { timeout: 5000 });
     await page.waitForTimeout(400);
