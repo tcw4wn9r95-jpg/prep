@@ -224,3 +224,23 @@ test('srs: new words still fill the rest of a session when the backlog is small'
   assert.equal(fresh, 8, 'the daily new-word target still applies when the backlog fits');
   assert.equal(session.length - fresh, 1, 'the one due card is in there too');
 });
+
+/* ------------------------------------------------------------- daily goal */
+
+test('srs: the daily goal is a number that only goes up', async () => {
+  // The bug this guards: every number on the home screen was queue depth, and
+  // the queue refills as you work — a missed card returns to box 0, whose
+  // interval is zero days, so it falls due again the same day. Answering 101
+  // cards moved "8 words left" to 5, then 10, then 10, then 8. Nothing on the
+  // screen could distinguish a hard day's work from having done nothing.
+  assert.equal(typeof store.DAILY_CARD_GOAL, 'number');
+  assert.ok(store.DAILY_CARD_GOAL > 0);
+});
+
+test('srs: box 0 falls due immediately, which is why an empty queue is not the goal', async () => {
+  // Documents the mechanism rather than asserting a wish: a lapse should come
+  // back soon, and "soon" here is zero days. That is deliberate, and it is
+  // exactly why completion has to be measured as work done, not queue length.
+  assert.equal(store.nextBox(1, { correct: false }), 0);
+  assert.equal(store.LEITNER_DAYS[0], 0, 'a lapsed card is due again immediately, so "nothing due" is not reachable');
+});

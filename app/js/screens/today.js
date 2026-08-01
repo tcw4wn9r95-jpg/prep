@@ -31,6 +31,7 @@ import {
   listReviews,
   readinessFor,
   dueCounts,
+  todayProgress,
   getStreak,
   weekSeed,
   otherPlayer,
@@ -41,12 +42,13 @@ const SPEAKING_GAP_DAYS = 3;
 
 export async function render(root, { settings, navigate }) {
   void navigate;
-  const [attempts, recordings, reviews, streak, due, topics, vocab, verbs, phrases] = await Promise.all([
+  const [attempts, recordings, reviews, streak, due, today, topics, vocab, verbs, phrases] = await Promise.all([
     listAttempts(),
     listRecordings(),
     listReviews(),
     getStreak(settings.playerId),
     dueCounts(settings.playerId),
+    todayProgress(settings.playerId),
     loadTopics(),
     loadVocab(),
     loadVerbs(),
@@ -56,7 +58,7 @@ export async function render(root, { settings, navigate }) {
   const me = PLAYERS.find((player) => player.id === settings.playerId) ?? PLAYERS[0];
   const partner = otherPlayer(settings.playerId);
   const ready = readinessFor(settings.playerId, { attempts, recordings, reviews });
-  const state = assess({ settings, attempts, recordings, reviews, due, topics, decks: { vocab, verbs, phrases } });
+  const state = assess({ settings, attempts, recordings, reviews, due, today, topics, decks: { vocab, verbs, phrases } });
   const next = nextAction(state, partner);
 
   const amelie = new Amelie({ size: 'md', bubble: true });
@@ -79,6 +81,39 @@ export async function render(root, { settings, navigate }) {
       style: { marginBlockStart: 'var(--s4)' },
       onclick: () => navigate(next.href),
     }),
+
+    // The day's practice, as a bar that only fills. Everything else here is a
+    // queue that refills as it is worked, so this is the only thing on the
+    // screen that answers "did I get anywhere today".
+    el(
+      'div',
+      { class: 'card', style: { marginBlockStart: 'var(--s4)' } },
+      el(
+        'div',
+        { class: 'row row--between' },
+        el('span', { class: 'meter__label' }, "Today's practice"),
+        // Past the goal the fraction stops making sense — "103 / 30" reads as
+        // a mistake rather than as a good day.
+        el('span', { class: 'meter__value' }, today.met ? plural(today.cards, 'card') : `${today.cards} / ${today.goal}`),
+      ),
+      el(
+        'div',
+        { class: 'meter__track', style: { marginBlockStart: 'var(--s2)' } },
+        el('div', {
+          class: `meter__fill${today.met ? ' is-pass' : ''}`,
+          style: { width: `${today.pct === 0 ? 0 : Math.max(today.pct, 2)}%` },
+        }),
+      ),
+      el(
+        'p',
+        { class: 'card__note' },
+        today.met
+          ? `Goal met${streak.current > 0 ? ` · ${plural(streak.current, 'day')} in a row` : ''}. Anything more is a bonus.`
+          : today.cards === 0
+            ? `${today.goal} cards is the day's goal. Unlike the counts below, this one only goes up.`
+            : `${today.correct} correct so far. Cards due move up and down as you work — this does not.`,
+      ),
+    ),
 
     sectionLabel('Today'),
     el(
@@ -143,7 +178,7 @@ export async function render(root, { settings, navigate }) {
  * `plan` is the visible three-step day; `next` is chosen from the same facts,
  * so the button and the checklist can never disagree.
  */
-function assess({ settings, attempts, recordings, reviews, due, topics, decks }) {
+function assess({ settings, attempts, recordings, reviews, due, today, topics, decks }) {
   const mine = attempts.filter((attempt) => attempt.playerId === settings.playerId);
   const week = weekSeed();
   const listenedThisWeek = mine.some((attempt) => attempt.weekSeed === week);
@@ -168,13 +203,15 @@ function assess({ settings, attempts, recordings, reviews, due, topics, decks })
       // Straight into the cards, not to the hub. A step that lands on another
       // menu is a step that has not been taken.
       href: '#/session',
-      done: dueTotal === 0 && newLeft === 0,
-      note:
-        dueTotal > 0
-          ? `${plural(dueTotal, 'word')} to review · tap to start`
-          : newLeft > 0
-            ? `${newLeft} new words to meet · ${totalWords} in the decks`
-            : 'Done for today',
+      // Completion is the day's practice goal, not an empty queue. The queue
+      // cannot be emptied: a missed card returns to box 0, whose interval is
+      // zero days, so it falls due again the same day. Tying the tick to
+      // `dueTotal === 0` meant the step could never be finished no matter how
+      // much work went in.
+      done: today.met,
+      note: today.met
+        ? `Done — ${plural(today.cards, 'card')} today`
+        : `${today.cards} of ${today.goal} cards today`,
     },
     {
       id: 'listening',
@@ -197,7 +234,7 @@ function assess({ settings, attempts, recordings, reviews, due, topics, decks })
     },
   ];
 
-  return { dueTotal, newLeft, waitingOnMe, listenedThisWeek, daysSinceSpoke, plan };
+  return { dueTotal, newLeft, today, waitingOnMe, listenedThisWeek, daysSinceSpoke, plan };
 }
 
 /**
@@ -228,16 +265,24 @@ function nextAction(state, partner) {
   }
 
   if (step.id === 'words') {
+    const left = state.today.goal - state.today.cards;
+    if (state.today.cards > 0) {
+      return {
+        label: `Carry on — ${left} cards to go`,
+        href: '#/session',
+        why: `${state.today.cards} cards done today, ${left} to reach the goal. The count of what is due moves around as you work; this one only goes up.`,
+      };
+    }
     return state.dueTotal > 0
       ? {
           label: `Review ${plural(state.dueTotal, 'word')}`,
           href: '#/session',
-          why: `${plural(state.dueTotal, 'word')} you have already met are due again — these are the ones about to fade, so they come first. You will get them a dozen at a time.`,
+          why: `${plural(state.dueTotal, 'word')} you have already met are due again — these are the ones about to fade, so they come first. Today's goal is ${state.today.goal} cards.`,
         }
       : {
           label: `Learn ${state.newLeft} new words`,
           href: '#/session',
-          why: 'Nothing is due yet. Start with words — the listening and speaking drills assume you have them.',
+          why: `Nothing is due yet. Start with words — the listening and speaking drills assume you have them. Today's goal is ${state.today.goal} cards.`,
         };
   }
   if (step.id === 'listening') {

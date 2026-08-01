@@ -20,10 +20,10 @@
  * the bar that leads is the one for the step of the path you are actually on.
  */
 
-import { el, screenHead, button, plural, referenceButton, settingsButton } from '../dom.js';
+import { el, screenHead, button, plural, settingsButton } from '../dom.js';
 import { Amelie } from '../amelie.js';
 import { loadVocab, loadVerbs, loadPhrases, loadTopics, loadStages, topicIcon } from '../content.js';
-import { learnProgress, dueCounts, getLearnDeckState, STRANDS } from '../store.js';
+import { learnProgress, dueCounts, todayProgress, getLearnDeckState, STRANDS } from '../store.js';
 
 export async function render(root, { settings, navigate }) {
   const [vocabItems, verbItems, phraseItems, topics, stages] = await Promise.all([
@@ -33,7 +33,7 @@ export async function render(root, { settings, navigate }) {
     loadTopics(),
     loadStages(),
   ]);
-  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, due, seenVocab, seenVerb, seenPhrase] =
+  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, due, today, seenVocab, seenVerb, seenPhrase] =
     await Promise.all([
       learnProgress(settings.playerId, 'vocab', STRANDS.recv, vocabItems.length),
       learnProgress(settings.playerId, 'vocab', STRANDS.prod, vocabItems.length),
@@ -42,6 +42,7 @@ export async function render(root, { settings, navigate }) {
       learnProgress(settings.playerId, 'phrase', STRANDS.recv, phraseItems.length),
       learnProgress(settings.playerId, 'phrase', STRANDS.prod, phraseItems.length),
       dueCounts(settings.playerId),
+      todayProgress(settings.playerId),
       getLearnDeckState(settings.playerId, 'vocab', STRANDS.recv),
       getLearnDeckState(settings.playerId, 'verb', STRANDS.recv),
       getLearnDeckState(settings.playerId, 'phrase', STRANDS.recv),
@@ -53,7 +54,7 @@ export async function render(root, { settings, navigate }) {
   const seen = new Set([...seenVocab.keys(), ...seenVerb.keys(), ...seenPhrase.keys()]);
   const path = stagePath(stages, all, seen);
   const current = path.find((stage) => stage.started < stage.total) ?? null;
-  const next = nextAction(due, current);
+  const next = nextAction(due, today, current);
 
   const amelie = new Amelie({ size: 'md', bubble: true });
   amelie.say(adviceFor(due, vocabRecv, vocabProd, current), 'idle');
@@ -62,7 +63,7 @@ export async function render(root, { settings, navigate }) {
     screenHead({
       title: 'Learn',
       sub: 'A1/A2 basics, before the exam format',
-      trailing: el('div', { class: 'row', style: { gap: 'var(--s2)' } }, referenceButton('#/reference'), settingsButton('#/settings')),
+      trailing: settingsButton('#/settings'),
     }),
     el('div', { class: 'card' }, amelie.el),
 
@@ -75,6 +76,19 @@ export async function render(root, { settings, navigate }) {
       onclick: () => navigate(next.href),
     }),
     el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s2)', textAlign: 'center' } }, next.note),
+    el(
+      'div',
+      { class: 'meter__track', style: { marginBlockStart: 'var(--s2)' } },
+      el('div', {
+        class: `meter__fill${today.met ? ' is-pass' : ''}`,
+        style: { width: `${today.pct === 0 ? 0 : Math.max(today.pct, 2)}%` },
+      }),
+    ),
+    el(
+      'p',
+      { class: 'card__note', style: { textAlign: 'center' } },
+      today.met ? `Goal met — ${plural(today.cards, 'card')} today.` : `${today.cards} of ${today.goal} cards today.`,
+    ),
 
     sectionLabel('Your path'),
     el(
@@ -132,7 +146,7 @@ function sectionLabel(text) {
  * Reviews first — they are the cards about to fade, and spaced repetition only
  * pays if they happen on the day they fall due. New words otherwise.
  */
-function nextAction(due, current) {
+function nextAction(due, today, current) {
   const waiting = due.recv + due.prod;
   if (waiting > 0) {
     return {

@@ -15,7 +15,7 @@ Build order steps 1–4 are done. The app runs.
 ```bash
 npm run content      # fetch LOD → corpus → items → mirror audio → images → validate
 npm run serve        # http://localhost:8080
-npm test             # 111 unit tests
+npm test             # 113 unit tests
 npm run walkthrough  # drives the real app in Chromium at iPhone size, screenshots each screen
 ```
 
@@ -25,7 +25,7 @@ npm run walkthrough  # drives the real app in Chromium at iPhone size, screensho
 | items | 287 listening questions · 169 interview prompts · 18 topics |
 | learn decks | 34 sentence frames · 2,049 words · 365 verbs · frequency-ranked into 5 stages · 1,791 topic-tagged · 2,240 cloze targets · 358 visual cues |
 | shipped assets | 2,263 recordings (68 MB, AAC) · 16 CC images (5.5 MB) |
-| verification | `npm test` 111/111 · `validate` PASS · walkthrough 32/32, no console errors |
+| verification | `npm test` 113/113 · `validate` PASS · walkthrough 34/34, no console errors |
 
 **Known limits, stated plainly.** Listening items are corpus-derived drills on the official
 5+7+4 shape, not replicas of INLL's connected-speech test — the app says so and links to the
@@ -298,6 +298,14 @@ far easier than producing it, and letting it promote words would quietly stretch
 intervals past what the evidence supports. The word pool is deduplicated on *both* sides:
 471 English glosses in the decks are shared by more than one word (`nee`, `keen` and `keng`
 all gloss as "no"), and two identical tiles make a board with no right answer.
+
+**The daily goal is work done, not queue depth.** Everything else the home screen could
+report — words due, new words left — is the size of a queue that refills as you work: a
+missed card goes back to box 0, whose interval is zero days, so it falls due again the same
+day. Measured that way, 101 answered cards moved "8 words left" to 5, then 10, then 10, then
+8, and no amount of practice could ever tick the day off. `todayProgress()` counts cards
+actually answered today from the session log instead, which only ever goes up, and the Words
+step completes on that rather than on an empty queue.
 
 Two smaller rules that matter more than they look:
 

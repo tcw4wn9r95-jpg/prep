@@ -128,6 +128,19 @@ async function main() {
     await page.waitForSelector('.plan', { timeout: 5000 });
   });
 
+  await step('the cheat sheet is one tap away from anywhere', async () => {
+    // It is reference material consulted *while* doing something else, so it
+    // lives in the tab bar rather than one level down inside Learn.
+    const tabs = await page.locator('.tabbar__item').allTextContents();
+    if (!tabs.some((label) => label.trim() === 'Sheet')) {
+      throw new Error(`no cheat-sheet tab; tabs are ${tabs.map((t) => t.trim()).join(', ')}`);
+    }
+    await page.locator('.tabbar__item').filter({ hasText: 'Sheet' }).click();
+    await page.waitForSelector('.ref-pronoun', { timeout: 5000 });
+    await page.locator('.tabbar__item').filter({ hasText: 'Today' }).click();
+    await page.waitForSelector('.plan', { timeout: 5000 });
+  });
+
   await step('today gives exactly one next action and a three-step plan', async () => {
     // The fix for "there is no clear journey": one primary button, and the
     // plan beneath it in the order it should be done.
@@ -509,6 +522,48 @@ async function main() {
     const title = (await page.locator('#screen .screen__title').first().textContent())?.trim();
     if (title !== 'First words') throw new Error(`the step session is titled "${title}"`);
     await shot('16c-stage-session');
+  });
+
+  await step("the day's practice counter only goes up", async () => {
+    // The bug this guards: every number on Today was queue depth, and the
+    // queue refills as you work — 101 cards answered took "8 words left" to 5,
+    // then 10, then 10, then 8. There was nothing on the screen that could
+    // tell a hard day's work from having done nothing at all.
+    await clearLearn();
+    const readCards = async () => {
+      await openFresh('#/today');
+      await page.waitForSelector('.plan', { timeout: 5000 });
+      const note = (await page.locator('.plan').first().innerText()).trim();
+      const match = note.match(/(\d+)\s+of\s+\d+\s+cards today|Done — (\d+) cards? today/);
+      if (!match) throw new Error(`the Words step does not report a card count: "${note.replace(/\n/g, ' | ')}"`);
+      return Number(match[1] ?? match[2]);
+    };
+
+    const before = await readCards();
+    const counts = [before];
+    for (let round = 0; round < 2; round += 1) {
+      await openFresh('#/session');
+      await page.waitForSelector('.options .option, .empty', { timeout: 5000 });
+      for (let guard = 0; guard < 40; guard += 1) {
+        const options = page.locator('.options .option');
+        if ((await options.count()) === 0) break;
+        await options.first().click();
+        const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+        await next.waitFor({ state: 'visible', timeout: 3000 });
+        const label = (await next.textContent())?.trim();
+        await next.click();
+        if (label === 'Finish') break;
+        await page.waitForTimeout(60);
+      }
+      counts.push(await readCards());
+    }
+
+    for (let i = 1; i < counts.length; i += 1) {
+      if (counts[i] < counts[i - 1]) throw new Error(`the day's count went backwards: ${counts.join(' → ')}`);
+    }
+    if (counts.at(-1) <= counts[0]) throw new Error(`two sessions moved nothing: ${counts.join(' → ')}`);
+    process.stdout.write(`  cards done today: ${counts.join(' → ')}\n`);
+    await shot('00b-today-goal');
   });
 
   await step('one session moves the number the hub reports', async () => {

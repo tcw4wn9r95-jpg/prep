@@ -448,7 +448,10 @@ export async function savePairsResult(playerId, level, { moves }) {
  * difficulty escalates once the word is recognised, not before.
  */
 
-const LEITNER_DAYS = [0, 1, 3, 7, 16];
+/** Days until the next review, by box. Box 0 is deliberately zero: a lapsed
+ * card should come back in the same session, not tomorrow. Exported because it
+ * is the reason an empty queue is not a reachable daily goal. */
+export const LEITNER_DAYS = [0, 1, 3, 7, 16];
 export const LEARN_DECKS = { vocab: 'vocab', verb: 'verb', phrase: 'phrase' };
 export const STRANDS = { recv: 'recv', prod: 'prod' };
 export const MAX_BOX = LEITNER_DAYS.length - 1;
@@ -467,6 +470,20 @@ export const STRONG_BOX = 3;
 /** New words introduced per day. Above roughly ten, retention falls faster
  * than the extra intake gains. Reviews are on top of this and uncapped. */
 export const DAILY_NEW_TARGET = 8;
+
+/**
+ * Cards to answer in a day — the goal the learner is actually shown.
+ *
+ * Everything else on the home screen is queue depth: how many words are due,
+ * how many new ones are left. Those are the wrong thing to show as progress,
+ * because the queue refills as you work — a missed card goes to box 0, whose
+ * interval is zero days, so it falls due again immediately. Answering a
+ * hundred cards could leave the counter exactly where it started, which reads
+ * as having achieved nothing.
+ *
+ * This one only ever goes up, and resets at midnight. Roughly two sessions.
+ */
+export const DAILY_CARD_GOAL = 30;
 
 function learnKey(playerId, deck, strand, itemId) {
   return `${playerId}:${deck}:${strand}:${itemId}`;
@@ -719,6 +736,34 @@ export async function recordLearnSession(playerId, { correct, answered }) {
 }
 
 export const listLearnSessions = () => all('learnSessions');
+
+/**
+ * How much practice has actually happened today.
+ *
+ * The one number on the home screen that can only go up. Derived from the
+ * session log rather than from the Leitner rows, because the boxes record
+ * *state* — where each word stands — and say nothing about effort spent
+ * getting there.
+ */
+export async function todayProgress(playerId, { now = Date.now() } = {}) {
+  const rows = await all('learnSessions');
+  const startOfDay = new Date(now);
+  startOfDay.setHours(0, 0, 0, 0);
+  const dayStart = startOfDay.getTime();
+
+  const mine = rows.filter((row) => row.playerId === playerId && (Date.parse(row.at) || 0) >= dayStart);
+  const cards = mine.reduce((sum, row) => sum + (row.answered ?? 0), 0);
+  const correct = mine.reduce((sum, row) => sum + (row.correct ?? 0), 0);
+
+  return {
+    cards,
+    correct,
+    sessions: mine.length,
+    goal: DAILY_CARD_GOAL,
+    met: cards >= DAILY_CARD_GOAL,
+    pct: DAILY_CARD_GOAL === 0 ? 0 : Math.min(100, (cards / DAILY_CARD_GOAL) * 100),
+  };
+}
 
 /**
  * Mastered = reached the last box. Reported per strand, because "I know 400
