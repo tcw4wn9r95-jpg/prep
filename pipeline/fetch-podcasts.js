@@ -139,6 +139,11 @@ function parseItem(block) {
 
   // Podcasting 2.0 transcripts. Prefer plain text or VTT over HTML/JSON —
   // the Worker feeds this straight to a model and plain text costs least.
+  // INLL doesn't use this tag: about half its episodes embed the transcript
+  // in <description> instead, after a literal "Transkript:" marker. That
+  // text is not extracted or stored here — the Worker re-fetches this same
+  // feed by `feedUrl` at question-generation time and reads it from there,
+  // per the no-transcript-in-the-repo rule in the file header.
   const transcripts = [...block.matchAll(/<podcast:transcript(\s[^>]*?)\/?>/gi)].map((match) => {
     const attrs = {};
     for (const pair of match[1].matchAll(/([\w:-]+)\s*=\s*"([^"]*)"/g)) attrs[pair[1]] = decodeText(pair[2]);
@@ -225,6 +230,11 @@ async function main() {
     });
 
   console.log(`  keeping ${kept.length} at exam-relevant levels`);
+
+  // Carried on every episode, not just in meta: the Worker needs it per
+  // request to re-fetch this same feed and pull the one item it was asked
+  // about — see the header note on where transcripts actually live.
+  for (const episode of kept) episode.feedUrl = feedUrl;
 
   if (process.argv.includes('--dry')) {
     console.log('\n--dry: nothing written. First three rows:');

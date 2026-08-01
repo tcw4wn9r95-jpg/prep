@@ -1,6 +1,6 @@
 {
   "meta": {
-    "fetchedAt": "2026-08-01T14:53:59.224Z",
+    "fetchedAt": "2026-08-01T16:29:43.498Z",
     "generator": "pipeline/fetch-podcasts.js",
     "source": "Poterkëscht vum INLL",
     "attribution": "Institut national des langues Luxembourg (INLL)",
@@ -26,7 +26,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Tipps-an-der-Htztwell-A2-e3lm84u",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-9ffdfa59",
@@ -40,7 +41,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Nohalteg-Reesen-A2-B1-e3ldjtb",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-c83434de",
@@ -54,7 +56,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Beruffer-InformatikerInformatikerin-B1-e3ldjrl",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-1c7c6ba8",
@@ -68,7 +71,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Rotschli-fir-eng-Crche-ze-fannen-A2-e3ldjgp",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-47a77cde",
@@ -82,7 +86,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Donnerwiederen-uechter-dLand-A2-e3l78sg",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-63439665",
@@ -96,7 +101,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Sech-fir-en-Job-am-INLL-mellen-B1-e3l78pj",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-dd327cc9",
@@ -110,7 +116,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Eng-emotional-Achterbunnsfaart-B1-e3kqh3h",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-0226ca57",
@@ -124,7 +131,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Nationalfeierdag-am-Pass-B1-e3kqgub",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-c7df4e7c",
@@ -138,7 +146,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Schimmel-an-der-Wunneng-B1-e3kfrtj",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-7566a2f5",
@@ -152,7 +161,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Schlof-an-den-Handy-B1-e3k7iuv",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-5c726479",
@@ -166,7 +176,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Ze-spit-op-der-Aarbecht-A2-e3k7it7",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-1cf35e4e",
@@ -180,7 +191,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Iwwer-Ernrungstrends-schwtzen-B1-e3k7ilq",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-3101f172",
@@ -194,7 +206,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vir--an-Nodeeler-vun-de-soziale-Medien-B1-e3jhsio",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-dc8138ec",
@@ -208,7 +221,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Transportmttel-a-Frerschin-A2-e3j5dns",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-4378ab9a",
@@ -222,7 +236,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-Studentenjob-A2-e3j5dsl",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-60ccf88d",
@@ -236,7 +251,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vakanz-um-Mier-oder-an-der-Stad-B1-e3j5drg",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-651681c3",
@@ -250,7 +266,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Den-Dagesoflaf-am-Pass-A2-e3j5dls",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-f4e642b4",
@@ -264,7 +281,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Iwwer-eng-Trennung-schwtzen-A2-e3j5dpe",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-b2ca8ec0",
@@ -278,7 +296,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Saache-fir-eng-Studentewunneng-kafen-A2-e3ijemv",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-7a9a883c",
@@ -292,7 +311,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Aarbechtsziten-an-Auerziten-A1-e3ijehi",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-3a62b705",
@@ -306,7 +326,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Noriichten-iwwer-Hnn--Catsitting-A2-B1-e3ibgo2",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-62ca0188",
@@ -320,7 +341,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/DOktav-an-de-Mertchen-A2-e3ibgll",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-3ffcaffa",
@@ -334,7 +356,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Den-Zuch-verpasst--en-Accident-mam-Vlo-A2-e3i67fj",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-dac394c2",
@@ -348,7 +371,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Am-Frijoer-am-Gaart-schaffen-B1-e3i67ao",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-4d0d2c72",
@@ -362,7 +386,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Um-Nopeschfest-A2-e3hufdq",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-3d24021e",
@@ -376,7 +401,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Beruff-ElektrikerElektrikerin-A1-e3hufau",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-705106c2",
@@ -390,7 +416,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Liblingsiessen--Ratatouille-kachen-A2-e3gv8ib",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-954c7a94",
@@ -404,7 +431,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Eis-Dagesroutinnen-A1-A2-e3gv8do",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-25a8eb25",
@@ -418,7 +446,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-Wellness-Weekend-A2-e3gt1i8",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-b947491a",
@@ -432,7 +461,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Iwwer-Online-Dating-schwtzen-B1-e3gt1fo",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-b58cc5ae",
@@ -446,7 +476,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vakanz-mam-Camper--e-Museksfestival-A2-e3gimrc",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-7e746f18",
@@ -460,7 +491,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Communautitsgert-zu-Ltzebuerg-B1-e3fvk1j",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-0b50bca2",
@@ -474,7 +506,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Iwwer-eng-Gehaltserhijung-schwtzen-B1-e3fvjr2",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-d3811dd6",
@@ -488,7 +521,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vegan-a-Vegetaresch-Ernrung-A2-e3fvjjg",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-bbf1b302",
@@ -502,7 +536,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Beruffsweer-zu-Ltzebuerg--Work-Life-Balance-B1-e3fg8i1",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-860b1d13",
@@ -516,7 +551,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-Filmowend-B1-B2-e3fg8e8",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-0db14aa9",
@@ -530,7 +566,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vun-engem-Tennismatch-erzielen-B1-e3fg828",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-68636800",
@@ -544,7 +581,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Hobbyen-Sangen-a-baken-A2-e3f1oc6",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-a99503cd",
@@ -558,7 +596,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Eng-Rees-an-eng-Stad-plangen-A2-e3eknla",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-2e8450f9",
@@ -572,7 +611,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-Knnegungsgesprich-B1-e3ekmsd",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-45660304",
@@ -586,7 +626,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Eng-Kichen-nei-ariichten-A2--e-Buedzmmer-renovieren-B1-e3ekme0",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-549ba72a",
@@ -600,7 +641,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Aide-soignante-am-Altersheem-an-am-Spidol--A2-e3druq9",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-dd64ade0",
@@ -614,7 +656,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-Rendez-vous-beim-Znndokter-A2-e3druod",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-3d9f1726",
@@ -628,7 +671,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Alldag-am-Altersheem-A2-e3dla8o",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-3274e60e",
@@ -642,7 +686,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Kleeder-verglichen-B1--eng-Lier-am-Kleederbuttek-A2-e3dl9h6",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-48412d64",
@@ -656,7 +701,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/An-der-Receptioun-vun-enger-Klinick-A2-e3dc32v",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-f431b630",
@@ -670,7 +716,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-Gesprich-beim-Kaffi--eng-Deenungsbung-A2-B1-e3dc2sq",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-395205c0",
@@ -684,7 +731,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Eng-nei-Sprooch-lieren-A1-e3ck02c",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-3164c61e",
@@ -698,7 +746,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Imperativ-Op-der-Aarbecht--Am-Stot-A2-e3citra",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-a3b0bb2f",
@@ -712,7 +761,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Sylvester-zu-London-A2-e3cbauo",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-4882fe3a",
@@ -726,7 +776,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Hellegowend-doheem-feieren-A2-e3cbar0",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-23e858e6",
@@ -740,7 +791,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vir--an-Nodeeler-vum-Onlineshopping-A2-e3c8j9j",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-746330d4",
@@ -754,7 +806,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Silvester-am-Ausland-A2-e3br0mj",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-4d470d6f",
@@ -768,7 +821,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Onzefridden-am-Restaurant--Kaffi-drnken-A2-e3br156",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-2880b297",
@@ -782,7 +836,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Dagesoflaf--Glatis-A1-A2-e3br0rj",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-23c83ea5",
@@ -796,7 +851,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/En-Trppeltour-duerch-dStad--Um-Floumaart-A2-e3bg9kr",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-b0c33398",
@@ -810,7 +866,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Kaddoe-vum-Kleeschen-A2-e3bg9h3",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-c0afe66f",
@@ -824,7 +881,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Eng-Lier-als-Coiffeuse-A2-e3ateq1",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-43f1d059",
@@ -838,7 +896,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Walfer-Bicherdeeg-a-Bazar-International-A2-B1-e3ateje",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-82e1d9d8",
@@ -852,7 +911,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Eng-nei-Spillplaz-am-Quartier-an-e-Rendez-vous-ofsoen-B1-e3a8jgj",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-1445e5b5",
@@ -866,7 +926,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Noriichten-a-Contrle-Technique-mam-Auto-A2-e3a8jpf",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-6e6c21f6",
@@ -880,7 +941,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Lscht-fir-e-Bbee-a-Babyshower-B1-e3a8j8h",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-03671b2c",
@@ -894,7 +956,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Allerhellegen-zu-Ltzebuerg-A2-B1-e39uqu8",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-7d3f5e32",
@@ -908,7 +971,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Frizitpark--Jonggesell-inn-enabschid-B1-e399p3u",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-d52b7521",
@@ -922,7 +986,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Iwwer-Benevolat-schwtzen-B1-e399p08",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-aae04b4a",
@@ -936,7 +1001,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Klischeen-B1-an-Transportmttel-A2-e399oof",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-7912163e",
@@ -950,7 +1016,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Beruffskrankheet-B1-a-Gesprich-an-der-Kantin-A2-e38rq0r",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-def6c905",
@@ -964,7 +1031,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/En-Aarbechtsaccident-B1-e38rpn7",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-9091f790",
@@ -978,7 +1046,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Hobbyen-an-Dagesoflaf-Pensioun-A1-e38rphh",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-78a41515",
@@ -992,7 +1061,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/ppel-plcken-a-Rezept-fir-eng-ppeltaart-A2-e38egmj",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-043eb08c",
@@ -1006,7 +1076,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Den-Trounwiessel-B1-B2-e38up3c",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-67e40b1d",
@@ -1020,7 +1091,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Eng-Dramrees-B1-B2-e389umc",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-0121885f",
@@ -1034,7 +1106,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Op-der-Aarbecht-Agenda-a-Mataarbechter-A2-e35atou",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-d3c28c8e",
@@ -1048,7 +1121,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Um-Policebro-A2-e35atg2",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-27fa824b",
@@ -1062,7 +1136,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/INLL-Fir-en-Niveau-orientiert-ginn-A1-e35153d",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-75967687",
@@ -1076,7 +1151,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Um-Flughafen-2-Vun-enger-Vakanz-erzielen-A2-e3514ve",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-2a320e4c",
@@ -1090,7 +1166,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Um-Flughafen-1-An-dVakanz-flien-A2-e3514mi",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-90c69f65",
@@ -1104,7 +1181,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vlosummer-a-Berodung-mat-engem-Personal-Trainer-A2-e3514c1",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-5ba31c0e",
@@ -1118,7 +1196,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Aktivitite-fir-Jugendlecher-an-der-Vakanz-B1-e34m1s4",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-0c6da65c",
@@ -1132,7 +1211,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Tenue-fir-eng-Hochzit-an-op-eng-Mottoparty-goen-A2-e34cfj9",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-77c5561c",
@@ -1146,7 +1226,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vegan-sinn--traditionell-an-alternativ-Medezin-B1-e34cf5a",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-3e21154e",
@@ -1160,7 +1241,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Renovatioun-an-e-Miwwel-opbauen-B1-e34cevh",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-21a75b15",
@@ -1174,7 +1256,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Rckblck-Nationalfeierdag-a-fir-en-Test-lieren-A2-e34cenh",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-fa4c215c",
@@ -1188,7 +1271,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/En-Hond-adoptieren-an-Diererubrik-A2-e341oc2",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-34a8c982",
@@ -1202,7 +1286,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Gutt-Noriichten-B1-e341o93",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-3924f1d3",
@@ -1216,7 +1301,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/An-de-Supermarch-goen-A1-e33r4lt",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-57980e24",
@@ -1230,7 +1316,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Kleng-Accidenter-B1-e33r4ig",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-4f1824cb",
@@ -1244,7 +1331,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Aktivititen-op-der-Aarbecht--Eleng-an-der-Vakanz-A2-e335dkc",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-34f65c29",
@@ -1258,7 +1346,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/En-Ausfluch-buchen--Aktivititen-am-Alter-B1-e335dec",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-30f3fed0",
@@ -1272,7 +1361,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/De-Marathon-zu-Ltzebuerg-A2-e32pie3",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-1ed6ec30",
@@ -1286,7 +1376,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Iwwer-Upcycling-schwtzen-B1-e32piad",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-c677306b",
@@ -1300,7 +1391,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Aktivitite-fir-dKanner-zu-Ltzebuerg-A2-e32i594",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-afa82729",
@@ -1314,7 +1406,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Ukommen-zu-Ltzebuerg-Administrativ-Prozeduren-A2-e32dm3j",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-feb532ed",
@@ -1328,7 +1421,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Frizitaktivititen-A1-a-Moiesroutine-A2-e32dls6",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-359532ad",
@@ -1342,7 +1436,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-Life-Update-a-vun-engem-Auslandsemester-erzielen-B1-e326f11",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-ea49ac16",
@@ -1356,7 +1451,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Iwwer-Recycling-schwtzen-B1-e326eup",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-db3a36e2",
@@ -1370,7 +1466,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/En-Abonnement-annulieren-A2-e31tecv",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-9b982fe0",
@@ -1384,7 +1481,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Meteo-a-Vlo-fueren-A2-e30t1u4",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-66c912a0",
@@ -1398,7 +1496,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Plng-fir-Ouschteren-an-eng-Wanderung-A2-e30t0ep",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-677483a5",
@@ -1412,7 +1511,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Am-Buchclub-B1-e30duvj",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-c97d37ed",
@@ -1426,7 +1526,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-Rendez-vous-ofsoen--de-Schlssel-verluer-A2-e303usu",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-bb0fec16",
@@ -1440,7 +1541,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Am-A1-Sproochecours--en-Abrllsgeck-B1-e30j0gs",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-d8391c06",
@@ -1454,7 +1556,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Bretzelsonndeg--beim-Bcker-A2-e30durd",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-bf97ba90",
@@ -1468,7 +1571,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Rendez-vous-an-de-Kino--dAuer-gtt-gerckelt-A2-e303s7d",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-a10916b2",
@@ -1482,7 +1586,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/An-der-Crche-Mat-den-Elteren-iwwer-e-Problem-schwtzen-A2-e2vdlel",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-0dcfe8e4",
@@ -1496,7 +1601,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Dialog-op-der-Post--an-der-Urgence-A2-e2vdkoa",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-5699894b",
@@ -1510,7 +1616,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/An-enger-Crche-schaffen-A2-e2uqnl5",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-f64cb88b",
@@ -1524,7 +1631,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Sin-Dramhaus-an-dGigend-beschreiwen-A2-e2uotpq",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-db9e91a5",
@@ -1538,7 +1646,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Gespricher-mat-Elteren-iwwer-dKanner-A2-e2uotah",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-fe4d9c11",
@@ -1552,7 +1661,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/En-Dag-an-der-Crche-A2-e2um6g4",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-65e69d46",
@@ -1566,7 +1676,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Fuesent-zu-Ltzebuerg-A2-e2um63p",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-5d3fec78",
@@ -1580,7 +1691,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Op-eng-Hochzit-goen-B1-e2uf5pd",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-2aa999af",
@@ -1594,7 +1706,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vltesdag-B1-e2u3i0i",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-32604be8",
@@ -1608,7 +1721,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vum-Wantersport-erzielen-B1-e2u3hnt",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-49ffca6a",
@@ -1622,7 +1736,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/An-de-Wantersport-fueren-B1-e2u3g1n",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-ab5d5d07",
@@ -1636,7 +1751,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Liichtmssdag-B1-e2tptjj",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-66c97d68",
@@ -1650,7 +1766,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/En-Jobinterview-A2-e2tptd6",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-3df60537",
@@ -1664,7 +1781,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Hobby-Badminton-A2-e2tpt5d",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-b00f8c75",
@@ -1678,7 +1796,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Am-Reesbro-A2-e2tg861",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-bf492683",
@@ -1692,7 +1811,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Am-Sproochecaf-A1-e2tg80j",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-cdacd27f",
@@ -1706,7 +1826,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Hobby-Trail-Lafen-A2-e2seq45",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-c77ea5fc",
@@ -1720,7 +1841,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Virstz-fir-dat-neit-Joer-A2-e2sepp4",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-22e053a8",
@@ -1734,7 +1856,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vun-enger-Sylvesterfeier-erzielen-A2-e2s5dut",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-9efe041e",
@@ -1748,7 +1871,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-chatoescht-Chrschtdagsiessen-A2-e2sepgn",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-4bf668e5",
@@ -1762,7 +1886,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/De-Wanter-a-Wanterpneuen-A2-e2s5dld",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-9a3cb90f",
@@ -1776,7 +1901,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/De-Stot-an-dHausregelen-A2-e2s5cca",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-58b3da43",
@@ -1790,7 +1916,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-Rendez-vous-beim-Coiffer-a-Kin-huelen-A2-e2rsebg",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-f07946cc",
@@ -1804,7 +1931,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Aussprooch-ch-A1-A2-e2rk595",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-b3e211a2",
@@ -1818,7 +1946,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Kleeserchersdag-A2-e2ried8",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-380e9e4b",
@@ -1832,7 +1961,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Fester-am-Dezember-an-Outfit-fir-eng-Chrschtfeier-A2-e2r8amp",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-483b971b",
@@ -1846,7 +1976,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Um-Chrschtmaart-B1-e2r5ebv",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-07ab7c01",
@@ -1860,7 +1991,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Rezept-Boxemnnercher-A2-B1-e2r3h7q",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-5473d810",
@@ -1874,7 +2006,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Kaddoe-vum-Kleeschen-A2-e2qsnqs",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-34e64181",
@@ -1888,7 +2021,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Noriichten-Meteo-a-lokal-Noriichten-A2-e2qsnf9",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-d15fcbef",
@@ -1902,7 +2036,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Reservatioun-am-Restaurant-a-beim-Traiteur-bestellen-A2-e2qje6h",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-4578ee3c",
@@ -1916,7 +2051,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Am-Fitnessstudio-A2-e2q1bvn",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-c6bacde7",
@@ -1930,7 +2066,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Op-enger-Halloweenparty--Rezept-Krbiszopp-B1-e2pret1",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-c185a347",
@@ -1944,7 +2081,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Halloween-Special-Um-Hingerhaff-B1-B2-e2qats5",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-2053e0e4",
@@ -1958,7 +2096,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Allerhellegen-an-Trauliicht-B1-e2po2uh",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-bc3297e1",
@@ -1972,7 +2111,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Am-Supermarch-an-e-Kaffi-drnke-goen-A2-e2pn22e",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-79435997",
@@ -1986,7 +2126,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Nssmaart--Nuits-des-Muses-a-Kiermes-am-Duerf-B1-e2pn1p3",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-a3d6acd2",
@@ -2000,7 +2141,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Zwou-Weebeschreiwungen-A2-e2pdrd6",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-39d2118e",
@@ -2014,7 +2156,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Dffnungsziten-A2-a-formell--informell-A1-e2pdr7r",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-88fe5f09",
@@ -2028,7 +2171,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Tiny-House-a-Kleederschaf-ausraumen-A2-e2oqadv",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-5818c236",
@@ -2042,7 +2186,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Den-Hierscht-a-Pappendag-A2-e2p4rrh",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-26702bf7",
@@ -2056,7 +2201,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Ukommen-zu-Ltzebuerg-B1-e2opte0",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-fb7ffb62",
@@ -2070,7 +2216,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/DAlphabet-A1-e2on734",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-8e5d7360",
@@ -2084,7 +2231,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Alldag-mat-Kanner-B1-a-Message-um-Repondeur-A1-e2ogrsk",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-8ba7ff60",
@@ -2098,7 +2246,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Sech-kennelieren-B1-e2ogm76",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-b962e55b",
@@ -2112,7 +2261,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Sech-am-INLL-umellen-A2-B1-e2m3315",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-32d37dbf",
@@ -2126,7 +2276,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/DSchueberfouer-A2-e2m32v2",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-41beaf07",
@@ -2140,7 +2291,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Seng-Liewensgeschicht-erzielen-B1-e2ls53p",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-b2e9deab",
@@ -2154,7 +2306,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Eng-Entspanungsbung-B1-e2ls4vl",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-c8dde5d5",
@@ -2168,7 +2321,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/En-Ausfluch-an-e-Grillfest-plangen-A2-e2llbp7",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-fd9528e0",
@@ -2182,7 +2336,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vakanzeplng-an-eng-Postkaart-A2-e2licp0",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-4d083237",
@@ -2196,7 +2351,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Aussprooch-i---i-A1-e2l44ab",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-74c56978",
@@ -2210,7 +2366,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/De-Charakter-Strenzeechen-A2-e2krfkn",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-ca01ec9d",
@@ -2224,7 +2381,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Eng-schlecht-Vakanz-A2-e2krfhl",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-3c26c343",
@@ -2238,7 +2396,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/De-Summer-an-Nationalfeierdag-A2-e2krfbk",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-6ba22e07",
@@ -2252,7 +2411,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Aussprooch-ei---i-A1-e2kip22",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-1b5b7a16",
@@ -2266,7 +2426,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Am-Kleederbuttek-an-dWallis-paken-A2-e2kiosg",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-725f0fc3",
@@ -2280,7 +2441,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Iwwer-Veriner-schwtzen-A2-e2k25n5",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-015baf3b",
@@ -2294,7 +2456,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-Kaddo-fir-Mammendag-B1-e2k25l8",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-bfa7c652",
@@ -2308,7 +2471,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Eng-Wunneng-beschreiwen-A2-e2k25i9",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-a8d29a70",
@@ -2322,7 +2486,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Vun-engem-Date-erzielen-A2-e2jg1lk",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-4dc5e5d4",
@@ -2336,7 +2501,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Iwwer-Vakanz-schwtzen-A1-A2-e2jg1f9",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-10c6d301",
@@ -2350,7 +2516,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Op-e-Konveniat-goen-A2-e2jg1d6",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-fad69668",
@@ -2364,7 +2531,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Wat-hues-du-gschter-gemaach--A2-e2jg1be",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-e04cd33e",
@@ -2378,7 +2546,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Gesondheet-a-Rotschli-A2-e2jg18o",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-397751fc",
@@ -2392,7 +2561,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Dagesoflaf-an-Hobby-Salsa-A2-e2is4qp",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-01dcb847",
@@ -2406,7 +2576,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Akafsgewunnechten-A2-e2is4m9",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-d82368f8",
@@ -2420,7 +2591,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Gesondheet-Dokter-an-Apdikt-A2-e2is4hg",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-a1d865ab",
@@ -2434,7 +2606,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Transportmttelen-zu-Ltzebuerg-A2-e2is4d1",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-2fd82625",
@@ -2448,7 +2621,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Aussprooch-De-Buschtaf---r-A1-e2ii918",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-6bc7d25a",
@@ -2462,7 +2636,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/De-Stot-maachen-A2-e2ii8sh",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-a9cce403",
@@ -2476,7 +2651,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Den-Aarbechtsalldag-A2-e2idql9",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-986ec3f9",
@@ -2490,7 +2666,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Hobbyen-Lafen-a-Schwammen-A2-e2idqgi",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-ced70571",
@@ -2504,7 +2681,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-Rendez-vous-ausmaachen-A2-e2hhi7e",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-cd8a844c",
@@ -2518,7 +2696,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/E-Rezept-Kniddelen-B1-e2hhi2e",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-aa5f49af",
@@ -2532,7 +2711,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Frijoer-a-Liblingsplaz-zu-Ltzebuerg-A2-e2hhi0e",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-d8763448",
@@ -2546,7 +2726,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Meng-Famill-A1-e2hhhuu",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-0a27a249",
@@ -2560,7 +2741,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Iesspreferenzen-A1-an-e-Kommentar-am-Restaurant-A2-e2h7hfb",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-24b275f0",
@@ -2574,7 +2756,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Plng-a-Projete-fir-dZukunft-A2-e2h7hcq",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-215e8ae2",
@@ -2588,7 +2771,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Hobbyen-Sangen-a-Fitness-A2-e2gvcc3",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-78b97a7b",
@@ -2602,7 +2786,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Aussprooch-DVokaler-A1-e2gvc6t",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-7fe5d574",
@@ -2616,7 +2801,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Meng-lescht-Vakanz-A2-e2gk9u8",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-d9487831",
@@ -2630,7 +2816,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Check-in-am-Hotel--Weebeschreiwung-am-INLL-A2-e2gk9pk",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-367d9ebe",
@@ -2644,7 +2831,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Sech-virstellen-A1-e2gef8h",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-66bd9dc8",
@@ -2658,7 +2846,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Op-Wunnengssich-A2-e2gedln",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-d7404bb8",
@@ -2672,7 +2861,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Dialog-am-Restaurant-an-op-der-Bank-A2-e2g4o18",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-9b929ec7",
@@ -2686,7 +2876,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Sprooch-am-Cours-A1-e2g4lta",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-729c02db",
@@ -2700,7 +2891,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Widderhuelung-A1-E-Kenneliergesprich-e3eknus",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-05dd2cf3",
@@ -2714,7 +2906,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/DFormater-vun-de-Coursen-am-INLL-Deel-2-e3e130j",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-5c17d19f",
@@ -2728,7 +2921,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/DFormater-vun-de-Coursen-am-INLL-Deel-1-e3e12ta",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-81ecfd13",
@@ -2742,7 +2936,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Interview-mat-enger-Dieticienne--Rezept-Gemiszopp-e3c8j73",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-daa6b568",
@@ -2756,7 +2951,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Den-Dag-vun-der-Ltzebuergescher-Sprooch-e35atvk",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-cf553a3b",
@@ -2770,7 +2966,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/De-Sproochentest-e35at9a",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-30a79ff6",
@@ -2784,7 +2981,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Freed-um-Schreiwen-am-INLL-e34m269",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-a3464433",
@@ -2798,7 +2996,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Special-1-Joer-Poterkscht-e2up5c1",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     },
     {
       "id": "pod-2e1d70c4",
@@ -2812,7 +3011,8 @@
       "sourceUrl": "https://podcasters.spotify.com/pod/show/poterkescht/episodes/Teaser---Jingle-e2fvj4a",
       "source": "Poterkëscht vum INLL",
       "attribution": "Institut national des langues Luxembourg (INLL)",
-      "licence": "All rights reserved — streamed from the publisher, never redistributed"
+      "licence": "All rights reserved — streamed from the publisher, never redistributed",
+      "feedUrl": "https://anchor.fm/s/f1c8499c/podcast/rss"
     }
   ]
 }
