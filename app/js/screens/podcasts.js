@@ -69,12 +69,23 @@ async function renderIndex(root, { navigate }) {
     return { destroy() {} };
   }
 
+  const answerable = episodes.filter((episode) => !lacksTranscript(episode)).length;
+
   root.append(
     el(
       'p',
       { class: 'card__note' },
       'Real connected speech from the exam board, at natural speed — the closest thing to the B1 paper. Listen, then answer.',
     ),
+    // Stated once, here, so a "listen only" chip further down reads as a known
+    // property of the source rather than as something broken.
+    answerable < episodes.length
+      ? el(
+          'p',
+          { class: 'source-note' },
+          `${answerable} of ${episodes.length} episodes come with a transcript and can ask you questions. The rest are marked “listen only”.`,
+        )
+      : null,
   );
 
   // Grouped by level so a B1 episode is never the first thing an A2 learner
@@ -105,6 +116,12 @@ async function renderIndex(root, { navigate }) {
   return { destroy() {} };
 }
 
+/**
+ * Only a hard `false` counts as "no transcript": an index built before the
+ * field existed leaves it undefined, and that is unknown rather than absent.
+ */
+const lacksTranscript = (episode) => episode.hasTranscript === false;
+
 function episodeRow(episode) {
   return el(
     'a',
@@ -119,6 +136,10 @@ function episodeRow(episode) {
         el('p', { class: 'card__title' }, episode.episodeTitle),
         el('p', { class: 'card__note' }, [episode.publishedAt, formatDuration(episode.durationSec)].filter(Boolean).join(' · ')),
       ),
+      // Said on the row rather than only after tapping: whether an episode can
+      // be answered is a reason to pick it, so it belongs where the choice is
+      // made. Listening still works on every episode.
+      lacksTranscript(episode) ? el('span', { class: 'chip' }, 'listen only') : null,
     ),
   );
 }
@@ -213,22 +234,51 @@ async function renderEpisode(root, id, { settings, navigate }) {
     ),
   );
 
-  const ask = button('Ask me questions', {
-    variant: 'secondary',
-    class: 'btn btn--secondary btn--block',
-    onclick: async () => {
-      ask.disabled = true;
-      fill(questionHolder, el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Reading the episode…'));
-      const result = await requestEpisodeQuestions(settings, episode);
-      if (!result.ok) {
-        fill(questionHolder, el('div', { class: 'card' }, el('p', { class: 'card__note' }, result.message)));
-        ask.disabled = false;
-        return;
-      }
-      runQuestions(questionHolder, result, { episode, settings, navigate, clip, amelie });
-    },
-  });
-  fill(questionHolder, ask);
+  if (lacksTranscript(episode)) {
+    // No button at all. Questions are quoted verbatim from a transcript, and
+    // INLL published none for this episode, so there is nothing a tap could
+    // do — offering one and failing would read as a bug in the app.
+    fill(
+      questionHolder,
+      el(
+        'div',
+        { class: 'card' },
+        el('p', { class: 'card__title' }, 'Listening only'),
+        el(
+          'p',
+          { class: 'card__note' },
+          'INLL publishes a transcript for about half its episodes, and not for this one. Questions are quoted word for word from the transcript, so there are none here — the episode is still worth listening to.',
+        ),
+      ),
+    );
+  } else {
+    const ask = button('Ask me questions', {
+      variant: 'secondary',
+      class: 'btn btn--secondary btn--block',
+      onclick: async () => {
+        ask.disabled = true;
+        fill(questionHolder, el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Reading the episode…'));
+        const result = await requestEpisodeQuestions(settings, episode);
+        if (!result.ok) {
+          fill(
+            questionHolder,
+            el(
+              'div',
+              { class: 'card' },
+              el('p', { class: 'card__title' }, result.noTranscript ? 'Listening only' : 'No questions this time'),
+              el('p', { class: 'card__note' }, result.message),
+            ),
+          );
+          // A missing transcript will not become present on a retry; anything
+          // else might.
+          if (!result.noTranscript) ask.disabled = false;
+          return;
+        }
+        runQuestions(questionHolder, result, { episode, settings, navigate, clip, amelie });
+      },
+    });
+    fill(questionHolder, ask);
+  }
 
   return {
     destroy() {
