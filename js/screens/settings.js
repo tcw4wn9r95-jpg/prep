@@ -15,9 +15,11 @@ import { el, screenHead, button } from '../dom.js';
 import { getSettings, saveSettings } from '../store.js';
 import { keyWarning, looksLikeApiKey } from '../anthropic.js';
 import { setChimeEnabled, chimePreview } from '../chime.js';
+import { loadDeployInfo } from '../content.js';
 
 export async function render(root, { navigate }) {
   const settings = await getSettings();
+  const deployInfo = await loadDeployInfo();
 
   const apiKey = field({
     id: 'apikey',
@@ -138,9 +140,41 @@ export async function render(root, { navigate }) {
     ),
 
     el('div', { style: { marginBlockStart: 'var(--s5)' } }, save, status),
+
+    sectionLabel('About'),
+    el('div', { class: 'card' }, ...aboutRows(deployInfo)),
   );
 
   return { destroy() {} };
+}
+
+const REPO_URL = 'https://github.com/tcw4wn9r95-jpg/prep';
+
+/**
+ * What's actually running, so a stale phone (this is a cache-first PWA) is
+ * visibly stale rather than silently out of date. `deployInfo` is null on
+ * `npm run serve` — that is reported as a fact, not swallowed as an error.
+ */
+function aboutRows(deployInfo) {
+  if (!deployInfo) {
+    return [el('p', { class: 'card__note' }, 'Local build — no deploy info (expected when running npm run serve).')];
+  }
+  const builtAt = new Date(deployInfo.builtAt);
+  const when = Number.isNaN(builtAt.getTime()) ? deployInfo.builtAt : builtAt.toLocaleString();
+  return [
+    el(
+      'p',
+      { class: 'card__note' },
+      'Version ',
+      el('a', { href: `${REPO_URL}/commit/${deployInfo.sha}`, target: '_blank', rel: 'noreferrer' }, deployInfo.shortSha ?? deployInfo.sha?.slice(0, 7)),
+      ` · deployed ${when}`,
+    ),
+    el(
+      'p',
+      { class: 'source-note', style: { marginBlockStart: 'var(--s2)' } },
+      'If this looks old, the app is a cache-first PWA — fully close and reopen it (or hard-refresh a browser tab) to pick up a newer deploy.',
+    ),
+  ];
 }
 
 function sectionLabel(text) {

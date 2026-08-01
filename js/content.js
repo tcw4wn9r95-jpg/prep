@@ -22,6 +22,19 @@ async function loadJson(name) {
   return promise;
 }
 
+/**
+ * Deploy metadata written by .github/workflows/deploy.yml at publish time,
+ * not by the pipeline. Fetched from the app root rather than `data/`, and
+ * deliberately absent from sw.js's precache list, so sw.js's cache-first
+ * `/data/` rule never pins the Settings screen to a stale build — this is
+ * the one file that has to answer "is this actually the latest deploy?".
+ * Absent on `npm run serve` locally, where "no deploy info" is correct.
+ */
+export const loadDeployInfo = () =>
+  fetch('version.json', { cache: 'no-cache' })
+    .then((response) => (response.ok ? response.json() : null))
+    .catch(() => null);
+
 export const loadTopics = () => loadJson('topics').then((file) => file.items);
 export const loadListening = () => loadJson('listening').then((file) => file.items);
 export const loadInterviews = () => loadJson('interviews').then((file) => file.items);
