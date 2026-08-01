@@ -105,7 +105,9 @@ export async function render(root, { navigate }) {
   void navigate;
   const [vocab, verbs, phrases, groups] = await Promise.all([loadVocab(), loadVerbs(), loadPhrases(), loadPhraseGroups()]);
 
-  root.append(screenHead({ title: 'Cheat sheet', sub: 'The basics, to keep open while you practise', back: '#/learn' }));
+  // No back button: this is a tab, and tabs are destinations rather than
+  // somewhere you arrived from.
+  root.append(screenHead({ title: 'Cheat sheet', sub: 'The basics, to keep open while you practise' }));
   const body = el('div', { class: 'stack stack--lg', style: { paddingBlockEnd: 'var(--s6)' } });
   root.append(body);
   renderContent(body, { vocab, verbs, phrases, groups });

@@ -52,6 +52,10 @@ const ROUTES = {
 const TABS = [
   { route: 'today', label: 'Today', icon: 'M12 3 L20 9 v11 H4 V9 Z M9 20 v-6 h6 v6' },
   { route: 'learn', label: 'Learn', icon: 'M4 6 L12 3 L20 6 L12 9 Z M4 6 v9 L12 18 L20 15 v-9 M12 9 v9' },
+  // The cheat sheet earns a permanent slot: it is looked at *while* doing
+  // something else, so burying it one level down inside Learn meant leaving
+  // whatever you were in the middle of to reach it.
+  { route: 'reference', label: 'Sheet', icon: 'M4 5.5 C6 4.3 9 4.3 12 5.5 C15 4.3 18 4.3 20 5.5 V18 C18 16.8 15 16.8 12 18 C9 16.8 6 16.8 4 18 Z M12 5.5 V18' },
   { route: 'speaking', label: 'Speak', icon: 'M12 3 v10 M12 3 a3 3 0 0 1 3 3 v4 a3 3 0 0 1 -6 0 v-4 a3 3 0 0 1 3 -3 Z M5 11 a7 7 0 0 0 14 0 M12 18 v3' },
   { route: 'duel', label: 'Duel', icon: 'M5 20 L19 6 M14 4 h6 v6 M9 20 H4 v-5' },
 ];
