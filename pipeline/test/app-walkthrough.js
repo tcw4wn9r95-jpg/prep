@@ -351,10 +351,27 @@ async function main() {
       await page.waitForTimeout(120);
     }
 
+    // The board is deliberately held for a moment before the win card, so the
+    // final pair can actually be read — the last word matched used to vanish
+    // in the same frame it was revealed.
+    await page.waitForSelector('.pairs__tile.is-found', { timeout: 3000 });
+    const stillOnBoard = await page.locator('.pairs__tile.is-found').count();
+    if (stillOnBoard !== 10) throw new Error(`the finished board should stay up briefly, found ${stillOnBoard} tiles`);
+
     await page.waitForSelector('text=Level 1 cleared', { timeout: 8000 });
     await shot('16g-pairs-cleared');
     if (!(await page.getByRole('button', { name: 'Level 2' }).isVisible())) {
       throw new Error('clearing a level did not offer the next one');
+    }
+
+    // Every word from the level is written out, so nothing is lost when the
+    // board goes away.
+    const recap = await page.locator('.ref-frame').count();
+    if (recap !== 5) throw new Error(`expected all 5 pairs listed after the win, found ${recap}`);
+    for (const word of level1) {
+      if (!(await page.locator('.ref-frame', { hasText: word.lb }).first().isVisible())) {
+        throw new Error(`${word.lb} is missing from the recap`);
+      }
     }
 
     // Reopening must land on level 2, not send the player back to level 1.

@@ -48,6 +48,14 @@ const LEVELS_PER_STEP = 2;
 const FLIP_BACK_MS = 900;
 
 /**
+ * How long the finished board stays up before the win card replaces it.
+ *
+ * Without this the last pair is matched and gone in the same frame, so the one
+ * word you just worked hardest for is the one you never get to read.
+ */
+const WIN_HOLD_MS = 1100;
+
+/**
  * Longest text a tile can hold and still be readable.
  *
  * Tiles are ~85px wide on a phone, and some LOD glosses are a full
@@ -252,6 +260,13 @@ function playLevel({ body, words, level, maxLevel, settings, navigate, progress 
     locked = true;
     touchStreak(settings.playerId);
     const saved = await savePairsResult(settings.playerId, level, { moves });
+
+    // Let the completed board sit for a moment. The last pair turned face-up
+    // in the same instant the win card used to replace it, which meant the
+    // word you had just spent the most turns hunting was the one word you
+    // never actually read.
+    amelie.say('That is the board.', 'celebrating');
+    await new Promise((resolve) => setTimeout(resolve, WIN_HOLD_MS));
     const perfect = moves === words.length;
     const previousBest = progress.best?.[level];
 
@@ -280,6 +295,27 @@ function playLevel({ body, words, level, maxLevel, settings, navigate, progress 
               : previousBest !== undefined && moves < previousBest
                 ? `Your best yet — ${previousBest} last time.`
                 : `${words.length} would be perfect.`,
+          ),
+        ),
+        // The words themselves, in full. A matching game where the board
+        // vanishes the moment you finish teaches nothing on the way out — this
+        // is the one moment the learner is looking at exactly the set they
+        // just worked through, so it is worth writing down.
+        el(
+          'div',
+          { class: 'card' },
+          el('p', { class: 'meter__label' }, 'What you matched'),
+          el(
+            'div',
+            { style: { marginBlockStart: 'var(--s2)' } },
+            ...words.map((word) =>
+              el(
+                'div',
+                { class: 'ref-frame' },
+                el('span', { style: { fontWeight: '700' } }, word.lb),
+                el('span', { class: 'card__note' }, word.en),
+              ),
+            ),
           ),
         ),
         nextLevel
