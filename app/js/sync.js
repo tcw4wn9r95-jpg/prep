@@ -221,6 +221,7 @@ export async function requestEpisodeQuestions(settings, episode) {
         episodeId: episode.id,
         transcriptUrl: episode.transcriptUrl ?? '',
         audioSrc: episode.audioSrc ?? '',
+        feedUrl: episode.feedUrl ?? '',
         level: episode.level ?? '',
       }),
     });

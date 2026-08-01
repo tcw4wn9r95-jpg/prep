@@ -457,6 +457,7 @@ async function postEpisodeQuestions(request, env) {
   const episodeId = String(body.episodeId ?? '').trim();
   const transcriptUrl = String(body.transcriptUrl ?? '').trim();
   const audioSrc = String(body.audioSrc ?? '').trim();
+  const feedUrl = String(body.feedUrl ?? '').trim();
   if (!episodeId) return json({ error: 'missing "episodeId"' }, 400);
   if (!transcriptUrl && !audioSrc) return json({ error: 'need a transcriptUrl or an audioSrc' }, 400);
 
@@ -467,13 +468,23 @@ async function postEpisodeQuestions(request, env) {
   const cached = await env.DUEL.get(cacheKey, 'json');
   if (cached) return json({ ...cached, cached: true });
 
-  let transcript;
-  let via;
+  let transcript = null;
+  let via = null;
   try {
     if (transcriptUrl) {
       transcript = await fetchTranscript(transcriptUrl);
       via = 'published';
-    } else {
+    } else if (feedUrl && audioSrc) {
+      // INLL doesn't tag most episodes with <podcast:transcript>, but embeds
+      // the transcript in the item's own <description> instead — see the
+      // note in pipeline/fetch-podcasts.js. Worth a live look before paying
+      // for Whisper.
+      transcript = await fetchTranscriptFromFeedDescription(feedUrl, audioSrc);
+      if (transcript) via = 'published';
+    }
+
+    if (!transcript) {
+      if (!audioSrc) return json({ error: 'no transcript available and no audio to transcribe' }, 422);
       if (!env.OPENAI_API_KEY) {
         return json({ error: 'this episode publishes no transcript, and Whisper is not configured' }, 503);
       }
@@ -519,6 +530,53 @@ async function fetchTranscript(url) {
     .join(' ')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/**
+ * The transcript INLL embeds in an episode's own <description>, after a
+ * literal "Transkript:" marker — not the Podcasting 2.0 tag, so it is only
+ * found by re-reading the feed. Returns null (never throws) when this
+ * episode has no marker, so the caller falls back to Whisper.
+ *
+ * Fetched live, matched by enclosure URL, and never cached or written
+ * anywhere except the in-memory question-generation step that follows —
+ * same rule as fetchTranscript().
+ */
+async function fetchTranscriptFromFeedDescription(feedUrl, audioSrc) {
+  const response = await fetch(feedUrl, { headers: { 'user-agent': 'sproochentest-prep/0.1' } });
+  if (!response.ok) throw new Error(`${response.status} fetching the feed`);
+  const xml = await response.text();
+
+  const item = [...xml.matchAll(/<item(?:\s[^>]*)?>([\s\S]*?)<\/item>/gi)]
+    .map((match) => match[1])
+    .find((block) => {
+      const enclosure = block.match(/<enclosure\s[^>]*url="([^"]*)"/i);
+      return enclosure?.[1] === audioSrc;
+    });
+  if (!item) return null;
+
+  const descMatch = item.match(/<description(?:\s[^>]*)?>([\s\S]*?)<\/description>/i);
+  if (!descMatch) return null;
+  const cdata = descMatch[1].match(/^<!\[CDATA\[([\s\S]*?)\]\]>$/);
+  const description = cdata ? cdata[1] : descMatch[1];
+
+  const marker = description.match(/transkript\s*:/i);
+  if (!marker) return null;
+
+  const text = description
+    .slice(marker.index + marker[0].length)
+    .replace(/<\/p>/gi, '\n')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .trim();
+
+  return text.length >= 50 ? text : null;
 }
 
 /** Whisper, on an episode we stream rather than store. */
