@@ -16,6 +16,7 @@ import * as learn from './screens/learn.js';
 import * as session from './screens/session.js';
 import * as reference from './screens/reference.js';
 import * as pairs from './screens/pairs.js';
+import * as podcasts from './screens/podcasts.js';
 import * as vocab from './screens/vocab.js';
 import * as verbs from './screens/verbs.js';
 import * as phrases from './screens/phrases.js';
@@ -34,6 +35,7 @@ const ROUTES = {
   session,
   reference,
   pairs,
+  podcasts,
   vocab,
   verbs,
   phrases,

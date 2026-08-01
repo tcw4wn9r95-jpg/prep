@@ -112,6 +112,28 @@ one player has seen it. Without `ANTHROPIC_API_KEY` set, it returns `503` and
 the "Explain this sentence" button shows the same plain "not configured"
 message.
 
+### Optional: podcast comprehension questions
+
+`POST /episode-questions` turns one INLL podcast episode into listening questions. It reuses
+`ANTHROPIC_API_KEY`, and falls back to `OPENAI_API_KEY` for Whisper on episodes that publish
+no transcript.
+
+This has to live in the Worker rather than the app, and not because of the key: a podcast
+feed and a transcript file send no CORS headers, so a browser cannot read either one. A
+device API key would let the app call Claude and give it nothing to read.
+
+The generation rule is enforced, not requested. The model writes the English question stem
+and then **quotes** the options — every option must be a span copied verbatim from the
+transcript. `verbatimOnly()` checks that server-side before anything is cached and drops any
+option that is not literally in the text; if the *correct* answer fails the check the whole
+question goes, rather than silently promoting a distractor. That keeps the project's founding
+rule — no model ever authors Luxembourgish — true at runtime as well as at build time.
+
+Results are cached in KV by episode id with **no expiry**, like `/explain`: an episode is
+paid for once and the second listener gets it free. Cost is roughly $0.06 of Whisper for a
+ten-minute episode plus a few cents of Claude, once, ever — and nothing at all for episodes
+whose transcript INLL already publishes.
+
 ## Endpoints
 
 | method | path | purpose |
@@ -124,6 +146,7 @@ message.
 | GET | `/submission/:id` | fetch a recording to score |
 | POST | `/feedback/:id` | optional machine estimate (Whisper + Claude); `503` if unconfigured |
 | POST | `/explain` | optional Learn sentence explanation (Claude); `503` if unconfigured |
+| POST | `/episode-questions` | optional podcast comprehension questions (Claude, + Whisper when needed); `503` if unconfigured |
 
 ## Security notes, stated plainly
 

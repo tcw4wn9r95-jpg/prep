@@ -65,6 +65,28 @@ export async function render(root, { settings, navigate }) {
 
   root.append(el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, '2 · Listening'));
 
+  // The real thing, offered before the drills below it. These sets are built
+  // from single dictionary sentences; the exam is connected speech, and INLL's
+  // own podcast is connected speech. Saying which is which costs nothing and
+  // stops the drills from being mistaken for a mock paper.
+  root.append(
+    el(
+      'a',
+      { class: 'card', href: '#/podcasts', style: { display: 'block' } },
+      el(
+        'div',
+        { class: 'row' },
+        el('span', { style: { fontSize: '28px' } }, '🎧'),
+        el(
+          'div',
+          { class: 'spacer' },
+          el('p', { class: 'card__title' }, 'Poterkëscht — the INLL podcast'),
+          el('p', { class: 'card__note' }, 'Real connected speech at natural speed, then questions. Needs a connection.'),
+        ),
+      ),
+    ),
+  );
+
   const list = el(
     'ol',
     { class: 'journey__list' },

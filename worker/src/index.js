@@ -65,6 +65,7 @@ async function route(request, url, env) {
   if (feedbackMatch && request.method === 'POST') return postFeedback(env, feedbackMatch[1]);
 
   if (path === '/explain' && request.method === 'POST') return postExplain(request, env);
+  if (path === '/episode-questions' && request.method === 'POST') return postEpisodeQuestions(request, env);
 
   return json({ error: 'not found' }, 404);
 }
@@ -423,6 +424,187 @@ async function explain(env, { lb, word, en }) {
     throw new Error('model response had no explanation text');
   }
   return parsed.explanation.trim();
+}
+
+/* ------------------------------------------------- podcast comprehension */
+
+/**
+ * Comprehension questions for one INLL podcast episode.
+ *
+ * This lives in the Worker rather than the app for a reason that is not about
+ * secrets: a podcast feed and a transcript file send no CORS headers, so a
+ * browser cannot read either. Only a server can.
+ *
+ * The generation rule is the important part. This app's founding constraint is
+ * that no model ever authors Luxembourgish — `pipeline/README.md` puts it as
+ * "generating novel sentences would produce items that pass the gate and still
+ * teach the wrong thing". That constraint does not stop applying because the
+ * text arrives at runtime instead of at build time. So the model is not asked
+ * to *write* anything in Luxembourgish: it writes an English question and then
+ * quotes, verbatim, spans of what was actually said. Selecting and quoting is
+ * the one job it can do here without drifting.
+ *
+ * And the rule is enforced rather than requested — `verbatimOnly()` below drops
+ * any option that does not literally occur in the transcript, before anything
+ * is cached. A prompt is a wish; the check is the guarantee.
+ */
+async function postEpisodeQuestions(request, env) {
+  if (!env.ANTHROPIC_API_KEY) {
+    return json({ error: 'episode questions are not configured on this Worker' }, 503);
+  }
+
+  const body = await request.json().catch(() => ({}));
+  const episodeId = String(body.episodeId ?? '').trim();
+  const transcriptUrl = String(body.transcriptUrl ?? '').trim();
+  const audioSrc = String(body.audioSrc ?? '').trim();
+  if (!episodeId) return json({ error: 'missing "episodeId"' }, 400);
+  if (!transcriptUrl && !audioSrc) return json({ error: 'need a transcriptUrl or an audioSrc' }, 400);
+
+  // Evergreen and not tied to a user: the same episode yields the same
+  // questions forever, so whoever listens second pays nothing. Same discipline
+  // as /explain.
+  const cacheKey = `pq:${await sha256hex(episodeId)}`;
+  const cached = await env.DUEL.get(cacheKey, 'json');
+  if (cached) return json({ ...cached, cached: true });
+
+  let transcript;
+  let via;
+  try {
+    if (transcriptUrl) {
+      transcript = await fetchTranscript(transcriptUrl);
+      via = 'published';
+    } else {
+      if (!env.OPENAI_API_KEY) {
+        return json({ error: 'this episode publishes no transcript, and Whisper is not configured' }, 503);
+      }
+      transcript = await transcribeEpisode(env, audioSrc);
+      via = 'whisper';
+    }
+  } catch (error) {
+    return json({ error: `could not get a transcript: ${error.message}` }, 502);
+  }
+
+  if (transcript.trim().length < 200) {
+    return json({ error: 'the transcript is too short to ask about' }, 422);
+  }
+
+  let questions;
+  try {
+    questions = await askEpisode(env, transcript);
+  } catch (error) {
+    return json({ error: `question generation failed: ${error.message}` }, 502);
+  }
+
+  questions = verbatimOnly(questions, transcript);
+  if (questions.length === 0) {
+    return json({ error: 'no question survived the verbatim check — the transcript may be too noisy' }, 422);
+  }
+
+  const payload = { questions, via, at: new Date().toISOString() };
+  await env.DUEL.put(cacheKey, JSON.stringify(payload));
+  return json(payload);
+}
+
+/** Plain text, or WebVTT/SRT reduced to its spoken lines. */
+async function fetchTranscript(url) {
+  const response = await fetch(url, { headers: { 'user-agent': 'sproochentest-prep/0.1' } });
+  if (!response.ok) throw new Error(`${response.status} fetching the transcript`);
+  const raw = await response.text();
+
+  if (!/^WEBVTT|-->/m.test(raw)) return raw;
+  // Drop cue numbers, timing lines and the WEBVTT header; keep the speech.
+  return raw
+    .split(/\r?\n/)
+    .filter((line) => !/-->/.test(line) && !/^WEBVTT/.test(line) && !/^\d+$/.test(line.trim()))
+    .join(' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** Whisper, on an episode we stream rather than store. */
+async function transcribeEpisode(env, audioSrc) {
+  const response = await fetch(audioSrc);
+  if (!response.ok) throw new Error(`${response.status} fetching the episode audio`);
+  const audio = await response.arrayBuffer();
+  // Whisper's own limit. A long episode is refused rather than truncated into
+  // questions about only its first half.
+  if (audio.byteLength > 25 * 1024 * 1024) throw new Error('episode is larger than Whisper accepts (25 MB)');
+  return transcribe(env, audio, response.headers.get('content-type') ?? 'audio/mpeg');
+}
+
+const EPISODE_SYSTEM_PROMPT = `You write listening-comprehension questions for an English-speaking learner of Luxembourgish preparing for the INLL Sproochentest (B1 listening). You are given the transcript of one podcast episode.
+
+Write 5 multiple-choice questions that can only be answered by having understood the episode. Spread them across the episode rather than clustering at the start.
+
+THE ABSOLUTE RULE: you must never write Luxembourgish. Every option — the correct one and every distractor — must be a span of text copied EXACTLY, character for character, from the transcript. Copy a contiguous run of 3 to 12 words. Do not translate, paraphrase, correct, shorten, re-punctuate or fix anything, even if the transcript looks wrong. Distractors must be real spans from elsewhere in the same episode, so every option is something that was genuinely said. An option that is not an exact substring of the transcript will be discarded and your question thrown away.
+
+The question itself is in English.
+
+Respond with ONLY a JSON object, no prose outside it:
+{"questions": [{"question_en": "...", "options_lb": ["exact span", "exact span", "exact span"], "correct": 0}]}
+
+"correct" is the 0-based index into options_lb. Give exactly 3 options per question.`;
+
+async function askEpisode(env, transcript) {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-api-key': env.ANTHROPIC_API_KEY,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 1500,
+      system: EPISODE_SYSTEM_PROMPT,
+      messages: [{ role: 'user', content: `Transcript:\n${transcript.slice(0, 40000)}` }],
+    }),
+  });
+  if (!response.ok) throw new Error(`Claude ${response.status}: ${(await response.text()).slice(0, 200)}`);
+  const answer = await response.json();
+  const text = answer.content?.[0]?.text ?? '';
+
+  let parsed;
+  try {
+    parsed = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
+  } catch {
+    throw new Error('could not parse the model response as JSON');
+  }
+  if (!Array.isArray(parsed.questions)) throw new Error('model response had no questions array');
+  return parsed.questions;
+}
+
+/**
+ * Throws away everything that is not literally in the transcript.
+ *
+ * This is what makes the no-authored-Luxembourgish rule true rather than
+ * merely requested. Whitespace is normalised before comparing — a model
+ * re-wrapping a line is not the failure mode worth guarding against; inventing
+ * a plausible-sounding phrase is.
+ *
+ * A question keeps its meaning only if the correct answer survives, so losing
+ * that drops the whole question rather than silently promoting a distractor.
+ */
+function verbatimOnly(questions, transcript) {
+  const flat = transcript.replace(/\s+/g, ' ').toLowerCase();
+  const kept = [];
+
+  for (const question of questions) {
+    if (typeof question?.question_en !== 'string' || !Array.isArray(question.options_lb)) continue;
+
+    const correctText = question.options_lb[question.correct];
+    const options = question.options_lb.filter(
+      (option) => typeof option === 'string' && option.trim() && flat.includes(option.replace(/\s+/g, ' ').toLowerCase()),
+    );
+    if (options.length < 2 || !options.includes(correctText)) continue;
+
+    kept.push({
+      question_en: question.question_en.trim(),
+      options_lb: options,
+      correct: options.indexOf(correctText),
+    });
+  }
+  return kept;
 }
 
 /** SHA-256 hex digest, for a stable cache key derived from sentence content. */

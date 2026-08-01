@@ -15,7 +15,7 @@ Build order steps 1–4 are done. The app runs.
 ```bash
 npm run content      # fetch LOD → corpus → items → mirror audio → images → validate
 npm run serve        # http://localhost:8080
-npm test             # 118 unit tests
+npm test             # 125 unit tests
 npm run walkthrough  # drives the real app in Chromium at iPhone size, screenshots each screen
 ```
 
@@ -25,7 +25,7 @@ npm run walkthrough  # drives the real app in Chromium at iPhone size, screensho
 | items | 287 listening questions · 169 interview prompts · 18 topics |
 | learn decks | 34 sentence frames · 2,049 words · 365 verbs · frequency-ranked into 5 stages · 1,791 topic-tagged · 2,240 cloze targets · 358 visual cues |
 | shipped assets | 2,263 recordings (68 MB, AAC) · 16 CC images (5.5 MB) |
-| verification | `npm test` 118/118 · `validate` PASS · walkthrough 36/36, no console errors |
+| verification | `npm test` 125/125 · `validate` PASS · walkthrough 40/40, no console errors |
 
 **Known limits, stated plainly.** Listening items are corpus-derived drills on the official
 5+7+4 shape, not replicas of INLL's connected-speech test — the app says so and links to the
@@ -109,13 +109,14 @@ Match the existing personal stack: cheap, mostly static, no ops burden.
   build-learn.js     adds topics, visual cues and cloze targets to both decks
   mirror-audio.js    download the AAC the shipped items use
   fetch-images.js    openly licensed photos for the image-description task
+  fetch-podcasts.js  indexes the INLL podcast — metadata only, never the audio
   validate.js        the hard gate described above
   test/              unit tests, calibration, and the browser walkthrough
 /content       generated JSON, committed to the repo (auditable diffs)
 /app           the PWA — static, no build step, zero runtime dependencies
   js/screens/        onboarding · today · journey · learn · session · reference · pairs ·
-                     vocab · verbs · phrases · listening · speaking · review · readiness ·
-                     duel · settings
+                     podcasts · vocab · verbs · phrases · listening · speaking · review ·
+                     readiness · duel · settings
   js/chime.js        the right-answer sound, synthesised (no asset to ship)
   js/anthropic.js    direct Claude calls, for when there is no Worker
   js/drill/          the Learn engine: one session runner, seven card types,
@@ -326,6 +327,28 @@ not that: a random payout is uncorrelated with whether the learner is doing well
 other number in this app reports real state. The variation is earned instead. The chime also
 stays silent whenever a recording is playing, because the B1 half is scored on hearing
 connected Luxembourgish and that is the one place this could make someone worse at the exam.
+
+**Poterkëscht — the real thing.** The listening drills above are corpus-derived: one LOD
+example sentence at a time, read by a dictionary voice. The exam is connected speech, and
+INLL publishes exactly that in [its own learner podcast](https://www.inll.lu/en/poterkescht-the-podcast-in-luxembourgish-from-inll/),
+weekly, with the CEFR level in each episode title. `#/podcasts` plays an episode and then
+asks about it, and those scores count toward the B1 listening estimate — connected speech is
+a truer signal for that number than the drills are.
+
+Three constraints shape it, none of them new. **Stream, never mirror** — the podcast has no
+published licence and this repo is public, so `pipeline/fetch-podcasts.js` writes episode
+*metadata* into `content/external/` and nothing else; the audio plays from INLL's own host and
+the service worker's existing cross-origin early-return means it is never stored. **Nothing
+authors Luxembourgish** — the Worker's `/episode-questions` has Claude write an English
+question stem and then *quote* the options verbatim from the transcript, and
+`verbatimOnly()` drops server-side anything that is not literally in the text, so the rule is
+enforced rather than requested. **The gate is not widened** — that metadata file sits outside
+`content/items/` on the narrow ground that it contains no authored content at all, and
+`pipeline/test/podcasts.test.js` holds that line by failing if a transcript, an `_lb` field
+or an `audioId` ever appears in it.
+
+The cost of the first constraint is that this one section needs signal, and the screen says
+so rather than offering a button that fails.
 
 Two smaller rules that matter more than they look:
 

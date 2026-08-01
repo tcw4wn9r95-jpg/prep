@@ -192,6 +192,45 @@ export async function requestMachineFeedback(settings, recording) {
 }
 
 /**
+ * Comprehension questions for one podcast episode.
+ *
+ * Worker-only, and not because of the key: a podcast feed and a transcript file
+ * send no CORS headers, so a browser cannot read either one. A device API key
+ * would let us call Claude and give it nothing to read. Saying that plainly
+ * beats a generic failure the pair would spend an evening debugging.
+ *
+ * Same soft-fail shape as everything else here — never throws, always returns
+ * something the UI can show.
+ */
+export async function requestEpisodeQuestions(settings, episode) {
+  if (!settings.workerUrl) {
+    return {
+      ok: false,
+      message:
+        'Questions need the Worker. The episode transcript lives on another site, and a browser is not allowed to read it — only the Worker can. Add the Worker URL in Settings.',
+    };
+  }
+  if (!navigator.onLine) {
+    return { ok: false, message: 'Offline. Try again once you are back online.' };
+  }
+
+  try {
+    const body = await request(settings, '/episode-questions', {
+      method: 'POST',
+      body: JSON.stringify({
+        episodeId: episode.id,
+        transcriptUrl: episode.transcriptUrl ?? '',
+        audioSrc: episode.audioSrc ?? '',
+        level: episode.level ?? '',
+      }),
+    });
+    return { ok: true, questions: body.questions ?? [], via: body.via, cached: Boolean(body.cached) };
+  } catch (error) {
+    return { ok: false, message: `Could not get questions (${error.message}).` };
+  }
+}
+
+/**
  * An on-demand explanation of one Learn example sentence — not a translation,
  * notes on why it's put together the way it is. Same soft-fail shape as the
  * rest of this module. Unlike the machine estimate, this has no audio to

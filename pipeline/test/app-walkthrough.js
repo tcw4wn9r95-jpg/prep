@@ -43,10 +43,58 @@ const MIME = {
   '.m4a': 'audio/mp4',
 };
 
+/**
+ * Two episodes, served from memory when `app/data/podcasts.json` is absent.
+ *
+ * That file is built from INLL's live feed by `npm run fetch:podcasts` and is
+ * not in the repo, so the walkthrough would otherwise have nothing to walk.
+ * Serving a fixture rather than writing one keeps a fake episode list from ever
+ * landing on disk, where it could be committed and deployed as if it were real.
+ */
+const PODCAST_FIXTURE = {
+  meta: { source: 'Poterkëscht vum INLL', attribution: 'Institut national des langues Luxembourg (INLL)' },
+  items: [
+    {
+      id: 'pod-test0001',
+      type: 'podcast-episode',
+      level: 'A2',
+      episodeTitle: 'Transportmëttel a Fürerschäin (A2)',
+      publishedAt: '2026-05-14',
+      durationSec: 512,
+      audioSrc: 'https://cdn.example/ep1.mp3',
+      transcriptUrl: 'https://cdn.example/ep1.txt',
+      sourceUrl: 'https://www.inll.lu/',
+      source: 'Poterkëscht vum INLL',
+      attribution: 'Institut national des langues Luxembourg (INLL)',
+      licence: 'All rights reserved — streamed from the publisher, never redistributed',
+    },
+    {
+      id: 'pod-test0002',
+      type: 'podcast-episode',
+      level: 'B1',
+      episodeTitle: 'Iwwer Ernärungstrends schwätzen (B1)',
+      publishedAt: '2026-05-21',
+      durationSec: 640,
+      audioSrc: 'https://cdn.example/ep2.mp3',
+      transcriptUrl: null,
+      sourceUrl: 'https://www.inll.lu/',
+      source: 'Poterkëscht vum INLL',
+      attribution: 'Institut national des langues Luxembourg (INLL)',
+      licence: 'All rights reserved — streamed from the publisher, never redistributed',
+    },
+  ],
+};
+
 function serve(root) {
   const server = http.createServer((request, response) => {
     const url = new URL(request.url, 'http://localhost');
     let filePath = path.join(root, decodeURIComponent(url.pathname));
+
+    if (url.pathname === '/data/podcasts.json' && !fs.existsSync(filePath)) {
+      response.writeHead(200, { 'content-type': MIME['.json'] });
+      response.end(JSON.stringify(PODCAST_FIXTURE));
+      return;
+    }
     if (url.pathname === '/' || url.pathname.endsWith('/')) filePath = path.join(filePath, 'index.html');
     if (!filePath.startsWith(root)) {
       response.writeHead(403).end();
@@ -849,6 +897,104 @@ async function main() {
 
     await page.unroute('**://api.anthropic.com/**');
     await page.evaluate(async () => { await (await import('./js/store.js')).saveSettings({ apiKey: '' }); });
+  });
+
+  await step('the podcast index lists real INLL episodes by level', async () => {
+    await openFresh('#/podcasts');
+    await page.waitForSelector('a[href^="#/podcasts/"]', { timeout: 5000 });
+    const rows = await page.locator('a[href^="#/podcasts/"]').count();
+    if (rows !== 2) throw new Error(`expected the 2 fixture episodes, found ${rows}`);
+    const levels = (await page.locator('#screen .meter__label').allTextContents()).map((text) => text.trim());
+    if (!levels.includes('A2') || !levels.includes('B1')) throw new Error(`episodes not grouped by level: ${levels.join(', ')}`);
+    await shot('25-podcasts');
+  });
+
+  await step('an episode streams from the publisher, and not before it is asked for', async () => {
+    // `Clip` keeps its <audio> element detached, so there is nothing in the DOM
+    // to inspect. The properties worth asserting are behavioural anyway: where
+    // the bytes come from, and that none are pulled until someone taps Play.
+    let hits = 0;
+    await page.route('**cdn.example/**', async (route) => {
+      hits += 1;
+      await route.fulfill({ status: 200, contentType: 'audio/mpeg', body: Buffer.alloc(64) });
+    });
+
+    await page.locator('a[href^="#/podcasts/"]').first().click();
+    await page.waitForSelector('#screen .btn--primary', { timeout: 5000 });
+    await page.waitForTimeout(400);
+    if (hits !== 0) throw new Error(`the episode started downloading on render (${hits} requests) — preload should be none`);
+
+    await page.locator('#screen .btn--primary').first().click();
+    await page.waitForTimeout(600);
+    if (hits === 0) throw new Error('tapping play fetched nothing from the publisher');
+    await shot('26-podcast-episode');
+
+    await page.unroute('**cdn.example/**');
+  });
+
+  await step('episode questions render, score, and are labelled machine-made', async () => {
+    // The Worker is what generates these — a browser cannot read a transcript
+    // cross-origin — so the Worker is what gets stubbed.
+    await page.route('**/episode-questions**', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          via: 'published',
+          questions: [
+            { question_en: 'What is free since 2020?', options_lb: ['de Bus ass gratis', 'moien alleguer'], correct: 0 },
+            { question_en: 'What is the episode about?', options_lb: ['den ëffentlechen Transport', 'de Bus ass gratis'], correct: 0 },
+          ],
+        }),
+      });
+    });
+    await page.evaluate(async () => {
+      await (await import('./js/store.js')).saveSettings({ workerUrl: 'https://worker.example' });
+    });
+
+    await openFresh('#/podcasts/pod-test0001');
+    await page.getByRole('button', { name: 'Ask me questions' }).click();
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+
+    if (!(await page.locator('.chip', { hasText: 'machine-made' }).first().isVisible())) {
+      throw new Error('generated questions are not labelled as machine-made');
+    }
+
+    for (let guard = 0; guard < 5; guard += 1) {
+      const options = page.locator('.options .option');
+      if ((await options.count()) === 0) break;
+      await options.first().click();
+      const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+      await next.waitFor({ state: 'visible', timeout: 3000 });
+      const label = (await next.textContent())?.trim();
+      await next.click();
+      if (label === 'Finish') break;
+      await page.waitForTimeout(80);
+    }
+    await page.waitForSelector('text=This episode', { timeout: 5000 });
+    await shot('27-podcast-questions');
+
+    // It counted as listening — which is the whole argument for using real
+    // connected speech rather than dictionary clips.
+    const logged = await page.evaluate(() => new Promise((resolve) => {
+      const open = indexedDB.open('sproochentest');
+      open.onsuccess = () => {
+        const all = open.result.transaction('attempts', 'readonly').objectStore('attempts').getAll();
+        all.onsuccess = () => resolve(all.result.filter((row) => row.topic === 'podcast').length);
+      };
+    }));
+    if (logged !== 1) throw new Error(`expected one podcast attempt logged, found ${logged}`);
+
+    await page.unroute('**/episode-questions**');
+    await page.evaluate(async () => {
+      await (await import('./js/store.js')).saveSettings({ workerUrl: '' });
+    });
+  });
+
+  await step('without a Worker, the screen says why rather than failing', async () => {
+    await openFresh('#/podcasts/pod-test0002');
+    await page.getByRole('button', { name: 'Ask me questions' }).click();
+    await page.waitForSelector('text=/Questions need the Worker/', { timeout: 5000 });
   });
 
   await step('duel scoreboard renders both players', async () => {

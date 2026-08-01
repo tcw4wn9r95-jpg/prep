@@ -2,7 +2,7 @@
   "name": "sproochentest-duel",
   "version": "0.1.0",
   "private": true,
-  "description": "Two-player Sproochentest Lëtzebuergesch trainer. Step 1: LOD ingest, corpus build, and the validation gate.",
+  "description": "Two-player Sproochentest L\u00ebtzebuergesch trainer. Step 1: LOD ingest, corpus build, and the validation gate.",
   "license": "MIT",
   "engines": {
     "node": ">=22"
@@ -11,6 +11,7 @@
     "fetch": "node pipeline/fetch-lod.js",
     "fetch:audio": "node pipeline/fetch-audio.js",
     "fetch:images": "node pipeline/fetch-images.js",
+    "fetch:podcasts": "node pipeline/fetch-podcasts.js",
     "build": "node --max-old-space-size=6144 pipeline/build-corpus.js",
     "build:items": "node pipeline/build-items.js",
     "build:vocab": "node pipeline/build-vocab.js",
