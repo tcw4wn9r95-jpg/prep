@@ -8,14 +8,14 @@
  *
  * Two deliberate limits, both stated in the UI so they cannot read as bugs:
  *
- * It does not touch the Leitner boxes. Matching a word against three or five
+ * It does not touch the Leitner boxes. Matching a word against a handful of
  * visible alternatives is far easier than producing it, and letting an easy
  * win promote a word would push its next review further out than the evidence
  * supports — the spaced-repetition schedule the exam plan rests on would drift
  * without anything looking wrong.
  *
  * It does not score duel points, for the same reason in a different currency:
- * a four-pair board is the cheapest activity in the app, and if it paid out,
+ * a matching board is the cheapest activity in the app, and if it paid out,
  * the fastest way to win the week would be to stop doing the hard parts. It
  * does count for the daily streak, because it is genuinely practice.
  *
@@ -29,15 +29,33 @@ import { Amelie, AMELIE_LINES } from '../amelie.js';
 import { loadVocab, loadVerbs } from '../content.js';
 import { getPairsProgress, savePairsResult, touchStreak } from '../store.js';
 
-/** Board size by level: 3 pairs, growing to 6. Capped because the whole board
- * has to stay visible on a phone — a memory game you have to scroll is a
- * different, worse game. */
-const MIN_PAIRS = 3;
-const MAX_PAIRS = 6;
-const LEVELS_PER_STEP = 3;
+/**
+ * Board size by level: 5 pairs, growing to 14. Capped because the whole board
+ * has to stay visible on a phone — remembering where a tile was is the entire
+ * game, and a board you have to scroll past takes that away.
+ *
+ * The cap is measured, not guessed, and the binding case is the *small* phone.
+ * A tall iPhone (393x852) has room for 18 pairs; a 360x640 Android does not.
+ * 28 tiles in seven rows of four clears the tab bar on both, given the
+ * viewport-tracking tile height in `.pairs__tile`. The walkthrough asserts the
+ * largest board still fits rather than leaving that as a comment.
+ */
+const MIN_PAIRS = 5;
+const MAX_PAIRS = 14;
+const LEVELS_PER_STEP = 2;
 
 /** How long a wrong pair stays visible before turning back. */
 const FLIP_BACK_MS = 900;
+
+/**
+ * Longest text a tile can hold and still be readable.
+ *
+ * Tiles are ~85px wide on a phone, and some LOD glosses are a full
+ * disambiguation — "(female) pupil [primary or secondary school student,
+ * college student]" is 69 characters and would render as an unreadable block.
+ * Excluding them costs 18 of 1,829 words and no foundation vocabulary at all.
+ */
+const MAX_TILE_CHARS = 20;
 
 export function pairsForLevel(level) {
   return Math.min(MAX_PAIRS, MIN_PAIRS + Math.floor((level - 1) / LEVELS_PER_STEP));
@@ -62,7 +80,7 @@ export function orderedPairPool(vocab, verbs) {
   const words = [
     ...vocab.map((item) => ({ id: item.id, lb: item.lb, en: item.en, stage: item.stage, rank: item.rank })),
     ...verbs.map((item) => ({ id: item.id, lb: item.infinitive, en: item.en, stage: item.stage, rank: item.rank })),
-  ].filter((word) => word.lb && word.en);
+  ].filter((word) => word.lb && word.en && word.lb.length <= MAX_TILE_CHARS && word.en.length <= MAX_TILE_CHARS);
 
   words.sort((a, b) => (a.stage ?? 9) - (b.stage ?? 9) || (a.rank ?? 0) - (b.rank ?? 0));
 

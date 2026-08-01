@@ -1111,15 +1111,18 @@
 
 .pairs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--s2);
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s1);
 }
 
 .pairs__tile {
   display: grid;
   place-items: center;
-  min-height: 84px;
-  padding: var(--s2);
+  /* Height tracks the viewport so the largest board still clears the tab bar
+     on a short phone. At 28 tiles a fixed 68px overflowed an iPhone SE by
+     41px, and a memory board you have to scroll is not a memory board. */
+  min-height: clamp(48px, 8vh, 68px);
+  padding: var(--s1);
   border-radius: var(--r-md);
   background: var(--accent);
   border: 2px solid var(--accent-strong);
@@ -1133,10 +1136,13 @@
 /* Face down: the word is in the DOM for screen readers but not legible, so a
    sighted player cannot read the board before turning anything over. */
 .pairs__face {
-  font-size: var(--size-base);
+  /* Small, because a 20-tile board has to fit: the English side carries
+     phrases like "household chores" and still has to wrap inside 84px. */
+  font-size: var(--size-xs);
   font-weight: 700;
-  line-height: var(--lh-snug);
+  line-height: var(--lh-tight);
   overflow-wrap: anywhere;
+  hyphens: auto;
   visibility: hidden;
 }
 
