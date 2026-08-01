@@ -12,6 +12,7 @@
 import { el, fill, screenHead, button } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, renderBars, unlock } from '../audio.js';
+import { chimeCorrect, resetChimeStreak } from '../chime.js';
 import { listeningForTopic, topicIcon } from '../content.js';
 import { saveAttempt, touchStreak, weekSeed, POINTS } from '../store.js';
 
@@ -169,6 +170,10 @@ export async function render(root, { params, settings, navigate }) {
       renderTranscript(transcriptText, question, true);
       transcriptWrap.hidden = false;
       transcriptToggle.setAttribute('aria-expanded', 'true');
+
+      // chimeCorrect() stays silent if the clip is still running — see chime.js.
+      if (isRight) chimeCorrect();
+      else resetChimeStreak();
 
       amelie.say(pickLine(isRight ? AMELIE_LINES.correct : AMELIE_LINES.wrong), isRight ? 'celebrating' : 'encouraging');
       next.hidden = false;

@@ -730,6 +730,68 @@ async function main() {
     await shot('21-drill-topic');
   });
 
+  await step('the right-answer chime makes sound, and never over a recording', async () => {
+    const measured = await page.evaluate(async () => {
+      const fresh = () => import(`./js/chime.js?probe=${Math.random()}`);
+      const { Clip } = await import('./js/audio.js');
+      const sampleRate = 44100;
+
+      // A fresh module per render: chime.js caches one AudioContext for the
+      // life of the app, which is right for the app and wrong for a probe that
+      // needs to render several times.
+      const render = async (enabled) => {
+        const chime = await fresh();
+        const ctx = new OfflineAudioContext(1, sampleRate, sampleRate);
+        const Real = window.AudioContext;
+        window.AudioContext = function () { return ctx; };
+        chime.setChimeEnabled(enabled);
+        chime.chimeCorrect();
+        window.AudioContext = Real;
+        const data = (await ctx.startRendering()).getChannelData(0);
+        let peak = 0;
+        for (let i = 0; i < data.length; i += 1) peak = Math.max(peak, Math.abs(data[i]));
+        return peak;
+      };
+
+      const withSound = await render(true);
+      const muted = await render(false);
+
+      // The guard that matters: a chime mixed on top of a native recording
+      // would degrade the exact skill the B1 half is scored on.
+      const clip = new Clip('probe-does-not-exist');
+      Object.defineProperty(clip, 'isPlaying', { get: () => true });
+      const overSpeech = await render(true);
+      clip.destroy();
+      const afterDestroy = await render(true);
+
+      return { withSound, muted, overSpeech, afterDestroy };
+    });
+
+    if (!(measured.withSound > 0.01)) throw new Error(`the chime produced no signal (peak ${measured.withSound})`);
+    if (measured.withSound > 1) throw new Error(`the chime clips (peak ${measured.withSound})`);
+    if (measured.muted !== 0) throw new Error('the chime still sounded with sound switched off');
+    if (measured.overSpeech !== 0) throw new Error('the chime played over a recording that was still running');
+    if (!(measured.afterDestroy > 0.01)) throw new Error('the chime stayed muted after the clip was destroyed');
+    process.stdout.write(`  chime peak ${measured.withSound.toFixed(3)}, silent while a clip plays\n`);
+  });
+
+  await step('settings can switch the sound off, and it sticks', async () => {
+    await openFresh('#/settings');
+    await page.waitForSelector('#sound', { timeout: 5000 });
+    if (!(await page.locator('#sound').isChecked())) throw new Error('sound should default to on');
+    await page.locator('#sound').uncheck();
+    await page.getByRole('button', { name: 'Save' }).click();
+    await page.waitForSelector('text=Saved.', { timeout: 5000 });
+
+    await openFresh('#/settings');
+    await page.waitForSelector('#sound', { timeout: 5000 });
+    if (await page.locator('#sound').isChecked()) throw new Error('the sound setting did not persist');
+    // Put it back so the rest of the run behaves normally.
+    await page.locator('#sound').check();
+    await page.getByRole('button', { name: 'Save' }).click();
+    await page.waitForSelector('text=Saved.', { timeout: 5000 });
+  });
+
   await step('settings takes an Anthropic API key and rejects a bad one', async () => {
     await openFresh('#/settings');
     await page.waitForSelector('#apikey', { timeout: 5000 });

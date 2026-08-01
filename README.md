@@ -15,7 +15,7 @@ Build order steps 1–4 are done. The app runs.
 ```bash
 npm run content      # fetch LOD → corpus → items → mirror audio → images → validate
 npm run serve        # http://localhost:8080
-npm test             # 113 unit tests
+npm test             # 118 unit tests
 npm run walkthrough  # drives the real app in Chromium at iPhone size, screenshots each screen
 ```
 
@@ -25,7 +25,7 @@ npm run walkthrough  # drives the real app in Chromium at iPhone size, screensho
 | items | 287 listening questions · 169 interview prompts · 18 topics |
 | learn decks | 34 sentence frames · 2,049 words · 365 verbs · frequency-ranked into 5 stages · 1,791 topic-tagged · 2,240 cloze targets · 358 visual cues |
 | shipped assets | 2,263 recordings (68 MB, AAC) · 16 CC images (5.5 MB) |
-| verification | `npm test` 113/113 · `validate` PASS · walkthrough 34/34, no console errors |
+| verification | `npm test` 118/118 · `validate` PASS · walkthrough 36/36, no console errors |
 
 **Known limits, stated plainly.** Listening items are corpus-derived drills on the official
 5+7+4 shape, not replicas of INLL's connected-speech test — the app says so and links to the
@@ -116,6 +116,7 @@ Match the existing personal stack: cheap, mostly static, no ops burden.
   js/screens/        onboarding · today · journey · learn · session · reference · pairs ·
                      vocab · verbs · phrases · listening · speaking · review · readiness ·
                      duel · settings
+  js/chime.js        the right-answer sound, synthesised (no asset to ship)
   js/anthropic.js    direct Claude calls, for when there is no Worker
   js/drill/          the Learn engine: one session runner, seven card types,
                      reference-sheet.js (the cheat sheet, as an in-session overlay)
@@ -306,6 +307,25 @@ day. Measured that way, 101 answered cards moved "8 words left" to 5, then 10, t
 8, and no amount of practice could ever tick the day off. `todayProgress()` counts cards
 actually answered today from the session log instead, which only ever goes up, and the Words
 step completes on that rather than on an empty queue.
+
+**The right-answer sound.** Synthesised in `app/js/chime.js` rather than shipped as a file.
+The design follows four findings rather than picking a pleasant ping: dopamine neurons code
+reward *prediction error*, so a fully predicted reward produces almost no response — an
+identical chime every time is the one design guaranteed to fade
+([Schultz 1998](https://journals.physiology.org/doi/full/10.1152/jn.1998.80.1.1)); dopamine
+release during musical *anticipation* is anatomically distinct from release at the peak, so a
+sound worth more is one with somewhere to go
+([Salimpoor et al. 2011](https://www.nature.com/articles/nn.2726)); ascending pitch reads as
+positive valence; and simple frequency ratios are heard as consonant. So it is two notes a
+perfect fifth apart, rising, climbing a major-pentatonic ladder with each correct answer in a
+row and dropping back on a miss. Pentatonic because no two rungs of it can clash.
+
+The tempting version of finding one is variable-*ratio* reward — paying out unpredictably,
+which is the strongest reinforcement schedule known and also the casino's. It is deliberately
+not that: a random payout is uncorrelated with whether the learner is doing well, and every
+other number in this app reports real state. The variation is earned instead. The chime also
+stays silent whenever a recording is playing, because the B1 half is scored on hearing
+connected Luxembourgish and that is the one place this could make someone worse at the exam.
 
 Two smaller rules that matter more than they look:
 

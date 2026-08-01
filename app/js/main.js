@@ -8,6 +8,7 @@
 
 import { getSettings, saveSettings } from './store.js';
 import { el } from './dom.js';
+import { setChimeEnabled } from './chime.js';
 import * as onboarding from './screens/onboarding.js';
 import * as today from './screens/today.js';
 import * as journey from './screens/journey.js';
@@ -113,6 +114,7 @@ async function route() {
   const { name, params } = parseHash();
   const settings = await getSettings();
   if (token !== generation) return; // a newer navigation overtook us
+  setChimeEnabled(settings.sound !== false);
 
   // Everything except onboarding needs a chosen player.
   if (!settings.playerId && name !== 'onboarding') {

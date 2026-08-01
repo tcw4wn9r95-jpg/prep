@@ -14,6 +14,7 @@
 import { el, screenHead, button } from '../dom.js';
 import { getSettings, saveSettings } from '../store.js';
 import { keyWarning, looksLikeApiKey } from '../anthropic.js';
+import { setChimeEnabled, chimePreview } from '../chime.js';
 
 export async function render(root, { navigate }) {
   const settings = await getSettings();
@@ -39,6 +40,14 @@ export async function render(root, { navigate }) {
     value: settings.workerUrl ?? '',
   });
 
+  // Default on: the sound was asked for, so an unset value means "yes".
+  const sound = el('input', { type: 'checkbox', id: 'sound', class: 'switch', checked: settings.sound !== false });
+  // Applied on tap rather than on save, so the preview below tells the truth.
+  sound.addEventListener('change', () => {
+    setChimeEnabled(sound.checked);
+    if (sound.checked) chimePreview();
+  });
+
   const status = el('p', { class: 'source-note', style: { marginBlockStart: 'var(--s3)' }, role: 'status' });
 
   const save = button('Save', {
@@ -56,6 +65,7 @@ export async function render(root, { navigate }) {
         apiKey: key,
         secret: secret.value.trim(),
         workerUrl: workerUrl.value.trim().replace(/\/$/, ''),
+        sound: sound.checked,
       });
       status.textContent = 'Saved.';
     },
@@ -82,6 +92,28 @@ export async function render(root, { navigate }) {
         'Create one at ',
         el('a', { href: 'https://console.anthropic.com/settings/keys', target: '_blank', rel: 'noreferrer' }, 'console.anthropic.com'),
         '.',
+      ),
+    ),
+
+    sectionLabel('Sound'),
+    el(
+      'div',
+      { class: 'card' },
+      el(
+        'label',
+        { class: 'row row--between', for: 'sound' },
+        el(
+          'span',
+          { class: 'spacer' },
+          el('span', { class: 'card__title' }, 'Sound on a right answer'),
+          el('span', { class: 'card__note' }, 'A short rising chime that climbs with each correct answer in a row.'),
+        ),
+        sound,
+      ),
+      el(
+        'p',
+        { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } },
+        'It stays silent while a recording is playing, so it never covers the listening exercise.',
       ),
     ),
 

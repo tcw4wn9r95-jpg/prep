@@ -126,6 +126,8 @@ export async function getSettings() {
       // app/js/anthropic.js documents what storing it here does and does not cost.
       apiKey: '',
       transcriptDefault: false,
+      // Unset means on: the chime was asked for, so absence is not a refusal.
+      sound: true,
     }
   );
 }

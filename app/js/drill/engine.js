@@ -21,6 +21,7 @@ import { requestExplanation } from '../sync.js';
 import { buildCard } from './cards.js';
 import { INPUTS } from './inputs.js';
 import { referenceSheet } from './reference-sheet.js';
+import { chimeCorrect, resetChimeStreak } from '../chime.js';
 
 /** How many cards later a missed card comes back. Far enough that it is a
  * retrieval rather than an echo, near enough to still be in the session. */
@@ -243,6 +244,12 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
         : `${card.lemma}${card.answer !== card.lemma ? ` → ${card.answer}` : ''}`;
       feedback.hidden = false;
     }
+
+    // An accent-only miss plays the rung it is on without climbing, which is
+    // the same call the Leitner box makes: retrieved, but not cleanly enough
+    // to count as ground gained.
+    if (result.correct) chimeCorrect({ advance: !result.partial });
+    else resetChimeStreak();
 
     const tone = result.correct && !result.partial ? 'celebrating' : result.correct ? 'thinking' : 'encouraging';
     const line = !result.correct

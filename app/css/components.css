@@ -1173,3 +1173,56 @@
   .pairs__tile { transition: none; }
   .pairs__tile:active { transform: none; }
 }
+
+/* ------------------------------------------------------------------ switch */
+/* A checkbox drawn as a toggle. `appearance: none` and a drawn thumb rather
+   than a hidden input plus a fake label, so it stays a real checkbox for the
+   keyboard and for screen readers. */
+
+.switch {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: 0 0 auto;
+  width: 52px;
+  height: 32px;
+  border-radius: var(--r-pill);
+  background: var(--bg-sunk);
+  border: 2px solid var(--border);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.switch::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 3px;
+  inset-inline-start: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s var(--ease-bounce);
+}
+
+.switch:checked {
+  background: var(--accent);
+  border-color: var(--accent-strong);
+}
+
+.switch:checked::after {
+  transform: translateX(20px);
+}
+
+.switch:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switch,
+  .switch::after {
+    transition: none;
+  }
+}
