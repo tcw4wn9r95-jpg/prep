@@ -113,10 +113,12 @@ Match the existing personal stack: cheap, mostly static, no ops burden.
   test/              unit tests, calibration, and the browser walkthrough
 /content       generated JSON, committed to the repo (auditable diffs)
 /app           the PWA — static, no build step, zero runtime dependencies
-  js/screens/        onboarding · today · journey · learn · session · vocab · verbs ·
-                     phrases · listening · speaking · review · readiness · duel · settings
+  js/screens/        onboarding · today · journey · learn · session · reference · vocab ·
+                     verbs · phrases · listening · speaking · review · readiness · duel ·
+                     settings
   js/anthropic.js    direct Claude calls, for when there is no Worker
-  js/drill/          the Learn engine: one session runner, seven card types
+  js/drill/          the Learn engine: one session runner, seven card types,
+                     reference-sheet.js (the cheat sheet, as an in-session overlay)
   js/amelie.js       the guide: one inline SVG, six CSS states
 /worker        one tiny Cloudflare Worker + KV: the shared scoreboard. Nothing else.
 ```
@@ -267,6 +269,18 @@ from all three in path order and `#/session/<n>` restricts that to one step of t
 Every card carries the deck it came from, so it is still graded on the right ladder and
 written to the right progress row. Asking a beginner which deck to open is asking them to
 answer a question about our data model before they can practise.
+
+**The cheat sheet.** `#/reference` is subject pronouns, the present tense of the nine verbs
+that carry most sentences, and the 34 Phrases frames grouped by what they are for (asking a
+question, being polite, joining two ideas, …) — a reference to hold in view, not a drill.
+Nothing on it is authored here: the pronouns are picked out of `vocab.json` by part of
+speech, the verb tables are the same `present` conjugation the Verbs deck already drills, and
+the sentence patterns are exactly the Phrases groups `build-phrases.js` sorts frames into, so
+there is no ninth pattern invented for this screen that is not already drilled content
+elsewhere. It is reachable from Learn, and — because reaching for a cheat sheet mid-exercise
+is the actual use case — as a bottom sheet opened from inside any drill session (the book icon
+next to the session title), so it layers over the running card instead of navigating away and
+losing the rest of the queue.
 
 Two smaller rules that matter more than they look:
 

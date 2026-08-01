@@ -20,7 +20,7 @@
  * the bar that leads is the one for the step of the path you are actually on.
  */
 
-import { el, screenHead, button, plural, settingsButton } from '../dom.js';
+import { el, screenHead, button, plural, referenceButton, settingsButton } from '../dom.js';
 import { Amelie } from '../amelie.js';
 import { loadVocab, loadVerbs, loadPhrases, loadTopics, loadStages, topicIcon } from '../content.js';
 import { learnProgress, dueCounts, getLearnDeckState, STRANDS } from '../store.js';
@@ -59,7 +59,11 @@ export async function render(root, { settings, navigate }) {
   amelie.say(adviceFor(due, vocabRecv, vocabProd, current), 'idle');
 
   root.append(
-    screenHead({ title: 'Learn', sub: 'A1/A2 basics, before the exam format', trailing: settingsButton('#/settings') }),
+    screenHead({
+      title: 'Learn',
+      sub: 'A1/A2 basics, before the exam format',
+      trailing: el('div', { class: 'row', style: { gap: 'var(--s2)' } }, referenceButton('#/reference'), settingsButton('#/settings')),
+    }),
     el('div', { class: 'card' }, amelie.el),
 
     // One button, like Today. It never asks which deck: the next cards are

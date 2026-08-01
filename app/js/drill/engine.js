@@ -20,6 +20,7 @@ import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, POI
 import { requestExplanation } from '../sync.js';
 import { buildCard } from './cards.js';
 import { INPUTS } from './inputs.js';
+import { referenceSheet } from './reference-sheet.js';
 
 /** How many cards later a missed card comes back. Far enough that it is a
  * retrieval rather than an echo, near enough to still be in the session. */
@@ -66,9 +67,10 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
   const amelie = new Amelie({ size: 'sm', bubble: true });
   const progressFill = el('div', { class: 'progress__fill', style: { width: '0%' } });
   const body = el('div', { class: 'stack stack--lg' });
+  const reference = referenceSheet();
 
   root.append(
-    screenHead({ title, sub, back }),
+    screenHead({ title, sub, back, trailing: reference.el }),
     el('div', { class: 'progress', role: 'progressbar', 'aria-label': 'Progress' }, progressFill),
     body,
   );
@@ -303,7 +305,12 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
 
   renderCard();
 
-  return { destroy: destroyClip };
+  return {
+    destroy() {
+      destroyClip();
+      reference.destroy();
+    },
+  };
 }
 
 /**

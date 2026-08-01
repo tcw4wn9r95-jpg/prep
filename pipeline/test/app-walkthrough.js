@@ -314,6 +314,51 @@ async function main() {
     });
   };
 
+  await step('the cheat sheet shows pronouns, verb tables and sentence patterns', async () => {
+    await openFresh('#/reference');
+    await page.waitForSelector('.ref-pronoun', { timeout: 5000 });
+    const pronouns = await page.locator('.ref-pronoun').count();
+    if (pronouns !== 7) throw new Error(`expected 7 subject pronouns, found ${pronouns}`);
+
+    const verbCount = await page.locator('.ref-verb').count();
+    if (verbCount < 6) throw new Error(`expected at least 6 verb tables, found ${verbCount}`);
+
+    // Verb forms are behind <details> until tapped, so a beginner is not
+    // shown 54 conjugated forms at once.
+    const firstVerb = page.locator('.ref-verb').first();
+    if (await firstVerb.locator('.ref-verb__form').isVisible().catch(() => false)) {
+      throw new Error('the first verb table is not collapsed by default');
+    }
+    await firstVerb.locator('summary').click();
+    const forms = await firstVerb.locator('.ref-verb__form').count();
+    if (forms !== 6) throw new Error(`expected 6 forms once expanded, found ${forms}`);
+
+    const groups = await page.locator('.ref-group').count();
+    if (groups < 5) throw new Error(`expected several sentence-pattern groups, found ${groups}`);
+    await shot('16d-cheat-sheet');
+  });
+
+  await step('the cheat sheet opens over a running exercise without losing it', async () => {
+    // The whole point of the sheet: reachable mid-session, and closing it
+    // returns to exactly the card that was on screen — nothing in the queue
+    // is disturbed by opening it.
+    await clearLearn();
+    await openFresh('#/session');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+    const promptBefore = await page.locator('#screen .screen__title, #screen .card__note').first().textContent();
+
+    await page.getByRole('button', { name: 'Cheat sheet' }).click();
+    await page.waitForSelector('.ref-sheet[open] .ref-pronoun', { timeout: 5000 });
+    await shot('16e-cheat-sheet-in-session');
+
+    await page.getByRole('button', { name: 'Close' }).click();
+    await page.waitForSelector('.ref-sheet', { state: 'hidden', timeout: 5000 });
+    // The router never ran — the same card, and the same options, are still there.
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+    const promptAfter = await page.locator('#screen .screen__title, #screen .card__note').first().textContent();
+    if (promptBefore !== promptAfter) throw new Error('the session moved on while the cheat sheet was open');
+  });
+
   await step('learn hub separates receptive from productive mastery', async () => {
     await openFresh('#/learn');
     await page.waitForSelector('.topic-grid .topic-tile', { timeout: 5000 });

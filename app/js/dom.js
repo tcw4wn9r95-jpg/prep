@@ -91,6 +91,22 @@ export function settingsButton(href, label = 'Settings') {
   );
 }
 
+/** An open book — the cheat sheet icon, shared by the link to it (here) and
+ * the in-session button that opens it as a sheet instead (drill/engine.js). */
+export function bookIcon() {
+  return el(
+    'svg',
+    { viewBox: '0 0 24 24', width: '24', height: '24', 'aria-hidden': 'true', fill: 'none', stroke: 'currentColor', 'stroke-width': '2', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' },
+    el('path', { d: 'M4 5.5 C6 4.3 9 4.3 12 5.5 C15 4.3 18 4.3 20 5.5 V18 C18 16.8 15 16.8 12 18 C9 16.8 6 16.8 4 18 Z' }),
+    el('path', { d: 'M12 5.5 V18' }),
+  );
+}
+
+/** The cheat sheet, reachable from any screen that offers it. */
+export function referenceButton(href, label = 'Cheat sheet') {
+  return el('a', { class: 'iconbtn', href, 'aria-label': label }, bookIcon());
+}
+
 /** Screen header: back button, title, optional subtitle, optional trailing. */
 export function screenHead({ title, sub, back, trailing }) {
   return el(
