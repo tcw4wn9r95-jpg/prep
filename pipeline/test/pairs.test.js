@@ -29,12 +29,24 @@ test.before(async () => {
 });
 
 test('pairs: the board grows with the level and then stops', () => {
-  assert.equal(pairs.pairsForLevel(1), 3);
-  assert.equal(pairs.pairsForLevel(3), 3);
-  assert.equal(pairs.pairsForLevel(4), 4);
-  assert.equal(pairs.pairsForLevel(10), 6);
+  assert.equal(pairs.pairsForLevel(1), 5);
+  assert.equal(pairs.pairsForLevel(2), 5);
+  assert.equal(pairs.pairsForLevel(3), 6);
+  assert.equal(pairs.pairsForLevel(11), 10);
   // Capped: a board that outgrows the screen stops being a memory game.
-  assert.equal(pairs.pairsForLevel(500), 6);
+  // 14 pairs is 28 tiles, measured as the largest grid that still clears the
+  // tab bar on a 360x640 phone once tile height scales with the viewport.
+  assert.equal(pairs.pairsForLevel(19), 14);
+  assert.equal(pairs.pairsForLevel(500), 14);
+});
+
+test('pairs: no tile carries text too long to read at 85px wide', () => {
+  // Some LOD glosses are a whole disambiguation clause. They are fine in the
+  // drill, where the answer gets a full-width row, and unreadable on a tile.
+  for (const word of pool) {
+    assert.ok(word.en.length <= 20, `gloss "${word.en}" is ${word.en.length} chars`);
+    assert.ok(word.lb.length <= 20, `word "${word.lb}" is ${word.lb.length} chars`);
+  }
 });
 
 test('pairs: levels tile the deck without overlapping or skipping', () => {

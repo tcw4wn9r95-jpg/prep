@@ -18,6 +18,7 @@
 const http = require('node:http');
 const fs = require('node:fs');
 const fsp = require('node:fs/promises');
+const { pathToFileURL } = require('node:url');
 const path = require('node:path');
 
 const { chromium } = require('playwright-core');
@@ -318,7 +319,7 @@ async function main() {
     await openFresh('#/pairs');
     await page.waitForSelector('.pairs__tile', { timeout: 5000 });
     const tiles = await page.locator('.pairs__tile').count();
-    if (tiles !== 6) throw new Error(`level 1 should be 3 pairs / 6 tiles, found ${tiles}`);
+    if (tiles !== 10) throw new Error(`level 1 should be 5 pairs / 10 tiles, found ${tiles}`);
 
     const title = (await page.locator('#screen .screen__title').first().textContent())?.trim();
     if (!/level 1$/.test(title ?? '')) throw new Error(`expected level 1, got "${title}"`);
@@ -330,28 +331,24 @@ async function main() {
   });
 
   await step('a solved board saves the level and offers the next one', async () => {
-    // Brute-force the board: turn two, keep them if they stick. This also
-    // exercises the flip-back path, which is most of the game. The board is
-    // torn down and replaced by the win card the moment the last pair lands,
-    // so every step has to tolerate the tiles disappearing underneath it.
-    const classOf = (index) =>
-      page.locator('.pairs__tile').nth(index).getAttribute('class', { timeout: 1000 }).catch(() => null);
-    const solved = () => page.locator('text=Level 1 cleared').isVisible().catch(() => false);
+    // Solve it properly rather than by brute force: ask the real module which
+    // words level 1 holds, then read the face text of each tile (present in the
+    // DOM even face-down, so screen readers can reach it) and click the two
+    // that belong together. Brute force on a 10-tile board would spend most of
+    // a minute sitting through the deliberate flip-back pause.
+    const pairsModule = await import(pathToFileURL(path.join(APP_DIR, 'js', 'screens', 'pairs.js')).href);
+    const vocabItems = JSON.parse(await fsp.readFile(path.join(APP_DIR, 'data', 'vocab.json'), 'utf8')).items;
+    const verbItems = JSON.parse(await fsp.readFile(path.join(APP_DIR, 'data', 'verbs.json'), 'utf8')).items;
+    const level1 = pairsModule.wordsForLevel(pairsModule.orderedPairPool(vocabItems, verbItems), 1);
 
-    const total = await page.locator('.pairs__tile').count();
-    outer: for (let a = 0; a < total; a += 1) {
-      if (await solved()) break;
-      if ((await classOf(a))?.includes('is-found')) continue;
-      for (let b = a + 1; b < total; b += 1) {
-        if ((await classOf(b))?.includes('is-found')) continue;
-        await page.locator('.pairs__tile').nth(a).click({ timeout: 2000 }).catch(() => {});
-        await page.locator('.pairs__tile').nth(b).click({ timeout: 2000 }).catch(() => {});
-        await page.waitForTimeout(150);
-        if (await solved()) break outer;
-        if ((await classOf(a))?.includes('is-found')) break;
-        // Wrong pair: wait out the deliberate pause before the next attempt.
-        await page.waitForTimeout(900);
-      }
+    const faces = await page.locator('.pairs__face').evaluateAll((nodes) => nodes.map((node) => node.textContent));
+    for (const word of level1) {
+      const a = faces.indexOf(word.lb);
+      const b = faces.indexOf(word.en);
+      if (a === -1 || b === -1) throw new Error(`level 1 board is missing ${word.lb} / ${word.en}`);
+      await page.locator('.pairs__tile').nth(a).click();
+      await page.locator('.pairs__tile').nth(b).click();
+      await page.waitForTimeout(120);
     }
 
     await page.waitForSelector('text=Level 1 cleared', { timeout: 8000 });
@@ -365,6 +362,27 @@ async function main() {
     await page.waitForSelector('.pairs__tile', { timeout: 5000 });
     const title = (await page.locator('#screen .screen__title').first().textContent())?.trim();
     if (!/level 2$/.test(title ?? '')) throw new Error(`progress was not saved — reopened at "${title}"`);
+  });
+
+  await step('the largest pairs board still fits above the tab bar', async () => {
+    // The whole game is remembering where a tile was, so the board has to be
+    // visible in one look. MAX_PAIRS in pairs.js is chosen from this
+    // measurement — assert it here so the number cannot drift out of sync with
+    // the layout it was picked for.
+    await openFresh('#/pairs/40');
+    await page.waitForSelector('.pairs__tile', { timeout: 5000 });
+    const tiles = await page.locator('.pairs__tile').count();
+    if (tiles !== 28) throw new Error(`the top level should be 14 pairs / 28 tiles, found ${tiles}`);
+
+    const fit = await page.evaluate(() => {
+      const board = document.querySelector('.pairs').getBoundingClientRect();
+      const tabbar = document.querySelector('#tabbar')?.getBoundingClientRect().top ?? window.innerHeight;
+      return { bottom: Math.round(board.bottom), tabTop: Math.round(tabbar) };
+    });
+    if (fit.bottom > fit.tabTop) {
+      throw new Error(`the 28-tile board runs ${fit.bottom - fit.tabTop}px under the tab bar`);
+    }
+    process.stdout.write(`  largest board clears the tab bar by ${fit.tabTop - fit.bottom}px\n`);
   });
 
   await step('the cheat sheet shows pronouns, verb tables and sentence patterns', async () => {

@@ -15,7 +15,7 @@ Build order steps 1–4 are done. The app runs.
 ```bash
 npm run content      # fetch LOD → corpus → items → mirror audio → images → validate
 npm run serve        # http://localhost:8080
-npm test             # 110 unit tests
+npm test             # 111 unit tests
 npm run walkthrough  # drives the real app in Chromium at iPhone size, screenshots each screen
 ```
 
@@ -25,7 +25,7 @@ npm run walkthrough  # drives the real app in Chromium at iPhone size, screensho
 | items | 287 listening questions · 169 interview prompts · 18 topics |
 | learn decks | 34 sentence frames · 2,049 words · 365 verbs · frequency-ranked into 5 stages · 1,791 topic-tagged · 2,240 cloze targets · 358 visual cues |
 | shipped assets | 2,263 recordings (68 MB, AAC) · 16 CC images (5.5 MB) |
-| verification | `npm test` 110/110 · `validate` PASS · walkthrough 31/31, no console errors |
+| verification | `npm test` 111/111 · `validate` PASS · walkthrough 32/32, no console errors |
 
 **Known limits, stated plainly.** Listening items are corpus-derived drills on the official
 5+7+4 shape, not replicas of INLL's connected-speech test — the app says so and links to the
@@ -283,7 +283,15 @@ next to the session title), so it layers over the running card instead of naviga
 losing the rest of the queue.
 
 **Pairs**, at `#/pairs`, is the optional one: a memory board of Luxembourgish words against
-their English glosses, levels walking the same most-basic-first ordering as the path. It is
+their English glosses, 135 levels walking the same most-basic-first ordering as the path,
+the board growing from 5 pairs to 14. That ceiling is measured rather than guessed, and the
+binding case is the *small* phone: a tall iPhone has room for 18 pairs, a 360x640 Android
+does not, so 28 tiles in seven rows of four is where it stops — with tile height tracking
+the viewport so the board fits both. The walkthrough asserts it rather than trusting it.
+Tiles also cap the text they will show at 20 characters, because some LOD glosses are a
+whole disambiguation clause
+("(female) pupil [primary or secondary school student, college student]") and would render
+as an unreadable block; that costs 18 words out of 1,829 and no foundation vocabulary. It is
 deliberately outside the scoring system — it counts for the daily streak but does not move a
 Leitner box or the duel score, because matching a word against five visible alternatives is
 far easier than producing it, and letting it promote words would quietly stretch review
