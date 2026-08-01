@@ -992,3 +992,114 @@
   gap: 2px;
   min-width: 0;
 }
+
+/* ------------------------------------------------------------ reference / cheat sheet */
+
+.ref-pronouns {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+  gap: var(--s2);
+}
+
+.ref-pronoun {
+  padding: var(--s3);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--r-md);
+  text-align: center;
+}
+
+.ref-pronoun__lb {
+  font-weight: 800;
+  font-size: var(--size-md);
+}
+
+.ref-pronoun__en {
+  color: var(--text-muted);
+  font-size: var(--size-xs);
+  margin-block-start: 2px;
+}
+
+.ref-verb {
+  padding: var(--s3);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--r-md);
+  margin-block-end: var(--s2);
+}
+
+.ref-verb summary {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s2);
+  min-height: var(--tap);
+  cursor: pointer;
+  list-style: none;
+}
+
+.ref-verb summary::-webkit-details-marker {
+  display: none;
+}
+
+.ref-verb__forms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s2);
+  margin-block-start: var(--s3);
+}
+
+.ref-verb__form {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding: var(--s2) var(--s3);
+  background: var(--bg-sunk);
+  border-radius: var(--r-md);
+  font-size: var(--size-sm);
+}
+
+.ref-group + .ref-group {
+  margin-block-start: var(--s3);
+}
+
+.ref-frame {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding: var(--s2) 0;
+  border-block-start: 1px solid var(--border);
+  font-size: var(--size-sm);
+}
+
+.ref-frame:first-child {
+  border-block-start: none;
+}
+
+/* The in-session cheat sheet: a native <dialog>, styled as a bottom sheet so
+   it reads as "on top of the exercise" rather than "a new screen". Closing it
+   returns to exactly the card that was on screen — nothing in the session
+   queue is touched. */
+.ref-sheet {
+  position: fixed;
+  /* The UA stylesheet centres a modal <dialog> with `inset: 0`, which pins
+     both the top and bottom edge — with height left auto, that stretches the
+     box to fill the viewport instead of sizing to its content. Only the
+     bottom edge is wanted here, so the top one has to be cleared explicitly. */
+  inset-block-start: auto;
+  inset-block-end: 0;
+  inset-inline: 0;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  max-height: 82vh;
+  padding: var(--s4);
+  border: none;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  background: var(--bg);
+  color: var(--text);
+  overflow-y: auto;
+}
+
+.ref-sheet::backdrop {
+  background: rgba(10, 16, 22, 0.5);
+}
