@@ -19,6 +19,7 @@ import {
   listAttempts,
   listRecordings,
   listReviews,
+  listLearnSessions,
   readinessFor,
   getStreak,
   weekSeed,
@@ -30,17 +31,22 @@ const HANDICAP_THRESHOLD = 250;
 const HANDICAP_SCALE = 1.25;
 
 export async function render(root, { settings }) {
-  const [attempts, recordings, reviews] = await Promise.all([listAttempts(), listRecordings(), listReviews()]);
+  const [attempts, recordings, reviews, learnSessions] = await Promise.all([
+    listAttempts(),
+    listRecordings(),
+    listReviews(),
+    listLearnSessions(),
+  ]);
   const seed = weekSeed();
   const streaks = Object.fromEntries(await Promise.all(PLAYERS.map(async (p) => [p.id, await getStreak(p.id)])));
 
   const weekly = PLAYERS.map((player) => ({
     player,
-    ...pointsFor(player.id, { attempts, recordings, reviews, since: seed }),
+    ...pointsFor(player.id, { attempts, recordings, reviews, learnSessions, since: seed }),
   }));
   const rolling = PLAYERS.map((player) => ({
     player,
-    ...pointsFor(player.id, { attempts, recordings, reviews, since: seed - 4 }),
+    ...pointsFor(player.id, { attempts, recordings, reviews, learnSessions, since: seed - 4 }),
   }));
 
   applyHandicap(weekly, rolling);
@@ -107,6 +113,7 @@ export async function render(root, { settings }) {
                 'div',
                 { class: 'row', style: { gap: 'var(--s2)', marginBlockStart: 'var(--s2)', flexWrap: 'wrap' } },
                 el('span', { class: 'chip' }, plural(side.answers, 'answer')),
+                el('span', { class: 'chip' }, plural(side.cards, 'card')),
                 el('span', { class: 'chip' }, plural(side.recordings, 'recording')),
                 el('span', { class: side.reviews > 0 ? 'chip chip--ok' : 'chip' }, plural(side.reviews, 'review')),
                 streaks[side.player.id].current > 0
@@ -117,8 +124,12 @@ export async function render(root, { settings }) {
           ),
         ),
         el('p', { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } },
-          `Answer ${POINTS.perCorrectAnswer} · record ${POINTS.perRecording} · review ${POINTS.perReview}. ` +
+          `Answer ${POINTS.perCorrectAnswer} · card ${POINTS.perLearnCorrect} · record ${POINTS.perRecording} · review ${POINTS.perReview}. ` +
           'Reviewing is worth most because it is the score of record — and it is practice.'),
+        // The duel resets every Monday, but readiness is all-time. Without
+        // saying so, a week that starts at zero looks like lost work.
+        el('p', { class: 'source-note' },
+          'This board counts this week only and resets on Monday. Readiness below counts everything you have ever done.'),
       ),
 
       /* --- readiness side by side: the number that actually matters */
@@ -156,18 +167,24 @@ export async function render(root, { settings }) {
   return { destroy() {} };
 }
 
-function pointsFor(playerId, { attempts, recordings, reviews, since }) {
+function pointsFor(playerId, { attempts, recordings, reviews, learnSessions, since }) {
   const mineAttempts = attempts.filter((a) => a.playerId === playerId && (a.weekSeed ?? 0) >= since);
   const mineRecordings = recordings.filter((r) => r.playerId === playerId);
   const mineReviews = reviews.filter((r) => r.reviewerId === playerId);
+  const mineLearn = learnSessions.filter((s) => s.playerId === playerId && (s.weekSeed ?? 0) >= since);
 
   const answers = mineAttempts.reduce((sum, a) => sum + a.correct, 0);
+  // Vocabulary work used to earn nothing here, even though the drill's finish
+  // card announced points for it — a promise no scoreboard kept.
+  const cards = mineLearn.reduce((sum, session) => sum + session.correct, 0);
   return {
     answers,
+    cards,
     recordings: mineRecordings.length,
     reviews: mineReviews.length,
     base:
       answers * POINTS.perCorrectAnswer +
+      cards * POINTS.perLearnCorrect +
       mineRecordings.length * POINTS.perRecording +
       mineReviews.length * POINTS.perReview,
     total: 0,

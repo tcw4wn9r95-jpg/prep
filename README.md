@@ -15,7 +15,7 @@ Build order steps 1–4 are done. The app runs.
 ```bash
 npm run content      # fetch LOD → corpus → items → mirror audio → images → validate
 npm run serve        # http://localhost:8080
-npm test             # 23 unit tests
+npm test             # 110 unit tests
 npm run walkthrough  # drives the real app in Chromium at iPhone size, screenshots each screen
 ```
 
@@ -25,7 +25,7 @@ npm run walkthrough  # drives the real app in Chromium at iPhone size, screensho
 | items | 287 listening questions · 169 interview prompts · 18 topics |
 | learn decks | 34 sentence frames · 2,049 words · 365 verbs · frequency-ranked into 5 stages · 1,791 topic-tagged · 2,240 cloze targets · 358 visual cues |
 | shipped assets | 2,263 recordings (68 MB, AAC) · 16 CC images (5.5 MB) |
-| verification | `npm test` 92/92 · `validate` PASS · walkthrough 25/25, no console errors |
+| verification | `npm test` 110/110 · `validate` PASS · walkthrough 31/31, no console errors |
 
 **Known limits, stated plainly.** Listening items are corpus-derived drills on the official
 5+7+4 shape, not replicas of INLL's connected-speech test — the app says so and links to the
@@ -113,9 +113,9 @@ Match the existing personal stack: cheap, mostly static, no ops burden.
   test/              unit tests, calibration, and the browser walkthrough
 /content       generated JSON, committed to the repo (auditable diffs)
 /app           the PWA — static, no build step, zero runtime dependencies
-  js/screens/        onboarding · today · journey · learn · session · reference · vocab ·
-                     verbs · phrases · listening · speaking · review · readiness · duel ·
-                     settings
+  js/screens/        onboarding · today · journey · learn · session · reference · pairs ·
+                     vocab · verbs · phrases · listening · speaking · review · readiness ·
+                     duel · settings
   js/anthropic.js    direct Claude calls, for when there is no Worker
   js/drill/          the Learn engine: one session runner, seven card types,
                      reference-sheet.js (the cheat sheet, as an in-session overlay)
@@ -281,6 +281,15 @@ elsewhere. It is reachable from Learn, and — because reaching for a cheat shee
 is the actual use case — as a bottom sheet opened from inside any drill session (the book icon
 next to the session title), so it layers over the running card instead of navigating away and
 losing the rest of the queue.
+
+**Pairs**, at `#/pairs`, is the optional one: a memory board of Luxembourgish words against
+their English glosses, levels walking the same most-basic-first ordering as the path. It is
+deliberately outside the scoring system — it counts for the daily streak but does not move a
+Leitner box or the duel score, because matching a word against five visible alternatives is
+far easier than producing it, and letting it promote words would quietly stretch review
+intervals past what the evidence supports. The word pool is deduplicated on *both* sides:
+471 English glosses in the decks are shared by more than one word (`nee`, `keen` and `keng`
+all gloss as "no"), and two identical tiles make a board with no right answer.
 
 Two smaller rules that matter more than they look:
 

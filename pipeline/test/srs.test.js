@@ -91,11 +91,15 @@ test('srs: words that are not due yet are left alone', async () => {
 });
 
 test('srs: reviews are not buried under new words when both are available', async () => {
+  // 20 cards due and a full deck of unmet words: the session is reviews only.
+  // This used to reserve the new-word slots first and hand back 4 new + 8
+  // reviews, which added four cards to the backlog for every session that
+  // cleared eight — the queue could never drain.
   const recv = new Map(items.slice(0, 20).map((item) => [item.id, seen(1, NOW - 1)]));
   const session = store.buildSession(items, { recv, prod: new Map() }, { limit: 12, newTarget: 4, now: NOW });
   assert.equal(session.length, 12);
-  assert.equal(session.filter((card) => card.isNew).length, 4);
-  assert.equal(session.filter((card) => !card.isNew).length, 8);
+  assert.equal(session.filter((card) => card.isNew).length, 0);
+  assert.equal(session.filter((card) => !card.isNew).length, 12);
 });
 
 test('srs: the session never exceeds its limit', async () => {
@@ -189,4 +193,34 @@ test('srs: a single-deck session is just a mixed session with one group', async 
   const plain = store.buildSession(deck, emptyStates(), { limit: 2, newTarget: 2, now: NOW });
   assert.deepEqual(plain.map((card) => card.item.id).sort(), ['a', 'b']);
   assert.ok(plain.every((card) => card.deck === undefined), 'a single-deck plan leaves the deck to runSession');
+});
+
+test('srs: a review backlog is cleared before any new words are added', async () => {
+  // The bug this guards: the new-word slots were reserved *first*, so a
+  // backlog of 24 due cards handed back 4 reviews and 8 new words. Every
+  // session then grew the backlog by four while the home screen kept
+  // reporting 24 due — "I have 24 cards but I cannot find them".
+  const met = Array.from({ length: 24 }, (_, index) => ({ id: `M${index}`, stage: 1, rank: index }));
+  const unmet = Array.from({ length: 200 }, (_, index) => ({ id: `U${index}`, stage: 1, rank: 100 + index }));
+  const recv = new Map(met.map((item) => [item.id, seen(1, NOW - 86400000)]));
+
+  const session = store.buildSession([...met, ...unmet], { recv, prod: new Map() }, { limit: 12, newTarget: 8, now: NOW });
+  assert.equal(session.length, 12);
+  assert.ok(
+    session.every((card) => !card.isNew),
+    'with 24 cards due, a 12-card session must be all reviews',
+  );
+});
+
+test('srs: new words still fill the rest of a session when the backlog is small', async () => {
+  // The inverse failure would be just as bad: refusing new words whenever
+  // anything at all is due would stall the path permanently.
+  const met = [{ id: 'M0', stage: 1, rank: 0 }];
+  const unmet = Array.from({ length: 200 }, (_, index) => ({ id: `U${index}`, stage: 1, rank: 100 + index }));
+  const recv = new Map([['M0', seen(1, NOW - 86400000)]]);
+
+  const session = store.buildSession([...met, ...unmet], { recv, prod: new Map() }, { limit: 12, newTarget: 8, now: NOW });
+  const fresh = session.filter((card) => card.isNew).length;
+  assert.equal(fresh, 8, 'the daily new-word target still applies when the backlog fits');
+  assert.equal(session.length - fresh, 1, 'the one due card is in there too');
 });

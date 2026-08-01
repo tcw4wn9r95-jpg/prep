@@ -314,6 +314,59 @@ async function main() {
     });
   };
 
+  await step('pairs starts at level 1 with the board face down', async () => {
+    await openFresh('#/pairs');
+    await page.waitForSelector('.pairs__tile', { timeout: 5000 });
+    const tiles = await page.locator('.pairs__tile').count();
+    if (tiles !== 6) throw new Error(`level 1 should be 3 pairs / 6 tiles, found ${tiles}`);
+
+    const title = (await page.locator('#screen .screen__title').first().textContent())?.trim();
+    if (!/level 1$/.test(title ?? '')) throw new Error(`expected level 1, got "${title}"`);
+
+    // Face down means not readable, but still in the DOM for screen readers.
+    const visible = await page.locator('.pairs__face').first().isVisible();
+    if (visible) throw new Error('tiles are readable before being turned over');
+    await shot('16f-pairs');
+  });
+
+  await step('a solved board saves the level and offers the next one', async () => {
+    // Brute-force the board: turn two, keep them if they stick. This also
+    // exercises the flip-back path, which is most of the game. The board is
+    // torn down and replaced by the win card the moment the last pair lands,
+    // so every step has to tolerate the tiles disappearing underneath it.
+    const classOf = (index) =>
+      page.locator('.pairs__tile').nth(index).getAttribute('class', { timeout: 1000 }).catch(() => null);
+    const solved = () => page.locator('text=Level 1 cleared').isVisible().catch(() => false);
+
+    const total = await page.locator('.pairs__tile').count();
+    outer: for (let a = 0; a < total; a += 1) {
+      if (await solved()) break;
+      if ((await classOf(a))?.includes('is-found')) continue;
+      for (let b = a + 1; b < total; b += 1) {
+        if ((await classOf(b))?.includes('is-found')) continue;
+        await page.locator('.pairs__tile').nth(a).click({ timeout: 2000 }).catch(() => {});
+        await page.locator('.pairs__tile').nth(b).click({ timeout: 2000 }).catch(() => {});
+        await page.waitForTimeout(150);
+        if (await solved()) break outer;
+        if ((await classOf(a))?.includes('is-found')) break;
+        // Wrong pair: wait out the deliberate pause before the next attempt.
+        await page.waitForTimeout(900);
+      }
+    }
+
+    await page.waitForSelector('text=Level 1 cleared', { timeout: 8000 });
+    await shot('16g-pairs-cleared');
+    if (!(await page.getByRole('button', { name: 'Level 2' }).isVisible())) {
+      throw new Error('clearing a level did not offer the next one');
+    }
+
+    // Reopening must land on level 2, not send the player back to level 1.
+    await openFresh('#/pairs');
+    await page.waitForSelector('.pairs__tile', { timeout: 5000 });
+    const title = (await page.locator('#screen .screen__title').first().textContent())?.trim();
+    if (!/level 2$/.test(title ?? '')) throw new Error(`progress was not saved — reopened at "${title}"`);
+  });
+
   await step('the cheat sheet shows pronouns, verb tables and sentence patterns', async () => {
     await openFresh('#/reference');
     await page.waitForSelector('.ref-pronoun', { timeout: 5000 });
