@@ -14,6 +14,19 @@ const AUDIO_BASE = 'assets/audio/';
 
 let unlocked = false;
 
+/**
+ * Every live Clip, so other code can ask whether speech is currently playing.
+ * chime.js uses it to stay silent over a recording: the B1 half is scored on
+ * hearing connected Luxembourgish, and a reward sound mixed on top of a native
+ * speaker is the one way this could make someone worse at the exam.
+ */
+const live = new Set();
+
+export function anyClipPlaying() {
+  for (const clip of live) if (clip.isPlaying) return true;
+  return false;
+}
+
 /** Prime playback inside the first user gesture. Safe to call repeatedly. */
 export function unlock() {
   if (unlocked) return;
@@ -45,6 +58,7 @@ export class Clip {
     this.el = new Audio(audioUrl(audioId));
     this.el.preload = 'auto';
     this.plays = 0;
+    live.add(this);
   }
 
   get isPlaying() {
@@ -78,6 +92,7 @@ export class Clip {
   destroy() {
     this.stop();
     this.el.src = '';
+    live.delete(this);
   }
 }
 

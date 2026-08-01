@@ -28,6 +28,7 @@ import { el, fill, screenHead, button, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES } from '../amelie.js';
 import { loadVocab, loadVerbs } from '../content.js';
 import { getPairsProgress, savePairsResult, touchStreak } from '../store.js';
+import { chimeCorrect, resetChimeStreak } from '../chime.js';
 
 /**
  * Board size by level: 5 pairs, growing to 14. Capped because the whole board
@@ -237,6 +238,7 @@ function playLevel({ body, words, level, maxLevel, settings, navigate, progress 
       for (const { node: found } of turned) found.classList.add('is-found');
       turned = [];
       foundLabel().textContent = `${matched.size} of ${words.length} found`;
+      chimeCorrect();
       amelie.say(pick(['Yes.', 'That is a pair.', 'Good.']), 'celebrating');
       if (matched.size === words.length) win();
       return;
@@ -245,6 +247,7 @@ function playLevel({ body, words, level, maxLevel, settings, navigate, progress 
     // Wrong: both stay visible long enough to be read, which is where the
     // learning in a matching game actually happens.
     locked = true;
+    resetChimeStreak();
     amelie.say('Not a pair — remember where they were.', 'encouraging');
     setTimeout(() => {
       for (const { node: wrong } of turned) {
