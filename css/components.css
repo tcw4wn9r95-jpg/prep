@@ -1103,3 +1103,67 @@
 .ref-sheet::backdrop {
   background: rgba(10, 16, 22, 0.5);
 }
+
+/* ------------------------------------------------------------- pairs game */
+/* A memory board. Everything is sized so the whole grid stays on one phone
+   screen — having to scroll to see the tiles you are trying to remember
+   turns a memory game into a note-taking exercise. */
+
+.pairs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s2);
+}
+
+.pairs__tile {
+  display: grid;
+  place-items: center;
+  min-height: 84px;
+  padding: var(--s2);
+  border-radius: var(--r-md);
+  background: var(--accent);
+  border: 2px solid var(--accent-strong);
+  box-shadow: 0 3px 0 var(--accent-strong);
+  text-align: center;
+  transition: background 0.18s var(--ease), border-color 0.18s var(--ease), transform 0.12s var(--ease-bounce);
+}
+
+.pairs__tile:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--accent-strong); }
+
+/* Face down: the word is in the DOM for screen readers but not legible, so a
+   sighted player cannot read the board before turning anything over. */
+.pairs__face {
+  font-size: var(--size-base);
+  font-weight: 700;
+  line-height: var(--lh-snug);
+  overflow-wrap: anywhere;
+  visibility: hidden;
+}
+
+.pairs__tile.is-up {
+  background: var(--surface);
+  border-color: var(--border-strong);
+  box-shadow: 0 3px 0 var(--border);
+  color: var(--text);
+}
+
+.pairs__tile.is-up .pairs__face { visibility: visible; }
+
+/* The Luxembourgish side reads as the thing being learned, the English side as
+   the explanation — different weight, so a turned board is scannable. */
+.pairs__tile--lb.is-up .pairs__face { font-weight: 800; }
+.pairs__tile--en.is-up .pairs__face { font-weight: 600; color: var(--text-muted); }
+
+.pairs__tile.is-found {
+  background: var(--ok-wash);
+  border-color: var(--ok);
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.pairs__tile.is-found .pairs__face { color: var(--ok); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pairs__tile { transition: none; }
+  .pairs__tile:active { transform: none; }
+}

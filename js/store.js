@@ -12,7 +12,7 @@
  */
 
 const DB_NAME = 'sproochentest';
-const DB_VERSION = 3;
+const DB_VERSION = 4;
 
 /** @type {Promise<IDBDatabase>|null} */
 let dbPromise = null;
@@ -48,6 +48,14 @@ function openDb() {
         // range-query it.
         const store = db.createObjectStore('learn', { keyPath: 'key' });
         store.createIndex('byPlayerDeck', 'playerDeck');
+      }
+      if (!db.objectStoreNames.contains('learnSessions')) {
+        // One row per *finished* drill session, which the `learn` store cannot
+        // provide: that holds per-item state with no history, so there is no
+        // way to ask it what was practised this week. The Woch-Duell resets
+        // every Monday and needs exactly that.
+        const store = db.createObjectStore('learnSessions', { keyPath: 'id' });
+        store.createIndex('byPlayer', 'playerId');
       }
       if (event.oldVersion > 0 && event.oldVersion < 3) migrateLearnToStrands(request.transaction);
     };
@@ -396,6 +404,31 @@ export async function getStreak(playerId) {
   return (await get('meta', `streak:${playerId}`)) ?? { days: [], current: 0, best: 0 };
 }
 
+/* ---------------------------------------------------------------- pairs game
+ * Where the learner has got to in the optional matching game. One small meta
+ * row per player rather than a store of its own: this is a single integer and
+ * a handful of best scores, not a history worth querying.
+ */
+
+export async function getPairsProgress(playerId) {
+  return (await get('meta', `pairs:${playerId}`)) ?? { level: 1, best: {} };
+}
+
+/**
+ * Records a cleared level. `level` only ever moves forward — replaying an
+ * early level for practice must not send the learner back to it.
+ */
+export async function savePairsResult(playerId, level, { moves }) {
+  const previous = await getPairsProgress(playerId);
+  const best = previous.best?.[level];
+  const progress = {
+    level: Math.max(previous.level ?? 1, level + 1),
+    best: { ...previous.best, [level]: best === undefined ? moves : Math.min(best, moves) },
+  };
+  await put('meta', progress, `pairs:${playerId}`);
+  return progress;
+}
+
 /* ------------------------------------------------------------ vocab & verbs
  * A small Leitner box per item: five boxes, each with a longer review gap.
  * No scheduling library, just an array of day-offsets, which is all a
@@ -581,8 +614,15 @@ export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TA
   // here was what put `Wunngemeinschaft` in front of a beginner before `ech`.
   fresh.sort((a, b) => (a.item.stage ?? 9) - (b.item.stage ?? 9) || (a.item.rank ?? 0) - (b.item.rank ?? 0));
 
-  const newSlots = Math.max(0, Math.min(newTarget, limit));
-  const chosen = [...reviews.slice(0, Math.max(0, limit - Math.min(fresh.length, newSlots))), ...fresh.slice(0, newSlots)];
+  // Reviews fill the session first; new words take whatever is left, up to the
+  // daily cap. The order matters more than it looks: reserving the new-word
+  // slots first meant a backlog of 24 due cards handed back 4 reviews and 8
+  // new words, so every session *grew* the backlog by four while reporting 24
+  // due on the home screen. A card that is due is a memory about to be lost —
+  // it outranks a word that has never been met.
+  const chosenReviews = reviews.slice(0, limit);
+  const newSlots = Math.max(0, Math.min(newTarget, limit - chosenReviews.length));
+  const chosen = [...chosenReviews, ...fresh.slice(0, newSlots)];
   shuffle(chosen);
   return chosen.slice(0, limit);
 }
@@ -640,9 +680,45 @@ export async function recordLearnResult(playerId, deck, strand, itemId, outcome)
     lapses: previous.lapses + (correct || previous.box === 0 ? 0 : 1),
   };
   await put('learn', record);
-  if (correct) await queue({ kind: 'learn', deck, strand, itemId, playerId });
+  // Deliberately not queued for the Worker. There is no /learn route, so every
+  // correct answer used to file a payload that could only ever 404 — and since
+  // the outbox is cleared as a batch, that one entry blocked attempts, reviews
+  // and recordings from ever syncing again. Vocabulary progress is per-device
+  // by design; sharing it across phones means adding a Worker route first.
   return record;
 }
+
+/**
+ * Logs a finished drill session, so vocabulary work can reach the scoreboard.
+ *
+ * The drill's finish card has always shown "+N points", but nothing counted
+ * them: the Woch-Duell added up listening answers, recordings and reviews, and
+ * the `learn` store holds per-item boxes with no history to ask "what did you
+ * practise this week". A session row is the missing event.
+ *
+ * Deliberately its own store rather than a row in `attempts`: readinessFor()
+ * derives the B1 listening estimate from every attempt it can see, so filing
+ * vocabulary work there would quietly corrupt the number the exam plan is
+ * built on.
+ */
+export async function recordLearnSession(playerId, { correct, answered }) {
+  if (answered === 0) return null;
+  const record = {
+    id: `${playerId}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    playerId,
+    weekSeed: weekSeed(),
+    correct,
+    answered,
+    at: new Date().toISOString(),
+    points: correct * POINTS.perLearnCorrect,
+  };
+  // Local only, for the same reason as recordLearnResult above: the Worker has
+  // no route for it, and the duel scoreboard reads this device's own stores.
+  await put('learnSessions', record);
+  return record;
+}
+
+export const listLearnSessions = () => all('learnSessions');
 
 /**
  * Mastered = reached the last box. Reported per strand, because "I know 400

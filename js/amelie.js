@@ -151,7 +151,13 @@ export const AMELIE_LINES = {
     'That was a different word. Tap the transcript to see it written down.',
     'Almost! Listen again — the answer is in the middle of the sentence.',
   ],
+  // Said after a *listening* set, and only there — it names the score it moved.
+  // It used to be reused by the vocabulary drill and the pairs game too, which
+  // told people their listening score had improved after work that never
+  // touches it, and sent them to a scoreboard where nothing had changed.
   setDone: 'Great work! Your listening score just moved.',
+  learnSetDone: 'Nice work. Those words are booked in for their next review.',
+  pairsSetDone: 'Cleared! Every pair you turned over is a word you have met.',
   interviewPrep: 'You have 30 seconds to think. Plan two sentences, not ten.',
   interviewGo: 'Answer out loud, in full sentences. I am recording.',
   interviewDone: 'Recorded. Your partner will score it against the real grid.',

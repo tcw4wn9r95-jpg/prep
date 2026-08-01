@@ -96,6 +96,23 @@ export async function render(root, { settings, navigate }) {
       deckRow({ href: '#/verbs', icon: '🔤', title: 'Verbs', total: verbItems.length, unit: 'verb', recv: verbRecv, prod: verbProd }),
     ),
 
+    sectionLabel('For a spare minute'),
+    el(
+      'a',
+      { class: 'card', href: '#/pairs', style: { display: 'block' } },
+      el(
+        'div',
+        { class: 'row' },
+        el('span', { style: { fontSize: '28px' } }, '🃏'),
+        el(
+          'div',
+          { class: 'spacer' },
+          el('p', { class: 'card__title' }, 'Pairs'),
+          el('p', { class: 'card__note' }, 'Match the word to its meaning. Optional, and it does not affect your reviews.'),
+        ),
+      ),
+    ),
+
     sectionLabel('Or one exam topic'),
     el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } }, 'The speaking part offers you two of these.'),
     topicGrid(topics, [...vocabItems, ...verbItems]),
@@ -119,9 +136,9 @@ function nextAction(due, current) {
   const waiting = due.recv + due.prod;
   if (waiting > 0) {
     return {
-      label: `Review ${plural(waiting, 'card')}`,
+      label: `Review ${plural(waiting, 'word')}`,
       href: '#/session',
-      note: `${due.recv} to understand · ${due.prod} to say`,
+      note: `${due.recv} to understand · ${due.prod} to say · twelve at a time`,
     };
   }
 

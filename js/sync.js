@@ -27,8 +27,23 @@ async function request(settings, path, init = {}) {
     ...init,
     headers: { 'content-type': 'application/json', ...(init.headers ?? {}) },
   });
-  if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+  if (!response.ok) {
+    const error = new Error(`${response.status} ${response.statusText}`);
+    error.status = response.status;
+    throw error;
+  }
   return response.json();
+}
+
+/**
+ * Is this failure worth retrying, or will it fail identically forever?
+ *
+ * A 404 means the Worker has no route for that payload — retrying it next sync,
+ * and every sync after that, cannot succeed. Anything else (offline, 5xx, a
+ * timeout) is worth keeping queued.
+ */
+function isPermanent(error) {
+  return error.status === 400 || error.status === 404 || error.status === 405 || error.status === 422;
 }
 
 /**
@@ -45,53 +60,83 @@ export async function syncNow(settings) {
     return { ok: false, message: lastMessage };
   }
 
+  const sent = [];
+  let dropped = 0;
+
   try {
     const outbox = await listOutbox();
-    const sent = [];
 
     for (const entry of outbox) {
-      const { payload } = entry;
-      if (payload.kind === 'recording') {
-        const record = await getRecording(payload.id);
-        // The blob may be gone if the device cleared storage; skip rather than fail.
-        if (!record?.blob) {
-          sent.push(entry.id);
-          continue;
-        }
-        if (record.blob.size > MAX_UPLOAD_BYTES) {
-          // Metadata still syncs so the partner knows it exists.
-          await request(settings, '/submission', {
-            method: 'POST',
-            body: JSON.stringify({ ...payload, oversize: true }),
-          });
-          sent.push(entry.id);
-          continue;
-        }
-        const url = new URL(`${settings.workerUrl}/submission/${payload.id}`);
-        if (settings.secret) url.searchParams.set('k', settings.secret);
-        const response = await fetch(url, {
-          method: 'PUT',
-          headers: { 'content-type': record.mime || 'audio/mp4', 'x-meta': encodeURIComponent(JSON.stringify(payload)) },
-          body: record.blob,
-        });
-        if (!response.ok) throw new Error(`${response.status} on submission`);
+      try {
+        await send(settings, entry);
         sent.push(entry.id);
-        continue;
+      } catch (error) {
+        // One payload the Worker will never accept must not wedge the queue.
+        // The outbox is only cleared *after* the loop, so a permanent failure
+        // here used to mean nothing was ever cleared again — every attempt,
+        // review and recording stayed stuck behind it, and the shared
+        // scoreboard silently stopped updating for good.
+        if (!isPermanent(error)) throw error;
+        sent.push(entry.id);
+        dropped += 1;
       }
-
-      await request(settings, `/${payload.kind}`, { method: 'POST', body: JSON.stringify(payload) });
-      sent.push(entry.id);
     }
 
     if (sent.length > 0) await clearOutbox(sent);
 
     const state = await request(settings, '/state');
     lastSync = new Date();
-    lastMessage = `Synced ${sent.length} ${sent.length === 1 ? 'change' : 'changes'} at ${lastSync.toLocaleTimeString()}.`;
+    const note = dropped > 0 ? ` (${dropped} the Worker could not accept were discarded)` : '';
+    lastMessage = `Synced ${sent.length} ${sent.length === 1 ? 'change' : 'changes'} at ${lastSync.toLocaleTimeString()}.${note}`;
     return { ok: true, message: lastMessage, state };
   } catch (error) {
+    // Whatever did get through is still cleared, so a mid-way network drop
+    // does not resend it on the next pass.
+    if (sent.length > 0) await clearOutbox(sent).catch(() => {});
     lastMessage = `Could not reach the Worker (${error.message}). Everything is saved locally.`;
     return { ok: false, message: lastMessage };
+  }
+}
+
+/**
+ * Push one outbox entry.
+ *
+ * Throws with `.status` set when the Worker refuses it, so syncNow can tell a
+ * payload that will never be accepted from a network blip worth retrying.
+ */
+async function send(settings, entry) {
+  const { payload } = entry;
+
+  if (payload.kind !== 'recording') {
+    await request(settings, `/${payload.kind}`, { method: 'POST', body: JSON.stringify(payload) });
+    return;
+  }
+
+  const record = await getRecording(payload.id);
+  // The blob may be gone if the device cleared storage; drop it rather than
+  // retrying an upload with nothing to upload.
+  if (!record?.blob) return;
+
+  if (record.blob.size > MAX_UPLOAD_BYTES) {
+    // Metadata still syncs so the partner knows it exists.
+    await request(settings, '/submission', {
+      method: 'POST',
+      body: JSON.stringify({ ...payload, oversize: true }),
+    });
+    return;
+  }
+
+  const url = new URL(`${settings.workerUrl}/submission/${payload.id}`);
+  if (settings.secret) url.searchParams.set('k', settings.secret);
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: { 'content-type': record.mime || 'audio/mp4', 'x-meta': encodeURIComponent(JSON.stringify(payload)) },
+    body: record.blob,
+  });
+  if (!response.ok) {
+    const error = new Error(`${response.status} on submission`);
+    error.status = response.status;
+    throw error;
   }
 }
 

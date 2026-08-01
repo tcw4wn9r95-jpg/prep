@@ -16,7 +16,7 @@
 import { el, fill, screenHead, button, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
-import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, POINTS, touchStreak } from '../store.js';
+import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, POINTS, touchStreak } from '../store.js';
 import { requestExplanation } from '../sync.js';
 import { buildCard } from './cards.js';
 import { INPUTS } from './inputs.js';
@@ -273,16 +273,33 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     queue = [...queue.slice(0, at), { ...entry, retry: true }, ...queue.slice(at)];
   }
 
+  /**
+   * File what was practised, once.
+   *
+   * Called both when the session finishes and when the screen is torn down,
+   * because sessions get abandoned halfway far more often than they get
+   * completed — a phone rings, a tab closes. Every individual answer is
+   * already saved by `recordLearnResult`, so losing the session row would mean
+   * the boxes moved but the scoreboard never heard about it.
+   */
+  let logged = false;
+  function logSession() {
+    if (logged || answeredCount === 0) return;
+    logged = true;
+    recordLearnSession(settings.playerId, { correct: correctCount, answered: answeredCount });
+  }
+
   function finish() {
     destroyClip();
     progressFill.style.width = '100%';
     progressFill.classList.add('progress__fill--ok');
     touchStreak(settings.playerId);
+    logSession();
 
     const pct = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100);
     const done = new Amelie({ size: 'lg', bubble: true });
     done.el.classList.add('amelie--stack', 'amelie--hero');
-    done.celebrate(AMELIE_LINES.setDone);
+    done.celebrate(AMELIE_LINES.learnSetDone);
 
     fill(
       body,
@@ -309,6 +326,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     destroy() {
       destroyClip();
       reference.destroy();
+      logSession();
     },
   };
 }

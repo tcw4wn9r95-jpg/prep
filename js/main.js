@@ -14,6 +14,7 @@ import * as journey from './screens/journey.js';
 import * as learn from './screens/learn.js';
 import * as session from './screens/session.js';
 import * as reference from './screens/reference.js';
+import * as pairs from './screens/pairs.js';
 import * as vocab from './screens/vocab.js';
 import * as verbs from './screens/verbs.js';
 import * as phrases from './screens/phrases.js';
@@ -31,6 +32,7 @@ const ROUTES = {
   learn,
   session,
   reference,
+  pairs,
   vocab,
   verbs,
   phrases,

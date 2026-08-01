@@ -171,7 +171,7 @@ function assess({ settings, attempts, recordings, reviews, due, topics, decks })
       done: dueTotal === 0 && newLeft === 0,
       note:
         dueTotal > 0
-          ? `${plural(dueTotal, 'card')} due`
+          ? `${plural(dueTotal, 'word')} to review · tap to start`
           : newLeft > 0
             ? `${newLeft} new words to meet · ${totalWords} in the decks`
             : 'Done for today',
@@ -230,9 +230,9 @@ function nextAction(state, partner) {
   if (step.id === 'words') {
     return state.dueTotal > 0
       ? {
-          label: `Study ${plural(state.dueTotal, 'card')}`,
+          label: `Review ${plural(state.dueTotal, 'word')}`,
           href: '#/session',
-          why: `${plural(state.dueTotal, 'card')} are due. These are the ones about to fade, so they come first.`,
+          why: `${plural(state.dueTotal, 'word')} you have already met are due again — these are the ones about to fade, so they come first. You will get them a dozen at a time.`,
         }
       : {
           label: `Learn ${state.newLeft} new words`,
