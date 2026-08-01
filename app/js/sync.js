@@ -45,12 +45,34 @@ async function request(settings, path, init = {}) {
     // The Worker answers errors as JSON. Reporting its sentence beats
     // reporting a status code the reader then has to look up.
     const body = await response.json().catch(() => null);
-    const error = new Error(body?.error ?? `${response.status} ${response.statusText}`);
+    const error = new Error(explainFailure(response, body));
     error.status = response.status;
     error.body = body;
     throw error;
   }
   return response.json();
+}
+
+/**
+ * The Worker's own words, or a repair instruction where its words are too
+ * terse to act on.
+ *
+ * A misconfigured secret is the one failure here that is both easy to hit and
+ * impossible to diagnose from what the Worker says: "bad secret" does not tell
+ * you which of the two values to change, or where either one lives. It also
+ * breaks every Worker feature at once — scores, explanations, episode
+ * questions — so it is worth spelling out wherever it surfaces.
+ */
+function explainFailure(response, body) {
+  const said = body?.error;
+  if (response.status === 401) {
+    return 'the Worker rejected the shared secret. Settings → Duel → Shared secret must match the Worker\'s SHARED_SECRET exactly, and be the same on both phones.';
+  }
+  if (response.status === 503 && /SHARED_SECRET/i.test(said ?? '')) {
+    return 'the Worker refuses every request until a secret is set on it: npx wrangler secret put SHARED_SECRET';
+  }
+  // HTTP/2 drops the reason phrase, so a bare status would read as "401 ".
+  return said ?? `${response.status} ${response.statusText}`.trim();
 }
 
 /**
