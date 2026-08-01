@@ -23,13 +23,31 @@ const MAX_UPLOAD_BYTES = 20 * 1024 * 1024;
 async function request(settings, path, init = {}) {
   const url = new URL(settings.workerUrl + path);
   if (settings.secret) url.searchParams.set('k', settings.secret);
-  const response = await fetch(url, {
-    ...init,
-    headers: { 'content-type': 'application/json', ...(init.headers ?? {}) },
-  });
+
+  let response;
+  try {
+    response = await fetch(url, {
+      ...init,
+      headers: { 'content-type': 'application/json', ...(init.headers ?? {}) },
+    });
+  } catch (cause) {
+    // fetch only rejects when the request never completed: no network, a bad
+    // Worker URL, or a response the browser refused to hand over because it
+    // carried no CORS header. The browser's own text for this is unhelpful
+    // ("Load failed", "Failed to fetch"), so say what it actually means.
+    const error = new Error('could not reach the Worker — check the Worker URL in Settings, and that it is deployed');
+    error.network = true;
+    error.cause = cause;
+    throw error;
+  }
+
   if (!response.ok) {
-    const error = new Error(`${response.status} ${response.statusText}`);
+    // The Worker answers errors as JSON. Reporting its sentence beats
+    // reporting a status code the reader then has to look up.
+    const body = await response.json().catch(() => null);
+    const error = new Error(body?.error ?? `${response.status} ${response.statusText}`);
     error.status = response.status;
+    error.body = body;
     throw error;
   }
   return response.json();
@@ -222,12 +240,17 @@ export async function requestEpisodeQuestions(settings, episode) {
         transcriptUrl: episode.transcriptUrl ?? '',
         audioSrc: episode.audioSrc ?? '',
         feedUrl: episode.feedUrl ?? '',
+        hasTranscript: episode.hasTranscript,
         level: episode.level ?? '',
       }),
     });
     return { ok: true, questions: body.questions ?? [], via: body.via, cached: Boolean(body.cached) };
   } catch (error) {
-    return { ok: false, message: `Could not get questions (${error.message}).` };
+    // Not a failure of this app: INLL simply published no transcript for this
+    // episode. Flagged so the screen can say that plainly instead of offering
+    // a retry that cannot succeed.
+    if (error.body?.noTranscript) return { ok: false, noTranscript: true, message: error.message };
+    return { ok: false, message: error.message };
   }
 }
 

@@ -109,6 +109,20 @@ function levelFromTitle(title) {
   return match[1].toUpperCase().replace(/\s*-\s*/, '-');
 }
 
+/**
+ * Does this item carry a transcript inside its own <description>?
+ *
+ * INLL does not use <podcast:transcript>; roughly half its episodes paste the
+ * transcript into the description after a literal "Transkript:" marker. Only
+ * the presence of the marker is read here, and only a boolean leaves this
+ * function — the text itself is never extracted, stored or shipped. The Worker
+ * reads it live at question time.
+ */
+function hasEmbeddedTranscript(block) {
+  const description = tagText(block, 'description');
+  return description !== null && /transkript\s*:/i.test(description);
+}
+
 /** "512", "8:32" and "1:08:32" all appear in the wild. */
 function durationSeconds(raw) {
   if (!raw) return null;
@@ -166,6 +180,12 @@ function parseItem(block) {
     durationSec: durationSeconds(tagText(block, 'itunes:duration')),
     audioSrc,
     transcriptUrl: preferred?.url ?? null,
+    // Whether a transcript exists at all, by either route — a boolean, never
+    // the text. This is what lets the app say "no transcript for this one"
+    // before asking, instead of offering a button that fails a paid API call
+    // later. Storing the answer, not the content, keeps the metadata-only
+    // rule in the header intact.
+    hasTranscript: Boolean(preferred?.url) || hasEmbeddedTranscript(block),
     sourceUrl: tagText(block, 'link') ?? SHOW_URL,
     source: SOURCE,
     attribution: ATTRIBUTION,
@@ -209,14 +229,16 @@ async function main() {
   // what the feed actually contains, not what survived our rules.
   const levels = new Map();
   for (const episode of all) levels.set(episode.level ?? 'untagged', (levels.get(episode.level ?? 'untagged') ?? 0) + 1);
-  const withTranscript = all.filter((episode) => episode.transcriptUrl).length;
+  const withTaggedUrl = all.filter((episode) => episode.transcriptUrl).length;
+  const withTranscript = all.filter((episode) => episode.hasTranscript).length;
 
   console.log(`feed: ${feedUrl}`);
   console.log(`  ${all.length} episodes with a playable enclosure`);
   console.log(`  levels: ${[...levels].sort().map(([level, count]) => `${level}:${count}`).join(' ')}`);
-  console.log(`  transcripts published in the feed: ${withTranscript} of ${all.length}`);
-  if (withTranscript === 0) {
-    console.log('  → no feed transcripts, so questions will fall back to Whisper in the Worker.');
+  console.log(`  transcripts: ${withTranscript} of ${all.length} (${withTaggedUrl} via <podcast:transcript>, ${withTranscript - withTaggedUrl} embedded in <description>)`);
+  if (withTranscript < all.length) {
+    console.log(`  → ${all.length - withTranscript} episodes have no transcript at all. The app marks those`);
+    console.log('    as such rather than offering questions, unless Whisper is configured in the Worker.');
     console.log('    Luxembourgish ASR is poor; sample the output before trusting it.');
   }
 
@@ -257,7 +279,11 @@ async function main() {
         'only at the moment it generates questions. Kept outside content/items/ because there ' +
         'is no authored content here to validate — the only Luxembourgish is INLL\'s own ' +
         'episode titles, cited rather than written.',
-      counts: { episodes: kept.length, withTranscript: kept.filter((episode) => episode.transcriptUrl).length },
+      counts: {
+        episodes: kept.length,
+        withTranscript: kept.filter((episode) => episode.hasTranscript).length,
+        withTranscriptUrl: kept.filter((episode) => episode.transcriptUrl).length,
+      },
     },
     items: kept,
   };

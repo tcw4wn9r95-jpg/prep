@@ -44,12 +44,17 @@ const MIME = {
 };
 
 /**
- * Two episodes, served from memory when `app/data/podcasts.json` is absent.
+ * Three episodes, always served from memory in place of `app/data/podcasts.json`.
  *
- * That file is built from INLL's live feed by `npm run fetch:podcasts` and is
- * not in the repo, so the walkthrough would otherwise have nothing to walk.
+ * That file is built from INLL's live feed by `npm run fetch:podcasts`, so its
+ * contents change every week. The walkthrough overrides it unconditionally —
+ * asserting on a real 200-row catalogue would make these steps fail whenever
+ * INLL published, which is a fact about the feed rather than about the app.
  * Serving a fixture rather than writing one keeps a fake episode list from ever
  * landing on disk, where it could be committed and deployed as if it were real.
+ *
+ * `hasTranscript` is the interesting axis: INLL publishes one for about half
+ * its episodes, and the screen has to offer questions only for those.
  */
 const PODCAST_FIXTURE = {
   meta: { source: 'Poterkëscht vum INLL', attribution: 'Institut national des langues Luxembourg (INLL)' },
@@ -63,6 +68,7 @@ const PODCAST_FIXTURE = {
       durationSec: 512,
       audioSrc: 'https://cdn.example/ep1.mp3',
       transcriptUrl: 'https://cdn.example/ep1.txt',
+      hasTranscript: true,
       sourceUrl: 'https://www.inll.lu/',
       source: 'Poterkëscht vum INLL',
       attribution: 'Institut national des langues Luxembourg (INLL)',
@@ -76,7 +82,25 @@ const PODCAST_FIXTURE = {
       publishedAt: '2026-05-21',
       durationSec: 640,
       audioSrc: 'https://cdn.example/ep2.mp3',
+      // No tagged url, but INLL embedded one in the description: the index
+      // records that as answerable, and the Worker reads it live.
       transcriptUrl: null,
+      hasTranscript: true,
+      sourceUrl: 'https://www.inll.lu/',
+      source: 'Poterkëscht vum INLL',
+      attribution: 'Institut national des langues Luxembourg (INLL)',
+      licence: 'All rights reserved — streamed from the publisher, never redistributed',
+    },
+    {
+      id: 'pod-test0003',
+      type: 'podcast-episode',
+      level: 'B1',
+      episodeTitle: 'Eng emotional Achterbunnsfaart (B1)',
+      publishedAt: '2026-05-28',
+      durationSec: 700,
+      audioSrc: 'https://cdn.example/ep3.mp3',
+      transcriptUrl: null,
+      hasTranscript: false,
       sourceUrl: 'https://www.inll.lu/',
       source: 'Poterkëscht vum INLL',
       attribution: 'Institut national des langues Luxembourg (INLL)',
@@ -90,7 +114,7 @@ function serve(root) {
     const url = new URL(request.url, 'http://localhost');
     let filePath = path.join(root, decodeURIComponent(url.pathname));
 
-    if (url.pathname === '/data/podcasts.json' && !fs.existsSync(filePath)) {
+    if (url.pathname === '/data/podcasts.json') {
       response.writeHead(200, { 'content-type': MIME['.json'] });
       response.end(JSON.stringify(PODCAST_FIXTURE));
       return;
@@ -903,10 +927,31 @@ async function main() {
     await openFresh('#/podcasts');
     await page.waitForSelector('a[href^="#/podcasts/"]', { timeout: 5000 });
     const rows = await page.locator('a[href^="#/podcasts/"]').count();
-    if (rows !== 2) throw new Error(`expected the 2 fixture episodes, found ${rows}`);
+    if (rows !== 3) throw new Error(`expected the 3 fixture episodes, found ${rows}`);
     const levels = (await page.locator('#screen .meter__label').allTextContents()).map((text) => text.trim());
     if (!levels.includes('A2') || !levels.includes('B1')) throw new Error(`episodes not grouped by level: ${levels.join(', ')}`);
+
+    // Whether an episode can ask questions is a reason to pick it, so it has
+    // to be legible from the list — exactly one fixture episode lacks a
+    // transcript.
+    const listenOnly = await page.locator('a[href^="#/podcasts/"] .chip', { hasText: 'listen only' }).count();
+    if (listenOnly !== 1) throw new Error(`expected 1 "listen only" episode marked in the list, found ${listenOnly}`);
     await shot('25-podcasts');
+  });
+
+  await step('an episode with no transcript says so instead of offering questions', async () => {
+    // INLL publishes a transcript for about half its episodes. Offering a
+    // button that cannot work would read as a bug in the app rather than as a
+    // property of the source.
+    await openFresh('#/podcasts/pod-test0003');
+    await page.waitForSelector('#screen .btn--primary', { timeout: 5000 });
+    if (await page.getByRole('button', { name: 'Ask me questions' }).count()) {
+      throw new Error('an episode with no transcript still offers questions');
+    }
+    if (!(await page.locator('.card__title', { hasText: 'Listening only' }).first().isVisible())) {
+      throw new Error('the screen does not explain why there are no questions');
+    }
+    await shot('25b-podcast-listen-only');
   });
 
   await step('an episode streams from the publisher, and not before it is asked for', async () => {

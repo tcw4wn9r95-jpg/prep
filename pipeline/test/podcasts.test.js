@@ -83,6 +83,36 @@ test('podcasts: a plain-text transcript is preferred over other formats', () => 
   assert.equal(episode.transcriptUrl, 'https://cdn.example/y.txt');
 });
 
+test('podcasts: a transcript is detected by either route, and only ever as a boolean', () => {
+  // INLL uses neither <podcast:transcript> nor a uniform layout: about half
+  // its episodes paste the transcript into <description> after "Transkript:".
+  // Both routes have to count, or half the catalogue is wrongly marked
+  // unanswerable.
+  const xml = `<rss><channel>
+    <item><title>Tagged (A2)</title><guid>a</guid>
+      <enclosure url="https://cdn.example/a.mp3" type="audio/mpeg"/>
+      <podcast:transcript url="https://cdn.example/a.txt" type="text/plain"/></item>
+    <item><title>Embedded (A2)</title><guid>b</guid>
+      <description><![CDATA[<p>Intro</p><p>Transkript:</p><p>A: Moien!</p>]]></description>
+      <enclosure url="https://cdn.example/b.mp3" type="audio/mpeg"/></item>
+    <item><title>Neither (A2)</title><guid>c</guid>
+      <description><![CDATA[<p>Just a summary of the episode.</p>]]></description>
+      <enclosure url="https://cdn.example/c.mp3" type="audio/mpeg"/></item>
+  </channel></rss>`;
+  const [tagged, embedded, neither] = podcasts.parseFeed(xml);
+
+  assert.equal(tagged.hasTranscript, true, 'a <podcast:transcript> url counts');
+  assert.equal(embedded.hasTranscript, true, 'a "Transkript:" marker in the description counts');
+  assert.equal(neither.hasTranscript, false, 'no marker and no tag is a definite no');
+
+  // The point of the flag is to answer the question without carrying the
+  // answer's content. A string here would be transcript text smuggled into a
+  // file that promises metadata only.
+  for (const episode of [tagged, embedded, neither]) {
+    assert.equal(typeof episode.hasTranscript, 'boolean', `${episode.episodeTitle}: the flag is a boolean, never the text`);
+  }
+});
+
 /* ------------------------------------------------- the shipped-file guard */
 
 const SHIPPED = path.join(ROOT, 'app', 'data', 'podcasts.json');
@@ -115,6 +145,8 @@ test('podcasts: the shipped index carries metadata only, never content', (t) => 
     // A relative path would mean a file got mirrored into the repo.
     assert.ok(!episode.audioSrc.startsWith('assets/'), `${episode.id}: episode audio must not be mirrored`);
     assert.ok(episode.attribution && episode.licence, `${episode.id}: every row states who owns it`);
+    // The flag records whether a transcript exists, never any of its text.
+    assert.equal(typeof episode.hasTranscript, 'boolean', `${episode.id}: hasTranscript must stay a boolean`);
   }
 });
 

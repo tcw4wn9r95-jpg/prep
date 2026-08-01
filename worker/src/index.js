@@ -34,8 +34,12 @@ export default {
 
     if (request.method === 'OPTIONS') return preflight(env);
 
+    // withCors, not a bare return: an auth failure is still a response the
+    // browser has to be allowed to read. Without the header the fetch rejects
+    // with an opaque TypeError ("Load failed" in Safari) and the app cannot
+    // tell a misconfigured secret from the network being down.
     const auth = checkSecret(url, env);
-    if (auth) return auth;
+    if (auth) return withCors(auth, env);
 
     try {
       return withCors(await route(request, url, env), env);
@@ -458,6 +462,11 @@ async function postEpisodeQuestions(request, env) {
   const transcriptUrl = String(body.transcriptUrl ?? '').trim();
   const audioSrc = String(body.audioSrc ?? '').trim();
   const feedUrl = String(body.feedUrl ?? '').trim();
+  // The index already knows, from build time, whether a transcript exists at
+  // all. `false` is a definite no, so the feed fetch is skipped entirely
+  // rather than spent proving it. Undefined means an older index that never
+  // recorded the answer — then it is still worth looking.
+  const hasTranscript = body.hasTranscript;
   if (!episodeId) return json({ error: 'missing "episodeId"' }, 400);
   if (!transcriptUrl && !audioSrc) return json({ error: 'need a transcriptUrl or an audioSrc' }, 400);
 
@@ -474,7 +483,7 @@ async function postEpisodeQuestions(request, env) {
     if (transcriptUrl) {
       transcript = await fetchTranscript(transcriptUrl);
       via = 'published';
-    } else if (feedUrl && audioSrc) {
+    } else if (feedUrl && audioSrc && hasTranscript !== false) {
       // INLL doesn't tag most episodes with <podcast:transcript>, but embeds
       // the transcript in the item's own <description> instead — see the
       // note in pipeline/fetch-podcasts.js. Worth a live look before paying
@@ -486,7 +495,14 @@ async function postEpisodeQuestions(request, env) {
     if (!transcript) {
       if (!audioSrc) return json({ error: 'no transcript available and no audio to transcribe' }, 422);
       if (!env.OPENAI_API_KEY) {
-        return json({ error: 'this episode publishes no transcript, and Whisper is not configured' }, 503);
+        // 422, not 503: for this episode there is nothing to read and no
+        // configuration that would change that today. The app distinguishes
+        // the two — `noTranscript` means "not this episode", where a 503
+        // would mean "not this Worker, yet".
+        return json(
+          { error: 'INLL publishes no transcript for this episode, so there is nothing to build questions from.', noTranscript: true },
+          422,
+        );
       }
       transcript = await transcribeEpisode(env, audioSrc);
       via = 'whisper';
@@ -547,13 +563,18 @@ async function fetchTranscriptFromFeedDescription(feedUrl, audioSrc) {
   if (!response.ok) throw new Error(`${response.status} fetching the feed`);
   const xml = await response.text();
 
-  const item = [...xml.matchAll(/<item(?:\s[^>]*)?>([\s\S]*?)<\/item>/gi)]
-    .map((match) => match[1])
-    .find((block) => {
-      const enclosure = block.match(/<enclosure\s[^>]*url="([^"]*)"/i);
-      return enclosure?.[1] === audioSrc;
-    });
-  if (!item) return null;
+  // Located by two native string searches rather than by regex-scanning the
+  // whole document. The feed is ~1.3 MB, and building match objects for all
+  // 200+ <item> blocks to reach one of them measured ~2.3x the CPU of this
+  // on a dev machine. Neither is near a Worker's budget on that measurement,
+  // so this is headroom rather than a fix: a CPU kill is not catchable, and
+  // would reach the browser as a failed fetch with no CORS headers.
+  const at = xml.indexOf(audioSrc);
+  if (at === -1) return null;
+  const start = xml.lastIndexOf('<item', at);
+  const end = xml.indexOf('</item>', at);
+  if (start === -1 || end === -1) return null;
+  const item = xml.slice(start, end);
 
   const descMatch = item.match(/<description(?:\s[^>]*)?>([\s\S]*?)<\/description>/i);
   if (!descMatch) return null;
