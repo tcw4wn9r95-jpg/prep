@@ -66,6 +66,9 @@ const SHELL = [
   // Episode metadata only. The audio itself is cross-origin and the fetch
   // handler below returns early for that, so episodes are never stored.
   'data/podcasts.json',
+  // version.json deliberately does NOT belong here, and not under data/
+  // either: that is what lets Settings answer "is this the latest deploy?"
+  // truthfully — see loadDeployInfo() in js/content.js.
   'assets/icon.svg',
   'assets/icon-180.png',
 ];

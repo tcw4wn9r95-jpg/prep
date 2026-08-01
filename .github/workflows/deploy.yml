@@ -17,6 +17,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Write deploy info
+        # Settings reads this to answer "is this actually the latest deploy?".
+        # Lives outside app/data/ and out of sw.js's precache list on purpose —
+        # see the comment on loadDeployInfo() in app/js/content.js.
+        run: |
+          cat > app/version.json <<EOF
+          {
+            "sha": "${{ github.sha }}",
+            "shortSha": "${GITHUB_SHA::7}",
+            "builtAt": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "runNumber": ${{ github.run_number }}
+          }
+          EOF
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
