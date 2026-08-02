@@ -46,7 +46,7 @@ export async function render(root, { params, settings, navigate }) {
   root.append(
     screenHead({
       title: set.title_en,
-      sub: `${questions.length} questions · B1`,
+      sub: `${questions.length} questions · A1–B1`,
       back: '#/journey',
       trailing: el('span', { class: 'chip' }, topicIcon(set.topic)),
     }),
@@ -111,13 +111,14 @@ export async function render(root, { params, settings, navigate }) {
     // --- transcript, always available
     const transcriptText = el('p', { class: 'transcript' });
     renderTranscript(transcriptText, question, false);
-    const transcriptWrap = el('div', { hidden: !settings.transcriptDefault }, transcriptText);
+    const showTranscript = question.kind === 'comprehension' || settings.transcriptDefault;
+    const transcriptWrap = el('div', { hidden: !showTranscript }, transcriptText);
     const transcriptToggle = el(
       'button',
       {
         type: 'button',
         class: 'btn btn--ghost',
-        'aria-expanded': settings.transcriptDefault ? 'true' : 'false',
+        'aria-expanded': showTranscript ? 'true' : 'false',
         onclick: () => {
           transcriptWrap.hidden = !transcriptWrap.hidden;
           transcriptToggle.setAttribute('aria-expanded', transcriptWrap.hidden ? 'false' : 'true');
@@ -126,9 +127,10 @@ export async function render(root, { params, settings, navigate }) {
       'Transcript',
     );
 
-    // --- options
+    // --- options (comprehension uses English options, everything else Luxembourgish)
+    const optionsList = question.options_en ?? question.options_lb;
     const optionsEl = el('div', { class: 'options' });
-    const optionButtons = question.options_lb.map((option, optionIndex) =>
+    const optionButtons = optionsList.map((option, optionIndex) =>
       el(
         'button',
         {
@@ -185,7 +187,9 @@ export async function render(root, { params, settings, navigate }) {
       el(
         'div',
         { class: 'stack' },
-        el('p', { class: 'screen__sub' }, `Exercise ${question.exercise.n} · ${question.exercise.title_en}`),
+        el('p', { class: 'screen__sub' }, question.exercise.n === 0
+          ? `A1 · ${question.exercise.title_en}`
+          : `Exercise ${question.exercise.n} · ${question.exercise.title_en}`),
         player,
         el('div', { class: 'row', style: { justifyContent: 'flex-end' } }, transcriptToggle),
         transcriptWrap,
@@ -193,8 +197,10 @@ export async function render(root, { params, settings, navigate }) {
       el(
         'div',
         { class: 'stack' },
-        el('h2', { class: 'card__title' }, question.question_lb),
-        el('p', { class: 'screen__sub' }, question.question_en),
+        question.question_lb
+          ? el('h2', { class: 'card__title' }, question.question_lb)
+          : null,
+        el('p', { class: question.question_lb ? 'screen__sub' : 'card__title' }, question.question_en),
         optionsEl,
       ),
       amelie.el,

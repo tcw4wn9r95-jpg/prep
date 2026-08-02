@@ -12,7 +12,8 @@
 
 import { el, fill, screenHead, button, formatClock } from '../dom.js';
 import { Amelie, AMELIE_LINES } from '../amelie.js';
-import { interviewForTopic, loadInterviews, loadImages, topicIcon, modelInterviewsForTopic, loadModelAnswers } from '../content.js';
+import { Clip, unlock } from '../audio.js';
+import { interviewForTopic, loadInterviews, loadImages, loadPhrases, topicIcon, modelInterviewsForTopic, loadModelAnswers } from '../content.js';
 import { Recorder, isSupported, unsupportedReason } from '../recorder.js';
 import { saveRecording, touchStreak, otherPlayer, POINTS, CRITERIA, getMachineFeedback, saveMachineFeedback } from '../store.js';
 import { requestMachineFeedback } from '../sync.js';
@@ -25,6 +26,7 @@ export async function render(root, { params, settings, navigate }) {
   const mode = params[1] ?? null;
 
   if (!topicId) return renderChooser(root, { settings, navigate });
+  if (topicId === 'basics') return renderBasics(root, { settings, navigate });
   if (mode === 'image') return renderImageTask(root, { topicId, settings, navigate });
   return renderInterview(root, { topicId, settings, navigate });
 }
@@ -33,18 +35,37 @@ export async function render(root, { params, settings, navigate }) {
 
 async function renderChooser(root, { settings, navigate }) {
   const interviews = await loadInterviews();
-  // The exam offers exactly two topics and you pick one. Same here.
   const offered = pickTwo(interviews);
 
   const amelie = new Amelie({ size: 'md', bubble: true });
-  amelie.say('The examiners offer two topics and you choose one. Pick the one you can say most about.', 'idle');
+  amelie.say('Start with the basics — listen and repeat short sentences. Move to the interview when you are ready.', 'idle');
 
   root.append(
-    screenHead({ title: 'Speaking', sub: 'Part 2a · interview · A2', back: '#/journey' }),
+    screenHead({ title: 'Speaking', sub: 'Practice saying things in Luxembourgish', back: '#/journey' }),
     el('div', { class: 'card' }, amelie.el),
+
+    el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, 'Start here'),
+    el(
+      'a',
+      { class: 'card', href: '#/speaking/basics', style: { display: 'block', textDecoration: 'none', color: 'inherit' } },
+      el(
+        'div',
+        { class: 'row' },
+        el('span', { style: { fontSize: '28px' } }, '🗣️'),
+        el(
+          'div',
+          { class: 'spacer' },
+          el('p', { class: 'card__title' }, 'Listen & repeat'),
+          el('p', { class: 'card__note' }, 'Simple phrases with native audio — no recording, just practice saying them. A1.'),
+        ),
+      ),
+    ),
+
+    el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, 'Exam format'),
     el(
       'div',
-      { class: 'stack', style: { marginBlockStart: 'var(--s4)' } },
+      { class: 'stack', style: { marginBlockStart: 'var(--s3)' } },
+      el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s2)' } }, 'Two topics are offered, you pick one. Record your answer for your partner to score.'),
       ...offered.map((item) =>
         el(
           'a',
@@ -53,7 +74,7 @@ async function renderChooser(root, { settings, navigate }) {
             'div',
             {},
             el('p', { class: 'card__title' }, item.title_lb),
-            el('p', { class: 'card__note' }, `${item.title_en} · ${item.phases.reduce((n, p) => n + p.questions.length, 0)} questions`),
+            el('p', { class: 'card__note' }, `${item.title_en} · ${item.phases.reduce((n, p) => n + p.questions.length, 0)} questions · A2`),
           )),
         ),
       ),
@@ -63,7 +84,7 @@ async function renderChooser(root, { settings, navigate }) {
         'a',
         { class: 'card', href: '#/speaking/image/image', style: { display: 'block', textDecoration: 'none', color: 'inherit' } },
         el('p', { class: 'card__title' }, 'Part 2b · describe an image'),
-        el('p', { class: 'card__note' }, 'Three images are offered, you describe one.'),
+        el('p', { class: 'card__note' }, 'Three images are offered, you describe one. A2.'),
       ),
     ),
   );
@@ -73,6 +94,121 @@ async function renderChooser(root, { settings, navigate }) {
 function pickTwo(items) {
   const shuffled = [...items].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, 2);
+}
+
+/* --------------------------------------------------- listen & repeat (A1) */
+
+const BASICS_COUNT = 8;
+
+async function renderBasics(root, { settings, navigate }) {
+  const phrases = await loadPhrases();
+  const withAudio = phrases.filter((p) => p.example?.audioId);
+  const picked = [...withAudio].sort(() => Math.random() - 0.5).slice(0, BASICS_COUNT);
+
+  if (picked.length === 0) {
+    root.append(
+      screenHead({ title: 'Listen & repeat', back: '#/speaking' }),
+      el('div', { class: 'empty' }, el('p', {}, 'No phrases with audio are available yet.')),
+    );
+    return { destroy() {} };
+  }
+
+  let index = 0;
+  let clip = null;
+  const amelie = new Amelie({ size: 'sm', bubble: true });
+  const progressFill = el('div', { class: 'progress__fill', style: { width: '0%' } });
+  const body = el('div', { class: 'stack stack--lg' });
+
+  root.append(
+    screenHead({ title: 'Listen & repeat', sub: `${picked.length} phrases · A1`, back: '#/speaking' }),
+    el('div', { class: 'progress', role: 'progressbar', 'aria-label': 'Progress' }, progressFill),
+    body,
+  );
+
+  function destroyClip() {
+    if (clip) { clip.destroy(); clip = null; }
+  }
+
+  function renderPhrase() {
+    destroyClip();
+    const phrase = picked[index];
+    clip = new Clip(phrase.example.audioId);
+
+    progressFill.style.width = `${(index / picked.length) * 100}%`;
+
+    const playBtn = el(
+      'button',
+      {
+        type: 'button',
+        class: 'btn btn--primary btn--block',
+        onclick: async () => {
+          unlock();
+          await clip.play();
+        },
+      },
+      'Play again',
+    );
+
+    const next = button(index === picked.length - 1 ? 'Finish' : 'Next phrase', {
+      variant: 'secondary',
+      class: 'btn btn--secondary btn--block',
+      onclick: () => {
+        if (index === picked.length - 1) finish();
+        else { index += 1; renderPhrase(); }
+      },
+    });
+
+    amelie.say(index === 0
+      ? 'Listen to the native speaker, then say it yourself. No recording — just practise.'
+      : 'Listen and repeat. Take your time.',
+    'idle');
+
+    fill(
+      body,
+      el('p', { class: 'screen__sub' }, `${index + 1} / ${picked.length}`),
+      el(
+        'div',
+        { class: 'card', style: { textAlign: 'center', paddingBlock: 'var(--s5)' } },
+        el('p', { class: 'card__title', style: { fontSize: 'var(--size-lg)', lineHeight: 'var(--lh-snug)' } }, phrase.lb),
+        el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s3)', fontSize: 'var(--size-base)' } }, phrase.en),
+      ),
+      playBtn,
+      amelie.el,
+      next,
+    );
+
+    clip.play().catch(() => {});
+  }
+
+  function finish() {
+    destroyClip();
+    progressFill.style.width = '100%';
+    progressFill.classList.add('progress__fill--ok');
+
+    const done = new Amelie({ size: 'lg', bubble: true });
+    done.el.classList.add('amelie--stack', 'amelie--hero');
+    done.celebrate('Nice work! Those phrases will come back in the drills — you will recognise them.');
+
+    fill(
+      body,
+      el(
+        'div',
+        { class: 'stack stack--lg', style: { paddingBlockStart: 'var(--s5)' } },
+        done.el,
+        el(
+          'div',
+          { class: 'card', style: { textAlign: 'center' } },
+          el('p', { class: 'meter__label' }, 'Phrases practised'),
+          el('p', { class: 'meter__value' }, String(picked.length)),
+        ),
+        button('Try the exam interview', { variant: 'primary', class: 'btn btn--primary btn--block', onclick: () => navigate('#/speaking') }),
+        button('Do another set', { variant: 'secondary', class: 'btn btn--secondary btn--block', onclick: () => navigate('#/speaking/basics') }),
+      ),
+    );
+  }
+
+  renderPhrase();
+  return { destroy: destroyClip };
 }
 
 /* ------------------------------------------------------------- interview */
