@@ -220,7 +220,7 @@ async function main() {
     if ((await primary.count()) !== 1) throw new Error(`expected exactly one primary action, found ${await primary.count()}`);
     process.stdout.write(`  next action: ${(await primary.textContent())?.trim()}\n`);
     const order = (await page.locator('.plan .card__title').allTextContents()).map((text) => text.trim());
-    if (order.join(',') !== 'Words,Listening,Speaking') throw new Error(`plan out of order: ${order.join(', ')}`);
+    if (order.join(',') !== 'Words & Grammar,Grammar drills,Listening,Speaking') throw new Error(`plan out of order: ${order.join(', ')}`);
     await shot('00-today');
   });
 
@@ -265,20 +265,22 @@ async function main() {
     await shot('05-listening-done');
   });
 
-  await step(`answered all 16 questions (got ${questionCount})`, async () => {
-    if (questionCount !== 16) throw new Error(`expected 16 questions, answered ${questionCount}`);
+  await step(`answered all 20 questions (got ${questionCount})`, async () => {
+    if (questionCount !== 20) throw new Error(`expected 20 questions, answered ${questionCount}`);
   });
 
-  await step('speaking offers exactly two topics, as the exam does', async () => {
+  await step('speaking offers basics and two exam topics', async () => {
     await page.goto(`${base}#/speaking`, { waitUntil: 'networkidle' });
     await page.waitForSelector('a.card', { timeout: 5000 });
-    const offered = await page.locator('a.card[href^="#/speaking/"]:not([href*="/image"])').count();
-    if (offered !== 2) throw new Error(`expected 2 topics offered, found ${offered}`);
+    const basics = await page.locator('a.card[href="#/speaking/basics"]').count();
+    if (basics !== 1) throw new Error(`expected 1 basics card, found ${basics}`);
+    const topics = await page.locator('a.card[href^="#/speaking/"]:not([href*="/image"]):not([href="#/speaking/basics"])').count();
+    if (topics !== 2) throw new Error(`expected 2 exam topics, found ${topics}`);
     await shot('06-speaking-choose');
   });
 
   await step('interview shows prep timer then records', async () => {
-    await page.locator('a.card[href^="#/speaking/"]:not([href*="/image"])').first().click();
+    await page.locator('a.card[href^="#/speaking/"]:not([href*="/image"]):not([href="#/speaking/basics"])').first().click();
     await page.waitForSelector('.timer', { timeout: 5000 });
     await shot('07-interview-prep');
     await page.getByRole('button', { name: 'Start now' }).click();
@@ -606,7 +608,7 @@ async function main() {
       await openFresh('#/today');
       await page.waitForSelector('.plan', { timeout: 5000 });
       const note = (await page.locator('.plan').first().innerText()).trim();
-      const match = note.match(/(\d+)\s+of\s+\d+\s+cards today|Done — (\d+) cards? today/);
+      const match = note.match(/(\d+)\s+of\s+\d+\s+cards|Done — (\d+) cards?/);
       if (!match) throw new Error(`the Words step does not report a card count: "${note.replace(/\n/g, ' | ')}"`);
       return Number(match[1] ?? match[2]);
     };

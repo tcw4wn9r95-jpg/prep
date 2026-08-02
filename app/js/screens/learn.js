@@ -94,6 +94,39 @@ export async function render(root, { settings, navigate }) {
       today.met ? `Goal met — ${plural(today.cards, 'card')} today.` : `${today.cards} of ${today.goal} cards today.`,
     ),
 
+    sectionLabel('Grammar'),
+    el(
+      'p',
+      { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
+      'The exam scores morphosyntax — noun gender, the n-rule, and adjective endings. Every mixed session includes grammar cards; this is a focused round.',
+    ),
+    deckRow({
+      href: '#/grammar',
+      icon: '📐',
+      title: 'Grammar drills',
+      total: grammarItems.length,
+      unit: 'exercise',
+      recv: grammarRecv,
+      prod: grammarProd,
+      note: 'Gender, n-rule, adjective agreement',
+    }),
+    el(
+      'div',
+      { class: 'row', style: { gap: 'var(--s3)', marginBlockStart: 'var(--s3)' } },
+      el(
+        'a',
+        { class: 'card', href: '#/gender-sort', style: { display: 'block', flex: 1 } },
+        el('p', { style: { fontSize: '22px', textAlign: 'center' } }, '⚤'),
+        el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Gender Sort'),
+      ),
+      el(
+        'a',
+        { class: 'card', href: '#/reference', style: { display: 'block', flex: 1 } },
+        el('p', { style: { fontSize: '22px', textAlign: 'center' } }, '📖'),
+        el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Cheat sheet'),
+      ),
+    ),
+
     sectionLabel('Your path'),
     el(
       'p',
@@ -102,26 +135,13 @@ export async function render(root, { settings, navigate }) {
     ),
     stageList(path, current),
 
-    // Decks before topics, even though topics are the more exam-shaped choice:
-    // the topic grid is eighteen tiles tall, and putting it above the decks
-    // buried them off the bottom of the screen entirely.
-    sectionLabel('Or a whole deck'),
+    sectionLabel('Vocabulary decks'),
     el(
       'div',
       { class: 'stack' },
       deckRow({ href: '#/phrases', icon: '💬', title: 'Phrases', total: phraseItems.length, unit: 'sentence frame', recv: phraseRecv, prod: phraseProd }),
       deckRow({ href: '#/vocab', icon: '📇', title: 'Vocabulary', total: vocabItems.length, unit: 'word', recv: vocabRecv, prod: vocabProd }),
       deckRow({ href: '#/verbs', icon: '🔤', title: 'Verbs', total: verbItems.length, unit: 'verb', recv: verbRecv, prod: verbProd }),
-      deckRow({
-        href: '#/grammar',
-        icon: '📐',
-        title: 'Grammar',
-        total: grammarItems.length,
-        unit: 'exercise',
-        recv: grammarRecv,
-        prod: grammarProd,
-        note: 'Noun gender, the n-rule, and adjective agreement — every session reserves a few of these.',
-      }),
     ),
 
     sectionLabel('For a spare minute'),
@@ -137,21 +157,6 @@ export async function render(root, { settings, navigate }) {
           { class: 'spacer' },
           el('p', { class: 'card__title' }, 'Pairs'),
           el('p', { class: 'card__note' }, 'Match the word to its meaning. Optional, and it does not affect your reviews.'),
-        ),
-      ),
-    ),
-    el(
-      'a',
-      { class: 'card', href: '#/gender-sort', style: { display: 'block', marginBlockStart: 'var(--s3)' } },
-      el(
-        'div',
-        { class: 'row' },
-        el('span', { style: { fontSize: '28px' } }, '⚤'),
-        el(
-          'div',
-          { class: 'spacer' },
-          el('p', { class: 'card__title' }, 'Gender Sort'),
-          el('p', { class: 'card__note' }, 'Männlech, weiblech or neutral — a quick ten-word round. Optional, and it does not affect your reviews.'),
         ),
       ),
     ),

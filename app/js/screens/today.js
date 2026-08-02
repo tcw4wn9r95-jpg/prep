@@ -200,19 +200,19 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics, d
   const plan = [
     {
       id: 'words',
-      title: 'Words',
-      // Straight into the cards, not to the hub. A step that lands on another
-      // menu is a step that has not been taken.
+      title: 'Words & Grammar',
       href: '#/session',
-      // Completion is the day's practice goal, not an empty queue. The queue
-      // cannot be emptied: a missed card returns to box 0, whose interval is
-      // zero days, so it falls due again the same day. Tying the tick to
-      // `dueTotal === 0` meant the step could never be finished no matter how
-      // much work went in.
       done: today.met,
       note: today.met
-        ? `Done — ${plural(today.cards, 'card')} today`
-        : `${today.cards} of ${today.goal} cards today`,
+        ? `Done — ${plural(today.cards, 'card')} today (incl. grammar)`
+        : `${today.cards} of ${today.goal} cards · vocabulary + grammar mixed`,
+    },
+    {
+      id: 'grammar',
+      title: 'Grammar drills',
+      href: '#/grammar',
+      done: today.cards >= 6,
+      note: 'Gender, n-rule, adjectives — a focused set',
     },
     {
       id: 'listening',
@@ -285,6 +285,13 @@ function nextAction(state, partner) {
           href: '#/session',
           why: `Nothing is due yet. Start with words — the listening and speaking drills assume you have them. Today's goal is ${state.today.goal} cards.`,
         };
+  }
+  if (step.id === 'grammar') {
+    return {
+      label: 'Grammar practice',
+      href: '#/grammar',
+      why: 'Gender, the n-rule, adjective endings — a quick focused round.',
+    };
   }
   if (step.id === 'listening') {
     return {

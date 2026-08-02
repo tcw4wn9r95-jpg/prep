@@ -75,8 +75,21 @@ const QUESTION_STEMS = {
   missing: { lb: 'Wat feelt?', en: 'Which word is missing?', fr: 'Quel mot manque-t-il ?' },
 };
 
-/** The official shape: exercise 1 has 5 questions, exercise 2 has 7, exercise 3 has 4. */
+/**
+ * The exercise plan. The A1 comprehension exercise goes first — it tests
+ * whether the learner understands what was said (English answer options),
+ * rather than whether they caught a keyword. The remaining three mirror
+ * the official B1 5+7+4 shape.
+ */
 const EXERCISE_PLAN = [
+  {
+    n: 0,
+    kind: 'comprehension',
+    count: 4,
+    title_en: 'What does the sentence mean?',
+    title_fr: 'Que signifie la phrase ?',
+    note_en: 'A1 comprehension — listen and pick the meaning in English.',
+  },
   {
     n: 1,
     kind: 'sentence-recognition',
@@ -209,6 +222,41 @@ function clipsForTopic(topic, index) {
 }
 
 /* --------------------------------------------------------- question makers */
+
+/**
+ * Hear a sentence, pick what it means from three English options. The correct
+ * answer is the LOD entry's own English gloss; distractors are glosses from
+ * entries in OTHER topics so the three options look genuinely different.
+ */
+function makeComprehensionQuestion(clip, pool, random, allGlosses) {
+  const gloss = clip.entry.glosses?.en?.[0];
+  if (!gloss) return null;
+
+  const seen = new Set([gloss.toLowerCase()]);
+  const candidates = allGlosses ?? [];
+  const distractors = [];
+  for (const other of shuffled(candidates, random)) {
+    if (seen.has(other.toLowerCase())) continue;
+    seen.add(other.toLowerCase());
+    distractors.push(other);
+    if (distractors.length >= OPTIONS_PER_QUESTION - 1) break;
+  }
+  if (distractors.length < OPTIONS_PER_QUESTION - 1) return null;
+
+  const options = shuffled([gloss, ...distractors], random);
+  return {
+    id: `q-${shortHash(`comp:${clip.audioId}`)}`,
+    kind: 'comprehension',
+    audioId: clip.audioId,
+    transcript: clip.text,
+    question_lb: null,
+    question_en: 'What is this sentence about?',
+    question_fr: 'De quoi parle cette phrase ?',
+    options_en: options,
+    correct: options.indexOf(gloss),
+    entryIds: [clip.entry.id],
+  };
+}
 
 /** Hear a sentence, pick its transcript from three real LOD sentences. */
 function makeSentenceQuestion(clip, pool, random) {
@@ -343,14 +391,16 @@ function pickDistinct(candidates, count, random) {
 
 /* ------------------------------------------------------- listening builder */
 
-function buildListeningSet(topic, clips, random) {
+function buildListeningSet(topic, clips, random, allGlosses) {
   const exercises = [];
   const used = new Set();
   let total = 0;
 
   for (const plan of EXERCISE_PLAN) {
-    const make =
-      plan.kind === 'sentence-recognition'
+    const isComp = plan.kind === 'comprehension';
+    const make = isComp
+      ? (clip, pool, rng) => makeComprehensionQuestion(clip, pool, rng, allGlosses)
+      : plan.kind === 'sentence-recognition'
         ? makeSentenceQuestion
         : plan.kind === 'word-recognition'
           ? makeWordQuestion
@@ -505,6 +555,18 @@ async function main() {
       `(${index.rejected} rejected by the validator)\n`,
   );
 
+  // Collect all distinct English glosses from the corpus, for comprehension
+  // distractors that span topics rather than repeating the same field.
+  const allGlosses = [];
+  const glossSeen = new Set();
+  for (const entry of corpus.entries) {
+    const gloss = entry.glosses?.en?.[0];
+    if (gloss && !glossSeen.has(gloss.toLowerCase())) {
+      glossSeen.add(gloss.toLowerCase());
+      allGlosses.push(gloss);
+    }
+  }
+
   const listening = [];
   const interviews = [];
   const audioIds = new Set();
@@ -515,7 +577,7 @@ async function main() {
     const random = makeRandom(seed ^ shortHash(topic.id).split('').reduce((a, c) => a + c.charCodeAt(0), 0));
     const clips = clipsForTopic(topic, index);
 
-    const set = buildListeningSet(topic, clips, random);
+    const set = buildListeningSet(topic, clips, random, allGlosses);
     const interview = buildInterview(topic, interviewPoolFor(topic, index), random);
 
     if (set) {
