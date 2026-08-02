@@ -45,6 +45,8 @@ export const loadVerbs = () => loadJson('verbs').then((file) => file.items);
 export const loadPhrases = () => loadJson('phrases').then((file) => file.items).catch(() => []);
 /** The 8 use-case groups phrases are sorted into (pipeline/build-phrases.js), for the cheat sheet. */
 export const loadPhraseGroups = () => loadJson('phrases').then((file) => file.meta.groups ?? []).catch(() => []);
+/** Noun gender, n-rule and adjective-agreement exercises (pipeline/build-grammar.js). */
+export const loadGrammar = () => loadJson('grammar').then((file) => file.items).catch(() => []);
 /**
  * INLL podcast episodes — metadata only, written by pipeline/fetch-podcasts.js.
  * Absent until someone runs that fetch, so this degrades to an empty section

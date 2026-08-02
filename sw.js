@@ -12,7 +12,7 @@
 // Bump this on every change to the shell. The app is served cache-first, so a
 // stale version is not a slow update — it is a returning user permanently
 // looking at the old app while wondering where their changes went.
-const VERSION = 'v14';
+const VERSION = 'v15';
 const SHELL_CACHE = `shell-${VERSION}`;
 const AUDIO_CACHE = `audio-${VERSION}`;
 
@@ -50,6 +50,8 @@ const SHELL = [
   'js/screens/duel.js',
   'js/screens/settings.js',
   'js/screens/phrases.js',
+  'js/screens/grammar.js',
+  'js/screens/gender-sort.js',
   'js/anthropic.js',
   'js/drill/engine.js',
   'js/drill/cards.js',
@@ -63,6 +65,7 @@ const SHELL = [
   'data/vocab.json',
   'data/verbs.json',
   'data/phrases.json',
+  'data/grammar.json',
   // Episode metadata only. The audio itself is cross-origin and the fetch
   // handler below returns early for that, so episodes are never stored.
   'data/podcasts.json',

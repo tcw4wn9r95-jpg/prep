@@ -59,7 +59,26 @@ export const DECKS = {
     article: () => null,
     kindLabel: () => 'phrase',
   },
+  // Three item shapes under one deck id — see pipeline/build-grammar.js.
+  // `lemma` and `gloss` exist only because every other part of this module
+  // assumes a deck has them (isDrillable's distractor lookups, mostly); the
+  // actual rendering lives entirely in the 'grammar-choice' case of
+  // buildCard(), which branches on item.kind.
+  grammar: {
+    id: 'grammar',
+    title: 'Grammar',
+    lemma: (item) => (item.kind === 'gender' ? item.lb : `${item.before}…${item.after}`.trim()),
+    gloss: (item) => item.en ?? null,
+    article: () => null,
+    kindLabel: (item) => GRAMMAR_KIND_LABELS[item.kind] ?? 'grammar',
+  },
 };
+
+const GRAMMAR_KIND_LABELS = { gender: 'gender', nrule: 'n-rule', adjective: 'adjective agreement' };
+// Exported: the gender-sort game (screens/gender-sort.js) uses the same three
+// labels, and two independently-worded translations of "masculine" would read
+// as a second, disagreeing source of truth.
+export const GENDER_LABELS = { M: 'männlech (masculine)', F: 'weiblech (feminine)', N: 'neutral' };
 
 const has = {
   // `local === false` means the recording is referenced but not mirrored yet.
@@ -68,6 +87,9 @@ const has = {
   cloze: (item) => Boolean(item.cloze?.form),
   gloss: (item) => Boolean(item.en),
   present: (item) => Boolean(item.present),
+  grammarChoice: (item) =>
+    (item.kind === 'gender' && Array.isArray(item.options) && Number.isInteger(item.correct)) ||
+    (['nrule', 'adjective'].includes(item.kind) && Array.isArray(item.options_lb) && Number.isInteger(item.correct)),
 };
 
 /**
@@ -115,6 +137,15 @@ const LADDER = {
       { id: 'conjugate', minBox: 3, needs: [has.present] },
       { id: 'produce', minBox: 4, needs: [has.cloze] },
     ],
+  },
+  // One rung, both strands: recognising which option is correct is the whole
+  // task for all three grammar kinds, so there is no easy/hard escalation to
+  // ladder — recv and prod exist only so the Leitner scheduler still spaces
+  // repeats the same way every other deck does (see PROD_UNLOCK_BOX gating
+  // the prod strand's *timing*, in store.js).
+  grammar: {
+    [STRANDS.recv]: [{ id: 'grammar-choice', minBox: 0, needs: [has.grammarChoice] }],
+    [STRANDS.prod]: [{ id: 'grammar-choice', minBox: 0, needs: [has.grammarChoice] }],
   },
 };
 
@@ -285,9 +316,51 @@ export function buildCard({ item, strand, box, deck, pool, random = Math.random 
       };
     }
 
+    case 'grammar-choice':
+      return grammarChoiceCard(base, item, random);
+
     default:
       throw new Error(`unknown card type ${type}`);
   }
+}
+
+/**
+ * The one grammar card type, branched by `item.kind`. All three ask "which of
+ * these options is right", they just differ in what the options are and what
+ * the prompt shows — gender picks from the fixed M/F/N labels; n-rule and
+ * adjective both gap a real sentence and offer the spellings
+ * pipeline/build-grammar.js already picked (never sampled from a pool here,
+ * unlike every other card type — an n-rule distractor has to be the *other*
+ * attested spelling of this exact word, not a random one from elsewhere).
+ */
+function grammarChoiceCard(base, item, random) {
+  if (item.kind === 'gender') {
+    const options = shuffle(
+      item.options.map((code, index) => ({ id: `${item.id}:${code}`, value: GENDER_LABELS[code] ?? code, correct: index === item.correct })),
+      random,
+    );
+    return {
+      ...base,
+      mode: 'choice',
+      instruction: 'What gender is this word?',
+      prompt: { word: `${item.article} ${item.lb}`, sentence: item.example?.lb ?? null, audioId: playableAudio(item) },
+      options,
+      answer: GENDER_LABELS[item.gender] ?? item.gender,
+    };
+  }
+
+  const options = shuffle(
+    item.options_lb.map((form, index) => ({ id: `${item.id}:${index}`, value: form, correct: index === item.correct })),
+    random,
+  );
+  return {
+    ...base,
+    mode: 'choice',
+    instruction: item.kind === 'nrule' ? 'Which spelling is correct here (the Eifeler Regel)?' : 'Which form of the word fits this sentence?',
+    prompt: { cloze: { before: item.before, after: item.after }, audioId: null },
+    options,
+    answer: item.options_lb[item.correct],
+  };
 }
 
 /** The recording to offer, or null when it is not mirrored yet. */

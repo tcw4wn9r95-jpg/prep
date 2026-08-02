@@ -454,7 +454,7 @@ export async function savePairsResult(playerId, level, { moves }) {
  * card should come back in the same session, not tomorrow. Exported because it
  * is the reason an empty queue is not a reachable daily goal. */
 export const LEITNER_DAYS = [0, 1, 3, 7, 16];
-export const LEARN_DECKS = { vocab: 'vocab', verb: 'verb', phrase: 'phrase' };
+export const LEARN_DECKS = { vocab: 'vocab', verb: 'verb', phrase: 'phrase', grammar: 'grammar' };
 export const STRANDS = { recv: 'recv', prod: 'prod' };
 export const MAX_BOX = LEITNER_DAYS.length - 1;
 
@@ -596,9 +596,16 @@ export function buildSession(items, states, options = {}) {
  * Each plan entry therefore carries the deck it came from, so the engine can
  * grade it against the right ladder and the right progress row.
  *
+ * `reserve` guarantees a minimum number of cards from a given deck, before the
+ * general interleaving below gets first pick of the remaining slots. Without
+ * it, "mandatory every day" for a small deck (grammar, ~1,800 items) is only
+ * true by luck against a 4,300-item vocab+verb+phrase pool that usually has
+ * more due — the reserved deck could go days without appearing at all.
+ *
  * @param {Array<{deck?: object, pool?: Array, items: Array, states: {recv: Map, prod: Map}}>} groups
+ * @param {Record<string, number>} [options.reserve] deck id → minimum cards
  */
-export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TARGET, now = Date.now() } = {}) {
+export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TARGET, now = Date.now(), reserve = {} } = {}) {
   const reviews = [];
   const fresh = [];
 
@@ -639,11 +646,29 @@ export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TA
   // new words, so every session *grew* the backlog by four while reporting 24
   // due on the home screen. A card that is due is a memory about to be lost —
   // it outranks a word that has never been met.
-  const chosenReviews = reviews.slice(0, limit);
-  const newSlots = Math.max(0, Math.min(newTarget, limit - chosenReviews.length));
-  const chosen = [...chosenReviews, ...fresh.slice(0, newSlots)];
+  const reserveTotal = Object.values(reserve).reduce((sum, n) => sum + n, 0);
+  const generalLimit = Math.max(0, limit - reserveTotal);
+
+  const chosenReviews = reviews.slice(0, generalLimit);
+  const newSlots = Math.max(0, Math.min(newTarget, generalLimit - chosenReviews.length));
+  const general = [...chosenReviews, ...fresh.slice(0, newSlots)];
+
+  // Whatever the general pool did not already take, per reserved deck — reviews
+  // before fresh, same priority as everywhere else in this function.
+  const entryKey = (entry) => `${entry.deck?.id ?? ''}:${entry.strand}:${entry.item.id}`;
+  const taken = new Set(general.map(entryKey));
+  const reserved = [];
+  for (const [deckId, min] of Object.entries(reserve)) {
+    const candidates = [...reviews, ...fresh].filter((entry) => entry.deck?.id === deckId && !taken.has(entryKey(entry)));
+    for (const entry of candidates.slice(0, min)) {
+      reserved.push(entry);
+      taken.add(entryKey(entry));
+    }
+  }
+
+  const chosen = [...general, ...reserved];
   shuffle(chosen);
-  return chosen.slice(0, limit);
+  return chosen;
 }
 
 function shuffle(list) {

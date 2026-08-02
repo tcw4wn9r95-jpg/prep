@@ -20,6 +20,8 @@ import * as podcasts from './screens/podcasts.js';
 import * as vocab from './screens/vocab.js';
 import * as verbs from './screens/verbs.js';
 import * as phrases from './screens/phrases.js';
+import * as grammar from './screens/grammar.js';
+import * as genderSort from './screens/gender-sort.js';
 import * as listening from './screens/listening.js';
 import * as speaking from './screens/speaking.js';
 import * as review from './screens/review.js';
@@ -39,6 +41,8 @@ const ROUTES = {
   vocab,
   verbs,
   phrases,
+  grammar,
+  'gender-sort': genderSort,
   listening,
   speaking,
   review,

@@ -15,23 +15,30 @@
  *   #/session/1    the same, restricted to one stage of the path
  */
 
-import { loadVocab, loadVerbs, loadPhrases, loadStages } from '../content.js';
+import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadStages } from '../content.js';
 import { getLearnDeckStates, buildMixedSession } from '../store.js';
 import { DECKS, isDrillable, boxIndex } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
 const SESSION_SIZE = 12;
+// Grammar's guaranteed share of every session — "mandatory every day" made
+// true by construction rather than by hoping it wins the shuffle against a
+// much bigger vocab+verb+phrase pool. A quarter of the session, not all of
+// it: this deck is a complement to the others, not a replacement.
+const GRAMMAR_RESERVE = 3;
 
 export async function render(root, { params, settings, navigate }) {
   const stage = params?.[0] ? Number(params[0]) : null;
-  const [vocab, verbs, phrases, stages, vocabStates, verbStates, phraseStates] = await Promise.all([
+  const [vocab, verbs, phrases, grammar, stages, vocabStates, verbStates, phraseStates, grammarStates] = await Promise.all([
     loadVocab(),
     loadVerbs(),
     loadPhrases(),
+    loadGrammar(),
     loadStages(),
     getLearnDeckStates(settings.playerId, 'vocab'),
     getLearnDeckStates(settings.playerId, 'verb'),
     getLearnDeckStates(settings.playerId, 'phrase'),
+    getLearnDeckStates(settings.playerId, 'grammar'),
   ]);
 
   // A few LOD entries carry no English gloss, so there is nothing to ask about
@@ -40,6 +47,7 @@ export async function render(root, { params, settings, navigate }) {
     { deck: DECKS.vocab, items: vocab, states: vocabStates },
     { deck: DECKS.verb, items: verbs, states: verbStates },
     { deck: DECKS.phrase, items: phrases, states: phraseStates },
+    { deck: DECKS.grammar, items: grammar, states: grammarStates },
   ].map((group) => {
     const drillable = group.items.filter((item) => isDrillable(item, group.deck.id));
     return {
@@ -56,7 +64,10 @@ export async function render(root, { params, settings, navigate }) {
   const again = stage === null ? '#/session' : `#/session/${stage}`;
   const total = groups.reduce((sum, group) => sum + group.items.length, 0);
 
-  const plan = buildMixedSession(groups, { limit: SESSION_SIZE });
+  // The reserve only ever matters in the general session: a stage-scoped one
+  // (`#/session/1`) already excludes grammar via the `item.stage` filter
+  // above, since grammar items carry no stage of their own.
+  const plan = buildMixedSession(groups, { limit: SESSION_SIZE, reserve: { grammar: GRAMMAR_RESERVE } });
   if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total });
 
   const boxes = new Map();

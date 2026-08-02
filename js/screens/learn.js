@@ -22,18 +22,19 @@
 
 import { el, screenHead, button, plural, settingsButton } from '../dom.js';
 import { Amelie } from '../amelie.js';
-import { loadVocab, loadVerbs, loadPhrases, loadTopics, loadStages, topicIcon } from '../content.js';
+import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadTopics, loadStages, topicIcon } from '../content.js';
 import { learnProgress, dueCounts, todayProgress, getLearnDeckState, STRANDS } from '../store.js';
 
 export async function render(root, { settings, navigate }) {
-  const [vocabItems, verbItems, phraseItems, topics, stages] = await Promise.all([
+  const [vocabItems, verbItems, phraseItems, grammarItems, topics, stages] = await Promise.all([
     loadVocab(),
     loadVerbs(),
     loadPhrases(),
+    loadGrammar(),
     loadTopics(),
     loadStages(),
   ]);
-  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, due, today, seenVocab, seenVerb, seenPhrase] =
+  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, grammarRecv, grammarProd, due, today, seenVocab, seenVerb, seenPhrase] =
     await Promise.all([
       learnProgress(settings.playerId, 'vocab', STRANDS.recv, vocabItems.length),
       learnProgress(settings.playerId, 'vocab', STRANDS.prod, vocabItems.length),
@@ -41,6 +42,8 @@ export async function render(root, { settings, navigate }) {
       learnProgress(settings.playerId, 'verb', STRANDS.prod, verbItems.length),
       learnProgress(settings.playerId, 'phrase', STRANDS.recv, phraseItems.length),
       learnProgress(settings.playerId, 'phrase', STRANDS.prod, phraseItems.length),
+      learnProgress(settings.playerId, 'grammar', STRANDS.recv, grammarItems.length),
+      learnProgress(settings.playerId, 'grammar', STRANDS.prod, grammarItems.length),
       dueCounts(settings.playerId),
       todayProgress(settings.playerId),
       getLearnDeckState(settings.playerId, 'vocab', STRANDS.recv),
@@ -109,6 +112,16 @@ export async function render(root, { settings, navigate }) {
       deckRow({ href: '#/phrases', icon: '💬', title: 'Phrases', total: phraseItems.length, unit: 'sentence frame', recv: phraseRecv, prod: phraseProd }),
       deckRow({ href: '#/vocab', icon: '📇', title: 'Vocabulary', total: vocabItems.length, unit: 'word', recv: vocabRecv, prod: vocabProd }),
       deckRow({ href: '#/verbs', icon: '🔤', title: 'Verbs', total: verbItems.length, unit: 'verb', recv: verbRecv, prod: verbProd }),
+      deckRow({
+        href: '#/grammar',
+        icon: '📐',
+        title: 'Grammar',
+        total: grammarItems.length,
+        unit: 'exercise',
+        recv: grammarRecv,
+        prod: grammarProd,
+        note: 'Noun gender, the n-rule, and adjective agreement — every session reserves a few of these.',
+      }),
     ),
 
     sectionLabel('For a spare minute'),
@@ -124,6 +137,21 @@ export async function render(root, { settings, navigate }) {
           { class: 'spacer' },
           el('p', { class: 'card__title' }, 'Pairs'),
           el('p', { class: 'card__note' }, 'Match the word to its meaning. Optional, and it does not affect your reviews.'),
+        ),
+      ),
+    ),
+    el(
+      'a',
+      { class: 'card', href: '#/gender-sort', style: { display: 'block', marginBlockStart: 'var(--s3)' } },
+      el(
+        'div',
+        { class: 'row' },
+        el('span', { style: { fontSize: '28px' } }, '⚤'),
+        el(
+          'div',
+          { class: 'spacer' },
+          el('p', { class: 'card__title' }, 'Gender Sort'),
+          el('p', { class: 'card__note' }, 'Männlech, weiblech or neutral — a quick ten-word round. Optional, and it does not affect your reviews.'),
         ),
       ),
     ),
@@ -239,7 +267,7 @@ function stageList(path, current) {
  * words you have met are holding" is a number that moves. Deck coverage is
  * still stated, as text, where it cannot be mistaken for progress.
  */
-function deckRow({ href, icon, title, total, unit, recv, prod }) {
+function deckRow({ href, icon, title, total, unit, recv, prod, note }) {
   return el(
     'a',
     { class: 'card', href, style: { display: 'block' } },
@@ -252,6 +280,7 @@ function deckRow({ href, icon, title, total, unit, recv, prod }) {
         { class: 'spacer' },
         el('p', { class: 'card__title' }, title),
         el('p', { class: 'card__note' }, `${recv.started} of ${plural(total, unit)} met`),
+        note ? el('p', { class: 'card__note' }, note) : null,
       ),
     ),
     strandBar('Understand', recv),
