@@ -143,6 +143,12 @@ const FREE_TEXT_FIELDS = new Set([
   'en',
   'fr',
   'de',
+  // pipeline/build-grammar.js — 'options' holds gender labels (M/F/N), not
+  // Luxembourgish text; 'kind' distinguishes the three exercise types. Note
+  // 'options_lb' is NOT here: the n-rule and adjective options are real
+  // spellings and get the full lexicon and n-rule treatment, same as 'before'
+  // and 'after' already do above.
+  'options',
   // LOD example-sentence audio references (pipeline/build-vocab.js)
   'ogg',
   'aac',

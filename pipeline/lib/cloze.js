@@ -95,4 +95,4 @@ function isLetter(character) {
   return typeof character === 'string' && LETTER_RE.test(character);
 }
 
-module.exports = { locateTarget, entryIdOfForm };
+module.exports = { locateTarget, entryIdOfForm, spanOf };
