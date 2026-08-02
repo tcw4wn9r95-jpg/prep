@@ -18,11 +18,20 @@
  * `renderContent()` is exported separately from `render()` so the exact same
  * markup can be reused in the drill engine's in-session sheet (engine.js) —
  * the whole point of a cheat sheet is being reachable mid-exercise, not just
- * as its own screen.
+ * as its own screen. That includes a *grammar* drill session: someone stuck
+ * on a gender or n-rule card can open this over that exact card and read the
+ * rule it is testing, without losing their place in the session.
+ *
+ * The grammar section holds to the same rule as everything else here, just
+ * pointed at grammar.json instead of vocab/verbs/phrases: the rule statements
+ * are English commentary (free text, like every other note in this file),
+ * and every Luxembourgish example is one of pipeline/build-grammar.js's own
+ * items — never a new one written for this screen.
  */
 
 import { el, screenHead } from '../dom.js';
-import { loadVocab, loadVerbs, loadPhrases, loadPhraseGroups } from '../content.js';
+import { loadVocab, loadVerbs, loadPhrases, loadPhraseGroups, loadGrammar } from '../content.js';
+import { GENDER_LABELS } from '../drill/cards.js';
 
 const PRONOUNS = ['ech', 'du', 'hien', 'si', 'hatt', 'mir', 'dir'];
 
@@ -83,9 +92,64 @@ export function phraseGroups(phrases, groups) {
     .filter((group) => group.frames.length > 0);
 }
 
+const GENDER_ORDER = ['M', 'F', 'N'];
+
+/** A few common nouns per gender, straight off the `gender` grammar items —
+ * which are themselves straight off vocab.json's own gender/article fields. */
+export function genderExamples(grammar, perGender = 3) {
+  const byGender = { M: [], F: [], N: [] };
+  for (const item of grammar) {
+    if (item.kind !== 'gender') continue;
+    if (byGender[item.gender].length >= perGender) continue;
+    byGender[item.gender].push(item);
+  }
+  return GENDER_ORDER.map((code) => ({ code, label: GENDER_LABELS[code], words: byGender[code] }));
+}
+
+/** A few real sentences illustrating the n-rule — kept and dropped both, one
+ * per distinct source sentence. build-grammar.js can mine more than one pair
+ * out of the same sentence (a different word pair each time), which would
+ * otherwise show the same sentence twice with only the bolded word changed. */
+export function nruleExamples(grammar, count = 4) {
+  const seen = new Set();
+  const kept = [];
+  const dropped = [];
+  for (const item of grammar) {
+    if (item.kind !== 'nrule') continue;
+    // Keyed on the reconstructed sentence, not on before/after: two different
+    // pairs mined from the same sentence split at different points (one
+    // testing the article, one the next word along) still share one before
+    // and after only by coincidence — the sentence itself is what repeats.
+    const sentenceKey = `${item.before}${item.options_lb[item.correct]}${item.after}`.toLowerCase();
+    if (seen.has(sentenceKey)) continue;
+    seen.add(sentenceKey);
+    (item.options_lb[item.correct].toLowerCase().endsWith('n') ? kept : dropped).push(item);
+  }
+  // The copy above says "both directions" — that has to be true regardless of
+  // which direction happens to sort first in the file, so half the slots are
+  // reserved for each rather than just taking the first `count` in file order.
+  const half = Math.ceil(count / 2);
+  return [...kept.slice(0, half), ...dropped.slice(0, count - Math.min(half, kept.length))];
+}
+
+/** One example per distinct adjective lemma, not one per item — an item
+ * exists per attested form, and showing "aarm/aarme" and "aarme/aarm" back
+ * to back would just be the same pair twice. */
+export function adjectiveExamples(grammar, count = 4) {
+  const seen = new Set();
+  const picked = [];
+  for (const item of grammar) {
+    if (item.kind !== 'adjective' || seen.has(item.entryId)) continue;
+    seen.add(item.entryId);
+    picked.push(item);
+    if (picked.length >= count) break;
+  }
+  return picked;
+}
+
 /** Builds the cheat sheet body into `container`. Shared by the routed screen
  * and the in-session sheet, so the two never drift apart. */
-export function renderContent(container, { vocab, verbs, phrases, groups }) {
+export function renderContent(container, { vocab, verbs, phrases, groups, grammar }) {
   container.append(
     section('Subject pronouns', el('div', { class: 'ref-pronouns' }, ...pronounRows(vocab).map(pronounTile))),
     section(
@@ -98,19 +162,52 @@ export function renderContent(container, { vocab, verbs, phrases, groups }) {
       el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } }, 'From the Phrases deck, by what you are trying to say.'),
       ...phraseGroups(phrases, groups).map(groupCard),
     ),
+    section(
+      'Gender & articles',
+      el(
+        'p',
+        { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
+        'Every noun is männlech, weiblech or neutral, and the article agrees with it.',
+      ),
+      ...genderExamples(grammar).map(genderCard),
+    ),
+    section(
+      'The n-rule (Eifeler Regel)',
+      el(
+        'p',
+        { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
+        'A word ending in -n drops it, unless the next word starts with n, d, t, z, h or a vowel. Real sentences, both directions:',
+      ),
+      ...nruleExamples(grammar).map(nruleCard),
+    ),
+    section(
+      'Adjective endings',
+      el(
+        'p',
+        { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
+        'An adjective’s ending changes with the noun it describes — there is no one fixed form. Both spellings below are real:',
+      ),
+      ...adjectiveExamples(grammar).map(adjectiveCard),
+    ),
   );
 }
 
 export async function render(root, { navigate }) {
   void navigate;
-  const [vocab, verbs, phrases, groups] = await Promise.all([loadVocab(), loadVerbs(), loadPhrases(), loadPhraseGroups()]);
+  const [vocab, verbs, phrases, groups, grammar] = await Promise.all([
+    loadVocab(),
+    loadVerbs(),
+    loadPhrases(),
+    loadPhraseGroups(),
+    loadGrammar(),
+  ]);
 
   // No back button: this is a tab, and tabs are destinations rather than
   // somewhere you arrived from.
   root.append(screenHead({ title: 'Cheat sheet', sub: 'The basics, to keep open while you practise' }));
   const body = el('div', { class: 'stack stack--lg', style: { paddingBlockEnd: 'var(--s6)' } });
   root.append(body);
-  renderContent(body, { vocab, verbs, phrases, groups });
+  renderContent(body, { vocab, verbs, phrases, groups, grammar });
 
   return { destroy() {} };
 }
@@ -135,6 +232,46 @@ function verbDetails({ infinitive, en, forms }) {
         el('div', { class: 'ref-verb__form' }, el('span', { class: 'card__note' }, pronoun), el('span', {}, form)),
       ),
     ),
+  );
+}
+
+function genderCard({ label, words }) {
+  return el(
+    'div',
+    { class: 'card ref-group' },
+    el('p', { class: 'card__title' }, label),
+    el(
+      'div',
+      { style: { marginBlockStart: 'var(--s2)' } },
+      ...words.map((word) =>
+        el(
+          'div',
+          { class: 'ref-frame' },
+          el('span', {}, `${word.article} ${word.lb}`),
+          el('span', { class: 'card__note' }, word.en),
+        ),
+      ),
+    ),
+  );
+}
+
+function nruleCard(item) {
+  const correctForm = item.options_lb[item.correct];
+  const kept = correctForm.toLowerCase().endsWith('n');
+  return el(
+    'div',
+    { class: 'card ref-group' },
+    el('p', { class: 'card__note' }, kept ? 'kept — the next word starts with a trigger sound' : 'dropped — the next word does not'),
+    el('p', { style: { marginBlockStart: 'var(--s1)' } }, item.before, el('strong', {}, correctForm), item.after),
+  );
+}
+
+function adjectiveCard(item) {
+  return el(
+    'div',
+    { class: 'card ref-group' },
+    el('p', { class: 'card__title' }, item.options_lb.join(' / ')),
+    item.en ? el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s1)' } }, item.en) : null,
   );
 }
 
