@@ -62,6 +62,7 @@ export async function render(root, { settings, navigate }) {
   const next = nextAction(state, partner);
 
   const amelie = new Amelie({ size: 'md', bubble: true });
+  amelie.setProgress(today.pct, today.met);
   amelie.say(next.why, 'idle');
 
   root.append(

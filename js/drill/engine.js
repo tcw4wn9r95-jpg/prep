@@ -16,7 +16,7 @@
 import { el, fill, screenHead, button, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
-import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, POINTS, touchStreak } from '../store.js';
+import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, POINTS, touchStreak } from '../store.js';
 import { requestExplanation } from '../sync.js';
 import { buildCard } from './cards.js';
 import { INPUTS } from './inputs.js';
@@ -296,18 +296,31 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     recordLearnSession(settings.playerId, { correct: correctCount, answered: answeredCount });
   }
 
-  function finish() {
+  async function finish() {
     destroyClip();
     progressFill.style.width = '100%';
     progressFill.classList.add('progress__fill--ok');
     touchStreak(settings.playerId);
+
+    // Snapshotted either side of logSession(), which is the write that can
+    // move today's cards from short of the goal to met. This is the one place
+    // that transition is ever observed, so it is also the only place Amelie's
+    // "goal met" moment can fire — today.js and learn.js only ever render the
+    // stage a goal is *already* at, never the crossing.
+    const before = await todayProgress(settings.playerId);
     logSession();
+    const after = await todayProgress(settings.playerId);
+    const justMetGoal = !before.met && after.met;
 
     const pct = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100);
     const done = new Amelie({ size: 'lg', bubble: true });
     done.el.classList.add('amelie--stack', 'amelie--hero');
-    done.celebrate(AMELIE_LINES.learnSetDone);
+    done.setProgress(after.pct, after.met);
 
+    // Built and inserted before celebrate()/flyAround() run: both measure
+    // done.el's live position (confetti centres on it, the flight clone
+    // starts from it), and a detached node measures as a zero-size rect at
+    // 0,0 — which reads as confetti bursting from the corner of the screen.
     fill(
       body,
       el(
@@ -325,6 +338,9 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
         button('Back to Learn', { variant: 'secondary', class: 'btn btn--secondary btn--block', onclick: () => navigate('#/learn') }),
       ),
     );
+
+    done.celebrate(justMetGoal ? AMELIE_LINES.dailyGoalMet : AMELIE_LINES.learnSetDone);
+    if (justMetGoal) done.flyAround();
   }
 
   renderCard();

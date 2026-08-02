@@ -223,3 +223,79 @@
 .amelie--hero .amelie__figure {
   animation: amelie-entrance 0.6s var(--ease-bounce);
 }
+
+/* --- the caterpillar and chrysalis stages ------------------------------
+ * Only reached via Amelie.setProgress() — see amelie.js. Same gradient
+ * family as the wings, so it reads as one creature changing, not three.
+ */
+
+.amelie__seg { fill: url(#amelie-cat-body); stroke: var(--amelie-deep); stroke-width: 1.5; stroke-linejoin: round; }
+.amelie__leg { fill: none; stroke: var(--ardoise-800); stroke-width: 2; stroke-linecap: round; }
+
+.amelie__shell { fill: url(#amelie-chrysalis); stroke: var(--amelie-deep); stroke-width: 1.5; }
+.amelie__ridge { fill: none; stroke: color-mix(in srgb, var(--amelie-deep) 55%, transparent); stroke-width: 1.4; stroke-linecap: round; }
+.amelie__thread { fill: none; stroke: var(--ardoise-500); stroke-width: 1.4; }
+
+@keyframes amelie-crawl {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-3%); }
+}
+
+@keyframes amelie-seg-ripple {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8%); }
+}
+
+.amelie.is-stage-caterpillar .amelie__caterpillar {
+  animation: amelie-crawl 2.4s var(--ease) infinite;
+}
+.amelie.is-stage-caterpillar .amelie__seg {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: amelie-seg-ripple 1.6s var(--ease) infinite;
+}
+.amelie.is-stage-caterpillar .amelie__seg:nth-of-type(2) { animation-delay: 0.15s; }
+.amelie.is-stage-caterpillar .amelie__seg:nth-of-type(3) { animation-delay: 0.3s; }
+.amelie.is-stage-caterpillar .amelie__seg:nth-of-type(4) { animation-delay: 0.45s; }
+.amelie.is-stage-caterpillar .amelie__sparkle { animation: amelie-sparkle 3s var(--ease) infinite; }
+.amelie.is-stage-caterpillar .amelie__sparkle:nth-child(2) { animation-delay: 1.5s; }
+
+@keyframes amelie-chrysalis-pulse {
+  0%, 100% { transform: scale(1) rotate(-1deg); }
+  50% { transform: scale(1.03) rotate(1deg); }
+}
+
+.amelie.is-stage-chrysalis .amelie__shell,
+.amelie.is-stage-chrysalis .amelie__ridge,
+.amelie.is-stage-chrysalis .amelie__thread {
+  transform-box: view-box;
+  transform-origin: 60px 10px;
+}
+.amelie.is-stage-chrysalis .amelie__figure { animation: amelie-chrysalis-pulse 3.2s var(--ease) infinite; }
+.amelie.is-stage-chrysalis .amelie__sparkle { animation: amelie-sparkle 2.4s var(--ease) infinite; }
+.amelie.is-stage-chrysalis .amelie__sparkle:nth-child(2) { animation-delay: 1.2s; }
+
+/* --- flying around the screen, once, the moment the goal is met --------
+ * A fixed-position clone of the figure (see Amelie.flyAround) so the real
+ * one stays put in the layout while this one loops the viewport and removes
+ * itself on animationend. vw/vh, not px, so the loop scales to the screen
+ * it is playing on rather than the one it was measured on.
+ */
+
+@keyframes amelie-flyaround {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  18%  { transform: translate(-38vw, -18vh) scale(0.7) rotate(-12deg); }
+  38%  { transform: translate(-58vw, 14vh) scale(0.5) rotate(10deg); }
+  58%  { transform: translate(-18vw, 32vh) scale(0.75) rotate(-8deg); }
+  78%  { transform: translate(24vw, 8vh) scale(0.6) rotate(12deg); }
+  92%  { transform: translate(8vw, -6vh) scale(0.9) rotate(-4deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+}
+
+.amelie__figure--flyaround {
+  z-index: 200;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 16px rgb(232 163 61 / 35%));
+  animation: amelie-flyaround 3.4s var(--ease-back) 1;
+}
+.amelie__figure--flyaround .amelie__wing { animation: amelie-flap-fast 0.22s linear infinite; }

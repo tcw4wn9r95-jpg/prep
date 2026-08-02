@@ -57,6 +57,7 @@ export async function render(root, { settings, navigate }) {
   const next = nextAction(due, today, current);
 
   const amelie = new Amelie({ size: 'md', bubble: true });
+  amelie.setProgress(today.pct, today.met);
   amelie.say(adviceFor(due, vocabRecv, vocabProd, current), 'idle');
 
   root.append(
