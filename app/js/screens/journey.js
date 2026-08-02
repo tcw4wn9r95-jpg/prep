@@ -1,37 +1,30 @@
 /**
- * The journey — a vertical trail of topic nodes with Amelie parked at the one
- * you are on.
+ * Listen — the B1 half's weekly trail: a vertical path of topic nodes with
+ * Amelie parked at the one you are on.
  *
  * Topic order is fixed per week from the shared seed, so both players walk the
  * same route and the Woch-Duell stays comparable.
+ *
+ * This used to open with a "1 · Basics" vocab-progress card and close with a
+ * "3 · Speaking" summary — a whole-exam overview squeezed into a screen you
+ * could only reach by already being mid-way through Today's checklist. Now
+ * that this screen is the Listen tab, sitting next to Speak, those two cards
+ * are just Learn's and Speak's own content shown a second time in a third
+ * place. Cut, so Listen means exactly what its tab says: this is where a
+ * listening set starts, nothing else.
  */
 
-import { el, screenHead, formatPercent, plural, weekLabel } from '../dom.js';
+import { el, screenHead, plural, weekLabel } from '../dom.js';
 import { Amelie, AMELIE_LINES } from '../amelie.js';
-import { loadTopics, loadVocab, loadVerbs, topicIcon, orderTopicsForWeek } from '../content.js';
-import { listAttempts, listRecordings, listReviews, readinessFor, learnProgress, weekSeed, getStreak, PLAYERS, STRANDS } from '../store.js';
+import { loadTopics, topicIcon, orderTopicsForWeek } from '../content.js';
+import { listAttempts, weekSeed, getStreak, PLAYERS } from '../store.js';
 
 export async function render(root, { settings, navigate }) {
-  const [topics, attempts, recordings, reviews, streak, vocabItems, verbItems] = await Promise.all([
-    loadTopics(),
-    listAttempts(),
-    listRecordings(),
-    listReviews(),
-    getStreak(settings.playerId),
-    loadVocab(),
-    loadVerbs(),
-  ]);
-  // Productive mastery, not receptive: this card sits above the speaking
-  // module on the journey, and being able to say a word is what feeds it.
-  const [vocabProgress, verbProgress] = await Promise.all([
-    learnProgress(settings.playerId, 'vocab', STRANDS.prod, vocabItems.length),
-    learnProgress(settings.playerId, 'verb', STRANDS.prod, verbItems.length),
-  ]);
+  const [topics, attempts, streak] = await Promise.all([loadTopics(), listAttempts(), getStreak(settings.playerId)]);
 
   const seed = weekSeed();
   const ordered = orderTopicsForWeek(topics, seed);
   const me = PLAYERS.find((player) => player.id === settings.playerId) ?? PLAYERS[0];
-  const ready = readinessFor(settings.playerId, { attempts, recordings, reviews });
 
   // A topic counts as done once its listening set has been attempted.
   const doneTopics = new Map();
@@ -48,7 +41,7 @@ export async function render(root, { settings, navigate }) {
   root.append(
     screenHead({
       title: `Moien, ${me.name}`,
-      sub: `Week of ${weekLabel(seed)} · ${plural(ready.answered, 'answer')} · ${formatPercent(ready.overallPct)} overall`,
+      sub: `Week of ${weekLabel(seed)} · ${plural(doneTopics.size, 'topic')} of ${ordered.length} done`,
       trailing: streak.current > 0 ? el('span', { class: 'chip chip--warn' }, `${streak.current}-day streak`) : null,
     }),
   );
@@ -60,10 +53,6 @@ export async function render(root, { settings, navigate }) {
       amelie.el,
     ),
   );
-
-  root.append(basicsSection(vocabItems, vocabProgress, verbItems, verbProgress));
-
-  root.append(el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, '2 · Listening'));
 
   // The real thing, offered before the drills below it. These sets are built
   // from single dictionary sentences; the exam is connected speech, and INLL's
@@ -120,9 +109,6 @@ export async function render(root, { settings, navigate }) {
 
   root.append(el('div', { class: 'journey' }, el('div', { class: 'journey__trail', 'aria-hidden': 'true' }), list));
 
-  root.append(el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, '3 · Speaking'));
-  root.append(speakingSection(ready));
-
   root.append(
     el(
       'p',
@@ -141,68 +127,6 @@ export async function render(root, { settings, navigate }) {
 
   void navigate;
   return { destroy() {} };
-}
-
-/** Compact "1 · Basics" summary card — vocab + verb progress combined, linking to Learn. */
-function basicsSection(vocabItems, vocabProgress, verbItems, verbProgress) {
-  const totalItems = vocabItems.length + verbItems.length;
-  const totalMastered = vocabProgress.mastered + verbProgress.mastered;
-  const pct = totalItems === 0 ? 0 : Math.round((totalMastered / totalItems) * 100);
-
-  return el(
-    'div',
-    { class: 'stack', style: { marginBlockStart: 'var(--s5)' } },
-    el('p', { class: 'meter__label' }, '1 · Basics'),
-    el(
-      'a',
-      { class: 'card', href: '#/learn', style: { display: 'block' } },
-      el(
-        'div',
-        { class: 'row' },
-        el('span', { style: { fontSize: '28px' } }, '📇'),
-        el(
-          'div',
-          { class: 'spacer' },
-          el('p', { class: 'card__title' }, 'Vocabulary & verbs'),
-          el('p', { class: 'card__note' }, `${totalMastered} of ${totalItems} you can say without help`),
-        ),
-        el('span', { class: 'meter__value' }, `${pct}%`),
-      ),
-      el(
-        'div',
-        { class: 'meter__track', style: { marginBlockStart: 'var(--s3)' } },
-        el('div', { class: `meter__fill${pct > 50 ? ' is-pass' : ''}`, style: { width: `${pct}%` } }),
-      ),
-    ),
-  );
-}
-
-/** Compact "3 · Speaking" summary card, linking to Schwätzen. */
-function speakingSection(ready) {
-  return el(
-    'div',
-    { class: 'stack' },
-    el(
-      'a',
-      { class: 'card', href: '#/speaking', style: { display: 'block' } },
-      el(
-        'div',
-        { class: 'row' },
-        el('span', { style: { fontSize: '28px' } }, '🎤'),
-        el(
-          'div',
-          { class: 'spacer' },
-          el('p', { class: 'card__title' }, 'Speaking'),
-          el(
-            'p',
-            { class: 'card__note' },
-            ready.reviewCount === 0 ? 'Not started yet' : `${plural(ready.reviewCount, 'peer score')} · pass mark 50%`,
-          ),
-        ),
-        el('span', { class: 'meter__value' }, formatPercent(ready.speakingPct)),
-      ),
-    ),
-  );
 }
 
 /** A small Amelie perched on the current node. */

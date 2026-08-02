@@ -68,6 +68,69 @@ const SVG = `
   </g>
 </svg>`;
 
+/**
+ * The two stages before she is a butterfly, used only where Amelie stands in
+ * for the day's practice goal (see `setProgress` below). Everywhere else she
+ * appears — guiding a listening set, waiting out a speaking timer — she stays
+ * the butterfly in `SVG` above: metamorphosis marks the one goal that is
+ * actually being built up over the session, not her identity as the guide.
+ */
+const CATERPILLAR_SVG = `
+<svg class="amelie__svg" viewBox="0 0 120 112" role="img" aria-label="Amelie, as a caterpillar">
+  <defs>
+    <linearGradient id="amelie-cat-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--amelie-light, #f6c977)"/>
+      <stop offset="100%" stop-color="var(--amelie-deep, #c47f1d)"/>
+    </linearGradient>
+  </defs>
+  <g class="amelie__caterpillar">
+    <path class="amelie__leg" d="M18 96 v8 M30 96 v8 M54 96 v8 M66 96 v8 M90 96 v8"/>
+    <ellipse class="amelie__seg" cx="20" cy="84" rx="14" ry="12"/>
+    <ellipse class="amelie__seg" cx="44" cy="88" rx="15" ry="13"/>
+    <ellipse class="amelie__seg" cx="70" cy="84" rx="15" ry="13"/>
+    <ellipse class="amelie__seg amelie__seg--head" cx="94" cy="78" rx="14" ry="13"/>
+    <path class="amelie__antenna" d="M100 68 C104 58 106 53 109 47"/>
+    <path class="amelie__antenna" d="M92 67 C92 57 90 52 89 46"/>
+    <circle class="amelie__antenna-tip" cx="109" cy="46" r="2.6"/>
+    <circle class="amelie__antenna-tip" cx="89" cy="45" r="2.6"/>
+    <circle class="amelie__eye" cx="99" cy="75" r="2"/>
+    <circle class="amelie__spot" cx="20" cy="84" r="4"/>
+    <circle class="amelie__spot" cx="44" cy="88" r="4"/>
+    <circle class="amelie__spot" cx="70" cy="84" r="4"/>
+  </g>
+  <g class="amelie__sparkles" aria-hidden="true">
+    <path class="amelie__sparkle" d="M104 30 l1.6 4 4 1.6 -4 1.6 -1.6 4 -1.6 -4 -4 -1.6 4 -1.6 Z"/>
+    <path class="amelie__sparkle" d="M18 50 l1.4 3.6 3.6 1.4 -3.6 1.4 -1.4 3.6 -1.4 -3.6 -3.6 -1.4 3.6 -1.4 Z"/>
+  </g>
+</svg>`;
+
+const CHRYSALIS_SVG = `
+<svg class="amelie__svg" viewBox="0 0 120 112" role="img" aria-label="Amelie, in a chrysalis">
+  <defs>
+    <linearGradient id="amelie-chrysalis" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--amelie-light, #f6c977)"/>
+      <stop offset="60%" stop-color="var(--amelie, #e8a33d)"/>
+      <stop offset="100%" stop-color="var(--accent, #0e6b7d)"/>
+    </linearGradient>
+  </defs>
+  <path class="amelie__thread" d="M60 6 v14"/>
+  <path class="amelie__shell"
+    d="M60 20 C78 20 88 38 86 58 C84 82 74 100 60 100 C46 100 36 82 34 58 C32 38 42 20 60 20 Z"/>
+  <path class="amelie__ridge" d="M42 34 C54 30 66 30 78 34"/>
+  <path class="amelie__ridge" d="M38 50 C52 45 68 45 82 50"/>
+  <path class="amelie__ridge" d="M37 66 C51 61 69 61 83 66"/>
+  <g class="amelie__sparkles" aria-hidden="true">
+    <path class="amelie__sparkle" d="M18 40 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 Z"/>
+    <path class="amelie__sparkle" d="M100 50 l1.6 4 4 1.6 -4 1.6 -1.6 4 -1.6 -4 -4 -1.6 4 -1.6 Z"/>
+  </g>
+</svg>`;
+
+/** Which stage a given amount of daily-goal progress renders as. */
+function stageFor(pct, met) {
+  if (met) return 'butterfly';
+  return pct >= 50 ? 'chrysalis' : 'caterpillar';
+}
+
 export class Amelie {
   /**
    * @param {object} [options]
@@ -95,6 +158,45 @@ export class Amelie {
     }
 
     this.state = 'idle';
+    this.stageName = 'butterfly';
+  }
+
+  /**
+   * Render her as whatever the day's practice goal has earned so far:
+   * caterpillar, then chrysalis at the halfway point, then the butterfly once
+   * the goal is met. Opt-in — call this only where Amelie stands for that
+   * goal (the Today and Learn meters, and the end-of-session screen). Every
+   * other Amelie on screen never calls this and stays the butterfly she
+   * always was.
+   * @param {number} pct 0-100
+   * @param {boolean} met
+   */
+  setProgress(pct, met) {
+    const stage = stageFor(pct, met);
+    if (stage === this.stageName) return;
+    this.stageName = stage;
+    this.figure.innerHTML = stage === 'butterfly' ? SVG : stage === 'chrysalis' ? CHRYSALIS_SVG : CATERPILLAR_SVG;
+    this.el.classList.remove('is-stage-caterpillar', 'is-stage-chrysalis', 'is-stage-butterfly');
+    this.el.classList.add(`is-stage-${stage}`);
+  }
+
+  /**
+   * The moment the day's goal is met: she is already drawn as a butterfly by
+   * `setProgress`, and this sends her looping across the whole screen rather
+   * than just rising in place. A clone, not the live element — the real
+   * figure stays put in the layout while the clone flies and removes itself.
+   */
+  flyAround() {
+    const rect = this.figure.getBoundingClientRect();
+    const clone = this.figure.cloneNode(true);
+    clone.classList.add('amelie__figure--flyaround');
+    clone.style.position = 'fixed';
+    clone.style.left = `${rect.left}px`;
+    clone.style.top = `${rect.top}px`;
+    clone.style.width = `${rect.width}px`;
+    clone.style.margin = '0';
+    document.body.append(clone);
+    clone.addEventListener('animationend', () => clone.remove(), { once: true });
   }
 
   /** @param {typeof AMELIE_STATES[number]} state */
@@ -156,6 +258,11 @@ export const AMELIE_LINES = {
   // told people their listening score had improved after work that never
   // touches it, and sent them to a scoreboard where nothing had changed.
   setDone: 'Great work! Your listening score just moved.',
+  // Said once, exactly when a session pushes today's cards from short of the
+  // goal to met — see the transition check in drill/engine.js. Not reused for
+  // "goal already met, opened the app again": that would be the same line for
+  // a different, quieter moment, and she would stop meaning it.
+  dailyGoalMet: "Today's goal, met — and so is she. Watch her go.",
   learnSetDone: 'Nice work. Those words are booked in for their next review.',
   pairsSetDone: 'Cleared! Every pair you turned over is a word you have met.',
   interviewPrep: 'You have 30 seconds to think. Plan two sentences, not ten.',

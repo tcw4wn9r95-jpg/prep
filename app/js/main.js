@@ -48,18 +48,26 @@ const ROUTES = {
   onboarding,
 };
 
-// Four tabs, not six. `today` is the only starting point — it decides what to
-// do next and links onwards, so `journey` (the listening path), `review`,
-// `readiness` and `settings` are all still routable but no longer compete for
-// attention with it.
+// `today` is the only starting point — it decides what to do next and links
+// onwards, so `review`, `readiness` and `settings` stay routable but off the
+// tab bar, so they never compete for attention with it.
+//
+// `journey` used to be off the bar too, grouped in with those. It came back
+// on 2026-08-02: the exam is two halves that must each be passed, Verstoen
+// (listening) and Schwätzen (speaking) — `speaking` had a tab and its
+// listening counterpart did not, so the only way to *start* a listening set
+// was to already be mid-way through Today's dynamic checklist or to have
+// found the readiness card. Listen and Speak now sit next to each other,
+// naming the two halves the whole app is built around.
 const TABS = [
   { route: 'today', label: 'Today', icon: 'M12 3 L20 9 v11 H4 V9 Z M9 20 v-6 h6 v6' },
   { route: 'learn', label: 'Learn', icon: 'M4 6 L12 3 L20 6 L12 9 Z M4 6 v9 L12 18 L20 15 v-9 M12 9 v9' },
+  { route: 'journey', label: 'Listen', icon: 'M4 13 a8 8 0 0 1 16 0 M4 13 v5 a2 2 0 0 0 2 2 h1 v-9 h-1 a2 2 0 0 0 -2 2 M20 13 v5 a2 2 0 0 1 -2 2 h-1 v-9 h1 a2 2 0 0 1 2 2' },
+  { route: 'speaking', label: 'Speak', icon: 'M12 3 v10 M12 3 a3 3 0 0 1 3 3 v4 a3 3 0 0 1 -6 0 v-4 a3 3 0 0 1 3 -3 Z M5 11 a7 7 0 0 0 14 0 M12 18 v3' },
   // The cheat sheet earns a permanent slot: it is looked at *while* doing
   // something else, so burying it one level down inside Learn meant leaving
   // whatever you were in the middle of to reach it.
   { route: 'reference', label: 'Sheet', icon: 'M4 5.5 C6 4.3 9 4.3 12 5.5 C15 4.3 18 4.3 20 5.5 V18 C18 16.8 15 16.8 12 18 C9 16.8 6 16.8 4 18 Z M12 5.5 V18' },
-  { route: 'speaking', label: 'Speak', icon: 'M12 3 v10 M12 3 a3 3 0 0 1 3 3 v4 a3 3 0 0 1 -6 0 v-4 a3 3 0 0 1 3 -3 Z M5 11 a7 7 0 0 0 14 0 M12 18 v3' },
   { route: 'duel', label: 'Duel', icon: 'M5 20 L19 6 M14 4 h6 v6 M9 20 H4 v-5' },
 ];
 
