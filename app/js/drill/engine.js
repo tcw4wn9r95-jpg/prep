@@ -18,7 +18,7 @@ import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
 import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, POINTS, touchStreak } from '../store.js';
 import { requestExplanation } from '../sync.js';
-import { buildCard } from './cards.js';
+import { buildCard, GRAMMAR_RULES, joinArticle } from './cards.js';
 import { INPUTS } from './inputs.js';
 import { referenceSheet } from './reference-sheet.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
@@ -64,6 +64,9 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
   let correctCount = 0;
   let answeredCount = 0;
   let clip = null;
+  /** Cards answered, per deck id — see `recordLearnSession`. A mixed session
+   * draws from four decks and the home screen needs to know which. */
+  const answeredByDeck = {};
 
   const amelie = new Amelie({ size: 'sm', bubble: true });
   const progressFill = el('div', { class: 'progress__fill', style: { width: '0%' } });
@@ -107,6 +110,10 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
 
     const revealed = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s3)', fontStyle: 'italic' }, hidden: true });
     const feedback = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s2)' }, hidden: true });
+    // The rule behind a missed grammar card. Its own node rather than more
+    // text in `feedback`, because it is a different kind of thing: `feedback`
+    // is what the answer was, this is why.
+    const rule = el('p', { class: 'drill__rule', hidden: true });
     // Offered only once the card is answered: before that it would be a way to
     // read the answer out of the explanation.
     const explain = card.item.example ? explainButton(settings, card.item) : null;
@@ -126,11 +133,12 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
       audioId ? playButton(card) : null,
       revealed,
       feedback,
+      rule,
       explain,
     );
 
     const inputFactory = INPUTS[card.mode];
-    const input = inputFactory(card, (result) => grade(card, entry, result, { revealed, feedback, explain }));
+    const input = inputFactory(card, (result) => grade(card, entry, result, { revealed, feedback, rule, explain }));
 
     fill(body, prompt, el('p', { class: 'drill__instruction' }, card.instruction), input.el, amelie.el, nextHolder);
     nextHolder.hidden = true;
@@ -214,8 +222,9 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     });
   }
 
-  function grade(card, entry, result, { revealed, feedback, explain }) {
+  function grade(card, entry, result, { revealed, feedback, rule, explain }) {
     answeredCount += 1;
+    answeredByDeck[card.deck.id] = (answeredByDeck[card.deck.id] ?? 0) + 1;
     if (result.correct) correctCount += 1;
 
     // A retry is practice, not evidence — grading it would let a word be
@@ -231,7 +240,12 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     // Always show the full sentence and the exact spelling once the answer is
     // in — the card is over, and this is the moment the correct form is worth
     // reading.
-    const reveal = card.prompt.revealAfter ?? card.item.example?.lb ?? null;
+    // Only reveal a sentence the card was not already showing. Gender cards
+    // print the example in the prompt, and gloss cards do too from the first
+    // review onwards, so an unconditional reveal rendered the same italic
+    // sentence twice, one line under the other.
+    const sentence = card.prompt.revealAfter ?? card.item.example?.lb ?? null;
+    const reveal = sentence && sentence !== card.prompt.sentence ? sentence : null;
     if (reveal) {
       revealed.textContent = `“${reveal}”`;
       revealed.hidden = false;
@@ -240,9 +254,18 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
 
     if (!result.correct || result.partial) {
       feedback.textContent = result.articleWrong
-        ? `${card.deck.article(card.item)} ${card.lemma}`
+        ? joinArticle(card.deck.article(card.item), card.lemma)
         : `${card.lemma}${card.answer !== card.lemma ? ` → ${card.answer}` : ''}`;
       feedback.hidden = false;
+    }
+
+    // A missed grammar card gets the rule it was testing, not just the right
+    // spelling. Being shown that `Zäiten` beats `Zäite` here teaches this
+    // sentence; being shown the n-rule teaches every sentence.
+    const ruleText = !result.correct ? GRAMMAR_RULES[card.item.kind] : null;
+    if (ruleText) {
+      rule.textContent = ruleText;
+      rule.hidden = false;
     }
 
     // An accent-only miss plays the rung it is on without climbing, which is
@@ -293,7 +316,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
   function logSession() {
     if (logged || answeredCount === 0) return;
     logged = true;
-    recordLearnSession(settings.playerId, { correct: correctCount, answered: answeredCount });
+    recordLearnSession(settings.playerId, { correct: correctCount, answered: answeredCount, byDeck: { ...answeredByDeck } });
   }
 
   async function finish() {

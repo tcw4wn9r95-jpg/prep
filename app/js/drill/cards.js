@@ -75,6 +75,26 @@ export const DECKS = {
 };
 
 const GRAMMAR_KIND_LABELS = { gender: 'gender', nrule: 'n-rule', adjective: 'adjective agreement' };
+
+/**
+ * The rule each grammar card is testing, in one line.
+ *
+ * These sentences were only on the cheat sheet, which is the wrong place for
+ * them to be the *only* place: a grammar card that is got wrong told the
+ * learner which spelling was right and nothing about why, so the same card
+ * comes back in three days with the same coin-flip behind it. Answering
+ * "Which spelling is correct here (the Eifeler Regel)?" without ever being
+ * told what the Eifeler Regel is, is a memory test for a rule you could apply.
+ *
+ * Shown by engine.js at the moment a grammar card is missed, which is when the
+ * rule is worth reading, and by the cheat sheet as the section intros — one
+ * wording rather than two, so the sheet and the correction agree.
+ */
+export const GRAMMAR_RULES = {
+  gender: 'Every noun is männlech, weiblech or neutral, and the article agrees with it.',
+  nrule: 'A word ending in -n keeps it before n, d, t, z, h or a vowel, and drops it before anything else.',
+  adjective: 'An adjective’s ending changes with the noun it describes — there is no one fixed form.',
+};
 // Exported: the gender-sort game (screens/gender-sort.js) uses the same three
 // labels, and two independently-worded translations of "masculine" would read
 // as a second, disagreeing source of truth.
@@ -228,7 +248,28 @@ export function buildCard({ item, strand, box, deck, pool, random = Math.random 
         ...base,
         mode: 'choice',
         instruction: 'What does this mean?',
-        prompt: { word: withArticle(item, deck, lemma), sentence: item.example?.lb ?? null, audioId: playableAudio(item) },
+        prompt: {
+          word: withArticle(item, deck, lemma),
+          // The example sentence is withheld the very first time a word is
+          // met, and shown from the first review onwards.
+          //
+          // LOD publishes no translation of its example sentences — the
+          // `gloss` field on them is a Luxembourgish paraphrase — and nothing
+          // here is allowed to invent one. So on a box-0 card the sentence was
+          // a line of untranslated Luxembourgish sitting above four English
+          // options: for someone meeting `elo` for the first time,
+          // "ech hunn d'Wäsch de Moien ausgehaangen, se misst elo dréche sinn"
+          // is not context, it is nine more unknown words. Input has to be
+          // most of the way to comprehensible to be worth anything, and that
+          // is nowhere near it.
+          //
+          // It is not lost: engine.js reveals the full sentence the moment the
+          // card is answered, which is when it can be read against a meaning
+          // that is now known. The recording stays on the card throughout —
+          // hearing the word in connected speech costs no reading.
+          sentence: box > 0 ? (item.example?.lb ?? null) : null,
+          audioId: playableAudio(item),
+        },
         options: optionsOf(item, pool, deck.gloss, random),
         answer: deck.gloss(item),
       };
@@ -341,9 +382,20 @@ function grammarChoiceCard(base, item, random) {
     );
     return {
       ...base,
+      // The word *without* its article. Showing "de Auto" above "What gender
+      // is this word?" is showing the answer: LOD writes `de` for every
+      // masculine noun and `d'` for every feminine and neuter one, so the
+      // prompt gave the mark away outright on a third of the deck and halved
+      // the choice on the rest. Gender is the thing this deck exists to teach
+      // and it was the one thing the card never made you retrieve.
+      //
+      // The article is not lost — it moves to `lemma`, which is what the
+      // feedback line prints once the answer is in ("d'Kand → neutral"), so it
+      // is now taught at the moment it is learnable rather than leaked before.
+      lemma: joinArticle(item.article, item.lb),
       mode: 'choice',
       instruction: 'What gender is this word?',
-      prompt: { word: `${item.article} ${item.lb}`, sentence: item.example?.lb ?? null, audioId: playableAudio(item) },
+      prompt: { word: item.lb, sentence: item.example?.lb ?? null, audioId: playableAudio(item) },
       options,
       answer: GENDER_LABELS[item.gender] ?? item.gender,
     };
@@ -368,9 +420,26 @@ function playableAudio(item) {
   return has.audio(item) ? item.example.audioId : null;
 }
 
+/**
+ * An article and its noun, spaced the way Luxembourgish writes them.
+ *
+ * `de` takes a space; `d'` elides straight onto the word. LOD stores the two
+ * forms in the same field, and joining both with a space rendered 592 of the
+ * 1,173 nouns in the vocab deck — and 582 of the gender exercises — as
+ * "d' Fra" rather than "d'Fra", on the gloss card, in every reverse-card
+ * option, and in the answer shown after a miss. A drill for an exam that
+ * scores written accuracy should not be the thing teaching the wrong spacing.
+ *
+ * Exported: the gender-sort game writes the same pair and has to write it the
+ * same way.
+ */
+export function joinArticle(article, word) {
+  if (!article) return word;
+  return article.endsWith('’') || article.endsWith("'") ? `${article}${word}` : `${article} ${word}`;
+}
+
 function withArticle(item, deck, lemma) {
-  const article = deck.article(item);
-  return article ? `${article} ${lemma}` : lemma;
+  return joinArticle(deck.article(item), lemma);
 }
 
 /**

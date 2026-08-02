@@ -24,7 +24,8 @@
 
 import { el, screenHead, button, plural, formatPercent, settingsButton } from '../dom.js';
 import { Amelie } from '../amelie.js';
-import { loadVocab, loadVerbs, loadPhrases, loadTopics } from '../content.js';
+import { PRACTICE_ANCHORS } from './onboarding.js';
+import { loadTopics } from '../content.js';
 import {
   listAttempts,
   listRecordings,
@@ -40,9 +41,18 @@ import {
 
 const SPEAKING_GAP_DAYS = 3;
 
+/** Grammar cards that count as having done the focused grammar step. One
+ * `#/grammar` session is ten cards, so this is most of one. */
+const GRAMMAR_CARDS_GOAL = 6;
+
 export async function render(root, { settings, navigate }) {
   void navigate;
-  const [attempts, recordings, reviews, streak, due, today, topics, vocab, verbs, phrases] = await Promise.all([
+  // Deliberately does not load the decks. It used to pull vocab, verbs and
+  // phrases — 1.7 MB of JSON — to add their lengths into a `totalWords` that
+  // nothing on the screen ever rendered. This is the first screen after the
+  // splash, so that was pure cold-start cost on the one screen that has to
+  // feel instant.
+  const [attempts, recordings, reviews, streak, due, today, topics] = await Promise.all([
     listAttempts(),
     listRecordings(),
     listReviews(),
@@ -50,15 +60,12 @@ export async function render(root, { settings, navigate }) {
     dueCounts(settings.playerId),
     todayProgress(settings.playerId),
     loadTopics(),
-    loadVocab(),
-    loadVerbs(),
-    loadPhrases(),
   ]);
 
   const me = PLAYERS.find((player) => player.id === settings.playerId) ?? PLAYERS[0];
   const partner = otherPlayer(settings.playerId);
   const ready = readinessFor(settings.playerId, { attempts, recordings, reviews });
-  const state = assess({ settings, attempts, recordings, reviews, due, today, topics, decks: { vocab, verbs, phrases } });
+  const state = assess({ settings, attempts, recordings, reviews, due, today, topics });
   const next = nextAction(state, partner);
 
   const amelie = new Amelie({ size: 'md', bubble: true });
@@ -114,6 +121,7 @@ export async function render(root, { settings, navigate }) {
             ? `${today.goal} cards is the day's goal. Unlike the counts below, this one only goes up.`
             : `${today.correct} correct so far. Cards due move up and down as you work — this does not.`,
       ),
+      weekStrip(streak, today.cards > 0),
     ),
 
     sectionLabel('Today'),
@@ -160,6 +168,8 @@ export async function render(root, { settings, navigate }) {
       ),
     ),
 
+    anchorNote(settings, today.met),
+
     el(
       'p',
       { class: 'source-note' },
@@ -179,7 +189,7 @@ export async function render(root, { settings, navigate }) {
  * `plan` is the visible three-step day; `next` is chosen from the same facts,
  * so the button and the checklist can never disagree.
  */
-function assess({ settings, attempts, recordings, reviews, due, today, topics, decks }) {
+function assess({ settings, attempts, recordings, reviews, due, today, topics }) {
   const mine = attempts.filter((attempt) => attempt.playerId === settings.playerId);
   const week = weekSeed();
   const listenedThisWeek = mine.some((attempt) => attempt.weekSeed === week);
@@ -193,9 +203,9 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics, d
   const lastSpoke = myRecordings.reduce((latest, record) => Math.max(latest, Date.parse(record.at) || 0), 0);
   const daysSinceSpoke = lastSpoke === 0 ? Infinity : (Date.now() - lastSpoke) / 86400000;
 
-  const totalWords = decks.vocab.length + decks.verbs.length + decks.phrases.length;
   const dueTotal = due.recv + due.prod;
   const newLeft = Math.max(0, due.target - due.newToday);
+  const grammarToday = today.byDeck?.grammar ?? 0;
 
   const plan = [
     {
@@ -211,8 +221,16 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics, d
       id: 'grammar',
       title: 'Grammar drills',
       href: '#/grammar',
-      done: today.cards >= 6,
-      note: 'Gender, n-rule, adjectives — a focused set',
+      // Grammar cards specifically, not "any six cards". The old condition was
+      // `today.cards >= 6`, which counts every deck — so six vocabulary cards
+      // ticked this step without a single grammar question being answered, and
+      // the one part of the plan aimed at Morphosyntax could be skipped every
+      // day while reporting itself done.
+      done: grammarToday >= GRAMMAR_CARDS_GOAL,
+      note:
+        grammarToday >= GRAMMAR_CARDS_GOAL
+          ? `Done — ${plural(grammarToday, 'grammar card')} today`
+          : `${grammarToday} of ${GRAMMAR_CARDS_GOAL} · gender, n-rule, adjectives`,
     },
     {
       id: 'listening',
@@ -312,6 +330,25 @@ function nextAction(state, partner) {
 
 /* -------------------------------------------------------------------- UI */
 
+/**
+ * The cue chosen at onboarding, written back where it can be read.
+ *
+ * The plan is only worth asking for if it is visible afterwards — an
+ * implementation intention works by making the cue easy to bring to mind, and
+ * a preference saved into IndexedDB and never shown again does none of that.
+ * Once the day is done it switches from a plan to an observation, because
+ * "practise after dinner" is not useful advice at 9pm when you already have.
+ */
+function anchorNote(settings, met) {
+  const anchor = PRACTICE_ANCHORS.find((option) => option.id === settings.practiceAnchor);
+  if (!anchor) return null;
+  return el(
+    'p',
+    { class: 'source-note', style: { marginBlockStart: 'var(--s5)' } },
+    met ? `Done for today — same time tomorrow, ${anchor.sentence}.` : `Your plan: one session ${anchor.sentence}.`,
+  );
+}
+
 function sectionLabel(text) {
   return el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)', marginBlockEnd: 'var(--s2)' } }, text);
 }
@@ -331,6 +368,54 @@ function planRow(step, number) {
       'svg',
       { class: 'plan__chevron', viewBox: '0 0 24 24', width: '20', height: '20', 'aria-hidden': 'true' },
       el('path', { d: 'M9 6 L15 12 L9 18', fill: 'none', stroke: 'currentColor', 'stroke-width': '2.5', 'stroke-linecap': 'round' }),
+    ),
+  );
+}
+
+/**
+ * The last seven days, as seven dots.
+ *
+ * The streak was a number in the subtitle and nothing else, which is the one
+ * form it cannot do its job in: a count says "you are on 4" without showing
+ * what a day looks like, so there is nothing to keep unbroken and no way to
+ * see the two freeze days the app already grants. Seven dots show the shape of
+ * the week, which is the thing a habit is actually made of.
+ *
+ * Every state here is read off `streak.days`, which only ever records days
+ * that were actually practised. Nothing is inferred, and a gap is drawn as a
+ * gap — the point is to be able to see a slip, not to be protected from it.
+ */
+function weekStrip(streak, practisedToday) {
+  const done = new Set(streak.days ?? []);
+  const days = [];
+  for (let offset = 6; offset >= 0; offset -= 1) {
+    const date = new Date(Date.now() - offset * 86400000);
+    const key = date.toISOString().slice(0, 10);
+    // Today counts as soon as a card is answered, before the session that
+    // writes it to the streak log has finished — otherwise the dot the learner
+    // just earned stays grey until they leave the screen and come back.
+    const filled = done.has(key) || (offset === 0 && practisedToday);
+    days.push({
+      key,
+      filled,
+      today: offset === 0,
+      label: date.toLocaleDateString(undefined, { weekday: 'short' }),
+    });
+  }
+
+  return el(
+    'div',
+    { class: 'weekstrip', style: { marginBlockStart: 'var(--s3)' } },
+    ...days.map((day) =>
+      el(
+        'div',
+        {
+          class: `weekstrip__day${day.filled ? ' is-done' : ''}${day.today ? ' is-today' : ''}`,
+          title: `${day.label}${day.filled ? ' — practised' : ''}`,
+        },
+        el('span', { class: 'weekstrip__dot', 'aria-hidden': 'true' }),
+        el('span', { class: 'weekstrip__label' }, day.label.slice(0, 1)),
+      ),
     ),
   );
 }

@@ -114,6 +114,41 @@ test('cards: a noun production card demands the article, a non-noun does not', (
   assert.equal(build(adverb, 'prod', 2).article, null);
 });
 
+test("cards: d' elides onto its noun, de takes a space", () => {
+  // LOD stores both forms in one `article` field and about half the nouns in
+  // the deck take the eliding one, so a naive `${article} ${lemma}` printed
+  // "d' Fra" on the gloss card, in every reverse-card option and in the answer
+  // shown after a miss. Half a deck of misspelled nouns in a spelling-graded
+  // exam is worth a test.
+  assert.equal(cards.joinArticle("d'", 'Fra'), "d'Fra");
+  assert.equal(cards.joinArticle('de', 'Mann'), 'de Mann');
+  assert.equal(cards.joinArticle('d’', 'Kand'), 'd’Kand'); // typographic apostrophe too
+  assert.equal(cards.joinArticle(null, 'lafen'), 'lafen');
+
+  // And through a real card, not just the helper.
+  const eliding = vocab.find((item) => item.pos === 'SUBST' && item.article === "d'" && item.en);
+  assert.ok(eliding, 'the deck should contain nouns with the eliding article');
+  assert.equal(build(eliding, 'prod', 0).answer, `d'${eliding.lb}`);
+});
+
+test('cards: a gender card does not print the article it is asking you to name', () => {
+  // `de` marks every masculine noun and `d'` every feminine and neuter one, so
+  // showing the article above "What gender is this word?" answered the
+  // question outright on a third of the deck.
+  const grammar = require(path.join(ROOT, 'app', 'data', 'grammar.json')).items;
+  const genderItems = grammar.filter((item) => item.kind === 'gender');
+  assert.ok(genderItems.length > 0);
+
+  for (const item of genderItems.slice(0, 200)) {
+    const card = cards.buildCard({ item, strand: 'recv', box: 0, deck: cards.DECKS.grammar, pool: genderItems });
+    // Equality, not a substring search: "Brudder" contains the letters of
+    // "de" and always will.
+    assert.equal(card.prompt.word, item.lb, `${item.lb} leaked its article into the prompt`);
+    // It is still taught — just after the answer, via the feedback line.
+    assert.equal(card.lemma, cards.joinArticle(item.article, item.lb));
+  }
+});
+
 test('cards: the letter bank contains every letter of the answer', () => {
   const card = build(complete(), 'prod', 1);
   assert.equal(card.mode, 'bank');

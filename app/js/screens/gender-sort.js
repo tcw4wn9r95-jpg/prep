@@ -15,7 +15,7 @@
 
 import { el, fill, screenHead, button, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
-import { GENDER_LABELS } from '../drill/cards.js';
+import { GENDER_LABELS, joinArticle } from '../drill/cards.js';
 import { loadVocab } from '../content.js';
 import { touchStreak } from '../store.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
@@ -118,7 +118,7 @@ function playRound({ body, words, settings, navigate }) {
       amelie.say(pickLine(AMELIE_LINES.correct), 'celebrating');
     } else {
       resetChimeStreak();
-      amelie.say(`${word.article} ${word.lb} — ${GENDER_LABELS[word.gender]}.`, 'encouraging');
+      amelie.say(`${joinArticle(word.article, word.lb)} — ${GENDER_LABELS[word.gender]}.`, 'encouraging');
     }
     scoreLabel.textContent = `${correct} of ${words.length}`;
 

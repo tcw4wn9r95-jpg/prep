@@ -253,11 +253,12 @@ export const AMELIE_LINES = {
     'That was a different word. Tap the transcript to see it written down.',
     'Almost! Listen again — the answer is in the middle of the sentence.',
   ],
-  // Said after a *listening* set, and only there — it names the score it moved.
-  // It used to be reused by the vocabulary drill and the pairs game too, which
-  // told people their listening score had improved after work that never
-  // touches it, and sent them to a scoreboard where nothing had changed.
-  setDone: 'Great work! Your listening score just moved.',
+  // No fixed line for the end of a listening set. There used to be one —
+  // "Great work! Your listening score just moved." — said after every set
+  // regardless of the score, so 4 out of 20 was congratulated here and then
+  // reported as below the pass mark on the readiness screen. What she says now
+  // is chosen from the score by `setVerdict()` in store.js, which is also what
+  // the readiness estimate reads, so the two can no longer disagree.
   // Said once, exactly when a session pushes today's cards from short of the
   // goal to met — see the transition check in drill/engine.js. Not reused for
   // "goal already met, opened the app again": that would be the same line for

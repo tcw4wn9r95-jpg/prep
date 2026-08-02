@@ -428,6 +428,69 @@
 }
 
 .progress__fill--ok { background: linear-gradient(90deg, var(--ok), var(--green-500, var(--ok))); }
+/* A finished set that came in under the pass mark. The bar still fills — the
+   set *was* completed — but it does not go green, because green here meant
+   "well done" on a score the readiness screen calls a fail. */
+.progress__fill--bad { background: linear-gradient(90deg, var(--bad), color-mix(in srgb, var(--bad) 80%, #f88)); }
+
+/* --- the end-of-set miss review ----------------------------------------- */
+
+.miss__wrong,
+.miss__right {
+  font-weight: 650;
+  margin-block-start: 2px;
+}
+
+.miss__wrong {
+  color: var(--bad);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.miss__right { color: var(--ok); }
+
+/* --- the week strip ------------------------------------------------------
+   Seven days at a glance under the daily goal. Small on purpose: it is a
+   record of what happened, not a second scoreboard competing with the one
+   bold moment on the duel screen. */
+
+.weekstrip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--s1);
+}
+
+.weekstrip__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.weekstrip__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-sunk);
+  border: 1.5px solid var(--border);
+}
+
+.weekstrip__day.is-done .weekstrip__dot {
+  background: var(--ok);
+  border-color: var(--ok);
+}
+
+.weekstrip__day.is-today .weekstrip__dot {
+  box-shadow: 0 0 0 3px var(--accent-wash);
+}
+
+.weekstrip__label {
+  font-size: var(--size-xs);
+  color: var(--text-faint);
+  font-weight: 700;
+}
+
+.weekstrip__day.is-today .weekstrip__label { color: var(--accent); }
 
 /* --- readiness meters --------------------------------------------------- */
 
@@ -614,6 +677,28 @@
   color: var(--text-muted);
 }
 
+/* A chip that is a control rather than a label — the practice-cue picker at
+   onboarding. Full tap height, because it is something a thumb has to hit. */
+.chip--pick {
+  min-height: var(--tap);
+  padding-inline: var(--s4);
+  font-size: var(--size-sm);
+  cursor: pointer;
+  transition: background 0.15s var(--ease), color 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+
+.chip--pick.is-picked {
+  background: var(--accent-wash);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.chiprow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
 .chip--ok { background: var(--ok-wash); color: var(--ok); border-color: color-mix(in srgb, var(--ok) 25%, transparent); }
 .chip--warn { background: var(--amelie-wash); color: var(--amelie-deep); border-color: color-mix(in srgb, var(--amelie) 25%, transparent); }
 
@@ -718,6 +803,19 @@
   margin: 0;
   font-size: var(--size-3xl);
   line-height: 1;
+}
+
+/* The rule behind a missed grammar card. Amber, because on this screen amber
+   is Amelie explaining something — see the palette note in the README. */
+.drill__rule {
+  margin-block-start: var(--s3);
+  padding: var(--s3);
+  border-radius: var(--r-md);
+  background: var(--amelie-wash);
+  color: var(--text);
+  font-size: var(--size-sm);
+  font-weight: 600;
+  text-align: start;
 }
 
 .drill__pronoun {

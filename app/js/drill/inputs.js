@@ -9,6 +9,7 @@
 
 import { el, fill, button } from '../dom.js';
 import { checkTyped } from './match.js';
+import { joinArticle } from './cards.js';
 
 /* ---------------------------------------------------------------- A/B/C/D */
 
@@ -181,7 +182,7 @@ export function typeInput(card, onAnswer) {
 
     field.classList.add(graded.correct && !graded.partial ? 'is-correct' : graded.correct ? 'is-partial' : 'is-wrong');
     check.hidden = true;
-    onAnswer({ ...graded, given: article ? `${article} ${field.value}` : field.value, articleWrong });
+    onAnswer({ ...graded, given: joinArticle(article, field.value), articleWrong });
   }
 
   return {

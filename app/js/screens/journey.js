@@ -17,14 +17,13 @@
 import { el, screenHead, plural, weekLabel } from '../dom.js';
 import { Amelie, AMELIE_LINES } from '../amelie.js';
 import { loadTopics, topicIcon, orderTopicsForWeek } from '../content.js';
-import { listAttempts, weekSeed, getStreak, PLAYERS } from '../store.js';
+import { listAttempts, weekSeed, getStreak } from '../store.js';
 
 export async function render(root, { settings, navigate }) {
   const [topics, attempts, streak] = await Promise.all([loadTopics(), listAttempts(), getStreak(settings.playerId)]);
 
   const seed = weekSeed();
   const ordered = orderTopicsForWeek(topics, seed);
-  const me = PLAYERS.find((player) => player.id === settings.playerId) ?? PLAYERS[0];
 
   // A topic counts as done once its listening set has been attempted.
   const doneTopics = new Map();
@@ -40,7 +39,10 @@ export async function render(root, { settings, navigate }) {
 
   root.append(
     screenHead({
-      title: `Moien, ${me.name}`,
+      // Not "Moien, <name>": that is Today's headline, and two screens with
+      // the same title makes the tab you are on unreadable from the top of the
+      // page. This one is named after the exam half it trains.
+      title: 'Listening',
       sub: `Week of ${weekLabel(seed)} · ${plural(doneTopics.size, 'topic')} of ${ordered.length} done`,
       trailing: streak.current > 0 ? el('span', { class: 'chip chip--warn' }, `${streak.current}-day streak`) : null,
     }),

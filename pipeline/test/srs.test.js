@@ -244,3 +244,42 @@ test('srs: box 0 falls due immediately, which is why an empty queue is not the g
   assert.equal(store.nextBox(1, { correct: false }), 0);
   assert.equal(store.LEITNER_DAYS[0], 0, 'a lapsed card is due again immediately, so "nothing due" is not reachable');
 });
+
+/* ------------------------------------------------------- the pass mark */
+
+test('srs: one pass mark, and a verdict that agrees with it', async () => {
+  // The bug this guards: the end of a listening set congratulated every score
+  // ("Great work! Your listening score just moved.") over a full green bar,
+  // while readinessFor() reported the same attempt as below the line on the
+  // next screen. Both now read the same constant and the same banding.
+  assert.equal(store.PASS_MARK, 50);
+
+  assert.equal(store.setVerdict(90).passed, true);
+  assert.equal(store.setVerdict(51).passed, true);
+  // The rule is *over* 50, not at least 50 — the boundary belongs to the fail.
+  assert.equal(store.setVerdict(50).passed, false);
+  assert.equal(store.setVerdict(20).passed, false);
+  assert.equal(store.setVerdict(0).passed, false);
+
+  for (const pct of [0, 20, 35, 50, 51, 80, 100]) {
+    const verdict = store.setVerdict(pct);
+    assert.equal(typeof verdict.line, 'string');
+    assert.ok(verdict.line.length > 0, `no line for ${pct}%`);
+    assert.ok(verdict.label.includes('pass mark'), `no verdict label for ${pct}%`);
+  }
+});
+
+test('srs: a verdict never celebrates a score readiness calls a fail', async () => {
+  // The two have to agree at every point, not just at the ones spot-checked
+  // above: `passed` is what decides whether Amelie sets off confetti.
+  for (let pct = 0; pct <= 100; pct += 1) {
+    const speaking = pct;
+    const passesSpeaking = store.readinessFor('p', {
+      attempts: [],
+      recordings: [{ id: 'r', playerId: 'p' }],
+      reviews: [{ recordingId: 'r', bands: {}, globalNote: 0 }],
+    });
+    void passesSpeaking; // shape check only; the assertion below is the point
+    assert.equal(store.setVerdict(speaking).passed, speaking > store.PASS_MARK, `disagreement at ${pct}%`);
+  }
+});

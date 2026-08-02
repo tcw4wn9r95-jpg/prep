@@ -32,7 +32,7 @@ import { Clip } from '../audio.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
 import { loadPodcasts, podcastEpisode } from '../content.js';
 import { requestEpisodeQuestions } from '../sync.js';
-import { saveAttempt, touchStreak, weekSeed, POINTS } from '../store.js';
+import { saveAttempt, touchStreak, weekSeed, setVerdict, POINTS } from '../store.js';
 
 export async function render(root, { params, settings, navigate }) {
   const id = params?.[0] ?? null;
@@ -374,9 +374,15 @@ function runQuestions(holder, { questions, via }, { episode, settings, navigate,
     });
     await touchStreak(settings.playerId);
 
+    const pct = (correctCount / questions.length) * 100;
+    const verdict = setVerdict(pct);
+
     const done = new Amelie({ size: 'lg', bubble: true });
     done.el.classList.add('amelie--stack', 'amelie--hero');
-    done.celebrate(AMELIE_LINES.setDone);
+    // Same rule as the corpus listening sets: this run is averaged into the
+    // same B1 estimate, so it gets the same verdict rather than a cheer.
+    if (verdict.passed) done.celebrate(verdict.line);
+    else done.say('Connected speech at natural speed is the hardest input there is. Below the line here is normal — the transcript below is the way in.', 'encouraging');
 
     fill(
       body,
@@ -390,9 +396,15 @@ function runQuestions(holder, { questions, via }, { episode, settings, navigate,
           el('p', { class: 'meter__label' }, 'This episode'),
           el('p', { class: 'meter__value' }, `${correctCount} / ${questions.length}`),
           el(
+            'div',
+            { class: 'meter__track', style: { marginBlockStart: 'var(--s3)' } },
+            el('div', { class: `meter__fill ${verdict.passed ? 'is-pass' : 'is-fail'}`, style: { width: `${Math.max(pct, pct > 0 ? 2 : 0)}%` } }),
+            el('span', { class: 'meter__threshold', 'aria-hidden': 'true' }),
+          ),
+          el(
             'p',
-            { class: 'card__note' },
-            `${formatPercent((correctCount / questions.length) * 100)} · +${correctCount * POINTS.perCorrectAnswer} points`,
+            { class: 'card__note', style: { marginBlockStart: 'var(--s2)' } },
+            `${formatPercent(pct)} · ${verdict.label} · +${correctCount * POINTS.perCorrectAnswer} points`,
           ),
         ),
         button('Another episode', { variant: 'primary', class: 'btn btn--primary btn--block', onclick: () => navigate('#/podcasts') }),

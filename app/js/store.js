@@ -316,6 +316,47 @@ export async function clearOutbox(ids) {
 /* ------------------------------------------------------------- readiness */
 
 /**
+ * The line INLL marks on: over 50%, on the speaking part or overall.
+ *
+ * One constant rather than a `> 50` written at each site, because the end of a
+ * listening set and the readiness screen have to agree about what the same
+ * percentage means — they did not, and a 20% set was congratulated on one
+ * screen and reported as a fail on the next.
+ */
+export const PASS_MARK = 50;
+
+/**
+ * What a finished set's score means, in the words the learner is shown.
+ *
+ * Lives here next to `readinessFor()` rather than in a screen because two
+ * screens end a listening run — the corpus drills and the podcast questions —
+ * and both feed the same estimate. Two separately-worded verdicts on one
+ * number would read as two different scores.
+ *
+ * `passed` is false at exactly 50%: the rule is *over* 50, not at least.
+ */
+export function setVerdict(pct) {
+  if (pct >= 80) {
+    return { passed: true, label: 'well above the pass mark', line: 'Strong set — comfortably above the line.' };
+  }
+  if (pct > PASS_MARK) {
+    return { passed: true, label: 'above the pass mark', line: `Above the ${PASS_MARK}% line. Keep the margin growing.` };
+  }
+  if (pct >= 35) {
+    return {
+      passed: false,
+      label: `below the ${PASS_MARK}% pass mark`,
+      line: 'Below the line this time. Read the misses below — the transcript answers every one of them.',
+    };
+  }
+  return {
+    passed: false,
+    label: `below the ${PASS_MARK}% pass mark`,
+    line: 'This one was hard. Go through the misses below with the transcript, then try an easier topic.',
+  };
+}
+
+/**
  * Estimated exam readiness against the real thresholds.
  *
  * INLL's rule: you pass on **over 50% in the speaking part, or over 50%
@@ -344,8 +385,8 @@ export function readinessFor(playerId, { attempts, recordings, reviews }) {
     overallPct,
     answered,
     reviewCount: myReviews.length,
-    passesSpeaking: speakingPct !== null && speakingPct > 50,
-    passesOverall: overallPct !== null && overallPct > 50,
+    passesSpeaking: speakingPct !== null && speakingPct > PASS_MARK,
+    passesOverall: overallPct !== null && overallPct > PASS_MARK,
     advice: adviceFor({ listeningPct, speakingPct, answered, reviewCount: myReviews.length }),
   };
 }
@@ -745,7 +786,7 @@ export async function recordLearnResult(playerId, deck, strand, itemId, outcome)
  * vocabulary work there would quietly corrupt the number the exam plan is
  * built on.
  */
-export async function recordLearnSession(playerId, { correct, answered }) {
+export async function recordLearnSession(playerId, { correct, answered, byDeck = {} }) {
   if (answered === 0) return null;
   const record = {
     id: `${playerId}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
@@ -753,6 +794,12 @@ export async function recordLearnSession(playerId, { correct, answered }) {
     weekSeed: weekSeed(),
     correct,
     answered,
+    // Cards answered per deck. Added because the home screen's "Grammar
+    // drills" step was ticked by `todayProgress().cards >= 6`, which counts
+    // *every* card answered today — so six vocabulary cards marked grammar as
+    // done without a single grammar question being seen. A checklist that
+    // ticks itself is worse than no checklist.
+    byDeck,
     at: new Date().toISOString(),
     points: correct * POINTS.perLearnCorrect,
   };
@@ -782,9 +829,20 @@ export async function todayProgress(playerId, { now = Date.now() } = {}) {
   const cards = mine.reduce((sum, row) => sum + (row.answered ?? 0), 0);
   const correct = mine.reduce((sum, row) => sum + (row.correct ?? 0), 0);
 
+  // Rows written before `byDeck` existed simply contribute nothing to it. That
+  // is the honest reading: those sessions did not record which deck they drew
+  // from, so claiming any of them for grammar would be a guess.
+  const byDeck = {};
+  for (const row of mine) {
+    for (const [deck, count] of Object.entries(row.byDeck ?? {})) {
+      byDeck[deck] = (byDeck[deck] ?? 0) + count;
+    }
+  }
+
   return {
     cards,
     correct,
+    byDeck,
     sessions: mine.length,
     goal: DAILY_CARD_GOAL,
     met: cards >= DAILY_CARD_GOAL,

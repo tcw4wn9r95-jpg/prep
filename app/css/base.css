@@ -165,6 +165,13 @@ img, svg {
   padding-block-end: calc(var(--s8) + env(safe-area-inset-bottom));
 }
 
+/* Focus mode: no tab bar under the screen, so the reserve kept for it is a
+   dead strip. Giving it back is what lets a drill card and its answer options
+   sit above the fold on a 852px phone. */
+.is-focused .screen {
+  padding-block-end: calc(var(--s5) + env(safe-area-inset-bottom));
+}
+
 .screen--flush {
   padding-inline: 0;
 }
@@ -200,7 +207,11 @@ img, svg {
   grid-auto-columns: 1fr;
   gap: var(--s1);
   padding: var(--s2) var(--s3) calc(var(--s2) + env(safe-area-inset-bottom));
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  /* Was 92% surface: the bar is sticky, so the last card of a long screen
+     slides under it, and at 92% the text underneath stayed legible enough to
+     read as a second row of labels tangled into the tab labels. Opaque, with
+     the blur kept only as a soft edge above it. */
+  background: var(--surface);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-block-start: 1px solid var(--border);

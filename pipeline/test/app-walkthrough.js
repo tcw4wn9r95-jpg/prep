@@ -468,7 +468,7 @@ async function main() {
     if (!/level 2$/.test(title ?? '')) throw new Error(`progress was not saved — reopened at "${title}"`);
   });
 
-  await step('the largest pairs board still fits above the tab bar', async () => {
+  await step('the largest pairs board still fits on one screen', async () => {
     // The whole game is remembering where a tile was, so the board has to be
     // visible in one look. MAX_PAIRS in pairs.js is chosen from this
     // measurement — assert it here so the number cannot drift out of sync with
@@ -480,13 +480,18 @@ async function main() {
 
     const fit = await page.evaluate(() => {
       const board = document.querySelector('.pairs').getBoundingClientRect();
-      const tabbar = document.querySelector('#tabbar')?.getBoundingClientRect().top ?? window.innerHeight;
-      return { bottom: Math.round(board.bottom), tabTop: Math.round(tabbar) };
+      // Pairs is a focus route, so the tab bar is hidden while a board is
+      // running and the floor is the viewport itself. A *hidden* element still
+      // answers getBoundingClientRect() — with an all-zero rect — so this has
+      // to test for the bar being laid out, not merely present in the DOM.
+      const bar = document.querySelector('#tabbar');
+      const barTop = bar && !bar.hidden ? bar.getBoundingClientRect().top : window.innerHeight;
+      return { bottom: Math.round(board.bottom), floor: Math.round(barTop) };
     });
-    if (fit.bottom > fit.tabTop) {
-      throw new Error(`the 28-tile board runs ${fit.bottom - fit.tabTop}px under the tab bar`);
+    if (fit.bottom > fit.floor) {
+      throw new Error(`the 28-tile board runs ${fit.bottom - fit.floor}px off the bottom of the screen`);
     }
-    process.stdout.write(`  largest board clears the tab bar by ${fit.tabTop - fit.bottom}px\n`);
+    process.stdout.write(`  largest board clears the bottom by ${fit.floor - fit.bottom}px\n`);
   });
 
   await step('the cheat sheet shows pronouns, verb tables and sentence patterns', async () => {

@@ -31,7 +31,7 @@
 
 import { el, screenHead } from '../dom.js';
 import { loadVocab, loadVerbs, loadPhrases, loadPhraseGroups, loadGrammar } from '../content.js';
-import { GENDER_LABELS } from '../drill/cards.js';
+import { GENDER_LABELS, GRAMMAR_RULES, joinArticle } from '../drill/cards.js';
 
 const PRONOUNS = ['ech', 'du', 'hien', 'si', 'hatt', 'mir', 'dir'];
 
@@ -167,7 +167,7 @@ export function renderContent(container, { vocab, verbs, phrases, groups, gramma
       el(
         'p',
         { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
-        'Every noun is männlech, weiblech or neutral, and the article agrees with it.',
+        GRAMMAR_RULES.gender,
       ),
       ...genderExamples(grammar).map(genderCard),
     ),
@@ -176,7 +176,7 @@ export function renderContent(container, { vocab, verbs, phrases, groups, gramma
       el(
         'p',
         { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
-        'A word ending in -n drops it, unless the next word starts with n, d, t, z, h or a vowel. Real sentences, both directions:',
+        `${GRAMMAR_RULES.nrule} Real sentences, both directions:`,
       ),
       ...nruleExamples(grammar).map(nruleCard),
     ),
@@ -185,7 +185,7 @@ export function renderContent(container, { vocab, verbs, phrases, groups, gramma
       el(
         'p',
         { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
-        'An adjective’s ending changes with the noun it describes — there is no one fixed form. Both spellings below are real:',
+        `${GRAMMAR_RULES.adjective} Both spellings below are real:`,
       ),
       ...adjectiveExamples(grammar).map(adjectiveCard),
     ),
@@ -247,7 +247,7 @@ function genderCard({ label, words }) {
         el(
           'div',
           { class: 'ref-frame' },
-          el('span', {}, `${word.article} ${word.lb}`),
+          el('span', {}, joinArticle(word.article, word.lb)),
           el('span', { class: 'card__note' }, word.en),
         ),
       ),
