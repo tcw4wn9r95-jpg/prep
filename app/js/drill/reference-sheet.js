@@ -9,7 +9,7 @@
  */
 
 import { el, button, bookIcon } from '../dom.js';
-import { loadVocab, loadVerbs, loadPhrases, loadPhraseGroups } from '../content.js';
+import { loadVocab, loadVerbs, loadPhrases, loadPhraseGroups, loadGrammar } from '../content.js';
 import { renderContent } from '../screens/reference.js';
 
 /** A book icon that opens the sheet. One dialog is built lazily on first tap
@@ -33,10 +33,12 @@ export function referenceSheet() {
         body,
       );
       document.body.append(dialog);
-      ready = Promise.all([loadVocab(), loadVerbs(), loadPhrases(), loadPhraseGroups()]).then(([vocab, verbs, phrases, groups]) => {
-        body.replaceChildren();
-        renderContent(body, { vocab, verbs, phrases, groups });
-      });
+      ready = Promise.all([loadVocab(), loadVerbs(), loadPhrases(), loadPhraseGroups(), loadGrammar()]).then(
+        ([vocab, verbs, phrases, groups, grammar]) => {
+          body.replaceChildren();
+          renderContent(body, { vocab, verbs, phrases, groups, grammar });
+        },
+      );
     }
     await ready;
     dialog.showModal();
