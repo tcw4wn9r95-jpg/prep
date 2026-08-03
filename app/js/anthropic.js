@@ -46,11 +46,24 @@ export function looksLikeApiKey(value) {
  * route produced it. Kept verbatim rather than imported — the Worker is
  * deployed separately and the two files cannot share code.
  */
-const SYSTEM_PROMPT = `You help an English-speaking A1/A2 learner of Luxembourgish understand one real example sentence from a dictionary. You are told the sentence, the headword it illustrates, and that word's English gloss.
+const SYSTEM_PROMPT = `You help an English-speaking A1/A2 learner of Luxembourgish understand one real example sentence from a dictionary. You are told the sentence, the headword it illustrates, that word's English gloss, and — when it is known — the exercise the learner has just answered about it.
 
 Do NOT just translate the sentence — the learner already has the gloss. Instead, in 2-3 short sentences, help them understand and remember it: point out word order, a grammatical structure worth noticing, an idiom or figurative meaning, a false friend, or how the headword's form here relates to its dictionary form. Be concrete and specific to this sentence, not generic advice.
 
+When you are told what the exercise was, answer THAT question first. Explaining word order to someone who was asked whether a noun is männlech or weiblech is not help. For example: a gender question wants whatever makes this noun's gender memorable and any article visible in the sentence; an Eifeler Regel question wants why the final n is kept or dropped at that exact spot, naming the sound that follows; an agreement question wants what the adjective is agreeing with; a listening question wants what is hard to catch by ear here — a swallowed ending, a contraction, two words running together.
+
 Respond with ONLY a JSON object, no prose outside it: {"explanation": "..."}`;
+
+/**
+ * The user turn. `task` names the exercise that was just answered, so the
+ * explanation can be about the question rather than about the sentence in
+ * general — see the note in drill/engine.js `explainButton`.
+ */
+export function explainPrompt({ lb, word, en, task }) {
+  const lines = [`Sentence: ${lb}`, `Headword: ${word}`, `Headword gloss: ${en || '(none given)'}`];
+  if (task) lines.push(`The exercise they just answered: ${task}`);
+  return lines.join('\n');
+}
 
 /**
  * Explains one corpus sentence.
@@ -59,7 +72,7 @@ Respond with ONLY a JSON object, no prose outside it: {"explanation": "..."}`;
  * @param {{lb: string, word: string, en: string}} item
  * @returns {Promise<{ok: true, explanation: string}|{ok: false, message: string}>}
  */
-export async function explainSentence(apiKey, { lb, word, en }) {
+export async function explainSentence(apiKey, { lb, word, en, task = null }) {
   let response;
   try {
     response = await fetch(ENDPOINT, {
@@ -78,7 +91,7 @@ export async function explainSentence(apiKey, { lb, word, en }) {
         max_tokens: MAX_TOKENS,
         system: SYSTEM_PROMPT,
         messages: [
-          { role: 'user', content: `Sentence: ${lb}\nHeadword: ${word}\nHeadword gloss: ${en || '(none given)'}` },
+          { role: 'user', content: explainPrompt({ lb, word, en, task }) },
         ],
       }),
     });

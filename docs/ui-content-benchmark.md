@@ -327,3 +327,84 @@ the shell cache-first and busts on a hand-bumped `VERSION`; a dozen shell files
 changed and `VERSION` did not, so `sw.js` was byte-identical to the installed
 copy and the browser never looked for an update. Bumping it is not optional
 housekeeping — it is the deploy. It is now `v18`.
+
+---
+
+# Follow-up 2, 2026-08-03
+
+## The explanation ignored the exercise you were doing
+
+"Explain this sentence" sent the sentence, the headword and its gloss, and
+nothing else — so a noun-gender question, a blind listening card and an Eifeler
+Regel question all came back with the same general remarks about word order.
+The explanation you want is about the thing you just got wrong.
+
+**Fixed.** Each card type now carries a one-line description of what was
+actually asked (`CARD_TASKS` in `cards.js`), sent with the request, and the
+prompt is told to answer *that* first — for a gender card, what makes this
+noun's gender memorable; for an n-rule card, why the n is kept or dropped at
+that exact spot and what sound follows; for a listening card, what is hard to
+catch by ear here.
+
+Two things had to change with it. The **cache key** now includes the task —
+keyed on the sentence alone, the first explanation a sentence ever got was
+replayed for every later exercise on it, which would have thrown the new
+context straight away. And cloze and grammar cards, which have a
+`before`/`after` pair rather than an `example`, were **never offered an
+explanation at all**; they are now, with the answer put back into the sentence
+so what gets explained is a real sentence rather than a gapped one.
+
+Both paths — the Worker and the direct API call — build the prompt the same
+way, so an explanation does not depend on whether a Worker happens to be
+configured.
+
+## Recording five minutes of speech on a few dozen words
+
+The speaking screen offered "Listen & repeat" and the full A2 interview side by
+side, with nothing saying which you were ready for or how far off you were.
+
+**Fixed** with the app's own numbers rather than a new invented one: how many
+words and how many of the 34 sentence frames you can **produce** — the `prod`
+strand, which is the honest measure, since the A2 part credits production only
+and `prod` does not unlock until a word has been recognised twice. Below 50
+words and 8 frames the exam tasks are muted and the screen says exactly what is
+missing, with a button to each.
+
+Deliberately **not a lock**. Someone who wants to try one should be able to,
+and a threshold this app invented has no business forbidding practice — it says
+so on the screen. Image description (2b) is not held back either: it has no
+interlocutor and a picture to point at, which makes it a genuinely easier task.
+
+## A hint on every card
+
+One other word of the sentence, translated, behind a tap. Never the word being
+asked for, and never anything appearing among the options — checked in **both
+languages**, because a gloss card's options are English and a cloze card's are
+Luxembourgish, and the hint prints both sides.
+
+The interesting constraint is that it must never be *wrong*. The lookup is by
+surface spelling against the decks already shipped, and Luxembourgish function
+words are badly ambiguous: `de` is the masculine article on nearly every page
+of the corpus, but the deck also glosses that spelling as "you" (the clitic form
+of `du`), so a naive lookup produced `de = you` under `de ganzen Dag`. So the
+glossary keeps only spellings that are claimed by exactly one deck entry, are a
+content word, and are at least four characters. That drops coverage from 98% of
+sentences to about 70% — the right side of this repo's own rule that fewer
+correct items beat a full-looking tree.
+
+Nothing here is translated by the app: every gloss is one LOD published, read
+out of the decks already on the device. A sentence with no safe candidate
+offers no hint rather than a guess — which is what happens on the stage-1
+starter words, since those have no example sentence at all.
+
+Taking a hint is not penalised. The card is still graded on the answer, because
+the alternative for a beginner facing nine unknown words is to guess, and a
+guess teaches nothing.
+
+## Verification
+
+`npm test` 145 passing (six new, covering the ambiguity exclusion, the
+both-languages option check and real-deck coverage) · `npm run walkthrough`
+41/41 · `validate` PASS · `sw.js` `VERSION` → `v19`, with `js/drill/hint.js`
+added to the precache list — a test catches that omission, which is how the
+list stays honest.

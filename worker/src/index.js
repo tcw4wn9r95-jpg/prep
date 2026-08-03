@@ -373,15 +373,22 @@ async function postExplain(request, env) {
   const lb = String(body.lb ?? '').trim();
   const word = String(body.word ?? '').trim();
   const en = String(body.en ?? '').trim();
+  // What exercise the learner just answered about this sentence. Optional: an
+  // older app build sends none, and the prompt copes.
+  const task = String(body.task ?? '').trim();
   if (!lb) return json({ error: 'missing "lb" sentence' }, 400);
 
-  const cacheKey = `ex:${await sha256hex(`${lb}|${word}`)}`;
+  // The task is part of the key. Cached on the sentence alone, the first
+  // explanation a sentence ever got was replayed for every later exercise on
+  // it — so the gender card's answer would come back for the n-rule card, and
+  // making the prompt context-aware would have bought nothing.
+  const cacheKey = `ex:${await sha256hex(`${lb}|${word}|${task}`)}`;
   const cached = await env.DUEL.get(cacheKey, 'json');
   if (cached) return json({ ...cached, cached: true });
 
   let explanation;
   try {
-    explanation = await explain(env, { lb, word, en });
+    explanation = await explain(env, { lb, word, en, task });
   } catch (error) {
     return json({ error: `explanation failed: ${error.message}` }, 502);
   }
@@ -392,14 +399,27 @@ async function postExplain(request, env) {
   return json(payload);
 }
 
-const EXPLAIN_SYSTEM_PROMPT = `You help an English-speaking A1/A2 learner of Luxembourgish understand one real example sentence from a dictionary. You are told the sentence, the headword it illustrates, and that word's English gloss.
+const EXPLAIN_SYSTEM_PROMPT = `You help an English-speaking A1/A2 learner of Luxembourgish understand one real example sentence from a dictionary. You are told the sentence, the headword it illustrates, that word's English gloss, and — when it is known — the exercise the learner has just answered about it.
 
 Do NOT just translate the sentence — the learner already has the gloss. Instead, in 2-3 short sentences, help them understand and remember it: point out word order, a grammatical structure worth noticing, an idiom or figurative meaning, a false friend, or how the headword's form here relates to its dictionary form. Be concrete and specific to this sentence, not generic advice.
 
+When you are told what the exercise was, answer THAT question first. Explaining word order to someone who was asked whether a noun is männlech or weiblech is not help. For example: a gender question wants whatever makes this noun's gender memorable and any article visible in the sentence; an Eifeler Regel question wants why the final n is kept or dropped at that exact spot, naming the sound that follows; an agreement question wants what the adjective is agreeing with; a listening question wants what is hard to catch by ear here — a swallowed ending, a contraction, two words running together.
+
 Respond with ONLY a JSON object, no prose outside it: {"explanation": "..."}`;
 
+/**
+ * The user turn. Mirrors app/js/anthropic.js `explainPrompt` — the two paths
+ * must ask the same question, or an explanation would depend on whether a
+ * Worker happened to be configured.
+ */
+function explainPrompt({ lb, word, en, task }) {
+  const lines = [`Sentence: ${lb}`, `Headword: ${word}`, `Headword gloss: ${en || '(none given)'}`];
+  if (task) lines.push(`The exercise they just answered: ${task}`);
+  return lines.join('\n');
+}
+
 /** Claude explains one sentence; cheap and cacheable, so Haiku is the right fit. */
-async function explain(env, { lb, word, en }) {
+async function explain(env, { lb, word, en, task }) {
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -411,7 +431,7 @@ async function explain(env, { lb, word, en }) {
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 250,
       system: EXPLAIN_SYSTEM_PROMPT,
-      messages: [{ role: 'user', content: `Sentence: ${lb}\nHeadword: ${word}\nHeadword gloss: ${en || '(none given)'}` }],
+      messages: [{ role: 'user', content: explainPrompt({ lb, word, en, task }) }],
     }),
   });
   if (!response.ok) throw new Error(`Claude ${response.status}: ${(await response.text()).slice(0, 200)}`);

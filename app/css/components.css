@@ -805,6 +805,24 @@
   line-height: 1;
 }
 
+/* The hint: one other word of the sentence, behind a tap. Quiet and centred
+   under the answer input — it is an offer, not a step in the exercise. */
+.drill__hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s1);
+  margin-block-start: var(--s2);
+}
+
+.drill__hint-text {
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.drill__hint-text strong { color: var(--text); }
+
 /* The rule behind a missed grammar card. Amber, because on this screen amber
    is Amelie explaining something — see the palette note in the README. */
 .drill__rule {
@@ -1324,3 +1342,8 @@
     transition: none;
   }
 }
+
+/* The exam-format tasks before the vocabulary is there to attempt them. Muted
+   rather than disabled: still openable, just visibly not the thing to do next.
+   See SPEAKING_READY_WORDS in screens/speaking.js. */
+.stack.is-early { opacity: 0.72; }

@@ -18,7 +18,9 @@ import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
 import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, POINTS, touchStreak } from '../store.js';
 import { requestExplanation } from '../sync.js';
-import { buildCard, GRAMMAR_RULES, joinArticle } from './cards.js';
+import { buildCard, GRAMMAR_RULES, joinArticle, taskFor } from './cards.js';
+import { loadGlossary } from '../content.js';
+import { hintFor } from './hint.js';
 import { INPUTS } from './inputs.js';
 import { referenceSheet } from './reference-sheet.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
@@ -68,6 +70,11 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
    * draws from four decks and the home screen needs to know which. */
   const answeredByDeck = {};
 
+  // Started once for the whole session. It is built from vocab.json and
+  // verbs.json, which content.js has already cached by the time any drill
+  // opens, so this resolves in the same tick in practice.
+  const glossary = loadGlossary();
+
   const amelie = new Amelie({ size: 'sm', bubble: true });
   const progressFill = el('div', { class: 'progress__fill', style: { width: '0%' } });
   const body = el('div', { class: 'stack stack--lg' });
@@ -108,6 +115,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     const audioId = card.prompt.audioId ?? null;
     if (audioId) clip = new Clip(audioId);
 
+    const hint = hintControl(card);
     const revealed = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s3)', fontStyle: 'italic' }, hidden: true });
     const feedback = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s2)' }, hidden: true });
     // The rule behind a missed grammar card. Its own node rather than more
@@ -116,7 +124,20 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     const rule = el('p', { class: 'drill__rule', hidden: true });
     // Offered only once the card is answered: before that it would be a way to
     // read the answer out of the explanation.
-    const explain = card.item.example ? explainButton(settings, card.item) : null;
+    //
+    // The sentence is whatever this card actually put on screen — a cloze or a
+    // grammar item has no `example`, it has a `before`/`after` pair, and those
+    // cards were the ones silently going without an explanation at all.
+    const explainSentence = sentenceOf(card, { filled: true });
+    const explain = explainSentence
+      ? explainButton(settings, {
+          id: card.item.id,
+          lb: explainSentence,
+          word: card.answer ?? card.lemma,
+          en: card.deck.gloss(card.item) ?? null,
+          task: taskFor(card),
+        })
+      : null;
     if (explain) explain.hidden = true;
 
     const prompt = el(
@@ -140,7 +161,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     const inputFactory = INPUTS[card.mode];
     const input = inputFactory(card, (result) => grade(card, entry, result, { revealed, feedback, rule, explain }));
 
-    fill(body, prompt, el('p', { class: 'drill__instruction' }, card.instruction), input.el, amelie.el, nextHolder);
+    fill(body, prompt, el('p', { class: 'drill__instruction' }, card.instruction), input.el, hint, amelie.el, nextHolder);
     nextHolder.hidden = true;
     fill(nextHolder, nextButton(entry));
 
@@ -206,6 +227,65 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     );
     clip.on('ended', () => play.classList.remove('is-playing'));
     return el('div', { style: { marginBlockStart: 'var(--s3)' } }, play, note);
+  }
+
+  /**
+   * The sentence a hint may be drawn from, whatever shape this card is.
+   *
+   * A listening card counts: its text is withheld, but one translated word is
+   * a foothold rather than the answer, and the option list is what it is being
+   * hidden from.
+   */
+  function sentenceOf(card, { filled = false } = {}) {
+    if (card.prompt.cloze) {
+      const { before, after } = card.prompt.cloze;
+      // `filled` puts the answer back. The hint wants the gapped form (it must
+      // not quote the missing word anyway); an explanation wants the real
+      // sentence, because a gapped one is not a sentence to explain.
+      const middle = filled ? (card.answer ?? '') : ' ';
+      return `${before ?? ''}${middle}${after ?? ''}`.replace(/\s+/g, ' ').trim();
+    }
+    return card.prompt.sentence ?? card.prompt.revealAfter ?? card.item.example?.lb ?? null;
+  }
+
+  /**
+   * "Hint" — one other word of the sentence, translated, behind a tap.
+   *
+   * Behind a tap rather than always visible because taking it should be a
+   * decision: a hint read before the question was attempted is just a shorter
+   * question, and the retrieval is where the learning is. Taking it is not
+   * penalised either — the card is still graded on the answer — because the
+   * alternative for a beginner staring at nine unknown words is to guess, and
+   * a guess teaches nothing at all.
+   */
+  function hintControl(card) {
+    const holder = el('div', { class: 'drill__hint', hidden: true });
+    const text = el('p', { class: 'drill__hint-text', hidden: true });
+    const trigger = button('Hint', {
+      variant: 'ghost',
+      class: 'btn btn--ghost',
+      onclick: () => {
+        trigger.hidden = true;
+        text.hidden = false;
+      },
+    });
+    holder.append(trigger, text);
+
+    // Everything that would hand over the answer: what is being asked for, and
+    // every option on screen, in whichever language they happen to be in.
+    const exclude = [card.answer, card.lemma, card.item?.cloze?.form, ...(card.options ?? []).map((option) => option.value)];
+
+    glossary.then((lookup) => {
+      const found = hintFor(lookup, sentenceOf(card), { exclude });
+      if (!found) return; // no safe word in this sentence — offer nothing
+      text.replaceChildren(
+        el('strong', {}, found.lb),
+        document.createTextNode(` — ${found.en}`),
+      );
+      holder.hidden = false;
+    });
+
+    return holder;
   }
 
   const nextHolder = el('div');
@@ -395,8 +475,23 @@ export function nothingDue({ root, title, back, navigate, total }) {
   return { destroy() {} };
 }
 
-/** Explanation button, unchanged in behaviour from the old vocab screen. */
-export function explainButton(settings, item) {
+/**
+ * "Explain this sentence", asked in the context of the exercise just answered.
+ *
+ * `task` is a one-line description of what was actually being asked — see
+ * `CARD_TASKS` in cards.js. Without it the same paragraph came back whichever
+ * card you were on, so a gender question, a blind listening card and an
+ * Eifeler-Regel question were all answered with general remarks about word
+ * order. The explanation people want is about the thing they just got wrong.
+ *
+ * The cache key carries the task for the same reason: keyed on the item alone,
+ * the first explanation a word ever got was replayed for every later exercise
+ * on it, which is how a context-aware answer would have been thrown away.
+ *
+ * @param {{id: string, lb: string, word: string, en: string|null, task: string|null}} subject
+ */
+export function explainButton(settings, subject) {
+  const key = `${subject.id}:${subject.task ? hashTask(subject.task) : 'plain'}`;
   const note = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s2)', textAlign: 'left' }, hidden: true });
   const trigger = button('Explain this sentence', {
     variant: 'secondary',
@@ -404,7 +499,7 @@ export function explainButton(settings, item) {
     style: { marginBlockStart: 'var(--s3)' },
     onclick: async () => {
       trigger.disabled = true;
-      const cached = await getSentenceExplanation(item.id);
+      const cached = await getSentenceExplanation(key);
       if (cached) {
         note.textContent = cached;
         note.hidden = false;
@@ -413,9 +508,14 @@ export function explainButton(settings, item) {
       }
       note.textContent = 'Asking…';
       note.hidden = false;
-      const result = await requestExplanation(settings, { lb: item.example.lb, word: item.lb ?? item.infinitive, en: item.en });
+      const result = await requestExplanation(settings, {
+        lb: subject.lb,
+        word: subject.word,
+        en: subject.en,
+        task: subject.task,
+      });
       if (result.ok) {
-        await saveSentenceExplanation(item.id, result.explanation);
+        await saveSentenceExplanation(key, result.explanation);
         note.textContent = result.explanation;
         trigger.hidden = true;
       } else {
@@ -425,4 +525,11 @@ export function explainButton(settings, item) {
     },
   });
   return el('div', {}, trigger, note);
+}
+
+/** A short stable tag for a task string, so cache keys stay readable and short. */
+function hashTask(task) {
+  let hash = 0;
+  for (let i = 0; i < task.length; i += 1) hash = (Math.imul(31, hash) + task.charCodeAt(i)) | 0;
+  return (hash >>> 0).toString(36);
 }

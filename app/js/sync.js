@@ -282,7 +282,7 @@ export async function requestEpisodeQuestions(settings, episode) {
  * rest of this module. Unlike the machine estimate, this has no audio to
  * upload first: it's a plain JSON round trip.
  */
-export async function requestExplanation(settings, { lb, word, en }) {
+export async function requestExplanation(settings, { lb, word, en, task = null }) {
   if (!navigator.onLine) {
     return { ok: false, message: 'Offline. Try again once you are back online.' };
   }
@@ -293,7 +293,7 @@ export async function requestExplanation(settings, { lb, word, en }) {
   // at all, and it re-bills on every device.
   if (settings.workerUrl) {
     try {
-      const body = await request(settings, '/explain', { method: 'POST', body: JSON.stringify({ lb, word, en }) });
+      const body = await request(settings, '/explain', { method: 'POST', body: JSON.stringify({ lb, word, en, task }) });
       return { ok: true, explanation: body.explanation };
     } catch (error) {
       // A Worker deployed without ANTHROPIC_API_KEY answers 503. If this
@@ -309,7 +309,7 @@ export async function requestExplanation(settings, { lb, word, en }) {
   }
 
   try {
-    return await explainSentence(settings.apiKey, { lb, word, en });
+    return await explainSentence(settings.apiKey, { lb, word, en, task });
   } catch (error) {
     return { ok: false, message: `Could not get an explanation (${error.message}).` };
   }

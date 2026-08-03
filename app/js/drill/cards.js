@@ -80,6 +80,41 @@ export const DECKS = {
 const GRAMMAR_KIND_LABELS = { gender: 'gender', nrule: 'n-rule', adjective: 'adjective agreement' };
 
 /**
+ * What the learner was actually asked to do, in a phrase, per card type.
+ *
+ * Sent with the "Explain this sentence" request. The explanation used to be a
+ * single generic reading of the sentence regardless of the exercise, so a
+ * gender card, a blind listening card and an Eifeler-Regel card all got the
+ * same paragraph about word order — useful for none of them, because what you
+ * want explained is the thing you just got wrong. Naming the task lets the
+ * answer be about that.
+ */
+export const CARD_TASKS = {
+  gloss: 'They saw the word on its own and chose its English meaning from four options.',
+  listen: 'They heard this sentence read aloud with no text on screen at all, and had to pick the meaning of one word in it.',
+  cloze: 'They saw this sentence with one word blanked out and chose which word fills the gap.',
+  reverse: 'They saw the English meaning and chose the Luxembourgish word from four options.',
+  build: 'They saw the English meaning and assembled the Luxembourgish from letter or word tiles.',
+  type: 'They saw the English meaning and typed the Luxembourgish word from memory, with its article if it is a noun.',
+  produce: 'They saw this sentence with a gap and typed the correctly inflected form into it.',
+  conjugate: 'They chose which present-tense form of the verb goes with a given pronoun.',
+  'grammar-choice': 'They answered a grammar question about this sentence.',
+};
+
+/** The grammar kinds ask three different questions, so they get their own. */
+export const GRAMMAR_TASKS = {
+  gender: 'They were asked whether this noun is männlech, weiblech or neutral.',
+  nrule: 'They were asked which spelling is correct here under the Eifeler Regel — whether the final n is kept or dropped.',
+  adjective: 'They were asked which form of the adjective agrees with the noun in this sentence.',
+};
+
+/** The task line for a built card. */
+export function taskFor(card) {
+  if (card.type === 'grammar-choice') return GRAMMAR_TASKS[card.item?.kind] ?? CARD_TASKS['grammar-choice'];
+  return CARD_TASKS[card.type] ?? null;
+}
+
+/**
  * The rule each grammar card is testing, in one line.
  *
  * These sentences were only on the cheat sheet, which is the wrong place for
