@@ -75,6 +75,23 @@ const TABS = [
   { route: 'duel', label: 'Duel', icon: 'M5 20 L19 6 M14 4 h6 v6 M9 20 H4 v-5' },
 ];
 
+/**
+ * Routes that are a *task in progress* rather than a place, and so hide the
+ * tab bar while they run.
+ *
+ * A drill screen with the tab bar under it offers six ways to walk out of a
+ * half-answered card, on the row of the screen the thumb already rests on —
+ * and takes ~90px of a 852px phone away from the card itself, which is what
+ * pushed the answer options under the fold. Every one of these screens carries
+ * a back chevron, and the drill screens also carry the cheat-sheet button, so
+ * nothing here becomes unreachable; it just stops being one stray tap away.
+ *
+ * Tabs themselves are never in this list, even when they run an exercise
+ * (`speaking`, `reference`) — a tab that hid the bar would hide the control
+ * that got you there.
+ */
+const FOCUS_ROUTES = new Set(['session', 'listening', 'grammar', 'gender-sort', 'pairs', 'vocab', 'verbs', 'phrases', 'review']);
+
 const screenEl = document.getElementById('screen');
 const tabbarEl = document.getElementById('tabbar');
 const updateBannerEl = document.getElementById('update-banner');
@@ -151,8 +168,11 @@ async function route() {
   screenEl.className = 'screen';
   screenEl.scrollTop = 0;
 
-  const showTabs = routeName !== 'onboarding';
+  const showTabs = routeName !== 'onboarding' && !FOCUS_ROUTES.has(routeName);
   tabbarEl.hidden = !showTabs;
+  // base.css pads the screen's bottom to clear the bar; without the class that
+  // padding leaves a dead strip under a focused card.
+  document.body.classList.toggle('is-focused', !showTabs);
   if (showTabs) renderTabs(routeName);
 
   const rendered = await screen.render(screenEl, { params, settings, navigate });
