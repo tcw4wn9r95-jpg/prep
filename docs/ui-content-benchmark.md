@@ -231,3 +231,99 @@ the fix is a copy decision.
 The one 404 the walkthrough reports is `version.json`, which
 `.github/workflows/deploy.yml` writes at publish time and `content.js` handles
 as absent. Expected locally; not a fault.
+
+---
+
+# Follow-up, 2026-08-03
+
+Three problems reported from real use. All three were real, and all three had
+the same root shape: a number or a rule that was right in one place and not
+enforced in another.
+
+## "The words to review keep adding up — I think it's when I quit halfway"
+
+Correct diagnosis. `DAILY_NEW_TARGET = 8` is documented as *"new words
+introduced per day"*, but it was only ever reaching the scheduler as
+`buildMixedSession`'s per-**session** default, and **not one of the five
+session entry points passed a remaining amount**. So:
+
+- a 30-card day of 12-card sessions took up to 24 new words, not 8;
+- abandoning a session and starting another bought a fresh 8, as often as you
+  liked. Simulated: starting and quitting after two cards introduced **27 new
+  words on day one**.
+
+The Learn hub was computing "N new words left today" for *display* the whole
+time while the builder ignored it — which is precisely how the two came to
+disagree. Each surplus word then returned as two strands (`recv`, `prod`) of
+recurring reviews, which is the queue that kept climbing.
+
+**Fixed.** `newWordsLeftToday()` is derived from the same evidence the hub
+already showed, and every session builder is given it as `newTarget`. The
+grammar reserve draws from the same budget — it was topping every session up
+with three fresh items regardless, a hole straight through the cap. Simulated
+after: day one introduces exactly 8 whichever way you quit.
+
+## "Gender is hard because the sentence doesn't always show the article"
+
+Also correct, and it was partly my fault: the previous pass removed the article
+from the prompt because `de`/`d'` gave the answer away, without checking
+whether anything else on the card supplied it. Measured: **only 371 of 1,173
+nouns have an example sentence containing an article for that noun — 63% give
+no cue at all.** Gender is not derivable from a Luxembourgish noun, so those
+cards went from free marks to unanswerable.
+
+**Fixed** with the ladder the rest of the app already uses. Box 0 is an
+introduction — it shows `d'Kiischt` and asks "Meet this word — which gender is
+it?". From box 1 the article is gone and the noun stands alone. Teach, then
+test, instead of doing one or the other forever.
+
+I also checked whether the pipeline could simply pick better sentences: 304 of
+the 802 without a cue do have an article-bearing alternative in the corpus. Not
+taken, because swapping the sentence loses the mirrored recording attached to
+the current one, and it would still leave 498 with no cue — the ladder fixes
+all 1,173, the swap fixes a quarter of them at a cost. Worth revisiting only
+alongside an audio re-mirror.
+
+## "Grammar drills are all listening, and the sentences are far too complex"
+
+The first half is literally true and was not a grammar problem — it was the
+vocabulary ladder. **2,010 of the 2,049 words carry a recording, and `listen`
+was the only rung at box 1**, so *every* review on your second day was an
+audio-only card with no text on screen at all. On sentences with a median of 8
+words and a maximum of 19.
+
+Input has to be most of the way to comprehensible to teach anything; a 19-word
+LOD sentence containing one word you met once yesterday is not that.
+
+**Fixed** by gating the listening rung on sentence length, banded by level —
+A1 words ≤ 7 words, A2 ≤ 9. Long-sentence words get another gloss card at box 1
+and **keep their play button**, so no recording is lost; it just stops being
+the only channel. Box-1 reviews for the foundation stages go from 100%
+listening to roughly half.
+
+**Level banding for the exercises.** Grammar items carried no `stage` or
+`rank`, so they sorted last and were introduced in raw file order — 1,134
+gender exercises alphabetically by noun, a 19-word sentence as likely to come
+first as a 4-word one. They now take a place on the same path the word decks
+use: stage by level (A1 gender with the rest of A1; A2 gender, the n-rule and
+adjective agreement with A2, since those two operate on whole sentences), and
+rank by sentence length, shortest first. Derived in `content.js` rather than
+the pipeline, because it is a presentation decision and the exercise is
+identical either way.
+
+The first grammar exercises a beginner now meets are 3–4 words
+(*et ass Mëtteg*, *d'Zäit bleift net stoen*) instead of 6–10
+(*mir ginn all Joer op de Mäertchen e Fësch iessen*).
+
+## Verification
+
+`npm test` 139 passing (three added: the daily cap, the gender teach rung, the
+listening-length gate) · `npm run walkthrough` 41/41 · `validate` PASS.
+
+## Note on the deploy
+
+The first push of this benchmark did not reach the phone. `app/sw.js` serves
+the shell cache-first and busts on a hand-bumped `VERSION`; a dozen shell files
+changed and `VERSION` did not, so `sw.js` was byte-identical to the installed
+copy and the browser never looked for an update. Bumping it is not optional
+housekeeping — it is the deploy. It is now `v18`.

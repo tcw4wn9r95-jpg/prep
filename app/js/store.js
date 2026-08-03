@@ -511,7 +511,16 @@ export const PROD_UNLOCK_BOX = 2;
 export const STRONG_BOX = 3;
 
 /** New words introduced per day. Above roughly ten, retention falls faster
- * than the extra intake gains. Reviews are on top of this and uncapped. */
+ * than the extra intake gains. Reviews are on top of this and uncapped.
+ *
+ * This is a **daily** budget and has to be spent as one. It used to be passed
+ * to `buildMixedSession` as the default `newTarget`, which applies per
+ * *session* — so a 30-card day of 12-card sessions took up to 24 new words,
+ * and abandoning a session halfway and starting another handed out a fresh 8
+ * every time. Starting and quitting after two cards introduced 27 new words on
+ * day one against a stated cap of 8. Every one of them then came back as two
+ * strands of recurring reviews, which is why the review queue climbed and
+ * never came down. Call sites now pass `newWordsLeftToday()`. */
 export const DAILY_NEW_TARGET = 8;
 
 /**
@@ -699,9 +708,18 @@ export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TA
   const entryKey = (entry) => `${entry.deck?.id ?? ''}:${entry.strand}:${entry.item.id}`;
   const taken = new Set(general.map(entryKey));
   const reserved = [];
+  // The reserve draws from the same daily new-word budget as everything else.
+  // Without this it topped every session up with fresh grammar items whatever
+  // `newTarget` said, which is a hole straight through the daily cap — three
+  // per session, and a session can be started as often as you like.
+  let freshBudget = Math.max(0, newTarget - general.filter((entry) => entry.isNew).length);
   for (const [deckId, min] of Object.entries(reserve)) {
     const candidates = [...reviews, ...fresh].filter((entry) => entry.deck?.id === deckId && !taken.has(entryKey(entry)));
     for (const entry of candidates.slice(0, min)) {
+      if (entry.isNew) {
+        if (freshBudget <= 0) continue;
+        freshBudget -= 1;
+      }
       reserved.push(entry);
       taken.add(entryKey(entry));
     }
@@ -899,5 +917,20 @@ export async function dueCounts(playerId, { now = Date.now() } = {}) {
       counts.newToday += 1;
     }
   }
+  counts.newLeft = Math.max(0, DAILY_NEW_TARGET - counts.newToday);
   return counts;
+}
+
+/**
+ * How much of today's new-word budget is still unspent.
+ *
+ * The number every session builder must be given as its `newTarget`, so that
+ * the cap holds across sessions rather than resetting with each one. Derived
+ * from the same `seen === 1` evidence the Learn hub already reports as "N new
+ * words left today" — the hub was computing it for display while the builder
+ * ignored it, which is exactly how the two came to disagree.
+ */
+export async function newWordsLeftToday(playerId, { now = Date.now() } = {}) {
+  const counts = await dueCounts(playerId, { now });
+  return counts.newLeft;
 }

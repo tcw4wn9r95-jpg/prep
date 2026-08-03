@@ -58,10 +58,26 @@ test('cards: a word with no recording never gets a listening card', () => {
 });
 
 test('cards: a word with no locatable cloze never gets a cloze card', () => {
-  const noCloze = vocab.find((item) => item.en && item.example?.audioId && !item.cloze);
-  assert.ok(noCloze, 'the deck should contain words whose cloze could not be located');
-  assert.equal(cards.cardTypeFor(noCloze, 'recv', 4), 'listen');
-  assert.equal(cards.cardTypeFor(noCloze, 'prod', 4), 'type');
+  // The invariant is the absence of `cloze`/`produce`, at every box — what it
+  // falls back to depends on what else the word has.
+  for (const item of vocab.filter((candidate) => candidate.en && !candidate.cloze).slice(0, 300)) {
+    for (let box = 0; box <= 4; box += 1) {
+      assert.notEqual(cards.cardTypeFor(item, 'recv', box, 'vocab'), 'cloze');
+      assert.notEqual(cards.cardTypeFor(item, 'prod', box, 'vocab'), 'produce');
+    }
+  }
+
+  // A word with a recording and a sentence short enough to follow blind still
+  // tops out at `listen` receptively and `type` productively. The sentence has
+  // to be short: the listening rung is gated on length now, so a no-cloze word
+  // with a long one falls back to `gloss` instead, which is the point of it.
+  const wc = (s) => String(s ?? '').trim().split(/\s+/).filter(Boolean).length;
+  const shortAndSilentOfCloze = vocab.find(
+    (item) => item.en && item.example?.audioId && item.example.local !== false && !item.cloze && wc(item.example.lb) <= 7,
+  );
+  assert.ok(shortAndSilentOfCloze, 'the deck should contain a short-sentence word whose cloze could not be located');
+  assert.equal(cards.cardTypeFor(shortAndSilentOfCloze, 'recv', 4), 'listen');
+  assert.equal(cards.cardTypeFor(shortAndSilentOfCloze, 'prod', 4), 'type');
 });
 
 test('cards: verbs get a conjugation rung that vocabulary does not', () => {
@@ -140,12 +156,20 @@ test('cards: a gender card does not print the article it is asking you to name',
   assert.ok(genderItems.length > 0);
 
   for (const item of genderItems.slice(0, 200)) {
-    const card = cards.buildCard({ item, strand: 'recv', box: 0, deck: cards.DECKS.grammar, pool: genderItems });
-    // Equality, not a substring search: "Brudder" contains the letters of
-    // "de" and always will.
-    assert.equal(card.prompt.word, item.lb, `${item.lb} leaked its article into the prompt`);
-    // It is still taught — just after the answer, via the feedback line.
-    assert.equal(card.lemma, cards.joinArticle(item.article, item.lb));
+    // Box 0 is the introduction: it is *meant* to show the article, because
+    // only 371 of 1,173 nouns have an example sentence that reveals one and
+    // gender is not derivable from the noun.
+    const first = cards.buildCard({ item, strand: 'recv', box: 0, deck: cards.DECKS.grammar, pool: genderItems });
+    assert.equal(first.prompt.word, cards.joinArticle(item.article, item.lb));
+
+    // From the first review it is a real retrieval. Equality, not a substring
+    // search: "Brudder" contains the letters of "de" and always will.
+    for (const box of [1, 2, 4]) {
+      const later = cards.buildCard({ item, strand: 'recv', box, deck: cards.DECKS.grammar, pool: genderItems });
+      assert.equal(later.prompt.word, item.lb, `${item.lb} leaked its article at box ${box}`);
+      // It is still taught — just after the answer, via the feedback line.
+      assert.equal(later.lemma, cards.joinArticle(item.article, item.lb));
+    }
   }
 });
 
@@ -348,4 +372,32 @@ test('cards: the box index is keyed by deck as well as strand and item', () => {
   assert.equal(boxes.get('vocab:recv:HUNN1'), 4);
   assert.equal(boxes.get('verb:recv:HUNN1'), 0);
   assert.equal(boxes.size, 2);
+});
+
+test('cards: a blind listening card never plays a sentence a beginner cannot hold', () => {
+  // The bug this guards: 2,010 of the 2,049 vocab words carry a recording and
+  // `listen` was the only rung at box 1, so every review on the second day of
+  // using the app was an audio-only card — with no text at all — on sentences
+  // running to 19 words. The rung is now gated on length, so a long-sentence
+  // word gets another gloss card at box 1 and keeps its play button there.
+  const wc = (s) => String(s ?? '').trim().split(/\s+/).filter(Boolean).length;
+  const caps = { A1: 7, A2: 9 };
+
+  let listens = 0;
+  for (const item of vocab) {
+    if (!cards.isDrillable(item, 'vocab')) continue;
+    if (cards.cardTypeFor(item, 'recv', 1, 'vocab') !== 'listen') continue;
+    listens += 1;
+    const cap = caps[item.level] ?? 7;
+    assert.ok(
+      wc(item.example.lb) <= cap,
+      `${item.lb} (${item.level}) gets a blind listening card on ${wc(item.example.lb)} words, cap ${cap}`,
+    );
+  }
+  assert.ok(listens > 200, `expected listening to survive as a real share of the deck, got ${listens}`);
+
+  // And the box-1 review is no longer universally a listening card.
+  const drillable = vocab.filter((item) => cards.isDrillable(item, 'vocab'));
+  const share = listens / drillable.length;
+  assert.ok(share < 0.9, `box 1 is still ${Math.round(share * 100)}% listening cards`);
 });

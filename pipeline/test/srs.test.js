@@ -283,3 +283,44 @@ test('srs: a verdict never celebrates a score readiness calls a fail', async () 
     assert.equal(store.setVerdict(speaking).passed, speaking > store.PASS_MARK, `disagreement at ${pct}%`);
   }
 });
+
+/* -------------------------------------------------- the daily new-word cap */
+
+test('srs: newTarget caps new words, including the reserved deck', async () => {
+  // The bug this guards: DAILY_NEW_TARGET is documented as a *daily* budget
+  // but was only ever passed to the builder as a per-*session* default, and no
+  // screen passed a remaining amount. A 30-card day of 12-card sessions took
+  // up to 24 new words, and abandoning a session halfway bought a fresh 8 as
+  // often as you cared to do it — 27 new words on day one against a stated cap
+  // of 8, each returning later as two strands of reviews.
+  const vocab = Array.from({ length: 200 }, (_, i) => ({ id: `v${i}`, stage: 1, rank: i }));
+  const grammar = Array.from({ length: 200 }, (_, i) => ({ id: `g${i}`, stage: 1, rank: i }));
+  const empty = () => ({ recv: new Map(), prod: new Map() });
+
+  for (const budget of [0, 1, 3, 8]) {
+    const plan = store.buildMixedSession(
+      [
+        { deck: { id: 'vocab' }, items: vocab, states: empty() },
+        { deck: { id: 'grammar' }, items: grammar, states: empty() },
+      ],
+      { limit: 12, newTarget: budget, reserve: { grammar: 3 } },
+    );
+    const fresh = plan.filter((entry) => entry.isNew).length;
+    assert.equal(fresh, budget, `newTarget ${budget} produced ${fresh} new cards`);
+  }
+});
+
+test('srs: a spent budget yields no new words, however many sessions are started', async () => {
+  // Everything below is unseen, so every available card is a new word. With
+  // the budget spent, starting another session has to hand back nothing rather
+  // than another eight.
+  const items = Array.from({ length: 500 }, (_, i) => ({ id: `x${i}`, stage: 1, rank: i }));
+  for (let session = 0; session < 5; session += 1) {
+    const plan = store.buildMixedSession([{ deck: { id: 'vocab' }, items, states: { recv: new Map(), prod: new Map() } }], {
+      limit: 12,
+      newTarget: 0,
+      reserve: { grammar: 3 },
+    });
+    assert.equal(plan.length, 0, `session ${session + 1} handed out ${plan.length} cards on a spent budget`);
+  }
+});
