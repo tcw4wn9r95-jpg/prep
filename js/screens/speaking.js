@@ -10,12 +10,12 @@
  * machine never scores it — the peer score is the score of record.
  */
 
-import { el, fill, screenHead, button, formatClock } from '../dom.js';
+import { el, fill, screenHead, button, formatClock, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
 import { interviewForTopic, loadInterviews, loadImages, loadPhrases, topicIcon, modelInterviewsForTopic, loadModelAnswers } from '../content.js';
 import { Recorder, isSupported, unsupportedReason } from '../recorder.js';
-import { saveRecording, touchStreak, otherPlayer, POINTS, CRITERIA, getMachineFeedback, saveMachineFeedback } from '../store.js';
+import { saveRecording, touchStreak, otherPlayer, POINTS, CRITERIA, getMachineFeedback, saveMachineFeedback, learnProgress, STRANDS } from '../store.js';
 import { requestMachineFeedback } from '../sync.js';
 
 const PREP_SECONDS = 30;
@@ -34,11 +34,29 @@ export async function render(root, { params, settings, navigate }) {
 /* ------------------------------------------------- the two-topic offer (2a) */
 
 async function renderChooser(root, { settings, navigate }) {
-  const interviews = await loadInterviews();
+  const [interviews, phraseItems, wordProd, verbProd, phraseProd] = await Promise.all([
+    loadInterviews(),
+    loadPhrases(),
+    learnProgress(settings.playerId, 'vocab', STRANDS.prod, 0),
+    learnProgress(settings.playerId, 'verb', STRANDS.prod, 0),
+    learnProgress(settings.playerId, 'phrase', STRANDS.prod, 0),
+  ]);
   const offered = pickTwo(interviews);
 
+  // What you can *say*, not what you recognise. The productive strand is the
+  // honest measure here: the A2 speaking part credits production only, and
+  // `prod` does not even unlock until a word has been recognised twice.
+  const words = wordProd.started + verbProd.started;
+  const frames = phraseProd.started;
+  const ready = words >= SPEAKING_READY_WORDS && frames >= SPEAKING_READY_FRAMES;
+
   const amelie = new Amelie({ size: 'md', bubble: true });
-  amelie.say('Start with the basics — listen and repeat short sentences. Move to the interview when you are ready.', 'idle');
+  amelie.say(
+    ready
+      ? 'You have enough to build answers with. The interview is worth trying now.'
+      : 'Recording five minutes of speech is not the place to start. Listen and repeat first — the interview needs words to build answers out of.',
+    'idle',
+  );
 
   root.append(
     screenHead({ title: 'Speaking', sub: 'Practice saying things in Luxembourgish', back: '#/journey' }),
@@ -62,9 +80,10 @@ async function renderChooser(root, { settings, navigate }) {
     ),
 
     el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, 'Exam format'),
+    readinessNote({ words, frames, ready, totalFrames: phraseItems.length }),
     el(
       'div',
-      { class: 'stack', style: { marginBlockStart: 'var(--s3)' } },
+      { class: `stack${ready ? '' : ' is-early'}`, style: { marginBlockStart: 'var(--s3)' } },
       el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s2)' } }, 'Two topics are offered, you pick one. Record your answer for your partner to score.'),
       ...offered.map((item) =>
         el(
@@ -89,6 +108,61 @@ async function renderChooser(root, { settings, navigate }) {
     ),
   );
   return { destroy() {} };
+}
+
+/**
+ * What you need before recording a five-minute answer is worth doing.
+ *
+ * Not a lock — the exam tasks stay open, because someone who wants to try one
+ * should be able to, and because a number this app invented has no business
+ * forbidding practice. It is a recommendation with the real figures next to
+ * it, so the decision is informed rather than made for you.
+ *
+ * Both halves are required because either alone fails: frames with no words
+ * produce "ech hunn …" and a stop, and words with no frames produce a list of
+ * nouns. `2b` is image description, which is a genuinely easier task — it has
+ * no interlocutor and a picture to point at — so it is not held back.
+ */
+const SPEAKING_READY_WORDS = 50;
+const SPEAKING_READY_FRAMES = 8;
+
+/**
+ * Where you stand against that, in the numbers themselves.
+ *
+ * The complaint this answers: "it doesn't make sense for me to record an
+ * answer when I only know a few words". It did not — and nothing on the screen
+ * said so, or said how far off you were, or what would close the gap.
+ */
+function readinessNote({ words, frames, ready, totalFrames }) {
+  if (ready) {
+    return el(
+      'p',
+      { class: 'card__note' },
+      `You can produce ${plural(words, 'word')} and ${frames} of the ${totalFrames} sentence frames. Enough to build answers with.`,
+    );
+  }
+  const needWords = Math.max(0, SPEAKING_READY_WORDS - words);
+  const needFrames = Math.max(0, SPEAKING_READY_FRAMES - frames);
+  const missing = [needWords > 0 ? plural(needWords, 'more word') : null, needFrames > 0 ? `${needFrames} more sentence frames` : null]
+    .filter(Boolean)
+    .join(' and ');
+
+  return el(
+    'div',
+    { class: 'card card--flat' },
+    el(
+      'p',
+      { class: 'card__note' },
+      `You can produce ${plural(words, 'word')} and ${frames} of the ${totalFrames} sentence frames so far. The interview asks for five minutes of speech, so it is worth having ${missing} first.`,
+    ),
+    el(
+      'div',
+      { class: 'row', style: { marginBlockStart: 'var(--s3)' } },
+      button('Practise words', { variant: 'primary', class: 'btn btn--primary', onclick: () => (location.hash = '#/session') }),
+      button('Sentence frames', { variant: 'secondary', class: 'btn btn--secondary', onclick: () => (location.hash = '#/phrases') }),
+    ),
+    el('p', { class: 'source-note', style: { marginBlockStart: 'var(--s2)' } }, 'The exam tasks below still work — this is a recommendation, not a lock.'),
+  );
 }
 
 function pickTwo(items) {

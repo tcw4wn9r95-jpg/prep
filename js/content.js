@@ -10,6 +10,8 @@
  * deployed on its own.
  */
 
+import { buildGlossary } from './drill/hint.js';
+
 const cache = new Map();
 
 async function loadJson(name) {
@@ -45,6 +47,18 @@ export const loadVerbs = () => loadJson('verbs').then((file) => file.items);
 export const loadPhrases = () => loadJson('phrases').then((file) => file.items).catch(() => []);
 /** The 8 use-case groups phrases are sorted into (pipeline/build-phrases.js), for the cheat sheet. */
 export const loadPhraseGroups = () => loadJson('phrases').then((file) => file.meta.groups ?? []).catch(() => []);
+/**
+ * spelling → English for the drill hint, built once from the decks already
+ * shipped. See drill/hint.js for why the lookup is deliberately narrow.
+ */
+let glossaryPromise = null;
+export function loadGlossary() {
+  glossaryPromise ??= Promise.all([loadVocab(), loadVerbs()])
+    .then(([vocab, verbs]) => buildGlossary(vocab, verbs))
+    .catch(() => new Map());
+  return glossaryPromise;
+}
+
 /** Noun gender, n-rule and adjective-agreement exercises (pipeline/build-grammar.js). */
 export const loadGrammar = () =>
   loadJson('grammar')
