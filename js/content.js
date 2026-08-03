@@ -46,7 +46,41 @@ export const loadPhrases = () => loadJson('phrases').then((file) => file.items).
 /** The 8 use-case groups phrases are sorted into (pipeline/build-phrases.js), for the cheat sheet. */
 export const loadPhraseGroups = () => loadJson('phrases').then((file) => file.meta.groups ?? []).catch(() => []);
 /** Noun gender, n-rule and adjective-agreement exercises (pipeline/build-grammar.js). */
-export const loadGrammar = () => loadJson('grammar').then((file) => file.items).catch(() => []);
+export const loadGrammar = () =>
+  loadJson('grammar')
+    .then((file) => file.items.map(withGrammarOrder))
+    .catch(() => []);
+
+/**
+ * Gives a grammar exercise a place on the same path the word decks use.
+ *
+ * The vocab and verb decks carry `stage` (1–5) and `rank`, and
+ * `buildMixedSession` introduces new items strictly in that order — which is
+ * what stops a beginner meeting `Wunngemeinschaft` before `ech`. Grammar items
+ * carry neither, so they sorted to the very end with rank 0 and were then
+ * introduced in raw file order: 1,134 gender exercises alphabetically by their
+ * noun, then n-rule, then adjective agreement, with a 19-word sentence just as
+ * likely to come first as a 4-word one.
+ *
+ * Derived here rather than in the pipeline so the ordering can change without
+ * a content rebuild, and because it is a presentation decision — the exercise
+ * itself is identical either way.
+ *
+ *   stage  by level, so grammar arrives alongside words of the same level.
+ *          A1 gender sits with the rest of A1; A2 gender, the n-rule and
+ *          adjective agreement sit with A2, because the last two operate on
+ *          whole sentences and need the vocabulary to read them.
+ *   rank   by how long the sentence is. Short exercises first, within a stage.
+ */
+function withGrammarOrder(item) {
+  const sentence = item.kind === 'gender' ? (item.example?.lb ?? '') : `${item.before ?? ''} ${item.after ?? ''}`;
+  const words = sentence.trim().split(/\s+/).filter(Boolean).length;
+  return {
+    ...item,
+    stage: item.level === 'A1' ? 4 : 5,
+    rank: words,
+  };
+}
 /**
  * INLL podcast episodes — metadata only, written by pipeline/fetch-podcasts.js.
  * Absent until someone runs that fetch, so this degrades to an empty section

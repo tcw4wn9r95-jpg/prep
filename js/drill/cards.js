@@ -8,6 +8,9 @@
  *
  *   recv 0   gloss      see the word, pick the meaning
  *   recv 1   listen     hear the sentence with no text, pick the meaning
+ *                       — only when that sentence is short enough to follow
+ *                         blind, otherwise this rung is skipped and box 1 is
+ *                         another gloss card (see LISTEN_MAX_WORDS)
  *   recv 2+  cloze      read the sentence with the word gapped, pick it back
  *   prod 0   reverse    see the meaning, pick the word
  *   prod 1   build      see the meaning, build the word from letter tiles
@@ -100,10 +103,46 @@ export const GRAMMAR_RULES = {
 // as a second, disagreeing source of truth.
 export const GENDER_LABELS = { M: 'männlech (masculine)', F: 'weiblech (feminine)', N: 'neutral' };
 
+/**
+ * How long an example sentence may be before it is too much to take in with no
+ * text on screen, by the level of the word it belongs to.
+ *
+ * The `listen` card plays a sentence and shows nothing at all — the whole
+ * point is that the ear does the work. That only teaches anything if the
+ * sentence is close to comprehensible; well below that it is noise with a
+ * multiple-choice question attached. The working figure in the reading and
+ * listening literature is that input needs to be 95–98% known to be usable,
+ * and an eight-word LOD sentence containing one word you have met once is
+ * nowhere near it.
+ *
+ * A1 words are met in the first weeks and get the tighter bound; A2 words are
+ * met later, by someone with more to hang a sentence on.
+ */
+const LISTEN_MAX_WORDS = { A1: 7, A2: 9 };
+const LISTEN_MAX_WORDS_DEFAULT = 7;
+
+function wordCount(text) {
+  return String(text ?? '').trim().split(/\s+/).filter(Boolean).length;
+}
+
 const has = {
   // `local === false` means the recording is referenced but not mirrored yet.
   // Offering a play button for it would 404 on the card.
   audio: (item) => Boolean(item.example?.audioId) && item.example.local !== false,
+  /**
+   * Audio *and* a sentence short enough to be worth hearing blind.
+   *
+   * 2,010 of the 2,049 vocab words carry a recording and `listen` was the only
+   * rung at box 1, so every single review on the second day of using the app
+   * was an audio-only card — on sentences with a median of 8 words and a
+   * maximum of 19. Gating the rung on length puts roughly half of them back on
+   * a `gloss` card at box 1 and keeps the blind-listening test for the
+   * sentences where it is a test rather than a coin flip. The recording itself
+   * is not lost: `playableAudio()` still puts a play button on the gloss and
+   * cloze cards for every word that has one.
+   */
+  shortAudio: (item) =>
+    has.audio(item) && wordCount(item.example.lb) <= (LISTEN_MAX_WORDS[item.level] ?? LISTEN_MAX_WORDS_DEFAULT),
   cloze: (item) => Boolean(item.cloze?.form),
   gloss: (item) => Boolean(item.en),
   present: (item) => Boolean(item.present),
@@ -120,7 +159,7 @@ const LADDER = {
   default: {
     [STRANDS.recv]: [
       { id: 'gloss', minBox: 0, needs: [has.gloss] },
-      { id: 'listen', minBox: 1, needs: [has.gloss, has.audio] },
+      { id: 'listen', minBox: 1, needs: [has.gloss, has.shortAudio] },
       { id: 'cloze', minBox: 2, needs: [has.cloze] },
     ],
     [STRANDS.prod]: [
@@ -135,7 +174,7 @@ const LADDER = {
   phrase: {
     [STRANDS.recv]: [
       { id: 'gloss', minBox: 0, needs: [has.gloss] },
-      { id: 'listen', minBox: 1, needs: [has.gloss, has.audio] },
+      { id: 'listen', minBox: 1, needs: [has.gloss, has.shortAudio] },
       { id: 'cloze', minBox: 2, needs: [has.cloze] },
     ],
     [STRANDS.prod]: [
@@ -358,7 +397,7 @@ export function buildCard({ item, strand, box, deck, pool, random = Math.random 
     }
 
     case 'grammar-choice':
-      return grammarChoiceCard(base, item, random);
+      return grammarChoiceCard(base, item, random, box);
 
     default:
       throw new Error(`unknown card type ${type}`);
@@ -374,28 +413,40 @@ export function buildCard({ item, strand, box, deck, pool, random = Math.random 
  * unlike every other card type — an n-rule distractor has to be the *other*
  * attested spelling of this exact word, not a random one from elsewhere).
  */
-function grammarChoiceCard(base, item, random) {
+function grammarChoiceCard(base, item, random, box = 0) {
   if (item.kind === 'gender') {
     const options = shuffle(
       item.options.map((code, index) => ({ id: `${item.id}:${code}`, value: GENDER_LABELS[code] ?? code, correct: index === item.correct })),
       random,
     );
+    // Teach at the first meeting, test from the first review.
+    //
+    // Gender is not derivable from a Luxembourgish noun — it is a fact you are
+    // told once and then have to remember, and the article is how it is told.
+    // Showing "de Auto" above "What gender is this word?" *every* time gave the
+    // answer away outright (LOD writes `de` for every masculine noun and `d'`
+    // for every other), so the deck was free marks. But hiding it always is the
+    // opposite failure: only 371 of 1,173 nouns have an example sentence that
+    // shows an article, so for the rest there is no evidence on the card at all
+    // and the question is unanswerable rather than hard.
+    //
+    // So box 0 shows `de Auto` and says so — that card is an introduction, and
+    // being able to answer it is the point. From box 1 the article is gone and
+    // the noun stands alone, which is the actual retrieval. This is the same
+    // shape as every other deck here: `gloss` → `listen` → `cloze` escalates as
+    // the memory strengthens rather than asking the hardest question on day one.
+    const teaching = box === 0;
     return {
       ...base,
-      // The word *without* its article. Showing "de Auto" above "What gender
-      // is this word?" is showing the answer: LOD writes `de` for every
-      // masculine noun and `d'` for every feminine and neuter one, so the
-      // prompt gave the mark away outright on a third of the deck and halved
-      // the choice on the rest. Gender is the thing this deck exists to teach
-      // and it was the one thing the card never made you retrieve.
-      //
-      // The article is not lost — it moves to `lemma`, which is what the
-      // feedback line prints once the answer is in ("d'Kand → neutral"), so it
-      // is now taught at the moment it is learnable rather than leaked before.
+      // The article always reaches the feedback line, whichever rung this is.
       lemma: joinArticle(item.article, item.lb),
       mode: 'choice',
-      instruction: 'What gender is this word?',
-      prompt: { word: item.lb, sentence: item.example?.lb ?? null, audioId: playableAudio(item) },
+      instruction: teaching ? 'Meet this word — which gender is it?' : 'What gender is this word?',
+      prompt: {
+        word: teaching ? joinArticle(item.article, item.lb) : item.lb,
+        sentence: item.example?.lb ?? null,
+        audioId: playableAudio(item),
+      },
       options,
       answer: GENDER_LABELS[item.gender] ?? item.gender,
     };

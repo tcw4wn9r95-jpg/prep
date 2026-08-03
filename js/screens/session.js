@@ -16,7 +16,7 @@
  */
 
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadStages } from '../content.js';
-import { getLearnDeckStates, buildMixedSession } from '../store.js';
+import { getLearnDeckStates, buildMixedSession, newWordsLeftToday } from '../store.js';
 import { DECKS, isDrillable, boxIndex } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
@@ -29,7 +29,7 @@ const GRAMMAR_RESERVE = 3;
 
 export async function render(root, { params, settings, navigate }) {
   const stage = params?.[0] ? Number(params[0]) : null;
-  const [vocab, verbs, phrases, grammar, stages, vocabStates, verbStates, phraseStates, grammarStates] = await Promise.all([
+  const [vocab, verbs, phrases, grammar, stages, vocabStates, verbStates, phraseStates, grammarStates, newLeft] = await Promise.all([
     loadVocab(),
     loadVerbs(),
     loadPhrases(),
@@ -39,6 +39,7 @@ export async function render(root, { params, settings, navigate }) {
     getLearnDeckStates(settings.playerId, 'verb'),
     getLearnDeckStates(settings.playerId, 'phrase'),
     getLearnDeckStates(settings.playerId, 'grammar'),
+    newWordsLeftToday(settings.playerId),
   ]);
 
   // A few LOD entries carry no English gloss, so there is nothing to ask about
@@ -64,10 +65,15 @@ export async function render(root, { params, settings, navigate }) {
   const again = stage === null ? '#/session' : `#/session/${stage}`;
   const total = groups.reduce((sum, group) => sum + group.items.length, 0);
 
-  // The reserve only ever matters in the general session: a stage-scoped one
-  // (`#/session/1`) already excludes grammar via the `item.stage` filter
-  // above, since grammar items carry no stage of their own.
-  const plan = buildMixedSession(groups, { limit: SESSION_SIZE, reserve: { grammar: GRAMMAR_RESERVE } });
+  // Grammar now carries a stage too (content.js `withGrammarOrder`), keyed to
+  // its level — so a stage-4 or stage-5 session includes the grammar of that
+  // level rather than excluding it for want of the field, and stages 1–3, the
+  // sentence skeleton, stay pure vocabulary. The reserve still guarantees
+  // grammar a share of the general session.
+  // `newTarget` is what is left of today's budget, not a fresh allowance —
+  // otherwise quitting a session and starting another buys eight more new
+  // words, as many times as you care to do it.
+  const plan = buildMixedSession(groups, { limit: SESSION_SIZE, newTarget: newLeft, reserve: { grammar: GRAMMAR_RESERVE } });
   if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total });
 
   const boxes = new Map();

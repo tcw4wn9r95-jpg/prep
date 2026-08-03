@@ -12,20 +12,21 @@
  */
 
 import { loadPhrases } from '../content.js';
-import { getLearnDeckStates, buildSession } from '../store.js';
+import { getLearnDeckStates, buildSession, newWordsLeftToday } from '../store.js';
 import { DECKS, isDrillable, boxIndex } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
 const SESSION_SIZE = 10;
 
 export async function render(root, { settings, navigate }) {
-  const [everything, states] = await Promise.all([
+  const [everything, states, newLeft] = await Promise.all([
     loadPhrases(),
     getLearnDeckStates(settings.playerId, 'phrase'),
+    newWordsLeftToday(settings.playerId),
   ]);
 
   const all = everything.filter((item) => isDrillable(item, 'phrase'));
-  const plan = buildSession(all, states, { limit: SESSION_SIZE });
+  const plan = buildSession(all, states, { limit: SESSION_SIZE, newTarget: newLeft });
   if (plan.length === 0) return nothingDue({ root, title: 'Phrases', back: '#/learn', navigate, total: all.length });
 
   return runSession({
