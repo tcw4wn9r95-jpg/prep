@@ -536,14 +536,26 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
  * The empty state, shared by every deck: nothing is due, which is a good
  * outcome and should not read like an error.
  */
-export function nothingDue({ root, title, back, navigate, total }) {
+export function nothingDue({ root, title, back, navigate, total, capped = false }) {
   root.append(
     screenHead({ title, back }),
     el(
       'div',
       { class: 'empty' },
-      el('p', {}, 'Nothing due right now — you are caught up.'),
-      el('p', { class: 'card__note' }, `${plural(total, 'word')} in this deck. Come back when the next review falls due.`),
+      // "You are caught up" is only true when the queue is genuinely empty.
+      // When the day's new-word budget is spent it is not: there is more of
+      // this deck waiting, and the app is holding it back on purpose. Saying
+      // the wrong one of these is what makes a step counter look broken —
+      // you tap "116 / 120", get an empty screen, and nothing explains why the
+      // last four never arrive.
+      el('p', {}, capped ? "That is today's new words done." : 'Nothing due right now — you are caught up.'),
+      el(
+        'p',
+        { class: 'card__note' },
+        capped
+          ? 'New words are capped per day so they actually stick — the rest of this step is waiting for tomorrow. Reviews of what you have already met still count today.'
+          : `${plural(total, 'word')} in this deck. Come back when the next review falls due.`,
+      ),
       button('Back to Learn', { variant: 'secondary', onclick: () => navigate('#/learn') }),
     ),
   );

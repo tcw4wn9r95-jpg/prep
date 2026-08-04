@@ -1415,3 +1415,36 @@
 }
 
 .ref-topic__sentence strong { color: var(--accent); }
+
+/* --- the Leitner ladder ---------------------------------------------------
+   A deck row's progress, as the distribution of met items across the five
+   boxes rather than a single percentage. A correct answer moves width from one
+   segment to the next *today*, which is what the old bar could not do — it
+   filled on box 3, eleven days away at the earliest. */
+
+.ladder {
+  display: flex;
+  gap: 2px;
+  height: 14px;
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  background: var(--bg-sunk);
+  border: 1px solid var(--border);
+}
+
+.ladder__seg { display: block; min-width: 3px; }
+.ladder__empty { flex: 1; }
+
+/* Cool to warm as the memory strengthens; the last two are the app's "ok"
+   green, so "holding" reads the same here as everywhere else. */
+.ladder__seg--0 { background: var(--border-strong); }
+.ladder__seg--1 { background: color-mix(in srgb, var(--accent) 40%, var(--bg-sunk)); }
+.ladder__seg--2 { background: var(--accent); }
+.ladder__seg--3 { background: color-mix(in srgb, var(--ok) 70%, var(--accent)); }
+.ladder__seg--4 { background: var(--ok); }
+
+.ladder__caption {
+  margin-block-start: 4px;
+  font-size: var(--size-xs);
+  color: var(--text-faint);
+}

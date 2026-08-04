@@ -23,7 +23,7 @@
 import { el, screenHead, button, plural, settingsButton } from '../dom.js';
 import { Amelie } from '../amelie.js';
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadTopics, loadStages, topicIcon } from '../content.js';
-import { learnProgress, dueCounts, todayProgress, getLearnDeckState, goalCards, listMistakes, STRANDS } from '../store.js';
+import { learnProgress, dueCounts, todayProgress, getLearnDeckState, goalCards, listMistakes, newWordsLeftToday, STRANDS } from '../store.js';
 
 export async function render(root, { settings, navigate }) {
   const [vocabItems, verbItems, phraseItems, grammarItems, topics, stages] = await Promise.all([
@@ -34,7 +34,7 @@ export async function render(root, { settings, navigate }) {
     loadTopics(),
     loadStages(),
   ]);
-  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, grammarRecv, grammarProd, due, today, seenVocab, seenVerb, seenPhrase, mistakes] =
+  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, grammarRecv, grammarProd, due, today, seenVocab, seenVerb, seenPhrase, mistakes, newLeft] =
     await Promise.all([
       learnProgress(settings.playerId, 'vocab', STRANDS.recv, vocabItems.length),
       learnProgress(settings.playerId, 'vocab', STRANDS.prod, vocabItems.length),
@@ -50,6 +50,7 @@ export async function render(root, { settings, navigate }) {
       getLearnDeckState(settings.playerId, 'verb', STRANDS.recv),
       getLearnDeckState(settings.playerId, 'phrase', STRANDS.recv),
       listMistakes(settings.playerId),
+      newWordsLeftToday(settings.playerId),
     ]);
 
   // The path runs across all three decks, because a stage does: step 1 is the
@@ -134,9 +135,11 @@ export async function render(root, { settings, navigate }) {
     el(
       'p',
       { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
-      'Words come in this order — the ones that build sentences first, then whatever turns up most often. Tap a step to drill just that step.',
+      newLeft === 0
+        ? "Today's new words are done, so these counts stop here until tomorrow. Tapping a step still reviews what you have already met."
+        : `Words come in this order — the ones that build sentences first, then whatever turns up most often. ${plural(newLeft, 'new word')} left today.`,
     ),
-    stageList(path, current),
+    stageList(path, current, newLeft),
 
     sectionLabel('Vocabulary decks'),
     el(
@@ -257,7 +260,7 @@ function stagePath(stages, items, seen) {
  * worse failure than not offering it at all: the row looks like the way in, so
  * an inert one reads as an app that is broken rather than as a label.
  */
-function stageList(path, current) {
+function stageList(path, current, newLeft = 0) {
   return el(
     'div',
     { class: 'stack' },
@@ -278,7 +281,18 @@ function stageList(path, current) {
             el('p', { class: 'card__title' }, stage.title),
             el('p', { class: 'card__note' }, stage.blurb),
           ),
-          el('span', { class: 'meter__value' }, `${stage.started}/${stage.total}`),
+          el(
+            'div',
+            { style: { textAlign: 'end' } },
+            el('span', { class: 'meter__value' }, `${stage.started}/${stage.total}`),
+            // Without this, a step reading "116/120" links to a session that
+            // introduces nothing and shows an empty screen — the counter looks
+            // stuck and the app looks broken. It is the daily cap doing its
+            // job; it just has to say so.
+            isCurrent && !isDone && newLeft === 0
+              ? el('p', { class: 'card__note', style: { marginBlockStart: '0' } }, 'more tomorrow')
+              : null,
+          ),
         ),
         // Every step gets a bar, not just the current one: the whole point is
         // that a single session visibly moves something.
@@ -321,8 +335,25 @@ function deckRow({ href, icon, title, total, unit, recv, prod, note }) {
   );
 }
 
+/**
+ * One strand, as a bar that actually responds to today's session.
+ *
+ * It used to fill by `heldPct` — items at box 3 or higher. The intervals are
+ * 0/1/3/7 days, so the earliest an item can reach box 3 is **day 11**, and
+ * "mastered" is day 27. Both bars on every deck row were therefore frozen at
+ * zero for a beginner's first fortnight no matter how much they drilled, which
+ * is indistinguishable from the app not saving anything.
+ *
+ * Now the bar is the *distribution*: one segment per Leitner box, so a correct
+ * answer visibly moves width from one segment to the next on the same day.
+ * The caption still reports "N of M holding", because that is the number that
+ * means something about the exam — it just is no longer the only thing on
+ * screen, and it is no longer the thing that has to move for the row to look
+ * alive.
+ */
 function strandBar(label, progress) {
-  const pct = Math.round(progress.heldPct);
+  const met = progress.started;
+  const boxes = progress.boxes ?? [];
   return el(
     'div',
     { style: { marginBlockStart: 'var(--s3)' } },
@@ -333,14 +364,26 @@ function strandBar(label, progress) {
       el(
         'span',
         { class: 'card__note' },
-        progress.started === 0 ? 'not started' : `${progress.strong} of ${progress.started} holding`,
+        met === 0 ? 'not started' : `${progress.strong} of ${met} holding`,
       ),
     ),
     el(
       'div',
-      { class: 'meter__track', style: { marginBlockStart: 'var(--s1)' } },
-      el('div', { class: `meter__fill${pct > 50 ? ' is-pass' : ''}`, style: { width: `${pct === 0 ? 0 : Math.max(pct, 2)}%` } }),
+      { class: 'ladder', style: { marginBlockStart: 'var(--s1)' } },
+      ...boxes.map((count, box) =>
+        count === 0
+          ? null
+          : el('span', {
+              class: `ladder__seg ladder__seg--${box}`,
+              style: { flexGrow: String(count) },
+              title: `${count} at box ${box}`,
+            }),
+      ),
+      met === 0 ? el('span', { class: 'ladder__empty' }) : null,
     ),
+    met === 0
+      ? null
+      : el('p', { class: 'ladder__caption' }, `${met} met · left to right: just seen → holding`),
   );
 }
 

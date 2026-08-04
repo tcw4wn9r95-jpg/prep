@@ -23,7 +23,7 @@ export async function render(root, { settings, navigate }) {
 
   const all = everything.filter((item) => isDrillable(item, 'grammar'));
   const plan = buildSession(all, states, { limit: SESSION_SIZE, newTarget: newLeft });
-  if (plan.length === 0) return nothingDue({ root, title: 'Grammar', back: '#/learn', navigate, total: all.length });
+  if (plan.length === 0) return nothingDue({ root, title: 'Grammar', back: '#/learn', navigate, total: all.length, capped: newLeft === 0 });
 
   return runSession({
     root,

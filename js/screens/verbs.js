@@ -32,7 +32,7 @@ export async function render(root, { params, settings, navigate }) {
   const again = topicId ? `#/verbs/${encodeURIComponent(topicId)}` : '#/verbs';
 
   const plan = buildSession(pool, states, { limit: SESSION_SIZE, newTarget: newLeft });
-  if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total: pool.length });
+  if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total: pool.length, capped: newLeft === 0 });
 
   return runSession({
     root,
