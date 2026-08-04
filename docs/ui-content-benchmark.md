@@ -578,3 +578,110 @@ undeclared field is never checked, so it is never allowed.
 
 `npm test` 155 passing (five new on the deck shapes) · `npm run walkthrough`
 41/41 · `validate` PASS, 243 warnings against a 232 baseline · `sw.js` → `v21`.
+
+---
+
+# Duolingo benchmark, 2026-08-03
+
+Asked to benchmark Duolingo and apply the same logic. Below is the mechanic-by-
+mechanic mapping, what was adopted, and — the more useful half — what was
+rejected and why.
+
+The framing matters: Duolingo optimises for **daily active users on an open-
+ended goal**. This app optimises for **two people passing a dated exam**. Most
+of the machinery transfers; the parts built to keep someone playing when they
+have no reason to do not, and this repo has already ruled several of them out
+in writing.
+
+## The mapping
+
+| Duolingo | Here | Verdict |
+| --- | --- | --- |
+| Streak, freezes | Streak, 2 freezes/week, 7-day strip | **Have it** |
+| XP as one shared currency | Points across answers, recordings, reviews, cards | **Have it** |
+| Leagues — 30 strangers, weekly promote/demote | Woch-Duell, 1v1, handicapped | **Better for two people** |
+| Path, units, sections | Stages 1–5, journey, grammar round-robin | **Have it** |
+| Combo bonus inside a lesson | The chime's pentatonic ladder | **Have it** |
+| Lesson ≈ 15–20 exercises | 12 | Close enough |
+| Birdbrain adaptive difficulty | Leitner boxes + the card ladder | Ours is transparent; theirs is better. Not worth a rewrite |
+| **Practice Hub "Mistakes"** | *nothing* | **Adopted — biggest gap** |
+| **Goal chosen at signup (Casual→Intense)** | fixed 30 | **Adopted** |
+| Hearts / lives | none | **Rejected** |
+| Guilt notifications | none, deliberately | **Rejected** |
+| Gems, shop, Super | none | **Rejected** |
+| Legendary levels, XP boosts | none | **Rejected** |
+
+## Adopted: a mistakes list
+
+Duolingo's Practice Hub collects your errors into a named list you can go and
+clear, and it is the one thing here that had no equivalent at all. The drill
+re-asked a missed card three cards later and that was its only second chance:
+once the session ended the miss was gone, and whether the word came back was
+left to its Leitner box — correct scheduling, and completely invisible.
+
+The insight worth copying is not the scheduling. It is that a learner wants
+something **finite and completable**. "These 14, and then you are done" is a
+different offer from "the algorithm has it in hand", and only one of them is a
+thing you can decide to do this evening.
+
+So `#/mistakes` is a *view*, not a second scheduler. Nothing in it changes when
+a word is next due. A row is written when a card is missed, removed the moment
+that card is answered correctly anywhere, and ordered most-missed-first —
+because a card got wrong three times is both the one worth the next ten minutes
+and the one you remember failing. Retries are excluded for the same reason they
+are not graded, and an accent-only miss does not count, or the list would fill
+with keyboard slips rather than things that are not known.
+
+## Adopted: the daily goal is now a choice
+
+Duolingo asks at signup and offers four levels. That is not decoration — a goal
+you set is committed to differently from one handed to you, and the person here
+knows what their week looks like and when the exam is. Settings now offers
+Light (15) · Steady (30) · Serious (50) · Exam soon (80). 30 stays the default.
+Every option is a real number of cards and `todayProgress` measures against
+whichever is chosen; there is no separate "effective" goal.
+
+## Rejected: hearts
+
+The one mechanic that is actively wrong here. Hearts limit how many mistakes
+you may make and then stop you practising, which is punitive in an app with a
+deadline: the learner who most needs another ten minutes is the one getting
+things wrong. It is also the mechanic Duolingo takes the most criticism for —
+[research on it](https://medium.com/@flordaniele/duolingo-case-study-research-on-gamification-90b5bac3ada0)
+finds the life system makes learning feel truncated, and the same literature
+finds leagues can push people to play for position rather than to learn.
+
+We already went the other way on purpose: a missed card comes back within the
+session, mistakes now collect into a list to clear, and nothing anywhere gates
+practice.
+
+## Rejected: notification pressure, and the streak as the point
+
+Streaks are Duolingo's single biggest growth lever, and the cost is documented:
+streak anxiety, and people practising to protect a number rather than to learn.
+The README already chose the softer version — two freezes a week, no guilt copy,
+no nagging — and a PWA that cannot send notifications is the right shape for
+that rather than a limitation to work around. Unchanged.
+
+## Rejected: currency, shops, and anything paid
+
+There is nothing to monetise in a two-person tool, and gems exist to make hearts
+matter. Both stay out.
+
+## What Duolingo does better and we are not copying yet
+
+**Birdbrain.** Their difficulty adapts per learner from a trained model
+([the published spaced-repetition work is worth reading](https://research.duolingo.com/papers/settles.acl16.pdf));
+ours is a five-box Leitner ladder with fixed intervals. Theirs is better. But
+ours is inspectable, testable and explainable on screen, and replacing it would
+mean training something on two people's data. The honest position is that this
+is a real gap and the wrong one to close at this scale.
+
+**Session shape.** Duolingo interleaves lesson types within a unit more
+aggressively than our fixed 12-card mixed session does. The grammar round-robin
+added earlier is a step in that direction.
+
+## Verification
+
+`npm test` 155 · `npm run walkthrough` 41/41 · `validate` PASS · `sw.js` → `v22`,
+IndexedDB → v5 for the new `mistakes` store.

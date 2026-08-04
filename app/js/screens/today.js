@@ -36,6 +36,8 @@ import {
   getStreak,
   weekSeed,
   otherPlayer,
+  goalCards,
+  listMistakes,
   PLAYERS,
 } from '../store.js';
 
@@ -58,7 +60,7 @@ export async function render(root, { settings, navigate }) {
     listReviews(),
     getStreak(settings.playerId),
     dueCounts(settings.playerId),
-    todayProgress(settings.playerId),
+    todayProgress(settings.playerId, { goal: goalCards(settings) }),
     loadTopics(),
   ]);
 

@@ -12,7 +12,7 @@
  */
 
 import { el, screenHead, button } from '../dom.js';
-import { getSettings, saveSettings } from '../store.js';
+import { getSettings, saveSettings, DAILY_GOALS, goalCards } from '../store.js';
 import { keyWarning, looksLikeApiKey } from '../anthropic.js';
 import { setChimeEnabled, chimePreview } from '../chime.js';
 import { loadDeployInfo } from '../content.js';
@@ -50,6 +50,35 @@ export async function render(root, { navigate }) {
     if (sound.checked) chimePreview();
   });
 
+  // The daily goal, picked rather than imposed. Applied on tap like the sound
+  // switch, because the number it changes is on the very next screen.
+  let goal = DAILY_GOALS.find((option) => option.cards === goalCards(settings))?.id ?? 'steady';
+  const goalButtons = DAILY_GOALS.map((option) =>
+    el(
+      'button',
+      {
+        type: 'button',
+        class: `chip chip--pick${goal === option.id ? ' is-picked' : ''}`,
+        'aria-pressed': goal === option.id ? 'true' : 'false',
+        onclick: () => {
+          goal = option.id;
+          for (const [index, node] of goalButtons.entries()) {
+            const isMe = DAILY_GOALS[index].id === goal;
+            node.classList.toggle('is-picked', isMe);
+            node.setAttribute('aria-pressed', isMe ? 'true' : 'false');
+          }
+          goalNote.textContent = `${option.cards} cards a day — ${option.note}.`;
+        },
+      },
+      option.label,
+    ),
+  );
+  const goalNote = el(
+    'p',
+    { class: 'card__note' },
+    `${DAILY_GOALS.find((option) => option.id === goal)?.cards ?? 30} cards a day — ${DAILY_GOALS.find((option) => option.id === goal)?.note ?? ''}.`,
+  );
+
   const status = el('p', { class: 'source-note', style: { marginBlockStart: 'var(--s3)' }, role: 'status' });
 
   const save = button('Save', {
@@ -68,6 +97,7 @@ export async function render(root, { navigate }) {
         secret: secret.value.trim(),
         workerUrl: workerUrl.value.trim().replace(/\/$/, ''),
         sound: sound.checked,
+        dailyGoal: goal,
       });
       status.textContent = 'Saved.';
     },
@@ -94,6 +124,19 @@ export async function render(root, { navigate }) {
         'Create one at ',
         el('a', { href: 'https://console.anthropic.com/settings/keys', target: '_blank', rel: 'noreferrer' }, 'console.anthropic.com'),
         '.',
+      ),
+    ),
+
+    sectionLabel('Daily goal'),
+    el(
+      'div',
+      { class: 'card' },
+      el('div', { class: 'chiprow' }, ...goalButtons),
+      goalNote,
+      el(
+        'p',
+        { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } },
+        'This is the bar on Today. It counts cards you have actually answered, so it only ever goes up — and nothing is withheld if you pass it or miss it.',
       ),
     ),
 

@@ -23,7 +23,7 @@
 import { el, screenHead, button, plural, settingsButton } from '../dom.js';
 import { Amelie } from '../amelie.js';
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadTopics, loadStages, topicIcon } from '../content.js';
-import { learnProgress, dueCounts, todayProgress, getLearnDeckState, STRANDS } from '../store.js';
+import { learnProgress, dueCounts, todayProgress, getLearnDeckState, goalCards, listMistakes, STRANDS } from '../store.js';
 
 export async function render(root, { settings, navigate }) {
   const [vocabItems, verbItems, phraseItems, grammarItems, topics, stages] = await Promise.all([
@@ -34,7 +34,7 @@ export async function render(root, { settings, navigate }) {
     loadTopics(),
     loadStages(),
   ]);
-  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, grammarRecv, grammarProd, due, today, seenVocab, seenVerb, seenPhrase] =
+  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, grammarRecv, grammarProd, due, today, seenVocab, seenVerb, seenPhrase, mistakes] =
     await Promise.all([
       learnProgress(settings.playerId, 'vocab', STRANDS.recv, vocabItems.length),
       learnProgress(settings.playerId, 'vocab', STRANDS.prod, vocabItems.length),
@@ -45,10 +45,11 @@ export async function render(root, { settings, navigate }) {
       learnProgress(settings.playerId, 'grammar', STRANDS.recv, grammarItems.length),
       learnProgress(settings.playerId, 'grammar', STRANDS.prod, grammarItems.length),
       dueCounts(settings.playerId),
-      todayProgress(settings.playerId),
+      todayProgress(settings.playerId, { goal: goalCards(settings) }),
       getLearnDeckState(settings.playerId, 'vocab', STRANDS.recv),
       getLearnDeckState(settings.playerId, 'verb', STRANDS.recv),
       getLearnDeckState(settings.playerId, 'phrase', STRANDS.recv),
+      listMistakes(settings.playerId),
     ]);
 
   // The path runs across all three decks, because a stage does: step 1 is the
@@ -93,6 +94,8 @@ export async function render(root, { settings, navigate }) {
       { class: 'card__note', style: { textAlign: 'center' } },
       today.met ? `Goal met — ${plural(today.cards, 'card')} today.` : `${today.cards} of ${today.goal} cards today.`,
     ),
+
+    mistakeRow(mistakes.length),
 
     sectionLabel('Grammar'),
     el(
@@ -172,6 +175,31 @@ export async function render(root, { settings, navigate }) {
 
 function sectionLabel(text) {
   return el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, text);
+}
+
+/**
+ * The mistakes list, shown only when there is something in it.
+ *
+ * Hidden at zero on purpose: an empty "0 mistakes" row is a permanent reminder
+ * of a thing you cannot do, and the screen already has plenty to read.
+ */
+function mistakeRow(count) {
+  if (count === 0) return null;
+  return el(
+    'a',
+    { class: 'card', href: '#/mistakes', style: { display: 'block', marginBlockStart: 'var(--s5)' } },
+    el(
+      'div',
+      { class: 'row' },
+      el('span', { style: { fontSize: '28px' } }, '🎯'),
+      el(
+        'div',
+        { class: 'spacer' },
+        el('p', { class: 'card__title' }, `Clear ${plural(count, 'mistake')}`),
+        el('p', { class: 'card__note' }, 'Cards you got wrong, most-missed first. They leave the list when you get them right.'),
+      ),
+    ),
+  );
 }
 
 /**
