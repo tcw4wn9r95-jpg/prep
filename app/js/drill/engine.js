@@ -187,6 +187,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
   }
 
   function promptBody(card) {
+    if (card.prompt.hideBody) return [];
     if (card.prompt.cloze) {
       const { before, after } = card.prompt.cloze;
       return [

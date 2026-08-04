@@ -488,3 +488,93 @@ they stick."*
 `npm test` 150 passing (five new on the guide) · `npm run walkthrough` 41/41 ·
 `validate` PASS · `sw.js` → `v20`, with `js/grammar-guide.js` added to the
 precache list — caught by the test that enforces it, for the second time.
+
+---
+
+# Follow-up 4, 2026-08-03 — the missing decks
+
+The guide added theory for four rules that had no exercises behind them. This
+builds the exercises: **1,004 new items**, taking the grammar deck from 1,799
+to 2,789.
+
+| kind | items | the question |
+| --- | ---: | --- |
+| `perfect-aux` | 290 | does this verb take hunn or sinn? |
+| `perfect-form` | 300 | which past participle fills the gap? |
+| `wordorder` | 220 | which of three orderings is right? |
+| `negation` | 180 | where does net go? |
+
+Nothing is authored. The auxiliary and participle come off LOD's
+Flexiounstabellen; the gapped sentences and the orderings are LOD's own example
+sentences.
+
+## The interesting part: distractors made of real words
+
+`wordorder` and `negation` offer three orderings of the *same* sentence — the
+one LOD wrote, and two with one word moved. Every token is attested; only the
+order is constructed, and constructed to be wrong. Four things had to be true
+for that to be honest, and measuring found three of them broken first:
+
+**The correct option has to be what LOD actually wrote.** Rejoining tokens with
+single spaces drops every comma, so the first build shipped
+`a bon dat wousst ech net` as "correct" for `a (bon), dat wousst ech net!`.
+An item is now taken only if its tokens reconstruct the sentence exactly, with
+any closing mark kept aside — which also drops the comma-spliced interjection
+fragments whose word order was never the point.
+
+**A wrong answer must be wrong for one reason.** Moving a word changes which
+word follows which, and the n-rule keys off exactly that: 19% of word-order
+options and 26% of negation options came out carrying an n-rule finding, i.e.
+misspelled *as well as* misordered. The shared gate passes those because every
+n-rule finding is a warning by design. These two kinds now require the sentence
+and every generated option to be completely silent on the n-rule. Validator
+warnings went from 371 back to 243 against a 232 baseline, and the yield did
+not drop.
+
+**A distractor must not be a correct sentence of another kind.** Fronting the
+finite verb is how Luxembourgish forms a yes/no question, so
+`hunn ech eng Conjonctivite …` is not wrong — it is a different sentence type.
+Position 0 is never offered.
+
+**The rule has to be the thing being tested.** `wordorder` takes only sentences
+whose finite verb is already the second word, so moving it is wrong *by the V2
+rule* rather than merely unusual. Second word is a subset of second element —
+a sentence opening with a multi-word phrase is skipped rather than judged,
+because the app cannot parse the phrase.
+
+## Two things measurement caught after that
+
+`perfect-aux` first shipped **"does *hunn* take hunn or sinn?"**, and the
+modals, whose participle is identical to their infinitive — the answer in the
+prompt. Both excluded.
+
+And ranking the deck by sentence length put all 290 auxiliary cards first: they
+have no sentence, so they scored zero. A learner would have answered "hunn or
+sinn?" 290 times before meeting a gender card. Grammar is now ordered by a
+**round-robin across the seven kinds**, each internally shortest-first, so every
+rule gets a turn from the first session.
+
+## What is still theory-only
+
+**Pronouns.** Deliberately not built: the `conjugate` card already drills the
+pronoun/verb-form relationship from the other direction, the cheat sheet has
+the table, and a pronoun deck would be the one place this pipeline had to write
+Luxembourgish by hand rather than mine it.
+
+## Guards added
+
+The pipeline now **refuses to build** if a form it names by hand — the two
+auxiliaries, their finite forms, `net` — is absent from the lexicon. It caught
+`haat` on the first run, a preterite that is not attested. Everything else is
+copied from the corpus, where a typo shows up as a missing item; these few are
+search keys, and a wrong one quietly mines the wrong sentences and still
+succeeds.
+
+`validate.js` gained `participle` and `moved` as declared Luxembourgish fields —
+it rejected them as unclassified, which is the schema gate working: an
+undeclared field is never checked, so it is never allowed.
+
+## Verification
+
+`npm test` 155 passing (five new on the deck shapes) · `npm run walkthrough`
+41/41 · `validate` PASS, 243 warnings against a 232 baseline · `sw.js` → `v21`.

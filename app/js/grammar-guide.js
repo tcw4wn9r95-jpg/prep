@@ -216,9 +216,23 @@ export const GRAMMAR_GUIDE = [
   },
 ];
 
+/**
+ * Which topic teaches a given deck `kind`.
+ *
+ * Two kinds share one topic: `perfect-aux` asks which auxiliary a verb takes
+ * and `perfect-form` asks for the participle, and both are the same rule seen
+ * from two sides, so they get the same explanation rather than two that would
+ * have to be kept in agreement.
+ */
+const TOPIC_BY_KIND = {
+  'perfect-aux': 'perfect',
+  'perfect-form': 'perfect',
+};
+
 /** Find the theory for a grammar card, by its `kind`. */
 export function topicFor(kind) {
-  return GRAMMAR_GUIDE.find((topic) => topic.id === kind) ?? null;
+  const id = TOPIC_BY_KIND[kind] ?? kind;
+  return GRAMMAR_GUIDE.find((topic) => topic.id === id) ?? null;
 }
 
 /** One-line rules, keyed by id — what the drill shows inline. */

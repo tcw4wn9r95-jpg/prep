@@ -59,42 +59,69 @@ export function loadGlossary() {
   return glossaryPromise;
 }
 
-/** Noun gender, n-rule and adjective-agreement exercises (pipeline/build-grammar.js). */
-export const loadGrammar = () =>
-  loadJson('grammar')
-    .then((file) => file.items.map(withGrammarOrder))
-    .catch(() => []);
+/** The seven grammar exercise kinds (pipeline/build-grammar.js). */
+export const loadGrammar = () => loadJson('grammar').then((file) => orderGrammar(file.items)).catch(() => []);
 
 /**
- * Gives a grammar exercise a place on the same path the word decks use.
+ * Gives grammar exercises a place on the same path the word decks use.
  *
  * The vocab and verb decks carry `stage` (1–5) and `rank`, and
  * `buildMixedSession` introduces new items strictly in that order — which is
  * what stops a beginner meeting `Wunngemeinschaft` before `ech`. Grammar items
- * carry neither, so they sorted to the very end with rank 0 and were then
- * introduced in raw file order: 1,134 gender exercises alphabetically by their
- * noun, then n-rule, then adjective agreement, with a 19-word sentence just as
- * likely to come first as a 4-word one.
- *
- * Derived here rather than in the pipeline so the ordering can change without
- * a content rebuild, and because it is a presentation decision — the exercise
- * itself is identical either way.
+ * carry neither, so they sorted to the very end and were introduced in raw
+ * file order, with a 19-word sentence as likely to come first as a 4-word one.
  *
  *   stage  by level, so grammar arrives alongside words of the same level.
- *          A1 gender sits with the rest of A1; A2 gender, the n-rule and
- *          adjective agreement sit with A2, because the last two operate on
- *          whole sentences and need the vocabulary to read them.
- *   rank   by how long the sentence is. Short exercises first, within a stage.
+ *   rank   a round-robin across the seven kinds, each kind internally ordered
+ *          shortest sentence first.
+ *
+ * The round-robin is the part that matters. Ranking the whole deck by sentence
+ * length alone put all 290 auxiliary cards first — they have no sentence at
+ * all, so they scored zero — and a learner would have answered "hunn or sinn?"
+ * 290 times before meeting a single gender or word-order card. Interleaving
+ * gives every rule a turn from the first session, which is also how the mixed
+ * session already treats the four decks.
+ *
+ * Done here rather than in the pipeline because it is a presentation decision:
+ * the exercises are identical either way, and this can change without a
+ * content rebuild.
  */
-function withGrammarOrder(item) {
-  const sentence = item.kind === 'gender' ? (item.example?.lb ?? '') : `${item.before ?? ''} ${item.after ?? ''}`;
-  const words = sentence.trim().split(/\s+/).filter(Boolean).length;
-  return {
-    ...item,
-    stage: item.level === 'A1' ? 4 : 5,
-    rank: words,
-  };
+export function orderGrammar(items) {
+  const byKind = new Map();
+  for (const item of items ?? []) {
+    const list = byKind.get(item.kind);
+    if (list) list.push(item);
+    else byKind.set(item.kind, [item]);
+  }
+
+  for (const list of byKind.values()) {
+    list.sort((a, b) => (a.level === 'A1' ? 0 : 1) - (b.level === 'A1' ? 0 : 1) || sentenceLength(a) - sentenceLength(b));
+  }
+
+  // Round-robin, in a fixed kind order so the sequence is the same on every
+  // device and both players walk the same path.
+  const queues = [...byKind.entries()].sort(([a], [b]) => KIND_ORDER.indexOf(a) - KIND_ORDER.indexOf(b)).map(([, list]) => list);
+  const ordered = [];
+  for (let round = 0; queues.some((queue) => round < queue.length); round += 1) {
+    for (const queue of queues) if (round < queue.length) ordered.push(queue[round]);
+  }
+
+  return ordered.map((item, index) => ({ ...item, stage: item.level === 'A1' ? 4 : 5, rank: index }));
 }
+
+/** Simplest first, within a kind. Each kind keeps its sentence somewhere
+ * different, and `perfect-aux` has none at all — which is right, it is the
+ * simplest question in the deck. */
+function sentenceLength(item) {
+  let sentence = '';
+  if (item.kind === 'gender') sentence = item.example?.lb ?? '';
+  else if (item.kind === 'wordorder' || item.kind === 'negation') sentence = item.options_lb?.[item.correct] ?? '';
+  else if (item.kind !== 'perfect-aux') sentence = `${item.before ?? ''} ${item.after ?? ''}`;
+  return sentence.trim().split(/\s+/).filter(Boolean).length;
+}
+
+const KIND_ORDER = ['gender', 'perfect-aux', 'nrule', 'wordorder', 'negation', 'adjective', 'perfect-form'];
+
 /**
  * INLL podcast episodes — metadata only, written by pipeline/fetch-podcasts.js.
  * Absent until someone runs that fetch, so this degrades to an empty section

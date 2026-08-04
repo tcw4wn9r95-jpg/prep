@@ -49,6 +49,11 @@ const LUXEMBOURGISH_FIELDS = new Set([
   'infinitive',
   'pastParticiple',
   'auxiliaryVerb',
+  // pipeline/build-grammar.js — the perfect-tense and word-order items. Every
+  // one of these is a Luxembourgish surface form copied out of the corpus or
+  // out of LOD's inflection tables, so they are checked like any other.
+  'participle',
+  'moved',
   'p1',
   'p2',
   'p3',

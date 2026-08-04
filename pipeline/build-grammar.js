@@ -61,6 +61,32 @@ const MAX_PER_NRULE_PAIR = 2;
 const MAX_NRULE_ITEMS = 250;
 const MAX_ADJECTIVE_OPTIONS = 4;
 
+/** The two perfect auxiliaries, as LOD's tables name them. */
+const AUXILIARIES = ['hunn', 'sinn'];
+
+/** Finite forms of those two. A sentence needs one of these before a
+ * participle-looking word can be treated as a perfect rather than as an
+ * adjective that happens to share the spelling. Every form here is one of the
+ * `present` cells LOD publishes for hunn and sinn, plus their two preterites,
+ * and `assertAttested` in main() refuses to build if any drifts out of the
+ * lexicon. */
+const FINITE_AUX_FORMS = new Set(['hunn', 'hu', 'hues', 'huet', 'hutt', 'hat', 'haten', 'sinn', 'si', 'bass', 'ass', 'sidd', 'war', 'waren']);
+
+/**
+ * Verbs whose perfect is not a useful question: the two auxiliaries themselves
+ * (circular), and the modals, whose participle equals their infinitive and
+ * whose perfect is a construction well past A2.
+ */
+const NOT_WORTH_ASKING = new Set(['hunn', 'sinn', 'ginn', 'kënnen', 'mussen', 'sollen', 'wëllen', 'däerfen', 'wëssen']);
+
+/** `net`. Named here because negation items are found by looking for it. */
+const NEGATOR = 'net';
+
+const MAX_PER_PERFECT_VERB = 2;
+const MAX_PERFECT_FORM_ITEMS = 300;
+const MAX_ORDER_ITEMS = 220;
+const MAX_NEGATION_ITEMS = 180;
+
 function shortHash(text) {
   return crypto.createHash('sha1').update(text).digest('hex').slice(0, 10);
 }
@@ -266,6 +292,272 @@ function adjectiveItems(corpus, lexicon) {
   return items;
 }
 
+
+/**
+ * Refuses to build if a word this file names by hand is not in the lexicon.
+ *
+ * Everything else here is copied out of the corpus, so a typo shows up as a
+ * missing item. These few are *search keys* — get one wrong and the build
+ * quietly mines the wrong sentences, or none, and still succeeds.
+ */
+function assertAttested(lexicon, words) {
+  const missing = [...new Set(words)].filter((word) => !lexicon.forms[word.toLowerCase()]);
+  if (missing.length > 0) {
+    throw new Error(`build-grammar names ${missing.length} form(s) the lexicon does not attest: ${missing.join(', ')}`);
+  }
+}
+
+/* ----------------------------------------------------------------- perfect */
+
+/**
+ * Which auxiliary a verb takes in the perfect — hunn or sinn.
+ *
+ * Zero mining, exactly like `gender`: LOD's Flexiounstabellen already record
+ * `auxiliaryVerb` and `pastParticiple` for 364 of the 365 verbs, and no screen
+ * has ever used either. This is the fact a learner has to memorise per verb,
+ * and the A2 interview asks for the past directly.
+ */
+function perfectAuxItems(verbs) {
+  const items = [];
+  for (const verb of verbs) {
+    if (!verb.auxiliaryVerb || !verb.pastParticiple || !verb.en) continue;
+    if (!AUXILIARIES.includes(verb.auxiliaryVerb)) continue;
+    // A participle LOD writes two ways cannot illustrate one answer cleanly.
+    if (verb.pastParticiple.includes('/')) continue;
+    // "Does hunn take hunn or sinn?" is circular, and the modals' participles
+    // are identical to their infinitives, so the card would show the answer in
+    // its own prompt. Both are also constructions past A2.
+    if (NOT_WORTH_ASKING.has(verb.infinitive)) continue;
+    if (verb.pastParticiple.toLowerCase() === verb.infinitive.toLowerCase()) continue;
+
+    const id = `gr-perfaux-${verb.id}`;
+    const flip = rotate(id, 2) === 1;
+    const options = flip ? [...AUXILIARIES].reverse() : [...AUXILIARIES];
+    items.push({
+      id,
+      kind: 'perfect-aux',
+      lb: verb.infinitive,
+      participle: verb.pastParticiple,
+      en: verb.en,
+      options_lb: options,
+      correct: options.indexOf(verb.auxiliaryVerb),
+      entryId: verb.id,
+      level: verb.level,
+    });
+  }
+  return items;
+}
+
+/**
+ * The participle itself, gapped out of a real perfect sentence.
+ *
+ * Mined rather than assembled: the sentence is LOD's, the gap is where LOD
+ * put the participle, and the distractors are other verbs' real participles.
+ * Nothing is conjugated here.
+ *
+ * Two filters do most of the work. A participle that is also some other
+ * lemma's spelling is skipped — `ginn`'s participle is `ginn`, and a gap whose
+ * answer is indistinguishable from an infinitive teaches nothing. And the
+ * sentence must contain a finite form of hunn or sinn, so that what is gapped
+ * is actually a perfect and not a bare adjective that happens to look like one.
+ */
+function perfectFormItems(corpus, lexicon, verbs) {
+  const isClean = makeGate(lexicon);
+  const byParticiple = new Map();
+  const lemmaSpellings = new Set();
+  for (const verb of verbs) {
+    if (verb.infinitive) lemmaSpellings.add(verb.infinitive.toLowerCase());
+    for (const form of Object.values(verb.present ?? {})) if (form) lemmaSpellings.add(form.toLowerCase());
+  }
+  for (const verb of verbs) {
+    if (!verb.pastParticiple || !verb.en || verb.pastParticiple.includes('/')) continue;
+    const key = verb.pastParticiple.toLowerCase();
+    if (lemmaSpellings.has(key)) continue; // e.g. ginn/ginn — no distinct answer
+    if (!byParticiple.has(key)) byParticiple.set(key, verb);
+  }
+  const participles = [...byParticiple.values()];
+
+  const items = [];
+  const perVerb = new Map();
+  // The same example text is attached to more than one corpus entry, so the
+  // same sentence/verb pair can be reached twice and would ship twice under
+  // one id.
+  const seenIds = new Set();
+  outer: for (const entry of corpus.entries) {
+    for (const meaning of entry.meanings ?? []) {
+      for (const example of meaning.examples ?? []) {
+        if (!example.text) continue;
+        for (const sentence of sentences(example.text)) {
+          const tokens = tokenise(sentence);
+          const words = tokens.map((token) => token.value.toLowerCase());
+          if (!words.some((word) => FINITE_AUX_FORMS.has(word))) continue;
+
+          const hitIndex = words.findIndex((word) => byParticiple.has(word));
+          if (hitIndex === -1) continue;
+          const verb = byParticiple.get(words[hitIndex]);
+          if ((perVerb.get(verb.id) ?? 0) >= MAX_PER_PERFECT_VERB) continue;
+          if (!isClean(sentence)) continue;
+
+          const raw = tokens[hitIndex].raw;
+          const span = spanOf(sentence, raw);
+          if (!span) continue;
+
+          // Distractors are other verbs' real participles, taking the same
+          // auxiliary so the choice is about the verb rather than about
+          // spotting the odd auxiliary out.
+          const pool = participles.filter(
+            (other) => other.id !== verb.id && other.auxiliaryVerb === verb.auxiliaryVerb && other.pastParticiple.toLowerCase() !== raw.toLowerCase(),
+          );
+          if (pool.length < 3) continue;
+          const id = `gr-perffrm-${shortHash(`${sentence}|${verb.id}`)}`;
+          if (seenIds.has(id)) continue;
+          const picked = [];
+          for (let i = 0; i < 3; i += 1) {
+            const at = parseInt(shortHash(`${id}:${i}`).slice(0, 6), 16) % pool.length;
+            const candidate = pool.splice(at, 1)[0];
+            if (candidate) picked.push(candidate.pastParticiple);
+          }
+          if (picked.length < 3) continue;
+
+          const options = [raw, ...picked];
+          const at = rotate(id, options.length);
+          const rotated = [...options.slice(at), ...options.slice(0, at)];
+
+          items.push({
+            id,
+            kind: 'perfect-form',
+            before: sentence.slice(0, span.start),
+            after: sentence.slice(span.end),
+            options_lb: rotated,
+            correct: rotated.indexOf(raw),
+            infinitive: verb.infinitive,
+            en: verb.en,
+            entryId: entry.id,
+            level: verb.level,
+          });
+          seenIds.add(id);
+          perVerb.set(verb.id, (perVerb.get(verb.id) ?? 0) + 1);
+          if (items.length >= MAX_PERFECT_FORM_ITEMS) break outer;
+        }
+      }
+    }
+  }
+  return items;
+}
+
+/* --------------------------------------------------- word order & negation */
+
+/**
+ * Where a word belongs in the sentence — the finite verb, or `net`.
+ *
+ * The options are three orderings of the *same real sentence*: the one LOD
+ * wrote, and two with one word moved. Every token is therefore attested; only
+ * the order is constructed, and it is constructed to be the wrong answer.
+ *
+ * The hazard this has to avoid is a distractor that is wrong twice. Moving a
+ * word changes which word follows which, and the n-rule keys off exactly that
+ * — so a reordering can silently break spelling as well as order, which would
+ * teach the wrong lesson and mark the item unfit anyway. Every generated
+ * ordering therefore goes back through the same gate the rest of this file
+ * uses, and an item is dropped unless *all* of its options are clean. What
+ * survives differs from the answer in word order and nothing else.
+ *
+ * @param {'wordorder'|'negation'} kind
+ * @param {(tokens: Array) => number} findIndex which word gets moved
+ */
+function orderItems(corpus, lexicon, { kind, findIndex, limit, minWords, maxWords }) {
+  const isClean = makeGate(lexicon);
+  const checker = createChecker({
+    nRuleForms: new Set(lexicon.nRuleForms),
+    retentionExceptions: new Set(Object.keys(lexicon.nRuleRetentionExceptions ?? {})),
+  });
+  /**
+   * Stricter than the shared gate, and only here.
+   *
+   * `makeGate` passes anything without an *error*, and every n-rule finding is
+   * a warning — deliberately, because the checker cannot tell a genuine
+   * violation from a homograph. That tolerance is right for a sentence LOD
+   * wrote and wrong for one this script rearranged: moving a word changes
+   * which word follows which, and 19% of the word-order options and 26% of the
+   * negation options came out carrying an n-rule finding. A distractor that is
+   * misspelled as well as misordered teaches the wrong lesson twice. So an
+   * item survives only if the sentence and every option it generates are
+   * completely silent on the n-rule.
+   */
+  const nRuleSilent = (text) => checker.checkTokens(tokenise(text)).length === 0;
+  const items = [];
+  const seen = new Set();
+
+  outer: for (const entry of corpus.entries) {
+    for (const meaning of entry.meanings ?? []) {
+      for (const example of meaning.examples ?? []) {
+        if (!example.text) continue;
+        for (const sentence of sentences(example.text)) {
+          const tokens = tokenise(sentence);
+          if (tokens.length < minWords || tokens.length > maxWords) continue;
+          // Clitics attach to the word before them; moving anything across one
+          // produces a string no speaker would write.
+          if (tokens.some((token) => token.isClitic || token.clitic)) continue;
+
+          // Rejoining tokens with single spaces loses every comma, so the
+          // "correct" option would be a punctuation-stripped rewrite of the
+          // sentence rather than the sentence. Only take sentences that
+          // reconstruct *exactly*, keeping any closing mark aside — which also
+          // drops the comma-spliced interjection fragments ("a, kuck, ...")
+          // whose word order is not what this is trying to teach.
+          const tail = sentence.match(/[.!?…]+$/)?.[0] ?? '';
+          const body = sentence.slice(0, sentence.length - tail.length).trim();
+          const words = tokens.map((token) => token.raw);
+          if (words.join(' ') !== body) continue;
+
+          const from = findIndex(tokens);
+          if (from === -1) continue;
+
+          const key = sentence.toLowerCase();
+          if (seen.has(key)) continue;
+          if (!isClean(sentence) || !nRuleSilent(sentence)) continue;
+
+          const alternatives = [];
+          // Never position 0. Fronting the finite verb is how a yes/no
+          // question is formed, so "hunn ech eng Conjonctivite …" is not wrong
+          // Luxembourgish — it is a different sentence type, and offering it
+          // as the wrong answer would be marking a correct instinct down.
+          for (let to = 1; to < words.length && alternatives.length < 2; to += 1) {
+            if (to === from) continue;
+            const moved = [...words];
+            const [word] = moved.splice(from, 1);
+            moved.splice(to, 0, word);
+            const candidate = moved.join(' ');
+            if (candidate.toLowerCase() === body.toLowerCase()) continue;
+            // Wrong in word order and nothing else.
+            if (!isClean(candidate) || !nRuleSilent(candidate)) continue;
+            alternatives.push(candidate + tail);
+          }
+          if (alternatives.length < 2) continue;
+
+          const attested = body + tail;
+          const id = `gr-${kind === 'negation' ? 'neg' : 'order'}-${shortHash(sentence)}`;
+          const options = [attested, ...alternatives];
+          const at = rotate(id, options.length);
+          const rotated = [...options.slice(at), ...options.slice(0, at)];
+
+          items.push({
+            id,
+            kind,
+            moved: words[from],
+            options_lb: rotated,
+            correct: rotated.indexOf(attested),
+            entryId: entry.id,
+          });
+          seen.add(key);
+          if (items.length >= limit) break outer;
+        }
+      }
+    }
+  }
+  return items;
+}
+
 /* ------------------------------------------------------------------------ */
 
 async function main() {
@@ -275,12 +567,51 @@ async function main() {
     fsp.readFile(paths.LEXICON_PATH, 'utf8').then(JSON.parse),
   ]);
 
+  const verbs = JSON.parse(await fsp.readFile(path.join(paths.ITEMS_DIR, 'verbs.json'), 'utf8')).items;
+  // Every present-tense form LOD publishes, so "the finite verb" is a lookup.
+  const finiteForms = new Set();
+  for (const verb of verbs) for (const form of Object.values(verb.present ?? {})) if (form) finiteForms.add(form.toLowerCase());
+
+  // The handful of Luxembourgish strings this file names rather than mines —
+  // the two auxiliaries and their finite forms. They are how a perfect is
+  // recognised at all, so a typo here would silently mine the wrong sentences.
+  assertAttested(lexicon, [...AUXILIARIES, ...FINITE_AUX_FORMS, NEGATOR]);
+
   const gender = genderItems(vocab.items);
   const nrule = nRuleItems(corpus, lexicon);
   const adjective = adjectiveItems(corpus, lexicon);
-  const items = [...gender, ...nrule, ...adjective];
+  const perfectAux = perfectAuxItems(verbs);
+  const perfectForm = perfectFormItems(corpus, lexicon, verbs);
+  const wordorder = orderItems(corpus, lexicon, {
+    kind: 'wordorder',
+    // The finite verb: the word the V2 rule is about. Recognised as a present
+    // form LOD publishes for some verb, so this is a lookup rather than a
+    // guess at what looks like a verb.
+    // Only sentences whose finite verb is already the second word, because
+    // that is the rule being taught: moving it anywhere else is then wrong by
+    // the rule rather than merely unusual. (Second *word*, which is a subset
+    // of second *element* — a sentence opening with a multi-word phrase is
+    // skipped rather than judged, since the app cannot parse the phrase.)
+    findIndex: (tokens) => (finiteForms.has(tokens[1]?.value.toLowerCase() ?? '') ? 1 : -1),
+    limit: MAX_ORDER_ITEMS,
+    minWords: 4,
+    maxWords: 7,
+  });
+  const negation = orderItems(corpus, lexicon, {
+    kind: 'negation',
+    findIndex: (tokens) => tokens.findIndex((token) => token.value.toLowerCase() === NEGATOR),
+    limit: MAX_NEGATION_ITEMS,
+    minWords: 4,
+    maxWords: 9,
+  });
 
-  console.log(`grammar: ${gender.length} gender, ${nrule.length} n-rule, ${adjective.length} adjective-agreement (${items.length} total)`);
+  const items = [...gender, ...nrule, ...adjective, ...perfectAux, ...perfectForm, ...wordorder, ...negation];
+
+  console.log(
+    `grammar: ${gender.length} gender, ${nrule.length} n-rule, ${adjective.length} adjective-agreement, ` +
+      `${perfectAux.length} perfect-auxiliary, ${perfectForm.length} perfect-participle, ` +
+      `${wordorder.length} word-order, ${negation.length} negation (${items.length} total)`,
+  );
 
   const payload = {
     meta: {
@@ -290,7 +621,16 @@ async function main() {
         'Every option is either a value LOD itself assigned (noun gender/article) or a span copied ' +
         'verbatim from a real LOD example sentence. Nothing here is generated, inflected or corrected ' +
         'by this script - see the file header.',
-      counts: { gender: gender.length, nrule: nrule.length, adjective: adjective.length, total: items.length },
+      counts: {
+        gender: gender.length,
+        nrule: nrule.length,
+        adjective: adjective.length,
+        'perfect-aux': perfectAux.length,
+        'perfect-form': perfectForm.length,
+        wordorder: wordorder.length,
+        negation: negation.length,
+        total: items.length,
+      },
     },
     items,
   };
