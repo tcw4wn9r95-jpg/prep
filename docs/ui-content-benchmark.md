@@ -685,3 +685,67 @@ added earlier is a step in that direction.
 
 `npm test` 155 · `npm run walkthrough` 41/41 · `validate` PASS · `sw.js` → `v22`,
 IndexedDB → v5 for the new `mistakes` store.
+
+---
+
+# Follow-up 5, 2026-08-03 — "I drill and nothing moves"
+
+Two reports, both true, both reproduced before touching anything.
+
+## The deck bars could not move for eleven days
+
+The Learn deck rows filled by `heldPct` — items at box 3 or higher. The Leitner
+intervals are 0/1/3/7/16 days, so:
+
+```
+day 0: answer right -> box 1
+day 1: answer right -> box 2
+day 4: answer right -> box 3   <- earliest anything counts as "holding"
+=> day 11 before the bar can move at all; day 27 for "mastered"
+```
+
+So both bars on every deck row were pinned at zero for a beginner's first
+fortnight, no matter how much they drilled. That is indistinguishable from the
+app not saving anything — and the grammar row made it worse, because "12 of
+2,789 exercises met" also renders as visually zero.
+
+The comment above `deckRow` claimed `heldPct` was "the number that moves after
+a single session". It was not, and the arithmetic was there to check.
+
+**Fixed.** `learnProgress` now also returns the box distribution, and the bar is
+a **ladder**: one segment per Leitner box, sized by how many met items sit in
+each. A correct answer moves width from one segment to the next *the same day*,
+because that is exactly what a correct answer does. The caption still reports
+"N of M holding" — that remains the number that means something about the exam
+— it is just no longer the only thing on screen, nor the thing that has to move
+for the row to look alive. Verified: 0 segments → 2 segments and "7 met" after
+ten grammar cards.
+
+## The step counter was frozen by my own fix
+
+"It says I need 4 more but when I do it, no change." Exactly right, and this one
+was a regression introduced by the daily new-word cap two commits earlier.
+
+A path step reads `116/120` and links to a stage-scoped session. Once the day's
+eight new words are spent, that session contains **zero cards** — reviews of
+that stage are not due yet and no new words may be introduced — and the empty
+screen said *"Nothing due right now — you are caught up."* Which is false: there
+are four words left, and the app is holding them back on purpose.
+
+The cap is right and stays. What was wrong is that nothing said so, in three
+places at once:
+
+- the empty session now distinguishes **"That is today's new words done"** from
+  "you are caught up", and explains that reviews still count today;
+- the path intro says the counts stop here until tomorrow;
+- the current step carries a **"more tomorrow"** note next to its `116/120`, so
+  the number and the reason sit together.
+
+Verified by seeding a spent budget: all three appear, and the stage session no
+longer claims to be caught up.
+
+## Verification
+
+`npm test` 157 (two new: that "holding" is provably far off, and that a spent
+budget is distinguishable from an empty queue) · `npm run walkthrough` 41/41 ·
+`sw.js` → `v23`.

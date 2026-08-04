@@ -955,16 +955,37 @@ export async function learnProgress(playerId, deck, strand, totalItems) {
   const rows = await allByIndex('learn', 'byPlayerDeck', playerDeckKey(playerId, deck, strand));
   const mastered = rows.filter((row) => row.box === MAX_BOX).length;
   const strong = rows.filter((row) => row.box >= STRONG_BOX).length;
+
+  // How many met items sit in each box. This is the only progress figure here
+  // that responds to a session on the day it happens — see `strength` below.
+  const boxes = Array.from({ length: MAX_BOX + 1 }, () => 0);
+  for (const row of rows) boxes[Math.min(Math.max(row.box, 0), MAX_BOX)] += 1;
+
   return {
     started: rows.length,
     strong,
     mastered,
+    boxes,
     total: totalItems,
     pct: totalItems === 0 ? 0 : (mastered / totalItems) * 100,
-    // Of the words actually met so far, how many have stuck. This is the number
-    // that moves after a single session; `pct` against a 2,000-word deck does
-    // not, and a bar that never moves reads as "nothing was saved".
+    // Of the words actually met so far, how many have stuck.
     heldPct: rows.length === 0 ? 0 : (strong / rows.length) * 100,
+    /**
+     * How far up the ladder the met items are, on average, as a percentage.
+     *
+     * `heldPct` was supposed to be the number that moves after one session,
+     * and it is not: `strong` means box 3, and the intervals are 0/1/3/7 days,
+     * so the *earliest* an item can count is day 11. `mastered` is day 27. So
+     * both bars on every deck row were frozen for a beginner's first fortnight
+     * however much they drilled — which is exactly what a broken app looks
+     * like.
+     *
+     * This moves on every correct answer, because every correct answer
+     * promotes a box, and falls when something is forgotten. It is not a
+     * completion figure and is not shown as one; it is the shape of what you
+     * know, which is the honest thing to report daily.
+     */
+    strength: rows.length === 0 ? 0 : (rows.reduce((sum, row) => sum + Math.min(row.box, MAX_BOX), 0) / (rows.length * MAX_BOX)) * 100,
   };
 }
 

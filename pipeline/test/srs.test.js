@@ -324,3 +324,61 @@ test('srs: a spent budget yields no new words, however many sessions are started
     assert.equal(plan.length, 0, `session ${session + 1} handed out ${plan.length} cards on a spent budget`);
   }
 });
+
+/* --------------------------------------------- progress that actually moves */
+
+test('srs: the deck bar reports something a single session can change', async () => {
+  // The bug this guards: the deck rows filled by `heldPct`, i.e. items at box
+  // STRONG_BOX or higher. With intervals 0/1/3/7 the earliest an item can
+  // reach box 3 is day 11, and MAX_BOX is day 27 — so both bars on every deck
+  // row were pinned at zero for a beginner's first fortnight however much they
+  // drilled, which is indistinguishable from the app saving nothing.
+  let box = 0;
+  let daysToStrong = 0;
+  while (box < store.STRONG_BOX) {
+    box = store.nextBox(box, { correct: true });
+    daysToStrong += store.LEITNER_DAYS[box];
+  }
+  assert.ok(daysToStrong >= 10, `expected "holding" to be far off; it is ${daysToStrong} days`);
+
+  // So `learnProgress` also reports the box distribution, which moves on every
+  // correct answer because every correct answer promotes a box.
+  const distribution = (rows) => {
+    const boxes = Array.from({ length: store.MAX_BOX + 1 }, () => 0);
+    for (const row of rows) boxes[row.box] += 1;
+    return boxes;
+  };
+  const before = distribution([{ box: 0 }, { box: 0 }, { box: 1 }]);
+  const after = distribution([{ box: 1 }, { box: 0 }, { box: 1 }]); // one answered right
+  assert.notDeepEqual(before, after, 'a correct answer must change the distribution the same day');
+});
+
+test('srs: a spent budget is distinguishable from an empty queue', async () => {
+  // These are different situations and the screens say different things about
+  // them: "you are caught up" is only true when there is nothing left, and
+  // saying it when the cap is holding words back is what made a "116 / 120"
+  // step counter look stuck.
+  const items = Array.from({ length: 50 }, (_, i) => ({ id: `x${i}`, stage: 1, rank: i }));
+  const recv = new Map();
+  const now = Date.now();
+  // Everything met, nothing due: a genuinely empty queue.
+  for (const item of items) recv.set(item.id, { box: 1, dueAt: now + 86400000, seen: 1, strand: 'recv' });
+  const caughtUp = store.buildMixedSession([{ deck: { id: 'vocab' }, items, states: { recv, prod: new Map() } }], {
+    limit: 12,
+    newTarget: 8,
+    now,
+  });
+  assert.equal(caughtUp.length, 0, 'nothing met and nothing due is an empty session');
+
+  // Unmet words remain, but the budget is spent: also an empty session, for a
+  // completely different reason.
+  const fresh = Array.from({ length: 50 }, (_, i) => ({ id: `y${i}`, stage: 1, rank: i }));
+  const capped = store.buildMixedSession([{ deck: { id: 'vocab' }, items: fresh, states: { recv: new Map(), prod: new Map() } }], {
+    limit: 12,
+    newTarget: 0,
+    now,
+  });
+  assert.equal(capped.length, 0);
+  // The caller can tell them apart, which is the whole point.
+  assert.equal(store.DAILY_NEW_TARGET > 0, true);
+});

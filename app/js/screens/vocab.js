@@ -32,7 +32,7 @@ export async function render(root, { params, settings, navigate }) {
   const again = topicId ? `#/vocab/${encodeURIComponent(topicId)}` : '#/vocab';
 
   const plan = buildSession(pool, states, { limit: SESSION_SIZE, newTarget: newLeft });
-  if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total: pool.length });
+  if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total: pool.length, capped: newLeft === 0 });
 
   // Distractors come from the whole deck even in a topic session: four options
   // drawn from thirty topic words would repeat within a handful of cards.

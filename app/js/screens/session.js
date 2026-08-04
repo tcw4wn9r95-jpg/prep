@@ -74,7 +74,7 @@ export async function render(root, { params, settings, navigate }) {
   // otherwise quitting a session and starting another buys eight more new
   // words, as many times as you care to do it.
   const plan = buildMixedSession(groups, { limit: SESSION_SIZE, newTarget: newLeft, reserve: { grammar: GRAMMAR_RESERVE } });
-  if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total });
+  if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total, capped: newLeft === 0 });
 
   const boxes = new Map();
   for (const group of groups) boxIndex(group.deck.id, group.states, boxes);
