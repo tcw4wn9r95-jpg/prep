@@ -29,6 +29,7 @@
 
 import { STRANDS } from '../store.js';
 import { letterBank, wordBank } from './match.js';
+import { RULE_LINES } from '../grammar-guide.js';
 
 /** Deck-shape differences, kept in one place. */
 export const DECKS = {
@@ -128,11 +129,7 @@ export function taskFor(card) {
  * rule is worth reading, and by the cheat sheet as the section intros — one
  * wording rather than two, so the sheet and the correction agree.
  */
-export const GRAMMAR_RULES = {
-  gender: 'Every noun is männlech, weiblech or neutral, and the article agrees with it.',
-  nrule: 'A word ending in -n keeps it before n, d, t, z, h or a vowel, and drops it before anything else.',
-  adjective: 'An adjective’s ending changes with the noun it describes — there is no one fixed form.',
-};
+export const GRAMMAR_RULES = RULE_LINES;
 // Exported: the gender-sort game (screens/gender-sort.js) uses the same three
 // labels, and two independently-worded translations of "masculine" would read
 // as a second, disagreeing source of truth.

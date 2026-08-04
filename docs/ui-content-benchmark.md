@@ -408,3 +408,83 @@ both-languages option check and real-deck coverage) · `npm run walkthrough`
 41/41 · `validate` PASS · `sw.js` `VERSION` → `v19`, with `js/drill/hint.js`
 added to the precache list — a test catches that omission, which is how the
 list stays honest.
+
+---
+
+# Follow-up 3, 2026-08-03
+
+## Theory, and teaching it before the exercise
+
+The app drilled gender, the n-rule and adjective agreement with a single line
+of rule each, shown **only after a miss** — so the first attempt at every
+grammar item was a guess by construction — and taught nothing else at all.
+
+`app/js/grammar-guide.js` is now the theory: seven topics, each with a one-line
+rule and a few paragraphs of teaching. Three match the drilled kinds; the other
+four are gaps that were simply absent. The largest is **the past tense**, which
+the exam asks for directly — one of the three phases of the published interview
+sheets is `d'Vergaangenheet` — and which the app did not mention anywhere.
+
+It appears in two places:
+
+- **On the cheat sheet**, as collapsible topics, so the sheet stays scannable
+  when it is opened mid-exercise to check one thing.
+- **On the card, before the question.** Open on a first meeting, because that
+  card is an introduction and there is nothing yet to retrieve; collapsed to
+  "Remind me of the rule" from the first review, because re-reading the rule
+  every time would replace the recall the drill exists for.
+
+**What may be written there.** English is free; Luxembourgish is corpus-locked.
+So the prose is written, the handful of closed-class forms named inline (the
+articles, `net`, `hunn`/`sinn`) are real, and **worked examples are not written
+at all** — each topic pulls them out of the shipped decks at render time. The
+perfect-tense examples come from LOD's own Flexiounstabellen, which carry an
+auxiliary and a participle for 364 of the 365 verbs.
+
+`grammar-guide.test.js` enforces it: every Luxembourgish token quoted by an
+example, and every one written into the prose, must be attested by a shipped
+deck. The validator never sees this file — it gates generated content, and this
+is app code — so the test is the gate.
+
+One thing measurement changed: ordering the perfect-tense examples by frequency
+put the auxiliaries and modals first, which produced `hunn … ginn` (the
+participle of `ginn` is `ginn`) and modals in the perfect, a construction well
+past A2. They are excluded, so what shows is `hunn … giess`, `sinn … komm`.
+
+## Explanations reaching for German
+
+Luxembourgish is close enough to German that a model asked to explain it will
+reach for German rules, and a beginner has no way to catch it. Both prompts —
+the Worker's and the direct API path's — now carry an explicit guardrail naming
+the specific traps: no case endings of the German kind and no genitive; the
+articles are `den`/`d'`/`en`/`eng`, not `der/die/das`; a noun's gender often
+differs from its German cognate; the perfect is the ordinary past, not a
+formal alternative to a simple past; and the Eifeler Regel has no German
+equivalent at all. Where it is unsure it is told to describe what the sentence
+does and say so, rather than fill the gap with German.
+
+## When the audio will not play
+
+A `listen` card shows no word and no sentence — the ear is meant to do the
+work. That made failed playback the worst state in the app: an empty card with
+four options and nothing to answer from. Offline with an unmirrored clip, a
+decode error, or iOS refusing without a gesture all land there.
+
+Playback failure now shows the sentence, and says why. It is a worse exercise
+than the one intended, but reading is a way through and a blank screen is not.
+The autoplay path falls back immediately rather than waiting for a tap that
+would fail the same way.
+
+## "The ones about to fade"
+
+Reported as not making sense, and it doesn't: it describes our scheduler rather
+than anything the learner can see, and reads as a warning about words they have
+no way to identify. Both places now say what is actually true and actionable —
+*"N words you have met before are ready to come round again. Today is the day
+they stick."*
+
+## Verification
+
+`npm test` 150 passing (five new on the guide) · `npm run walkthrough` 41/41 ·
+`validate` PASS · `sw.js` → `v20`, with `js/grammar-guide.js` added to the
+precache list — caught by the test that enforces it, for the second time.

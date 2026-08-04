@@ -296,7 +296,7 @@ function nextAction(state, partner) {
       ? {
           label: `Review ${plural(state.dueTotal, 'word')}`,
           href: '#/session',
-          why: `${plural(state.dueTotal, 'word')} you have already met are due again — these are the ones about to fade, so they come first. Today's goal is ${state.today.goal} cards.`,
+          why: `${plural(state.dueTotal, 'word')} you have met before are ready to come round again. Repeating them today is what makes them stick, so they come before new words. Today's goal is ${state.today.goal} cards.`,
         }
       : {
           label: `Learn ${state.newLeft} new words`,

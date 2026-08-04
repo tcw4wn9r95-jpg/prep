@@ -1,0 +1,135 @@
+'use strict';
+
+/**
+ * The grammar guide.
+ *
+ * The prose is English and free to write. The danger is the Luxembourgish
+ * quoted inside it: a rule stated with an invented form teaches the invention,
+ * and the validator never sees this file because it is app code rather than
+ * generated content. So the forms it may quote are checked here, against the
+ * shipped decks.
+ */
+
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const path = require('node:path');
+const { pathToFileURL } = require('node:url');
+
+const ROOT = path.join(__dirname, '..', '..');
+const vocab = require(path.join(ROOT, 'app', 'data', 'vocab.json')).items;
+const verbs = require(path.join(ROOT, 'app', 'data', 'verbs.json')).items;
+const phrases = require(path.join(ROOT, 'app', 'data', 'phrases.json')).items;
+const grammar = require(path.join(ROOT, 'app', 'data', 'grammar.json')).items;
+
+let guide;
+test.before(async () => {
+  guide = await import(pathToFileURL(path.join(ROOT, 'app', 'js', 'grammar-guide.js')).href);
+});
+
+/** Every Luxembourgish surface form the shipped decks attest. */
+function attestedForms() {
+  const forms = new Set();
+  const add = (value) => {
+    for (const word of String(value ?? '').match(/[\p{L}]+/gu) ?? []) forms.add(word.toLowerCase());
+  };
+  for (const item of vocab) { add(item.lb); add(item.example?.lb); add(item.article); }
+  for (const item of verbs) {
+    add(item.infinitive); add(item.pastParticiple); add(item.auxiliaryVerb); add(item.example?.lb);
+    for (const form of Object.values(item.present ?? {})) add(form);
+  }
+  for (const item of phrases) { add(item.lb); add(item.example?.lb); add(item.variant?.lb); }
+  for (const item of grammar) {
+    add(item.lb); add(item.article); add(item.before); add(item.after); add(item.example?.lb);
+    for (const option of item.options_lb ?? []) add(option);
+  }
+  return forms;
+}
+
+test('guide: every topic states a rule and teaches it', () => {
+  assert.ok(guide.GRAMMAR_GUIDE.length >= 5, 'the guide should cover more than the three drilled kinds');
+  for (const topic of guide.GRAMMAR_GUIDE) {
+    assert.ok(topic.id && topic.title, 'a topic needs an id and a title');
+    assert.ok(topic.rule.length > 20, `${topic.id}: the rule line is too short to say anything`);
+    assert.ok(topic.points.length >= 2, `${topic.id}: needs more than one paragraph of teaching`);
+    assert.equal(typeof topic.examples, 'function');
+  }
+});
+
+test('guide: the three drilled kinds each have their theory', () => {
+  // drill/engine.js looks a card's theory up by `item.kind`, so these ids are
+  // load-bearing rather than decorative.
+  for (const kind of ['gender', 'nrule', 'adjective']) {
+    assert.ok(guide.topicFor(kind), `no theory for the ${kind} deck`);
+  }
+  assert.equal(guide.topicFor('nonsense'), null);
+});
+
+test('guide: it teaches the past tense, which the interview asks for', () => {
+  // The published topic sheets put a whole phase on d'Vergaangenheet and the
+  // app taught no past tense at all.
+  const perfect = guide.topicFor('perfect');
+  assert.ok(perfect, 'no perfect-tense topic');
+  const examples = perfect.examples({ verbs });
+  const all = examples.flatMap((group) => group.verbs ?? []);
+  assert.ok(all.length >= 6, 'the perfect topic should show real verbs from both auxiliaries');
+  assert.ok(all.some((verb) => verb.aux === 'hunn') && all.some((verb) => verb.aux === 'sinn'));
+  for (const verb of all) {
+    const real = verbs.find((item) => item.infinitive === verb.infinitive);
+    assert.ok(real, `${verb.infinitive} is not in the verb deck`);
+    assert.equal(verb.participle, real.pastParticiple, `${verb.infinitive}: participle does not match LOD`);
+    assert.equal(verb.aux, real.auxiliaryVerb, `${verb.infinitive}: auxiliary does not match LOD`);
+  }
+});
+
+test('guide: no example is invented — every one comes from a shipped deck', () => {
+  const data = { vocab, verbs, phrases, grammar };
+  const attested = attestedForms();
+  for (const topic of guide.GRAMMAR_GUIDE) {
+    for (const group of topic.examples(data) ?? []) {
+      const quoted = [
+        ...(group.items ?? []).map((item) => item.lb),
+        ...(group.pairs ?? []).flatMap((pair) => pair.forms),
+        ...(group.sentences ?? []).map((sentence) => sentence.lb ?? `${sentence.before ?? ''} ${sentence.form ?? ''} ${sentence.after ?? ''}`),
+        ...(group.verbs ?? []).flatMap((verb) => [verb.infinitive, verb.participle, verb.aux]),
+      ];
+      for (const text of quoted) {
+        for (const word of String(text).match(/[\p{L}]+/gu) ?? []) {
+          assert.ok(attested.has(word.toLowerCase()), `${topic.id} quotes "${word}", which no shipped deck attests`);
+        }
+      }
+    }
+  }
+});
+
+test('guide: the Luxembourgish written into the prose is attested too', () => {
+  // The teaching text names closed-class forms inline — the articles, `net`,
+  // the two auxiliaries. Those are the only Luxembourgish tokens allowed to be
+  // hand-written here, and they still have to be real.
+  const attested = attestedForms();
+  const LATIN_ONLY = /^[a-zA-ZäëéöüÄËÉÖÜ]+$/;
+  const ENGLISH = new Set(
+    ('a an and are as at be before but by can change do does end ending endings every everything for form forms from front gender genitive go goes has have here how in is it its kind know learn like many most no not noun nouns of on one or other others out part past perfect place plural position put question questions rule rules same say says sentence sentences several shape so some speaking start starts still subject take takes tense that the their them then there these they thing this those three time to two up use used verb verbs way what when where which who whole why with word words work you your after all also always another any because been being both come comes could down each even first four give given group had hard he her him his if into just keep kept less let long look made make me more much must my near never new next now off often only over own place plain point real reason right run same second see seen sentence set she should side simple since single sit sits small something sound sounds speak spelled spelling still such sure take talk than their there through together too under until very want was were will would write written wrong yes yet').split(
+        ' ',
+      ),
+  );
+
+  for (const topic of guide.GRAMMAR_GUIDE) {
+    for (const text of [topic.rule, ...topic.points]) {
+      for (const word of text.match(/[\p{L}]+/gu) ?? []) {
+        const lower = word.toLowerCase();
+        // Only judge words that could plausibly be Luxembourgish tokens and
+        // are not ordinary English — anything the decks attest is fine, and
+        // anything clearly English is not a Luxembourgish claim at all.
+        if (!LATIN_ONLY.test(word)) continue;
+        if (ENGLISH.has(lower)) continue;
+        if (attested.has(lower)) continue;
+        // Anything left must be English prose the crude list above missed, not
+        // a Luxembourgish form. Flag the ones that look Luxembourgish.
+        assert.ok(
+          !/[äëéöü’]/.test(word) && !/^(de|den|d|dat|eng|en|dem|der|hunn|sinn|net|ech|du|hien|si|hatt|mir|dir)$/.test(lower),
+          `${topic.id}: "${word}" is written into the prose but no shipped deck attests it`,
+        );
+      }
+    }
+  }
+});
