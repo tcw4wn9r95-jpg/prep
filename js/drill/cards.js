@@ -71,14 +71,27 @@ export const DECKS = {
   grammar: {
     id: 'grammar',
     title: 'Grammar',
-    lemma: (item) => (item.kind === 'gender' ? item.lb : `${item.before}…${item.after}`.trim()),
+    lemma: (item) => {
+      if (item.kind === 'gender' || item.kind === 'perfect-aux') return item.lb;
+      // A whole-sentence item has no gap to name, so the answer stands for it.
+      if (item.kind === 'wordorder' || item.kind === 'negation') return item.options_lb?.[item.correct] ?? '';
+      return `${item.before}…${item.after}`.trim();
+    },
     gloss: (item) => item.en ?? null,
     article: () => null,
     kindLabel: (item) => GRAMMAR_KIND_LABELS[item.kind] ?? 'grammar',
   },
 };
 
-const GRAMMAR_KIND_LABELS = { gender: 'gender', nrule: 'n-rule', adjective: 'adjective agreement' };
+const GRAMMAR_KIND_LABELS = {
+  gender: 'gender',
+  nrule: 'n-rule',
+  adjective: 'adjective agreement',
+  'perfect-aux': 'past tense',
+  'perfect-form': 'past tense',
+  wordorder: 'word order',
+  negation: 'negation',
+};
 
 /**
  * What the learner was actually asked to do, in a phrase, per card type.
@@ -107,6 +120,10 @@ export const GRAMMAR_TASKS = {
   gender: 'They were asked whether this noun is männlech, weiblech or neutral.',
   nrule: 'They were asked which spelling is correct here under the Eifeler Regel — whether the final n is kept or dropped.',
   adjective: 'They were asked which form of the adjective agrees with the noun in this sentence.',
+  'perfect-aux': 'They were asked whether this verb forms its perfect with hunn or with sinn.',
+  'perfect-form': 'They were asked which past participle belongs in the gap in this sentence.',
+  wordorder: 'They were asked which of three orderings of this sentence is the correct one — the question is where the conjugated verb goes.',
+  negation: 'They were asked which of three orderings of this sentence is the correct one — the question is where net goes.',
 };
 
 /** The task line for a built card. */
@@ -180,7 +197,9 @@ const has = {
   present: (item) => Boolean(item.present),
   grammarChoice: (item) =>
     (item.kind === 'gender' && Array.isArray(item.options) && Number.isInteger(item.correct)) ||
-    (['nrule', 'adjective'].includes(item.kind) && Array.isArray(item.options_lb) && Number.isInteger(item.correct)),
+    (['nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'negation'].includes(item.kind) &&
+      Array.isArray(item.options_lb) &&
+      Number.isInteger(item.correct)),
 };
 
 /**
@@ -488,15 +507,53 @@ function grammarChoiceCard(base, item, random, box = 0) {
     item.options_lb.map((form, index) => ({ id: `${item.id}:${index}`, value: form, correct: index === item.correct })),
     random,
   );
+  const answer = item.options_lb[item.correct];
+
+  // Whole-sentence items: the options *are* sentences, so there is no gap to
+  // draw and the prompt carries the instruction alone. The gloss, where the
+  // deck has one, is the only thing worth showing above them.
+  if (item.kind === 'wordorder' || item.kind === 'negation') {
+    return {
+      ...base,
+      mode: 'choice',
+      instruction: item.kind === 'negation' ? 'Where does net go?' : 'Which order is right?',
+      // Nothing above the options: the options *are* the sentence, three ways.
+      // `hideBody` rather than falling through to the empty-prompt case, which
+      // renders a blank heading to reserve space for a listening card.
+      prompt: { hideBody: true, audioId: null },
+      options,
+      answer,
+    };
+  }
+
+  // "Does this verb take hunn or sinn?" — no sentence at all, just the verb.
+  if (item.kind === 'perfect-aux') {
+    return {
+      ...base,
+      mode: 'choice',
+      instruction: 'Which auxiliary does this verb use in the past?',
+      prompt: { word: item.lb, sentence: item.en ? `to ${item.en.replace(/^to /, '')} — past participle ${item.participle}` : null, audioId: null },
+      options,
+      answer,
+    };
+  }
+
   return {
     ...base,
     mode: 'choice',
-    instruction: item.kind === 'nrule' ? 'Which spelling is correct here (the Eifeler Regel)?' : 'Which form of the word fits this sentence?',
+    instruction: GRAMMAR_INSTRUCTIONS[item.kind] ?? 'Which form fits this sentence?',
     prompt: { cloze: { before: item.before, after: item.after }, audioId: null },
     options,
-    answer: item.options_lb[item.correct],
+    answer,
   };
 }
+
+/** What the gapped-sentence grammar cards ask. */
+const GRAMMAR_INSTRUCTIONS = {
+  nrule: 'Which spelling is correct here (the Eifeler Regel)?',
+  adjective: 'Which form of the word fits this sentence?',
+  'perfect-form': 'Which past participle fills the gap?',
+};
 
 /** The recording to offer, or null when it is not mirrored yet. */
 function playableAudio(item) {
