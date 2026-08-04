@@ -16,7 +16,7 @@
 import { el, fill, screenHead, button, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
-import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, POINTS, touchStreak } from '../store.js';
+import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, recordMistake, clearMistake, goalCards, POINTS, touchStreak } from '../store.js';
 import { requestExplanation } from '../sync.js';
 import { buildCard, GRAMMAR_RULES, joinArticle, taskFor } from './cards.js';
 import { loadGlossary } from '../content.js';
@@ -383,6 +383,13 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
         correct: result.correct,
         partial: result.partial,
       });
+      // The mistakes list, kept across sessions. A retry is excluded for the
+      // same reason it is not graded: it is the same question a minute later.
+      // An accent-only miss counts as correct here — the meaning was
+      // retrieved, and filing it as a mistake would fill the list with
+      // keyboard slips rather than things that are not known.
+      if (result.correct) clearMistake(settings.playerId, card.deck.id, card.strand, card.item.id);
+      else recordMistake(settings.playerId, card.deck.id, card.strand, card.item.id);
     }
 
     // Always show the full sentence and the exact spelling once the answer is
@@ -478,9 +485,9 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     // that transition is ever observed, so it is also the only place Amelie's
     // "goal met" moment can fire — today.js and learn.js only ever render the
     // stage a goal is *already* at, never the crossing.
-    const before = await todayProgress(settings.playerId);
+    const before = await todayProgress(settings.playerId, { goal: goalCards(settings) });
     logSession();
-    const after = await todayProgress(settings.playerId);
+    const after = await todayProgress(settings.playerId, { goal: goalCards(settings) });
     const justMetGoal = !before.met && after.met;
 
     const pct = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100);

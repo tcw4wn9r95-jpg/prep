@@ -12,7 +12,7 @@
  */
 
 const DB_NAME = 'sproochentest';
-const DB_VERSION = 4;
+const DB_VERSION = 5;
 
 /** @type {Promise<IDBDatabase>|null} */
 let dbPromise = null;
@@ -48,6 +48,12 @@ function openDb() {
         // range-query it.
         const store = db.createObjectStore('learn', { keyPath: 'key' });
         store.createIndex('byPlayerDeck', 'playerDeck');
+      }
+      if (!db.objectStoreNames.contains('mistakes')) {
+        // One row per card got wrong, surviving the session it happened in.
+        // See `recordMistake`.
+        const store = db.createObjectStore('mistakes', { keyPath: 'key' });
+        store.createIndex('byPlayer', 'playerId');
       }
       if (!db.objectStoreNames.contains('learnSessions')) {
         // One row per *finished* drill session, which the `learn` store cannot
@@ -537,6 +543,31 @@ export const DAILY_NEW_TARGET = 8;
  */
 export const DAILY_CARD_GOAL = 30;
 
+/**
+ * The daily goal, as something the learner picks rather than something the app
+ * imposes.
+ *
+ * Duolingo offers four (Casual to Intense) and asks at signup. That is not
+ * decoration: a goal you set yourself is committed to differently from one
+ * handed to you, and the person here knows what their week looks like and when
+ * the exam is. 30 stays the default because it is roughly two sessions and the
+ * figure the rest of the copy was written around.
+ *
+ * Every option is a real number of cards, and `todayProgress` measures against
+ * whichever is chosen — there is no separate "effective" goal.
+ */
+export const DAILY_GOALS = [
+  { id: 'light', cards: 15, label: 'Light', note: 'about one session' },
+  { id: 'steady', cards: 30, label: 'Steady', note: 'about two sessions — the default' },
+  { id: 'serious', cards: 50, label: 'Serious', note: 'three or four sessions' },
+  { id: 'exam', cards: 80, label: 'Exam soon', note: 'a real hour a day' },
+];
+
+/** The chosen goal in cards, defaulting to Steady. */
+export function goalCards(settings) {
+  return DAILY_GOALS.find((goal) => goal.id === settings?.dailyGoal)?.cards ?? DAILY_CARD_GOAL;
+}
+
 function learnKey(playerId, deck, strand, itemId) {
   return `${playerId}:${deck}:${strand}:${itemId}`;
 }
@@ -829,6 +860,51 @@ export async function recordLearnSession(playerId, { correct, answered, byDeck =
 
 export const listLearnSessions = () => all('learnSessions');
 
+/* -------------------------------------------------------------- mistakes
+ * The cards you have got wrong, kept until you get them right.
+ *
+ * The drill already re-asks a missed card three cards later, but that is the
+ * only second chance it ever gets: once the session ends the miss is gone, and
+ * whether the word comes back is left to its Leitner box — which is correct
+ * scheduling and completely invisible. Duolingo's Practice Hub is built on the
+ * opposite instinct and it is the right one: a learner wants a *named, finite,
+ * completable* list of the things they personally got wrong, not a promise
+ * that the algorithm has it in hand.
+ *
+ * This is deliberately not a second scheduler. The Leitner box still decides
+ * when a word is due; this only records that a specific card was missed, so it
+ * can be drilled on purpose. A row is removed the moment that card is answered
+ * correctly anywhere, so the list only ever shrinks by being earned.
+ */
+
+function mistakeKey(playerId, deck, strand, itemId) {
+  return `${playerId}:${deck}:${strand}:${itemId}`;
+}
+
+export async function recordMistake(playerId, deck, strand, itemId) {
+  const key = mistakeKey(playerId, deck, strand, itemId);
+  const previous = await get('mistakes', key);
+  await put('mistakes', {
+    key,
+    playerId,
+    deck,
+    strand,
+    itemId,
+    // How many times this exact card has been missed. Shown as "missed twice",
+    // which is the honest signal that something needs a different approach.
+    misses: (previous?.misses ?? 0) + 1,
+    at: new Date().toISOString(),
+  });
+}
+
+/** Answered right, so it stops being a mistake. */
+export async function clearMistake(playerId, deck, strand, itemId) {
+  const db = await openDb();
+  return promisify(tx(db, 'mistakes', 'readwrite').delete(mistakeKey(playerId, deck, strand, itemId)));
+}
+
+export const listMistakes = (playerId) => allByIndex('mistakes', 'byPlayer', playerId);
+
 /**
  * How much practice has actually happened today.
  *
@@ -837,7 +913,7 @@ export const listLearnSessions = () => all('learnSessions');
  * *state* — where each word stands — and say nothing about effort spent
  * getting there.
  */
-export async function todayProgress(playerId, { now = Date.now() } = {}) {
+export async function todayProgress(playerId, { now = Date.now(), goal = DAILY_CARD_GOAL } = {}) {
   const rows = await all('learnSessions');
   const startOfDay = new Date(now);
   startOfDay.setHours(0, 0, 0, 0);
@@ -862,9 +938,9 @@ export async function todayProgress(playerId, { now = Date.now() } = {}) {
     correct,
     byDeck,
     sessions: mine.length,
-    goal: DAILY_CARD_GOAL,
-    met: cards >= DAILY_CARD_GOAL,
-    pct: DAILY_CARD_GOAL === 0 ? 0 : Math.min(100, (cards / DAILY_CARD_GOAL) * 100),
+    goal,
+    met: cards >= goal,
+    pct: goal === 0 ? 0 : Math.min(100, (cards / goal) * 100),
   };
 }
 
