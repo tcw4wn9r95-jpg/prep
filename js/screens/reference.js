@@ -31,7 +31,8 @@
 
 import { el, screenHead } from '../dom.js';
 import { loadVocab, loadVerbs, loadPhrases, loadPhraseGroups, loadGrammar } from '../content.js';
-import { GENDER_LABELS, GRAMMAR_RULES, joinArticle } from '../drill/cards.js';
+import { GENDER_LABELS, joinArticle } from '../drill/cards.js';
+import { GRAMMAR_GUIDE } from '../grammar-guide.js';
 
 const PRONOUNS = ['ech', 'du', 'hien', 'si', 'hatt', 'mir', 'dir'];
 
@@ -162,34 +163,94 @@ export function renderContent(container, { vocab, verbs, phrases, groups, gramma
       el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } }, 'From the Phrases deck, by what you are trying to say.'),
       ...phraseGroups(phrases, groups).map(groupCard),
     ),
+    // The theory, from grammar-guide.js. Each topic is collapsed so the sheet
+    // stays scannable when it is opened mid-exercise to check one thing — the
+    // use it was built for — and opens to the full explanation when there is
+    // time to read it.
     section(
-      'Gender & articles',
+      'Grammar rules',
       el(
         'p',
         { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
-        GRAMMAR_RULES.gender,
+        'The rules the exam marks you on. Tap one to read it properly.',
       ),
+      ...GRAMMAR_GUIDE.map((topic) => topicCard(topic, { vocab, verbs, phrases, grammar })),
+    ),
+    section(
+      'Gender & articles, in practice',
       ...genderExamples(grammar).map(genderCard),
     ),
     section(
-      'The n-rule (Eifeler Regel)',
-      el(
-        'p',
-        { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
-        `${GRAMMAR_RULES.nrule} Real sentences, both directions:`,
-      ),
+      'The n-rule, in practice',
+      el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } }, 'Real sentences, both directions:'),
       ...nruleExamples(grammar).map(nruleCard),
     ),
     section(
-      'Adjective endings',
-      el(
-        'p',
-        { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
-        `${GRAMMAR_RULES.adjective} Both spellings below are real:`,
-      ),
+      'Adjective endings, in practice',
+      el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } }, 'Both spellings below are real:'),
       ...adjectiveExamples(grammar).map(adjectiveCard),
     ),
   );
+}
+
+/**
+ * One topic of the guide: the rule, the teaching, and worked examples.
+ *
+ * The examples are never written here — `topic.examples(data)` reaches into
+ * the decks the app already ships, so an illustration cannot be an invention.
+ * Which is also why a topic that finds nothing to illustrate simply renders
+ * without examples instead of falling back to a made-up sentence.
+ */
+function topicCard(topic, data) {
+  let groups = [];
+  try {
+    groups = topic.examples(data) ?? [];
+  } catch {
+    groups = [];
+  }
+
+  return el(
+    'details',
+    { class: 'ref-verb ref-topic' },
+    el('summary', {}, el('span', { class: 'card__title' }, topic.title)),
+    el('p', { class: 'ref-topic__rule' }, topic.rule),
+    ...topic.points.map((point) => el('p', { class: 'ref-topic__point' }, point)),
+    ...groups.map(exampleGroup),
+    topic.sources?.length
+      ? el('p', { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } }, `Forms from LOD — ${topic.sources.join('; ')}.`)
+      : null,
+  );
+}
+
+/** Renders whichever shape of example a topic produced. */
+function exampleGroup(group) {
+  const rows = [];
+  for (const item of group.items ?? []) {
+    rows.push(el('div', { class: 'ref-frame' }, el('span', {}, item.lb), el('span', { class: 'card__note' }, item.en)));
+  }
+  for (const verb of group.verbs ?? []) {
+    rows.push(
+      el(
+        'div',
+        { class: 'ref-frame' },
+        el('span', {}, `${verb.aux} … ${verb.participle}`),
+        el('span', { class: 'card__note' }, `${verb.infinitive} — ${verb.en}`),
+      ),
+    );
+  }
+  for (const pair of group.pairs ?? []) {
+    rows.push(
+      el('div', { class: 'ref-frame' }, el('span', {}, pair.forms.join(' / ')), pair.en ? el('span', { class: 'card__note' }, pair.en) : null),
+    );
+  }
+  for (const sentence of group.sentences ?? []) {
+    rows.push(
+      sentence.form
+        ? el('p', { class: 'ref-topic__sentence' }, sentence.before, el('strong', {}, sentence.form), sentence.after)
+        : el('p', { class: 'ref-topic__sentence' }, sentence.lb),
+    );
+  }
+  return el('div', { style: { marginBlockStart: 'var(--s3)' } }, el('p', { class: 'meter__label' }, group.label), ...rows);
 }
 
 export async function render(root, { navigate }) {

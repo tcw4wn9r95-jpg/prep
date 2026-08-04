@@ -21,6 +21,7 @@ import { requestExplanation } from '../sync.js';
 import { buildCard, GRAMMAR_RULES, joinArticle, taskFor } from './cards.js';
 import { loadGlossary } from '../content.js';
 import { hintFor } from './hint.js';
+import { topicFor } from '../grammar-guide.js';
 import { INPUTS } from './inputs.js';
 import { referenceSheet } from './reference-sheet.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
@@ -140,6 +141,12 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
       : null;
     if (explain) explain.hidden = true;
 
+    // Where the sentence appears if the audio will not play. Its own node
+    // above the reveal, because on a listening card this is the *question*
+    // arriving late, not the answer.
+    const fallback = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s3)', fontStyle: 'italic' }, hidden: true });
+    const player = audioId ? playButton(card, fallback) : null;
+
     const prompt = el(
       'div',
       { class: 'card', style: { textAlign: 'center' } },
@@ -150,8 +157,10 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
         entry.retry ? el('span', { class: 'chip' }, 'again') : null,
       ),
       card.cue ? el('p', { class: 'cue', 'aria-hidden': 'true' }, card.cue) : null,
+      teachBefore(card),
       ...promptBody(card),
-      audioId ? playButton(card) : null,
+      player?.el ?? null,
+      fallback,
       revealed,
       feedback,
       rule,
@@ -167,8 +176,14 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
 
     if (card.mode === 'type' && input.focus) input.focus();
     // Listening cards are useless in silence — play as soon as the card lands,
-    // once the first tap of the session has unlocked audio.
-    if (card.type === 'listen' && clip) clip.play();
+    // once the first tap of the session has unlocked audio. If that autoplay
+    // fails the card has nothing on it at all, so it falls back to the text
+    // immediately rather than waiting for a tap that may also fail.
+    if (card.type === 'listen' && clip) {
+      clip.play().then((ok) => {
+        if (!ok) player?.failed();
+      });
+    }
   }
 
   function promptBody(card) {
@@ -203,8 +218,33 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     return [el('p', { class: 'screen__title', style: { marginBlockStart: 'var(--s1)' } }, ' ')];
   }
 
-  function playButton(card) {
+  /**
+   * The play button, and the text to fall back on when it will not play.
+   *
+   * A `listen` card deliberately shows nothing — no word, no sentence — because
+   * the ear is supposed to do the work. That makes failed playback the worst
+   * case in the app: an empty card with four options and no way to answer it
+   * except by guessing. Offline with an unmirrored clip, a decode error, or
+   * iOS refusing without a gesture all land there.
+   *
+   * So a failure shows the sentence. It is a worse exercise than the one
+   * intended and the card says so, but reading is a way through and a blank
+   * screen is not.
+   */
+  function playButton(card, transcript) {
     const note = el('p', { class: 'card__note', hidden: true });
+    const failed = () => {
+      play.classList.remove('is-playing');
+      const text = card.prompt.revealAfter ?? card.prompt.sentence ?? card.item.example?.lb ?? null;
+      if (text && transcript) {
+        transcript.replaceChildren(el('strong', {}, 'Audio would not play. '), document.createTextNode(`“${text}”`));
+        transcript.hidden = false;
+        note.hidden = true;
+      } else {
+        note.textContent = 'Audio would not play — try tapping again.';
+        note.hidden = false;
+      }
+    };
     const play = el(
       'button',
       {
@@ -216,17 +256,13 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
           play.classList.add('is-playing');
           note.hidden = true;
           const ok = await clip.play();
-          if (!ok) {
-            play.classList.remove('is-playing');
-            note.textContent = 'Audio would not play — try tapping again.';
-            note.hidden = false;
-          }
+          if (!ok) failed();
         },
       },
       el('svg', { viewBox: '0 0 24 24', width: '22', height: '22', 'aria-hidden': 'true', fill: 'currentColor' }, el('path', { d: 'M8 5 L19 12 L8 19 Z' })),
     );
     clip.on('ended', () => play.classList.remove('is-playing'));
-    return el('div', { style: { marginBlockStart: 'var(--s3)' } }, play, note);
+    return { el: el('div', { style: { marginBlockStart: 'var(--s3)' } }, play, note), failed };
   }
 
   /**
@@ -286,6 +322,37 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     });
 
     return holder;
+  }
+
+  /**
+   * The rule, stated before the question rather than after the mistake.
+   *
+   * A teacher explains the rule and then sets the exercise. This app did the
+   * reverse: the rule appeared only once you had already got it wrong, so the
+   * first attempt at every grammar item was a guess by construction.
+   *
+   * On the first meeting of an item it is open, because that card is an
+   * introduction and there is nothing yet to retrieve. From the first review
+   * it is collapsed — still one tap away, but taking it is a decision, and
+   * re-reading the rule every time would replace the recall the drill is for.
+   */
+  function teachBefore(card) {
+    const topic = topicFor(card.item?.kind);
+    if (!topic) return null;
+    const first = (boxes.get(`${card.deck.id}:${card.strand}:${card.item.id}`) ?? 0) === 0;
+
+    return el(
+      'details',
+      { class: 'drill__teach', open: first ? true : null },
+      el('summary', {}, first ? `The rule — ${topic.title}` : 'Remind me of the rule'),
+      el('p', { class: 'drill__teach-rule' }, topic.rule),
+      ...topic.points.slice(0, 2).map((point) => el('p', { class: 'drill__teach-point' }, point)),
+      el(
+        'a',
+        { class: 'drill__teach-more', href: '#/reference' },
+        'Full explanation in the guide',
+      ),
+    );
   }
 
   const nextHolder = el('div');

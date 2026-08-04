@@ -177,8 +177,8 @@ function sectionLabel(text) {
 /**
  * The one thing to do now, and the number behind it.
  *
- * Reviews first — they are the cards about to fade, and spaced repetition only
- * pays if they happen on the day they fall due. New words otherwise.
+ * Words already met come before new ones: the spacing is the whole mechanism,
+ * and a repeat is worth most on the day it falls due. New words otherwise.
  */
 function nextAction(due, today, current) {
   const waiting = due.recv + due.prod;
@@ -354,7 +354,13 @@ function untaggedNote(items) {
 
 function adviceFor(due, recv, prod, current) {
   if (recv.started === 0) return 'Start at the beginning: I, you, and the words that hold a sentence together. Everything else needs those first.';
-  if (due.recv + due.prod > 0) return `${due.recv + due.prod} cards are waiting. Reviews first — they are the ones about to fade.`;
+  // Not "the ones about to fade": that describes our scheduler, not anything
+  // the learner can see or act on, and it reads as a warning about words they
+  // have no way to identify. What they actually need to know is that these are
+  // words they have met before, and that today is when repeating them sticks.
+  if (due.recv + due.prod > 0) {
+    return `${due.recv + due.prod} words you have met before are ready to come round again. Today is the day they stick.`;
+  }
   if (prod.strong * 2 < recv.strong) return 'You recognise far more than you can say. The speaking part only scores what you can say.';
   if (current) return `You are on ${current.title.toLowerCase()} — ${current.total - current.started} to go.`;
   return 'Nothing due. Pick a topic and take on new words.';

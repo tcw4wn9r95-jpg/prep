@@ -1347,3 +1347,71 @@
    rather than disabled: still openable, just visibly not the thing to do next.
    See SPEAKING_READY_WORDS in screens/speaking.js. */
 .stack.is-early { opacity: 0.72; }
+
+/* --- the rule, before the exercise --------------------------------------
+   A teacher explains, then sets the question. Open on a first meeting,
+   collapsed on a review — see `teachBefore` in drill/engine.js. */
+
+.drill__teach {
+  margin-block: var(--s2) var(--s3);
+  padding: var(--s3);
+  border-radius: var(--r-md);
+  background: var(--bg-sunk);
+  border: 1.5px solid var(--border);
+  text-align: start;
+}
+
+.drill__teach > summary {
+  font-size: var(--size-sm);
+  font-weight: 750;
+  color: var(--accent);
+  cursor: pointer;
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+}
+
+.drill__teach-rule {
+  margin-block-start: var(--s2);
+  font-size: var(--size-sm);
+  font-weight: 650;
+}
+
+.drill__teach-point {
+  margin-block-start: var(--s2);
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  line-height: var(--lh-base);
+}
+
+.drill__teach-more {
+  display: inline-block;
+  margin-block-start: var(--s2);
+  font-size: var(--size-xs);
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* --- the grammar guide on the cheat sheet -------------------------------- */
+
+.ref-topic__rule {
+  margin-block-start: var(--s2);
+  font-weight: 700;
+  font-size: var(--size-sm);
+}
+
+.ref-topic__point {
+  margin-block-start: var(--s2);
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  line-height: var(--lh-base);
+}
+
+.ref-topic__sentence {
+  margin-block-start: var(--s2);
+  font-size: var(--size-sm);
+  line-height: var(--lh-base);
+}
+
+.ref-topic__sentence strong { color: var(--accent); }
