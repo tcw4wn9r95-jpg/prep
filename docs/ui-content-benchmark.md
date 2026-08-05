@@ -749,3 +749,63 @@ longer claims to be caught up.
 `npm test` 157 (two new: that "holding" is provably far off, and that a spent
 budget is distinguishable from an empty queue) · `npm run walkthrough` 41/41 ·
 `sw.js` → `v23`.
+
+---
+
+# Follow-up 6, 2026-08-03 — "I keep seeing the same words"
+
+Reported as a suspicion. Simulated over 90 days of realistic use (30 cards a
+day, 85% accuracy) before changing anything, and it is correct — but the cause
+is not a bug, which is why it needed measuring rather than fixing blind.
+
+## What the simulation found
+
+| daily goal | distinct words met in 90 days | peak review backlog |
+| --- | ---: | ---: |
+| 30 (default) | **149** | 56 |
+| 50 | 254 | 65 |
+| 80 ("Exam soon") | 371 | 93 |
+
+`DAILY_NEW_TARGET` is 8, so the theoretical ceiling is 720 words in 90 days.
+At the default goal the learner gets **21% of that**, and roughly **half of
+every day's cards are words seen the day before**.
+
+Nothing is broken. `buildMixedSession` takes due reviews before new words —
+deliberately, because a due card is a memory about to be lost — and a 12-card
+session saturates once forty-odd items are in circulation across two strands.
+Intake then falls to near zero and the deck stops advancing.
+
+The tempting fix is a floor of guaranteed new words per session. It was
+simulated too, and it reproduces exactly the failure the README already
+documents: at 30 cards a day a floor of 2 lifts coverage to 373 words but the
+**backlog explodes from 56 to 454**. Reviews-first stays.
+
+So the real constraint is throughput: meeting more words requires answering
+more cards, and the lever is the daily goal — which is now a setting.
+
+## What shipped
+
+A **"Are you moving forward?"** panel on Learn, reading the learner's own rows,
+because none of this was inferable from the screen:
+
+- **words met** — the total, which was already there
+- **new in 7 days** — the number that says whether the front of the deck is
+  still moving. A large total with a stalled weekly figure is exactly the state
+  being complained about, and nothing distinguished them before.
+- **keep coming back** — items sitting at box 0. Box 0 is due *immediately* by
+  design, so every one of these returns in the very next session. This is the
+  literal, per-item answer to "why do I keep seeing the same words".
+
+When intake is below a quarter of the cap the panel says so and names the
+mechanism and the lever, rather than leaving the learner to conclude the app is
+broken.
+
+`learn` rows now carry `firstAt`, written once on first encounter — the store
+could say how many words were known but not whether that number was still
+moving. Rows written before this count in the total and are excluded from the
+weekly figure, and the panel says how many those are rather than guessing.
+
+## Verification
+
+`npm test` 157 · `npm run walkthrough` 41/41 · `sw.js` → `v24`. Panel checked
+against a seeded profile: 40 met, 6 at box 0, and the box-0 explanation shown.
