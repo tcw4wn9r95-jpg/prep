@@ -23,7 +23,7 @@
 import { el, screenHead, button, plural, settingsButton } from '../dom.js';
 import { Amelie } from '../amelie.js';
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadTopics, loadStages, topicIcon } from '../content.js';
-import { learnProgress, dueCounts, todayProgress, getLearnDeckState, goalCards, listMistakes, newWordsLeftToday, STRANDS } from '../store.js';
+import { learnProgress, dueCounts, todayProgress, getLearnDeckState, goalCards, listMistakes, newWordsLeftToday, throughput, DAILY_NEW_TARGET, STRANDS } from '../store.js';
 
 export async function render(root, { settings, navigate }) {
   const [vocabItems, verbItems, phraseItems, grammarItems, topics, stages] = await Promise.all([
@@ -34,7 +34,7 @@ export async function render(root, { settings, navigate }) {
     loadTopics(),
     loadStages(),
   ]);
-  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, grammarRecv, grammarProd, due, today, seenVocab, seenVerb, seenPhrase, mistakes, newLeft] =
+  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, grammarRecv, grammarProd, due, today, seenVocab, seenVerb, seenPhrase, mistakes, newLeft, flow] =
     await Promise.all([
       learnProgress(settings.playerId, 'vocab', STRANDS.recv, vocabItems.length),
       learnProgress(settings.playerId, 'vocab', STRANDS.prod, vocabItems.length),
@@ -51,6 +51,7 @@ export async function render(root, { settings, navigate }) {
       getLearnDeckState(settings.playerId, 'phrase', STRANDS.recv),
       listMistakes(settings.playerId),
       newWordsLeftToday(settings.playerId),
+      throughput(settings.playerId),
     ]);
 
   // The path runs across all three decks, because a stage does: step 1 is the
@@ -96,6 +97,7 @@ export async function render(root, { settings, navigate }) {
       today.met ? `Goal met — ${plural(today.cards, 'card')} today.` : `${today.cards} of ${today.goal} cards today.`,
     ),
 
+    progressPanel(flow, today),
     mistakeRow(mistakes.length),
 
     sectionLabel('Grammar'),
@@ -174,6 +176,66 @@ export async function render(root, { settings, navigate }) {
   );
 
   return { destroy() {} };
+}
+
+/**
+ * "Am I actually getting anywhere?" — the question the other numbers dodge.
+ *
+ * A large "met" total says nothing about whether it is still moving, and a
+ * learner grinding the same forty words every evening sees a big number and a
+ * stalled reality. So this reports the front of the deck rather than its size:
+ * how many words were met *this week*, and how many keep coming back.
+ *
+ * The note at the bottom is the honest mechanism. Reviews are taken before new
+ * words — deliberately, because a due card is a memory about to be lost — so
+ * once enough words are in circulation they fill the session and intake stops.
+ * Simulated over 90 days at the default goal that settles at roughly 150 words
+ * met, against a theoretical cap of 720. The learner cannot infer that from
+ * anywhere, and the lever is the daily goal, so the screen says both.
+ */
+function progressPanel(flow, today) {
+  if (flow.met === 0) return null;
+  const perDay = flow.perDay;
+  const stalling = perDay < DAILY_NEW_TARGET / 4;
+
+  return el(
+    'div',
+    { class: 'card', style: { marginBlockStart: 'var(--s5)' } },
+    el('p', { class: 'card__title' }, 'Are you moving forward?'),
+    el(
+      'div',
+      { class: 'row', style: { marginBlockStart: 'var(--s3)', gap: 'var(--s5)' } },
+      figure(String(flow.met), 'words met'),
+      figure(String(flow.metRecent), `new in ${flow.days} days`),
+      figure(String(flow.sticking), 'keep coming back'),
+    ),
+    flow.sticking > 0
+      ? el(
+          'p',
+          { class: 'card__note' },
+          `${plural(flow.sticking, 'word')} sat at the first box because you missed them last time — those are due again immediately, which is most of why the same ones keep appearing.`,
+        )
+      : null,
+    stalling
+      ? el(
+          'p',
+          { class: 'card__note' },
+          `About ${perDay.toFixed(1)} new words a day lately, against a cap of ${DAILY_NEW_TARGET}. Reviews are taken before new words, so once enough are in circulation they fill the session and intake slows. Raise the daily goal in Settings to answer more cards and let new ones back in.`,
+        )
+      : el('p', { class: 'card__note' }, `About ${perDay.toFixed(1)} new words a day lately. ${today.met ? "Today's goal is met." : ''}`),
+    flow.undated > 0
+      ? el('p', { class: 'source-note', style: { marginBlockStart: 'var(--s2)' } }, `${flow.undated} were met before this screen started recording dates, so they count in the total but not in the weekly figure.`)
+      : null,
+  );
+}
+
+function figure(value, label) {
+  return el(
+    'div',
+    { class: 'spacer' },
+    el('p', { class: 'meter__value' }, value),
+    el('p', { class: 'card__note', style: { marginBlockStart: '0' } }, label),
+  );
 }
 
 function sectionLabel(text) {

@@ -812,6 +812,12 @@ export async function recordLearnResult(playerId, deck, strand, itemId, outcome)
     seen: previous.seen + 1,
     correct: previous.correct + (correct ? 1 : 0),
     lapses: previous.lapses + (correct || previous.box === 0 ? 0 : 1),
+    // When this item was first met. The deck rows could say how many words
+    // were known in total but not whether that number was still moving, which
+    // is the only form of the question a learner actually asks. Written once,
+    // on the first encounter; rows from before this existed simply have none
+    // and are counted as "met, date unknown" rather than guessed at.
+    firstAt: previous.firstAt ?? new Date().toISOString(),
   };
   await put('learn', record);
   // Deliberately not queued for the Worker. There is no /learn route, so every
@@ -987,6 +993,41 @@ export async function learnProgress(playerId, deck, strand, totalItems) {
      */
     strength: rows.length === 0 ? 0 : (rows.reduce((sum, row) => sum + Math.min(row.box, MAX_BOX), 0) / (rows.length * MAX_BOX)) * 100,
   };
+}
+
+/**
+ * Is the deck still moving, or just circling?
+ *
+ * Answers the one question the other numbers dodge. "412 words met" says
+ * nothing about whether that figure moved this week, and a learner grinding
+ * the same forty words every evening sees a large total and a stalled reality.
+ *
+ * Three facts, all read off rows that already exist:
+ *
+ *   met        distinct items ever met, across every deck and the recv strand
+ *   metRecent  of those, how many were first met in the last `days` days —
+ *              the number that says whether the front of the deck is advancing
+ *   sticking   items sitting at box 0, i.e. missed at the last attempt. Box 0
+ *              is due immediately by design, so every one of these comes back
+ *              in the very next session. They are the literal answer to "why do
+ *              I keep seeing the same words".
+ */
+export async function throughput(playerId, { days = 7, now = Date.now() } = {}) {
+  const decks = Object.values(LEARN_DECKS);
+  const rowSets = await Promise.all(decks.map((deck) => allByIndex('learn', 'byPlayerDeck', playerDeckKey(playerId, deck, STRANDS.recv))));
+  const rows = rowSets.flat();
+
+  const since = now - days * 86400000;
+  let metRecent = 0;
+  let sticking = 0;
+  let undated = 0;
+  for (const row of rows) {
+    if (row.box === 0) sticking += 1;
+    if (!row.firstAt) undated += 1;
+    else if ((Date.parse(row.firstAt) || 0) >= since) metRecent += 1;
+  }
+
+  return { met: rows.length, metRecent, sticking, undated, days, perDay: metRecent / days };
 }
 
 /**
