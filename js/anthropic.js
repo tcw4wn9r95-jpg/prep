@@ -54,6 +54,8 @@ When you are told what the exercise was, answer THAT question first. Explaining 
 
 Luxembourgish is NOT German, and it is not a German dialect for the purposes of these explanations. It is close enough that the wrong rule is easy to reach for, so: never explain a Luxembourgish form by a German one, never state a German rule as though it applied, and never say a word "comes from" or "is like" its German cognate as the explanation. Specifically — Luxembourgish has no case endings on adjectives of the German kind and no genitive; its articles are den/d'/de/e/eng, not der/die/das; nouns are männlech, weiblech or neutral and a noun's gender frequently differs from its German cognate; the perfect is formed with hunn or sinn and is the ordinary way to talk about the past, where German would often use a simple past; and the Eifeler Regel, which drops a final n before most consonants, has no German equivalent at all. If you are not sure of the Luxembourgish rule, describe what this sentence actually does and say plainly that you are describing this example rather than stating a rule. Do not fill the gap with German.
 
+Use only the words in the sentence you are given. Never introduce another Luxembourgish word as an illustration, never invent a gloss for a word, and never claim a gender, article or meaning that you were not told. Asked about one noun, an earlier version of this prompt produced "en Bréck (a bridge) or en Bréck (a break)" — one word, twice, with two invented meanings, for a noun of the wrong gender — and glossed a compound it had never seen. If a comparison would help but you have no verified example to hand, make the point without one. Where you are given "known facts", treat them as authoritative and never contradict them.
+
 Respond with ONLY a JSON object, no prose outside it: {"explanation": "..."}`;
 
 /**
@@ -61,9 +63,11 @@ Respond with ONLY a JSON object, no prose outside it: {"explanation": "..."}`;
  * explanation can be about the question rather than about the sentence in
  * general — see the note in drill/engine.js `explainButton`.
  */
-export function explainPrompt({ lb, word, en, task }) {
+export function explainPrompt({ lb, word, en, task, facts }) {
   const lines = [`Sentence: ${lb}`, `Headword: ${word}`, `Headword gloss: ${en || '(none given)'}`];
   if (task) lines.push(`The exercise they just answered: ${task}`);
+  // Verified, from LOD. Stated so the model never has to guess at it.
+  if (facts) lines.push(`Known facts you must treat as correct: ${facts}`);
   return lines.join('\n');
 }
 
@@ -74,7 +78,7 @@ export function explainPrompt({ lb, word, en, task }) {
  * @param {{lb: string, word: string, en: string}} item
  * @returns {Promise<{ok: true, explanation: string}|{ok: false, message: string}>}
  */
-export async function explainSentence(apiKey, { lb, word, en, task = null }) {
+export async function explainSentence(apiKey, { lb, word, en, task = null, facts = null }) {
   let response;
   try {
     response = await fetch(ENDPOINT, {
@@ -93,7 +97,7 @@ export async function explainSentence(apiKey, { lb, word, en, task = null }) {
         max_tokens: MAX_TOKENS,
         system: SYSTEM_PROMPT,
         messages: [
-          { role: 'user', content: explainPrompt({ lb, word, en, task }) },
+          { role: 'user', content: explainPrompt({ lb, word, en, task, facts }) },
         ],
       }),
     });

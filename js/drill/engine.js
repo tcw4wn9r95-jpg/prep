@@ -18,7 +18,7 @@ import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
 import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, recordMistake, clearMistake, goalCards, POINTS, touchStreak } from '../store.js';
 import { requestExplanation } from '../sync.js';
-import { buildCard, GRAMMAR_RULES, joinArticle, taskFor } from './cards.js';
+import { buildCard, GRAMMAR_RULES, joinArticle, taskFor, factsFor } from './cards.js';
 import { loadGlossary } from '../content.js';
 import { hintFor } from './hint.js';
 import { topicFor } from '../grammar-guide.js';
@@ -137,6 +137,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
           word: card.answer ?? card.lemma,
           en: card.deck.gloss(card.item) ?? null,
           task: taskFor(card),
+          facts: factsFor(card),
         })
       : null;
     if (explain) explain.hidden = true;
@@ -578,7 +579,7 @@ export function nothingDue({ root, title, back, navigate, total, capped = false 
  * @param {{id: string, lb: string, word: string, en: string|null, task: string|null}} subject
  */
 export function explainButton(settings, subject) {
-  const key = `${subject.id}:${subject.task ? hashTask(subject.task) : 'plain'}`;
+  const key = `${subject.id}:${hashTask(`${subject.task ?? ''}|${subject.facts ?? ''}`)}`;
   const note = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s2)', textAlign: 'left' }, hidden: true });
   const trigger = button('Explain this sentence', {
     variant: 'secondary',
@@ -600,6 +601,7 @@ export function explainButton(settings, subject) {
         word: subject.word,
         en: subject.en,
         task: subject.task,
+        facts: subject.facts,
       });
       if (result.ok) {
         await saveSentenceExplanation(key, result.explanation);
