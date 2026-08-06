@@ -126,6 +126,34 @@ export const GRAMMAR_TASKS = {
   negation: 'They were asked which of three orderings of this sentence is the correct one — the question is where net goes.',
 };
 
+/**
+ * What LOD already records about this item, handed to the explainer as fact.
+ *
+ * Written because an explanation was caught inventing the things it could not
+ * look up. Asked about `Puer`, it produced "en Bréck (a bridge) or en Bréck (a
+ * break)" — the same word twice, with two glosses, for a noun that is
+ * feminine — and glossed `Schaffschong` as "flip-flops". None of that is in
+ * the corpus; it was filling gaps.
+ *
+ * The gender and the article are in the data already. Stating them removes the
+ * gap rather than asking the model not to fill it, which is the only version
+ * of this that can be relied on.
+ */
+export function factsFor(card) {
+  const item = card.item ?? {};
+  if (item.kind === 'gender') {
+    const label = { M: 'männlech (masculine)', F: 'weiblech (feminine)', N: 'neutral' }[item.gender] ?? item.gender;
+    return `LOD records ${item.lb} as ${label}, written with the definite article ${item.article}. In Luxembourgish the definite article d' covers both feminine and neuter, and the indefinite en covers both masculine and neuter, so neither on its own identifies the gender.`;
+  }
+  if (item.kind === 'perfect-aux') {
+    return `LOD records the perfect of ${item.lb} as ${item.options_lb?.[item.correct]} + ${item.participle}.`;
+  }
+  if (card.deck?.id === 'vocab' && item.pos === 'SUBST' && item.article) {
+    return `LOD records ${item.lb} with the definite article ${item.article}.`;
+  }
+  return null;
+}
+
 /** The task line for a built card. */
 export function taskFor(card) {
   if (card.type === 'grammar-choice') return GRAMMAR_TASKS[card.item?.kind] ?? CARD_TASKS['grammar-choice'];

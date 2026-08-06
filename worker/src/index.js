@@ -376,19 +376,23 @@ async function postExplain(request, env) {
   // What exercise the learner just answered about this sentence. Optional: an
   // older app build sends none, and the prompt copes.
   const task = String(body.task ?? '').trim();
+  // Verified values from LOD (a noun's gender and article, a verb's
+  // auxiliary). Sent so the model is never guessing at something the app
+  // already knows — see factsFor() in app/js/drill/cards.js.
+  const facts = String(body.facts ?? '').trim();
   if (!lb) return json({ error: 'missing "lb" sentence' }, 400);
 
   // The task is part of the key. Cached on the sentence alone, the first
   // explanation a sentence ever got was replayed for every later exercise on
   // it — so the gender card's answer would come back for the n-rule card, and
   // making the prompt context-aware would have bought nothing.
-  const cacheKey = `ex:${await sha256hex(`${lb}|${word}|${task}`)}`;
+  const cacheKey = `ex:${await sha256hex(`${lb}|${word}|${task}|${facts}`)}`;
   const cached = await env.DUEL.get(cacheKey, 'json');
   if (cached) return json({ ...cached, cached: true });
 
   let explanation;
   try {
-    explanation = await explain(env, { lb, word, en, task });
+    explanation = await explain(env, { lb, word, en, task, facts });
   } catch (error) {
     return json({ error: `explanation failed: ${error.message}` }, 502);
   }
@@ -407,6 +411,8 @@ When you are told what the exercise was, answer THAT question first. Explaining 
 
 Luxembourgish is NOT German, and it is not a German dialect for the purposes of these explanations. It is close enough that the wrong rule is easy to reach for, so: never explain a Luxembourgish form by a German one, never state a German rule as though it applied, and never say a word "comes from" or "is like" its German cognate as the explanation. Specifically — Luxembourgish has no case endings on adjectives of the German kind and no genitive; its articles are den/d'/de/e/eng, not der/die/das; nouns are männlech, weiblech or neutral and a noun's gender frequently differs from its German cognate; the perfect is formed with hunn or sinn and is the ordinary way to talk about the past, where German would often use a simple past; and the Eifeler Regel, which drops a final n before most consonants, has no German equivalent at all. If you are not sure of the Luxembourgish rule, describe what this sentence actually does and say plainly that you are describing this example rather than stating a rule. Do not fill the gap with German.
 
+Use only the words in the sentence you are given. Never introduce another Luxembourgish word as an illustration, never invent a gloss for a word, and never claim a gender, article or meaning that you were not told. Asked about one noun, an earlier version of this prompt produced "en Bréck (a bridge) or en Bréck (a break)" — one word, twice, with two invented meanings, for a noun of the wrong gender — and glossed a compound it had never seen. If a comparison would help but you have no verified example to hand, make the point without one. Where you are given "known facts", treat them as authoritative and never contradict them.
+
 Respond with ONLY a JSON object, no prose outside it: {"explanation": "..."}`;
 
 /**
@@ -414,14 +420,15 @@ Respond with ONLY a JSON object, no prose outside it: {"explanation": "..."}`;
  * must ask the same question, or an explanation would depend on whether a
  * Worker happened to be configured.
  */
-function explainPrompt({ lb, word, en, task }) {
+function explainPrompt({ lb, word, en, task, facts }) {
   const lines = [`Sentence: ${lb}`, `Headword: ${word}`, `Headword gloss: ${en || '(none given)'}`];
   if (task) lines.push(`The exercise they just answered: ${task}`);
+  if (facts) lines.push(`Known facts you must treat as correct: ${facts}`);
   return lines.join('\n');
 }
 
 /** Claude explains one sentence; cheap and cacheable, so Haiku is the right fit. */
-async function explain(env, { lb, word, en, task }) {
+async function explain(env, { lb, word, en, task, facts }) {
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {

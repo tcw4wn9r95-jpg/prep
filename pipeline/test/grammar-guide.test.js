@@ -133,3 +133,57 @@ test('guide: the Luxembourgish written into the prose is attested too', () => {
     }
   }
 });
+
+test('guide: the article rule it states matches what the corpus actually does', async () => {
+  // The bug this guards: the gender topic said "the indefinite is en for
+  // masculine, eng for feminine and neuter". That is wrong — `en` covers
+  // masculine *and neuter*, and `eng` is the feminine one. A learner hit it as
+  // a flat contradiction between the guide and a card whose answer was right,
+  // and the earlier test could not catch it because it only checked that the
+  // quoted tokens were attested, not that the claim was true.
+  //
+  // So the claim is measured, not read. Counted over the shipped decks'
+  // example sentences rather than the full corpus, which keeps this fast and
+  // uses exactly the text the app shows.
+  const PLAIN = new Set(['M', 'F', 'N']);
+  const gender = new Map(
+    vocab.filter((item) => item.pos === 'SUBST' && PLAIN.has(item.gender)).map((item) => [item.lb.toLowerCase(), item.gender]),
+  );
+  const sentences = [
+    ...vocab.map((item) => item.example?.lb),
+    ...verbs.map((item) => item.example?.lb),
+    ...grammar.map((item) => item.example?.lb),
+  ].filter(Boolean);
+
+  const counts = { M: {}, F: {}, N: {} };
+  for (const text of sentences) {
+    const tokens = text.match(/[\p{L}][\p{L}'’-]*/gu) ?? [];
+    for (let i = 0; i < tokens.length - 1; i += 1) {
+      const article = tokens[i].toLowerCase();
+      if (article !== 'en' && article !== 'eng') continue;
+      // The noun may sit one or two words on, past an adjective.
+      for (const offset of [1, 2]) {
+        const g = gender.get(tokens[i + offset]?.toLowerCase());
+        if (!PLAIN.has(g)) continue;
+        counts[g][article] = (counts[g][article] ?? 0) + 1;
+        break;
+      }
+    }
+  }
+
+  const dominant = (g) => Object.entries(counts[g]).sort((a, b) => b[1] - a[1])[0]?.[0];
+  assert.ok(Object.values(counts.F).reduce((a, b) => a + b, 0) > 20, 'not enough feminine evidence to judge');
+  assert.equal(dominant('F'), 'eng', 'feminine nouns should mostly take eng');
+  assert.equal(dominant('M'), 'en', 'masculine nouns should mostly take en');
+  if (Object.values(counts.N).reduce((a, b) => a + b, 0) >= 10) {
+    assert.equal(dominant('N'), 'en', 'neuter nouns take en, not eng — this is what the guide got wrong');
+  }
+
+  // And the prose has to agree with that.
+  const text = guide.topicFor('gender').points.join(' ').toLowerCase();
+  assert.ok(
+    /\ben for both masculine and neuter\b/.test(text) || /\ben\b[^.]*\bmasculine and neuter\b/.test(text),
+    'the gender topic must say en covers masculine and neuter',
+  );
+  assert.ok(!/eng for feminine and neuter/.test(text), 'the old, wrong claim is back');
+});

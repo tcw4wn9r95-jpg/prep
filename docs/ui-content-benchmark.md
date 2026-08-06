@@ -809,3 +809,83 @@ weekly figure, and the panel says how many those are rather than guessing.
 
 `npm test` 157 · `npm run walkthrough` 41/41 · `sw.js` → `v24`. Panel checked
 against a seeded profile: 40 met, 6 at box 0, and the box-0 explanation shown.
+
+---
+
+# Follow-up 7, 2026-08-03 — the gender rule was wrong, and mine was the wrong one
+
+Reported as a contradiction between the guide's gender rule and a card's
+correct answer, on this explanation of `Puer`:
+
+> *Puer* is neutral, which you can see from the article *en* (the neutral
+> indefinite article). Notice that *Puer* takes the same article as other
+> neutral nouns like *en Bréck* (a bridge) or *en Bréck* (a break). The word
+> *Schaffschong* (flip-flops) …
+
+Checked every claim against the data. The result was not what I expected.
+
+## The card was right, the explanation was half right, and the guide was wrong
+
+`Puer` is neuter in LOD, so the card's answer stands. And `en` **is** the
+neuter indefinite article — the explanation was right about that, and **my
+guide was wrong**. I had written:
+
+> "The indefinite is en for masculine, eng for feminine and neuter."
+
+Counted over LOD's own example sentences:
+
+| gender | indefinite | definite |
+| --- | --- | --- |
+| masculine | **en** 89% | de 69%, den 24% |
+| feminine | **eng** 99% | d' 97% |
+| neuter | **en** 99% | d' 93% |
+
+So `eng` is feminine only, and `en` covers masculine **and** neuter. I had it
+backwards, in prose I hand-wrote, and the existing test could not catch it
+because it only checked that quoted tokens were *attested* — `en` and `eng`
+both are — never that the claim was *true*.
+
+The corrected topic now also makes the point the numbers actually support, and
+which is more useful than either version: **neither article alone identifies
+the gender.** `d'` narrows to feminine-or-neuter, `en` narrows to
+masculine-or-neuter; it is the pair together that pins it down.
+
+## The explanation was inventing the rest
+
+Two fabrications in three sentences:
+
+- **`en Bréck (a bridge) or en Bréck (a break)`** — the same word twice with
+  two different glosses, offered as examples of *neuter* nouns. `Bréck` is
+  **feminine** in LOD, glossed "bridge". Neither the duplication, the second
+  meaning, nor the gender is real.
+- **`Schaffschong (flip-flops)`** — not in the deck at all, and not what the
+  compound means.
+
+Both are the model filling a gap it could not look up. Two fixes, because
+asking it not to is not a mechanism:
+
+**It is now told the facts.** `factsFor()` in `cards.js` sends what LOD already
+records — a noun's gender and article, a verb's auxiliary and participle — as
+authoritative. There is no gap left to fill.
+
+**It is now forbidden to introduce examples.** Both prompts say to use only the
+words in the given sentence, never to invent a gloss, and never to claim a
+gender, article or meaning it was not given. The `en Bréck` failure is quoted
+in the prompt as the thing not to do.
+
+The explanation cache key includes the facts, so nothing already cached under
+the old prompt is replayed.
+
+## The guard that was missing
+
+`grammar-guide.test.js` now *measures* the article claim rather than reading
+it: it counts article-to-gender pairs across the shipped decks' sentences and
+asserts the dominant article per gender, then asserts the prose says the same
+thing and that the old wrong wording has not returned. A rule stated in English
+about Luxembourgish is still a claim about Luxembourgish, and it needs the same
+kind of gate as the tokens do.
+
+## Verification
+
+`npm test` 158 (one new) · `npm run walkthrough` 41/41 · `validate` PASS ·
+`sw.js` → `v25`. Worker redeployed: the `/explain` contract gained `facts`.

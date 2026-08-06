@@ -48,11 +48,15 @@ export const GRAMMAR_GUIDE = [
     title: 'Nouns have a gender',
     rule: 'Every noun is männlech, weiblech or neutral, and the article changes with it.',
     points: [
-      'There is no reliable way to work a noun’s gender out from its shape, so it is learned with the word rather than derived from it. Learn the article as part of the noun — not “Auto” but “den Auto”.',
-      'The definite article is den before a masculine noun and d’ before a feminine or neuter one. The indefinite is en for masculine, eng for feminine and neuter.',
+      'There is no reliable way to work a noun’s gender out from its shape, so it is learned with the word rather than derived from it. Learn the article as part of the noun — not “Auto” but “de Auto”.',
+      'The definite article is de (den before a vowel or n/d/t/z/h, by the n-rule) for masculine, and d’ for both feminine and neuter.',
+      'The indefinite article is eng for feminine, and en for both masculine and neuter.',
+      'So neither article on its own tells you the gender: d’ narrows it to feminine or neuter, en narrows it to masculine or neuter. It is the two together that pin it down — d’ plus en means neuter, d’ plus eng means feminine.',
       'Do not carry a gender over from another language. A noun’s gender here is its own, and often differs from the gender of the same-looking word elsewhere.',
     ],
-    sources: ['articles: den / d’ / en / eng, as written on every noun in the corpus'],
+    sources: [
+      'article-to-gender counted over LOD’s own example sentences: eng precedes feminine nouns 99% of the time, en precedes masculine 89% and neuter 99%; d’ precedes feminine 97% and neuter 93%',
+    ],
     examples: ({ grammar }) => {
       const byGender = { M: [], F: [], N: [] };
       for (const item of grammar ?? []) {
