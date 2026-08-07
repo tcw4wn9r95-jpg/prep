@@ -163,17 +163,98 @@ export const isStructure = (item) => STRUCTURE_KINDS.includes(item?.kind);
  */
 export function factsFor(card) {
   const item = card.item ?? {};
+  const right = item.options_lb?.[item.correct];
+  const others = (item.options_lb ?? []).filter((_, index) => index !== item.correct);
+
   if (item.kind === 'gender') {
-    const label = { M: 'männlech (masculine)', F: 'weiblech (feminine)', N: 'neutral' }[item.gender] ?? item.gender;
+    const label = GENDER_LABELS[item.gender] ?? item.gender;
     return `LOD records ${item.lb} as ${label}, written with the definite article ${item.article}. In Luxembourgish the definite article d' covers both feminine and neuter, and the indefinite en covers both masculine and neuter, so neither on its own identifies the gender.`;
   }
   if (item.kind === 'perfect-aux') {
-    return `LOD records the perfect of ${item.lb} as ${item.options_lb?.[item.correct]} + ${item.participle}.`;
+    return `LOD records the perfect of ${item.lb} as ${right} + ${item.participle}.`;
   }
+
+  // Word order. The single most useful fact here is that the three options are
+  // the *same* sentence — only `moved` changes position — because that is what
+  // turns "which reads better" into a question with a rule behind it. Without
+  // being told, an explanation tends to talk about the sentence's meaning,
+  // which is identical in all three and therefore explains nothing.
+  if (SENTENCE_KINDS.has(item.kind) && right) {
+    const parts = [
+      `All three options are the same real LOD sentence with one word in a different place. The only word that moves is "${item.moved}"; every other word is in the same position in all three.`,
+      `The order LOD published, which is the correct answer: ${right}`,
+    ];
+    if (others.length) parts.push(`The wrong orders they could have picked: ${others.join(' / ')}`);
+    if (item.conjunction) parts.push(`The subordinate clause here is introduced by "${item.conjunction}".`);
+    return parts.join(' ');
+  }
+
+  if (item.kind === 'nrule' && right) {
+    // The word *after* the gap is the whole question: the Eifeler Regel keys
+    // off the sound that follows, and nothing else on the card does.
+    const next = (item.after ?? '').trim().match(/[\p{L}][\p{L}'’-]*/u)?.[0];
+    const both = `Both "${right}" and "${others.join('", "')}" are attested spellings of the same word in LOD; which is correct depends only on what comes next.`;
+    return next ? `${both} Here the correct spelling is "${right}" and the following word is "${next}".` : `${both} Here the correct spelling is "${right}".`;
+  }
+
+  if (item.kind === 'adjective' && right) {
+    const meaning = item.en ? ` (meaning "${item.en}")` : '';
+    return `LOD attests both "${right}" and "${others.join('", "')}" as real forms of the same adjective${meaning}. In this sentence the correct form is "${right}".`;
+  }
+
+  if (item.kind === 'perfect-form' && right) {
+    const meaning = item.en ? ` (${item.en})` : '';
+    return `LOD records "${right}" as the past participle of ${item.infinitive}${meaning}. The other options are genuine past participles, but of other verbs.`;
+  }
+
   if (card.deck?.id === 'vocab' && item.pos === 'SUBST' && item.article) {
     return `LOD records ${item.lb} with the definite article ${item.article}.`;
   }
   return null;
+}
+
+/**
+ * What the explain button offers on this card, and what it should be called.
+ *
+ * Three grammar shapes had no explanation at all, because the engine looked
+ * for a sentence and they have none it could find:
+ *
+ *   - the word-order kinds hide their prompt entirely (the options *are* the
+ *     sentence, three ways), so the lookup returned null and the button was
+ *     never built — on the exact cards a beginner most needs the reason for;
+ *   - `perfect-aux` has no sentence, and the lookup fell through to its
+ *     English prompt line, handing "to come — past participle komm" to the
+ *     explainer as though it were Luxembourgish;
+ *   - a gender card whose noun has no example sentence — 63% of them — was in
+ *     the same position as the word-order cards.
+ *
+ * So a card can now be explainable without a sentence. `lb` may be null, and
+ * the question then rests on the word, the task and the facts, which is enough
+ * for "why does this verb take sinn?" to be answerable.
+ *
+ * @returns {{lb: string|null, word: string|null, label: string}|null}
+ */
+export function explainTarget(card, sentence) {
+  const item = card.item ?? {};
+
+  if (SENTENCE_KINDS.has(item.kind)) {
+    const right = item.options_lb?.[item.correct] ?? null;
+    return right ? { lb: right, word: item.moved ?? null, label: 'Why is this the right order?' } : null;
+  }
+  if (item.kind === 'perfect-aux') {
+    return { lb: null, word: item.lb, label: 'Why this one?' };
+  }
+  if (item.kind === 'gender') {
+    return sentence
+      ? { lb: sentence, word: joinArticle(item.article, item.lb), label: 'Explain this sentence' }
+      : { lb: null, word: joinArticle(item.article, item.lb), label: 'Why this gender?' };
+  }
+  if (card.type === 'grammar-choice' && sentence) {
+    return { lb: sentence, word: card.answer ?? card.lemma, label: 'Why is this the answer?' };
+  }
+  // Everything outside the grammar deck keeps the original rule: a sentence to
+  // explain, or no button.
+  return sentence ? { lb: sentence, word: card.answer ?? card.lemma, label: 'Explain this sentence' } : null;
 }
 
 /** The task line for a built card. */
