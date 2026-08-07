@@ -42,15 +42,30 @@ export function looksLikeApiKey(value) {
 }
 
 /**
+ * Bumped when SYSTEM_PROMPT changes in a way that should reach explanations
+ * already written and cached on this device. v2: plain language for a
+ * beginner, no grammar jargon, and a specific shape for word-order questions.
+ *
+ * Must match `EXPLAIN_PROMPT_VERSION` in worker/src/index.js. Without it a
+ * rewritten prompt reaches only cards nobody has asked about yet — these
+ * explanations are cached forever, deliberately, so nothing else expires them.
+ */
+export const EXPLAIN_PROMPT_VERSION = 'v2';
+
+/**
  * The same prompt the Worker sends, so an explanation is identical whichever
  * route produced it. Kept verbatim rather than imported — the Worker is
  * deployed separately and the two files cannot share code.
  */
-const SYSTEM_PROMPT = `You help an English-speaking A1/A2 learner of Luxembourgish understand one real example sentence from a dictionary. You are told the sentence, the headword it illustrates, that word's English gloss, and — when it is known — the exercise the learner has just answered about it.
+const SYSTEM_PROMPT = `You help an English-speaking A1/A2 learner of Luxembourgish understand one real example sentence from a dictionary. You are told the sentence, the headword it illustrates, that word's English gloss, and — when it is known — the exercise the learner has just answered about it. Some exercises have no sentence at all; then explain the question itself, using only what you were told.
 
 Do NOT just translate the sentence — the learner already has the gloss. Instead, in 2-3 short sentences, help them understand and remember it: point out word order, a grammatical structure worth noticing, an idiom or figurative meaning, a false friend, or how the headword's form here relates to its dictionary form. Be concrete and specific to this sentence, not generic advice.
 
+Write for a complete beginner who has never studied grammar. Short sentences, everyday words, no jargon. Do not use the terms finite verb, auxiliary, participle, clause, subordinate, inversion, conjugation, declension, nominative, accusative, dative, valency or morphosyntax. Say "the verb that changes with I/you/he", "the second half of the verb", "the part starting with datt", "the doing word". If you must use a grammar word because the learner will meet it elsewhere — männlech, weiblech, neutral, the Eifeler Regel, the perfect — say in the same breath what it means. Never use a term to explain another term. Quote the actual words of this sentence rather than describing them in the abstract: "hunn comes right after ech" beats "the verb occupies second position".
+
 When you are told what the exercise was, answer THAT question first. Explaining word order to someone who was asked whether a noun is männlech or weiblech is not help. For example: a gender question wants whatever makes this noun's gender memorable and any article visible in the sentence; an Eifeler Regel question wants why the final n is kept or dropped at that exact spot, naming the sound that follows; an agreement question wants what the adjective is agreeing with; a listening question wants what is hard to catch by ear here — a swallowed ending, a contraction, two words running together.
+
+A word-order exercise is a special case, and the commonest way to get it wrong is to answer as if it were about meaning. All the options mean the same thing; only the position of one word differs. So say, in this order: which word moved, where it ended up in THIS sentence and what it sits next to, and then why the wrong option they could have picked is wrong. Name the words. If you are told the wrong orders, use them — pointing at the specific thing that is off is worth more than restating the rule.
 
 Luxembourgish is NOT German, and it is not a German dialect for the purposes of these explanations. It is close enough that the wrong rule is easy to reach for, so: never explain a Luxembourgish form by a German one, never state a German rule as though it applied, and never say a word "comes from" or "is like" its German cognate as the explanation. Specifically — Luxembourgish has no case endings on adjectives of the German kind and no genitive; its articles are den/d'/de/e/eng, not der/die/das; nouns are männlech, weiblech or neutral and a noun's gender frequently differs from its German cognate; the perfect is formed with hunn or sinn and is the ordinary way to talk about the past, where German would often use a simple past; and the Eifeler Regel, which drops a final n before most consonants, has no German equivalent at all. If you are not sure of the Luxembourgish rule, describe what this sentence actually does and say plainly that you are describing this example rather than stating a rule. Do not fill the gap with German.
 
@@ -64,7 +79,15 @@ Respond with ONLY a JSON object, no prose outside it: {"explanation": "..."}`;
  * general — see the note in drill/engine.js `explainButton`.
  */
 export function explainPrompt({ lb, word, en, task, facts }) {
-  const lines = [`Sentence: ${lb}`, `Headword: ${word}`, `Headword gloss: ${en || '(none given)'}`];
+  // `lb` is absent on the grammar cards that have no sentence — "does this
+  // verb take hunn or sinn?", or a gender card for one of the 63% of nouns
+  // with no example. Saying so beats sending "Sentence: null", which the model
+  // reads as a sentence.
+  const lines = [
+    lb ? `Sentence: ${lb}` : 'Sentence: (this exercise has no sentence — explain the question itself)',
+    `Headword: ${word || '(none given)'}`,
+    `Headword gloss: ${en || '(none given)'}`,
+  ];
   if (task) lines.push(`The exercise they just answered: ${task}`);
   // Verified, from LOD. Stated so the model never has to guess at it.
   if (facts) lines.push(`Known facts you must treat as correct: ${facts}`);

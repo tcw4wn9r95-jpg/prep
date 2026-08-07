@@ -1009,3 +1009,90 @@ fails if the word "holding" reappears on the Learn hub.
 
 `npm test` 162 (three new) · `npm run walkthrough` · `validate` PASS ·
 `sw.js` → `v26`.
+
+---
+
+# Follow-up 9 — explaining a grammar card
+
+> "For the grammar parts add a explain this sentence which explains the rule
+> but in the context of that specific sentence. Also use plain language so it's
+> easy to understand"
+
+## Three grammar shapes had no explain button at all
+
+The button is built only when the engine can find a sentence on the card, and
+it looks in three places: the prompt's sentence, the reveal text, or
+`item.example.lb`. Three shapes have none of those.
+
+| kind | why the lookup failed | share of the deck |
+| --- | --- | --- |
+| `wordorder`, `bracket`, `subclause`, `negation` | render **no prompt at all** — the three options *are* the sentence | 798 items |
+| `perfect-aux` | a verb and two auxiliaries; no sentence exists | 290 items |
+| `gender` with no example sentence | 63% of nouns have none | ~740 items |
+
+So roughly **half the grammar deck** could not be asked about, and it was the
+half where the answer is least self-evident. A card can now be explainable
+without a sentence: `lb` may be null, and the question rests on the word, the
+task and the facts, which is enough to answer "why does this verb take sinn?".
+
+The button also names what it is offering. "Explain this sentence" is wrong on
+a card with no sentence, and wrong on a word-order card too, where the question
+is not what the sentence means but why this arrangement of it is right. It now
+reads **"Why is this the right order?"**, **"Why this one?"**, **"Why this
+gender?"** or "Explain this sentence" as appropriate.
+
+## In the context of *this* sentence
+
+For a word-order card all three options mean the same thing, so an explanation
+that reaches for the sentence's meaning explains nothing. `factsFor()` now
+tells the model what the card actually is:
+
+> All three options are the same real LOD sentence with one word in a different
+> place. The only word that moves is "hunn"; every other word is in the same
+> position in all three. The order LOD published, which is the correct answer:
+> ech hunn eng Conjonctivite am lénksen A. The wrong orders they could have
+> picked: …
+
+and the prompt asks for a fixed shape: which word moved, where it ended up in
+*this* sentence and what it sits next to, then why the wrong option is wrong.
+
+Every other grammar kind gained facts too — the n-rule card now states the word
+that *follows* the gap, which is the entire question; the adjective card states
+that both forms are real; the participle card states that the distractors are
+genuine participles of other verbs.
+
+## Plain language
+
+The prompt now bans the vocabulary the explanations were reaching for — finite
+verb, auxiliary, participle, clause, subordinate, inversion, conjugation,
+declension, the cases, morphosyntax — and gives replacements ("the verb that
+changes with I/you/he", "the second half of the verb", "the part starting with
+datt"). Terms the learner will meet anyway (männlech, the Eifeler Regel, the
+perfect) may be used, but must be glossed in the same breath, and never used to
+explain each other. And it asks for the sentence's own words: *"hunn comes right
+after ech"* beats *"the verb occupies second position"*.
+
+## Two Worker bugs found on the way
+
+**The facts never reached the model.** `/explain` read `facts` off the request,
+folded it into the cache key, and then called `explainPrompt({ lb, word, en,
+task })` — dropping it. So the entire fix for the invented `en Bréck (a bridge)`
+explanation only ever applied on the direct-API path, which is not the one most
+requests take. One argument.
+
+**A missing sentence was a 400.** `if (!lb) return json(…, 400)` would have
+rejected every card in the two shapes above. It now needs `lb` *or* `word`.
+
+## Explanations are cached forever, so a new prompt needs a new key
+
+By design, on the device and in the Worker's KV. A rewritten prompt would
+otherwise reach only cards nobody had asked about yet. Both caches now carry
+`EXPLAIN_PROMPT_VERSION`, and a test fails if the two files disagree — along
+with one that checks the shared paragraphs are present in both prompts, since
+they are duplicated rather than imported (the Worker deploys separately).
+
+## Verification
+
+`npm test` 167 (five new) · `npm run walkthrough` 43/43 (one new step drives the
+real button on a word-order card and asserts what reached the API) ·
+`validate` PASS · `sw.js` → `v27`. Worker redeployed.

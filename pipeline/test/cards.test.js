@@ -254,6 +254,126 @@ test('match: an empty answer never counts as correct', () => {
   assert.equal(match.checkTyped('', 'Aarbecht').correct, false);
 });
 
+/* ------------------------------------------------------- explaining a card */
+
+/** One built card per grammar kind the deck actually ships. */
+function grammarCards() {
+  const items = require(path.join(ROOT, 'app', 'data', 'grammar.json')).items;
+  const byKind = new Map();
+  for (const item of items) if (!byKind.has(item.kind)) byKind.set(item.kind, item);
+  return [...byKind.values()].map((item) => ({
+    item,
+    card: cards.buildCard({ item, strand: 'recv', box: 1, deck: cards.DECKS.grammar, pool: items }),
+  }));
+}
+
+/** What engine.js hands to `explainTarget` — the sentence as rendered. */
+const rendered = (card) =>
+  card.prompt.cloze
+    ? `${card.prompt.cloze.before ?? ''}${card.answer ?? ''}${card.prompt.cloze.after ?? ''}`.replace(/\s+/g, ' ').trim()
+    : (card.prompt.sentence ?? null);
+
+test('cards: every grammar kind offers an explanation, sentence or not', () => {
+  // Three shapes had no explain button at all, because the engine looked for a
+  // sentence and they have none it could find: the word-order kinds hide their
+  // prompt (the options *are* the sentence), `perfect-aux` is a verb and two
+  // auxiliaries, and 63% of gender nouns carry no example sentence. Those are
+  // the cards a beginner most needs a reason for.
+  for (const { item, card } of grammarCards()) {
+    const target = cards.explainTarget(card, rendered(card));
+    assert.ok(target, `${item.kind}: no explanation offered`);
+    assert.ok(target.label, `${item.kind}: the button has no label`);
+    assert.ok(target.lb || target.word, `${item.kind}: nothing for the explanation to be about`);
+    assert.ok(cards.taskFor(card), `${item.kind}: the explainer is not told what was asked`);
+    assert.ok(cards.factsFor(card), `${item.kind}: the explainer is given no verified facts to work from`);
+  }
+});
+
+test('cards: a word-order card is explained as word order, not as meaning', () => {
+  // The failure mode this guards: all three options mean the same thing, so an
+  // explanation that reaches for the sentence's meaning explains nothing at
+  // all. The facts have to say which word moved and where it ended up, or the
+  // model has nothing to be specific about.
+  for (const { item, card } of grammarCards()) {
+    if (!['wordorder', 'bracket', 'subclause', 'negation'].includes(item.kind)) continue;
+    const target = cards.explainTarget(card, rendered(card));
+    const right = item.options_lb[item.correct];
+
+    assert.equal(target.lb, right, `${item.kind}: explains an ordering that is not the correct one`);
+    assert.equal(target.word, item.moved, `${item.kind}: does not name the word that moved`);
+    assert.match(target.label, /order/i, `${item.kind}: the button promises the wrong thing ("${target.label}")`);
+
+    const facts = cards.factsFor(card);
+    assert.ok(facts.includes(item.moved), `${item.kind}: the facts never name "${item.moved}"`);
+    assert.ok(facts.includes(right), `${item.kind}: the facts never quote the correct order`);
+    for (const wrong of item.options_lb.filter((_, i) => i !== item.correct)) {
+      assert.ok(facts.includes(wrong), `${item.kind}: the facts omit a wrong order the learner could have picked`);
+    }
+  }
+});
+
+test('cards: a card with no sentence never sends one', async () => {
+  // `perfect-aux` used to fall through to its own English prompt line, so the
+  // explainer was handed "to come — past participle komm" as though it were
+  // the Luxembourgish sentence under discussion.
+  const anthropic = await import(load('anthropic.js'));
+  const aux = grammarCards().find(({ item }) => item.kind === 'perfect-aux');
+  const target = cards.explainTarget(aux.card, rendered(aux.card));
+  assert.equal(target.lb, null, 'a verb-and-two-auxiliaries card has no sentence');
+
+  const prompt = anthropic.explainPrompt({ lb: target.lb, word: target.word, en: null, task: cards.taskFor(aux.card), facts: cards.factsFor(aux.card) });
+  assert.ok(!/Sentence: (null|undefined)/.test(prompt), `sent a non-sentence as the sentence:\n${prompt}`);
+  assert.match(prompt, /has no sentence/, 'the prompt must say there is no sentence rather than send an empty one');
+  assert.ok(prompt.includes(aux.item.lb), 'the verb itself must still reach the prompt');
+});
+
+test('cards: both explain paths ask the same question, in plain language', async () => {
+  // The app can call Anthropic directly or through the Worker, and the two
+  // prompts are duplicated rather than shared because the Worker deploys
+  // separately. Duplication drifts, and an explanation that depends on whether
+  // a Worker happens to be configured is a bug nobody would think to look for.
+  const fs = require('node:fs');
+  const app = fs.readFileSync(path.join(ROOT, 'app', 'js', 'anthropic.js'), 'utf8');
+  const worker = fs.readFileSync(path.join(ROOT, 'worker', 'src', 'index.js'), 'utf8');
+
+  const shared = [
+    'Write for a complete beginner who has never studied grammar.',
+    'A word-order exercise is a special case',
+    'Luxembourgish is NOT German',
+    'Use only the words in the sentence you are given.',
+  ];
+  for (const paragraph of shared) {
+    assert.ok(app.includes(paragraph), `app/js/anthropic.js is missing: ${paragraph}`);
+    assert.ok(worker.includes(paragraph), `worker/src/index.js is missing: ${paragraph}`);
+  }
+
+  // The jargon ban is the point of the rewrite, so it is checked as a list
+  // rather than as a sentence that happens to contain the word "jargon".
+  for (const term of ['finite verb', 'participle', 'subordinate', 'inversion', 'morphosyntax']) {
+    assert.ok(app.includes(term) && worker.includes(term), `neither prompt bans "${term}"`);
+  }
+
+  // Explanations are cached forever by design, on the device and in the
+  // Worker's KV, so a rewritten prompt only reaches cards nobody has asked
+  // about yet unless both caches are keyed on a version that moves with it.
+  const appVersion = app.match(/EXPLAIN_PROMPT_VERSION = '([^']+)'/)?.[1];
+  const workerVersion = worker.match(/EXPLAIN_PROMPT_VERSION = '([^']+)'/)?.[1];
+  assert.ok(appVersion, 'app/js/anthropic.js declares no EXPLAIN_PROMPT_VERSION');
+  assert.equal(workerVersion, appVersion, 'the two explanation caches are keyed on different prompt versions');
+});
+
+test('cards: the Worker accepts a card that has no sentence', () => {
+  // It used to answer 400 for a missing `lb`, which is every perfect-aux card
+  // and every gender card whose noun has no example sentence.
+  const fs = require('node:fs');
+  const worker = fs.readFileSync(path.join(ROOT, 'worker', 'src', 'index.js'), 'utf8');
+  assert.ok(!/if \(!lb\) return json/.test(worker), '/explain still rejects a request with no sentence');
+  assert.match(worker, /if \(!lb && !word\) return json/, '/explain must still reject a request with nothing to explain');
+  // And the verified facts must actually reach the model: they were read off
+  // the request, folded into the cache key, and then dropped before the call.
+  assert.match(worker, /explainPrompt\(\{ lb, word, en, task, facts \}\)/, 'the Worker builds its prompt without the facts');
+});
+
 /* ----------------------------------------------------- sentence structure */
 
 test('cards: the sentence-structure filter selects real cards from the shipped deck', () => {

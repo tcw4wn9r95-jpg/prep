@@ -18,7 +18,8 @@ import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
 import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, recordMistake, clearMistake, goalCards, POINTS, touchStreak } from '../store.js';
 import { requestExplanation } from '../sync.js';
-import { buildCard, GRAMMAR_RULES, joinArticle, taskFor, factsFor, isStructure } from './cards.js';
+import { EXPLAIN_PROMPT_VERSION } from '../anthropic.js';
+import { buildCard, GRAMMAR_RULES, joinArticle, taskFor, factsFor, isStructure, explainTarget } from './cards.js';
 import { loadGlossary } from '../content.js';
 import { hintFor } from './hint.js';
 import { topicFor } from '../grammar-guide.js';
@@ -126,15 +127,17 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     // Offered only once the card is answered: before that it would be a way to
     // read the answer out of the explanation.
     //
-    // The sentence is whatever this card actually put on screen — a cloze or a
-    // grammar item has no `example`, it has a `before`/`after` pair, and those
-    // cards were the ones silently going without an explanation at all.
-    const explainSentence = sentenceOf(card, { filled: true });
-    const explain = explainSentence
+    // What there is to explain, and what to call the button, is `explainTarget`'s
+    // decision — it is a question about the exercise rather than about the DOM,
+    // and three grammar shapes were falling through the sentence lookup here
+    // and getting no button at all. See its note in cards.js.
+    const target = explainTarget(card, sentenceOf(card, { filled: true }));
+    const explain = target
       ? explainButton(settings, {
           id: card.item.id,
-          lb: explainSentence,
-          word: card.answer ?? card.lemma,
+          lb: target.lb,
+          word: target.word,
+          label: target.label,
           en: card.deck.gloss(card.item) ?? null,
           task: taskFor(card),
           facts: factsFor(card),
@@ -583,12 +586,18 @@ export function nothingDue({ root, title, back, navigate, total, capped = false 
  * the first explanation a word ever got was replayed for every later exercise
  * on it, which is how a context-aware answer would have been thrown away.
  *
- * @param {{id: string, lb: string, word: string, en: string|null, task: string|null}} subject
+ * `label` names what is actually on offer. "Explain this sentence" is wrong on
+ * a card that has no sentence — a `perfect-aux` card is a verb and two
+ * auxiliaries — and it is wrong on a word-order card too, where the question
+ * is not what the sentence means but why this arrangement of it is the right
+ * one. A button that promises the wrong thing is not tapped.
+ *
+ * @param {{id: string, lb: string|null, word: string|null, label?: string, en: string|null, task: string|null, facts?: string|null}} subject
  */
 export function explainButton(settings, subject) {
-  const key = `${subject.id}:${hashTask(`${subject.task ?? ''}|${subject.facts ?? ''}`)}`;
+  const key = `${subject.id}:${EXPLAIN_PROMPT_VERSION}:${hashTask(`${subject.task ?? ''}|${subject.facts ?? ''}`)}`;
   const note = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s2)', textAlign: 'left' }, hidden: true });
-  const trigger = button('Explain this sentence', {
+  const trigger = button(subject.label ?? 'Explain this sentence', {
     variant: 'secondary',
     class: 'btn btn--secondary',
     style: { marginBlockStart: 'var(--s3)' },

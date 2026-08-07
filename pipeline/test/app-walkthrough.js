@@ -970,6 +970,50 @@ async function main() {
     await page.evaluate(async () => { await (await import('./js/store.js')).saveSettings({ apiKey: '' }); });
   });
 
+  await step('a word-order card offers an explanation, asked as word order', async () => {
+    // These cards had no explain button at all: the engine looked for a
+    // sentence on the prompt, and a word-order card deliberately renders no
+    // prompt — its three options *are* the sentence. So the one card shape
+    // whose answer is least self-evident was the one that could not be asked
+    // about.
+    let sent = null;
+    await page.route('**://api.anthropic.com/**', async (route) => {
+      sent = JSON.parse(route.request().postData() ?? '{}');
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ content: [{ type: 'text', text: '{"explanation":"hunn comes straight after ech."}' }] }),
+      });
+    });
+    await page.evaluate(async () => {
+      await (await import('./js/store.js')).saveSettings({ apiKey: 'sk-ant-api03-0000000000000000000000000000', workerUrl: '' });
+    });
+
+    await clearLearn();
+    await openFresh('#/grammar/wordorder');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+    await page.locator('.options .option').first().click();
+
+    const explain = page.getByRole('button', { name: /right order/i });
+    await explain.waitFor({ state: 'visible', timeout: 3000 });
+    await explain.click();
+    await page.waitForFunction(() => /hunn comes straight after/.test(document.querySelector('#screen')?.textContent ?? ''), { timeout: 5000 });
+
+    const prompt = sent?.messages?.[0]?.content ?? '';
+    const system = sent?.system ?? '';
+    if (/Sentence: (null|undefined)/.test(prompt)) throw new Error(`sent a non-sentence as the sentence:\n${prompt}`);
+    if (!/The exercise they just answered:.*where the conjugated verb goes/s.test(prompt)) {
+      throw new Error(`the explainer was not told this was a word-order question:\n${prompt}`);
+    }
+    if (!/only word that moves/.test(prompt)) throw new Error(`the explainer was not told which word moved:\n${prompt}`);
+    if (!/wrong orders they could have picked/.test(prompt)) throw new Error('the explainer was not given the wrong orders');
+    if (!/never studied grammar/.test(system)) throw new Error('the plain-language instruction is missing from the system prompt');
+    await shot('00d-structure-explain');
+
+    await page.unroute('**://api.anthropic.com/**');
+    await page.evaluate(async () => { await (await import('./js/store.js')).saveSettings({ apiKey: '' }); });
+  });
+
   await step('the podcast index lists real INLL episodes by level', async () => {
     await openFresh('#/podcasts');
     await page.waitForSelector('a[href^="#/podcasts/"]', { timeout: 5000 });
