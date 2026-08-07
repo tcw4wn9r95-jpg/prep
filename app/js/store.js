@@ -691,8 +691,11 @@ export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TA
   const fresh = [];
 
   for (const group of groups) {
-    const { items, states, deck, pool } = group;
-    const from = (item, strand, isNew) => ({ item, strand, isNew, deck, pool: pool ?? items });
+    const { items, states, deck, pool, reserveId } = group;
+    // `reserveId` lets two groups share a deck — and therefore a Leitner row —
+    // while being reserved separately. Sentence structure is a slice of the
+    // grammar deck that has to be guaranteed on its own.
+    const from = (item, strand, isNew) => ({ item, strand, isNew, deck, pool: pool ?? items, reserveId: reserveId ?? deck?.id });
 
     for (const item of items) {
       const recv = states.recv.get(item.id);
@@ -730,14 +733,36 @@ export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TA
   const reserveTotal = Object.values(reserve).reduce((sum, n) => sum + n, 0);
   const generalLimit = Math.max(0, limit - reserveTotal);
 
-  const chosenReviews = reviews.slice(0, generalLimit);
+  /**
+   * One card is one entry, however many groups offered it.
+   *
+   * Groups are allowed to overlap: sentence structure is a slice of the
+   * grammar deck handed in as its own group, so it can be reserved separately
+   * while sharing grammar's Leitner rows. That means the same `{deck, strand,
+   * item}` sits in both pools, and `fresh.slice()` happily took it twice —
+   * the same question, twice, in one twelve-card session. Which reads as the
+   * app having lost its place.
+   */
+  const entryKey = (entry) => `${entry.deck?.id ?? ''}:${entry.strand}:${entry.item.id}`;
+  const taken = new Set();
+  const take = (list, max) => {
+    const out = [];
+    for (const entry of list) {
+      if (out.length >= max) break;
+      const key = entryKey(entry);
+      if (taken.has(key)) continue;
+      taken.add(key);
+      out.push(entry);
+    }
+    return out;
+  };
+
+  const chosenReviews = take(reviews, generalLimit);
   const newSlots = Math.max(0, Math.min(newTarget, generalLimit - chosenReviews.length));
-  const general = [...chosenReviews, ...fresh.slice(0, newSlots)];
+  const general = [...chosenReviews, ...take(fresh, newSlots)];
 
   // Whatever the general pool did not already take, per reserved deck — reviews
   // before fresh, same priority as everywhere else in this function.
-  const entryKey = (entry) => `${entry.deck?.id ?? ''}:${entry.strand}:${entry.item.id}`;
-  const taken = new Set(general.map(entryKey));
   const reserved = [];
   // The reserve draws from the same daily new-word budget as everything else.
   // Without this it topped every session up with fresh grammar items whatever
@@ -745,7 +770,7 @@ export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TA
   // per session, and a session can be started as often as you like.
   let freshBudget = Math.max(0, newTarget - general.filter((entry) => entry.isNew).length);
   for (const [deckId, min] of Object.entries(reserve)) {
-    const candidates = [...reviews, ...fresh].filter((entry) => entry.deck?.id === deckId && !taken.has(entryKey(entry)));
+    const candidates = [...reviews, ...fresh].filter((entry) => entry.reserveId === deckId && !taken.has(entryKey(entry)));
     for (const entry of candidates.slice(0, min)) {
       if (entry.isNew) {
         if (freshBudget <= 0) continue;

@@ -197,7 +197,7 @@ test('grammar: the shipped deck carries only declared kinds, each internally con
     assert.ok(!seenIds.has(item.id), `duplicate id ${item.id}`);
     seenIds.add(item.id);
     assert.ok(
-      ['gender', 'nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'negation'].includes(item.kind),
+      ['gender', 'nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'bracket', 'subclause', 'negation'].includes(item.kind),
       `${item.id}: unknown kind "${item.kind}"`,
     );
 
@@ -243,7 +243,7 @@ test('grammar: a perfect-auxiliary card never asks a circular question', (t) => 
 
 test('grammar: word-order and negation options differ only in word order', (t) => {
   if (!fs.existsSync(SHIPPED)) return t.skip('no grammar.json yet');
-  const items = shipped().filter((item) => item.kind === 'wordorder' || item.kind === 'negation');
+  const items = shipped().filter((item) => ['wordorder', 'bracket', 'subclause', 'negation'].includes(item.kind));
   assert.ok(items.length > 100, `expected real ordering decks, got ${items.length}`);
 
   const bag = (sentence) =>
@@ -270,9 +270,10 @@ test('grammar: every ordering option keeps the punctuation LOD wrote', (t) => {
   if (!fs.existsSync(SHIPPED)) return t.skip('no grammar.json yet');
   // Rejoining tokens with spaces silently drops commas, which would ship a
   // rewrite of the sentence as though it were the sentence.
-  for (const item of shipped().filter((i) => i.kind === 'wordorder' || i.kind === 'negation')) {
+  for (const item of shipped().filter((i) => ['wordorder', 'bracket', 'subclause', 'negation'].includes(i.kind))) {
     for (const option of item.options_lb) {
       assert.ok(!option.includes(' ,') && !option.includes(' .'), `${item.id}: stray spacing before punctuation`);
+      assert.ok(!/,,|\s{2,}/.test(option), `${item.id}: doubled punctuation or whitespace`);
       assert.equal(option.trim(), option, `${item.id}: untrimmed option`);
     }
   }
@@ -306,5 +307,34 @@ test('grammar: every kind the deck ships has theory behind it', async () => {
   const kinds = new Set(shipped().map((item) => item.kind));
   for (const kind of kinds) {
     assert.ok(guide.topicFor(kind), `the ${kind} deck is drilled with no rule explaining it`);
+  }
+});
+
+test('grammar: the sentence-structure decks move only the word they name', (t) => {
+  if (!fs.existsSync(SHIPPED)) return t.skip('no grammar.json yet');
+  const items = shipped().filter((item) => ['wordorder', 'bracket', 'subclause'].includes(item.kind));
+  assert.ok(items.length > 300, `expected all three structure decks, got ${items.length}`);
+
+  for (const item of items) {
+    // Commas are part of what LOD wrote and must survive the permutation
+    // identically in every option — subclause items live either side of one.
+    const commas = item.options_lb.map((option) => (option.match(/,/g) ?? []).length);
+    assert.equal(new Set(commas).size, 1, `${item.id}: an option gained or lost a comma`);
+
+    // And a word never crosses a comma: the segments must hold the same words.
+    const segments = item.options_lb.map((option) =>
+      option
+        .split(',')
+        .map((part) => (part.match(/[\p{L}][\p{L}'’-]*/gu) ?? []).map((w) => w.toLowerCase()).sort().join(' ')),
+    );
+    for (const other of segments.slice(1)) {
+      assert.deepEqual(other, segments[0], `${item.id}: a word moved across a clause boundary`);
+    }
+  }
+
+  // The hardest kind names which conjunction it is drilling, which is what
+  // makes it a subordinate-clause exercise rather than a shuffle.
+  for (const item of items.filter((i) => i.kind === 'subclause')) {
+    assert.ok(['datt', 'ob'].includes(item.conjunction?.toLowerCase()), `${item.id}: unexpected conjunction`);
   }
 });

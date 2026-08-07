@@ -17,7 +17,7 @@
 
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadStages } from '../content.js';
 import { getLearnDeckStates, buildMixedSession, newWordsLeftToday } from '../store.js';
-import { DECKS, isDrillable, boxIndex } from '../drill/cards.js';
+import { DECKS, isDrillable, boxIndex, isStructure } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
 const SESSION_SIZE = 12;
@@ -26,6 +26,21 @@ const SESSION_SIZE = 12;
 // much bigger vocab+verb+phrase pool. A quarter of the session, not all of
 // it: this deck is a complement to the others, not a replacement.
 const GRAMMAR_RESERVE = 3;
+
+/**
+ * Sentence structure, guaranteed in every mixed session.
+ *
+ * Word order is the thing an English speaker gets wrong most and the thing
+ * Morphosyntax is scored on, so it cannot be left to win a shuffle against a
+ * 4,000-item pool. The grammar reserve alone does not do it: grammar is nine
+ * kinds now, and three reserved cards spread across all of them means a
+ * structure card turns up about a third of the time.
+ *
+ * These are drawn from the same daily new-word budget as everything else, so
+ * this changes *which* cards a session contains, never how many new things it
+ * introduces.
+ */
+const STRUCTURE_RESERVE = 3;
 
 export async function render(root, { params, settings, navigate }) {
   const stage = params?.[0] ? Number(params[0]) : null;
@@ -73,7 +88,21 @@ export async function render(root, { params, settings, navigate }) {
   // `newTarget` is what is left of today's budget, not a fresh allowance —
   // otherwise quitting a session and starting another buys eight more new
   // words, as many times as you care to do it.
-  const plan = buildMixedSession(groups, { limit: SESSION_SIZE, newTarget: newLeft, reserve: { grammar: GRAMMAR_RESERVE } });
+  // Sentence structure is its own reserved group so it cannot be crowded out
+  // by the other six grammar kinds sharing one deck id.
+  const structureGroup = {
+    deck: DECKS.grammar,
+    items: groups[3].items.filter(isStructure),
+    states: grammarStates,
+    pool: groups[3].pool,
+    reserveId: 'structure',
+  };
+
+  const plan = buildMixedSession([...groups, structureGroup], {
+    limit: SESSION_SIZE,
+    newTarget: newLeft,
+    reserve: { grammar: GRAMMAR_RESERVE, structure: STRUCTURE_RESERVE },
+  });
   if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total, capped: newLeft === 0 });
 
   const boxes = new Map();

@@ -115,12 +115,20 @@ export function orderGrammar(items) {
 function sentenceLength(item) {
   let sentence = '';
   if (item.kind === 'gender') sentence = item.example?.lb ?? '';
-  else if (item.kind === 'wordorder' || item.kind === 'negation') sentence = item.options_lb?.[item.correct] ?? '';
+  else if (['wordorder', 'bracket', 'subclause', 'negation'].includes(item.kind)) sentence = item.options_lb?.[item.correct] ?? '';
   else if (item.kind !== 'perfect-aux') sentence = `${item.before ?? ''} ${item.after ?? ''}`;
   return sentence.trim().split(/\s+/).filter(Boolean).length;
 }
 
-const KIND_ORDER = ['gender', 'perfect-aux', 'nrule', 'wordorder', 'negation', 'adjective', 'perfect-form'];
+/**
+ * The order the seven-plus kinds take turns in.
+ *
+ * The three sentence-structure kinds are deliberately spread and in ascending
+ * difficulty: `wordorder` (the verb is second) before `bracket` (and the other
+ * half goes last) before `subclause` (except after datt, where it goes last).
+ * Each one assumes the one before it.
+ */
+const KIND_ORDER = ['gender', 'perfect-aux', 'wordorder', 'nrule', 'bracket', 'negation', 'adjective', 'subclause', 'perfect-form'];
 
 /**
  * INLL podcast episodes — metadata only, written by pipeline/fetch-podcasts.js.

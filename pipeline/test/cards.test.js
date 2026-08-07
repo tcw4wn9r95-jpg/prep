@@ -254,6 +254,47 @@ test('match: an empty answer never counts as correct', () => {
   assert.equal(match.checkTyped('', 'Aarbecht').correct, false);
 });
 
+/* ----------------------------------------------------- sentence structure */
+
+test('cards: the sentence-structure filter selects real cards from the shipped deck', () => {
+  // `STRUCTURE_KINDS` is the single definition three places depend on — the
+  // session reserve, the focused #/grammar/structure round, and the engine's
+  // per-card tally that ticks Today's checklist. A typo in it would not throw
+  // anywhere: the reserve would silently reserve nothing, the focused round
+  // would show "nothing due", and the checklist step would become impossible
+  // to complete while the app kept insisting it was mandatory.
+  const grammar = require(path.join(ROOT, 'app', 'data', 'grammar.json')).items;
+  const kinds = new Set(grammar.map((item) => item.kind));
+  for (const kind of cards.STRUCTURE_KINDS) {
+    assert.ok(kinds.has(kind), `${kind} is reserved every session but no such card ships`);
+  }
+
+  const structural = grammar.filter((item) => cards.isStructure(item));
+  assert.ok(structural.length >= 300, `expected a usable structure pool, got ${structural.length}`);
+  assert.ok(structural.every((item) => Array.isArray(item.options_lb)), 'a structure card must offer orderings to choose between');
+  assert.ok(!cards.isStructure({ kind: 'gender' }), 'gender is not sentence structure');
+  assert.ok(!cards.isStructure(undefined), 'a missing item must not read as structure');
+});
+
+test('cards: Today cannot demand more structure than a session guarantees', () => {
+  // Two constants in two files that have to agree, and nothing links them:
+  // `STRUCTURE_RESERVE` is how many structure cards a mixed session puts in
+  // front of you, `STRUCTURE_CARDS_GOAL` is how many Today requires before it
+  // will tick the step. If the goal ever exceeds the reserve, a learner who
+  // does exactly what the app asks — their daily sessions — can never finish
+  // the day. That is the same failure as the frozen stage counters, one level
+  // up, and it is invisible until someone reports it.
+  const fs = require('node:fs');
+  const reserve = Number(
+    fs.readFileSync(path.join(ROOT, 'app', 'js', 'screens', 'session.js'), 'utf8').match(/STRUCTURE_RESERVE = (\d+)/)?.[1],
+  );
+  const goal = Number(
+    fs.readFileSync(path.join(ROOT, 'app', 'js', 'screens', 'today.js'), 'utf8').match(/STRUCTURE_CARDS_GOAL = (\d+)/)?.[1],
+  );
+  assert.ok(reserve > 0 && goal > 0, 'both constants must be declared and readable');
+  assert.ok(goal <= reserve, `Today asks for ${goal} structure cards a day but a session only guarantees ${reserve}`);
+});
+
 /* --------------------------------------------------------- service worker */
 
 test('sw: every app module and data file is in the precache list', async () => {

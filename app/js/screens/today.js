@@ -47,6 +47,19 @@ const SPEAKING_GAP_DAYS = 3;
  * `#/grammar` session is ten cards, so this is most of one. */
 const GRAMMAR_CARDS_GOAL = 6;
 
+/**
+ * …of which this many must be sentence structure — where the verb goes.
+ *
+ * Mandatory rather than optional, because it is the criterion an English
+ * speaker actually loses marks on and the one no amount of vocabulary fixes.
+ * Set to match `STRUCTURE_RESERVE` in screens/session.js, which guarantees
+ * three structure cards in every twelve-card mixed session: so a learner who
+ * simply does their daily sessions ticks this without ever visiting the
+ * sentence-structure screen. It is a floor under the day, not an errand added
+ * to it.
+ */
+const STRUCTURE_CARDS_GOAL = 3;
+
 export async function render(root, { settings, navigate }) {
   void navigate;
   // Deliberately does not load the decks. It used to pull vocab, verbs and
@@ -127,6 +140,14 @@ export async function render(root, { settings, navigate }) {
     ),
 
     sectionLabel('Today'),
+    // Says what the list is measured against. Without it the four steps read
+    // as four equal chores; with it, two of them are the exam and two are what
+    // the exam needs.
+    el(
+      'p',
+      { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
+      'The exam is two halves: Verstoen, the B1 listening paper, and Schwätzen, the A2 interview. You pass on speaking alone or on the two together. Words and grammar are not scored on their own — they are what those two halves run on.',
+    ),
     el(
       'div',
       { class: 'stack' },
@@ -208,11 +229,21 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics })
   const dueTotal = due.recv + due.prod;
   const newLeft = Math.max(0, due.target - due.newToday);
   const grammarToday = today.byDeck?.grammar ?? 0;
+  // Counted separately by drill/engine.js, because "six grammar cards" can be
+  // six gender cards — and gender is not the thing the interview marks an
+  // English speaker down for.
+  const structureToday = today.byDeck?.structure ?? 0;
+  const grammarDone = grammarToday >= GRAMMAR_CARDS_GOAL && structureToday >= STRUCTURE_CARDS_GOAL;
 
+  // `for` names the part of the exam each step is actually for. The plan used
+  // to read as a study list — words, grammar, listening, speaking — which is
+  // the wrong frame: none of those is the goal, and a day spent entirely on
+  // vocabulary can look complete while leaving both scored halves untouched.
   const plan = [
     {
       id: 'words',
-      title: 'Words & Grammar',
+      title: 'Words & grammar',
+      for: 'What both halves are built on',
       href: '#/session',
       done: today.met,
       note: today.met
@@ -221,22 +252,27 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics })
     },
     {
       id: 'grammar',
-      title: 'Grammar drills',
-      href: '#/grammar',
+      title: 'Grammar & sentence structure',
+      for: 'Morphosyntax, a scored criterion in the interview',
+      // Points at the theory when structure is the unmet half, because the
+      // fix for "I keep getting word order wrong" is reading the rule, not
+      // answering three more cards.
+      href: structureToday < STRUCTURE_CARDS_GOAL ? '#/structure' : '#/grammar',
       // Grammar cards specifically, not "any six cards". The old condition was
       // `today.cards >= 6`, which counts every deck — so six vocabulary cards
       // ticked this step without a single grammar question being answered, and
       // the one part of the plan aimed at Morphosyntax could be skipped every
-      // day while reporting itself done.
-      done: grammarToday >= GRAMMAR_CARDS_GOAL,
-      note:
-        grammarToday >= GRAMMAR_CARDS_GOAL
-          ? `Done — ${plural(grammarToday, 'grammar card')} today`
-          : `${grammarToday} of ${GRAMMAR_CARDS_GOAL} · gender, n-rule, adjectives`,
+      // day while reporting itself done. Sentence structure is now a floor
+      // inside it for the same reason, one level down.
+      done: grammarDone,
+      note: grammarDone
+        ? `Done — ${grammarToday} grammar, ${structureToday} of them sentence structure`
+        : `${grammarToday} of ${GRAMMAR_CARDS_GOAL} grammar · ${structureToday} of ${STRUCTURE_CARDS_GOAL} sentence structure`,
     },
     {
       id: 'listening',
       title: 'Listening',
+      for: 'Verstoen — the B1 half, 16 questions',
       href: '#/journey',
       done: listenedThisWeek,
       note: listenedThisWeek ? 'Done this week' : `One set from ${plural(topics.length, 'topic')}`,
@@ -244,8 +280,14 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics })
     {
       id: 'speaking',
       title: 'Speaking',
+      for: 'Schwätzen — the half you must pass',
       href: '#/speaking',
       done: daysSinceSpoke <= SPEAKING_GAP_DAYS,
+      // Overdue only once there is a habit to have broken. A learner who has
+      // never recorded is not behind — they are being held back on purpose by
+      // the readiness gate in screens/speaking.js, and telling them they are
+      // late for a thing the app will not let them do yet is just noise.
+      urgent: daysSinceSpoke !== Infinity && daysSinceSpoke > SPEAKING_GAP_DAYS,
       note:
         daysSinceSpoke === Infinity
           ? 'Not recorded yet — this is the half you must pass'
@@ -261,11 +303,16 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics })
 /**
  * The single most useful thing to do right now.
  *
- * Only one thing jumps the queue: a partner waiting on a review, because it
- * blocks *their* progress rather than yours. Everything else is simply the
- * first unfinished step of the plan — which is what keeps the button and the
- * checklist agreeing. A button that said "do a listening set" while step 1 sat
- * unticked would be two different instructions on one screen.
+ * Two things jump the queue. A partner waiting on a review, because it blocks
+ * *their* progress rather than yours. And an overdue exam half — which is a
+ * correction, not a nicety: the daily card goal is thirty cards and is
+ * therefore unfinished for most of most days, so "the first unfinished step"
+ * meant words won every single time and the two halves the exam is actually
+ * marked on sat permanently below them. A study plan that can never reach step
+ * 4 is a study plan for learning vocabulary, which is not what this is for.
+ *
+ * Everything else is still simply the first unfinished step, which is what
+ * keeps the button and the checklist agreeing.
  */
 function nextAction(state, partner) {
   if (state.waitingOnMe > 0) {
@@ -276,7 +323,7 @@ function nextAction(state, partner) {
     };
   }
 
-  const step = state.plan.find((candidate) => !candidate.done);
+  const step = state.plan.find((candidate) => candidate.urgent && !candidate.done) ?? state.plan.find((candidate) => !candidate.done);
   if (!step) {
     return {
       label: 'Practise anyway',
@@ -308,9 +355,12 @@ function nextAction(state, partner) {
   }
   if (step.id === 'grammar') {
     return {
-      label: 'Grammar practice',
-      href: '#/grammar',
-      why: 'Gender, the n-rule, adjective endings — a quick focused round.',
+      label: step.href === '#/structure' ? 'Sentence structure' : 'Grammar practice',
+      href: step.href,
+      why:
+        step.href === '#/structure'
+          ? 'Where the verb goes. It is the rule English speakers break most, and Morphosyntax is marked in the interview — read it, then three cards.'
+          : 'Gender, the n-rule, adjective endings — a quick focused round.',
     };
   }
   if (step.id === 'listening') {
@@ -364,6 +414,10 @@ function planRow(step, number) {
       'span',
       { class: 'spacer' },
       el('span', { class: 'card__title' }, step.title),
+      // What this step is *for*, above what is left of it. The exam is the
+      // reason any of these rows exist, and it was the one thing the list
+      // never said.
+      step.for ? el('span', { class: 'plan__for' }, step.for) : null,
       el('span', { class: 'card__note' }, step.note),
     ),
     el(

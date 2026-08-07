@@ -54,6 +54,7 @@ const LUXEMBOURGISH_FIELDS = new Set([
   // out of LOD's inflection tables, so they are checked like any other.
   'participle',
   'moved',
+  'conjunction',
   'p1',
   'p2',
   'p3',

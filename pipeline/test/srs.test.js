@@ -325,6 +325,39 @@ test('srs: a spent budget yields no new words, however many sessions are started
   }
 });
 
+/* ------------------------------------------------ the structure guarantee */
+
+test('srs: two groups sharing a deck id are reserved separately', async () => {
+  // Sentence structure is a slice of the grammar deck rather than a deck of
+  // its own — it has to share grammar's Leitner rows, or the same card would
+  // carry two independent boxes depending on which screen showed it. But
+  // `reserve` was keyed on `deck.id`, so a structure group and a grammar group
+  // were one reservation: three reserved slots spread over nine grammar kinds,
+  // and a word-order card turned up about a third of the time in something the
+  // home screen calls mandatory. `reserveId` is what separates the two.
+  const grammar = Array.from({ length: 400 }, (_, i) => ({ id: `g${i}`, stage: 1, rank: i, kind: i % 3 === 0 ? 'wordorder' : 'gender' }));
+  const vocab = Array.from({ length: 400 }, (_, i) => ({ id: `v${i}`, stage: 1, rank: i }));
+  const structure = grammar.filter((item) => item.kind === 'wordorder');
+  const empty = () => ({ recv: new Map(), prod: new Map() });
+  const states = empty();
+
+  const plan = store.buildMixedSession(
+    [
+      { deck: { id: 'vocab' }, items: vocab, states: empty() },
+      { deck: { id: 'grammar' }, items: grammar, states },
+      { deck: { id: 'grammar' }, items: structure, states, pool: grammar, reserveId: 'structure' },
+    ],
+    { limit: 12, newTarget: 12, reserve: { grammar: 3, structure: 3 } },
+  );
+
+  const ids = new Set(plan.map((entry) => entry.item.id));
+  const structural = [...ids].filter((id) => structure.some((item) => item.id === id)).length;
+  assert.ok(structural >= 3, `expected at least 3 sentence-structure cards, got ${structural}`);
+  assert.equal(plan.length, 12);
+  // And no card is dealt twice because it belongs to both groups.
+  assert.equal(new Set(plan.map((entry) => `${entry.item.id}:${entry.strand}`)).size, plan.length);
+});
+
 /* --------------------------------------------- progress that actually moves */
 
 test('srs: the deck bar reports something a single session can change', async () => {

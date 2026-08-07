@@ -85,6 +85,22 @@ const NEGATOR = 'net';
 const MAX_PER_PERFECT_VERB = 2;
 const MAX_PERFECT_FORM_ITEMS = 300;
 const MAX_ORDER_ITEMS = 220;
+const MAX_BRACKET_ITEMS = 200;
+const MAX_SUBCLAUSE_ITEMS = 160;
+
+/**
+ * Subordinators reliable enough to mine a verb-final exercise from.
+ *
+ * Measured over the corpus rather than taken from a list: after `datt` the
+ * finite verb closes the clause in 73% of its 208 instances and after `ob` in
+ * 68% of 31, while `wéi` and `wou` sit near 30% because they are far more often
+ * question words or comparatives than subordinators. Mining those would produce
+ * items whose "correct" answer is wrong, so only the two clean ones are used.
+ */
+const SUBORDINATORS = ['datt', 'ob'];
+
+/** Short, stable id prefixes per kind. */
+const ID_PREFIX = { wordorder: 'order', bracket: 'brkt', negation: 'neg' };
 const MAX_NEGATION_ITEMS = 180;
 
 function shortHash(text) {
@@ -536,7 +552,11 @@ function orderItems(corpus, lexicon, { kind, findIndex, limit, minWords, maxWord
           if (alternatives.length < 2) continue;
 
           const attested = body + tail;
-          const id = `gr-${kind === 'negation' ? 'neg' : 'order'}-${shortHash(sentence)}`;
+          // Per kind, not per shape: wordorder and bracket both run through
+          // this function and can legitimately mine the *same* sentence — one
+          // moving the finite verb, one the participle — so a shared prefix
+          // made them collide on one id.
+          const id = `gr-${ID_PREFIX[kind] ?? kind}-${shortHash(sentence)}`;
           const options = [attested, ...alternatives];
           const at = rotate(id, options.length);
           const rotated = [...options.slice(at), ...options.slice(0, at)];
@@ -551,6 +571,150 @@ function orderItems(corpus, lexicon, { kind, findIndex, limit, minWords, maxWord
           });
           seen.add(key);
           if (items.length >= limit) break outer;
+        }
+      }
+    }
+  }
+  return items;
+}
+
+
+/**
+ * Where the second half of the verb goes — the sentence bracket.
+ *
+ * Same machinery as `orderItems`: three orderings of one real sentence, the
+ * attested one and two with a word moved, all gated so they differ in order
+ * alone. What moves here is the *non-finite* verb that closes the sentence —
+ * the participle of a perfect, or the infinitive after a modal — because that
+ * is the half an English speaker leaves stranded in the middle.
+ *
+ * The distractors put it in the middle rather than at the end, which is wrong
+ * by the rule rather than merely unusual, and position 0 is excluded for the
+ * same reason it is in `orderItems`.
+ */
+function bracketItems(corpus, lexicon, verbs) {
+  const nonFinite = new Set();
+  for (const verb of verbs) {
+    if (verb.infinitive) nonFinite.add(verb.infinitive.toLowerCase());
+    if (verb.pastParticiple) for (const form of verb.pastParticiple.split('/')) nonFinite.add(form.trim().toLowerCase());
+  }
+  const finite = new Set();
+  for (const verb of verbs) for (const form of Object.values(verb.present ?? {})) if (form) finite.add(form.toLowerCase());
+
+  return orderItems(corpus, lexicon, {
+    kind: 'bracket',
+    limit: MAX_BRACKET_ITEMS,
+    minWords: 5,
+    maxWords: 9,
+    // The closing non-finite verb, and only when a finite verb opens the
+    // bracket — otherwise the last word is just a verb, not a bracket.
+    findIndex: (tokens) => {
+      const last = tokens.length - 1;
+      if (!nonFinite.has(tokens[last]?.value.toLowerCase() ?? '')) return -1;
+      const opener = tokens.findIndex((token) => finite.has(token.value.toLowerCase()));
+      if (opener === -1 || opener > 2 || opener === last) return -1;
+      return last;
+    },
+  });
+}
+
+/**
+ * Verb-final in a subordinate clause — the hardest of the three.
+ *
+ * This one cannot reuse `orderItems`, and the reason is worth recording: that
+ * function only accepts sentences whose word tokens rejoin *exactly*, which
+ * rules out anything containing a comma — and a subordinate clause in written
+ * Luxembourgish is nearly always introduced by one. Run through it, this kind
+ * produced zero items.
+ *
+ * So it permutes segment-wise instead. The sentence is split on its commas,
+ * only the segment holding the subordinator is rearranged, and the whole thing
+ * is reassembled with every comma back where LOD put it. Words never cross a
+ * comma, because moving one across a clause boundary produces something no
+ * speaker would write rather than a wrong word order.
+ *
+ * The distractor is the finite verb pulled out of final position into the
+ * main-clause slot right after the subordinator — which is exactly the mistake
+ * an English speaker makes, rather than an arbitrary shuffle.
+ */
+function subclauseItems(corpus, lexicon, verbs) {
+  const isClean = makeGate(lexicon);
+  const checker = createChecker({
+    nRuleForms: new Set(lexicon.nRuleForms),
+    retentionExceptions: new Set(Object.keys(lexicon.nRuleRetentionExceptions ?? {})),
+  });
+  const nRuleSilent = (text) => checker.checkTokens(tokenise(text)).length === 0;
+
+  const finite = new Set();
+  for (const verb of verbs) for (const form of Object.values(verb.present ?? {})) if (form) finite.add(form.toLowerCase());
+
+  const items = [];
+  const seen = new Set();
+  outer: for (const entry of corpus.entries) {
+    for (const meaning of entry.meanings ?? []) {
+      for (const example of meaning.examples ?? []) {
+        if (!example.text) continue;
+        for (const sentence of sentences(example.text)) {
+          const tail = sentence.match(/[.!?…]+$/)?.[0] ?? '';
+          const body = sentence.slice(0, sentence.length - tail.length).trim();
+          if (!body.includes(',')) continue; // no clause boundary to work with
+
+          // Segments, and the words inside each. A segment reconstructs
+          // exactly or the sentence is skipped, same discipline as elsewhere.
+          const segments = body.split(',').map((part) => part.trim());
+          if (segments.some((part) => part === '')) continue;
+          const wordsOf = (part) => part.split(/\s+/).filter(Boolean);
+          if (segments.map(wordsOf).map((w) => w.join(' ')).join(', ') !== segments.join(', ')) continue;
+
+          const at = segments.findIndex((part) => SUBORDINATORS.includes(wordsOf(part)[0]?.toLowerCase() ?? ''));
+          if (at === -1) continue;
+
+          const words = wordsOf(segments[at]);
+          if (words.length < 4 || words.length > 8) continue;
+          const lower = words.map((word) => word.toLowerCase());
+          // The finite verb must already be last — that is the pattern taught —
+          // and it must be the only one, or "the verb" is ambiguous.
+          if (!finite.has(lower[lower.length - 1])) continue;
+          if (lower.slice(1, -1).some((word) => finite.has(word))) continue;
+
+          const key = body.toLowerCase();
+          if (seen.has(key)) continue;
+          if (!isClean(sentence) || !nRuleSilent(sentence)) continue;
+
+          const rebuild = (segment) => segments.map((part, index) => (index === at ? segment : part)).join(', ') + tail;
+          const attested = rebuild(words.join(' '));
+
+          // The verb dragged forward to second position inside the clause,
+          // which is the main-clause order misapplied — the actual error.
+          const moved = [...words];
+          const [verb] = moved.splice(moved.length - 1, 1);
+          const alternatives = [];
+          for (const to of [1, 2]) {
+            if (to >= moved.length + 1) continue;
+            const candidate = [...moved.slice(0, to), verb, ...moved.slice(to)].join(' ');
+            const full = rebuild(candidate);
+            if (full.toLowerCase() === attested.toLowerCase()) continue;
+            if (!isClean(full) || !nRuleSilent(full)) continue;
+            alternatives.push(full);
+          }
+          if (alternatives.length < 2) continue;
+
+          const id = `gr-subcl-${shortHash(body)}`;
+          const options = [attested, ...alternatives];
+          const rotation = rotate(id, options.length);
+          const rotated = [...options.slice(rotation), ...options.slice(0, rotation)];
+
+          items.push({
+            id,
+            kind: 'subclause',
+            moved: verb,
+            conjunction: words[0],
+            options_lb: rotated,
+            correct: rotated.indexOf(attested),
+            entryId: entry.id,
+          });
+          seen.add(key);
+          if (items.length >= MAX_SUBCLAUSE_ITEMS) break outer;
         }
       }
     }
@@ -605,12 +769,15 @@ async function main() {
     maxWords: 9,
   });
 
-  const items = [...gender, ...nrule, ...adjective, ...perfectAux, ...perfectForm, ...wordorder, ...negation];
+  const bracket = bracketItems(corpus, lexicon, verbs);
+  const subclause = subclauseItems(corpus, lexicon, verbs);
+
+  const items = [...gender, ...nrule, ...adjective, ...perfectAux, ...perfectForm, ...wordorder, ...bracket, ...subclause, ...negation];
 
   console.log(
     `grammar: ${gender.length} gender, ${nrule.length} n-rule, ${adjective.length} adjective-agreement, ` +
       `${perfectAux.length} perfect-auxiliary, ${perfectForm.length} perfect-participle, ` +
-      `${wordorder.length} word-order, ${negation.length} negation (${items.length} total)`,
+      `${wordorder.length} word-order, ${bracket.length} verb-bracket, ${subclause.length} verb-final, ${negation.length} negation (${items.length} total)`,
   );
 
   const payload = {
@@ -628,6 +795,8 @@ async function main() {
         'perfect-aux': perfectAux.length,
         'perfect-form': perfectForm.length,
         wordorder: wordorder.length,
+        bracket: bracket.length,
+        subclause: subclause.length,
         negation: negation.length,
         total: items.length,
       },

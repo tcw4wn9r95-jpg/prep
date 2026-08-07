@@ -213,15 +213,49 @@ async function main() {
     await page.waitForSelector('.plan', { timeout: 5000 });
   });
 
-  await step('today gives exactly one next action and a three-step plan', async () => {
+  await step('today gives exactly one next action and a four-step plan', async () => {
     // The fix for "there is no clear journey": one primary button, and the
     // plan beneath it in the order it should be done.
     const primary = page.locator('#screen > .btn--primary');
     if ((await primary.count()) !== 1) throw new Error(`expected exactly one primary action, found ${await primary.count()}`);
     process.stdout.write(`  next action: ${(await primary.textContent())?.trim()}\n`);
     const order = (await page.locator('.plan .card__title').allTextContents()).map((text) => text.trim());
-    if (order.join(',') !== 'Words & Grammar,Grammar drills,Listening,Speaking') throw new Error(`plan out of order: ${order.join(', ')}`);
+    const expected = 'Words & grammar,Grammar & sentence structure,Listening,Speaking';
+    if (order.join(',') !== expected) throw new Error(`plan out of order: ${order.join(', ')}`);
+
+    // Every step says which part of the exam it is for. The plan used to read
+    // as a study list, which is the frame the app is meant to argue against.
+    const purposes = (await page.locator('.plan__for').allTextContents()).map((text) => text.trim());
+    if (purposes.length !== order.length) throw new Error(`${order.length} steps but ${purposes.length} say what they are for`);
+    if (!purposes.some((text) => /Schwätzen/.test(text)) || !purposes.some((text) => /Verstoen/.test(text))) {
+      throw new Error(`the plan never names the two halves of the exam: ${purposes.join(' | ')}`);
+    }
     await shot('00-today');
+  });
+
+  await step('sentence structure teaches the rule before asking for it', async () => {
+    // The user's report: word order is the thing an English speaker gets
+    // wrong, and the app drilled it without ever stating the rule. Theory
+    // first, three graded steps, then the practice.
+    await page.goto(`${base}#/structure`, { waitUntil: 'networkidle' });
+    await page.waitForSelector('.ref-topic__rule', { timeout: 5000 });
+    const rules = await page.locator('.ref-topic__rule').count();
+    if (rules !== 3) throw new Error(`expected the three structure rules, found ${rules}`);
+    const sentences = await page.locator('.ref-topic__sentence').count();
+    if (sentences < 3) throw new Error(`the theory shows no worked examples (${sentences})`);
+    await shot('00b-structure');
+
+    await page.locator('#screen > .btn--primary').click();
+    await page.waitForSelector('#screen .screen__title', { timeout: 5000 });
+    const title = (await page.locator('#screen .screen__title').first().textContent())?.trim();
+    if (title !== 'Sentence structure') throw new Error(`practising structure landed on "${title}"`);
+    // Three orderings of one sentence — the card shape the whole feature is.
+    await page.waitForSelector('.option', { timeout: 5000 });
+    const options = await page.locator('.option').count();
+    if (options < 2) throw new Error(`a structure card offered ${options} orderings`);
+    await shot('00c-structure-drill');
+    await page.goto(`${base}#/today`, { waitUntil: 'networkidle' });
+    await page.waitForSelector('.plan', { timeout: 5000 });
   });
 
   await step('the next action leads somewhere real', async () => {
@@ -542,8 +576,14 @@ async function main() {
   await step('learn hub separates receptive from productive mastery', async () => {
     await openFresh('#/learn');
     await page.waitForSelector('.topic-grid .topic-tile', { timeout: 5000 });
-    const bars = await page.locator('.card__note', { hasText: /^(Understand|Say)$/ }).count();
+    // Named for what the exam asks, not for our scheduler. These used to read
+    // "Understand" / "Say" over a caption of "12 of 47 holding" — two pieces
+    // of internal vocabulary in one line, and "holding" is not a word anyone
+    // outside this repo would use about a word they half-know.
+    const bars = await page.locator('.card__note', { hasText: /^Can (follow|say) it$/ }).count();
     if (bars < 4) throw new Error(`expected two strand bars per deck, found ${bars}`);
+    const jargon = await page.locator('#screen', { hasText: /\bholding\b/ }).count();
+    if (jargon > 0) throw new Error('the learn hub still says "holding"');
     const tiles = await page.locator('.topic-tile').count();
     if (tiles < 10) throw new Error(`expected topic tiles for most of the taxonomy, found ${tiles}`);
     await shot('16-learn-hub');

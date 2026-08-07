@@ -889,3 +889,123 @@ kind of gate as the tokens do.
 
 `npm test` 158 (one new) · `npm run walkthrough` 41/41 · `validate` PASS ·
 `sw.js` → `v25`. Worker redeployed: the `/explain` contract gained `facts`.
+
+---
+
+# Follow-up 8 — sentence structure, and the wrong goal
+
+Four things reported together:
+
+> "Add a section on sentence structure practice … do a complete research on
+> official Luxembourg sources … start with the theory and then move into the
+> practice increasing in difficulty. Make these mandatory for the daily goal.
+> … when opening the app we should start with the today tab selected. …
+> the main goal is not to learn words but to pass the exam, understand this
+> and see if it changes your approach. The words met and holding part is not
+> intuitive."
+
+## The sources
+
+The official reference is **Grammaire de la langue luxembourgeoise**, Zenter
+fir d'Lëtzebuerger Sprooch (ISBN 978-99959-1-206-2). It is print-only — there
+is no machine-readable edition to mine — so it is cited as the authority for
+the rules while every Luxembourgish example ships from LOD, as everywhere else
+in this repo. Each rule was then re-checked against the corpus before being
+written down:
+
+| rule | corpus evidence (of 10,777 LOD example sentences) |
+| --- | --- |
+| the conjugated verb is the second element | 3,288 sentences put a finite verb in position 2 |
+| the second half of the verb closes the clause | 1,981 sentences show the bracket |
+| after *datt* / *ob* the verb goes last | 73% of subordinate clauses are introduced by *datt* |
+
+## What shipped
+
+**Theory.** Three new guide topics — `wordorder`, `bracket`, `subclause` —
+written as a ladder, each assuming the one before. They join the cheat sheet
+and are shown inline before their own exercises by the existing `teachBefore()`.
+
+**Practice.** Two new mined kinds, `bracket` (200 items) and `subclause` (98),
+alongside the existing `wordorder` (220). The grammar deck is now 3,087 items
+across nine kinds. `subclause` needed a bespoke miner: `orderItems()` rejects
+any sentence containing punctuation, and a subordinate clause is defined by
+its comma, so it returned zero until the permutation was made comma-aware. The
+test asserts no option gains, loses or crosses a comma.
+
+**A screen.** `#/structure` — the three rules with real LOD sentences under
+each, a graded "practise this one" per step, and "practise all three".
+`#/grammar/<kind>` is the focused round behind those buttons.
+
+## "Mandatory" had to be built, not written
+
+The reserve mechanism keys on `deck.id`, and sentence structure is a slice of
+the grammar deck rather than a deck of its own — it has to share grammar's
+Leitner rows, or one card would carry two independent boxes depending on which
+screen showed it. So a `structure` group and the `grammar` group were **one
+reservation**: three reserved slots spread across nine kinds, and a word-order
+card turned up about a third of the time in something the home screen would be
+calling mandatory. `buildMixedSession` now takes a `reserveId` that defaults to
+the deck id, so two groups can share a deck and be reserved separately.
+
+Writing the test for that found a second bug in the same mechanism. Overlapping
+groups meant the same `{deck, strand, item}` was in both pools, and
+`fresh.slice()` took it **twice** — the same question, twice, in one twelve-card
+session, which reads as the app having lost its place. Selection is now
+deduplicated as it picks.
+
+And the checklist can now drift out of reach of the session: Today asks for 3
+structure cards, `STRUCTURE_RESERVE` guarantees 3. A test reads both constants
+out of their files and fails if the goal ever exceeds the reserve — the same
+failure as the frozen stage counters, one level up, and invisible until someone
+reports it.
+
+## The Today tab
+
+`ROUTES[name] ?? today` fell back to Today for an unknown hash but computed the
+highlighted tab as `name || 'journey'`. Every cold start from the home screen
+has an empty hash, so the app rendered Today while highlighting Listen. One
+line each.
+
+## The exam is the goal, so the screens now say what for
+
+Taking the third point seriously changed more than wording.
+
+**Today's plan could never reach the exam.** `nextAction()` returned the first
+unfinished step, and step 1 is a 30-card daily goal that is unfinished for most
+of most days. So words won the primary button every single time, and the two
+halves the exam is actually marked on — Verstoen and Schwätzen — sat
+permanently below them. An overdue speaking recording now jumps the queue, the
+way a partner's waiting review already does. Only once there is a habit to have
+broken: a learner who has never recorded is not behind, they are being held
+back on purpose by the readiness gate.
+
+**Every step now says which part of the exam it is for**, and the list is
+introduced by what it is measured against — two halves, pass on speaking alone
+or on the two together, words and grammar not scored on their own.
+
+**Deck size is no longer a denominator.** "57 of 2,449 met" states a target
+nobody has to hit. It reads as "in the deck" now, and the Learn hub says
+plainly that the decks are pools to draw on rather than lists to finish.
+
+## "Met" and "holding" were our words, not the learner's
+
+A deck row read `12 of 47 holding` under a heading of `Understand`. "Met" is
+the scheduler's term for an item with a database row; "holding" is its term for
+box 3 or higher. Neither is anything a learner asked about. What they want to
+know is whether they could follow the word in the listening paper and produce
+it in the interview, so:
+
+| was | is |
+| --- | --- |
+| Understand / Say | Can follow it / Can say it |
+| 12 of 47 holding | 12 solid of 47 seen |
+| 47 met · just seen → holding | left to right: just seen → solid |
+
+"Solid" is defined once, where the bars are explained: three correct answers on
+three separate days, which is what box 3 actually costs. The walkthrough now
+fails if the word "holding" reappears on the Learn hub.
+
+## Verification
+
+`npm test` 162 (three new) · `npm run walkthrough` · `validate` PASS ·
+`sw.js` → `v26`.
