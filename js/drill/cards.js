@@ -74,7 +74,7 @@ export const DECKS = {
     lemma: (item) => {
       if (item.kind === 'gender' || item.kind === 'perfect-aux') return item.lb;
       // A whole-sentence item has no gap to name, so the answer stands for it.
-      if (item.kind === 'wordorder' || item.kind === 'negation') return item.options_lb?.[item.correct] ?? '';
+      if (SENTENCE_KINDS.has(item.kind)) return item.options_lb?.[item.correct] ?? '';
       return `${item.before}…${item.after}`.trim();
     },
     gloss: (item) => item.en ?? null,
@@ -90,6 +90,8 @@ const GRAMMAR_KIND_LABELS = {
   'perfect-aux': 'past tense',
   'perfect-form': 'past tense',
   wordorder: 'word order',
+  bracket: 'verb bracket',
+  subclause: 'verb at the end',
   negation: 'negation',
 };
 
@@ -123,8 +125,28 @@ export const GRAMMAR_TASKS = {
   'perfect-aux': 'They were asked whether this verb forms its perfect with hunn or with sinn.',
   'perfect-form': 'They were asked which past participle belongs in the gap in this sentence.',
   wordorder: 'They were asked which of three orderings of this sentence is the correct one — the question is where the conjugated verb goes.',
+  bracket: 'They were asked which of three orderings is correct — the question is where the second half of the verb goes, the participle or infinitive that closes the sentence.',
+  subclause: 'They were asked which of three orderings is correct — the question is where the conjugated verb goes inside a subordinate clause introduced by datt or ob.',
   negation: 'They were asked which of three orderings of this sentence is the correct one — the question is where net goes.',
 };
+
+/** The kinds whose options are whole sentences rather than a gapped one. */
+const SENTENCE_KINDS = new Set(['wordorder', 'bracket', 'subclause', 'negation']);
+
+/**
+ * Sentence structure: the three kinds that ask where the verb goes.
+ *
+ * Defined here, and imported by everything that has an opinion about it — the
+ * session reserve, the focused round, Today's checklist — because three copies
+ * of this list is three chances for the thing the checklist ticks to stop being
+ * the thing the session guarantees.
+ *
+ * `negation` is deliberately out. It is word order too, but it is where *net*
+ * goes, not where the verb goes; it has its own guide topic and its own rule,
+ * and it does not build on the other two the way they build on each other.
+ */
+export const STRUCTURE_KINDS = ['wordorder', 'bracket', 'subclause'];
+export const isStructure = (item) => STRUCTURE_KINDS.includes(item?.kind);
 
 /**
  * What LOD already records about this item, handed to the explainer as fact.
@@ -225,7 +247,7 @@ const has = {
   present: (item) => Boolean(item.present),
   grammarChoice: (item) =>
     (item.kind === 'gender' && Array.isArray(item.options) && Number.isInteger(item.correct)) ||
-    (['nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'negation'].includes(item.kind) &&
+    (['nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'bracket', 'subclause', 'negation'].includes(item.kind) &&
       Array.isArray(item.options_lb) &&
       Number.isInteger(item.correct)),
 };
@@ -540,11 +562,11 @@ function grammarChoiceCard(base, item, random, box = 0) {
   // Whole-sentence items: the options *are* sentences, so there is no gap to
   // draw and the prompt carries the instruction alone. The gloss, where the
   // deck has one, is the only thing worth showing above them.
-  if (item.kind === 'wordorder' || item.kind === 'negation') {
+  if (SENTENCE_KINDS.has(item.kind)) {
     return {
       ...base,
       mode: 'choice',
-      instruction: item.kind === 'negation' ? 'Where does net go?' : 'Which order is right?',
+      instruction: SENTENCE_INSTRUCTIONS[item.kind] ?? 'Which order is right?',
       // Nothing above the options: the options *are* the sentence, three ways.
       // `hideBody` rather than falling through to the empty-prompt case, which
       // renders a blank heading to reserve space for a listening card.
@@ -575,6 +597,15 @@ function grammarChoiceCard(base, item, random, box = 0) {
     answer,
   };
 }
+
+/** What each whole-sentence card asks. Naming the actual question beats
+ * "which order is right?" three different ways. */
+const SENTENCE_INSTRUCTIONS = {
+  wordorder: 'Where does the verb go?',
+  bracket: 'Where does the second half of the verb go?',
+  subclause: 'Where does the verb go after datt / ob?',
+  negation: 'Where does net go?',
+};
 
 /** What the gapped-sentence grammar cards ask. */
 const GRAMMAR_INSTRUCTIONS = {

@@ -21,6 +21,7 @@ import * as vocab from './screens/vocab.js';
 import * as verbs from './screens/verbs.js';
 import * as phrases from './screens/phrases.js';
 import * as grammar from './screens/grammar.js';
+import * as structure from './screens/structure.js';
 import * as genderSort from './screens/gender-sort.js';
 import * as listening from './screens/listening.js';
 import * as speaking from './screens/speaking.js';
@@ -43,6 +44,7 @@ const ROUTES = {
   verbs,
   phrases,
   grammar,
+  structure,
   'gender-sort': genderSort,
   listening,
   speaking,
@@ -155,8 +157,15 @@ async function route() {
     return;
   }
 
-  const screen = ROUTES[name] ?? journey;
-  const routeName = ROUTES[name] ? name || 'journey' : 'journey';
+  // Today is the starting point and the fallback, both.
+  //
+  // This used to read `name || 'journey'`, so opening the app with no hash —
+  // which is every cold start from the home screen — rendered Today while
+  // highlighting the Listen tab, because the empty name fell through the `||`.
+  // The unknown-route fallback went to Listen too, which contradicts the one
+  // rule this navigation has: Today decides what to do next.
+  const screen = ROUTES[name] ?? today;
+  const routeName = ROUTES[name] ? name || 'today' : 'today';
 
   if (current?.destroy) {
     try {

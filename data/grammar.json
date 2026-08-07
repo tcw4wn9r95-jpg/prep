@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-04T08:45:46.234Z",
+    "generatedAt": "2026-08-07T10:43:21.180Z",
     "generator": "pipeline/build-grammar.js",
     "note": "Every option is either a value LOD itself assigned (noun gender/article) or a span copied verbatim from a real LOD example sentence. Nothing here is generated, inflected or corrected by this script - see the file header.",
     "counts": {
@@ -10,8 +10,10 @@
       "perfect-aux": 290,
       "perfect-form": 300,
       "wordorder": 220,
+      "bracket": 200,
+      "subclause": 98,
       "negation": 180,
-      "total": 2789
+      "total": 3087
     }
   },
   "items": [
@@ -43216,6 +43218,3680 @@
       ],
       "correct": 0,
       "entryId": "FROEN1"
+    },
+    {
+      "id": "gr-brkt-d547e34625",
+      "kind": "bracket",
+      "moved": "bleiwen",
+      "options_lb": [
+        "hie soll mer aus bleiwen den Ae!",
+        "hie soll mer aus den Ae bleiwen!",
+        "hie soll mer bleiwen aus den Ae!"
+      ],
+      "correct": 1,
+      "entryId": "A1"
+    },
+    {
+      "id": "gr-brkt-08771919ba",
+      "kind": "bracket",
+      "moved": "goen",
+      "options_lb": [
+        "hie soll mer aus den Ae goen!",
+        "hie soll mer goen aus den Ae!",
+        "hie soll mer aus goen den Ae!"
+      ],
+      "correct": 0,
+      "entryId": "A1"
+    },
+    {
+      "id": "gr-brkt-8f0d9f5093",
+      "kind": "bracket",
+      "moved": "fonnt",
+      "options_lb": [
+        "huet däi fonnt Brudder endlech eng Aarbecht?",
+        "huet däi Brudder endlech eng Aarbecht fonnt?",
+        "huet fonnt däi Brudder endlech eng Aarbecht?"
+      ],
+      "correct": 1,
+      "entryId": "AARBECHT1"
+    },
+    {
+      "id": "gr-brkt-f9113c4ba7",
+      "kind": "bracket",
+      "moved": "gebrach",
+      "options_lb": [
+        "de Sportler huet sech beim Training den Aarm gebrach",
+        "de gebrach Sportler huet sech beim Training den Aarm",
+        "de Sportler gebrach huet sech beim Training den Aarm"
+      ],
+      "correct": 0,
+      "entryId": "AARM2"
+    },
+    {
+      "id": "gr-brkt-77b1ed93c0",
+      "kind": "bracket",
+      "moved": "ameséiert",
+      "options_lb": [
+        "mir hunn ameséiert eis gutt um Chef sengem Abschid",
+        "mir hunn eis gutt um Chef sengem Abschid ameséiert",
+        "mir ameséiert hunn eis gutt um Chef sengem Abschid"
+      ],
+      "correct": 1,
+      "entryId": "ABSCHID1"
+    },
+    {
+      "id": "gr-brkt-4fa4196be7",
+      "kind": "bracket",
+      "moved": "opgeschriwwen",
+      "options_lb": [
+        "den opgeschriwwen Aendokter huet mer en neie Brëll",
+        "den Aendokter opgeschriwwen huet mer en neie Brëll",
+        "den Aendokter huet mer en neie Brëll opgeschriwwen"
+      ],
+      "correct": 2,
+      "entryId": "AENDOKTER1"
+    },
+    {
+      "id": "gr-brkt-1fd5f51b80",
+      "kind": "bracket",
+      "moved": "geäntwert",
+      "options_lb": [
+        "ech geäntwert kréien ëmmer nëmmen aggressiv op meng Froe",
+        "ech kréien ëmmer geäntwert nëmmen aggressiv op meng Froe",
+        "ech kréien ëmmer nëmmen aggressiv op meng Froe geäntwert"
+      ],
+      "correct": 2,
+      "entryId": "AGGRESSIV1"
+    },
+    {
+      "id": "gr-brkt-7615019866",
+      "kind": "bracket",
+      "moved": "aginn",
+      "options_lb": [
+        "ech aginn muss de Kéi nach eng Rafecht",
+        "ech muss aginn de Kéi nach eng Rafecht",
+        "ech muss de Kéi nach eng Rafecht aginn"
+      ],
+      "correct": 2,
+      "entryId": "AGINN1"
+    },
+    {
+      "id": "gr-brkt-458f05057f",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "hien ass ginn séier al",
+        "hien ass séier ginn al",
+        "hien ass séier al ginn"
+      ],
+      "correct": 2,
+      "entryId": "AL1"
+    },
+    {
+      "id": "gr-brkt-cab99d6e33",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "si sinn ginn zesummen al",
+        "si sinn zesummen al ginn",
+        "si ginn sinn zesummen al"
+      ],
+      "correct": 1,
+      "entryId": "AL1"
+    },
+    {
+      "id": "gr-brkt-dac27f2125",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "verschidden Alkoholer ginn kënnen als Léisungsmëttel benotzt",
+        "verschidden Alkoholer kënnen als ginn Léisungsmëttel benotzt",
+        "verschidden Alkoholer kënnen als Léisungsmëttel benotzt ginn"
+      ],
+      "correct": 2,
+      "entryId": "ALKOHOL1"
+    },
+    {
+      "id": "gr-brkt-719ddb7c6c",
+      "kind": "bracket",
+      "moved": "verstoen",
+      "options_lb": [
+        "dat muss dach all Mënsch verstoen!",
+        "dat muss verstoen dach all Mënsch!",
+        "dat muss dach verstoen all Mënsch!"
+      ],
+      "correct": 0,
+      "entryId": "ALL2"
+    },
+    {
+      "id": "gr-brkt-1ec51441c3",
+      "kind": "bracket",
+      "moved": "giess",
+      "options_lb": [
+        "wien huet all de Schockela giess?",
+        "wien huet giess all de Schockela?",
+        "wien huet all giess de Schockela?"
+      ],
+      "correct": 0,
+      "entryId": "ALL2"
+    },
+    {
+      "id": "gr-brkt-544c7e5f5b",
+      "kind": "bracket",
+      "moved": "verschriwwen",
+      "options_lb": [
+        "am Examen hunn ech all meng Tënt verschriwwen",
+        "am verschriwwen Examen hunn ech all meng Tënt",
+        "am Examen hunn verschriwwen ech all meng Tënt"
+      ],
+      "correct": 0,
+      "entryId": "ALL2"
+    },
+    {
+      "id": "gr-brkt-0f01646228",
+      "kind": "bracket",
+      "moved": "verbueden",
+      "options_lb": [
+        "de Schoulmeeschter huet all Gestëppels streng verbueden",
+        "de Schoulmeeschter verbueden huet all Gestëppels streng",
+        "de Schoulmeeschter huet verbueden all Gestëppels streng"
+      ],
+      "correct": 0,
+      "entryId": "ALL2"
+    },
+    {
+      "id": "gr-brkt-049463a971",
+      "kind": "bracket",
+      "moved": "gesot",
+      "options_lb": [
+        "de gesot Patron huet alleguer sengen Aarbechter Merci",
+        "de Patron gesot huet alleguer sengen Aarbechter Merci",
+        "de Patron huet alleguer sengen Aarbechter Merci gesot"
+      ],
+      "correct": 2,
+      "entryId": "ALLEGUER1"
+    },
+    {
+      "id": "gr-brkt-c3deef9857",
+      "kind": "bracket",
+      "moved": "Liewen",
+      "options_lb": [
+        "hien huet absolut keng Ambitiounen am Liewen",
+        "hien huet Liewen absolut keng Ambitiounen am",
+        "hien huet absolut keng Liewen Ambitiounen am"
+      ],
+      "correct": 0,
+      "entryId": "AMBITIOUN1"
+    },
+    {
+      "id": "gr-brkt-549f3a1682",
+      "kind": "bracket",
+      "moved": "geruff",
+      "options_lb": [
+        "huet schonn geruff een eng Ambulanz?",
+        "huet schonn een eng Ambulanz geruff?",
+        "huet geruff schonn een eng Ambulanz?"
+      ],
+      "correct": 1,
+      "entryId": "AMBULANZ1"
+    },
+    {
+      "id": "gr-brkt-029b5d2eca",
+      "kind": "bracket",
+      "moved": "lafen",
+      "options_lb": [
+        "mir ginn ëmmer an de Bësch lafen",
+        "mir ginn lafen ëmmer an de Bësch",
+        "mir ginn ëmmer lafen an de Bësch"
+      ],
+      "correct": 0,
+      "entryId": "AN3"
+    },
+    {
+      "id": "gr-brkt-d69bfee2d5",
+      "kind": "bracket",
+      "moved": "bestuet",
+      "options_lb": [
+        "meng Schwëster huet sech am Joer 2000 bestuet",
+        "meng bestuet Schwëster huet sech am Joer 2000",
+        "meng Schwëster bestuet huet sech am Joer 2000"
+      ],
+      "correct": 0,
+      "entryId": "AN3"
+    },
+    {
+      "id": "gr-brkt-708c7985f8",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "dës Aarbecht ginn kann an dräi Stonne gemaach",
+        "dës Aarbecht kann an dräi Stonne gemaach ginn",
+        "dës ginn Aarbecht kann an dräi Stonne gemaach"
+      ],
+      "correct": 1,
+      "entryId": "AN3"
+    },
+    {
+      "id": "gr-brkt-4d602a468e",
+      "kind": "bracket",
+      "moved": "geplënnert",
+      "options_lb": [
+        "si sinn geplënnert an en anert Duerf",
+        "si sinn an en anert Duerf geplënnert",
+        "si geplënnert sinn an en anert Duerf"
+      ],
+      "correct": 1,
+      "entryId": "ANERT1"
+    },
+    {
+      "id": "gr-brkt-b115678459",
+      "kind": "bracket",
+      "moved": "gesuergt",
+      "options_lb": [
+        "um Fest huet en Orchester fir Animatioun gesuergt",
+        "um gesuergt Fest huet en Orchester fir Animatioun",
+        "um Fest gesuergt huet en Orchester fir Animatioun"
+      ],
+      "correct": 0,
+      "entryId": "ANIMATIOUN1"
+    },
+    {
+      "id": "gr-brkt-c8255dbc3e",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "deen Text ass schonn zweemol geännert ginn",
+        "deen Text ginn ass schonn zweemol geännert",
+        "deen Text ass ginn schonn zweemol geännert"
+      ],
+      "correct": 0,
+      "entryId": "ANNEREN1"
+    },
+    {
+      "id": "gr-brkt-bbe7f43cb4",
+      "kind": "bracket",
+      "moved": "änneren",
+      "options_lb": [
+        "mir mussen änneren eis Pläng fir de Weekend leider",
+        "mir mussen eis Pläng fir änneren de Weekend leider",
+        "mir mussen eis Pläng fir de Weekend leider änneren"
+      ],
+      "correct": 2,
+      "entryId": "ANNEREN1"
+    },
+    {
+      "id": "gr-brkt-fdb8939565",
+      "kind": "bracket",
+      "moved": "geännert",
+      "options_lb": [
+        "et huet sech absolut näischt un der Situatioun geännert",
+        "et geännert huet sech absolut näischt un der Situatioun",
+        "et huet geännert sech absolut näischt un der Situatioun"
+      ],
+      "correct": 0,
+      "entryId": "ANNEREN1"
+    },
+    {
+      "id": "gr-brkt-3433ee2652",
+      "kind": "bracket",
+      "moved": "geännert",
+      "options_lb": [
+        "et huet geännert absolut näischt un der Situatioun",
+        "et huet absolut näischt un der Situatioun geännert",
+        "et geännert huet absolut näischt un der Situatioun"
+      ],
+      "correct": 1,
+      "entryId": "ANNEREN1"
+    },
+    {
+      "id": "gr-brkt-e3e47fa36b",
+      "kind": "bracket",
+      "moved": "geluecht",
+      "options_lb": [
+        "hien huet zwou geluecht Annexe bei säi Rapport",
+        "hien huet zwou Annexe bei säi Rapport geluecht",
+        "hien huet geluecht zwou Annexe bei säi Rapport"
+      ],
+      "correct": 1,
+      "entryId": "ANNEX1"
+    },
+    {
+      "id": "gr-brkt-549d94ac53",
+      "kind": "bracket",
+      "moved": "geäntwert",
+      "options_lb": [
+        "hien huet op meng Fro mat enger Géigefro geäntwert",
+        "hien huet geäntwert op meng Fro mat enger Géigefro",
+        "hien huet op geäntwert meng Fro mat enger Géigefro"
+      ],
+      "correct": 0,
+      "entryId": "ANTWEREN1"
+    },
+    {
+      "id": "gr-brkt-51cd8f44ab",
+      "kind": "bracket",
+      "moved": "verlounen",
+      "options_lb": [
+        "hien huet eng ganz Rei verlounen Appartementer ze",
+        "hien huet eng ganz Rei Appartementer ze verlounen",
+        "hien huet verlounen eng ganz Rei Appartementer ze"
+      ],
+      "correct": 1,
+      "entryId": "APPARTEMENT1"
+    },
+    {
+      "id": "gr-brkt-c3dfbdae6b",
+      "kind": "bracket",
+      "moved": "ageschriwwen",
+      "options_lb": [
+        "ech hunn eis Bouwen an eng Vakanzekolonie ageschriwwen",
+        "ech ageschriwwen hunn eis Bouwen an eng Vakanzekolonie",
+        "ech hunn ageschriwwen eis Bouwen an eng Vakanzekolonie"
+      ],
+      "correct": 0,
+      "entryId": "ASCHREIWEN1"
+    },
+    {
+      "id": "gr-brkt-8fc35e28ff",
+      "kind": "bracket",
+      "moved": "ageschriwwen",
+      "options_lb": [
+        "hatt huet sech op enger auslännescher Universitéit ageschriwwen",
+        "hatt ageschriwwen huet sech op enger auslännescher Universitéit",
+        "hatt huet sech ageschriwwen op enger auslännescher Universitéit"
+      ],
+      "correct": 0,
+      "entryId": "ASCHREIWEN1"
+    },
+    {
+      "id": "gr-brkt-ee3283a07d",
+      "kind": "bracket",
+      "moved": "stoen",
+      "options_lb": [
+        "mir hunn stoen zwou al Aueren am Haus",
+        "mir hunn zwou al Aueren am Haus stoen",
+        "mir stoen hunn zwou al Aueren am Haus"
+      ],
+      "correct": 1,
+      "entryId": "AUER1"
+    },
+    {
+      "id": "gr-brkt-2d5b9bbaac",
+      "kind": "bracket",
+      "moved": "ausgesinn",
+      "options_lb": [
+        "wéi soll ausgesinn dat denger Meenung no?",
+        "wéi soll dat denger Meenung no ausgesinn?",
+        "wéi ausgesinn soll dat denger Meenung no?"
+      ],
+      "correct": 1,
+      "entryId": "AUSGESINN1"
+    },
+    {
+      "id": "gr-brkt-f0823fca8f",
+      "kind": "bracket",
+      "moved": "ausginn",
+      "options_lb": [
+        "wat hues de fir däin Auto ausginn?",
+        "wat ausginn hues de fir däin Auto?",
+        "wat hues ausginn de fir däin Auto?"
+      ],
+      "correct": 0,
+      "entryId": "AUSGINN1"
+    },
+    {
+      "id": "gr-brkt-59ed4d3df1",
+      "kind": "bracket",
+      "moved": "ausléinen",
+      "options_lb": [
+        "de Sportsclub kann eis ausléinen déi néideg Ausrüstung",
+        "de Sportsclub kann eis déi néideg Ausrüstung ausléinen",
+        "de Sportsclub kann ausléinen eis déi néideg Ausrüstung"
+      ],
+      "correct": 1,
+      "entryId": "AUSLEINEN1"
+    },
+    {
+      "id": "gr-brkt-0158dc63ca",
+      "kind": "bracket",
+      "moved": "ausmaachen",
+      "options_lb": [
+        "am Fliger muss een ausmaachen den Handy",
+        "am Fliger muss een den Handy ausmaachen",
+        "am Fliger muss ausmaachen een den Handy"
+      ],
+      "correct": 1,
+      "entryId": "AUSMAACHEN1"
+    },
+    {
+      "id": "gr-brkt-bf5a0b919e",
+      "kind": "bracket",
+      "moved": "ausgemaach",
+      "options_lb": [
+        "mir hunn ausgemaach e Rendez-vous iwwer Telefon",
+        "mir hunn e Rendez-vous iwwer Telefon ausgemaach",
+        "mir ausgemaach hunn e Rendez-vous iwwer Telefon"
+      ],
+      "correct": 1,
+      "entryId": "AUSMAACHEN1"
+    },
+    {
+      "id": "gr-brkt-2c17734421",
+      "kind": "bracket",
+      "moved": "ausgemaach",
+      "options_lb": [
+        "mir hunn ausgemaach eppes fir muer",
+        "mir hunn eppes fir muer ausgemaach",
+        "mir ausgemaach hunn eppes fir muer"
+      ],
+      "correct": 1,
+      "entryId": "AUSMAACHEN1"
+    },
+    {
+      "id": "gr-brkt-8e83d7d05b",
+      "kind": "bracket",
+      "moved": "ausmaachen",
+      "options_lb": [
+        "ech kann ausmaachen dat net mat mengem Gewëssen",
+        "ech kann dat ausmaachen net mat mengem Gewëssen",
+        "ech kann dat net mat mengem Gewëssen ausmaachen"
+      ],
+      "correct": 2,
+      "entryId": "AUSMAACHEN1"
+    },
+    {
+      "id": "gr-brkt-734a8bf924",
+      "kind": "bracket",
+      "moved": "ausgemaach",
+      "options_lb": [
+        "säin ausgemaach Doud huet eis vill",
+        "säin Doud ausgemaach huet eis vill",
+        "säin Doud huet eis vill ausgemaach"
+      ],
+      "correct": 2,
+      "entryId": "AUSMAACHEN1"
+    },
+    {
+      "id": "gr-brkt-d269dfa956",
+      "kind": "bracket",
+      "moved": "ausgepaakt",
+      "options_lb": [
+        "en Zeien ausgepaakt huet an der Zeitung",
+        "en Zeien huet an der Zeitung ausgepaakt",
+        "en ausgepaakt Zeien huet an der Zeitung"
+      ],
+      "correct": 1,
+      "entryId": "AUSPAKEN1"
+    },
+    {
+      "id": "gr-brkt-dec963e30e",
+      "kind": "bracket",
+      "moved": "ausgeschwat",
+      "options_lb": [
+        "hien ausgeschwat huet sech mat sengen Elteren",
+        "hien huet ausgeschwat sech mat sengen Elteren",
+        "hien huet sech mat sengen Elteren ausgeschwat"
+      ],
+      "correct": 2,
+      "entryId": "AUSSCHWATZEN1"
+    },
+    {
+      "id": "gr-brkt-e4ba2b9298",
+      "kind": "bracket",
+      "moved": "meckeren",
+      "options_lb": [
+        "du muss awer och ëmmer meckeren!",
+        "du muss meckeren awer och ëmmer!",
+        "du muss awer meckeren och ëmmer!"
+      ],
+      "correct": 0,
+      "entryId": "AWER3"
+    },
+    {
+      "id": "gr-brkt-5f05553f9d",
+      "kind": "bracket",
+      "moved": "Baken",
+      "options_lb": [
+        "hie mécht erëm déck Baken",
+        "hie mécht Baken erëm déck",
+        "hie mécht erëm Baken déck"
+      ],
+      "correct": 0,
+      "entryId": "BAK1"
+    },
+    {
+      "id": "gr-brkt-ac470e7b0f",
+      "kind": "bracket",
+      "moved": "gebak",
+      "options_lb": [
+        "de Bäcker gebak huet fir e Client fofzeg Baguettë",
+        "de Bäcker huet fir e Client fofzeg Baguettë gebak",
+        "de gebak Bäcker huet fir e Client fofzeg Baguettë"
+      ],
+      "correct": 1,
+      "entryId": "BAKEN1"
+    },
+    {
+      "id": "gr-brkt-751872f8f8",
+      "kind": "bracket",
+      "moved": "sichen",
+      "options_lb": [
+        "ech ginn nach op de Bancomat Sue sichen",
+        "ech ginn sichen nach op de Bancomat Sue",
+        "ech ginn nach sichen op de Bancomat Sue"
+      ],
+      "correct": 0,
+      "entryId": "BANCOMAT1"
+    },
+    {
+      "id": "gr-brkt-864829d9fe",
+      "kind": "bracket",
+      "moved": "stoen",
+      "options_lb": [
+        "mäi Bopi huet zwou Bänke viru sengem Gaardenhaische stoen",
+        "mäi Bopi stoen huet zwou Bänke viru sengem Gaardenhaische",
+        "mäi Bopi huet stoen zwou Bänke viru sengem Gaardenhaische"
+      ],
+      "correct": 0,
+      "entryId": "BANK2"
+    },
+    {
+      "id": "gr-brkt-354e266f27",
+      "kind": "bracket",
+      "moved": "Laachen",
+      "options_lb": [
+        "mir hunn eis de Bauch gehale vu Laachen",
+        "mir Laachen hunn eis de Bauch gehale vu",
+        "mir hunn Laachen eis de Bauch gehale vu"
+      ],
+      "correct": 0,
+      "entryId": "BAUCH1"
+    },
+    {
+      "id": "gr-brkt-0ace0cd38b",
+      "kind": "bracket",
+      "moved": "froen",
+      "options_lb": [
+        "eise Klenge kann froen engem Lächer an de Bauch!",
+        "eise Klenge kann engem Lächer froen an de Bauch!",
+        "eise Klenge kann engem Lächer an de Bauch froen!"
+      ],
+      "correct": 2,
+      "entryId": "BAUCH1"
+    },
+    {
+      "id": "gr-brkt-f81596ea46",
+      "kind": "bracket",
+      "moved": "gesat",
+      "options_lb": [
+        "hien huet de gesat Kinnek mat engem Bauer schachmatt",
+        "hien huet de Kinnek mat engem Bauer schachmatt gesat",
+        "hien huet gesat de Kinnek mat engem Bauer schachmatt"
+      ],
+      "correct": 1,
+      "entryId": "BAUER1"
+    },
+    {
+      "id": "gr-brkt-e187386b28",
+      "kind": "bracket",
+      "moved": "verluer",
+      "options_lb": [
+        "mäi Grousspapp verluer huet am Krich e Bee",
+        "mäi Grousspapp huet am Krich e Bee verluer",
+        "mäi verluer Grousspapp huet am Krich e Bee"
+      ],
+      "correct": 1,
+      "entryId": "BEEN1"
+    },
+    {
+      "id": "gr-brkt-5aaec5fa4d",
+      "kind": "bracket",
+      "moved": "iessen",
+      "options_lb": [
+        "kommt dir iessen den Owend bei eis?",
+        "kommt dir den Owend bei eis iessen?",
+        "kommt iessen dir den Owend bei eis?"
+      ],
+      "correct": 1,
+      "entryId": "BEI2"
+    },
+    {
+      "id": "gr-brkt-fa97065d34",
+      "kind": "bracket",
+      "moved": "verluer",
+      "options_lb": [
+        "bei deene Leit hues du näischt verluer!",
+        "bei verluer deene Leit hues du näischt!",
+        "bei deene verluer Leit hues du näischt!"
+      ],
+      "correct": 0,
+      "entryId": "BEI2"
+    },
+    {
+      "id": "gr-brkt-3d8baa9a7b",
+      "kind": "bracket",
+      "moved": "widderholl",
+      "options_lb": [
+        "hien huet seng Ausso bei Zeien zou widderholl",
+        "hien huet widderholl seng Ausso bei Zeien zou",
+        "hien huet seng widderholl Ausso bei Zeien zou"
+      ],
+      "correct": 0,
+      "entryId": "BEI2"
+    },
+    {
+      "id": "gr-brkt-3c225e29a1",
+      "kind": "bracket",
+      "moved": "kaaft",
+      "options_lb": [
+        "meng kaaft Mamm huet sech e beigë Reemantel",
+        "meng Mamm kaaft huet sech e beigë Reemantel",
+        "meng Mamm huet sech e beigë Reemantel kaaft"
+      ],
+      "correct": 2,
+      "entryId": "BEIGE1"
+    },
+    {
+      "id": "gr-brkt-c3ed5d73d0",
+      "kind": "bracket",
+      "moved": "usträichen",
+      "options_lb": [
+        "mir wëllen eist usträichen Haus beige",
+        "mir wëllen eist Haus beige usträichen",
+        "mir wëllen usträichen eist Haus beige"
+      ],
+      "correct": 1,
+      "entryId": "BEIGE1"
+    },
+    {
+      "id": "gr-brkt-6bdce03395",
+      "kind": "bracket",
+      "moved": "gedréckt",
+      "options_lb": [
+        "dat gedréckt Buch ass op bëllegem Pabeier",
+        "dat Buch gedréckt ass op bëllegem Pabeier",
+        "dat Buch ass op bëllegem Pabeier gedréckt"
+      ],
+      "correct": 2,
+      "entryId": "BELLEG1"
+    },
+    {
+      "id": "gr-brkt-622ad5dc3b",
+      "kind": "bracket",
+      "moved": "benotzt",
+      "options_lb": [
+        "dat benotzt Wuert gëtt bal ni",
+        "dat Wuert benotzt gëtt bal ni",
+        "dat Wuert gëtt bal ni benotzt"
+      ],
+      "correct": 2,
+      "entryId": "BENOTZEN1"
+    },
+    {
+      "id": "gr-brkt-0de5297ad8",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "dëse ginn Schrëftsteller ass duerch säi lescht Wierk berüümt",
+        "dëse Schrëftsteller ginn ass duerch säi lescht Wierk berüümt",
+        "dëse Schrëftsteller ass duerch säi lescht Wierk berüümt ginn"
+      ],
+      "correct": 2,
+      "entryId": "BERUUMT1"
+    },
+    {
+      "id": "gr-brkt-9c5cddf281",
+      "kind": "bracket",
+      "moved": "spadséieren",
+      "options_lb": [
+        "mir ginn all Sonndeg spadséieren an de Bësch",
+        "mir ginn all Sonndeg an de Bësch spadséieren",
+        "mir ginn spadséieren all Sonndeg an de Bësch"
+      ],
+      "correct": 1,
+      "entryId": "BESCH1"
+    },
+    {
+      "id": "gr-brkt-9e5c06a4e8",
+      "kind": "bracket",
+      "moved": "besichen",
+      "options_lb": [
+        "kommt eis besichen dach emol!",
+        "kommt eis dach emol besichen!",
+        "kommt besichen eis dach emol!"
+      ],
+      "correct": 1,
+      "entryId": "BESICHEN1"
+    },
+    {
+      "id": "gr-brkt-de08055f63",
+      "kind": "bracket",
+      "moved": "bestallt",
+      "options_lb": [
+        "de Bouf huet sech beim Kleeschen e Vëlo bestallt",
+        "de bestallt Bouf huet sech beim Kleeschen e Vëlo",
+        "de Bouf bestallt huet sech beim Kleeschen e Vëlo"
+      ],
+      "correct": 0,
+      "entryId": "BESTELLEN1"
+    },
+    {
+      "id": "gr-brkt-7e5703a456",
+      "kind": "bracket",
+      "moved": "bestallt",
+      "options_lb": [
+        "meng Mamm bestallt huet eng Mass beim Paschtouer",
+        "meng Mamm huet eng Mass beim Paschtouer bestallt",
+        "meng bestallt Mamm huet eng Mass beim Paschtouer"
+      ],
+      "correct": 1,
+      "entryId": "BESTELLEN1"
+    },
+    {
+      "id": "gr-brkt-45f1fa26bf",
+      "kind": "bracket",
+      "moved": "bestanen",
+      "options_lb": [
+        "et huet kee Kandidat den Test bestanen",
+        "et bestanen huet kee Kandidat den Test",
+        "et huet kee Kandidat bestanen den Test"
+      ],
+      "correct": 0,
+      "entryId": "BESTOEN1"
+    },
+    {
+      "id": "gr-brkt-81728152cc",
+      "kind": "bracket",
+      "moved": "bestuet",
+      "options_lb": [
+        "de Buergermeeschter bestuet huet déi jonk Koppel",
+        "de Buergermeeschter huet déi jonk Koppel bestuet",
+        "de bestuet Buergermeeschter huet déi jonk Koppel"
+      ],
+      "correct": 1,
+      "entryId": "BESTUEDEN1"
+    },
+    {
+      "id": "gr-brkt-526a4881ad",
+      "kind": "bracket",
+      "moved": "bestuet",
+      "options_lb": [
+        "ech sinn bestuet net mat him",
+        "ech sinn net mat him bestuet",
+        "ech bestuet sinn net mat him"
+      ],
+      "correct": 1,
+      "entryId": "BESTUET1"
+    },
+    {
+      "id": "gr-brkt-1a24c8ddbc",
+      "kind": "bracket",
+      "moved": "bezuelt",
+      "options_lb": [
+        "ech hunn bezuelt déi Dommheet deier",
+        "ech hunn déi Dommheet deier bezuelt",
+        "ech bezuelt hunn déi Dommheet deier"
+      ],
+      "correct": 1,
+      "entryId": "BEZUELEN1"
+    },
+    {
+      "id": "gr-brkt-a75ae23a3f",
+      "kind": "bracket",
+      "moved": "gemaach",
+      "options_lb": [
+        "meng Méi gemaach huet sech bezuelt",
+        "meng Méi huet sech bezuelt gemaach",
+        "meng gemaach Méi huet sech bezuelt"
+      ],
+      "correct": 1,
+      "entryId": "BEZUELEN1"
+    },
+    {
+      "id": "gr-brkt-3b7e8077c0",
+      "kind": "bracket",
+      "moved": "bezuelen",
+      "options_lb": [
+        "du bass bezuelen net mat Geld ze!",
+        "du bass net mat Geld bezuelen ze!",
+        "du bass net mat Geld ze bezuelen!"
+      ],
+      "correct": 2,
+      "entryId": "BEZUELEN1"
+    },
+    {
+      "id": "gr-brkt-300384ce8b",
+      "kind": "bracket",
+      "moved": "loossen",
+      "options_lb": [
+        "ech muss dat loossen neit Bild nach arumme",
+        "ech muss dat neit Bild nach arumme loossen",
+        "ech muss loossen dat neit Bild nach arumme"
+      ],
+      "correct": 1,
+      "entryId": "BILD1"
+    },
+    {
+      "id": "gr-brkt-db44020eae",
+      "kind": "bracket",
+      "moved": "ofginn",
+      "options_lb": [
+        "mäin Neveu ofginn huet am Examen e wäisst Blat",
+        "mäin Neveu huet am Examen e wäisst Blat ofginn",
+        "mäin ofginn Neveu huet am Examen e wäisst Blat"
+      ],
+      "correct": 1,
+      "entryId": "BLAT1"
+    },
+    {
+      "id": "gr-brkt-81f99a1336",
+      "kind": "bracket",
+      "moved": "léinen",
+      "options_lb": [
+        "kanns léinen de mir zwee Blat Pabeier?",
+        "kanns de mir léinen zwee Blat Pabeier?",
+        "kanns de mir zwee Blat Pabeier léinen?"
+      ],
+      "correct": 2,
+      "entryId": "BLAT1"
+    },
+    {
+      "id": "gr-brkt-0fa2031fe0",
+      "kind": "bracket",
+      "moved": "bliwwen",
+      "options_lb": [
+        "dat bliwwen ass mir net an Erënnerung",
+        "dat ass mir bliwwen net an Erënnerung",
+        "dat ass mir net an Erënnerung bliwwen"
+      ],
+      "correct": 2,
+      "entryId": "BLEIWEN1"
+    },
+    {
+      "id": "gr-brkt-de6dab110b",
+      "kind": "bracket",
+      "moved": "gespaart",
+      "options_lb": [
+        "muer gespaart bleift de Stadzentrum fir den Autosverkéier",
+        "muer bleift gespaart de Stadzentrum fir den Autosverkéier",
+        "muer bleift de Stadzentrum fir den Autosverkéier gespaart"
+      ],
+      "correct": 2,
+      "entryId": "BLEIWEN1"
+    },
+    {
+      "id": "gr-brkt-2eaf9ba8f5",
+      "kind": "bracket",
+      "moved": "bliwwen",
+      "options_lb": [
+        "et ass keng bliwwen Zäit méi dofir",
+        "et ass keng Zäit méi dofir bliwwen",
+        "et bliwwen ass keng Zäit méi dofir"
+      ],
+      "correct": 1,
+      "entryId": "BLEIWEN1"
+    },
+    {
+      "id": "gr-brkt-48e258aa0c",
+      "kind": "bracket",
+      "moved": "bezuelen",
+      "options_lb": [
+        "et bleiwen nëmme méi 100 bezuelen Euro ze",
+        "et bleiwen nëmme méi 100 Euro ze bezuelen",
+        "et bleiwen nëmme méi bezuelen 100 Euro ze"
+      ],
+      "correct": 1,
+      "entryId": "BLEIWEN1"
+    },
+    {
+      "id": "gr-brkt-bc764b5cd7",
+      "kind": "bracket",
+      "moved": "geblosen",
+      "options_lb": [
+        "gëschter huet geblosen e staarke Wand",
+        "gëschter huet e staarke Wand geblosen",
+        "gëschter geblosen huet e staarke Wand"
+      ],
+      "correct": 1,
+      "entryId": "BLOSEN1"
+    },
+    {
+      "id": "gr-brkt-3f8d5fd45a",
+      "kind": "bracket",
+      "moved": "geblosen",
+      "options_lb": [
+        "de Papp huet sengem Fils geblosen et gutt!",
+        "de Papp huet sengem Fils et gutt geblosen!",
+        "de Papp geblosen huet sengem Fils et gutt!"
+      ],
+      "correct": 1,
+      "entryId": "BLOSEN1"
+    },
+    {
+      "id": "gr-brkt-b32676f6e8",
+      "kind": "bracket",
+      "moved": "kucken",
+      "options_lb": [
+        "den Enkel kucken ass mat senger Boma eng Ausstellung",
+        "den Enkel ass mat senger Boma kucken eng Ausstellung",
+        "den Enkel ass mat senger Boma eng Ausstellung kucken"
+      ],
+      "correct": 2,
+      "entryId": "BOMA1"
+    },
+    {
+      "id": "gr-brkt-f5a996c354",
+      "kind": "bracket",
+      "moved": "gebotzt",
+      "options_lb": [
+        "meng Mamm huet gëschter dat ganzt Haus gebotzt",
+        "meng gebotzt Mamm huet gëschter dat ganzt Haus",
+        "meng Mamm gebotzt huet gëschter dat ganzt Haus"
+      ],
+      "correct": 0,
+      "entryId": "BOTZEN1"
+    },
+    {
+      "id": "gr-brkt-1bf8136a80",
+      "kind": "bracket",
+      "moved": "brauchen",
+      "options_lb": [
+        "jidderee kann déi nei Mataarbechterin gutt brauchen",
+        "jidderee kann brauchen déi nei Mataarbechterin gutt",
+        "jidderee kann déi brauchen nei Mataarbechterin gutt"
+      ],
+      "correct": 0,
+      "entryId": "BRAUCHEN1"
+    },
+    {
+      "id": "gr-brkt-26c20282b7",
+      "kind": "bracket",
+      "moved": "bruecht",
+      "options_lb": [
+        "de Bréifdréier bruecht huet e Pak",
+        "de Bréifdréier huet e Pak bruecht",
+        "de bruecht Bréifdréier huet e Pak"
+      ],
+      "correct": 1,
+      "entryId": "BRENGEN1"
+    },
+    {
+      "id": "gr-brkt-d7c71d24d5",
+      "kind": "bracket",
+      "moved": "bruecht",
+      "options_lb": [
+        "hien huet et bruecht wäit",
+        "hien huet et wäit bruecht",
+        "hien huet bruecht et wäit"
+      ],
+      "correct": 1,
+      "entryId": "BRENGEN1"
+    },
+    {
+      "id": "gr-brkt-b4bc7ec91d",
+      "kind": "bracket",
+      "moved": "bruecht",
+      "options_lb": [
+        "hien huet bruecht et zu eppes",
+        "hien huet et bruecht zu eppes",
+        "hien huet et zu eppes bruecht"
+      ],
+      "correct": 2,
+      "entryId": "BRENGEN1"
+    },
+    {
+      "id": "gr-brkt-a7a50eaafe",
+      "kind": "bracket",
+      "moved": "bruecht",
+      "options_lb": [
+        "de Sproochecours huet mir vill bruecht",
+        "de bruecht Sproochecours huet mir vill",
+        "de Sproochecours bruecht huet mir vill"
+      ],
+      "correct": 0,
+      "entryId": "BRENGEN1"
+    },
+    {
+      "id": "gr-brkt-c6a19a2216",
+      "kind": "bracket",
+      "moved": "gebrach",
+      "options_lb": [
+        "de Kommitee huet déi Saach iwwer de Knéi gebrach",
+        "de gebrach Kommitee huet déi Saach iwwer de Knéi",
+        "de Kommitee gebrach huet déi Saach iwwer de Knéi"
+      ],
+      "correct": 0,
+      "entryId": "BRIECHEN1"
+    },
+    {
+      "id": "gr-brkt-1375407368",
+      "kind": "bracket",
+      "moved": "gebrach",
+      "options_lb": [
+        "du hues gebrach däi Versprieche!",
+        "du hues däi Versprieche gebrach!",
+        "du gebrach hues däi Versprieche!"
+      ],
+      "correct": 1,
+      "entryId": "BRIECHEN1"
+    },
+    {
+      "id": "gr-brkt-cf780e9602",
+      "kind": "bracket",
+      "moved": "briechen",
+      "options_lb": [
+        "dir kënnt briechen de Kontrakt net einfach esou",
+        "dir kënnt de Kontrakt briechen net einfach esou",
+        "dir kënnt de Kontrakt net einfach esou briechen"
+      ],
+      "correct": 2,
+      "entryId": "BRIECHEN1"
+    },
+    {
+      "id": "gr-brkt-1654603f4c",
+      "kind": "bracket",
+      "moved": "gebucht",
+      "options_lb": [
+        "mir gebucht hunn eis Rees dräi Méint am Viraus",
+        "mir hunn gebucht eis Rees dräi Méint am Viraus",
+        "mir hunn eis Rees dräi Méint am Viraus gebucht"
+      ],
+      "correct": 2,
+      "entryId": "BUCHEN1"
+    },
+    {
+      "id": "gr-brkt-f2725177d9",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "de Budget ass eestëmmeg ugeholl ginn",
+        "de ginn Budget ass eestëmmeg ugeholl",
+        "de Budget ginn ass eestëmmeg ugeholl"
+      ],
+      "correct": 0,
+      "entryId": "BUDGET1"
+    },
+    {
+      "id": "gr-brkt-8a4a35910f",
+      "kind": "bracket",
+      "moved": "gefall",
+      "options_lb": [
+        "meng gefall Taass ass mer op de Buedem",
+        "meng Taass gefall ass mer op de Buedem",
+        "meng Taass ass mer op de Buedem gefall"
+      ],
+      "correct": 2,
+      "entryId": "BUEDEM1"
+    },
+    {
+      "id": "gr-brkt-6bde0cc49d",
+      "kind": "bracket",
+      "moved": "gebak",
+      "options_lb": [
+        "ech hunn de Buedem vun der Taart selwer gebak",
+        "ech gebak hunn de Buedem vun der Taart selwer",
+        "ech hunn gebak de Buedem vun der Taart selwer"
+      ],
+      "correct": 0,
+      "entryId": "BUEDEM1"
+    },
+    {
+      "id": "gr-brkt-f99bc2de16",
+      "kind": "bracket",
+      "moved": "iessen",
+      "options_lb": [
+        "ech ginn den iessen Owend mam Büro",
+        "ech ginn den Owend mam Büro iessen",
+        "ech ginn iessen den Owend mam Büro"
+      ],
+      "correct": 1,
+      "entryId": "BURO1"
+    },
+    {
+      "id": "gr-brkt-95aa29a9bc",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "dës Decisioun ginn muss vum Büro geholl",
+        "dës Decisioun muss vum Büro geholl ginn",
+        "dës ginn Decisioun muss vum Büro geholl"
+      ],
+      "correct": 1,
+      "entryId": "BURO1"
+    },
+    {
+      "id": "gr-brkt-577cc54d5a",
+      "kind": "bracket",
+      "moved": "vergiess",
+      "options_lb": [
+        "Dir hutt bei mengem Numm e Buschtaf vergiess",
+        "Dir vergiess hutt bei mengem Numm e Buschtaf",
+        "Dir hutt vergiess bei mengem Numm e Buschtaf"
+      ],
+      "correct": 0,
+      "entryId": "BUSCHTAF1"
+    },
+    {
+      "id": "gr-brkt-4d6762a85b",
+      "kind": "bracket",
+      "moved": "invitéiert",
+      "options_lb": [
+        "den invitéiert Dokter huet de Cabinet op en Owesiessen",
+        "den Dokter invitéiert huet de Cabinet op en Owesiessen",
+        "den Dokter huet de Cabinet op en Owesiessen invitéiert"
+      ],
+      "correct": 2,
+      "entryId": "CABINET1"
+    },
+    {
+      "id": "gr-brkt-38cd4477ae",
+      "kind": "bracket",
+      "moved": "ugefrot",
+      "options_lb": [
+        "den ugefrot Aarbechtslosen huet Chômage",
+        "den Aarbechtslosen ugefrot huet Chômage",
+        "den Aarbechtslosen huet Chômage ugefrot"
+      ],
+      "correct": 2,
+      "entryId": "CHOMAGE1"
+    },
+    {
+      "id": "gr-brkt-78229e8c55",
+      "kind": "bracket",
+      "moved": "geschnidden",
+      "options_lb": [
+        "de Coiffer geschnidden huet dem Bouf eng Bross",
+        "de Coiffer huet geschnidden dem Bouf eng Bross",
+        "de Coiffer huet dem Bouf eng Bross geschnidden"
+      ],
+      "correct": 2,
+      "entryId": "COIFFER1"
+    },
+    {
+      "id": "gr-brkt-7457988c06",
+      "kind": "bracket",
+      "moved": "geléiert",
+      "options_lb": [
+        "ech hunn am Conservatoire Flütt geléiert",
+        "ech geléiert hunn am Conservatoire Flütt",
+        "ech hunn geléiert am Conservatoire Flütt"
+      ],
+      "correct": 0,
+      "entryId": "CONSERVATOIRE1"
+    },
+    {
+      "id": "gr-brkt-70ad539eec",
+      "kind": "bracket",
+      "moved": "getrëppelt",
+      "options_lb": [
+        "de getrëppelt Bouf ass ganz couragéiert bei den Zänndokter",
+        "de Bouf getrëppelt ass ganz couragéiert bei den Zänndokter",
+        "de Bouf ass ganz couragéiert bei den Zänndokter getrëppelt"
+      ],
+      "correct": 2,
+      "entryId": "COURAGEIERT1"
+    },
+    {
+      "id": "gr-brkt-fb1ec8408a",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "kanns ginn du mer däi Cours?",
+        "kanns du ginn mer däi Cours?",
+        "kanns du mer däi Cours ginn?"
+      ],
+      "correct": 2,
+      "entryId": "COURS1"
+    },
+    {
+      "id": "gr-brkt-795259432e",
+      "kind": "bracket",
+      "moved": "weidergoen",
+      "options_lb": [
+        "esou däerf weidergoen et dach net!",
+        "esou däerf et dach net weidergoen!",
+        "esou weidergoen däerf et dach net!"
+      ],
+      "correct": 1,
+      "entryId": "DACH2"
+    },
+    {
+      "id": "gr-brkt-cee6651a19",
+      "kind": "bracket",
+      "moved": "gelooss",
+      "options_lb": [
+        "mäin Auto gelooss huet mech schonn dacks am Stach",
+        "mäin Auto huet gelooss mech schonn dacks am Stach",
+        "mäin Auto huet mech schonn dacks am Stach gelooss"
+      ],
+      "correct": 2,
+      "entryId": "DACKS1"
+    },
+    {
+      "id": "gr-brkt-ba9b8efb32",
+      "kind": "bracket",
+      "moved": "goen",
+      "options_lb": [
+        "ech hunn net däerfe mat an de Kino goen",
+        "ech goen hunn net däerfe mat an de Kino",
+        "ech hunn goen net däerfe mat an de Kino"
+      ],
+      "correct": 0,
+      "entryId": "DAERFEN1"
+    },
+    {
+      "id": "gr-brkt-ca10c60c39",
+      "kind": "bracket",
+      "moved": "froen",
+      "options_lb": [
+        "däerft ech froen Iech eppes?",
+        "däerft ech Iech eppes froen?",
+        "däerft froen ech Iech eppes?"
+      ],
+      "correct": 1,
+      "entryId": "DAERFEN1"
+    },
+    {
+      "id": "gr-brkt-1b4508bae6",
+      "kind": "bracket",
+      "moved": "verstanen",
+      "options_lb": [
+        "mir verstanen hunn eis vum éischten Dag u gutt",
+        "mir hunn verstanen eis vum éischten Dag u gutt",
+        "mir hunn eis vum éischten Dag u gutt verstanen"
+      ],
+      "correct": 2,
+      "entryId": "DAG1"
+    },
+    {
+      "id": "gr-brkt-93d23bdc9d",
+      "kind": "bracket",
+      "moved": "gemaach",
+      "options_lb": [
+        "mäi Mataarbechter huet haut en décke Feeler gemaach",
+        "mäi gemaach Mataarbechter huet haut en décke Feeler",
+        "mäi Mataarbechter gemaach huet haut en décke Feeler"
+      ],
+      "correct": 0,
+      "entryId": "DECK1"
+    },
+    {
+      "id": "gr-brkt-d1e7542891",
+      "kind": "bracket",
+      "moved": "bestuet",
+      "options_lb": [
+        "meng Kusin bestuet huet en décke Bauer",
+        "meng Kusin huet en décke Bauer bestuet",
+        "meng bestuet Kusin huet en décke Bauer"
+      ],
+      "correct": 1,
+      "entryId": "DECK1"
+    },
+    {
+      "id": "gr-brkt-1c6ac5ec01",
+      "kind": "bracket",
+      "moved": "gedeckt",
+      "options_lb": [
+        "mäi gedeckt Kinnek ass duerch zwee Leefer",
+        "mäi Kinnek gedeckt ass duerch zwee Leefer",
+        "mäi Kinnek ass duerch zwee Leefer gedeckt"
+      ],
+      "correct": 2,
+      "entryId": "DECKEN2"
+    },
+    {
+      "id": "gr-brkt-46510909c9",
+      "kind": "bracket",
+      "moved": "opgaangen",
+      "options_lb": [
+        "den opgaangen Deeg ass gutt",
+        "den Deeg opgaangen ass gutt",
+        "den Deeg ass gutt opgaangen"
+      ],
+      "correct": 2,
+      "entryId": "DEEG1"
+    },
+    {
+      "id": "gr-brkt-d6744645c5",
+      "kind": "bracket",
+      "moved": "gedeelt",
+      "options_lb": [
+        "dat gedeelt Klengt huet säi Schockela mat senge Frëndinne",
+        "dat Klengt gedeelt huet säi Schockela mat senge Frëndinne",
+        "dat Klengt huet säi Schockela mat senge Frëndinne gedeelt"
+      ],
+      "correct": 2,
+      "entryId": "DEELEN1"
+    },
+    {
+      "id": "gr-brkt-b6109e5188",
+      "kind": "bracket",
+      "moved": "gedeelt",
+      "options_lb": [
+        "si hunn de Mëssel gedeelt",
+        "si gedeelt hunn de Mëssel",
+        "si hunn gedeelt de Mëssel"
+      ],
+      "correct": 0,
+      "entryId": "DEELEN1"
+    },
+    {
+      "id": "gr-brkt-ea2cc4ddaf",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "deem ass ginn net Rechnung gedroe",
+        "deem ass net Rechnung gedroe ginn",
+        "deem ginn ass net Rechnung gedroe"
+      ],
+      "correct": 1,
+      "entryId": "DEEM1"
+    },
+    {
+      "id": "gr-brkt-7991be0b8b",
+      "kind": "bracket",
+      "moved": "loossen",
+      "options_lb": [
+        "mir loossen däerfen deen dach net einfach gewäerde!",
+        "mir däerfen deen dach loossen net einfach gewäerde!",
+        "mir däerfen deen dach net einfach gewäerde loossen!"
+      ],
+      "correct": 2,
+      "entryId": "DEEN1"
+    },
+    {
+      "id": "gr-brkt-137c795ee3",
+      "kind": "bracket",
+      "moved": "hëllefen",
+      "options_lb": [
+        "deenen ass hëllefen net ze!",
+        "deenen ass net ze hëllefen!",
+        "deenen hëllefen ass net ze!"
+      ],
+      "correct": 1,
+      "entryId": "DEENEN1"
+    },
+    {
+      "id": "gr-brkt-285a36bd73",
+      "kind": "bracket",
+      "moved": "kaaft",
+      "options_lb": [
+        "ech hunn kaaft dëse Mantel an engem deiere Geschäft",
+        "ech hunn dëse Mantel an engem deiere Geschäft kaaft",
+        "ech kaaft hunn dëse Mantel an engem deiere Geschäft"
+      ],
+      "correct": 1,
+      "entryId": "DEIER2"
+    },
+    {
+      "id": "gr-brkt-158af8a1c1",
+      "kind": "bracket",
+      "moved": "gefall",
+      "options_lb": [
+        "däi Monni gefall ass déif",
+        "däi Monni ass déif gefall",
+        "däi gefall Monni ass déif"
+      ],
+      "correct": 1,
+      "entryId": "DEIF2"
+    },
+    {
+      "id": "gr-brkt-85c8f79abd",
+      "kind": "bracket",
+      "moved": "drénken",
+      "options_lb": [
+        "mir drénken däerfen am Déngscht keen Alkohol",
+        "mir däerfen drénken am Déngscht keen Alkohol",
+        "mir däerfen am Déngscht keen Alkohol drénken"
+      ],
+      "correct": 2,
+      "entryId": "DENGSCHT1"
+    },
+    {
+      "id": "gr-brkt-cc87fdaf55",
+      "kind": "bracket",
+      "moved": "denken",
+      "options_lb": [
+        "dat denken do gëtt mer ze!",
+        "dat do gëtt mer denken ze!",
+        "dat do gëtt mer ze denken!"
+      ],
+      "correct": 2,
+      "entryId": "DENKEN1"
+    },
+    {
+      "id": "gr-brkt-083f4144c2",
+      "kind": "bracket",
+      "moved": "denken",
+      "options_lb": [
+        "mir mussen onbedéngt dorun denken!",
+        "mir mussen denken onbedéngt dorun!",
+        "mir mussen onbedéngt denken dorun!"
+      ],
+      "correct": 0,
+      "entryId": "DENKEN1"
+    },
+    {
+      "id": "gr-brkt-b15cc85a29",
+      "kind": "bracket",
+      "moved": "geduecht",
+      "options_lb": [
+        "wat geduecht hues du dir dobäi?",
+        "wat hues geduecht du dir dobäi?",
+        "wat hues du dir dobäi geduecht?"
+      ],
+      "correct": 2,
+      "entryId": "DENKEN1"
+    },
+    {
+      "id": "gr-brkt-ea73706e35",
+      "kind": "bracket",
+      "moved": "geduecht",
+      "options_lb": [
+        "de geduecht Garçon huet sech säint",
+        "de Garçon geduecht huet sech säint",
+        "de Garçon huet sech säint geduecht"
+      ],
+      "correct": 2,
+      "entryId": "DENKEN1"
+    },
+    {
+      "id": "gr-brkt-827306fdad",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "seng ginn Hoer fänken un dënn ze",
+        "seng Hoer ginn fänken un dënn ze",
+        "seng Hoer fänken un dënn ze ginn"
+      ],
+      "correct": 2,
+      "entryId": "DENN1"
+    },
+    {
+      "id": "gr-brkt-4ae838e879",
+      "kind": "bracket",
+      "moved": "ugeruff",
+      "options_lb": [
+        "de Laboratoire huet mech leschten Dënschdeg ugeruff",
+        "de Laboratoire ugeruff huet mech leschten Dënschdeg",
+        "de Laboratoire huet ugeruff mech leschten Dënschdeg"
+      ],
+      "correct": 0,
+      "entryId": "DENSCHDEG1"
+    },
+    {
+      "id": "gr-brkt-9880744992",
+      "kind": "bracket",
+      "moved": "gesinn",
+      "options_lb": [
+        "mir hunn eis en Dënschdeg gesinn",
+        "mir gesinn hunn eis en Dënschdeg",
+        "mir hunn gesinn eis en Dënschdeg"
+      ],
+      "correct": 0,
+      "entryId": "DENSCHDEG1"
+    },
+    {
+      "id": "gr-brkt-131d744583",
+      "kind": "bracket",
+      "moved": "verpasst",
+      "options_lb": [
+        "de verpasst Leefer huet den Depart",
+        "de Leefer verpasst huet den Depart",
+        "de Leefer huet den Depart verpasst"
+      ],
+      "correct": 2,
+      "entryId": "DEPART1"
+    },
+    {
+      "id": "gr-brkt-d075bd88b1",
+      "kind": "bracket",
+      "moved": "depriméiert",
+      "options_lb": [
+        "hie wierkt depriméiert an der Lescht eng Grimmel",
+        "hie wierkt an depriméiert der Lescht eng Grimmel",
+        "hie wierkt an der Lescht eng Grimmel depriméiert"
+      ],
+      "correct": 2,
+      "entryId": "DEPRIMEIEREN1"
+    },
+    {
+      "id": "gr-brkt-62cc5db811",
+      "kind": "bracket",
+      "moved": "ameséiert",
+      "options_lb": [
+        "hutt ameséiert der iech alleguer gutt?",
+        "hutt der ameséiert iech alleguer gutt?",
+        "hutt der iech alleguer gutt ameséiert?"
+      ],
+      "correct": 2,
+      "entryId": "DER1"
+    },
+    {
+      "id": "gr-brkt-52ec066c69",
+      "kind": "bracket",
+      "moved": "gefall",
+      "options_lb": [
+        "meng gefall Propositioun ass ënner den Dësch",
+        "meng Propositioun gefall ass ënner den Dësch",
+        "meng Propositioun ass ënner den Dësch gefall"
+      ],
+      "correct": 2,
+      "entryId": "DESCH1"
+    },
+    {
+      "id": "gr-brkt-a503d32157",
+      "kind": "bracket",
+      "moved": "geschwat",
+      "options_lb": [
+        "iwwer Dësch gëtt net geschwat!",
+        "iwwer geschwat Dësch gëtt net!",
+        "iwwer Dësch geschwat gëtt net!"
+      ],
+      "correct": 0,
+      "entryId": "DESCH1"
+    },
+    {
+      "id": "gr-brkt-9588401fe8",
+      "kind": "bracket",
+      "moved": "weidergoen",
+      "options_lb": [
+        "Dir musst eng weidergoen Dier",
+        "Dir musst eng Dier weidergoen",
+        "Dir musst weidergoen eng Dier"
+      ],
+      "correct": 1,
+      "entryId": "DIER1"
+    },
+    {
+      "id": "gr-brkt-1d5a3ff89d",
+      "kind": "bracket",
+      "moved": "getankt",
+      "options_lb": [
+        "hien huet 25 Liter Diesel getankt",
+        "hien huet getankt 25 Liter Diesel",
+        "hien huet 25 getankt Liter Diesel"
+      ],
+      "correct": 0,
+      "entryId": "DIESEL1"
+    },
+    {
+      "id": "gr-brkt-43d37d88c1",
+      "kind": "bracket",
+      "moved": "diskutéiert",
+      "options_lb": [
+        "haut gëtt dat neit Gesetz an der Chamber diskutéiert",
+        "haut diskutéiert gëtt dat neit Gesetz an der Chamber",
+        "haut gëtt diskutéiert dat neit Gesetz an der Chamber"
+      ],
+      "correct": 0,
+      "entryId": "DISKUTEIEREN1"
+    },
+    {
+      "id": "gr-brkt-4c46acc534",
+      "kind": "bracket",
+      "moved": "diskutéiert",
+      "options_lb": [
+        "hien diskutéiert huet mat sengem Chef iwwer eng Gehaltserhéijung",
+        "hien huet diskutéiert mat sengem Chef iwwer eng Gehaltserhéijung",
+        "hien huet mat sengem Chef iwwer eng Gehaltserhéijung diskutéiert"
+      ],
+      "correct": 2,
+      "entryId": "DISKUTEIEREN1"
+    },
+    {
+      "id": "gr-brkt-47078c5aa5",
+      "kind": "bracket",
+      "moved": "maachen",
+      "options_lb": [
+        "do ass näischt ze maachen",
+        "do maachen ass näischt ze",
+        "do ass maachen näischt ze"
+      ],
+      "correct": 0,
+      "entryId": "DO1"
+    },
+    {
+      "id": "gr-brkt-348f9e658a",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "et ginn ass am hellen Do bei eis agebrach!",
+        "et ass ginn am hellen Do bei eis agebrach!",
+        "et ass am hellen Do bei eis agebrach ginn!"
+      ],
+      "correct": 2,
+      "entryId": "DO6"
+    },
+    {
+      "id": "gr-brkt-ec595ec0d3",
+      "kind": "bracket",
+      "moved": "sinn",
+      "options_lb": [
+        "ech sinn wäert haut net virun aacht Auer doheem",
+        "ech wäert sinn haut net virun aacht Auer doheem",
+        "ech wäert haut net virun aacht Auer doheem sinn"
+      ],
+      "correct": 2,
+      "entryId": "DOHEEM2"
+    },
+    {
+      "id": "gr-brkt-91a0a38bda",
+      "kind": "bracket",
+      "moved": "goen",
+      "options_lb": [
+        "mäi Papp wëllt einfach net bei den Dokter goen!",
+        "mäi Papp wëllt goen einfach net bei den Dokter!",
+        "mäi Papp wëllt einfach goen net bei den Dokter!"
+      ],
+      "correct": 0,
+      "entryId": "DOKTER1"
+    },
+    {
+      "id": "gr-brkt-c5b693e7f5",
+      "kind": "bracket",
+      "moved": "gespillt",
+      "options_lb": [
+        "hien huet an där gespillt Affär eng dominant Roll",
+        "hien huet an där Affär eng dominant Roll gespillt",
+        "hien huet gespillt an där Affär eng dominant Roll"
+      ],
+      "correct": 1,
+      "entryId": "DOMINANT1"
+    },
+    {
+      "id": "gr-brkt-9b887e3a64",
+      "kind": "bracket",
+      "moved": "gesinn",
+      "options_lb": [
+        "mir hunn gesinn eis en Donneschdeg",
+        "mir hunn eis en Donneschdeg gesinn",
+        "mir gesinn hunn eis en Donneschdeg"
+      ],
+      "correct": 1,
+      "entryId": "DONNESCHDEG1"
+    },
+    {
+      "id": "gr-brkt-dc3b0faac4",
+      "kind": "bracket",
+      "moved": "ukomm",
+      "options_lb": [
+        "mir sinn ukomm nach dréchen doheem",
+        "mir sinn nach dréchen doheem ukomm",
+        "mir ukomm sinn nach dréchen doheem"
+      ],
+      "correct": 1,
+      "entryId": "DRECHEN1"
+    },
+    {
+      "id": "gr-brkt-e45f2bca84",
+      "kind": "bracket",
+      "moved": "giess",
+      "options_lb": [
+        "ech hunn de Mëtteg just eng dréche Schmier giess",
+        "ech giess hunn de Mëtteg just eng dréche Schmier",
+        "ech hunn giess de Mëtteg just eng dréche Schmier"
+      ],
+      "correct": 0,
+      "entryId": "DRECHEN1"
+    },
+    {
+      "id": "gr-brkt-74046b7fcc",
+      "kind": "bracket",
+      "moved": "gedréckt",
+      "options_lb": [
+        "ech hunn gedréckt aus Versinn op de falsche Knäppche",
+        "ech hunn aus Versinn op de falsche Knäppche gedréckt",
+        "ech gedréckt hunn aus Versinn op de falsche Knäppche"
+      ],
+      "correct": 1,
+      "entryId": "DRECKEN1"
+    },
+    {
+      "id": "gr-brkt-eede6b70ac",
+      "kind": "bracket",
+      "moved": "gedreemt",
+      "options_lb": [
+        "ech hunn gedreemt hënt schlecht",
+        "ech hunn hënt schlecht gedreemt",
+        "ech gedreemt hunn hënt schlecht"
+      ],
+      "correct": 1,
+      "entryId": "DREEMEN1"
+    },
+    {
+      "id": "gr-brkt-4504836bdf",
+      "kind": "bracket",
+      "moved": "dreemen",
+      "options_lb": [
+        "dovu kann dreemen een nëmmen!",
+        "dovu kann een dreemen nëmmen!",
+        "dovu kann een nëmmen dreemen!"
+      ],
+      "correct": 2,
+      "entryId": "DREEMEN1"
+    },
+    {
+      "id": "gr-brkt-6eaf048d6a",
+      "kind": "bracket",
+      "moved": "gedronk",
+      "options_lb": [
+        "ech hunn gedronk nach kee Kaffi",
+        "ech hunn nach kee Kaffi gedronk",
+        "ech gedronk hunn nach kee Kaffi"
+      ],
+      "correct": 1,
+      "entryId": "DRENKEN1"
+    },
+    {
+      "id": "gr-brkt-184b3aa41d",
+      "kind": "bracket",
+      "moved": "gemaach",
+      "options_lb": [
+        "de Gesondheetsministère gemaach huet eng Campagne géint Droge",
+        "de Gesondheetsministère huet eng Campagne géint Droge gemaach",
+        "de gemaach Gesondheetsministère huet eng Campagne géint Droge"
+      ],
+      "correct": 1,
+      "entryId": "DROG1"
+    },
+    {
+      "id": "gr-brkt-92ae49a304",
+      "kind": "bracket",
+      "moved": "dropgemaach",
+      "options_lb": [
+        "hatt huet an der Vakanz seng ganz Pai dropgemaach",
+        "hatt dropgemaach huet an der Vakanz seng ganz Pai",
+        "hatt huet dropgemaach an der Vakanz seng ganz Pai"
+      ],
+      "correct": 0,
+      "entryId": "DROPMAACHEN1"
+    },
+    {
+      "id": "gr-brkt-4fee98cb93",
+      "kind": "bracket",
+      "moved": "gesprongen",
+      "options_lb": [
+        "de Léiw ass duerch de Reef gesprongen",
+        "de Léiw gesprongen ass duerch de Reef",
+        "de Léiw ass gesprongen duerch de Reef"
+      ],
+      "correct": 0,
+      "entryId": "DUERCH3"
+    },
+    {
+      "id": "gr-brkt-5c1765555e",
+      "kind": "bracket",
+      "moved": "geplënnert",
+      "options_lb": [
+        "ech sinn an en anert Duerf geplënnert",
+        "ech geplënnert sinn an en anert Duerf",
+        "ech sinn geplënnert an en anert Duerf"
+      ],
+      "correct": 0,
+      "entryId": "DUERF1"
+    },
+    {
+      "id": "gr-brkt-5819867615",
+      "kind": "bracket",
+      "moved": "geluecht",
+      "options_lb": [
+        "domat geluecht hues du däin Ee!",
+        "domat hues geluecht du däin Ee!",
+        "domat hues du däin Ee geluecht!"
+      ],
+      "correct": 2,
+      "entryId": "EE1"
+    },
+    {
+      "id": "gr-brkt-f4431aa159",
+      "kind": "bracket",
+      "moved": "kräischen",
+      "options_lb": [
+        "op eemol huet de Puppelchen ugefaange mat kräischen",
+        "op kräischen eemol huet de Puppelchen ugefaange mat",
+        "op eemol kräischen huet de Puppelchen ugefaange mat"
+      ],
+      "correct": 0,
+      "entryId": "EEMOL1"
+    },
+    {
+      "id": "gr-brkt-3f10042570",
+      "kind": "bracket",
+      "moved": "kucken",
+      "options_lb": [
+        "et muss een déi Saach objektiv kucken",
+        "et muss kucken een déi Saach objektiv",
+        "et muss een déi Saach kucken objektiv"
+      ],
+      "correct": 0,
+      "entryId": "EEN1"
+    },
+    {
+      "id": "gr-brkt-ddb244c1a1",
+      "kind": "bracket",
+      "moved": "favoriséiert",
+      "options_lb": [
+        "de Personalchef favoriséiert huet een aus senger Famill",
+        "de Personalchef huet een aus senger Famill favoriséiert",
+        "de favoriséiert Personalchef huet een aus senger Famill"
+      ],
+      "correct": 1,
+      "entryId": "EEN1"
+    },
+    {
+      "id": "gr-brkt-a5c900d7e3",
+      "kind": "bracket",
+      "moved": "verbrannt",
+      "options_lb": [
+        "ech hunn déi eidel Këschten am Gaart verbrannt",
+        "ech verbrannt hunn déi eidel Këschten am Gaart",
+        "ech hunn verbrannt déi eidel Këschten am Gaart"
+      ],
+      "correct": 0,
+      "entryId": "EIDEL1"
+    },
+    {
+      "id": "gr-brkt-82a6600e90",
+      "kind": "bracket",
+      "moved": "komm",
+      "options_lb": [
+        "mir komm sinn net mat eidelen Hänn",
+        "mir sinn komm net mat eidelen Hänn",
+        "mir sinn net mat eidelen Hänn komm"
+      ],
+      "correct": 2,
+      "entryId": "EIDEL1"
+    },
+    {
+      "id": "gr-brkt-562ad861f4",
+      "kind": "bracket",
+      "moved": "gemaach",
+      "options_lb": [
+        "dat ass gemaach méi einfach gesot ewéi!",
+        "dat ass méi einfach gesot ewéi gemaach!",
+        "dat gemaach ass méi einfach gesot ewéi!"
+      ],
+      "correct": 1,
+      "entryId": "EINFACH1"
+    },
+    {
+      "id": "gr-brkt-d624629e52",
+      "kind": "bracket",
+      "moved": "soen",
+      "options_lb": [
+        "deen Déckkapp léisst sech einfach soen näischt!",
+        "deen Déckkapp léisst sech einfach näischt soen!",
+        "deen Déckkapp léisst sech soen einfach näischt!"
+      ],
+      "correct": 1,
+      "entryId": "EINFACH2"
+    },
+    {
+      "id": "gr-brkt-d225d805eb",
+      "kind": "bracket",
+      "moved": "gefuer",
+      "options_lb": [
+        "deen Typ ass gefuer mir einfach hannendrop",
+        "deen Typ ass mir einfach hannendrop gefuer",
+        "deen Typ gefuer ass mir einfach hannendrop"
+      ],
+      "correct": 1,
+      "entryId": "EINFACH2"
+    },
+    {
+      "id": "gr-brkt-1abbacba8d",
+      "kind": "bracket",
+      "moved": "stoen",
+      "options_lb": [
+        "mir hunn stoen en Äppelbam an eisem Gaart",
+        "mir hunn en Äppelbam an eisem Gaart stoen",
+        "mir stoen hunn en Äppelbam an eisem Gaart"
+      ],
+      "correct": 1,
+      "entryId": "EISEM1"
+    },
+    {
+      "id": "gr-brkt-023017e0de",
+      "kind": "bracket",
+      "moved": "gewonnen",
+      "options_lb": [
+        "eis Ekipp gewonnen huet dës Saison nach kee Match",
+        "eis Ekipp huet dës Saison nach kee Match gewonnen",
+        "eis gewonnen Ekipp huet dës Saison nach kee Match"
+      ],
+      "correct": 1,
+      "entryId": "EKIPP1"
+    },
+    {
+      "id": "gr-brkt-ad50b1be18",
+      "kind": "bracket",
+      "moved": "gemaach",
+      "options_lb": [
+        "hien huet eng gemaach Léier als Elektriker",
+        "hien huet eng Léier als Elektriker gemaach",
+        "hien huet gemaach eng Léier als Elektriker"
+      ],
+      "correct": 1,
+      "entryId": "ELEKTRIKER1"
+    },
+    {
+      "id": "gr-brkt-ff990bd00f",
+      "kind": "bracket",
+      "moved": "hunn",
+      "options_lb": [
+        "meng Bomi hunn muss ëmmer Leit ëm sech",
+        "meng Bomi muss ëmmer Leit ëm sech hunn",
+        "meng hunn Bomi muss ëmmer Leit ëm sech"
+      ],
+      "correct": 1,
+      "entryId": "EM2"
+    },
+    {
+      "id": "gr-brkt-cb7d0a4eba",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "de Keefer ginn ass ëm 100 Euro bedru",
+        "de Keefer ass ëm 100 Euro bedru ginn",
+        "de ginn Keefer ass ëm 100 Euro bedru"
+      ],
+      "correct": 1,
+      "entryId": "EM2"
+    },
+    {
+      "id": "gr-brkt-290afa41dd",
+      "kind": "bracket",
+      "moved": "verpasst",
+      "options_lb": [
+        "mir hunn verpasst eis ëm zwou Minutte!",
+        "mir hunn eis ëm zwou Minutte verpasst!",
+        "mir verpasst hunn eis ëm zwou Minutte!"
+      ],
+      "correct": 1,
+      "entryId": "EM2"
+    },
+    {
+      "id": "gr-brkt-5cf664af98",
+      "kind": "bracket",
+      "moved": "ëmgeklommen",
+      "options_lb": [
+        "mäi Monni ass vu Banquier op Leeëndecker ëmgeklommen",
+        "mäi Monni ëmgeklommen ass vu Banquier op Leeëndecker",
+        "mäi Monni ass vu Banquier ëmgeklommen op Leeëndecker"
+      ],
+      "correct": 0,
+      "entryId": "EMKLAMMEN1"
+    },
+    {
+      "id": "gr-brkt-32860e3efa",
+      "kind": "bracket",
+      "moved": "zielen",
+      "options_lb": [
+        "et kann een zielen ëmmer op dech!",
+        "et kann een ëmmer op dech zielen!",
+        "et kann zielen een ëmmer op dech!"
+      ],
+      "correct": 1,
+      "entryId": "EMMER1"
+    },
+    {
+      "id": "gr-brkt-ac58d81bf2",
+      "kind": "bracket",
+      "moved": "gesinn",
+      "options_lb": [
+        "et däerf een dat net esou enk gesinn",
+        "et gesinn däerf een dat net esou enk",
+        "et däerf gesinn een dat net esou enk"
+      ],
+      "correct": 0,
+      "entryId": "ENK1"
+    },
+    {
+      "id": "gr-brkt-cf6a6e7806",
+      "kind": "bracket",
+      "moved": "verbonnen",
+      "options_lb": [
+        "eis Famill ass verbonnen enk mat dëser Géigend",
+        "eis Famill ass enk mat dëser Géigend verbonnen",
+        "eis Famill verbonnen ass enk mat dëser Géigend"
+      ],
+      "correct": 1,
+      "entryId": "ENK1"
+    },
+    {
+      "id": "gr-brkt-e5b4e6bb65",
+      "kind": "bracket",
+      "moved": "maachen",
+      "options_lb": [
+        "ech wäert maachen deem Gedeessems en Enn!",
+        "ech wäert deem Gedeessems maachen en Enn!",
+        "ech wäert deem Gedeessems en Enn maachen!"
+      ],
+      "correct": 2,
+      "entryId": "ENN1"
+    },
+    {
+      "id": "gr-brkt-f9e0f6addb",
+      "kind": "bracket",
+      "moved": "nogemaach",
+      "options_lb": [
+        "de Schüler huet senger Mamm hir Ënnerschrëft nogemaach",
+        "de Schüler nogemaach huet senger Mamm hir Ënnerschrëft",
+        "de Schüler huet nogemaach senger Mamm hir Ënnerschrëft"
+      ],
+      "correct": 0,
+      "entryId": "ENNERSCHREFT1"
+    },
+    {
+      "id": "gr-brkt-8e10cf439c",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "de Kontrakt ginn muss nach haut ënnerschriwwe",
+        "de Kontrakt muss nach haut ënnerschriwwe ginn",
+        "de ginn Kontrakt muss nach haut ënnerschriwwe"
+      ],
+      "correct": 1,
+      "entryId": "ENNERSCHREIWEN1"
+    },
+    {
+      "id": "gr-brkt-5fb081aca8",
+      "kind": "bracket",
+      "moved": "ënnerschreiwen",
+      "options_lb": [
+        "dat ënnerschreiwen do kann ech mat béiden Hänn!",
+        "dat do kann ënnerschreiwen ech mat béiden Hänn!",
+        "dat do kann ech mat béiden Hänn ënnerschreiwen!"
+      ],
+      "correct": 2,
+      "entryId": "ENNERSCHREIWEN1"
+    },
+    {
+      "id": "gr-brkt-262550c133",
+      "kind": "bracket",
+      "moved": "ginn",
+      "options_lb": [
+        "et ginn ass eng nei Orchideeënzort entdeckt",
+        "et ass ginn eng nei Orchideeënzort entdeckt",
+        "et ass eng nei Orchideeënzort entdeckt ginn"
+      ],
+      "correct": 2,
+      "entryId": "ENTDECKEN1"
+    },
+    {
+      "id": "gr-brkt-85cfd9c882",
+      "kind": "bracket",
+      "moved": "entschëllegt",
+      "options_lb": [
+        "de Schüler huet entschëllegt sech fir seng Verspéidung",
+        "de Schüler huet sech fir seng Verspéidung entschëllegt",
+        "de Schüler entschëllegt huet sech fir seng Verspéidung"
+      ],
+      "correct": 1,
+      "entryId": "ENTSCHELLEGEN1"
+    },
+    {
+      "id": "gr-brkt-b816c17185",
+      "kind": "bracket",
+      "moved": "erausgaangen",
+      "options_lb": [
+        "de Communiqué ass erausgaangen nach net",
+        "de Communiqué ass nach net erausgaangen",
+        "de Communiqué erausgaangen ass nach net"
+      ],
+      "correct": 1,
+      "entryId": "ERAUSGOEN1"
+    },
+    {
+      "id": "gr-brkt-a41219d211",
+      "kind": "bracket",
+      "moved": "erausgaangen",
+      "options_lb": [
+        "de Wäifleck ass erausgaangen an der Botzerei net",
+        "de Wäifleck ass an der Botzerei net erausgaangen",
+        "de Wäifleck erausgaangen ass an der Botzerei net"
+      ],
+      "correct": 1,
+      "entryId": "ERAUSGOEN1"
+    },
+    {
+      "id": "gr-brkt-4e1fdfa154",
+      "kind": "bracket",
+      "moved": "erausgaangen",
+      "options_lb": [
+        "ech sinn aus erausgaangen deem Veräin",
+        "ech sinn aus deem Veräin erausgaangen",
+        "ech sinn erausgaangen aus deem Veräin"
+      ],
+      "correct": 1,
+      "entryId": "ERAUSGOEN1"
+    },
+    {
+      "id": "gr-brkt-b10dc07b27",
+      "kind": "bracket",
+      "moved": "gefuer",
+      "options_lb": [
+        "mir gefuer sinn eréischt 60 Kilometer",
+        "mir sinn gefuer eréischt 60 Kilometer",
+        "mir sinn eréischt 60 Kilometer gefuer"
+      ],
+      "correct": 2,
+      "entryId": "EREISCHT1"
+    },
+    {
+      "id": "gr-brkt-1cd23aeacc",
+      "kind": "bracket",
+      "moved": "erkläert",
+      "options_lb": [
+        "meng erkläert Elteren hunn dem Noper de Krich!",
+        "meng Elteren erkläert hunn dem Noper de Krich!",
+        "meng Elteren hunn dem Noper de Krich erkläert!"
+      ],
+      "correct": 2,
+      "entryId": "ERKLAREN1"
+    },
+    {
+      "id": "gr-brkt-1bb9e85a59",
+      "kind": "bracket",
+      "moved": "erreechen",
+      "options_lb": [
+        "du kanns mech dëse Weekend erreechen um Handy",
+        "du kanns mech dëse Weekend um Handy erreechen",
+        "du kanns mech erreechen dëse Weekend um Handy"
+      ],
+      "correct": 1,
+      "entryId": "ERREECHEN1"
+    },
+    {
+      "id": "gr-brkt-226cf02199",
+      "kind": "bracket",
+      "moved": "erreechen",
+      "options_lb": [
+        "dee Kärel erreechen ass ni ze!",
+        "dee Kärel ass erreechen ni ze!",
+        "dee Kärel ass ni ze erreechen!"
+      ],
+      "correct": 2,
+      "entryId": "ERREECHEN1"
+    },
+    {
+      "id": "gr-brkt-837afda2bd",
+      "kind": "bracket",
+      "moved": "erreecht",
+      "options_lb": [
+        "de Fliger erreecht huet seng Destinatioun ni",
+        "de Fliger huet erreecht seng Destinatioun ni",
+        "de Fliger huet seng Destinatioun ni erreecht"
+      ],
+      "correct": 2,
+      "entryId": "ERREECHEN1"
+    },
+    {
+      "id": "gr-brkt-7677288a3c",
+      "kind": "bracket",
+      "moved": "erreecht",
+      "options_lb": [
+        "mäin Urgrousspapp huet en héijen Alter erreecht",
+        "mäin erreecht Urgrousspapp huet en héijen Alter",
+        "mäin Urgrousspapp erreecht huet en héijen Alter"
+      ],
+      "correct": 0,
+      "entryId": "ERREECHEN1"
+    },
+    {
+      "id": "gr-brkt-617e8b86e5",
+      "kind": "bracket",
+      "moved": "erwächt",
+      "options_lb": [
+        "ech sinn hënt zweemol erwächt",
+        "ech erwächt sinn hënt zweemol",
+        "ech sinn erwächt hënt zweemol"
+      ],
+      "correct": 0,
+      "entryId": "ERWACHEN1"
+    },
+    {
+      "id": "gr-brkt-e045d5b3f7",
+      "kind": "bracket",
+      "moved": "ewechginn",
+      "options_lb": [
+        "mäi Brudder huet säin ale Vëlo ewechginn",
+        "mäi Brudder ewechginn huet säin ale Vëlo",
+        "mäi Brudder huet ewechginn säin ale Vëlo"
+      ],
+      "correct": 0,
+      "entryId": "EWECHGINN1"
+    },
+    {
+      "id": "gr-brkt-60e97dd187",
+      "kind": "bracket",
+      "moved": "ewechgeholl",
+      "options_lb": [
+        "wéini gëtt an ärer Strooss den Dreck ewechgeholl?",
+        "wéini ewechgeholl gëtt an ärer Strooss den Dreck?",
+        "wéini gëtt ewechgeholl an ärer Strooss den Dreck?"
+      ],
+      "correct": 0,
+      "entryId": "EWECHHUELEN1"
+    },
+    {
+      "id": "gr-brkt-a83be81b16",
+      "kind": "bracket",
+      "moved": "ewechgeholl",
+      "options_lb": [
+        "den Automobilist ewechgeholl huet en Hittche mat",
+        "den Automobilist huet en Hittche mat ewechgeholl",
+        "den ewechgeholl Automobilist huet en Hittche mat"
+      ],
+      "correct": 1,
+      "entryId": "EWECHHUELEN1"
+    },
+    {
+      "id": "gr-brkt-453f6610ef",
+      "kind": "bracket",
+      "moved": "geduecht",
+      "options_lb": [
+        "dat ass extra dofir geduecht",
+        "dat geduecht ass extra dofir",
+        "dat ass geduecht extra dofir"
+      ],
+      "correct": 0,
+      "entryId": "EXTRA3"
+    },
+    {
+      "id": "gr-brkt-efbec4f8ad",
+      "kind": "bracket",
+      "moved": "gefall",
+      "options_lb": [
+        "mäi Bop gefall ass am leschte Krich",
+        "mäi Bop ass am leschte Krich gefall",
+        "mäi gefall Bop ass am leschte Krich"
+      ],
+      "correct": 1,
+      "entryId": "FALEN1"
+    },
+    {
+      "id": "gr-brkt-31b46275a5",
+      "kind": "bracket",
+      "moved": "gefall",
+      "options_lb": [
+        "et gefall ass e Schoss",
+        "et ass gefall e Schoss",
+        "et ass e Schoss gefall"
+      ],
+      "correct": 2,
+      "entryId": "FALEN1"
+    },
+    {
+      "id": "gr-brkt-74ff74de1c",
+      "kind": "bracket",
+      "moved": "gefall",
+      "options_lb": [
+        "et sinn e puer domm Bemierkunge gefall",
+        "et gefall sinn e puer domm Bemierkunge",
+        "et sinn gefall e puer domm Bemierkunge"
+      ],
+      "correct": 0,
+      "entryId": "FALEN1"
+    },
+    {
+      "id": "gr-brkt-288c42e82f",
+      "kind": "bracket",
+      "moved": "gespillt",
+      "options_lb": [
+        "de gespillt Klarinettist huet ganz falsch",
+        "de Klarinettist gespillt huet ganz falsch",
+        "de Klarinettist huet ganz falsch gespillt"
+      ],
+      "correct": 2,
+      "entryId": "FALSCH1"
+    },
+    {
+      "id": "gr-brkt-8855cccb5e",
+      "kind": "bracket",
+      "moved": "gemaach",
+      "options_lb": [
+        "hien huet eng gemaach falsch Beweegung",
+        "hien huet eng falsch Beweegung gemaach",
+        "hien huet gemaach eng falsch Beweegung"
+      ],
+      "correct": 1,
+      "entryId": "FALSCH1"
+    },
+    {
+      "id": "gr-brkt-92c9b20200",
+      "kind": "bracket",
+      "moved": "sinn",
+      "options_lb": [
+        "wéi kann sinn een nëmmen esou falsch!",
+        "wéi kann een nëmmen esou falsch sinn!",
+        "wéi sinn kann een nëmmen esou falsch!"
+      ],
+      "correct": 1,
+      "entryId": "FALSCH1"
+    },
+    {
+      "id": "gr-brkt-8377973783",
+      "kind": "bracket",
+      "moved": "geschwat",
+      "options_lb": [
+        "de geschwat Rektor huet ganz familiär mat de Studente",
+        "de Rektor geschwat huet ganz familiär mat de Studente",
+        "de Rektor huet ganz familiär mat de Studente geschwat"
+      ],
+      "correct": 2,
+      "entryId": "FAMILIAR1"
+    },
+    {
+      "id": "gr-brkt-0592e82446",
+      "kind": "bracket",
+      "moved": "gesot",
+      "options_lb": [
+        "dat huet mäi klenge Fanger mer gesot",
+        "dat gesot huet mäi klenge Fanger mer",
+        "dat huet gesot mäi klenge Fanger mer"
+      ],
+      "correct": 0,
+      "entryId": "FANGER1"
+    },
+    {
+      "id": "gr-brkt-88f811dcb1",
+      "kind": "bracket",
+      "moved": "gefierft",
+      "options_lb": [
+        "si gefierft huet hir Fangerneel rout",
+        "si huet gefierft hir Fangerneel rout",
+        "si huet hir Fangerneel rout gefierft"
+      ],
+      "correct": 2,
+      "entryId": "FANGERNOL1"
+    },
+    {
+      "id": "gr-brkt-fab060f703",
+      "kind": "bracket",
+      "moved": "fonnt",
+      "options_lb": [
+        "ech hunn fonnt am Bësch eng Auer",
+        "ech hunn am Bësch eng Auer fonnt",
+        "ech fonnt hunn am Bësch eng Auer"
+      ],
+      "correct": 1,
+      "entryId": "FANNEN1"
+    },
+    {
+      "id": "gr-subcl-02039ebe72",
+      "kind": "subclause",
+      "moved": "ginn",
+      "conjunction": "datt",
+      "options_lb": [
+        "wann d'Grompere bis Ae kréien, gëtt et héich Zäit, datt se ginn giess",
+        "wann d'Grompere bis Ae kréien, gëtt et héich Zäit, datt se giess ginn",
+        "wann d'Grompere bis Ae kréien, gëtt et héich Zäit, datt ginn se giess"
+      ],
+      "correct": 1,
+      "entryId": "A1"
+    },
+    {
+      "id": "gr-subcl-ac27d08931",
+      "kind": "subclause",
+      "moved": "gëtt",
+      "conjunction": "datt",
+      "options_lb": [
+        "de Kommitee huet festgehalen, datt gëtt no all Sëtzung e Rapport geschriwwe",
+        "de Kommitee huet festgehalen, datt no gëtt all Sëtzung e Rapport geschriwwe",
+        "de Kommitee huet festgehalen, datt no all Sëtzung e Rapport geschriwwe gëtt"
+      ],
+      "correct": 2,
+      "entryId": "ALL2"
+    },
+    {
+      "id": "gr-subcl-efe5649a91",
+      "kind": "subclause",
+      "moved": "huet",
+      "conjunction": "datt",
+      "options_lb": [
+        "den Asaz vum neie Spiller huet den Ausschlag ginn, datt seng Ekipp gewonnen huet",
+        "den Asaz vum neie Spiller huet den Ausschlag ginn, datt huet seng Ekipp gewonnen",
+        "den Asaz vum neie Spiller huet den Ausschlag ginn, datt seng huet Ekipp gewonnen"
+      ],
+      "correct": 0,
+      "entryId": "AUSSCHLAG1"
+    },
+    {
+      "id": "gr-subcl-e0695b2224",
+      "kind": "subclause",
+      "moved": "ginn",
+      "conjunction": "datt",
+      "options_lb": [
+        "eist Klengt huet de Bauch esou wéi, datt ginn mer besser bei den Dokter",
+        "eist Klengt huet de Bauch esou wéi, datt mer ginn besser bei den Dokter",
+        "eist Klengt huet de Bauch esou wéi, datt mer besser bei den Dokter ginn"
+      ],
+      "correct": 2,
+      "entryId": "BAUCH1"
+    },
+    {
+      "id": "gr-subcl-6fb9f6fc77",
+      "kind": "subclause",
+      "moved": "entschëllegt",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech bestinn drop, datt dir iech bei der Bomi entschëllegt!",
+        "ech bestinn drop, datt entschëllegt dir iech bei der Bomi!",
+        "ech bestinn drop, datt dir entschëllegt iech bei der Bomi!"
+      ],
+      "correct": 0,
+      "entryId": "BESTOEN1"
+    },
+    {
+      "id": "gr-subcl-3dc9ddd757",
+      "kind": "subclause",
+      "moved": "gesäit",
+      "conjunction": "datt",
+      "options_lb": [
+        "d'Waasser ass esou kloer, datt ee bis op de Buedem gesäit",
+        "d'Waasser ass esou kloer, datt gesäit ee bis op de Buedem",
+        "d'Waasser ass esou kloer, datt ee gesäit bis op de Buedem"
+      ],
+      "correct": 0,
+      "entryId": "BUEDEM1"
+    },
+    {
+      "id": "gr-subcl-4ebe843e1c",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "ob",
+      "options_lb": [
+        "mer mussen nach checken, ob hunn mer näischt vun eiser Lëscht vergiess",
+        "mer mussen nach checken, ob mer hunn näischt vun eiser Lëscht vergiess",
+        "mer mussen nach checken, ob mer näischt vun eiser Lëscht vergiess hunn"
+      ],
+      "correct": 2,
+      "entryId": "CHECKEN1"
+    },
+    {
+      "id": "gr-subcl-473a708b06",
+      "kind": "subclause",
+      "moved": "gees",
+      "conjunction": "datt",
+      "options_lb": [
+        "cool, datt s de mat an de Kino gees!",
+        "cool, datt gees s de mat an de Kino!",
+        "cool, datt s gees de mat an de Kino!"
+      ],
+      "correct": 0,
+      "entryId": "COOL1"
+    },
+    {
+      "id": "gr-subcl-9114bf7994",
+      "kind": "subclause",
+      "moved": "kommen",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech si frou, datt dir esou séier konnt kommen",
+        "ech si frou, datt kommen dir esou séier konnt",
+        "ech si frou, datt dir kommen esou séier konnt"
+      ],
+      "correct": 0,
+      "entryId": "DATT1"
+    },
+    {
+      "id": "gr-subcl-e9f265d884",
+      "kind": "subclause",
+      "moved": "deckt",
+      "conjunction": "ob",
+      "options_lb": [
+        "ech weess net, ob d'Assurance deckt dee Schued do",
+        "ech weess net, ob d'Assurance dee Schued do deckt",
+        "ech weess net, ob deckt d'Assurance dee Schued do"
+      ],
+      "correct": 1,
+      "entryId": "DECKEN2"
+    },
+    {
+      "id": "gr-subcl-0120080412",
+      "kind": "subclause",
+      "moved": "huet",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech hunn héieren, datt een huet un der Dier geklenscht",
+        "ech hunn héieren, datt een un der Dier geklenscht huet",
+        "ech hunn héieren, datt huet een un der Dier geklenscht"
+      ],
+      "correct": 1,
+      "entryId": "EEN1"
+    },
+    {
+      "id": "gr-subcl-15ba341f18",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "eleng hiert Behuele weist, datt se sech eppes virzewerfen hunn",
+        "eleng hiert Behuele weist, datt hunn se sech eppes virzewerfen",
+        "eleng hiert Behuele weist, datt se hunn sech eppes virzewerfen"
+      ],
+      "correct": 0,
+      "entryId": "ELENG2"
+    },
+    {
+      "id": "gr-subcl-bd217b277b",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech hunn elo eréischt gemierkt, datt ech hunn mäin Handy doheem leie gelooss!",
+        "ech hunn elo eréischt gemierkt, datt ech mäin Handy doheem leie gelooss hunn!",
+        "ech hunn elo eréischt gemierkt, datt hunn ech mäin Handy doheem leie gelooss!"
+      ],
+      "correct": 1,
+      "entryId": "EREISCHT1"
+    },
+    {
+      "id": "gr-subcl-fd8bf5ebd5",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "de Roman hat esou vill Erfolleg, datt schonn déi fënneft Editioun am Drock ass",
+        "de Roman hat esou vill Erfolleg, datt ass schonn déi fënneft Editioun am Drock",
+        "de Roman hat esou vill Erfolleg, datt schonn ass déi fënneft Editioun am Drock"
+      ],
+      "correct": 0,
+      "entryId": "ESOU1"
+    },
+    {
+      "id": "gr-subcl-a0c4039e20",
+      "kind": "subclause",
+      "moved": "gëtt",
+      "conjunction": "datt",
+      "options_lb": [
+        "et ass ze fäerten, datt gëtt d'Situatioun nach méi uerg",
+        "et ass ze fäerten, datt d'Situatioun gëtt nach méi uerg",
+        "et ass ze fäerten, datt d'Situatioun nach méi uerg gëtt"
+      ],
+      "correct": 2,
+      "entryId": "FAERTEN1"
+    },
+    {
+      "id": "gr-subcl-358f0c3ee2",
+      "kind": "subclause",
+      "moved": "feelt",
+      "conjunction": "datt",
+      "options_lb": [
+        "suerg derfir, datt et feelt eise Gäscht un näischt!",
+        "suerg derfir, datt et eise Gäscht un näischt feelt!",
+        "suerg derfir, datt feelt et eise Gäscht un näischt!"
+      ],
+      "correct": 1,
+      "entryId": "FEELEN1"
+    },
+    {
+      "id": "gr-subcl-389cbc43d1",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "ob",
+      "options_lb": [
+        "fill, ob d'Waasser net ze waarm ass!",
+        "fill, ob ass d'Waasser net ze waarm!",
+        "fill, ob d'Waasser ass net ze waarm!"
+      ],
+      "correct": 0,
+      "entryId": "FILLEN1"
+    },
+    {
+      "id": "gr-subcl-22b8b60c73",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "d'Noriicht, datt bei ass eisen Noperen e Puppelchen ënnerwee, huet eis gefreet",
+        "d'Noriicht, datt bei eisen Noperen e Puppelchen ënnerwee ass, huet eis gefreet",
+        "d'Noriicht, datt ass bei eisen Noperen e Puppelchen ënnerwee, huet eis gefreet"
+      ],
+      "correct": 1,
+      "entryId": "FREEEN1"
+    },
+    {
+      "id": "gr-subcl-5cf5fa535a",
+      "kind": "subclause",
+      "moved": "kënnt",
+      "conjunction": "ob",
+      "options_lb": [
+        "et ass nach eng Fro, ob eis Kolleegin op d'Iesse kënnt",
+        "et ass nach eng Fro, ob kënnt eis Kolleegin op d'Iesse",
+        "et ass nach eng Fro, ob eis kënnt Kolleegin op d'Iesse"
+      ],
+      "correct": 0,
+      "entryId": "FRO1"
+    },
+    {
+      "id": "gr-subcl-d6e17644da",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech hat esou eng Gloscht, datt hunn ech dee ganze Kuch beienee giess!",
+        "ech hat esou eng Gloscht, datt ech hunn dee ganze Kuch beienee giess!",
+        "ech hat esou eng Gloscht, datt ech dee ganze Kuch beienee giess hunn!"
+      ],
+      "correct": 2,
+      "entryId": "GANZ1"
+    },
+    {
+      "id": "gr-subcl-6c3666bb90",
+      "kind": "subclause",
+      "moved": "mécht",
+      "conjunction": "datt",
+      "options_lb": [
+        "dem Journalist seng Recherchen hunn erginn, datt d'Firma lusch Geschäfter mécht",
+        "dem Journalist seng Recherchen hunn erginn, datt mécht d'Firma lusch Geschäfter",
+        "dem Journalist seng Recherchen hunn erginn, datt d'Firma mécht lusch Geschäfter"
+      ],
+      "correct": 0,
+      "entryId": "GESCHAFT1"
+    },
+    {
+      "id": "gr-subcl-96ca73e252",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "du wäerts gesinn, datt alles ass net esou schlëmm, wéi s de mengs!",
+        "du wäerts gesinn, datt alles net esou schlëmm ass, wéi s de mengs!",
+        "du wäerts gesinn, datt ass alles net esou schlëmm, wéi s de mengs!"
+      ],
+      "correct": 1,
+      "entryId": "GESINN1"
+    },
+    {
+      "id": "gr-subcl-6aee9d356a",
+      "kind": "subclause",
+      "moved": "gëtt",
+      "conjunction": "ob",
+      "options_lb": [
+        "ech weess net, ob et déi Zort Schockela nach gëtt",
+        "ech weess net, ob gëtt et déi Zort Schockela nach",
+        "ech weess net, ob et gëtt déi Zort Schockela nach"
+      ],
+      "correct": 0,
+      "entryId": "GINN4"
+    },
+    {
+      "id": "gr-subcl-ce86abc89f",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech hat esou en Honger, datt ech zwee grouss Stécker Taart giess hunn!",
+        "ech hat esou en Honger, datt hunn ech zwee grouss Stécker Taart giess!",
+        "ech hat esou en Honger, datt ech hunn zwee grouss Stécker Taart giess!"
+      ],
+      "correct": 0,
+      "entryId": "GROUSS2"
+    },
+    {
+      "id": "gr-subcl-9521b75ba8",
+      "kind": "subclause",
+      "moved": "sangen",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech wousst net, datt sangen s du esou gutt kéints!",
+        "ech wousst net, datt s sangen du esou gutt kéints!",
+        "ech wousst net, datt s du esou gutt kéints sangen!"
+      ],
+      "correct": 2,
+      "entryId": "GUTT2"
+    },
+    {
+      "id": "gr-subcl-94ef098042",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "et hält net u mir, datt ass d'Saach nach net erleedegt",
+        "et hält net u mir, datt d'Saach ass nach net erleedegt",
+        "et hält net u mir, datt d'Saach nach net erleedegt ass"
+      ],
+      "correct": 2,
+      "entryId": "HALEN1"
+    },
+    {
+      "id": "gr-subcl-acda4c50bd",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech sinn esou onglécklech gefall, datt ech mer d'Hand gebrach hunn",
+        "ech sinn esou onglécklech gefall, datt hunn ech mer d'Hand gebrach",
+        "ech sinn esou onglécklech gefall, datt ech hunn mer d'Hand gebrach"
+      ],
+      "correct": 0,
+      "entryId": "HAND1"
+    },
+    {
+      "id": "gr-subcl-365e26b546",
+      "kind": "subclause",
+      "moved": "sinn",
+      "conjunction": "datt",
+      "options_lb": [
+        "et houng um Wieder, datt sinn mer net komm",
+        "et houng um Wieder, datt mer sinn net komm",
+        "et houng um Wieder, datt mer net komm sinn"
+      ],
+      "correct": 2,
+      "entryId": "HANKEN1"
+    },
+    {
+      "id": "gr-subcl-8501eedf35",
+      "kind": "subclause",
+      "moved": "sinn",
+      "conjunction": "datt",
+      "options_lb": [
+        "an der Vakanz war esou schlecht Wieder, datt sinn mir no dräi Deeg erëm heemgefuer",
+        "an der Vakanz war esou schlecht Wieder, datt mir sinn no dräi Deeg erëm heemgefuer",
+        "an der Vakanz war esou schlecht Wieder, datt mir no dräi Deeg erëm heemgefuer sinn"
+      ],
+      "correct": 2,
+      "entryId": "HEEMFUEREN1"
+    },
+    {
+      "id": "gr-subcl-eafa3feee2",
+      "kind": "subclause",
+      "moved": "ännert",
+      "conjunction": "datt",
+      "options_lb": [
+        "et gëtt héich Zäit, datt ännert sech eppes!",
+        "et gëtt héich Zäit, datt sech ännert eppes!",
+        "et gëtt héich Zäit, datt sech eppes ännert!"
+      ],
+      "correct": 2,
+      "entryId": "HEICH1"
+    },
+    {
+      "id": "gr-subcl-744df06624",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech war esou hongereg, datt ech zwee Telleren Nuddele gepackt hunn",
+        "ech war esou hongereg, datt hunn ech zwee Telleren Nuddele gepackt",
+        "ech war esou hongereg, datt ech hunn zwee Telleren Nuddele gepackt"
+      ],
+      "correct": 0,
+      "entryId": "HONGEREG1"
+    },
+    {
+      "id": "gr-subcl-0de2297716",
+      "kind": "subclause",
+      "moved": "houschten",
+      "conjunction": "datt",
+      "options_lb": [
+        "am Sall war d'Loft esou dréchen, datt ech houschten net konnt ophale mat",
+        "am Sall war d'Loft esou dréchen, datt ech net konnt ophale mat houschten",
+        "am Sall war d'Loft esou dréchen, datt houschten ech net konnt ophale mat"
+      ],
+      "correct": 1,
+      "entryId": "HOUSCHTEN1"
+    },
+    {
+      "id": "gr-subcl-6b331ae34c",
+      "kind": "subclause",
+      "moved": "hëlt",
+      "conjunction": "datt",
+      "options_lb": [
+        "pass op, datt keen der däi Portmonni hëlt!",
+        "pass op, datt hëlt keen der däi Portmonni!",
+        "pass op, datt keen hëlt der däi Portmonni!"
+      ],
+      "correct": 0,
+      "entryId": "HUELEN1"
+    },
+    {
+      "id": "gr-subcl-d3ad4845e1",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "hie wëllt net agesinn, datt ass en am Iertum",
+        "hie wëllt net agesinn, datt en ass am Iertum",
+        "hie wëllt net agesinn, datt en am Iertum ass"
+      ],
+      "correct": 2,
+      "entryId": "IERTUM1"
+    },
+    {
+      "id": "gr-subcl-3d3df0ed55",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "et huet keen eis informéiert, datt d'Strooss gespaart ass",
+        "et huet keen eis informéiert, datt ass d'Strooss gespaart",
+        "et huet keen eis informéiert, datt d'Strooss ass gespaart"
+      ],
+      "correct": 0,
+      "entryId": "INFORMEIEREN1"
+    },
+    {
+      "id": "gr-subcl-1902091311",
+      "kind": "subclause",
+      "moved": "sinn",
+      "conjunction": "ob",
+      "options_lb": [
+        "kuck um Kalenner, ob mir sinn nächste Freideg doheem!",
+        "kuck um Kalenner, ob mir nächste Freideg doheem sinn!",
+        "kuck um Kalenner, ob sinn mir nächste Freideg doheem!"
+      ],
+      "correct": 1,
+      "entryId": "KALENNER1"
+    },
+    {
+      "id": "gr-subcl-0e7efbe1ca",
+      "kind": "subclause",
+      "moved": "verdroen",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech weess, datt ech verdroen de Roude Wäin net, ech kenne mech",
+        "ech weess, datt ech de Roude Wäin net verdroen, ech kenne mech",
+        "ech weess, datt verdroen ech de Roude Wäin net, ech kenne mech"
+      ],
+      "correct": 1,
+      "entryId": "KENNEN2"
+    },
+    {
+      "id": "gr-subcl-a72a50f619",
+      "kind": "subclause",
+      "moved": "hëllefen",
+      "conjunction": "datt",
+      "options_lb": [
+        "du kanns dervun ausgoen, datt ech der hëllefen",
+        "du kanns dervun ausgoen, datt hëllefen ech der",
+        "du kanns dervun ausgoen, datt ech hëllefen der"
+      ],
+      "correct": 0,
+      "entryId": "KENNEN1"
+    },
+    {
+      "id": "gr-subcl-f91c8b0680",
+      "kind": "subclause",
+      "moved": "bleift",
+      "conjunction": "datt",
+      "options_lb": [
+        "maacht, datt bleift d'Kierch am Duerf!",
+        "maacht, datt d'Kierch bleift am Duerf!",
+        "maacht, datt d'Kierch am Duerf bleift!"
+      ],
+      "correct": 2,
+      "entryId": "KIERCH1"
+    },
+    {
+      "id": "gr-subcl-db0fae46f7",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "ob",
+      "options_lb": [
+        "klamm emol op de Späicher kucken, ob ass d'Daachliicht zou!",
+        "klamm emol op de Späicher kucken, ob d'Daachliicht ass zou!",
+        "klamm emol op de Späicher kucken, ob d'Daachliicht zou ass!"
+      ],
+      "correct": 2,
+      "entryId": "KLAMMEN1"
+    },
+    {
+      "id": "gr-subcl-9268c5c9df",
+      "kind": "subclause",
+      "moved": "hält",
+      "conjunction": "datt",
+      "options_lb": [
+        "hatt huet him kloer (an däitlech) gesot, datt et hält net vill vun em",
+        "hatt huet him kloer (an däitlech) gesot, datt et net vill vun em hält",
+        "hatt huet him kloer (an däitlech) gesot, datt hält et net vill vun em"
+      ],
+      "correct": 1,
+      "entryId": "KLOER1"
+    },
+    {
+      "id": "gr-subcl-d6b4292eb4",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "et gëtt mer elo eréischt kloer, datt ech mech geiert hunn",
+        "et gëtt mer elo eréischt kloer, datt hunn ech mech geiert",
+        "et gëtt mer elo eréischt kloer, datt ech hunn mech geiert"
+      ],
+      "correct": 0,
+      "entryId": "KLOER1"
+    },
+    {
+      "id": "gr-subcl-2ee8fd5165",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "den Text, deen den Auteur virgelies huet, war esou komesch, datt d'Leit sech futtigelaacht hunn",
+        "den Text, deen den Auteur virgelies huet, war esou komesch, datt hunn d'Leit sech futtigelaacht",
+        "den Text, deen den Auteur virgelies huet, war esou komesch, datt d'Leit hunn sech futtigelaacht"
+      ],
+      "correct": 0,
+      "entryId": "KOMESCH1"
+    },
+    {
+      "id": "gr-subcl-54a169117c",
+      "kind": "subclause",
+      "moved": "versteet",
+      "conjunction": "datt",
+      "options_lb": [
+        "hien dréckt sech esou komplizéiert aus, datt versteet kee Mënsch, wat e mengt",
+        "hien dréckt sech esou komplizéiert aus, datt kee versteet Mënsch, wat e mengt",
+        "hien dréckt sech esou komplizéiert aus, datt kee Mënsch versteet, wat e mengt"
+      ],
+      "correct": 2,
+      "entryId": "KOMPLIZEIERT1"
+    },
+    {
+      "id": "gr-subcl-eb14531740",
+      "kind": "subclause",
+      "moved": "kënnt",
+      "conjunction": "datt",
+      "options_lb": [
+        "et ass net auszeschléissen, datt et zu engem militäresche Konflikt kënnt",
+        "et ass net auszeschléissen, datt kënnt et zu engem militäresche Konflikt",
+        "et ass net auszeschléissen, datt et kënnt zu engem militäresche Konflikt"
+      ],
+      "correct": 0,
+      "entryId": "KONFLIKT1"
+    },
+    {
+      "id": "gr-subcl-259f45745c",
+      "kind": "subclause",
+      "moved": "kënns",
+      "conjunction": "datt",
+      "options_lb": [
+        "wouru läit et, datt s du ëmmer ze spéit kënns?",
+        "wouru läit et, datt kënns s du ëmmer ze spéit?",
+        "wouru läit et, datt s kënns du ëmmer ze spéit?"
+      ],
+      "correct": 0,
+      "entryId": "LEIEN2"
+    },
+    {
+      "id": "gr-subcl-82ffc46189",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "dat war fir d'lescht, datt hunn ech der gehollef!",
+        "dat war fir d'lescht, datt ech hunn der gehollef!",
+        "dat war fir d'lescht, datt ech der gehollef hunn!"
+      ],
+      "correct": 2,
+      "entryId": "LESCHT2"
+    },
+    {
+      "id": "gr-subcl-4d10769761",
+      "kind": "subclause",
+      "moved": "sinn",
+      "conjunction": "datt",
+      "options_lb": [
+        "et ass dach net méiglech, datt e Mënsch esou domm ka sinn!",
+        "et ass dach net méiglech, datt sinn e Mënsch esou domm ka!",
+        "et ass dach net méiglech, datt e sinn Mënsch esou domm ka!"
+      ],
+      "correct": 0,
+      "entryId": "MEIGLECH1"
+    },
+    {
+      "id": "gr-subcl-52081e9e7e",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "et war esou naass, datt d'Fruucht ass um Hallem gefault",
+        "et war esou naass, datt d'Fruucht um Hallem gefault ass",
+        "et war esou naass, datt ass d'Fruucht um Hallem gefault"
+      ],
+      "correct": 1,
+      "entryId": "NAASS1"
+    },
+    {
+      "id": "gr-subcl-18f070e170",
+      "kind": "subclause",
+      "moved": "fält",
+      "conjunction": "datt",
+      "options_lb": [
+        "et ass net normal, datt fält am Oktober Schnéi",
+        "et ass net normal, datt am fält Oktober Schnéi",
+        "et ass net normal, datt am Oktober Schnéi fält"
+      ],
+      "correct": 2,
+      "entryId": "NORMAL1"
+    },
+    {
+      "id": "gr-subcl-daedc67ed0",
+      "kind": "subclause",
+      "moved": "spillen",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech fannen et net normal, datt d'Kanner spillen owes spéit dobausse",
+        "ech fannen et net normal, datt d'Kanner owes spéit dobausse spillen",
+        "ech fannen et net normal, datt spillen d'Kanner owes spéit dobausse"
+      ],
+      "correct": 1,
+      "entryId": "NORMAL1"
+    },
+    {
+      "id": "gr-subcl-98d21d6734",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "mäi Papp reift mer bei all Geleeënheet ënner d'Nues, datt ech en Noexamen hunn",
+        "mäi Papp reift mer bei all Geleeënheet ënner d'Nues, datt hunn ech en Noexamen",
+        "mäi Papp reift mer bei all Geleeënheet ënner d'Nues, datt ech hunn en Noexamen"
+      ],
+      "correct": 0,
+      "entryId": "NUES1"
+    },
+    {
+      "id": "gr-subcl-36df9d6f12",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "wann ech gewosst hätt, datt hien ass esou en onseriöe Kärel, hätt ech en net agestallt!",
+        "wann ech gewosst hätt, datt hien esou en onseriöe Kärel ass, hätt ech en net agestallt!",
+        "wann ech gewosst hätt, datt ass hien esou en onseriöe Kärel, hätt ech en net agestallt!"
+      ],
+      "correct": 1,
+      "entryId": "ONSERIO1"
+    },
+    {
+      "id": "gr-subcl-1a98484b5b",
+      "kind": "subclause",
+      "moved": "bréchs",
+      "conjunction": "datt",
+      "options_lb": [
+        "pass op, datt s bréchs de d'Paschtéit net, wann s de se fëlls!",
+        "pass op, datt s de d'Paschtéit net bréchs, wann s de se fëlls!",
+        "pass op, datt bréchs s de d'Paschtéit net, wann s de se fëlls!"
+      ],
+      "correct": 1,
+      "entryId": "PASCHTEIT1"
+    },
+    {
+      "id": "gr-subcl-d2e44263d4",
+      "kind": "subclause",
+      "moved": "kafen",
+      "conjunction": "datt",
+      "options_lb": [
+        "als Déierefrënd kann ech net verstoen, datt d'Leit haut nach pelze Mäntel kafen",
+        "als Déierefrënd kann ech net verstoen, datt kafen d'Leit haut nach pelze Mäntel",
+        "als Déierefrënd kann ech net verstoen, datt d'Leit kafen haut nach pelze Mäntel"
+      ],
+      "correct": 0,
+      "entryId": "PELZEN1"
+    },
+    {
+      "id": "gr-subcl-d92860d11d",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "hie gouf gëschter gewuer, datt säin ass HIV-Test positiv",
+        "hie gouf gëschter gewuer, datt säin HIV-Test positiv ass",
+        "hie gouf gëschter gewuer, datt ass säin HIV-Test positiv"
+      ],
+      "correct": 1,
+      "entryId": "POSITIV1"
+    },
+    {
+      "id": "gr-subcl-6907883d70",
+      "kind": "subclause",
+      "moved": "passt",
+      "conjunction": "ob",
+      "options_lb": [
+        "ech hu probéiert, ob de Schlëssel passt",
+        "ech hu probéiert, ob passt de Schlëssel",
+        "ech hu probéiert, ob de passt Schlëssel"
+      ],
+      "correct": 0,
+      "entryId": "PROBEIEREN1"
+    },
+    {
+      "id": "gr-subcl-230fb14c11",
+      "kind": "subclause",
+      "moved": "sinn",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech hunn nach ëmmer net realiséiert, datt ech sinn pensionéiert",
+        "ech hunn nach ëmmer net realiséiert, datt ech pensionéiert sinn",
+        "ech hunn nach ëmmer net realiséiert, datt sinn ech pensionéiert"
+      ],
+      "correct": 1,
+      "entryId": "REALISEIEREN1"
+    },
+    {
+      "id": "gr-subcl-6884649f8a",
+      "kind": "subclause",
+      "moved": "sinn",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech sinn iwwerzeegt, datt sinn ech am Recht!",
+        "ech sinn iwwerzeegt, datt ech sinn am Recht!",
+        "ech sinn iwwerzeegt, datt ech am Recht sinn!"
+      ],
+      "correct": 2,
+      "entryId": "RECHT1"
+    },
+    {
+      "id": "gr-subcl-854f5fed88",
+      "kind": "subclause",
+      "moved": "hues",
+      "conjunction": "datt",
+      "options_lb": [
+        "Merci, datt s de mer de Réck fräigehalen hues!",
+        "Merci, datt hues s de mer de Réck fräigehalen!",
+        "Merci, datt s hues de mer de Réck fräigehalen!"
+      ],
+      "correct": 0,
+      "entryId": "RECK1"
+    },
+    {
+      "id": "gr-subcl-0efd26997b",
+      "kind": "subclause",
+      "moved": "huet",
+      "conjunction": "datt",
+      "options_lb": [
+        "datt huet seng Fra hie verlooss, dat gouf em de Rescht",
+        "datt seng huet Fra hie verlooss, dat gouf em de Rescht",
+        "datt seng Fra hie verlooss huet, dat gouf em de Rescht"
+      ],
+      "correct": 2,
+      "entryId": "RESCHT1"
+    },
+    {
+      "id": "gr-subcl-e03650e7b2",
+      "kind": "subclause",
+      "moved": "ginn",
+      "conjunction": "datt",
+      "options_lb": [
+        "et ass aarmséileg, datt Saache ginn behaapt, déi net stëmmen",
+        "et ass aarmséileg, datt Saache behaapt ginn, déi net stëmmen",
+        "et ass aarmséileg, datt ginn Saache behaapt, déi net stëmmen"
+      ],
+      "correct": 1,
+      "entryId": "SAACH1"
+    },
+    {
+      "id": "gr-subcl-a74ccad900",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "säi frëndlecht Wiesen dréit derzou bäi, datt ass d'Kand bei jidderengem beléift",
+        "säi frëndlecht Wiesen dréit derzou bäi, datt d'Kand ass bei jidderengem beléift",
+        "säi frëndlecht Wiesen dréit derzou bäi, datt d'Kand bei jidderengem beléift ass"
+      ],
+      "correct": 2,
+      "entryId": "SAIN1"
+    },
+    {
+      "id": "gr-subcl-8ac1455175",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "säi frëndlecht Wiesen dréit derzou bäi, datt ass hatt bei jidderengem beléift",
+        "säi frëndlecht Wiesen dréit derzou bäi, datt hatt ass bei jidderengem beléift",
+        "säi frëndlecht Wiesen dréit derzou bäi, datt hatt bei jidderengem beléift ass"
+      ],
+      "correct": 2,
+      "entryId": "SAIN1"
+    },
+    {
+      "id": "gr-subcl-9c433c55f9",
+      "kind": "subclause",
+      "moved": "ginn",
+      "conjunction": "datt",
+      "options_lb": [
+        "mir musse berücksichtegen, datt dacks béid Eltere schaffe ginn",
+        "mir musse berücksichtegen, datt ginn dacks béid Eltere schaffe",
+        "mir musse berücksichtegen, datt dacks ginn béid Eltere schaffe"
+      ],
+      "correct": 0,
+      "entryId": "SCHAFFEN3"
+    },
+    {
+      "id": "gr-subcl-f784c7a01d",
+      "kind": "subclause",
+      "moved": "schéckt",
+      "conjunction": "datt",
+      "options_lb": [
+        "maacht, datt schéckt dir iech!",
+        "maacht, datt dir schéckt iech!",
+        "maacht, datt dir iech schéckt!"
+      ],
+      "correct": 2,
+      "entryId": "SCHECKEN1"
+    },
+    {
+      "id": "gr-subcl-bcff55c1c2",
+      "kind": "subclause",
+      "moved": "hëllefs",
+      "conjunction": "datt",
+      "options_lb": [
+        "et ass schéi vun dir, datt s hëllefs de mer",
+        "et ass schéi vun dir, datt s de mer hëllefs",
+        "et ass schéi vun dir, datt hëllefs s de mer"
+      ],
+      "correct": 1,
+      "entryId": "SCHEIN1"
+    },
+    {
+      "id": "gr-subcl-63a8c0d47e",
+      "kind": "subclause",
+      "moved": "hutt",
+      "conjunction": "datt",
+      "options_lb": [
+        "Merci, datt Dir hutt mir Är Opmierksamkeet geschenkt!",
+        "Merci, datt Dir mir Är Opmierksamkeet geschenkt hutt!",
+        "Merci, datt hutt Dir mir Är Opmierksamkeet geschenkt!"
+      ],
+      "correct": 1,
+      "entryId": "SCHENKEN1"
+    },
+    {
+      "id": "gr-subcl-056a580e6e",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "ob",
+      "options_lb": [
+        "schmaach emol, ob ass d'Zopp genuch gesalzt!",
+        "schmaach emol, ob d'Zopp ass genuch gesalzt!",
+        "schmaach emol, ob d'Zopp genuch gesalzt ass!"
+      ],
+      "correct": 2,
+      "entryId": "SCHMAACHEN1"
+    },
+    {
+      "id": "gr-subcl-ec583792f0",
+      "kind": "subclause",
+      "moved": "schneit",
+      "conjunction": "datt",
+      "options_lb": [
+        "d'Coiffeuse muss oppassen, datt se hir Clienten net schneit",
+        "d'Coiffeuse muss oppassen, datt schneit se hir Clienten net",
+        "d'Coiffeuse muss oppassen, datt se schneit hir Clienten net"
+      ],
+      "correct": 0,
+      "entryId": "SCHNEIDEN1"
+    },
+    {
+      "id": "gr-subcl-0d58664713",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech fannen et schued, datt ass d'Party ofgesot",
+        "ech fannen et schued, datt d'Party ass ofgesot",
+        "ech fannen et schued, datt d'Party ofgesot ass"
+      ],
+      "correct": 2,
+      "entryId": "SCHUED2"
+    },
+    {
+      "id": "gr-subcl-5bea97a487",
+      "kind": "subclause",
+      "moved": "huet",
+      "conjunction": "datt",
+      "options_lb": [
+        "du kanns vu Chance schwätzen, datt huet keen dech beim Knäipen erwëscht!",
+        "du kanns vu Chance schwätzen, datt keen huet dech beim Knäipen erwëscht!",
+        "du kanns vu Chance schwätzen, datt keen dech beim Knäipen erwëscht huet!"
+      ],
+      "correct": 2,
+      "entryId": "SCHWATZEN1"
+    },
+    {
+      "id": "gr-subcl-7610fbf3ab",
+      "kind": "subclause",
+      "moved": "geet",
+      "conjunction": "datt",
+      "options_lb": [
+        "et ass sécher, datt de Papp net mat op d'Rees geet",
+        "et ass sécher, datt geet de Papp net mat op d'Rees",
+        "et ass sécher, datt de geet Papp net mat op d'Rees"
+      ],
+      "correct": 0,
+      "entryId": "SECHER1"
+    },
+    {
+      "id": "gr-subcl-fdd9dca752",
+      "kind": "subclause",
+      "moved": "sinn",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech wier (mer) an denger Plaz net esou sécher, datt d'Kanner sinn op deem Fest erwënscht",
+        "ech wier (mer) an denger Plaz net esou sécher, datt d'Kanner op deem Fest erwënscht sinn",
+        "ech wier (mer) an denger Plaz net esou sécher, datt sinn d'Kanner op deem Fest erwënscht"
+      ],
+      "correct": 1,
+      "entryId": "SECHER1"
+    },
+    {
+      "id": "gr-subcl-0a057681e0",
+      "kind": "subclause",
+      "moved": "hëllefs",
+      "conjunction": "datt",
+      "options_lb": [
+        "et ass séier gentil, datt s de mer hëllefs",
+        "et ass séier gentil, datt hëllefs s de mer",
+        "et ass séier gentil, datt s hëllefs de mer"
+      ],
+      "correct": 0,
+      "entryId": "SEIER2"
+    },
+    {
+      "id": "gr-subcl-5a1fe9add7",
+      "kind": "subclause",
+      "moved": "gëtt",
+      "conjunction": "datt",
+      "options_lb": [
+        "d'Sekretariat këmmert sech drëm, datt de gëtt Courrier matzäit fortgeschéckt",
+        "d'Sekretariat këmmert sech drëm, datt de Courrier matzäit fortgeschéckt gëtt",
+        "d'Sekretariat këmmert sech drëm, datt gëtt de Courrier matzäit fortgeschéckt"
+      ],
+      "correct": 1,
+      "entryId": "SEKRETARIAT1"
+    },
+    {
+      "id": "gr-subcl-3a99075dfe",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "so dem Garçon, datt deng Zopp kal ass!",
+        "so dem Garçon, datt ass deng Zopp kal!",
+        "so dem Garçon, datt deng ass Zopp kal!"
+      ],
+      "correct": 0,
+      "entryId": "SOEN1"
+    },
+    {
+      "id": "gr-subcl-81c38e8f11",
+      "kind": "subclause",
+      "moved": "hält",
+      "conjunction": "datt",
+      "options_lb": [
+        "datt hien hält an där Saach de Mond, dat seet genuch!",
+        "datt hien an där Saach de Mond hält, dat seet genuch!",
+        "datt hält hien an där Saach de Mond, dat seet genuch!"
+      ],
+      "correct": 1,
+      "entryId": "SOEN1"
+    },
+    {
+      "id": "gr-subcl-e6ff0682e7",
+      "kind": "subclause",
+      "moved": "verdréit",
+      "conjunction": "datt",
+      "options_lb": [
+        "seng Reaktioun beweist, datt hie verdréit kee Spaass",
+        "seng Reaktioun beweist, datt hie kee Spaass verdréit",
+        "seng Reaktioun beweist, datt verdréit hie kee Spaass"
+      ],
+      "correct": 1,
+      "entryId": "SPAASS1"
+    },
+    {
+      "id": "gr-subcl-0b16742b21",
+      "kind": "subclause",
+      "moved": "späichert",
+      "conjunction": "datt",
+      "options_lb": [
+        "passt op, datt dir späichert (d'Dateien) richteg, ier der de Computer ausmaacht!",
+        "passt op, datt dir (d'Dateien) richteg späichert, ier der de Computer ausmaacht!",
+        "passt op, datt späichert dir (d'Dateien) richteg, ier der de Computer ausmaacht!"
+      ],
+      "correct": 1,
+      "entryId": "SPAICHEREN1"
+    },
+    {
+      "id": "gr-subcl-859a820d9d",
+      "kind": "subclause",
+      "moved": "mengt",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech fannen et staark, datt dee mengt Ligener och nach, e wier am Recht!",
+        "ech fannen et staark, datt dee Ligener och nach mengt, e wier am Recht!",
+        "ech fannen et staark, datt mengt dee Ligener och nach, e wier am Recht!"
+      ],
+      "correct": 1,
+      "entryId": "STAARK1"
+    },
+    {
+      "id": "gr-subcl-9562591e87",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech hat esou en Honger, datt ech hunn dräi grouss Stécker Taart giess",
+        "ech hat esou en Honger, datt ech dräi grouss Stécker Taart giess hunn",
+        "ech hat esou en Honger, datt hunn ech dräi grouss Stécker Taart giess"
+      ],
+      "correct": 1,
+      "entryId": "STECK1"
+    },
+    {
+      "id": "gr-subcl-e35abef0f9",
+      "kind": "subclause",
+      "moved": "stees",
+      "conjunction": "datt",
+      "options_lb": [
+        "et gefält mer, datt s du ëmmer zu dengen Iddie stees",
+        "et gefält mer, datt stees s du ëmmer zu dengen Iddie",
+        "et gefält mer, datt s stees du ëmmer zu dengen Iddie"
+      ],
+      "correct": 0,
+      "entryId": "STOEN1"
+    },
+    {
+      "id": "gr-subcl-0fdf301446",
+      "kind": "subclause",
+      "moved": "stees",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech wousst net, datt s stees du op déck Autoe",
+        "ech wousst net, datt s du op déck Autoe stees",
+        "ech wousst net, datt stees s du op déck Autoe"
+      ],
+      "correct": 1,
+      "entryId": "STOEN1"
+    },
+    {
+      "id": "gr-subcl-e9e210780d",
+      "kind": "subclause",
+      "moved": "gëtt",
+      "conjunction": "datt",
+      "options_lb": [
+        "d'Chancë sti 50:50, datt et muer Ree gëtt",
+        "d'Chancë sti 50:50, datt gëtt et muer Ree",
+        "d'Chancë sti 50:50, datt et gëtt muer Ree"
+      ],
+      "correct": 0,
+      "entryId": "STOEN1"
+    },
+    {
+      "id": "gr-subcl-8e5d6cc993",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "datt",
+      "options_lb": [
+        "suerg derfir, datt ass genuch Bensinn am Tank!",
+        "suerg derfir, datt genuch ass Bensinn am Tank!",
+        "suerg derfir, datt genuch Bensinn am Tank ass!"
+      ],
+      "correct": 2,
+      "entryId": "SUERGEN1"
+    },
+    {
+      "id": "gr-subcl-0e7be0e954",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "ob",
+      "options_lb": [
+        "de Steward kontrolléiert virun der Landung, ob d'Passagéier hunn hir Tabletten eropgeklappt",
+        "de Steward kontrolléiert virun der Landung, ob d'Passagéier hir Tabletten eropgeklappt hunn",
+        "de Steward kontrolléiert virun der Landung, ob hunn d'Passagéier hir Tabletten eropgeklappt"
+      ],
+      "correct": 1,
+      "entryId": "TABLETT1"
+    },
+    {
+      "id": "gr-subcl-91609784ca",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech war esou hongereg, datt ech hunn zwee Telleren Nuddele giess!",
+        "ech war esou hongereg, datt ech zwee Telleren Nuddele giess hunn!",
+        "ech war esou hongereg, datt hunn ech zwee Telleren Nuddele giess!"
+      ],
+      "correct": 1,
+      "entryId": "TELLER1"
+    },
+    {
+      "id": "gr-subcl-a7b95b9229",
+      "kind": "subclause",
+      "moved": "trëppels",
+      "conjunction": "datt",
+      "options_lb": [
+        "do läit eng Kaz, pass op, datt s trëppels de se net!",
+        "do läit eng Kaz, pass op, datt s de se net trëppels!",
+        "do läit eng Kaz, pass op, datt trëppels s de se net!"
+      ],
+      "correct": 1,
+      "entryId": "TREPPELEN2"
+    },
+    {
+      "id": "gr-subcl-d932c67a97",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "ob",
+      "options_lb": [
+        "kuck no, ob nach ass genuch Ueleg am Motor!",
+        "kuck no, ob nach genuch Ueleg am Motor ass!",
+        "kuck no, ob ass nach genuch Ueleg am Motor!"
+      ],
+      "correct": 1,
+      "entryId": "UELEG1"
+    },
+    {
+      "id": "gr-subcl-99f77f4857",
+      "kind": "subclause",
+      "moved": "sinn",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech sinn haut am Bus esou domm ugemaach ginn, datt sinn ech erausgeklomm",
+        "ech sinn haut am Bus esou domm ugemaach ginn, datt ech sinn erausgeklomm",
+        "ech sinn haut am Bus esou domm ugemaach ginn, datt ech erausgeklomm sinn"
+      ],
+      "correct": 2,
+      "entryId": "UMAACHEN1"
+    },
+    {
+      "id": "gr-subcl-34b8e57b13",
+      "kind": "subclause",
+      "moved": "ass",
+      "conjunction": "ob",
+      "options_lb": [
+        "klapp emol un d'Dier, ech weess net, ob een ass dobannen!",
+        "klapp emol un d'Dier, ech weess net, ob een dobannen ass!",
+        "klapp emol un d'Dier, ech weess net, ob ass een dobannen!"
+      ],
+      "correct": 1,
+      "entryId": "UN1"
+    },
+    {
+      "id": "gr-subcl-1be15b216e",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "datt",
+      "options_lb": [
+        "de Chauffer ass esou brüsk ugefuer, datt d'Leit hunn am Bus d'Gläichgewiicht verluer",
+        "de Chauffer ass esou brüsk ugefuer, datt d'Leit am Bus d'Gläichgewiicht verluer hunn",
+        "de Chauffer ass esou brüsk ugefuer, datt hunn d'Leit am Bus d'Gläichgewiicht verluer"
+      ],
+      "correct": 1,
+      "entryId": "VERLEIEREN1"
+    },
+    {
+      "id": "gr-subcl-b576c20907",
+      "kind": "subclause",
+      "moved": "geet",
+      "conjunction": "datt",
+      "options_lb": [
+        "bleift schéin zesummen, Jongen, datt geet kee verluer!",
+        "bleift schéin zesummen, Jongen, datt kee geet verluer!",
+        "bleift schéin zesummen, Jongen, datt kee verluer geet!"
+      ],
+      "correct": 2,
+      "entryId": "VERLEIEREN1"
+    },
+    {
+      "id": "gr-subcl-98fc675a0c",
+      "kind": "subclause",
+      "moved": "halen",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech hunn him ze verstoe ginn, datt ech halen net vill vun em",
+        "ech hunn him ze verstoe ginn, datt ech net vill vun em halen",
+        "ech hunn him ze verstoe ginn, datt halen ech net vill vun em"
+      ],
+      "correct": 1,
+      "entryId": "VERSTOEN1"
+    },
+    {
+      "id": "gr-subcl-ccb691bb20",
+      "kind": "subclause",
+      "moved": "kanns",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech wousst net, datt s kanns du esou gutt sange",
+        "ech wousst net, datt s du esou gutt sange kanns",
+        "ech wousst net, datt kanns s du esou gutt sange"
+      ],
+      "correct": 1,
+      "entryId": "WESSEN2"
+    },
+    {
+      "id": "gr-subcl-9784464a06",
+      "kind": "subclause",
+      "moved": "hunn",
+      "conjunction": "ob",
+      "options_lb": [
+        "ech weess net, ob hunn ech d'Kaffismaschinn ausgemaach",
+        "ech weess net, ob ech hunn d'Kaffismaschinn ausgemaach",
+        "ech weess net, ob ech d'Kaffismaschinn ausgemaach hunn"
+      ],
+      "correct": 2,
+      "entryId": "WESSEN2"
+    },
+    {
+      "id": "gr-subcl-9ca2976e3b",
+      "kind": "subclause",
+      "moved": "spillen",
+      "conjunction": "datt",
+      "options_lb": [
+        "ech klaken der eng, datt d'Zänn der am Aasch Piano spillen",
+        "ech klaken der eng, datt spillen d'Zänn der am Aasch Piano",
+        "ech klaken der eng, datt d'Zänn spillen der am Aasch Piano"
+      ],
+      "correct": 0,
+      "entryId": "ZANT1"
     },
     {
       "id": "gr-neg-55dc4e1895",

@@ -1100,6 +1100,18 @@
   color: var(--text-faint);
 }
 
+/* What the step is for, in exam terms. Coloured rather than muted: it is the
+   reason the row exists, and it should not read as a footnote to the count
+   below it. Goes quiet with the rest of the row once the step is done. */
+.plan__for {
+  font-size: var(--size-xs);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.01em;
+}
+
+.plan.is-done .plan__for { color: inherit; font-weight: 600; }
+
 /* Title over note, not run together on one line. min-width:0 lets a long note
    wrap inside the flex row instead of forcing the row wider than the screen. */
 .plan .spacer {

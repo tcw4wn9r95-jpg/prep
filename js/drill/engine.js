@@ -18,7 +18,7 @@ import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
 import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, recordMistake, clearMistake, goalCards, POINTS, touchStreak } from '../store.js';
 import { requestExplanation } from '../sync.js';
-import { buildCard, GRAMMAR_RULES, joinArticle, taskFor, factsFor } from './cards.js';
+import { buildCard, GRAMMAR_RULES, joinArticle, taskFor, factsFor, isStructure } from './cards.js';
 import { loadGlossary } from '../content.js';
 import { hintFor } from './hint.js';
 import { topicFor } from '../grammar-guide.js';
@@ -374,6 +374,13 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
   function grade(card, entry, result, { revealed, feedback, rule, explain }) {
     answeredCount += 1;
     answeredByDeck[card.deck.id] = (answeredByDeck[card.deck.id] ?? 0) + 1;
+    // Sentence structure is a slice of the grammar deck, tallied under a key
+    // no deck uses so Today's checklist can require it specifically. Without
+    // this, the structure step would tick on any six grammar cards — which is
+    // the same self-ticking checklist the grammar step already had to be
+    // rescued from. Counted *as well as* grammar, not instead of: these cards
+    // are grammar cards, and both steps should credit them.
+    if (isStructure(card.item)) answeredByDeck.structure = (answeredByDeck.structure ?? 0) + 1;
     if (result.correct) correctCount += 1;
 
     // A retry is practice, not evidence — grading it would let a word be

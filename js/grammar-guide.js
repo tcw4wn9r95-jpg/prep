@@ -38,6 +38,19 @@
  * @property {(data: object) => Array} examples  drawn from shipped decks only
  */
 
+/**
+ * Worked examples for a sentence-structure topic: the real sentences its own
+ * deck was mined from, so the theory and the drill cannot disagree.
+ */
+function orderExamples(grammar, kind, label) {
+  const sentences = (grammar ?? [])
+    .filter((item) => item.kind === kind)
+    .slice(0, 4)
+    .map((item) => ({ lb: item.options_lb?.[item.correct] }))
+    .filter((entry) => entry.lb);
+  return sentences.length ? [{ label, sentences }] : [];
+}
+
 /** Gender codes as the grammar deck writes them. */
 const GENDER_ORDER = ['M', 'F', 'N'];
 
@@ -167,22 +180,50 @@ export const GRAMMAR_GUIDE = [
 
   {
     id: 'wordorder',
-    title: 'Where the verb goes',
-    rule: 'The conjugated verb is the second element of a main clause — whatever comes first.',
+    title: 'Sentence structure 1 — the verb is second',
+    rule: 'In a statement the conjugated verb is the second element, whatever comes first.',
     points: [
-      'Second *element*, not second word. If the sentence opens with a time expression or any other phrase, that whole phrase is the first element and the verb still follows it, before the subject.',
-      'That is why the subject often turns up after the verb. It has not moved for emphasis; the verb simply holds its place.',
-      'In a question with no question word, the verb comes first instead. With a question word, the question word is the first element and the verb follows it.',
-      'Anything that is not the conjugated verb — a past participle, an infinitive, a separated prefix — goes to the end of the clause.',
+      'This is the rule an English speaker breaks most, because English fixes the order subject-verb-object and Luxembourgish fixes the *verb’s position* instead. Whatever you put first, the conjugated verb follows it.',
+      'Second **element**, not second word. If the sentence opens with a time or place phrase, that whole phrase is the first element and the verb still comes next — before the subject. So the subject often lands after the verb. It has not moved for emphasis; the verb simply holds its slot.',
+      'Only one element may go in front of the verb. Two is the mistake to watch for: pick the time phrase or the subject to lead with, not both.',
+      'A yes/no question moves the verb in front of everything instead. With a question word, the question word is the first element and the verb follows it — the same rule, counted from the question word.',
     ],
-    sources: ['illustrated with the Phrases deck, whose frames are corpus-attested'],
-    examples: ({ phrases }) => {
-      const chosen = (phrases ?? [])
-        .filter((phrase) => phrase.example?.lb)
-        .slice(0, 4)
-        .map((phrase) => ({ lb: phrase.example.lb, frame: phrase.lb, en: phrase.en }));
-      return chosen.length ? [{ label: 'Real sentences from the Phrases deck', sentences: chosen }] : [];
-    },
+    sources: [
+      'Grammaire de la langue luxembourgeoise, Zenter fir d’Lëtzebuerger Sprooch (ISBN 978-99959-1-206-2), the official reference. Checked against LOD: 3,288 of its 10,777 example sentences put a finite verb in second position.',
+    ],
+    examples: ({ grammar }) => orderExamples(grammar, 'wordorder', 'The order LOD wrote, with the verb second'),
+  },
+
+  {
+    id: 'bracket',
+    title: 'Sentence structure 2 — the verb bracket',
+    rule: 'When a sentence has two verb parts, the conjugated one stays second and the other goes to the very end.',
+    points: [
+      'A perfect (hunn/sinn plus a participle), a modal plus an infinitive, and a separable verb all split in two. The conjugated half holds second position; the other half goes to the end of the clause.',
+      'Everything else in the sentence sits *between* the two halves. That gap is the bracket, and it is why a Luxembourgish sentence can feel like it is holding its breath — the part that tells you what actually happened arrives last.',
+      'For listening this is the thing to train: the meaning-carrying verb is the final word, so a sentence cannot be understood from its opening. Wait for the end before deciding what it said.',
+      'For speaking it is the habit to build: decide the whole sentence before starting it, because you have to know the closing verb in advance.',
+    ],
+    sources: [
+      'Grammaire de la langue luxembourgeoise (ZLS). Checked against LOD: 1,981 example sentences end on a participle or infinitive with the finite verb in the first three positions.',
+    ],
+    examples: ({ grammar }) => orderExamples(grammar, 'bracket', 'The non-finite verb closes the sentence'),
+  },
+
+  {
+    id: 'subclause',
+    title: 'Sentence structure 3 — the verb goes last',
+    rule: 'After datt, ob, well, wann and the other subordinators, the conjugated verb moves to the end of its clause.',
+    points: [
+      'This is the hardest one and the last to become automatic. A subordinate clause is introduced by a conjunction, and inside that clause the conjugated verb leaves second position entirely and goes to the end.',
+      'So the same verb sits in two different places depending on the clause it is in. The main clause keeps the verb second; the clause hanging off it puts the verb last.',
+      'If the clause also has two verb parts, they cluster together at the end, with the conjugated one right at the back — behind the participle or infinitive, not in front of it.',
+      'A comma marks the boundary in writing but does nothing to the word order. Listen for the conjunction instead: it is the signal that the verb is coming at the end.',
+    ],
+    sources: [
+      'Grammaire de la langue luxembourgeoise (ZLS). Checked against LOD: after datt the finite verb closes the clause in 73% of the corpus’s 208 instances, and after ob in 68% of 31 — the residue is mostly clauses that continue past a comma.',
+    ],
+    examples: ({ grammar }) => orderExamples(grammar, 'subclause', 'The verb sits at the end of the clause'),
   },
 
   {

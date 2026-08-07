@@ -18,6 +18,13 @@
  * It does not measure a first session against 2,449 words. Three words out of
  * a deck that size is a bar at zero, which reads as "nothing was saved" — so
  * the bar that leads is the one for the step of the path you are actually on.
+ *
+ * And it does not treat the decks as things to finish. Nobody passes the
+ * Sproochentest by emptying a word list; the exam asks you to follow a B1
+ * conversation and hold an A2 one, and the decks are a pool those two draw
+ * from. So the deck size is stated as context and never as a denominator, and
+ * the numbers that lead are the two the exam actually turns on: how much you
+ * can follow, and how much you can produce.
  */
 
 import { el, screenHead, button, plural, settingsButton } from '../dom.js';
@@ -104,7 +111,26 @@ export async function render(root, { settings, navigate }) {
     el(
       'p',
       { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
-      'The exam scores morphosyntax — noun gender, the n-rule, and adjective endings. Every mixed session includes grammar cards; this is a focused round.',
+      'Morphosyntax is one of the criteria the interview is marked on — word order, noun gender, the n-rule, adjective endings. Every mixed session includes grammar cards; these are focused rounds.',
+    ),
+    // Sentence structure gets its own card, above the general grammar row. It
+    // is theory-first — the rule, then the practice — because word order is
+    // the one thing an English speaker will not absorb by answering cards: the
+    // mistake feels correct until someone explains why it is not.
+    el(
+      'a',
+      { class: 'card', href: '#/structure', style: { display: 'block', marginBlockEnd: 'var(--s3)' } },
+      el(
+        'div',
+        { class: 'row' },
+        el('span', { style: { fontSize: '28px' } }, '🧩'),
+        el(
+          'div',
+          { class: 'spacer' },
+          el('p', { class: 'card__title' }, 'Sentence structure'),
+          el('p', { class: 'card__note' }, 'Where the verb goes — the three rules, then graded practice. In every daily session, and required for the day to count.'),
+        ),
+      ),
     ),
     deckRow({
       href: '#/grammar',
@@ -114,7 +140,7 @@ export async function render(root, { settings, navigate }) {
       unit: 'exercise',
       recv: grammarRecv,
       prod: grammarProd,
-      note: 'Gender, n-rule, adjective agreement',
+      note: 'Gender, n-rule, adjective agreement, the perfect',
     }),
     el(
       'div',
@@ -144,6 +170,14 @@ export async function render(root, { settings, navigate }) {
     stageList(path, current, newLeft),
 
     sectionLabel('Vocabulary decks'),
+    // The one place the two bars are explained, rather than a gloss repeated
+    // on every row. They are the same two bars on the grammar row above, so
+    // this reads as the key to the whole screen.
+    el(
+      'p',
+      { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
+      'These are pools to draw on, not lists to finish — nobody passes by emptying one. The two bars on each row are what counts: can follow it, which is the listening paper, and can say it, which is the interview. A word turns solid once you have got it right on three separate days.',
+    ),
     el(
       'div',
       { class: 'stack' },
@@ -205,7 +239,7 @@ function progressPanel(flow, today) {
     el(
       'div',
       { class: 'row', style: { marginBlockStart: 'var(--s3)', gap: 'var(--s5)' } },
-      figure(String(flow.met), 'words met'),
+      figure(String(flow.met), 'words seen'),
       figure(String(flow.metRecent), `new in ${flow.days} days`),
       figure(String(flow.sticking), 'keep coming back'),
     ),
@@ -369,12 +403,12 @@ function stageList(path, current, newLeft = 0) {
 }
 
 /**
- * A deck, as one compact row with two counts rather than two bars.
+ * A deck, as one compact row with two bars.
  *
- * The bar here measures the words you have *met*, not the whole deck: "0% of
- * 2,048" is true, useless and discouraging in week one, whereas "2 of the 9
- * words you have met are holding" is a number that moves. Deck coverage is
- * still stated, as text, where it cannot be mistaken for progress.
+ * The bars measure the words you have actually seen, not the whole deck: "0%
+ * of 2,048" is true, useless and discouraging in week one. Deck size is still
+ * stated — but as "in the deck", never as "of", because a denominator is a
+ * target and this is not one. You do not have to finish a deck to pass.
  */
 function deckRow({ href, icon, title, total, unit, recv, prod, note }) {
   return el(
@@ -388,12 +422,12 @@ function deckRow({ href, icon, title, total, unit, recv, prod, note }) {
         'div',
         { class: 'spacer' },
         el('p', { class: 'card__title' }, title),
-        el('p', { class: 'card__note' }, `${recv.started} of ${plural(total, unit)} met`),
+        el('p', { class: 'card__note' }, `${recv.started} seen · ${plural(total, unit)} in the deck`),
         note ? el('p', { class: 'card__note' }, note) : null,
       ),
     ),
-    strandBar('Understand', recv),
-    strandBar('Say', prod),
+    strandBar('Can follow it', recv),
+    strandBar('Can say it', prod),
   );
 }
 
@@ -408,10 +442,15 @@ function deckRow({ href, icon, title, total, unit, recv, prod, note }) {
  *
  * Now the bar is the *distribution*: one segment per Leitner box, so a correct
  * answer visibly moves width from one segment to the next on the same day.
- * The caption still reports "N of M holding", because that is the number that
- * means something about the exam — it just is no longer the only thing on
- * screen, and it is no longer the thing that has to move for the row to look
- * alive.
+ *
+ * The words changed too. It used to read "12 of 47 holding", under a heading
+ * of "Understand" — two pieces of our own vocabulary in six words. "Met" is
+ * the scheduler's term for an item that has a row in the database, and
+ * "holding" is its term for box 3 or higher; neither is anything the learner
+ * asked about. What they are actually trying to find out is whether they could
+ * follow this word in the listening paper and produce it in the interview, so
+ * that is what the bar says now: **seen** for the ones that have come up, and
+ * **solid** for the ones that keep coming back right.
  */
 function strandBar(label, progress) {
   const met = progress.started;
@@ -426,7 +465,7 @@ function strandBar(label, progress) {
       el(
         'span',
         { class: 'card__note' },
-        met === 0 ? 'not started' : `${progress.strong} of ${met} holding`,
+        met === 0 ? 'not started yet' : `${progress.strong} solid of ${met} seen`,
       ),
     ),
     el(
@@ -445,7 +484,7 @@ function strandBar(label, progress) {
     ),
     met === 0
       ? null
-      : el('p', { class: 'ladder__caption' }, `${met} met · left to right: just seen → holding`),
+      : el('p', { class: 'ladder__caption' }, 'left to right: just seen → solid'),
   );
 }
 
