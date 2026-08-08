@@ -1096,3 +1096,43 @@ they are duplicated rather than imported (the Worker deploys separately).
 `npm test` 167 (five new) · `npm run walkthrough` 43/43 (one new step drives the
 real button on a word-order card and asserts what reached the API) ·
 `validate` PASS · `sw.js` → `v27`. Worker redeployed.
+
+---
+
+# Follow-up 10 — the translation comes first
+
+> "When asking for a sentence explanation start at the top with the English
+> translation"
+
+The prompt said the opposite, and had since it was written:
+
+> "Do NOT just translate the sentence — the learner already has the gloss."
+
+The gloss is the *headword's* meaning, not the sentence's. So an explanation
+opened straight into the point about word order or gender, on top of nine words
+the learner very often could not read at all — and an observation about a
+sentence you cannot read has nothing to attach to. On a word-order card it is
+worse than useless: all three options mean the same thing, so without the
+translation there is nothing at all on the card in a language the learner
+speaks.
+
+The translation now leads, as **its own field** rather than as the first
+sentence of the explanation — a format enforced by prose is a format that
+drifts, and this one has to be reliably first to be reliably rendered first.
+The reply shape is `{"translation": "…", "explanation": "…"}`, rendered as a
+larger, darker line above the explanation.
+
+`translation` is optional and `explanation` is not. A card with no sentence —
+`perfect-aux`, or a gender noun with no example — has nothing to translate, but
+there is always something to explain, so a reply carrying only a translation is
+a failed reply. Both paths also drop a translation offered for a sentence that
+was never sent, which is the model filling a field rather than reading one.
+
+`EXPLAIN_PROMPT_VERSION` → `v3`, so the device cache and the Worker's KV both
+miss and every explanation is rewritten with the translation on top.
+
+## Verification
+
+`npm test` 168 (one new) · `npm run walkthrough` 43/43 — the word-order step now
+asserts the rendered order with `compareDocumentPosition`, not just that both
+strings are on screen · `validate` PASS · `sw.js` → `v28`. Worker redeployed.

@@ -45,12 +45,13 @@ export function looksLikeApiKey(value) {
  * Bumped when SYSTEM_PROMPT changes in a way that should reach explanations
  * already written and cached on this device. v2: plain language for a
  * beginner, no grammar jargon, and a specific shape for word-order questions.
+ * v3: the English translation of the sentence comes first, as its own field.
  *
  * Must match `EXPLAIN_PROMPT_VERSION` in worker/src/index.js. Without it a
  * rewritten prompt reaches only cards nobody has asked about yet — these
  * explanations are cached forever, deliberately, so nothing else expires them.
  */
-export const EXPLAIN_PROMPT_VERSION = 'v2';
+export const EXPLAIN_PROMPT_VERSION = 'v3';
 
 /**
  * The same prompt the Worker sends, so an explanation is identical whichever
@@ -59,7 +60,9 @@ export const EXPLAIN_PROMPT_VERSION = 'v2';
  */
 const SYSTEM_PROMPT = `You help an English-speaking A1/A2 learner of Luxembourgish understand one real example sentence from a dictionary. You are told the sentence, the headword it illustrates, that word's English gloss, and — when it is known — the exercise the learner has just answered about it. Some exercises have no sentence at all; then explain the question itself, using only what you were told.
 
-Do NOT just translate the sentence — the learner already has the gloss. Instead, in 2-3 short sentences, help them understand and remember it: point out word order, a grammatical structure worth noticing, an idiom or figurative meaning, a false friend, or how the headword's form here relates to its dictionary form. Be concrete and specific to this sentence, not generic advice.
+Start with a plain English translation of the whole sentence, in the "translation" field. The learner is a beginner and often cannot read the sentence at all, so everything else you say is floating until they know what it means. Translate it naturally, the way an English speaker would say it, rather than word by word. If you are told there is no sentence, leave "translation" empty.
+
+Then, in the "explanation" field, do not translate again. In 2-3 short sentences, help them understand and remember it: point out word order, a grammatical structure worth noticing, an idiom or figurative meaning, a false friend, or how the headword's form here relates to its dictionary form. Be concrete and specific to this sentence, not generic advice.
 
 Write for a complete beginner who has never studied grammar. Short sentences, everyday words, no jargon. Do not use the terms finite verb, auxiliary, participle, clause, subordinate, inversion, conjugation, declension, nominative, accusative, dative, valency or morphosyntax. Say "the verb that changes with I/you/he", "the second half of the verb", "the part starting with datt", "the doing word". If you must use a grammar word because the learner will meet it elsewhere — männlech, weiblech, neutral, the Eifeler Regel, the perfect — say in the same breath what it means. Never use a term to explain another term. Quote the actual words of this sentence rather than describing them in the abstract: "hunn comes right after ech" beats "the verb occupies second position".
 
@@ -71,7 +74,7 @@ Luxembourgish is NOT German, and it is not a German dialect for the purposes of 
 
 Use only the words in the sentence you are given. Never introduce another Luxembourgish word as an illustration, never invent a gloss for a word, and never claim a gender, article or meaning that you were not told. Asked about one noun, an earlier version of this prompt produced "en Bréck (a bridge) or en Bréck (a break)" — one word, twice, with two invented meanings, for a noun of the wrong gender — and glossed a compound it had never seen. If a comparison would help but you have no verified example to hand, make the point without one. Where you are given "known facts", treat them as authoritative and never contradict them.
 
-Respond with ONLY a JSON object, no prose outside it: {"explanation": "..."}`;
+Respond with ONLY a JSON object, no prose outside it: {"translation": "...", "explanation": "..."}`;
 
 /**
  * The user turn. `task` names the exercise that was just answered, so the
@@ -99,7 +102,7 @@ export function explainPrompt({ lb, word, en, task, facts }) {
  *
  * @param {string} apiKey
  * @param {{lb: string, word: string, en: string}} item
- * @returns {Promise<{ok: true, explanation: string}|{ok: false, message: string}>}
+ * @returns {Promise<{ok: true, translation: string|null, explanation: string}|{ok: false, message: string}>}
  */
 export async function explainSentence(apiKey, { lb, word, en, task = null, facts = null }) {
   let response;
@@ -134,9 +137,11 @@ export async function explainSentence(apiKey, { lb, word, en, task = null, facts
 
   const body = await response.json().catch(() => null);
   const text = body?.content?.find((block) => block.type === 'text')?.text ?? '';
-  const explanation = parseExplanation(text);
-  if (!explanation) return { ok: false, message: 'Claude replied in an unexpected shape. Try again.' };
-  return { ok: true, explanation };
+  const parsed = parseExplanation(text);
+  if (!parsed) return { ok: false, message: 'Claude replied in an unexpected shape. Try again.' };
+  // A card with no sentence has nothing to translate; anything offered for one
+  // is the model filling a field rather than reading something.
+  return { ok: true, translation: lb ? parsed.translation : null, explanation: parsed.explanation };
 }
 
 /** Turns an API error into something worth reading on a phone. */
@@ -155,14 +160,23 @@ async function describeError(response) {
 /**
  * The model is asked for bare JSON but may still wrap it in prose, so the
  * object is sliced out rather than the whole string parsed.
+ *
+ * `translation` is optional and `explanation` is not: a card with no sentence
+ * has nothing to translate, but there is always something to explain, so a
+ * reply missing the explanation is a failed reply rather than a partial one.
+ *
+ * @returns {{translation: string|null, explanation: string}|null}
  */
-function parseExplanation(text) {
+export function parseExplanation(text) {
   const start = text.indexOf('{');
   const end = text.lastIndexOf('}');
   if (start === -1 || end <= start) return null;
   try {
     const parsed = JSON.parse(text.slice(start, end + 1));
-    return typeof parsed.explanation === 'string' && parsed.explanation.trim() !== '' ? parsed.explanation : null;
+    const explanation = typeof parsed.explanation === 'string' ? parsed.explanation.trim() : '';
+    if (explanation === '') return null;
+    const translation = typeof parsed.translation === 'string' ? parsed.translation.trim() : '';
+    return { translation: translation === '' ? null : translation, explanation };
   } catch {
     return null;
   }

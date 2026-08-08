@@ -941,7 +941,7 @@ async function main() {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify({ content: [{ type: 'text', text: '{"explanation":"Word order is verb-second here."}' }] }),
+        body: JSON.stringify({ content: [{ type: 'text', text: '{"translation":"I have had enough of this!","explanation":"Word order is verb-second here."}' }] }),
       });
     });
 
@@ -982,7 +982,7 @@ async function main() {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify({ content: [{ type: 'text', text: '{"explanation":"hunn comes straight after ech."}' }] }),
+        body: JSON.stringify({ content: [{ type: 'text', text: '{"translation":"I have got conjunctivitis in my left eye.","explanation":"hunn comes straight after ech."}' }] }),
       });
     });
     await page.evaluate(async () => {
@@ -998,6 +998,18 @@ async function main() {
     await explain.waitFor({ state: 'visible', timeout: 3000 });
     await explain.click();
     await page.waitForFunction(() => /hunn comes straight after/.test(document.querySelector('#screen')?.textContent ?? ''), { timeout: 5000 });
+
+    // The translation leads. An observation about where the verb sits lands on
+    // nothing if the learner cannot read the sentence it is about.
+    const translated = (await page.locator('.drill__translation').first().textContent())?.trim();
+    if (translated !== 'I have got conjunctivitis in my left eye.') throw new Error(`translation not shown first: ${translated}`);
+    const translationFirst = await page.evaluate(() => {
+      const first = document.querySelector('#screen .drill__translation');
+      const prose = [...document.querySelectorAll('#screen p')].find((node) => /hunn comes straight after/.test(node.textContent));
+      // 4 = DOCUMENT_POSITION_FOLLOWING: the prose comes after the translation.
+      return Boolean(first && prose && first.compareDocumentPosition(prose) & 4);
+    });
+    if (!translationFirst) throw new Error('the explanation is rendered above the translation');
 
     const prompt = sent?.messages?.[0]?.content ?? '';
     const system = sent?.system ?? '';

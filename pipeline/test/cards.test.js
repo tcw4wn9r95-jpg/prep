@@ -337,10 +337,12 @@ test('cards: both explain paths ask the same question, in plain language', async
   const worker = fs.readFileSync(path.join(ROOT, 'worker', 'src', 'index.js'), 'utf8');
 
   const shared = [
+    'Start with a plain English translation of the whole sentence',
     'Write for a complete beginner who has never studied grammar.',
     'A word-order exercise is a special case',
     'Luxembourgish is NOT German',
     'Use only the words in the sentence you are given.',
+    '{"translation": "...", "explanation": "..."}',
   ];
   for (const paragraph of shared) {
     assert.ok(app.includes(paragraph), `app/js/anthropic.js is missing: ${paragraph}`);
@@ -360,6 +362,35 @@ test('cards: both explain paths ask the same question, in plain language', async
   const workerVersion = worker.match(/EXPLAIN_PROMPT_VERSION = '([^']+)'/)?.[1];
   assert.ok(appVersion, 'app/js/anthropic.js declares no EXPLAIN_PROMPT_VERSION');
   assert.equal(workerVersion, appVersion, 'the two explanation caches are keyed on different prompt versions');
+});
+
+test('cards: an explanation carries the translation, and only when there is a sentence', async () => {
+  // The learner asked for this: the observation about word order or gender
+  // used to land on top of a sentence they often could not read at all, so it
+  // had nothing to attach to. The translation is its own field rather than the
+  // first words of the explanation, because a format enforced by prose is a
+  // format that drifts.
+  const anthropic = await import(load('anthropic.js'));
+
+  const both = anthropic.parseExplanation('{"translation":"I have had enough!","explanation":"hunn comes right after ech."}');
+  assert.deepEqual(both, { translation: 'I have had enough!', explanation: 'hunn comes right after ech.' });
+
+  // Optional, so a card with nothing to translate still gets an explanation.
+  assert.deepEqual(anthropic.parseExplanation('{"explanation":"kommen takes sinn."}'), {
+    translation: null,
+    explanation: 'kommen takes sinn.',
+  });
+  assert.equal(anthropic.parseExplanation('{"translation":"   ","explanation":"x"}').translation, null);
+
+  // Not optional the other way round: there is always something to explain, so
+  // a reply with only a translation is a failed reply.
+  assert.equal(anthropic.parseExplanation('{"translation":"I have had enough!"}'), null);
+  assert.equal(anthropic.parseExplanation('sorry, I cannot help with that'), null);
+
+  // And the Worker drops a translation offered for a sentence it never sent.
+  const fs = require('node:fs');
+  const worker = fs.readFileSync(path.join(ROOT, 'worker', 'src', 'index.js'), 'utf8');
+  assert.match(worker, /translation: lb && translation \? translation : null/, 'the Worker returns a translation of nothing');
 });
 
 test('cards: the Worker accepts a card that has no sentence', () => {
