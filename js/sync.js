@@ -294,7 +294,10 @@ export async function requestExplanation(settings, { lb, word, en, task = null, 
   if (settings.workerUrl) {
     try {
       const body = await request(settings, '/explain', { method: 'POST', body: JSON.stringify({ lb, word, en, task, facts }) });
-      return { ok: true, explanation: body.explanation };
+      // `translation` is absent from a Worker deployed before it existed, and
+      // from any card that had no sentence to translate. Both mean the same
+      // thing to the caller: show the explanation on its own.
+      return { ok: true, translation: body.translation ?? null, explanation: body.explanation };
     } catch (error) {
       // A Worker deployed without ANTHROPIC_API_KEY answers 503. If this
       // device has its own key, use it rather than reporting a dead end.

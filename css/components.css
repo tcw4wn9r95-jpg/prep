@@ -823,6 +823,18 @@
 
 .drill__hint-text strong { color: var(--text); }
 
+/* What the sentence means, above the explanation of it. Larger and darker
+   than the prose that follows: it is the thing being explained, not part of
+   the explanation, and on most cards it is the first time the learner has
+   seen what they were actually reading. */
+.drill__translation {
+  margin-block-start: var(--s3);
+  color: var(--text);
+  font-size: var(--size-md);
+  font-weight: 600;
+  text-align: start;
+}
+
 /* The rule behind a missed grammar card. Amber, because on this screen amber
    is Amelie explaining something — see the palette note in the README. */
 .drill__rule {

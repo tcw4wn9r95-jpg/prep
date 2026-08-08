@@ -596,7 +596,29 @@ export function nothingDue({ root, title, back, navigate, total, capped = false 
  */
 export function explainButton(settings, subject) {
   const key = `${subject.id}:${EXPLAIN_PROMPT_VERSION}:${hashTask(`${subject.task ?? ''}|${subject.facts ?? ''}`)}`;
+  /**
+   * The English translation, above everything else.
+   *
+   * The explanation used to open straight into the point about word order or
+   * gender, on top of a sentence the learner very often cannot read at all —
+   * so the observation had nothing to attach to. What it means comes first
+   * now, in its own line, and the rest builds on it.
+   */
+  const translation = el('p', { class: 'drill__translation', hidden: true });
   const note = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s2)', textAlign: 'left' }, hidden: true });
+
+  const show = (result) => {
+    // Entries cached before the translation existed are plain strings. They
+    // are keyed under an older EXPLAIN_PROMPT_VERSION so this should not
+    // happen, but rendering "[object Object]" at someone is a poor way to
+    // find out otherwise.
+    const value = typeof result === 'string' ? { explanation: result, translation: null } : result;
+    translation.textContent = value.translation ?? '';
+    translation.hidden = !value.translation;
+    note.textContent = value.explanation ?? '';
+    note.hidden = false;
+  };
+
   const trigger = button(subject.label ?? 'Explain this sentence', {
     variant: 'secondary',
     class: 'btn btn--secondary',
@@ -605,8 +627,7 @@ export function explainButton(settings, subject) {
       trigger.disabled = true;
       const cached = await getSentenceExplanation(key);
       if (cached) {
-        note.textContent = cached;
-        note.hidden = false;
+        show(cached);
         trigger.hidden = true;
         return;
       }
@@ -620,8 +641,9 @@ export function explainButton(settings, subject) {
         facts: subject.facts,
       });
       if (result.ok) {
-        await saveSentenceExplanation(key, result.explanation);
-        note.textContent = result.explanation;
+        const value = { translation: result.translation ?? null, explanation: result.explanation };
+        await saveSentenceExplanation(key, value);
+        show(value);
         trigger.hidden = true;
       } else {
         note.textContent = result.message;
@@ -629,7 +651,7 @@ export function explainButton(settings, subject) {
       }
     },
   });
-  return el('div', {}, trigger, note);
+  return el('div', {}, trigger, translation, note);
 }
 
 /** A short stable tag for a task string, so cache keys stay readable and short. */
