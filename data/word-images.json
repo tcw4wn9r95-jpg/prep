@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "generatedAt": "2026-08-09T18:26:19.450Z",
+    "generator": "pipeline/fetch-object-images.js",
+    "source": "Wikimedia Commons",
+    "note": "One openly licensed photograph per everyday-object word, for the picture-naming game. The word list is the shipped vocabulary deck, filtered to concrete-object categories; nothing here is invented. Every photograph keeps its author and licence.",
+    "count": 12,
+    "bytes": 1043024
+  },
+  "items": [
+    {
+      "id": "obj-121103",
+      "lb": "Ee",
+      "en": "egg",
+      "level": "A1",
+      "rank": 37,
+      "imageUrl": "assets/img/obj-121103.jpg",
+      "imageCredit": "Fir0002",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Chicken_eggs.jpg"
+    },
+    {
+      "id": "obj-17226541",
+      "lb": "Auto",
+      "en": "car",
+      "level": "A1",
+      "rank": 42,
+      "imageUrl": "assets/img/obj-17226541.jpg",
+      "imageCredit": "Alexandre Louis",
+      "imageLicence": "Public domain",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:A_Brouhot_car_in_Paris,_1910.jpg"
+    },
+    {
+      "id": "obj-21983765",
+      "lb": "Waasser",
+      "en": "water",
+      "level": "A1",
+      "rank": 108,
+      "imageUrl": "assets/img/obj-21983765.jpg",
+      "imageCredit": "Pudelek (Marcin Szala)",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Museum_on_Water,_Ohrid.JPG"
+    },
+    {
+      "id": "obj-80224751",
+      "lb": "Schoul",
+      "en": "school",
+      "level": "A1",
+      "rank": 114,
+      "imageUrl": "assets/img/obj-80224751.jpg",
+      "imageCredit": "DelwarHossain",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Shahabuddin_%E2%80%8DSchool_and_College,_Chandpur.jpg"
+    },
+    {
+      "id": "obj-15170790",
+      "lb": "Hond",
+      "en": "dog",
+      "level": "A1",
+      "rank": 151,
+      "imageUrl": "assets/img/obj-15170790.jpg",
+      "imageCredit": "Jakub Hałun",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:20110425_German_Shepherd_Dog_8505.jpg"
+    },
+    {
+      "id": "obj-61454805",
+      "lb": "Schong",
+      "en": "shoe",
+      "level": "A2",
+      "rank": 170,
+      "imageUrl": "assets/img/obj-61454805.jpg",
+      "imageCredit": "Unknown",
+      "imageLicence": "CC0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Pair_of_Shoes_MET_DP-13354-002.jpg"
+    },
+    {
+      "id": "obj-74064010",
+      "lb": "Kaffi",
+      "en": "coffee",
+      "level": "A1",
+      "rank": 189,
+      "imageUrl": "assets/img/obj-74064010.jpg",
+      "imageCredit": "Alorin",
+      "imageLicence": "CC BY 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Roasted_coffee_beans_in_white_bowl.png"
+    },
+    {
+      "id": "obj-5875037",
+      "lb": "Zuch",
+      "en": "train",
+      "level": "A1",
+      "rank": 208,
+      "imageUrl": "assets/img/obj-5875037.jpg",
+      "imageCredit": "Original uploader was Villy Fink Isaksen at da.wikipedia",
+      "imageLicence": "CC BY-SA 2.5",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Train_indgang.jpg"
+    },
+    {
+      "id": "obj-45825945",
+      "lb": "Wäin",
+      "en": "wine",
+      "level": "A1",
+      "rank": 230,
+      "imageUrl": "assets/img/obj-45825945.jpg",
+      "imageCredit": "A.Savin",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Red_and_white_wine_12-2015.jpg"
+    },
+    {
+      "id": "obj-12127693",
+      "lb": "Kaz",
+      "en": "cat",
+      "level": "A1",
+      "rank": 252,
+      "imageUrl": "assets/img/obj-12127693.jpg",
+      "imageCredit": "Alvesgaspar",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Cat_November_2010-1a.jpg"
+    },
+    {
+      "id": "obj-584131",
+      "lb": "Bam",
+      "en": "tree",
+      "level": "A1",
+      "rank": 258,
+      "imageUrl": "assets/img/obj-584131.jpg",
+      "imageCredit": "Unknown",
+      "imageLicence": "CC BY 2.5",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Iced-tree-limbs-in-sun.jpg"
+    },
+    {
+      "id": "obj-403639",
+      "lb": "Restaurant",
+      "en": "restaurant",
+      "level": "A1",
+      "rank": 266,
+      "imageUrl": "assets/img/obj-403639.jpg",
+      "imageCredit": "Ignis",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Restaurant_in_The_Mus%C3%A9e_d%27Orsay.jpg"
+    }
+  ]
+}
