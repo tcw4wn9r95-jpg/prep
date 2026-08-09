@@ -365,7 +365,12 @@ async function main() {
     await writeCheckpoint(items);
   }
 
-  const payload = await writeCheckpoint(items);
+  // If nothing new was found, `items` is still the exact array `existing`
+  // started as — nothing to write, and writing anyway would create an empty
+  // word-images.json (or rewrite an unchanged one) purely from a run that
+  // Commons rate-limited into finding zero photos. A file appearing in `git
+  // status` for a run that accomplished nothing is worse than no file.
+  const payload = items === existing ? buildPayload(items) : await writeCheckpoint(items);
   process.stdout.write(
     `${payload.items.length} photos on disk (${payload.items.length - existing.length} new this run), ` +
       `${misses} words had no free-licensed match, ${(payload.meta.bytes / 1e6).toFixed(1)} MB total\n`,
