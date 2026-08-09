@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generatedAt": "2026-08-09T18:26:19.450Z",
+    "generatedAt": "2026-08-09T18:40:31.075Z",
     "generator": "pipeline/fetch-object-images.js",
     "source": "Wikimedia Commons",
     "note": "One openly licensed photograph per everyday-object word, for the picture-naming game. The word list is the shipped vocabulary deck, filtered to concrete-object categories; nothing here is invented. Every photograph keeps its author and licence.",
-    "count": 12,
-    "bytes": 1043024
+    "count": 31,
+    "bytes": 2526588
   },
   "items": [
     {
@@ -139,6 +139,215 @@
       "imageCredit": "Ignis",
       "imageLicence": "CC BY-SA 3.0",
       "imageSource": "https://commons.wikimedia.org/wiki/File:Restaurant_in_The_Mus%C3%A9e_d%27Orsay.jpg"
+    },
+    {
+      "id": "obj-3112584",
+      "lb": "Hotel",
+      "en": "hotel",
+      "level": "A1",
+      "rank": 270,
+      "imageUrl": "assets/img/obj-3112584.jpg",
+      "imageCredit": "Lee Kindness",
+      "imageLicence": "CC BY-SA 2.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Forest_Hills_Hotel_%26_Resort,_near_Altskeith.jpg"
+    },
+    {
+      "id": "obj-77740868",
+      "lb": "Vëlo",
+      "en": "bike",
+      "level": "A1",
+      "rank": 318,
+      "imageUrl": "assets/img/obj-77740868.jpg",
+      "imageCredit": "Matti Blume",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Bike_share_2019,_Berlin_(P1080139).jpg"
+    },
+    {
+      "id": "obj-855440",
+      "lb": "Gromper",
+      "en": "potato",
+      "level": "A1",
+      "rank": 323,
+      "imageUrl": "assets/img/obj-855440.jpg",
+      "imageCredit": "Unknown",
+      "imageLicence": "CC BY-SA 2.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Potato_sprout,_January_23,_2006.jpg"
+    },
+    {
+      "id": "obj-73959412",
+      "lb": "Buch",
+      "en": "book",
+      "level": "A1",
+      "rank": 335,
+      "imageUrl": "assets/img/obj-73959412.jpg",
+      "imageCredit": "Larry D. Moore",
+      "imageLicence": "CC BY 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Book_Sales_2018_Texas_Book_Festival.jpg"
+    },
+    {
+      "id": "obj-102963554",
+      "lb": "Fleesch",
+      "en": "meat",
+      "level": "A1",
+      "rank": 338,
+      "imageUrl": "assets/img/obj-102963554.jpg",
+      "imageCredit": "James Moore200",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Peppered_meat_with_fruits.jpg"
+    },
+    {
+      "id": "obj-30743307",
+      "lb": "Fësch",
+      "en": "fish",
+      "level": "A1",
+      "rank": 354,
+      "imageUrl": "assets/img/obj-30743307.jpg",
+      "imageCredit": "MichaelMaggs",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Oweston_sting_fish_for_sale_at_Tsukiji_Fishmarket,_Tokyo-30.jpg"
+    },
+    {
+      "id": "obj-178248",
+      "lb": "Päerd",
+      "en": "horse",
+      "level": "A2",
+      "rank": 361,
+      "imageUrl": "assets/img/obj-178248.jpg",
+      "imageCredit": "Softeis",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Horse-racing-4.jpg"
+    },
+    {
+      "id": "obj-7823406",
+      "lb": "Apel",
+      "en": "apple",
+      "level": "A1",
+      "rank": 367,
+      "imageUrl": "assets/img/obj-7823406.jpg",
+      "imageCredit": "Abhijit Tembhekar from Mumbai, India",
+      "imageLicence": "CC BY 2.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Red_Apple.jpg"
+    },
+    {
+      "id": "obj-154481416",
+      "lb": "Ënn",
+      "en": "onion",
+      "level": "A1",
+      "rank": 392,
+      "imageUrl": "assets/img/obj-154481416.jpg",
+      "imageCredit": "ReshmaNazeerhussain",
+      "imageLicence": "CC0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Onion_spy.jpg"
+    },
+    {
+      "id": "obj-667898",
+      "lb": "Zopp",
+      "en": "soup",
+      "level": "A1",
+      "rank": 409,
+      "imageUrl": "assets/img/obj-667898.jpg",
+      "imageCredit": "Unknown",
+      "imageLicence": "Public domain",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Vegetable_beef_barley_soup.jpg"
+    },
+    {
+      "id": "obj-221007",
+      "lb": "Hiem",
+      "en": "shirt",
+      "level": "A2",
+      "rank": 415,
+      "imageUrl": "assets/img/obj-221007.jpg",
+      "imageCredit": "Unknown",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Blue_Business_Shirt.jpg"
+    },
+    {
+      "id": "obj-61807252",
+      "lb": "Pabeier",
+      "en": "paper",
+      "level": "A2",
+      "rank": 422,
+      "imageUrl": "assets/img/obj-61807252.jpg",
+      "imageCredit": "Brandi Redd brandi1",
+      "imageLicence": "CC0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Scattered_white_paper_(Unsplash).jpg"
+    },
+    {
+      "id": "obj-81590074",
+      "lb": "Zalot",
+      "en": "salad",
+      "level": "A1",
+      "rank": 454,
+      "imageUrl": "assets/img/obj-81590074.jpg",
+      "imageCredit": "Lisettejoe",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Vegetable_Salad_Cuisine.jpg"
+    },
+    {
+      "id": "obj-3249932",
+      "lb": "Brout",
+      "en": "bread",
+      "level": "A1",
+      "rank": 458,
+      "imageUrl": "assets/img/obj-3249932.jpg",
+      "imageCredit": "The original uploader was Klaus Höpfner at German Wikipedia. (Original text: Hel",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Assorted_bread.jpg"
+    },
+    {
+      "id": "obj-4057307",
+      "lb": "Dessert",
+      "en": "dessert",
+      "level": "A1",
+      "rank": 461,
+      "imageUrl": "assets/img/obj-4057307.jpg",
+      "imageCredit": "Hazel Fowler",
+      "imageLicence": "Public domain",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Pavlova_dessert.JPG"
+    },
+    {
+      "id": "obj-12714261",
+      "lb": "Alkohol",
+      "en": "alcohol",
+      "level": "A2",
+      "rank": 478,
+      "imageUrl": "assets/img/obj-12714261.jpg",
+      "imageCredit": "SubDural12",
+      "imageLicence": "Public domain",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Alcohol.png"
+    },
+    {
+      "id": "obj-215320",
+      "lb": "Bänk",
+      "en": "bench",
+      "level": "A2",
+      "rank": 479,
+      "imageUrl": "assets/img/obj-215320.jpg",
+      "imageCredit": "Unknown",
+      "imageLicence": "CC BY-SA 2.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Garden_bench_001.jpg"
+    },
+    {
+      "id": "obj-85446323",
+      "lb": "Computer",
+      "en": "computer",
+      "level": "A1",
+      "rank": 483,
+      "imageUrl": "assets/img/obj-85446323.jpg",
+      "imageCredit": "Dmitry Makeev",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:ATX_Computer_cases.jpg"
+    },
+    {
+      "id": "obj-73871280",
+      "lb": "Kuch",
+      "en": "cake",
+      "level": "A1",
+      "rank": 491,
+      "imageUrl": "assets/img/obj-73871280.jpg",
+      "imageCredit": "Elizabeth78",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:CakeCleveland.jpg"
     }
   ]
 }
