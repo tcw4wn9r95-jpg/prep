@@ -1337,3 +1337,40 @@ console-error reporting now logs the failing resource's URL, not just
 Chromium's generic "Failed to load resource" text — useful the moment
 `data/word-images.json` legitimately 404s and remains useful for whatever
 the next one is.
+
+## Running it for real: 145 fetched, 29 wrong, 116 shipped
+
+The rate-limiting wall above cleared later the same session; running
+`npm run fetch:object-images` for real (resumed across a container restart
+mid-run without losing progress, exactly as the checkpoint design intended)
+found 145 of the 150 candidate words a free-licensed photo.
+
+`titleMatches` only checks that the searched word appears in a Commons
+file's title, and 145 real photos turned up three ways that a title can
+contain the right word for the wrong reason — none of them visible without
+actually looking at the picture:
+
+1. **Proper-noun collisions.** The search term is also a place, a brand, or
+   a surname. "Saumon" (salmon) returned an aerial photograph of the town of
+   Salmon, Idaho, correctly titled and utterly unrelated to the fish.
+2. **Polysemy.** The English gloss's dominant sense on Commons differs from
+   the Luxembourgish word's actual category. "Kantin" (canteen) returned a
+   metal field flask, not a cafeteria; "Peffer" (pepper) returned a bell
+   pepper stuffed with vegetables, not the spice its category (`GEWIERZ`)
+   actually names; "Pullover" (jumper) returned an electronics jumper wire.
+3. **An identifiable person.** "Bikini" returned a photograph of an
+   identifiable woman on a beach — a direct hit on this feature's own stated
+   principle that a photo of an identifiable stranger is a different thing
+   from a photo of an apple, and not something `titleMatches` (or any
+   title-only check) can ever catch, because the title's job is to name the
+   subject, not to say whether the subject is a person.
+
+Found by viewing every one of the 145 mirrored photos by hand — the only
+way to catch a title that is technically correct and semantically wrong.
+29 words came out this way and were added to `EXCLUDE_WORDS` (so a future
+`fetch:object-images` run does not just refetch the same wrong photo — the
+search terms behind cases 1 and 2 above have no way to disambiguate),
+their entries removed from `word-images.json`, and their mirrored `.jpg`s
+deleted. 116 shipped, all hand-checked. `npm test` 203, `validate` PASS.
+Fewer correct pictures beat a full-looking deck with a stranger's photo or
+a metal nut captioned "Noss" in it.

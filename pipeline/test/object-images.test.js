@@ -99,12 +99,17 @@ test('collectWords: true synonyms are merged, keeping the more frequent spelling
 });
 
 test('collectWords: "pepper" is exempt from the synonym merge — the two objects really differ', () => {
+  // Uses a fixture lemma rather than the real "Peffer" — that real word is
+  // itself in EXCLUDE_WORDS now (Commons has no reliable way to search for
+  // the spice sense separately from the bell-pepper vegetable sense; see the
+  // comment on EXCLUDE_WORDS), which would make it exit collectWords before
+  // ever reaching the merge-exempt logic this test targets.
   const vocab = [
-    vocabItem({ id: 'PEFFER1', lb: 'Peffer', en: 'pepper', rank: 50 }),
+    vocabItem({ id: 'GEWIERZ1', lb: 'Peffergewiess', en: 'pepper', rank: 50 }),
     vocabItem({ id: 'PAPRIKA1', lb: 'Paprika', en: 'pepper', rank: 60 }),
   ];
   const corpus = {
-    entries: [corpusEntry('PEFFER1', 'Peffer', ['GEWIERZ']), corpusEntry('PAPRIKA1', 'Paprika', ['GEMEIS'])],
+    entries: [corpusEntry('GEWIERZ1', 'Peffergewiess', ['GEWIERZ']), corpusEntry('PAPRIKA1', 'Paprika', ['GEMEIS'])],
   };
   const words = collectWords(vocab, corpus);
   assert.equal(words.length, 2, 'a peppercorn and a bell pepper are different objects and both belong in the pool');

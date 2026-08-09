@@ -77,11 +77,27 @@ const EXCLUDE_CATEGORIES = new Set(['PERSOUN', 'BERUFFSBEZEECHNUNG', 'FAMILL']);
  * Reviewed by hand once, against the real category output, rather than
  * guessed at — see docs/ui-content-benchmark.md for the list this was built
  * from.
+ *
+ * A second batch below was found the same way but for a different reason:
+ * `titleMatches` only checks that the search word appears in a Commons file
+ * title, which cannot tell a proper-noun collision (the word is also a place,
+ * brand, or surname — "Saumon" surfaced an aerial photo of Salmon, Idaho) or a
+ * polysemous English gloss whose dominant Commons sense differs from the
+ * Luxembourgish word's actual category ("canteen" → cafeteria vs. flask,
+ * "pepper" → the vegetable vs. the spice, "jumper" → a sweater vs. an
+ * electronic connector) from a genuine match. One of these, "Bikini", showed
+ * an identifiable person, which this game must never do — see the comment on
+ * EXCLUDE_CATEGORIES. Found by viewing every one of the 145 fetched photos by
+ * hand; see docs/ui-content-benchmark.md for the full review notes.
  */
 const EXCLUDE_WORDS = new Set([
   'aufgab', 'hausaufgab', 'fro', 'faarf', 'kierper', 'owescours', 'philosophie', 'reegel',
   'stage', 'stonn', 'test', 'verb', 'zuel', 'äntwert', 'weiderbildung', 'reservatioun',
   'receptioun', 'bluttdrock', 'blinddarm', 'fett', 'gedrénks', 'uebst', 'geméis', 'kleed',
+  'buschtaf', 'kamell', 'kantin', 'taart', 'bikini', 'dossier', 'café', 'alkohol', 'noss',
+  'ham', 'ënn', 'kuch', 'schëff', 'fliger', 'mantel', 'pullover', 'speck', 'stiwwel',
+  'bréitchen', 'metro', 'schlitt', 'spargel', 'taxi', 'banann', 'peffer', 'saumon', 'tafel',
+  'ketchup', 'laptop',
 ]);
 
 /**
