@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generatedAt": "2026-08-09T18:47:31.530Z",
+    "generatedAt": "2026-08-09T18:57:45.226Z",
     "generator": "pipeline/fetch-object-images.js",
     "source": "Wikimedia Commons",
     "note": "One openly licensed photograph per everyday-object word, for the picture-naming game. The word list is the shipped vocabulary deck, filtered to concrete-object categories; nothing here is invented. Every photograph keeps its author and licence.",
-    "count": 90,
-    "bytes": 6980590
+    "count": 94,
+    "bytes": 7204720
   },
   "items": [
     {
@@ -997,6 +997,50 @@
       "imageCredit": "Aultabulta",
       "imageLicence": "CC BY-SA 4.0",
       "imageSource": "https://commons.wikimedia.org/wiki/File:Govement_Primary_School,_Sundampatti.jpg"
+    },
+    {
+      "id": "obj-16880639",
+      "lb": "Schal",
+      "en": "scarf",
+      "level": "A2",
+      "rank": 1156,
+      "imageUrl": "assets/img/obj-16880639.jpg",
+      "imageCredit": "Simos1968",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Man_Utd_Scarf_Pink_Bar_Scarves.jpg"
+    },
+    {
+      "id": "obj-25049744",
+      "lb": "Schi",
+      "en": "ski",
+      "level": "A1",
+      "rank": 1157,
+      "imageUrl": "assets/img/obj-25049744.jpg",
+      "imageCredit": "Letartean",
+      "imageLicence": "CC BY 3.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Quebec_Sprint_Cross-country_Skiing_World_Cup_2012_(4)_V2.jpg"
+    },
+    {
+      "id": "obj-47127712",
+      "lb": "Schlapp",
+      "en": "slipper",
+      "level": "A2",
+      "rank": 1158,
+      "imageUrl": "assets/img/obj-47127712.jpg",
+      "imageCredit": "David Ring",
+      "imageLicence": "CC0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Slippers_(drawing).jpg"
+    },
+    {
+      "id": "obj-58001397",
+      "lb": "Schlitt",
+      "en": "sledge",
+      "level": "A1",
+      "rank": 1159,
+      "imageUrl": "assets/img/obj-58001397.jpg",
+      "imageCredit": "Magnolia677",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Sledge,_Mississippi.jpg"
     }
   ]
 }
