@@ -538,18 +538,56 @@ async function main() {
     if (verbCount < 6) throw new Error(`expected at least 6 verb tables, found ${verbCount}`);
 
     // Verb forms are behind <details> until tapped, so a beginner is not
-    // shown 54 conjugated forms at once.
+    // shown a dozen-plus conjugated forms at once.
     const firstVerb = page.locator('.ref-verb').first();
     if (await firstVerb.locator('.ref-verb__form').isVisible().catch(() => false)) {
       throw new Error('the first verb table is not collapsed by default');
     }
     await firstVerb.locator('summary').click();
+    // Present (6) + past tense (6) + imperative (up to 2): every core verb
+    // that has all three, not just the present-tense conjugation this table
+    // used to stop at.
     const forms = await firstVerb.locator('.ref-verb__form').count();
-    if (forms !== 6) throw new Error(`expected 6 forms once expanded, found ${forms}`);
+    if (forms < 6) throw new Error(`expected at least 6 present-tense forms once expanded, found ${forms}`);
+    const groupLabels = await firstVerb.locator('.meter__label').allTextContents();
+    if (!groupLabels.some((text) => text.trim() === 'Present')) throw new Error(`expected a "Present" group label, got: ${groupLabels.join(', ')}`);
+    if (!groupLabels.some((text) => text.trim() === 'Past')) throw new Error(`expected a "Past" group label, got: ${groupLabels.join(', ')}`);
 
     const groups = await page.locator('.ref-group').count();
     if (groups < 5) throw new Error(`expected several sentence-pattern groups, found ${groups}`);
     await shot('16d-cheat-sheet');
+  });
+
+  await step('the "100 verbs" tab lists the most-used verbs, ranked, each with past and imperative', async () => {
+    // The other half of the ask: a lookup table for the moment the nine core
+    // verbs above are not the one needed, ranked by real corpus frequency
+    // rather than alphabetically or by whatever order the source XML happens
+    // to list them in.
+    const tabs = page.locator('[role="tab"]');
+    if ((await tabs.count()) !== 2) throw new Error(`expected 2 cheat-sheet tabs, found ${await tabs.count()}`);
+    await tabs.filter({ hasText: '100 verbs' }).click();
+    await page.waitForSelector('.ref-verb', { timeout: 5000 });
+
+    const verbCount = await page.locator('.ref-verb').count();
+    if (verbCount !== 100) throw new Error(`expected 100 verbs, found ${verbCount}`);
+
+    // hunn is the most frequent verb in the shipped deck (rank 1) — the list
+    // has to lead with it, not with whatever the source order happens to be.
+    const firstTitle = (await page.locator('.ref-verb').first().locator('summary .card__title').textContent())?.trim();
+    if (firstTitle !== 'hunn') throw new Error(`expected the most frequent verb first, got "${firstTitle}"`);
+
+    const first = page.locator('.ref-verb').first();
+    await first.locator('summary').click();
+    const groupLabels = await first.locator('.meter__label').allTextContents();
+    if (!groupLabels.some((text) => text.trim() === 'Imperative')) {
+      throw new Error(`expected hunn to show an Imperative group, got: ${groupLabels.join(', ')}`);
+    }
+    await shot('16e-cheat-sheet-verb-list');
+
+    // Switching back lands on the same nine-verb "Basics" tab, not on an
+    // empty screen — the tab state is local to this open, nothing more.
+    await tabs.filter({ hasText: 'Basics' }).click();
+    await page.waitForSelector('.ref-pronoun', { timeout: 5000 });
   });
 
   await step('the cheat sheet opens over a running exercise without losing it', async () => {

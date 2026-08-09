@@ -1136,3 +1136,80 @@ miss and every explanation is rewritten with the translation on top.
 `npm test` 168 (one new) · `npm run walkthrough` 43/43 — the word-order step now
 asserts the rendered order with `compareDocumentPosition`, not just that both
 strings are on screen · `validate` PASS · `sw.js` → `v28`. Worker redeployed.
+
+---
+
+# Follow-up 11 — past tense, imperative, and a 100-verb lookup
+
+> "Lets add in the cheat sheet a separate tab with a list of 100 verbs that
+> when tapping on each I have their conjugation, past tense and imperative.
+> Also add past tense and imperative on the most used verbs in the main cheat
+> sheet"
+
+## Where the forms come from
+
+LOD's Flexiounstabellen (`.cache/lod/tab.xml`) already carry both, verbatim,
+for the same 365 verbs the app already ships:
+
+- **Past tense** is LOD's `presentPerfect` block (aux + participle, per
+  person) — not the literary `pastSimple` (Präteritum). Deliberate, not a
+  simplification: the app's own explanations already tell the learner that
+  the perfect is "the ordinary way to talk about the past" — Luxembourgish
+  does not use a simple past in everyday speech the way English or German do.
+  LOD publishes `pastSimple` for only 66 of these 365 verbs (mostly the two
+  auxiliaries and a few verbs used in narration); `presentPerfect` is complete
+  for 364.
+- **Imperative** is LOD's own `<imperative><present>` block, p2 (du) and p5
+  (dir). 343 of 365 verbs have one — the exceptions are mostly modals
+  (kënnen, mussen, sollen, wëllen), where "can!" is not a command in any
+  language, so the source simply omits it. Kept as partial rather than
+  discarded: 21 verbs publish only the p5 form.
+
+## Two cleaning bugs found while shipping it
+
+The present-tense cleaner already existed (strip a slash-separated second
+spelling, strip a reflexive pronoun in parens) — reusing it on the new fields
+surfaced two cases it had never been asked to handle:
+
+- **`hief (dech)!`** → stripping `(dech)` before the punctuation left `hief !`,
+  a space before an exclamation mark that no real Luxembourgish sentence has.
+- **`hieft / hutt (iech)!`** → LOD attaches the `!` to only the *second* slash
+  variant. Taking the first variant first, as the present-tense cleaner
+  always had, silently dropped the mark from a form that is a command by
+  nature.
+
+`cleanForm()` now lifts trailing punctuation off the whole cell before
+splitting or stripping anything, and reattaches it after — regardless of
+which variant survives. `pipeline/test/verbs.test.js` tests both cases
+directly, plus a form LOD genuinely ships with no `!` at all (astellen's p5,
+real source variance, not a bug), so the fix cannot mistake "missing" for
+"failed to preserve".
+
+Each new field is gated the same way the present tense already was, but drops
+only that field on failure rather than the whole verb: an unclean past tense
+does not have to cost a verb its otherwise-good present-tense entry.
+
+## What shipped
+
+**The cheat sheet is now two tabs.** "Basics" is everything it already
+showed. "100 verbs" is new: the most-used verbs in the corpus, ranked by
+`rank` (already computed for the Learn path), each a collapsed card that
+expands to Present / Past / Imperative — only the groups a given verb
+actually has, so the four modals with no imperative show two groups instead
+of a blank third one.
+
+**The nine core verbs in "Basics" gained the same two groups.** `hunn`,
+`sinn`, `ginn` and the rest now expand to past tense and imperative
+alongside the present tense they already showed, in the same card.
+
+Both consume one shared transform (`toVerbTable`) and one shared render
+function (`verbDetails`) — the only difference between the "Key verbs"
+section and the "100 verbs" tab is which nine-or-hundred items get handed to
+it, not two copies of how a verb card is built.
+
+## Verification
+
+`npm test` 187 (19 new — `pipeline/test/verbs.test.js` is new, plus five in
+`reference.test.js`) · `npm run walkthrough` 44/44, including a new step that
+switches tabs, confirms the list is ranked (hunn first) and expands a card to
+check for the Imperative group · `validate` PASS · `sw.js` → `v29`.

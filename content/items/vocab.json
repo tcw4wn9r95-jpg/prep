@@ -30,7 +30,7 @@
       "a2": 1164
     },
     "learn": {
-      "enrichedAt": "2026-07-29T19:36:07.709Z",
+      "enrichedAt": "2026-08-09T09:04:13.919Z",
       "enricher": "pipeline/build-learn.js",
       "starters": {
         "promoted": 18,
