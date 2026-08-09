@@ -135,10 +135,27 @@ test('searchQueryFor: every query stays free of accidents, media and pathology r
   // crash photo, and "wine" surfaced a 1924 film poster, both ahead of an
   // actual photo of the thing. A regression here silently brings those back.
   const query = searchQueryFor('train');
-  for (const bad of ['crash', 'wreck', 'accident', 'poster', 'cadaver', 'dissection']) {
+  for (const bad of ['crash', 'wreck', 'accident', 'poster', 'disease', 'pathology']) {
     assert.ok(query.includes(`-${bad}`), `query is missing the "-${bad}" exclusion: ${query}`);
   }
   assert.ok(query.startsWith('train '), `the gloss itself must lead the query: ${query}`);
+});
+
+test('searchQueryFor: never exceeds CirrusSearch\'s 300-character limit', () => {
+  // The bug this guards is the one that actually cost a session of live
+  // fetching: CirrusSearch caps a search string at 300 characters (the
+  // `filetype:` prefix does not count against it) and answers a longer one
+  // with `cirrussearch-query-too-long-with-exemptions` as a 200 — no
+  // exception, no non-2xx status, nothing `politeFetch`'s 429 handling
+  // notices. Every single search silently found nothing, indistinguishable
+  // from Commons rate-limiting (which was also genuinely happening at the
+  // same time) until curl against the real endpoint showed the actual error
+  // body. Checked against the longest real gloss in the shipped word list,
+  // not a guess, so growing GENERAL_EXCLUDE again fails this before it ships.
+  const vocab = require(path.join(ROOT, 'app', 'data', 'vocab.json')).items;
+  const longestGloss = vocab.reduce((longest, item) => ((item.en ?? '').length > longest.length ? item.en : longest), '');
+  const query = searchQueryFor(longestGloss);
+  assert.ok(query.length <= 300, `query is ${query.length} chars ("${longestGloss}"), over CirrusSearch's 300-char limit: ${query}`);
 });
 
 test('titleMatches: requires the real word, not just the disambiguating one', () => {

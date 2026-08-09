@@ -128,12 +128,19 @@ function cleanGloss(en) {
  * — this list is checked against every search including the ones *for*
  * "Buch" (book), and excluding a word this app is trying to find a photo of
  * would just turn the exclusion into another way to fail that search.
+ *
+ * Short on purpose, not just in spirit: CirrusSearch caps a search string at
+ * 300 characters (not counting the `filetype:` prefix) and answers over that
+ * with `cirrussearch-query-too-long-with-exemptions` — as a 200, with the
+ * error inside the JSON body, not as a request failure. An earlier, longer
+ * version of this list (every synonym for "crash", "dead", "poster" that
+ * came to mind) was 308 characters and silently failed every single search
+ * this way for as long as it shipped — every word came back "no free-licensed
+ * match" and looked exactly like Commons rate-limiting, which was also
+ * genuinely happening at the same time and masked it. `object-images.test.js`
+ * now asserts the built query stays under the limit for a worst-case gloss.
  */
-const GENERAL_EXCLUDE =
-  '-crash -wreck -accident -disaster -collision -wreckage -dead -death -corpse -cadaver ' +
-  '-autopsy -dissection -wound -injury -disease -disorder -deformity -pathology -tumor ' +
-  '-surgery -bunion -comedones -blackhead -poster -postage -stamp -logo -album -soundtrack ' +
-  '-advertisement -screenshot -packshot -clipart';
+const GENERAL_EXCLUDE = '-crash -wreck -accident -disaster -collision -dead -corpse -disease -pathology -surgery -wound -poster -stamp -logo -advertisement';
 
 /** What actually gets sent to Commons. Just the gloss plus the exclusions
  * above — the ANAT-specific "human" nudge and insect exclusions this used to
