@@ -41,6 +41,10 @@ export const loadTopics = () => loadJson('topics').then((file) => file.items);
 export const loadListening = () => loadJson('listening').then((file) => file.items);
 export const loadInterviews = () => loadJson('interviews').then((file) => file.items);
 export const loadImages = () => loadJson('images').then((file) => file.items).catch(() => []);
+/** One photo per everyday-object word, for the picture-naming game
+ * (pipeline/fetch-object-images.js). Absent until that script has run, same
+ * degrade-to-empty as loadImages above. */
+export const loadWordImages = () => loadJson('word-images').then((file) => file.items).catch(() => []);
 export const loadMeta = () => loadJson('topics').then((file) => file.meta);
 export const loadVocab = () => loadJson('vocab').then((file) => file.items);
 export const loadVerbs = () => loadJson('verbs').then((file) => file.items);

@@ -12,7 +12,7 @@
 // Bump this on every change to the shell. The app is served cache-first, so a
 // stale version is not a slow update — it is a returning user permanently
 // looking at the old app while wondering where their changes went.
-const VERSION = 'v29';
+const VERSION = 'v30';
 const SHELL_CACHE = `shell-${VERSION}`;
 const AUDIO_CACHE = `audio-${VERSION}`;
 
@@ -55,6 +55,7 @@ const SHELL = [
   'js/screens/grammar.js',
   'js/screens/structure.js',
   'js/screens/gender-sort.js',
+  'js/screens/objects.js',
   'js/anthropic.js',
   'js/drill/engine.js',
   'js/drill/cards.js',
@@ -66,6 +67,7 @@ const SHELL = [
   'data/listening.json',
   'data/interviews.json',
   'data/images.json',
+  'data/word-images.json',
   'data/vocab.json',
   'data/verbs.json',
   'data/phrases.json',
@@ -79,6 +81,29 @@ const SHELL = [
   'assets/icon.svg',
   'assets/icon-180.png',
 ];
+
+/**
+ * Fetches an items-file (images.json's own shape: `{ items: [{ imageUrl }] }`)
+ * and precaches every locally-mirrored photo it lists, into `cache`. Shared
+ * by the image-description photos and the picture-naming game's photos —
+ * same shape, same "best effort, a missing one degrades a single question"
+ * reasoning, so one function rather than two copies that could drift.
+ */
+async function precacheImageUrls(cache, jsonPath) {
+  try {
+    const response = await fetch(jsonPath);
+    if (!response.ok) return;
+    const { items } = await response.json();
+    await Promise.all(
+      (items ?? [])
+        .map((item) => item.imageUrl)
+        .filter((url) => url && !/^https?:/i.test(url))
+        .map((url) => cache.add(url).catch(() => {})),
+    );
+  } catch (error) {
+    console.warn('[sw] image precache skipped', jsonPath, error.message);
+  }
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -104,21 +129,10 @@ self.addEventListener('install', (event) => {
         console.warn('[sw] audio precache skipped', error.message);
       }
 
-      // Image-description photos, so part 2b works with no signal too.
-      try {
-        const response = await fetch('data/images.json');
-        if (response.ok) {
-          const { items } = await response.json();
-          await Promise.all(
-            (items ?? [])
-              .map((item) => item.imageUrl)
-              .filter((url) => url && !/^https?:/i.test(url))
-              .map((url) => media.add(url).catch(() => {})),
-          );
-        }
-      } catch (error) {
-        console.warn('[sw] image precache skipped', error.message);
-      }
+      // Image-description photos, so part 2b works with no signal too, and
+      // the "What is this?" object photos for the same reason.
+      await precacheImageUrls(media, 'data/images.json');
+      await precacheImageUrls(media, 'data/word-images.json');
 
       await self.skipWaiting();
     })(),

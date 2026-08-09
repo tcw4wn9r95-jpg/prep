@@ -188,19 +188,27 @@ export async function render(root, { settings, navigate }) {
 
     sectionLabel('For a spare minute'),
     el(
-      'a',
-      { class: 'card', href: '#/pairs', style: { display: 'block' } },
+      'div',
+      { class: 'row', style: { gap: 'var(--s3)' } },
       el(
-        'div',
-        { class: 'row' },
-        el('span', { style: { fontSize: '28px' } }, '🃏'),
-        el(
-          'div',
-          { class: 'spacer' },
-          el('p', { class: 'card__title' }, 'Pairs'),
-          el('p', { class: 'card__note' }, 'Match the word to its meaning. Optional, and it does not affect your reviews.'),
-        ),
+        'a',
+        { class: 'card', href: '#/pairs', style: { display: 'block', flex: 1 } },
+        el('p', { style: { fontSize: '28px', textAlign: 'center' } }, '🃏'),
+        el('p', { class: 'card__title', style: { textAlign: 'center' } }, 'Pairs'),
+        el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Match the word to its meaning.'),
       ),
+      el(
+        'a',
+        { class: 'card', href: '#/objects', style: { display: 'block', flex: 1 } },
+        el('p', { style: { fontSize: '28px', textAlign: 'center' } }, '📷'),
+        el('p', { class: 'card__title', style: { textAlign: 'center' } }, 'What is this?'),
+        el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Name the picture.'),
+      ),
+    ),
+    el(
+      'p',
+      { class: 'card__note', style: { marginBlockStart: 'var(--s2)' } },
+      'Both are optional, and neither affects your reviews.',
     ),
 
     sectionLabel('Or one exam topic'),

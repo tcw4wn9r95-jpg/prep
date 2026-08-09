@@ -23,17 +23,10 @@ const path = require('node:path');
 
 const paths = require('./lib/paths');
 const { writeJson } = require('./lib/write-json');
+const { API, stripHtml, politeFetch, isFree } = require('./lib/wikimedia');
 
-const API = 'https://commons.wikimedia.org/w/api.php';
-const UA = 'sproochentest-prep/0.1 (personal exam-prep tool; contact via repository)';
 const IMAGE_DIR = path.join(paths.ROOT, 'app', 'assets', 'img');
 const THUMB_WIDTH = 1024;
-
-/**
- * Licences we accept. Anything else — "fair use", unknown, non-commercial —
- * is skipped. The list is deliberately conservative.
- */
-const FREE_LICENCES = [/^cc0/i, /^cc by(-sa)?( \d)/i, /^public domain/i, /^pd/i];
 
 /** Commons categories that actually depict the exam's topic pool. */
 const SOURCES = [
@@ -56,39 +49,6 @@ function readArg(name, fallback) {
   if (index === -1) return fallback;
   const value = Number(process.argv[index + 1]);
   return Number.isFinite(value) ? value : fallback;
-}
-
-const stripHtml = (value) => String(value ?? '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
-
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-/**
- * Commons rate-limits hard and answers 429 rather than queuing. Everything
- * here goes through one polite, serialised fetch with backoff — being a good
- * client of a donated service matters more than finishing a second sooner.
- */
-let lastRequestAt = 0;
-const MIN_GAP_MS = 900;
-
-async function politeFetch(url, { attempts = 4 } = {}) {
-  for (let attempt = 0; attempt < attempts; attempt += 1) {
-    const wait = Math.max(0, lastRequestAt + MIN_GAP_MS - Date.now());
-    if (wait > 0) await sleep(wait);
-    lastRequestAt = Date.now();
-
-    const response = await fetch(url, { headers: { 'user-agent': UA } });
-    if (response.status !== 429) return response;
-
-    const retryAfter = Number(response.headers.get('retry-after'));
-    const backoff = Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 2000 * 2 ** attempt;
-    process.stdout.write(`    rate limited, waiting ${Math.round(backoff / 1000)}s\n`);
-    await sleep(backoff);
-  }
-  throw new Error('rate limited after retries');
-}
-
-function isFree(licence) {
-  return FREE_LICENCES.some((pattern) => pattern.test(licence ?? ''));
 }
 
 async function fetchCategory(category, limit) {

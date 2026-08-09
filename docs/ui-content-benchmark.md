@@ -1213,3 +1213,127 @@ it, not two copies of how a verb card is built.
 `reference.test.js`) · `npm run walkthrough` 44/44, including a new step that
 switches tabs, confirms the list is ranked (hunn first) and expands a card to
 check for the Imperative group · `validate` PASS · `sw.js` → `v29`.
+
+---
+
+# Follow-up 12 — a picture-naming game
+
+> "Let's add a new game which takes pictures of everyday objects and I have to
+> guess the name. Start with multiple choice then letter selection. Use
+> pictures from the internet but use the words found on the exam guide you
+> have"
+
+## The word list is the vocabulary deck, not a new one
+
+"The exam guide you have" is the shipped vocab.json — every object word this
+game can ask about already exists there, filtered to categories that mean
+"a physical thing you could point at": food, drink, fruit, vegetables,
+clothing, animals, plants, vehicles, instruments, and a couple of
+place-nouns (restaurant, school). The filter is deliberately narrower than
+it first looks:
+
+- **No people.** LOD's own "Kach" (chef) carries both `HORECA` and `PERSOUN`
+  — an object-category tag is not enough on its own; a person-shaped
+  category anywhere on the entry excludes it, so a photo-naming game never
+  goes looking for photos of identifiable strangers.
+- **No body parts (`ANAT`), despite qualifying on paper.** Found by actually
+  running the searches: Commons' results for "nose", "foot", "leg" skew hard
+  toward dissection photography and pathology illustrations — a correct
+  answer to the search term and a bad flashcard. Cut entirely rather than
+  patched around.
+- **A short hand-reviewed exclude list** for words a category tag let
+  through that are not single photographable things anyway — "Verb" is
+  tagged `SCHOUL`, "Reegel" (rule) is tagged `ANAT` because LOD's other sense
+  of the word is a medical term, "Uebst" (fruit, the generic collective) is
+  indistinguishable in one photo from any of its own members.
+- **True synonyms merged.** "Hond" and "Mupp" are both just "dog" — left as
+  two rounds, a photo captioned one could offer the other as a wrong answer
+  that is not actually wrong. Kept the more frequent spelling. "Peffer" and
+  "Paprika" both gloss to "pepper" but are genuinely different objects (a
+  spice and a vegetable) and are deliberately exempted from the merge.
+
+150 words qualify this way, most frequent first.
+
+## Sourcing real photos, and three ways the search got it wrong first
+
+Wikimedia Commons only, same free-licence allowlist `fetch-images.js`
+already uses (now shared, in `pipeline/lib/wikimedia.js`, rather than
+duplicated). Every photograph is a full-text search for the word's English
+gloss — there is no "Category:Apples" for most of these — and three real
+mismatches turned up while building it, each fixed rather than shipped:
+
+1. **Wrong subject entirely.** Searching "water" surfaced a photo titled
+   "IceBirdWithFledgling" — a bird, with no textual connection to water at
+   all. Fix: a result only counts if the *file's own title* contains the
+   word searched for.
+2. **A disambiguating word became an over-strict requirement.** A bare
+   body-part word needed a "human" prefix to search well ("head" alone
+   returns mostly unrelated results), but requiring "human" back out of the
+   *title* rejected a correctly-titled anatomical diagram in favour of a
+   literal "Male human head louse" photo — a real result for the words in
+   its title, and not what "head" means here. Fixed by checking the title
+   against the original gloss only, never against words this app added to
+   help the search along.
+3. **Popular but wrong.** "Train" surfaced the famous 1895 Montparnasse
+   crash photo before anything showing an intact train; "wine" surfaced a
+   1924 film poster before an actual glass of it. Both are correct answers
+   to their literal search terms and both are wrong for a flashcard. Fixed
+   with a standing exclusion list (crash, wreck, disaster, poster, and
+   related terms) applied to every search — including the ones for "Buch"
+   (book), which is why "book," "film" and the like are deliberately *not*
+   on that list: excluding a word this app is trying to find a photo of
+   would just be another way to fail that search.
+
+A fourth issue was in the title check itself, not the search: requiring the
+*exact* word rejected "Egg" for a title that said "Eggs", "Chip" for
+"Chips" — real Commons titles pluralise as often as not. Loosened to a
+leading word-boundary only.
+
+## The round: multiple choice, then spelling — as asked
+
+One round is the same eight pictures twice: a multiple-choice pass first
+(the real word plus three distractors, reusing `drill/inputs.js`'s
+`choiceInput`), then a letter-tile pass on the same eight (`bankInput` with
+`letterBank`) — retrieval practice on a word just met, not a cold guess. Both
+input widgets are the drill engine's own; a picture card has nothing to teach
+a "tap the right option" or "build the word from tiles" control the
+vocabulary drill has not already taught it. Same optional-game shape as
+Pairs and Gender Sort: counts for the streak, never touches the Leitner
+boxes.
+
+## What did not ship today
+
+Wikimedia Commons rate-limited this session hard while sourcing the 150
+photos — Retry-After climbing past 50 seconds per request, with every
+request in a multi-hour span refused. That is an artefact of this session's
+network conditions, not of the code: `collectWords`, the search-quality
+fixes above, and the game itself are all tested against fixtures and pass.
+What could not happen today is actually *running* the fetch to completion
+against the live API.
+
+Two things came out of hitting that wall rather than just waiting it out.
+First, the fetch script now **checkpoints after every photo** and **resumes
+by word** rather than only writing output once the entire list has been
+searched — the previous shape meant a run interrupted at word 140 of 150
+saved nothing at all, discarding real progress for want of ten more words.
+Second, the honest state is shipped rather than papered over: `app/js/screens/objects.js`
+already has a graceful "not enough photos yet — run `npm run fetch:object-images`"
+state for exactly this situation (mirroring `speaking.js`'s existing
+image-description empty state), and the walkthrough test covers *both*
+branches — the full two-phase round when photos exist, the empty state when
+they do not — so either state a real checkout is in is a tested path, not a
+gap. Running `npm run fetch:object-images` (idempotent, resumable, and now
+part of the `content` pipeline) on a connection Commons has not rate-limited
+will populate it.
+
+## Verification
+
+`npm test` 202 (15 new in `pipeline/test/object-images.test.js`, exercising
+the category/exclusion/dedup logic against fixtures — the one real-data
+check in the same file skips cleanly when word-images.json has not been
+fetched yet) · `npm run walkthrough` 45/45 steps, covering the empty-state branch as
+described above · `validate` PASS · `sw.js` → `v30`. The walkthrough's own
+console-error reporting now logs the failing resource's URL, not just
+Chromium's generic "Failed to load resource" text — useful the moment
+`data/word-images.json` legitimately 404s and remains useful for whatever
+the next one is.

@@ -23,6 +23,7 @@ import * as phrases from './screens/phrases.js';
 import * as grammar from './screens/grammar.js';
 import * as structure from './screens/structure.js';
 import * as genderSort from './screens/gender-sort.js';
+import * as objects from './screens/objects.js';
 import * as listening from './screens/listening.js';
 import * as speaking from './screens/speaking.js';
 import * as review from './screens/review.js';
@@ -46,6 +47,7 @@ const ROUTES = {
   grammar,
   structure,
   'gender-sort': genderSort,
+  objects,
   listening,
   speaking,
   review,
@@ -94,7 +96,7 @@ const TABS = [
  * (`speaking`, `reference`) — a tab that hid the bar would hide the control
  * that got you there.
  */
-const FOCUS_ROUTES = new Set(['session', 'listening', 'grammar', 'gender-sort', 'pairs', 'vocab', 'verbs', 'phrases', 'review', 'mistakes']);
+const FOCUS_ROUTES = new Set(['session', 'listening', 'grammar', 'gender-sort', 'objects', 'pairs', 'vocab', 'verbs', 'phrases', 'review', 'mistakes']);
 
 const screenEl = document.getElementById('screen');
 const tabbarEl = document.getElementById('tabbar');
