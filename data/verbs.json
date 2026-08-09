@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-07-28T09:02:57.643Z",
+    "generatedAt": "2026-08-09T09:03:47.596Z",
     "generator": "pipeline/build-verbs.js",
     "license": "CC0-1.0",
     "corpus": {
@@ -35,10 +35,12 @@
     "counts": {
       "items": 365,
       "a1": 111,
-      "a2": 254
+      "a2": 254,
+      "past": 364,
+      "imperative": 343
     },
     "learn": {
-      "enrichedAt": "2026-07-29T19:36:07.801Z",
+      "enrichedAt": "2026-08-09T09:04:14.043Z",
       "enricher": "pipeline/build-learn.js",
       "starters": {
         "promoted": 0,
@@ -117,6 +119,18 @@
         "p5": "hutt",
         "p6": "hunn"
       },
+      "past": {
+        "p1": "hunn gehat",
+        "p2": "hues gehat",
+        "p3": "huet gehat",
+        "p4": "hunn gehat",
+        "p5": "hutt gehat",
+        "p6": "hunn gehat"
+      },
+      "imperative": {
+        "p2": "hief!",
+        "p5": "hieft!"
+      },
       "example": {
         "lb": "de Schrëftsteller huet de Verlag gewiesselt",
         "audioId": "a2eed5d4d441b5572aac95187722cc08"
@@ -159,6 +173,18 @@
         "p5": "gitt",
         "p6": "ginn"
       },
+      "past": {
+        "p1": "hunn ginn",
+        "p2": "hues ginn",
+        "p3": "huet ginn",
+        "p4": "hunn ginn",
+        "p5": "hutt ginn",
+        "p6": "hunn ginn"
+      },
+      "imperative": {
+        "p2": "gëff!",
+        "p5": "gitt!"
+      },
       "example": {
         "lb": "et gëtt ëmmer méi Leit, déi un Allergië leiden",
         "audioId": "9b68905f0b6363db54494f25234069a4"
@@ -195,6 +221,15 @@
         "p5": "kënnt",
         "p6": "kënnen"
       },
+      "past": {
+        "p1": "hu kënnen",
+        "p2": "hues kënnen",
+        "p3": "huet kënnen",
+        "p4": "hu kënnen",
+        "p5": "hutt kënnen",
+        "p6": "hu kënnen"
+      },
+      "imperative": null,
       "example": {
         "lb": "ech kann net dofir!",
         "audioId": "56b116b5babd2e8ca667a34cff16cec5"
@@ -230,6 +265,18 @@
         "p4": "sinn",
         "p5": "sidd",
         "p6": "sinn"
+      },
+      "past": {
+        "p1": "si gewiescht",
+        "p2": "bass gewiescht",
+        "p3": "ass gewiescht",
+        "p4": "si gewiescht",
+        "p5": "sidd gewiescht",
+        "p6": "si gewiescht"
+      },
+      "imperative": {
+        "p2": "sief!",
+        "p5": "sidd!"
       },
       "example": {
         "lb": "d'Vëloskette war mer erofgesprongen",
@@ -268,6 +315,15 @@
         "p5": "musst",
         "p6": "mussen"
       },
+      "past": {
+        "p1": "hu missen",
+        "p2": "hues missen",
+        "p3": "huet missen",
+        "p4": "hu missen",
+        "p5": "hutt missen",
+        "p6": "hu missen"
+      },
+      "imperative": null,
       "example": {
         "lb": "jidderee muss d'Sécherheetsvirschrëften anhalen",
         "audioId": "d8ef652277c9024816702029b75efacc"
@@ -306,6 +362,18 @@
         "p5": "gitt",
         "p6": "ginn"
       },
+      "past": {
+        "p1": "si gaangen",
+        "p2": "bass gaangen",
+        "p3": "ass gaangen",
+        "p4": "si gaangen",
+        "p5": "sidd gaangen",
+        "p6": "si gaangen"
+      },
+      "imperative": {
+        "p2": "géi!",
+        "p5": "gitt!"
+      },
       "example": {
         "lb": "géi méi séier, soss verpass de den Zuch!",
         "audioId": "8190ef4a1f594b8ddf2f698ec1f55543"
@@ -334,6 +402,18 @@
         "p4": "maachen",
         "p5": "maacht",
         "p6": "maachen"
+      },
+      "past": {
+        "p1": "hunn gemaach",
+        "p2": "hues gemaach",
+        "p3": "huet gemaach",
+        "p4": "hunn gemaach",
+        "p5": "hutt gemaach",
+        "p6": "hunn gemaach"
+      },
+      "imperative": {
+        "p2": "maach!",
+        "p5": "maacht!"
       },
       "example": {
         "lb": "wat méchs du do?",
@@ -376,6 +456,18 @@
         "p5": "kommt",
         "p6": "kommen"
       },
+      "past": {
+        "p1": "si komm",
+        "p2": "bass komm",
+        "p3": "ass komm",
+        "p4": "si komm",
+        "p5": "sidd komm",
+        "p6": "si komm"
+      },
+      "imperative": {
+        "p2": "komm!",
+        "p5": "kommt!"
+      },
       "example": {
         "lb": "kenns du de Mann, deen do kënnt?",
         "audioId": "3b91a88196c6697376f2dee572489987"
@@ -406,6 +498,18 @@
         "p4": "iessen",
         "p5": "iesst",
         "p6": "iessen"
+      },
+      "past": {
+        "p1": "hu giess",
+        "p2": "hues giess",
+        "p3": "huet giess",
+        "p4": "hu giess",
+        "p5": "hutt giess",
+        "p6": "hu giess"
+      },
+      "imperative": {
+        "p2": "iess!",
+        "p5": "iesst!"
       },
       "example": {
         "lb": "mir iessen de Mëtteg Nuddelen",
@@ -441,6 +545,18 @@
         "p5": "leit",
         "p6": "leien"
       },
+      "past": {
+        "p1": "hu geleeën",
+        "p2": "hues geleeën",
+        "p3": "huet geleeën",
+        "p4": "hu geleeën",
+        "p5": "hutt geleeën",
+        "p6": "hu geleeën"
+      },
+      "imperative": {
+        "p2": "lei!",
+        "p5": "leit!"
+      },
       "example": {
         "lb": "d'Kanner leie schonn am Bett",
         "audioId": "59c8b1899ae7d98796e8073bd99d6fa6"
@@ -475,6 +591,18 @@
         "p5": "huelt",
         "p6": "huelen"
       },
+      "past": {
+        "p1": "hu geholl",
+        "p2": "hues geholl",
+        "p3": "huet geholl",
+        "p4": "hu geholl",
+        "p5": "hutt geholl",
+        "p6": "hu geholl"
+      },
+      "imperative": {
+        "p2": "huel!",
+        "p5": "huelt!"
+      },
       "example": {
         "lb": "huel (der) e Stull, et sinn der genuch do!",
         "audioId": "08c307a9ed816b77a81923758ad2d7a6"
@@ -503,6 +631,18 @@
         "p4": "loossen",
         "p5": "loosst",
         "p6": "loossen"
+      },
+      "past": {
+        "p1": "hu gelooss",
+        "p2": "hues gelooss",
+        "p3": "huet gelooss",
+        "p4": "hu gelooss",
+        "p5": "hutt gelooss",
+        "p6": "hunn gelooss"
+      },
+      "imperative": {
+        "p2": "looss!",
+        "p5": "loosst!"
       },
       "example": {
         "lb": "kanns de mer d'Buch bis muer loossen?",
@@ -542,6 +682,15 @@
         "p5": "sollt",
         "p6": "sollen"
       },
+      "past": {
+        "p1": "hu sollen",
+        "p2": "hues sollen",
+        "p3": "huet sollen",
+        "p4": "hu sollen",
+        "p5": "hutt sollen",
+        "p6": "hu sollen"
+      },
+      "imperative": null,
       "example": {
         "lb": "du solls follegen, wann deng Elteren der eppes soen!",
         "audioId": "2e95aa85637a3558536c4cf6df34159c"
@@ -581,6 +730,18 @@
         "p5": "gesitt",
         "p6": "gesinn"
       },
+      "past": {
+        "p1": "hu gesinn",
+        "p2": "hues gesinn",
+        "p3": "huet gesinn",
+        "p4": "hu gesinn",
+        "p5": "hutt gesinn",
+        "p6": "hu gesinn"
+      },
+      "imperative": {
+        "p2": "geséi!",
+        "p5": "gesitt!"
+      },
       "example": {
         "lb": "vu menger Fënster aus gesinn ech d'Kathedral",
         "audioId": "d5118ae56baba0e2014ad54e5c85abd3"
@@ -615,6 +776,18 @@
         "p5": "schwätzt",
         "p6": "schwätzen"
       },
+      "past": {
+        "p1": "hu geschwat",
+        "p2": "hues geschwat",
+        "p3": "huet geschwat",
+        "p4": "hu geschwat",
+        "p5": "hutt geschwat",
+        "p6": "hu geschwat"
+      },
+      "imperative": {
+        "p2": "schwätz!",
+        "p5": "schwätzt!"
+      },
       "example": {
         "lb": "mäi Monni schwätzt fléissend véier Sproochen",
         "audioId": "59444f1440aa975ceca1079a26e7ed3b"
@@ -648,6 +821,18 @@
         "p4": "spillen",
         "p5": "spillt",
         "p6": "spillen"
+      },
+      "past": {
+        "p1": "hu gespillt",
+        "p2": "hues gespillt",
+        "p3": "huet gespillt",
+        "p4": "hu gespillt",
+        "p5": "hutt gespillt",
+        "p6": "hu gespillt"
+      },
+      "imperative": {
+        "p2": "spill!",
+        "p5": "spillt!"
       },
       "example": {
         "lb": "d'Kanner spillen an der Paus gär Fänkches",
@@ -684,6 +869,18 @@
         "p4": "stinn",
         "p5": "stitt",
         "p6": "stinn"
+      },
+      "past": {
+        "p1": "hunn gestanen",
+        "p2": "hues gestanen",
+        "p3": "huet gestanen",
+        "p4": "hunn gestanen",
+        "p5": "hutt gestanen",
+        "p6": "hunn gestanen"
+      },
+      "imperative": {
+        "p2": "stéi!",
+        "p5": "stitt!"
       },
       "example": {
         "lb": "no deem laange Sëtze war ech frou, emol nees ze stoen",
@@ -726,6 +923,18 @@
         "p5": "kaaft",
         "p6": "kafen"
       },
+      "past": {
+        "p1": "hu kaaft",
+        "p2": "hues kaaft",
+        "p3": "huet kaaft",
+        "p4": "hu kaaft",
+        "p5": "hutt kaaft",
+        "p6": "hu kaaft"
+      },
+      "imperative": {
+        "p2": "kaf!",
+        "p5": "kaaft!"
+      },
       "example": {
         "lb": "ech kafe mir elo eng gutt Mettwurscht!",
         "audioId": "159b2f3bc7e5931b96528aaf9cf947bf"
@@ -760,6 +969,18 @@
         "p5": "setzt",
         "p6": "setzen"
       },
+      "past": {
+        "p1": "hunn gesat",
+        "p2": "hues gesat",
+        "p3": "huet gesat",
+        "p4": "hunn gesat",
+        "p5": "hutt gesat",
+        "p6": "hunn gesat"
+      },
+      "imperative": {
+        "p2": "setz!",
+        "p5": "setzt!"
+      },
       "example": {
         "lb": "setz den Auto an d'Garage, ier et reent!",
         "audioId": "02ec7802b08ff4846a41efa44f974d7d"
@@ -793,6 +1014,18 @@
         "p4": "falen",
         "p5": "faalt",
         "p6": "falen"
+      },
+      "past": {
+        "p1": "si gefall",
+        "p2": "bass gefall",
+        "p3": "ass gefall",
+        "p4": "si gefall",
+        "p5": "sidd gefall",
+        "p6": "si gefall"
+      },
+      "imperative": {
+        "p2": "fal!",
+        "p5": "faalt!"
       },
       "example": {
         "lb": "pass op, d'Äsche vun denger Zigarett falen op de Buedem!",
@@ -832,6 +1065,18 @@
         "p5": "bleift",
         "p6": "bleiwen"
       },
+      "past": {
+        "p1": "si bliwwen",
+        "p2": "bass bliwwen",
+        "p3": "ass bliwwen",
+        "p4": "si bliwwen",
+        "p5": "sidd bliwwen",
+        "p6": "si bliwwen"
+      },
+      "imperative": {
+        "p2": "bleif!",
+        "p5": "bleift!"
+      },
       "example": {
         "lb": "ech kann net laang bleiwen, ech hunn ëm zwou Auer e Rendez-vous",
         "audioId": "22be5faf3350cb4add29d0b92b09ff75"
@@ -868,6 +1113,15 @@
         "p5": "wëllt",
         "p6": "wëllen"
       },
+      "past": {
+        "p1": "hu gewollt",
+        "p2": "hues gewollt",
+        "p3": "huet gewollt",
+        "p4": "hu gewollt",
+        "p5": "hutt gewollt",
+        "p6": "hu gewollt"
+      },
+      "imperative": null,
       "example": {
         "lb": "trotz staarke Protester wëllt d'Regierung un der Reform festhalen",
         "audioId": "079adf149c1fc25ff1ba6898964a61da"
@@ -898,6 +1152,18 @@
         "p4": "fueren",
         "p5": "fuert",
         "p6": "fueren"
+      },
+      "past": {
+        "p1": "si gefuer",
+        "p2": "bass gefuer",
+        "p3": "ass gefuer",
+        "p4": "si gefuer",
+        "p5": "sidd gefuer",
+        "p6": "si gefuer"
+      },
+      "imperative": {
+        "p2": "fuer!",
+        "p5": "fuert!"
       },
       "example": {
         "lb": "all Dag fueren Dausende vun Automobilisten iwwer dës Bréck",
@@ -932,6 +1198,18 @@
         "p4": "halen",
         "p5": "haalt",
         "p6": "halen"
+      },
+      "past": {
+        "p1": "hunn gehalen",
+        "p2": "hues gehalen",
+        "p3": "huet gehalen",
+        "p4": "hunn gehalen",
+        "p5": "hutt gehalen",
+        "p6": "hunn gehalen"
+      },
+      "imperative": {
+        "p2": "hal!",
+        "p5": "haalt!"
       },
       "example": {
         "lb": "ech schëdden, hal du den Triichter!",
@@ -968,6 +1246,18 @@
         "p5": "kuckt",
         "p6": "kucken"
       },
+      "past": {
+        "p1": "hu gekuckt",
+        "p2": "hues gekuckt",
+        "p3": "huet gekuckt",
+        "p4": "hu gekuckt",
+        "p5": "hutt gekuckt",
+        "p6": "hu gekuckt"
+      },
+      "imperative": {
+        "p2": "kuck!",
+        "p5": "kuckt!"
+      },
       "example": {
         "lb": "kuck mech emol an d'Aen!",
         "audioId": "37674f1846b21b43bd187db7040b8ec1"
@@ -998,6 +1288,18 @@
         "p4": "drénken",
         "p5": "drénkt",
         "p6": "drénken"
+      },
+      "past": {
+        "p1": "hu gedronk",
+        "p2": "hues gedronk",
+        "p3": "huet gedronk",
+        "p4": "hu gedronk",
+        "p5": "hutt gedronk",
+        "p6": "hu gedronk"
+      },
+      "imperative": {
+        "p2": "drénk!",
+        "p5": "drénkt!"
       },
       "example": {
         "lb": "ech drénke just e Glas Waasser",
@@ -1036,6 +1338,18 @@
         "p5": "schreift",
         "p6": "schreiwen"
       },
+      "past": {
+        "p1": "hunn geschriwwen",
+        "p2": "hues geschriwwen",
+        "p3": "huet geschriwwen",
+        "p4": "hunn geschriwwen",
+        "p5": "hutt geschriwwen",
+        "p6": "hunn geschriwwen"
+      },
+      "imperative": {
+        "p2": "schreif!",
+        "p5": "schreift!"
+      },
       "example": {
         "lb": "den Expediteur hat vergiess, seng Adress op de Pak ze schreiwen",
         "audioId": "3f78d4da1da3a60d92eb8714ba4ba988"
@@ -1069,6 +1383,18 @@
         "p4": "schaffen",
         "p5": "schafft",
         "p6": "schaffen"
+      },
+      "past": {
+        "p1": "hu geschafft",
+        "p2": "hues geschafft",
+        "p3": "huet geschafft",
+        "p4": "hu geschafft",
+        "p5": "hutt geschafft",
+        "p6": "hu geschafft"
+      },
+      "imperative": {
+        "p2": "schaff!",
+        "p5": "schafft!"
       },
       "example": {
         "lb": "d'Aarbechter hu séier an effikass geschafft",
@@ -1104,6 +1430,18 @@
         "p5": "sëtzt",
         "p6": "sëtzen"
       },
+      "past": {
+        "p1": "hu gesiess",
+        "p2": "hues gesiess",
+        "p3": "huet gesiess",
+        "p4": "hu gesiess",
+        "p5": "hutt gesiess",
+        "p6": "hu gesiess"
+      },
+      "imperative": {
+        "p2": "sëtz!",
+        "p5": "sëtzt!"
+      },
       "example": {
         "lb": "no deem laange Stoen deet et gutt, emol erëm kënnen ze sëtzen",
         "audioId": "f520258ee403079d11b714f81de868e0"
@@ -1138,6 +1476,18 @@
         "p4": "soen",
         "p5": "sot",
         "p6": "soen"
+      },
+      "past": {
+        "p1": "hu gesot",
+        "p2": "hues gesot",
+        "p3": "huet gesot",
+        "p4": "hu gesot",
+        "p5": "hutt gesot",
+        "p6": "hu gesot"
+      },
+      "imperative": {
+        "p2": "so!",
+        "p5": "sot!"
       },
       "example": {
         "lb": "eist Klengt ka schonn eng ganz Partie Wierder soen",
@@ -1179,6 +1529,18 @@
         "p5": "bréngt",
         "p6": "bréngen"
       },
+      "past": {
+        "p1": "hu bruecht",
+        "p2": "hues bruecht",
+        "p3": "huet bruecht",
+        "p4": "hu bruecht",
+        "p5": "hutt bruecht",
+        "p6": "hu bruecht"
+      },
+      "imperative": {
+        "p2": "bréng!",
+        "p5": "bréngt!"
+      },
       "example": {
         "lb": "eisen Noper bréngt eis haut eng Kouert Holz",
         "audioId": "b8cc05655ac37a3366d9b070245e5396"
@@ -1212,6 +1574,18 @@
         "p4": "fannen",
         "p5": "fannt",
         "p6": "fannen"
+      },
+      "past": {
+        "p1": "hu fonnt",
+        "p2": "hues fonnt",
+        "p3": "huet fonnt",
+        "p4": "hu fonnt",
+        "p5": "hutt fonnt",
+        "p6": "hu fonnt"
+      },
+      "imperative": {
+        "p2": "fann!",
+        "p5": "fannt!"
       },
       "example": {
         "lb": "ech hunn am Bësch eng Auer fonnt",
@@ -1249,6 +1623,15 @@
         "p5": "wunnt",
         "p6": "wunnen"
       },
+      "past": {
+        "p1": "hu gewunnt",
+        "p2": "hues gewunnt",
+        "p3": "huet gewunnt",
+        "p4": "hu gewunnt",
+        "p5": "hutt gewunnt",
+        "p6": "hu gewunnt"
+      },
+      "imperative": null,
       "example": {
         "lb": "mir wunnen an enger aler Millen, déi mer restauréiert hunn",
         "audioId": "7901a74ac5b46d5b2c0ec4562b8b88d1"
@@ -1282,6 +1665,18 @@
         "p4": "denken",
         "p5": "denkt",
         "p6": "denken"
+      },
+      "past": {
+        "p1": "hu geduecht",
+        "p2": "hues geduecht",
+        "p3": "huet geduecht",
+        "p4": "hu geduecht",
+        "p5": "hutt geduecht",
+        "p6": "hu geduecht"
+      },
+      "imperative": {
+        "p2": "denk!",
+        "p5": "denkt!"
       },
       "example": {
         "lb": "ech ka vu Middegkeet net méi kloer denken",
@@ -1320,6 +1715,18 @@
         "p5": "laaft",
         "p6": "lafen"
       },
+      "past": {
+        "p1": "si gelaf",
+        "p2": "bass gelaf",
+        "p3": "ass gelaf",
+        "p4": "si gelaf",
+        "p5": "sidd gelaf",
+        "p6": "si gelaf"
+      },
+      "imperative": {
+        "p2": "laf!",
+        "p5": "laaft!"
+      },
       "example": {
         "lb": "du kanns méi séier lafen ewéi ech",
         "audioId": "c7af9f0278417e0d2f2e06f76b445e96"
@@ -1354,6 +1761,15 @@
         "p5": "däerft",
         "p6": "däerfen"
       },
+      "past": {
+        "p1": "hunn däerfen",
+        "p2": "hues däerfen",
+        "p3": "huet däerfen",
+        "p4": "hunn däerfen",
+        "p5": "hutt däerfen",
+        "p6": "hunn däerfen"
+      },
+      "imperative": null,
       "example": {
         "lb": "an enger Demokratie däerf all Bierger seng Meenung soen",
         "audioId": "6dad4644aa33441ad1b87bb9948b7429"
@@ -1386,6 +1802,18 @@
         "p5": "braucht",
         "p6": "brauchen"
       },
+      "past": {
+        "p1": "hu gebraucht",
+        "p2": "hues gebraucht",
+        "p3": "huet gebraucht",
+        "p4": "hu gebraucht",
+        "p5": "hutt gebraucht",
+        "p6": "hu gebraucht"
+      },
+      "imperative": {
+        "p2": "brauch!",
+        "p5": "braucht!"
+      },
       "example": {
         "lb": "bei dësem Dokter brauch een net laang ze waarden, fir e Rendez-vous ze kréien",
         "audioId": "7e01e818396f83e68e8cc8096e815198"
@@ -1414,6 +1842,18 @@
         "p4": "briechen",
         "p5": "briecht",
         "p6": "briechen"
+      },
+      "past": {
+        "p1": "hu gebrach",
+        "p2": "hues gebrach",
+        "p3": "huet gebrach",
+        "p4": "hu gebrach",
+        "p5": "hutt gebrach",
+        "p6": "hu gebrach"
+      },
+      "imperative": {
+        "p2": "briech!",
+        "p5": "briecht!"
       },
       "example": {
         "lb": "d'Kanner hu beim Spillen eng Vas gebrach",
@@ -1449,6 +1889,15 @@
         "p5": "kennt",
         "p6": "kennen"
       },
+      "past": {
+        "p1": "hunn kannt",
+        "p2": "hues kannt",
+        "p3": "huet kannt",
+        "p4": "hunn kannt",
+        "p5": "hutt kannt",
+        "p6": "hunn kannt"
+      },
+      "imperative": null,
       "example": {
         "lb": "mir kennen eis zënter e puer Joer",
         "audioId": "04b1b2a7bdd9e7a9019944be941b7dd0"
@@ -1483,6 +1932,18 @@
         "p5": "stellt",
         "p6": "stellen"
       },
+      "past": {
+        "p1": "hunn gestallt",
+        "p2": "hues gestallt",
+        "p3": "huet gestallt",
+        "p4": "hunn gestallt",
+        "p5": "hutt gestallt",
+        "p6": "hunn gestallt"
+      },
+      "imperative": {
+        "p2": "stell!",
+        "p5": "stellt!"
+      },
       "example": {
         "lb": "fir de Wäin ze versuergen, soll een d'Fläsche leeën, net stellen",
         "audioId": "7aeadf45728b81092d4bcc5020a35c30"
@@ -1516,6 +1977,18 @@
         "p4": "weisen",
         "p5": "weist",
         "p6": "weisen"
+      },
+      "past": {
+        "p1": "hunn gewisen",
+        "p2": "hues gewisen",
+        "p3": "huet gewisen",
+        "p4": "hunn gewisen",
+        "p5": "hutt gewisen",
+        "p6": "hunn gewisen"
+      },
+      "imperative": {
+        "p2": "weis!",
+        "p5": "weist!"
       },
       "example": {
         "lb": "ech weisen der de Plang vum Haus, fir datt s de der kanns eng Iddi dervu maachen",
@@ -1555,6 +2028,18 @@
         "p5": "rufft",
         "p6": "ruffen"
       },
+      "past": {
+        "p1": "hu geruff",
+        "p2": "hues geruff",
+        "p3": "huet geruff",
+        "p4": "hu geruff",
+        "p5": "hutt geruff",
+        "p6": "hu geruff"
+      },
+      "imperative": {
+        "p2": "ruff!",
+        "p5": "rufft!"
+      },
       "example": {
         "lb": "ruff mech, wann d'Iesse fäerdeg ass!",
         "audioId": "8faf4d6f32d706eece1b3d64a40df4ad"
@@ -1585,6 +2070,18 @@
         "p4": "fänken un",
         "p5": "fänkt un",
         "p6": "fänken un"
+      },
+      "past": {
+        "p1": "hunn ugefaangen",
+        "p2": "hues ugefaangen",
+        "p3": "huet ugefaangen",
+        "p4": "hunn ugefaangen",
+        "p5": "hutt ugefaangen",
+        "p6": "hunn ugefaangen"
+      },
+      "imperative": {
+        "p2": "fänk un!",
+        "p5": "fänkt un!"
       },
       "example": {
         "lb": "ier s de deng Ried ufänks, muss de der Gehéier verschafen",
@@ -1625,6 +2122,18 @@
         "p5": "verstitt",
         "p6": "verstinn"
       },
+      "past": {
+        "p1": "hunn verstanen",
+        "p2": "hues verstanen",
+        "p3": "huet verstanen",
+        "p4": "hunn verstanen",
+        "p5": "hutt verstanen",
+        "p6": "hunn verstanen"
+      },
+      "imperative": {
+        "p2": "verstéi!",
+        "p5": "verstitt!"
+      },
       "example": {
         "lb": "fir deen Text ze verstoen, hunn ech dacks am Dictionnaire missen nokucken",
         "audioId": "76845ac778757e02ff20dd67f858e771"
@@ -1658,6 +2167,18 @@
         "p4": "bezuelen",
         "p5": "bezuelt",
         "p6": "bezuelen"
+      },
+      "past": {
+        "p1": "hu bezuelt",
+        "p2": "hues bezuelt",
+        "p3": "huet bezuelt",
+        "p4": "hu bezuelt",
+        "p5": "hutt bezuelt",
+        "p6": "hu bezuelt"
+      },
+      "imperative": {
+        "p2": "bezuel!",
+        "p5": "bezuelt!"
       },
       "example": {
         "lb": "de Client huet d'Wuer boer bezuelt",
@@ -1693,6 +2214,18 @@
         "p5": "sengt",
         "p6": "sengen"
       },
+      "past": {
+        "p1": "hu gesengt",
+        "p2": "hues gesengt",
+        "p3": "huet gesengt",
+        "p4": "hu gesengt",
+        "p5": "hutt gesengt",
+        "p6": "hu gesengt"
+      },
+      "imperative": {
+        "p2": "seng!",
+        "p5": "sengt!"
+      },
       "example": {
         "lb": "ech hu meng nei Blus beim Strecke gesengt",
         "audioId": "8aac4f926407dcb165343890692cfa53"
@@ -1725,6 +2258,18 @@
         "p5": "äntwert",
         "p6": "äntweren"
       },
+      "past": {
+        "p1": "hu geäntwert",
+        "p2": "hues geäntwert",
+        "p3": "huet geäntwert",
+        "p4": "hu geäntwert",
+        "p5": "hutt geäntwert",
+        "p6": "hu geäntwert"
+      },
+      "imperative": {
+        "p2": "äntwer!",
+        "p5": "äntwert!"
+      },
       "example": {
         "lb": "äntwer iergendeppes, hien ass souwisou hallef daf!",
         "audioId": "87d26d534ea75fcb54228db7231a7f80"
@@ -1756,6 +2301,18 @@
         "p4": "schlofen",
         "p5": "schlooft",
         "p6": "schlofen"
+      },
+      "past": {
+        "p1": "hu geschlof",
+        "p2": "hues geschlof",
+        "p3": "huet geschlof",
+        "p4": "hu geschlof",
+        "p5": "hutt geschlof",
+        "p6": "hu geschlof"
+      },
+      "imperative": {
+        "p2": "schlof!",
+        "p5": "schlooft!"
       },
       "example": {
         "lb": "ech leie gär um Bauch fir ze schlofen",
@@ -1791,6 +2348,18 @@
         "p5": "léiert",
         "p6": "léieren"
       },
+      "past": {
+        "p1": "hu geléiert",
+        "p2": "hues geléiert",
+        "p3": "huet geléiert",
+        "p4": "hu geléiert",
+        "p5": "hutt geléiert",
+        "p6": "hu geléiert"
+      },
+      "imperative": {
+        "p2": "léier!",
+        "p5": "léiert!"
+      },
       "example": {
         "lb": "ech sinn an engem Cours, fir Lëtzebuergesch ze léieren",
         "audioId": "d9bdb5dab947d1ebae3ba6167867c58a"
@@ -1824,6 +2393,18 @@
         "p4": "fléien",
         "p5": "flitt",
         "p6": "fléien"
+      },
+      "past": {
+        "p1": "si geflunn",
+        "p2": "bass geflunn",
+        "p3": "ass geflunn",
+        "p4": "si geflunn",
+        "p5": "sidd geflunn",
+        "p6": "si geflunn"
+      },
+      "imperative": {
+        "p2": "fléi!",
+        "p5": "flitt!"
       },
       "example": {
         "lb": "d'Schmuebele fléien héich iwwer den Haiser",
@@ -1859,6 +2440,18 @@
         "p4": "maachen op",
         "p5": "maacht op",
         "p6": "maachen op"
+      },
+      "past": {
+        "p1": "hunn opgemaach",
+        "p2": "hues opgemaach",
+        "p3": "huet opgemaach",
+        "p4": "hunn opgemaach",
+        "p5": "hutt opgemaach",
+        "p6": "hunn opgemaach"
+      },
+      "imperative": {
+        "p2": "maach op!",
+        "p5": "maacht op!"
       },
       "example": {
         "lb": "hien huet d'Fënster opgemaach, fir den Donst erauszeloossen",
@@ -1897,6 +2490,18 @@
         "p5": "packt",
         "p6": "packen"
       },
+      "past": {
+        "p1": "hunn gepackt",
+        "p2": "hues gepackt",
+        "p3": "huet gepackt",
+        "p4": "hunn gepackt",
+        "p5": "hutt gepackt",
+        "p6": "hunn gepackt"
+      },
+      "imperative": {
+        "p2": "pack!",
+        "p5": "packt!"
+      },
       "example": {
         "lb": "wa Grëffer um Cageot wieren, géif ech e besser packen",
         "audioId": "f11d137ffe2e6e787e94fc6f2c462a94"
@@ -1933,6 +2538,18 @@
         "p5": "fäert",
         "p6": "fäerten"
       },
+      "past": {
+        "p1": "hu gefaart",
+        "p2": "hues gefaart",
+        "p3": "huet gefaart",
+        "p4": "hu gefaart",
+        "p5": "hutt gefaart",
+        "p6": "hu gefaart"
+      },
+      "imperative": {
+        "p2": "fäert!",
+        "p5": "fäert!"
+      },
       "example": {
         "lb": "d'Kanner fäerten den Houseker",
         "audioId": "062a94ae1cb38c621e485e0399b92f98"
@@ -1966,6 +2583,18 @@
         "p4": "schneiden",
         "p5": "schneit",
         "p6": "schneiden"
+      },
+      "past": {
+        "p1": "hu geschnidden",
+        "p2": "hues geschnidden",
+        "p3": "huet geschnidden",
+        "p4": "hu geschnidden",
+        "p5": "hutt geschnidden",
+        "p6": "hu geschnidden"
+      },
+      "imperative": {
+        "p2": "schneit!",
+        "p5": "schneit!"
       },
       "example": {
         "lb": "du muss d'Fleesch géint de Fuedem schneiden",
@@ -2002,6 +2631,18 @@
         "p5": "waart",
         "p6": "waarden"
       },
+      "past": {
+        "p1": "hu gewaart",
+        "p2": "hues gewaart",
+        "p3": "huet gewaart",
+        "p4": "hu gewaart",
+        "p5": "hutt gewaart",
+        "p6": "hu gewaart"
+      },
+      "imperative": {
+        "p2": "waart!",
+        "p5": "waart!"
+      },
       "example": {
         "lb": "waart, bis de geruff gëss!",
         "audioId": "5422904ca656361822715f881b1d9188"
@@ -2030,6 +2671,18 @@
         "p4": "fänken",
         "p5": "fänkt",
         "p6": "fänken"
+      },
+      "past": {
+        "p1": "hu gefaangen",
+        "p2": "hues gefaangen",
+        "p3": "huet gefaangen",
+        "p4": "hu gefaangen",
+        "p5": "hutt gefaangen",
+        "p6": "hu gefaangen"
+      },
+      "imperative": {
+        "p2": "fänk!",
+        "p5": "fänkt!"
       },
       "example": {
         "lb": "d'Zaldoten hunn dräi Partisane gefaangen",
@@ -2062,6 +2715,18 @@
         "p4": "klammen",
         "p5": "klammt",
         "p6": "klammen"
+      },
+      "past": {
+        "p1": "si geklommen",
+        "p2": "bass geklommen",
+        "p3": "ass geklommen",
+        "p4": "si geklommen",
+        "p5": "sidd geklommen",
+        "p6": "si geklommen"
+      },
+      "imperative": {
+        "p2": "klamm!",
+        "p5": "klammt!"
       },
       "example": {
         "lb": "fir kënnen ze klammen, muss e Ballon mat waarmer Loft gefëllt ginn",
@@ -2096,6 +2761,18 @@
         "p4": "schmaachen",
         "p5": "schmaacht",
         "p6": "schmaachen"
+      },
+      "past": {
+        "p1": "hu geschmaacht",
+        "p2": "hues geschmaacht",
+        "p3": "huet geschmaacht",
+        "p4": "hu geschmaacht",
+        "p5": "hutt geschmaacht",
+        "p6": "hu geschmaacht"
+      },
+      "imperative": {
+        "p2": "schmaach!",
+        "p5": "schmaacht!"
       },
       "example": {
         "lb": "dee Fësch huet e komesche Goût, schmaachs de dat net?",
@@ -2132,6 +2809,18 @@
         "p5": "schwammt",
         "p6": "schwammen"
       },
+      "past": {
+        "p1": "si geschwommen",
+        "p2": "bass geschwommen",
+        "p3": "ass geschwommen",
+        "p4": "si geschwommen",
+        "p5": "sidd geschwommen",
+        "p6": "si geschwommen"
+      },
+      "imperative": {
+        "p2": "schwamm!",
+        "p5": "schwammt!"
+      },
       "example": {
         "lb": "meng Mamm huet eréischt spéit schwamme geléiert",
         "audioId": "ccf3f795ea2040424f1c23c53bd7e4c0"
@@ -2165,6 +2854,18 @@
         "p4": "bestellen",
         "p5": "bestellt",
         "p6": "bestellen"
+      },
+      "past": {
+        "p1": "hu bestallt",
+        "p2": "hues bestallt",
+        "p3": "huet bestallt",
+        "p4": "hu bestallt",
+        "p5": "hutt bestallt",
+        "p6": "hu bestallt"
+      },
+      "imperative": {
+        "p2": "bestell!",
+        "p5": "bestellt!"
       },
       "example": {
         "lb": "eist Klengt huet sech ganz eleng bei der Serveuse en Dessert bestallt",
@@ -2200,6 +2901,18 @@
         "p5": "verkaaft",
         "p6": "verkafen"
       },
+      "past": {
+        "p1": "hunn verkaaft",
+        "p2": "hues verkaaft",
+        "p3": "huet verkaaft",
+        "p4": "hunn verkaaft",
+        "p5": "hutt verkaaft",
+        "p6": "hunn verkaaft"
+      },
+      "imperative": {
+        "p2": "verkaf!",
+        "p5": "verkaaft!"
+      },
       "example": {
         "lb": "wa meng Aktie bis geklomme sinn, verkafen ech se!",
         "audioId": "8d8469197700ede9bf652b0bd8b6ee07"
@@ -2233,6 +2946,18 @@
         "p4": "hëllefen",
         "p5": "hëlleft",
         "p6": "hëllefen"
+      },
+      "past": {
+        "p1": "hu gehollef",
+        "p2": "hues gehollef",
+        "p3": "huet gehollef",
+        "p4": "hu gehollef",
+        "p5": "hutt gehollef",
+        "p6": "hu gehollef"
+      },
+      "imperative": {
+        "p2": "hëllef!",
+        "p5": "hëlleft!"
       },
       "example": {
         "lb": "hie steet do, näischt ze maachen, amplaz ze hëllefen",
@@ -2269,6 +2994,15 @@
         "p5": "heescht",
         "p6": "heeschen"
       },
+      "past": {
+        "p1": "hu geheescht",
+        "p2": "hues geheescht",
+        "p3": "huet geheescht",
+        "p4": "hu geheescht",
+        "p5": "hutt geheescht",
+        "p6": "hu geheescht"
+      },
+      "imperative": null,
       "example": {
         "lb": "wéi heeschs du?",
         "audioId": "1b3d09cd6408058d530540cd16c578a6"
@@ -2303,6 +3037,18 @@
         "p4": "lauschteren",
         "p5": "lauschtert",
         "p6": "lauschteren"
+      },
+      "past": {
+        "p1": "hu gelauschtert",
+        "p2": "hues gelauschtert",
+        "p3": "huet gelauschtert",
+        "p4": "hu gelauschtert",
+        "p5": "hutt gelauschtert",
+        "p6": "hu gelauschtert"
+      },
+      "imperative": {
+        "p2": "lauschter!",
+        "p5": "lauschtert!"
       },
       "example": {
         "lb": "hues du de Moien de Radio gelauschtert?",
@@ -2339,6 +3085,18 @@
         "p5": "bestitt",
         "p6": "bestinn"
       },
+      "past": {
+        "p1": "hu bestanen",
+        "p2": "hues bestanen",
+        "p3": "huet bestanen",
+        "p4": "hu bestanen",
+        "p5": "hutt bestanen",
+        "p6": "hu bestanen"
+      },
+      "imperative": {
+        "p2": "bestéi!",
+        "p5": "bestitt!"
+      },
       "example": {
         "lb": "dëse Buttek besteet schonn zënter méi ewéi 100 Joer",
         "audioId": "c47f0ca9c2aee76d2c51278e5c045d9d"
@@ -2373,6 +3131,18 @@
         "p5": "mengt",
         "p6": "mengen"
       },
+      "past": {
+        "p1": "hunn gemengt",
+        "p2": "hues gemengt",
+        "p3": "huet gemengt",
+        "p4": "hunn gemengt",
+        "p5": "hutt gemengt",
+        "p6": "hunn gemengt"
+      },
+      "imperative": {
+        "p2": "meng!",
+        "p5": "mengt!"
+      },
       "example": {
         "lb": "meng net, ech géif dech fäerten!",
         "audioId": "d4a77362dfdf3ce60f4f84a0fec4b53b"
@@ -2402,6 +3172,18 @@
         "p4": "stinn op",
         "p5": "stitt op",
         "p6": "stinn op"
+      },
+      "past": {
+        "p1": "sinn opgestanen",
+        "p2": "bass opgestanen",
+        "p3": "ass opgestanen",
+        "p4": "sinn opgestanen",
+        "p5": "sidd opgestanen",
+        "p6": "sinn opgestanen"
+      },
+      "imperative": {
+        "p2": "stéi op!",
+        "p5": "stitt op!"
       },
       "example": {
         "lb": "d'Leit sinn opgestanen, wéi d'Nationalhymn gespillt gouf",
@@ -2438,6 +3220,18 @@
         "p5": "haalt op",
         "p6": "halen op"
       },
+      "past": {
+        "p1": "hunn opgehalen",
+        "p2": "hues opgehalen",
+        "p3": "huet opgehalen",
+        "p4": "hunn opgehalen",
+        "p5": "hutt opgehalen",
+        "p6": "hunn opgehalen"
+      },
+      "imperative": {
+        "p2": "hal op!",
+        "p5": "haalt op!"
+      },
       "example": {
         "lb": "hien huet der Madamm d'Dier opgehalen",
         "audioId": "e55f34cf1c4dda1f845875a7e7c77378"
@@ -2471,6 +3265,18 @@
         "p4": "sprangen",
         "p5": "sprangt",
         "p6": "sprangen"
+      },
+      "past": {
+        "p1": "si gesprongen",
+        "p2": "bass gesprongen",
+        "p3": "ass gesprongen",
+        "p4": "si gesprongen",
+        "p5": "sidd gesprongen",
+        "p6": "si gesprongen"
+      },
+      "imperative": {
+        "p2": "sprang!",
+        "p5": "sprangt!"
       },
       "example": {
         "lb": "ech ka méi héich sprangen ewéi mäi Brudder",
@@ -2506,6 +3312,18 @@
         "p5": "sicht",
         "p6": "sichen"
       },
+      "past": {
+        "p1": "hu gesicht",
+        "p2": "hues gesicht",
+        "p3": "huet gesicht",
+        "p4": "hu gesicht",
+        "p5": "hutt gesicht",
+        "p6": "hu gesicht"
+      },
+      "imperative": {
+        "p2": "sich!",
+        "p5": "sicht!"
+      },
       "example": {
         "lb": "ech hunn de ganzen Dag mäi Liesbrëll gesicht",
         "audioId": "fc69c112a55b36e9d710bbd30832682c"
@@ -2539,6 +3357,18 @@
         "p4": "sangen",
         "p5": "sangt",
         "p6": "sangen"
+      },
+      "past": {
+        "p1": "hu gesongen",
+        "p2": "hues gesongen",
+        "p3": "huet gesongen",
+        "p4": "hu gesongen",
+        "p5": "hutt gesongen",
+        "p6": "hu gesongen"
+      },
+      "imperative": {
+        "p2": "sang!",
+        "p5": "sangt!"
       },
       "example": {
         "lb": "fir Chrëschtdag huet de Chouer all déi bekannt Lidder gesongen",
@@ -2574,6 +3404,18 @@
         "p5": "baakt",
         "p6": "baken"
       },
+      "past": {
+        "p1": "hu gebak",
+        "p2": "hues gebak",
+        "p3": "huet gebak",
+        "p4": "hu gebak",
+        "p5": "hutt gebak",
+        "p6": "hu gebak"
+      },
+      "imperative": {
+        "p2": "bak!",
+        "p5": "baakt!"
+      },
       "example": {
         "lb": "de Bäcker huet fir e Client fofzeg Baguettë gebak",
         "audioId": "18aed6852f23359cd45f78e7b0faba5f"
@@ -2607,6 +3449,18 @@
         "p4": "kontrolléieren",
         "p5": "kontrolléiert",
         "p6": "kontrolléieren"
+      },
+      "past": {
+        "p1": "hu kontrolléiert",
+        "p2": "hues kontrolléiert",
+        "p3": "huet kontrolléiert",
+        "p4": "hu kontrolléiert",
+        "p5": "hutt kontrolléiert",
+        "p6": "hu kontrolléiert"
+      },
+      "imperative": {
+        "p2": "kontrolléier!",
+        "p5": "kontrolléiert!"
       },
       "example": {
         "lb": "nom Uschlag huet d'Police all Ausgäng vun der Gare kontrolléiert",
@@ -2642,6 +3496,18 @@
         "p5": "presentéiert",
         "p6": "presentéieren"
       },
+      "past": {
+        "p1": "hunn presentéiert",
+        "p2": "hues presentéiert",
+        "p3": "huet presentéiert",
+        "p4": "hunn presentéiert",
+        "p5": "hutt presentéiert",
+        "p6": "hunn presentéiert"
+      },
+      "imperative": {
+        "p2": "presentéier!",
+        "p5": "presentéiert!"
+      },
       "example": {
         "lb": "um Enn presentéiere mir d'Conclusioune vun eiser Diskussioun",
         "audioId": "fb6338e20110a8c37c615ad92816939b"
@@ -2675,6 +3541,18 @@
         "p4": "mellen un",
         "p5": "mellt un",
         "p6": "mellen un"
+      },
+      "past": {
+        "p1": "hunn ugemellt",
+        "p2": "hues ugemellt",
+        "p3": "huet ugemellt",
+        "p4": "hunn ugemellt",
+        "p5": "hutt ugemellt",
+        "p6": "hunn ugemellt"
+      },
+      "imperative": {
+        "p2": "mell un!",
+        "p5": "mellt un!"
       },
       "example": {
         "lb": "de Papp ass ganz houfereg seng Zwillingen op d'Gemeng umelle gaangen",
@@ -2712,6 +3590,18 @@
         "p5": "frot",
         "p6": "froen"
       },
+      "past": {
+        "p1": "hunn gefrot",
+        "p2": "hues gefrot",
+        "p3": "huet gefrot",
+        "p4": "hunn gefrot",
+        "p5": "hutt gefrot",
+        "p6": "hunn gefrot"
+      },
+      "imperative": {
+        "p2": "fro!",
+        "p5": "frot!"
+      },
       "example": {
         "lb": "et huet keen dech eppes gefrot!",
         "audioId": "975b057d120842ac1da5a1a4d582908b"
@@ -2747,6 +3637,18 @@
         "p5": "sammelt",
         "p6": "sammelen"
       },
+      "past": {
+        "p1": "hu gesammelt",
+        "p2": "hues gesammelt",
+        "p3": "huet gesammelt",
+        "p4": "hu gesammelt",
+        "p5": "hutt gesammelt",
+        "p6": "hu gesammelt"
+      },
+      "imperative": {
+        "p2": "sammel!",
+        "p5": "sammelt!"
+      },
       "example": {
         "lb": "am Hierscht sammelen d'Kaweechelcher äifereg Nëss an Eechelen",
         "audioId": "51835657953e65ca41ce2fdfccf4540a"
@@ -2781,6 +3683,8 @@
         "p5": "wäert",
         "p6": "wäerten"
       },
+      "past": null,
+      "imperative": null,
       "example": {
         "lb": "si wäerten ni en Amateur fannen, wann se de Präis vum Haus net erofsetzen",
         "audioId": "7c9d6b6b1bf60b8959fa26686c15889f"
@@ -2819,6 +3723,18 @@
         "p5": "danzt",
         "p6": "danzen"
       },
+      "past": {
+        "p1": "hu gedanzt",
+        "p2": "hues gedanzt",
+        "p3": "huet gedanzt",
+        "p4": "hu gedanzt",
+        "p5": "hutt gedanzt",
+        "p6": "hu gedanzt"
+      },
+      "imperative": {
+        "p2": "danz!",
+        "p5": "danzt!"
+      },
       "example": {
         "lb": "d'Brautpuer huet eng Walz gedanzt",
         "audioId": "5bdd1d3c05e47e7b0f0e11a06b649d4e"
@@ -2852,6 +3768,18 @@
         "p4": "kachen",
         "p5": "kacht",
         "p6": "kachen"
+      },
+      "past": {
+        "p1": "hu gekacht",
+        "p2": "hues gekacht",
+        "p3": "huet gekacht",
+        "p4": "hu gekacht",
+        "p5": "hutt gekacht",
+        "p6": "hu gekacht"
+      },
+      "imperative": {
+        "p2": "kach!",
+        "p5": "kacht!"
       },
       "example": {
         "lb": "du hues d'Nuddelen eng Grimmel ze laang gekacht",
@@ -2887,6 +3815,18 @@
         "p5": "deckt",
         "p6": "decken"
       },
+      "past": {
+        "p1": "hu gedeckt",
+        "p2": "hues gedeckt",
+        "p3": "huet gedeckt",
+        "p4": "hu gedeckt",
+        "p5": "hutt gedeckt",
+        "p6": "hunn gedeckt"
+      },
+      "imperative": {
+        "p2": "deck!",
+        "p5": "deckt!"
+      },
       "example": {
         "lb": "den Daach vum Haus muss nach virum Wanter nei gedeckt ginn",
         "audioId": "c236889e29b39a35b7c0774dcaa95601"
@@ -2920,6 +3860,18 @@
         "p4": "erwächen",
         "p5": "erwächt",
         "p6": "erwächen"
+      },
+      "past": {
+        "p1": "hunn erwächt",
+        "p2": "hues erwächt",
+        "p3": "huet erwächt",
+        "p4": "hunn erwächt",
+        "p5": "hutt erwächt",
+        "p6": "hunn erwächt"
+      },
+      "imperative": {
+        "p2": "erwäch!",
+        "p5": "erwächt!"
       },
       "example": {
         "lb": "erwäch mech muer de Moien ëm siwen Auer!",
@@ -2955,6 +3907,18 @@
         "p5": "moolt",
         "p6": "molen"
       },
+      "past": {
+        "p1": "hu gemoolt",
+        "p2": "hues gemoolt",
+        "p3": "huet gemoolt",
+        "p4": "hu gemoolt",
+        "p5": "hutt gemoolt",
+        "p6": "hu gemoolt"
+      },
+      "imperative": {
+        "p2": "mol!",
+        "p5": "moolt!"
+      },
       "example": {
         "lb": "et huet e Kënschtler e Portrait vu mir gemoolt",
         "audioId": "b189c9e17511362d939e9ec86c79cd39"
@@ -2988,6 +3952,18 @@
         "p4": "telefonéieren",
         "p5": "telefonéiert",
         "p6": "telefonéieren"
+      },
+      "past": {
+        "p1": "hunn telefonéiert",
+        "p2": "hues telefonéiert",
+        "p3": "huet telefonéiert",
+        "p4": "hunn telefonéiert",
+        "p5": "hutt telefonéiert",
+        "p6": "hunn telefonéiert"
+      },
+      "imperative": {
+        "p2": "telefonéier!",
+        "p5": "telefonéiert!"
       },
       "example": {
         "lb": "déi zwou Frëndinnen telefonéieren heiansdo stonnelaang mateneen",
@@ -3023,6 +3999,18 @@
         "p5": "widderhuelt",
         "p6": "widderhuelen"
       },
+      "past": {
+        "p1": "hunn widderholl",
+        "p2": "hues widderholl",
+        "p3": "huet widderholl",
+        "p4": "hunn widderholl",
+        "p5": "hutt widderholl",
+        "p6": "hunn widderholl"
+      },
+      "imperative": {
+        "p2": "widderhuel!",
+        "p5": "widderhuelt!"
+      },
       "example": {
         "lb": "kanns de däi leschte Saz wannechgelift widderhuelen?",
         "audioId": "43967de58a6d09d4d3c4046b235836e4"
@@ -3055,6 +4043,18 @@
         "p5": "ameséiert",
         "p6": "ameséieren"
       },
+      "past": {
+        "p1": "hunn ameséiert",
+        "p2": "hues ameséiert",
+        "p3": "huet ameséiert",
+        "p4": "hunn ameséiert",
+        "p5": "hutt ameséiert",
+        "p6": "hunn ameséiert"
+      },
+      "imperative": {
+        "p2": "ameséier!",
+        "p5": "ameséiert!"
+      },
       "example": {
         "lb": "de Clown ameséiert esouwuel d'Kanner ewéi och hir Elteren",
         "audioId": "a734944030829cc2dc98827a881809c7"
@@ -3086,6 +4086,18 @@
         "p4": "bastelen",
         "p5": "bastelt",
         "p6": "bastelen"
+      },
+      "past": {
+        "p1": "hu gebastelt",
+        "p2": "hues gebastelt",
+        "p3": "huet gebastelt",
+        "p4": "hu gebastelt",
+        "p5": "hutt gebastelt",
+        "p6": "hu gebastelt"
+      },
+      "imperative": {
+        "p2": "bastel!",
+        "p5": "bastelt!"
       },
       "example": {
         "lb": "mir bastelen e Päerdchen aus Drot, dat ech an enger Zeitung fonnt hunn",
@@ -3122,6 +4134,18 @@
         "p5": "feiert",
         "p6": "feieren"
       },
+      "past": {
+        "p1": "hu gefeiert",
+        "p2": "hues gefeiert",
+        "p3": "huet gefeiert",
+        "p4": "hu gefeiert",
+        "p5": "hutt gefeiert",
+        "p6": "hu gefeiert"
+      },
+      "imperative": {
+        "p2": "feier!",
+        "p5": "feiert!"
+      },
       "example": {
         "lb": "e Samschdeg feieren ech mäi Gebuertsdag",
         "audioId": "2f5d63b5d9c3185d82947c1da1408c34"
@@ -3155,6 +4179,18 @@
         "p4": "héieren",
         "p5": "héiert",
         "p6": "héieren"
+      },
+      "past": {
+        "p1": "hunn héieren",
+        "p2": "hues héieren",
+        "p3": "huet héieren",
+        "p4": "hunn héieren",
+        "p5": "hutt héieren",
+        "p6": "hunn héieren"
+      },
+      "imperative": {
+        "p2": "héier!",
+        "p5": "héiert!"
       },
       "example": {
         "lb": "wéinst dem Kaméidi huet keen héieren, wat de Riedner gesot huet",
@@ -3190,6 +4226,18 @@
         "p5": "liest",
         "p6": "liesen"
       },
+      "past": {
+        "p1": "hu gelies",
+        "p2": "hues gelies",
+        "p3": "huet gelies",
+        "p4": "hu gelies",
+        "p5": "hutt gelies",
+        "p6": "hu gelies"
+      },
+      "imperative": {
+        "p2": "lies!",
+        "p5": "liest!"
+      },
       "example": {
         "lb": "ech liese grad e spannend Buch",
         "audioId": "755618236ed389a5c7293b44a41a3c68"
@@ -3219,6 +4267,18 @@
         "p5": "brot",
         "p6": "broden"
       },
+      "past": {
+        "p1": "hu gebroden",
+        "p2": "hues gebroden",
+        "p3": "huet gebroden",
+        "p4": "hu gebroden",
+        "p5": "hutt gebroden",
+        "p6": "hu gebroden"
+      },
+      "imperative": {
+        "p2": "brot!",
+        "p5": "brot!"
+      },
       "example": {
         "lb": "de Kach bréit d'Gromperen an enger gossener Pan",
         "audioId": "75e7d985f843781b8cfc6d2be1a5d23f"
@@ -3245,6 +4305,18 @@
         "p4": "huele mat",
         "p5": "huelt mat",
         "p6": "huele mat"
+      },
+      "past": {
+        "p1": "hu matgeholl",
+        "p2": "hues matgeholl",
+        "p3": "huet matgeholl",
+        "p4": "hu matgeholl",
+        "p5": "hutt matgeholl",
+        "p6": "hu matgeholl"
+      },
+      "imperative": {
+        "p2": "huel mat!",
+        "p5": "huelt mat!"
       },
       "example": {
         "lb": "an der Hetz hat ech vergiess, e Prabbeli matzehuelen",
@@ -3281,6 +4353,18 @@
         "p5": "wäscht",
         "p6": "wäschen"
       },
+      "past": {
+        "p1": "hu gewäsch",
+        "p2": "hues gewäsch",
+        "p3": "huet gewäsch",
+        "p4": "hu gewäsch",
+        "p5": "hutt gewäsch",
+        "p6": "hu gewäsch"
+      },
+      "imperative": {
+        "p2": "wäsch!",
+        "p5": "wäscht!"
+      },
       "example": {
         "lb": "géi wäsch deng knaschteg Fangeren!",
         "audioId": "28cfe814bb5b3c7a821b0d98e2b10394"
@@ -3309,6 +4393,18 @@
         "p4": "besichen",
         "p5": "besicht",
         "p6": "besichen"
+      },
+      "past": {
+        "p1": "hu besicht",
+        "p2": "hues besicht",
+        "p3": "huet besicht",
+        "p4": "hu besicht",
+        "p5": "hutt besicht",
+        "p6": "hu besicht"
+      },
+      "imperative": {
+        "p2": "besich!",
+        "p5": "besicht!"
       },
       "example": {
         "lb": "kommt eis dach emol besichen!",
@@ -3341,6 +4437,18 @@
         "p4": "fierwen",
         "p5": "fierft",
         "p6": "fierwen"
+      },
+      "past": {
+        "p1": "hu gefierft",
+        "p2": "hues gefierft",
+        "p3": "huet gefierft",
+        "p4": "hu gefierft",
+        "p5": "hutt gefierft",
+        "p6": "hu gefierft"
+      },
+      "imperative": {
+        "p2": "fierf!",
+        "p5": "fierft!"
       },
       "example": {
         "lb": "eis Léierin huet hir Neel ëmmer rout gefierft",
@@ -3377,6 +4485,18 @@
         "p5": "spadséiert",
         "p6": "spadséieren"
       },
+      "past": {
+        "p1": "si spadséiert",
+        "p2": "bass spadséiert",
+        "p3": "ass spadséiert",
+        "p4": "si spadséiert",
+        "p5": "sidd spadséiert",
+        "p6": "si spadséiert"
+      },
+      "imperative": {
+        "p2": "spadséier!",
+        "p5": "spadséiert!"
+      },
       "example": {
         "lb": "mir ginn all Sonndeg an de Bësch spadséieren",
         "audioId": "675bcdc0762e2cac17f765c8de8797de"
@@ -3409,6 +4529,18 @@
         "p5": "stëmmt",
         "p6": "stëmmen"
       },
+      "past": {
+        "p1": "hu gestëmmt",
+        "p2": "hues gestëmmt",
+        "p3": "huet gestëmmt",
+        "p4": "hu gestëmmt",
+        "p5": "hutt gestëmmt",
+        "p6": "hu gestëmmt"
+      },
+      "imperative": {
+        "p2": "stëmm!",
+        "p5": "stëmmt!"
+      },
       "example": {
         "lb": "d'Gesetz gouf vun der Majoritéit gestëmmt",
         "audioId": "a644a61e57238ae4829ca21cf8c67337"
@@ -3440,6 +4572,18 @@
         "p4": "stierwen",
         "p5": "stierft",
         "p6": "stierwen"
+      },
+      "past": {
+        "p1": "si gestuerwen",
+        "p2": "bass gestuerwen",
+        "p3": "ass gestuerwen",
+        "p4": "si gestuerwen",
+        "p5": "sidd gestuerwen",
+        "p6": "si gestuerwen"
+      },
+      "imperative": {
+        "p2": "stierf!",
+        "p5": "stierft!"
       },
       "example": {
         "lb": "fréier si méi Leit un enger Blinddarmentzündung gestuerwen ewéi haut",
@@ -3475,6 +4619,18 @@
         "p5": "studéiert",
         "p6": "studéieren"
       },
+      "past": {
+        "p1": "hu studéiert",
+        "p2": "hues studéiert",
+        "p3": "huet studéiert",
+        "p4": "hu studéiert",
+        "p5": "hutt studéiert",
+        "p6": "hu studéiert"
+      },
+      "imperative": {
+        "p2": "studéier!",
+        "p5": "studéiert!"
+      },
       "example": {
         "lb": "ech studéiere Chimie op enger auslännescher Universitéit",
         "audioId": "1981e5ee743b2efdd22d263f2c8db0dd"
@@ -3508,6 +4664,18 @@
         "p4": "trainéieren",
         "p5": "trainéiert",
         "p6": "trainéieren"
+      },
+      "past": {
+        "p1": "hunn trainéiert",
+        "p2": "hues trainéiert",
+        "p3": "huet trainéiert",
+        "p4": "hunn trainéiert",
+        "p5": "hutt trainéiert",
+        "p6": "hunn trainéiert"
+      },
+      "imperative": {
+        "p2": "trainéier!",
+        "p5": "trainéiert!"
       },
       "example": {
         "lb": "wien trainéiert déi Jonk an Ärem Club?",
@@ -3543,6 +4711,18 @@
         "p5": "plënnert",
         "p6": "plënneren"
       },
+      "past": {
+        "p1": "hu geplënnert",
+        "p2": "hues geplënnert",
+        "p3": "huet geplënnert",
+        "p4": "hu geplënnert",
+        "p5": "hutt geplënnert",
+        "p6": "hu geplënnert"
+      },
+      "imperative": {
+        "p2": "plënner!",
+        "p5": "plënnert!"
+      },
       "example": {
         "lb": "dëse Weekend muss ech e puer Miwwele plënneren",
         "audioId": "456f271b18a9c8e0ca918e69923e7ed2"
@@ -3577,6 +4757,18 @@
         "p5": "schielt",
         "p6": "schielen"
       },
+      "past": {
+        "p1": "hunn geschielt",
+        "p2": "hues geschielt",
+        "p3": "huet geschielt",
+        "p4": "hunn geschielt",
+        "p5": "hutt geschielt",
+        "p6": "hunn geschielt"
+      },
+      "imperative": {
+        "p2": "schiel!",
+        "p5": "schielt!"
+      },
       "example": {
         "lb": "hëllefs de mer d'Grompere schielen?",
         "audioId": "e3f8fc6db146320ba0b3808245cdb6df"
@@ -3609,6 +4801,18 @@
         "p5": "vergiesst",
         "p6": "vergiessen"
       },
+      "past": {
+        "p1": "hunn vergiess",
+        "p2": "hues vergiess",
+        "p3": "huet vergiess",
+        "p4": "hunn vergiess",
+        "p5": "hutt vergiess",
+        "p6": "hunn vergiess"
+      },
+      "imperative": {
+        "p2": "vergiess!",
+        "p5": "vergiesst!"
+      },
       "example": {
         "lb": "hien huet eise Rendez-vous vun de Mueren doudsécher vergiess",
         "audioId": "381b5f26b0ef4c1ee962093c69d740d8"
@@ -3638,6 +4842,18 @@
         "p4": "kafen an",
         "p5": "kaaft an",
         "p6": "kafen an"
+      },
+      "past": {
+        "p1": "hunn akaaft",
+        "p2": "hues akaaft",
+        "p3": "huet akaaft",
+        "p4": "hunn akaaft",
+        "p5": "hutt akaaft",
+        "p6": "hunn akaaft"
+      },
+      "imperative": {
+        "p2": "kaf an!",
+        "p5": "kaaft an!"
       },
       "example": {
         "lb": "de Grosist huet seng Wueren zu engem gënschtege Präis akaaft",
@@ -3673,6 +4889,18 @@
         "p5": "fuert fort",
         "p6": "fuere fort"
       },
+      "past": {
+        "p1": "si fortgefuer",
+        "p2": "bass fortgefuer",
+        "p3": "ass fortgefuer",
+        "p4": "si fortgefuer",
+        "p5": "sidd fortgefuer",
+        "p6": "si fortgefuer"
+      },
+      "imperative": {
+        "p2": "fuer fort!",
+        "p5": "fuert fort!"
+      },
       "example": {
         "lb": "ech muss spéitstens ëm siwen Auer fortfueren, fir matzäit op der Aarbecht ze sinn",
         "audioId": "f840b983d3b94f5e5f7dcf5885190401"
@@ -3707,6 +4935,18 @@
         "p5": "liicht",
         "p6": "liichten"
       },
+      "past": {
+        "p1": "hu geliicht",
+        "p2": "hues geliicht",
+        "p3": "huet geliicht",
+        "p4": "hu geliicht",
+        "p5": "hutt geliicht",
+        "p6": "hu geliicht"
+      },
+      "imperative": {
+        "p2": "liicht!",
+        "p5": "liicht!"
+      },
       "example": {
         "lb": "meng Auer liicht an der Däischtert",
         "audioId": "76306f68da4ec82fd87028b4cb5339f1"
@@ -3733,6 +4973,18 @@
         "p4": "gi mat",
         "p5": "gitt mat",
         "p6": "gi mat"
+      },
+      "past": {
+        "p1": "si matgaangen",
+        "p2": "bass matgaangen",
+        "p3": "ass matgaangen",
+        "p4": "si matgaangen",
+        "p5": "sidd matgaangen",
+        "p6": "si matgaangen"
+      },
+      "imperative": {
+        "p2": "géi mat!",
+        "p5": "gitt mat!"
       },
       "example": {
         "lb": "wëllt däi Brudder net matgoen?",
@@ -3768,6 +5020,15 @@
         "p5": "wësst",
         "p6": "wëssen"
       },
+      "past": {
+        "p1": "hu gewosst",
+        "p2": "hues gewosst",
+        "p3": "huet gewosst",
+        "p4": "hu gewosst",
+        "p5": "hutt gewosst",
+        "p6": "hu gewosst"
+      },
+      "imperative": null,
       "example": {
         "lb": "eise Professer weess vill iwwer déi griichesch Mythologie",
         "audioId": "9e6ae23bdfe895924e9541d969345e02"
@@ -3798,6 +5059,18 @@
         "p4": "mëschen",
         "p5": "mëscht",
         "p6": "mëschen"
+      },
+      "past": {
+        "p1": "hunn gemëscht",
+        "p2": "hues gemëscht",
+        "p3": "huet gemëscht",
+        "p4": "hunn gemëscht",
+        "p5": "hutt gemëscht",
+        "p6": "hunn gemëscht"
+      },
+      "imperative": {
+        "p2": "mësch!",
+        "p5": "mëscht!"
       },
       "example": {
         "lb": "bei deem Rezept muss de fir d'éischt Zocker an Eeër mëschen",
@@ -3831,6 +5104,18 @@
         "p5": "notéiert",
         "p6": "notéieren"
       },
+      "past": {
+        "p1": "hunn notéiert",
+        "p2": "hues notéiert",
+        "p3": "huet notéiert",
+        "p4": "hunn notéiert",
+        "p5": "hutt notéiert",
+        "p6": "hunn notéiert"
+      },
+      "imperative": {
+        "p2": "notéier!",
+        "p5": "notéiert!"
+      },
       "example": {
         "lb": "de Sekretär huet eis Iwwerleeungen all notéiert",
         "audioId": "28cd9f540626262ec689fa27967e980d"
@@ -3862,6 +5147,18 @@
         "p4": "preparéieren",
         "p5": "preparéiert",
         "p6": "preparéieren"
+      },
+      "past": {
+        "p1": "hu preparéiert",
+        "p2": "hues preparéiert",
+        "p3": "huet preparéiert",
+        "p4": "hu preparéiert",
+        "p5": "hutt preparéiert",
+        "p6": "hu preparéiert"
+      },
+      "imperative": {
+        "p2": "preparéier!",
+        "p5": "preparéiert!"
       },
       "example": {
         "lb": "d'Politikerin hat hir Ried gutt preparéiert",
@@ -3895,6 +5192,18 @@
         "p5": "staubsaugt",
         "p6": "staubsaugen"
       },
+      "past": {
+        "p1": "hu gestaubsaugt",
+        "p2": "hues gestaubsaugt",
+        "p3": "huet gestaubsaugt",
+        "p4": "hu gestaubsaugt",
+        "p5": "hutt gestaubsaugt",
+        "p6": "hu gestaubsaugt"
+      },
+      "imperative": {
+        "p2": "staubsaug!",
+        "p5": "staubsaugt!"
+      },
       "example": {
         "lb": "hues du d'Stuff scho gestaubsaugt?",
         "audioId": "1f7f7b22853d5c62f1ee4f9ab7f77d09"
@@ -3927,6 +5236,18 @@
         "p5": "pacst",
         "p6": "pacsen"
       },
+      "past": {
+        "p1": "hunn gepacst",
+        "p2": "hues gepacst",
+        "p3": "huet gepacst",
+        "p4": "hunn gepacst",
+        "p5": "hutt gepacst",
+        "p6": "hunn gepacst"
+      },
+      "imperative": {
+        "p2": "pacs!",
+        "p5": "pacst!"
+      },
       "example": {
         "lb": "de Buergermeeschter huet d'Koppel gepacst",
         "audioId": "db0f01835e9e06980d117ac4346c1c54"
@@ -3958,6 +5279,18 @@
         "p4": "fueren heem",
         "p5": "fuert heem",
         "p6": "fueren heem"
+      },
+      "past": {
+        "p1": "sinn heemgefuer",
+        "p2": "bass heemgefuer",
+        "p3": "ass heemgefuer",
+        "p4": "sinn heemgefuer",
+        "p5": "sidd heemgefuer",
+        "p6": "sinn heemgefuer"
+      },
+      "imperative": {
+        "p2": "fuer heem!",
+        "p5": "fuert heem!"
       },
       "example": {
         "lb": "drénk net esou vill, du muss nach heemfueren!",
@@ -3994,6 +5327,15 @@
         "p5": "kascht",
         "p6": "kaschten"
       },
+      "past": {
+        "p1": "hu kascht",
+        "p2": "hues kascht",
+        "p3": "huet kascht",
+        "p4": "hu kascht",
+        "p5": "hutt kascht",
+        "p6": "hu kascht"
+      },
+      "imperative": null,
       "example": {
         "lb": "d'Renovatiounsaarbechte kaschten ëm déi 50.000 Euro",
         "audioId": "7e1ff90a83e77de8cd00d8b29e529d21"
@@ -4027,6 +5369,18 @@
         "p4": "reparéieren",
         "p5": "reparéiert",
         "p6": "reparéieren"
+      },
+      "past": {
+        "p1": "hu reparéiert",
+        "p2": "hues reparéiert",
+        "p3": "huet reparéiert",
+        "p4": "hu reparéiert",
+        "p5": "hutt reparéiert",
+        "p6": "hu reparéiert"
+      },
+      "imperative": {
+        "p2": "reparéier!",
+        "p5": "reparéiert!"
       },
       "example": {
         "lb": "den Elektriker weess net, ob en de Radio nach ka reparéieren",
@@ -4063,6 +5417,18 @@
         "p5": "tankt",
         "p6": "tanken"
       },
+      "past": {
+        "p1": "hu getankt",
+        "p2": "hues getankt",
+        "p3": "huet getankt",
+        "p4": "hu getankt",
+        "p5": "hutt getankt",
+        "p6": "hu getankt"
+      },
+      "imperative": {
+        "p2": "tank!",
+        "p5": "tankt!"
+      },
       "example": {
         "lb": "ech tanke kee Bensinn, mäin Auto ass en Diesel",
         "audioId": "f2d406c0f34ef392712391f97ed19801"
@@ -4091,6 +5457,18 @@
         "p4": "buschtawéieren",
         "p5": "buschtawéiert",
         "p6": "buschtawéieren"
+      },
+      "past": {
+        "p1": "hu buschtawéiert",
+        "p2": "hues buschtawéiert",
+        "p3": "huet buschtawéiert",
+        "p4": "hu buschtawéiert",
+        "p5": "hutt buschtawéiert",
+        "p6": "hu buschtawéiert"
+      },
+      "imperative": {
+        "p2": "buschtawéier!",
+        "p5": "buschtawéiert!"
       },
       "example": {
         "lb": "d'Joffer buschtawéiert de Kanner déi schwéier Wierder",
@@ -4123,6 +5501,18 @@
         "p4": "duschen",
         "p5": "duscht",
         "p6": "duschen"
+      },
+      "past": {
+        "p1": "hunn geduscht",
+        "p2": "hues geduscht",
+        "p3": "huet geduscht",
+        "p4": "hunn geduscht",
+        "p5": "hutt geduscht",
+        "p6": "hunn geduscht"
+      },
+      "imperative": {
+        "p2": "dusch!",
+        "p5": "duscht!"
       },
       "example": {
         "lb": "d'Mamm duscht d'Kanner all Owend",
@@ -4158,6 +5548,18 @@
         "p5": "grillt",
         "p6": "grillen"
       },
+      "past": {
+        "p1": "hu gegrillt",
+        "p2": "hues gegrillt",
+        "p3": "huet gegrillt",
+        "p4": "hu gegrillt",
+        "p5": "hutt gegrillt",
+        "p6": "hu gegrillt"
+      },
+      "imperative": {
+        "p2": "grill!",
+        "p5": "grillt!"
+      },
       "example": {
         "lb": "den Owend gi mer bei den Noper grillen",
         "audioId": "7eeff11e70ae496b4b7800e79c470291"
@@ -4189,6 +5591,18 @@
         "p4": "iwwersetzen",
         "p5": "iwwersetzt",
         "p6": "iwwersetzen"
+      },
+      "past": {
+        "p1": "hunn iwwersat",
+        "p2": "hues iwwersat",
+        "p3": "huet iwwersat",
+        "p4": "hunn iwwersat",
+        "p5": "hutt iwwersat",
+        "p6": "hunn iwwersat"
+      },
+      "imperative": {
+        "p2": "iwwersetz!",
+        "p5": "iwwersetzt!"
       },
       "example": {
         "lb": "ech hat nach keng Zäit, fir däin Text op Lëtzebuergesch ze iwwersetzen",
@@ -4225,6 +5639,18 @@
         "p5": "rappt",
         "p6": "rappen"
       },
+      "past": {
+        "p1": "hunn gerappt",
+        "p2": "hues gerappt",
+        "p3": "huet gerappt",
+        "p4": "hunn gerappt",
+        "p5": "hutt gerappt",
+        "p6": "hunn gerappt"
+      },
+      "imperative": {
+        "p2": "rapp!",
+        "p5": "rappt!"
+      },
       "example": {
         "lb": "mäi Mixer huet en Opsaz, fir Geméis ze rappen",
         "audioId": "e3de8adb65f8624aa6df69124baca265"
@@ -4257,6 +5683,18 @@
         "p5": "bleift doheem",
         "p6": "bleiwen doheem"
       },
+      "past": {
+        "p1": "sinn doheembliwwen",
+        "p2": "bass doheembliwwen",
+        "p3": "ass doheembliwwen",
+        "p4": "sinn doheembliwwen",
+        "p5": "sidd doheembliwwen",
+        "p6": "sinn doheembliwwen"
+      },
+      "imperative": {
+        "p2": "bleif doheem!",
+        "p5": "bleift doheem!"
+      },
       "example": {
         "lb": "d'Consignen an de Message vun der Regierung si ganz kloer: Bleift doheem!",
         "audioId": "162aefafe18860bb16b3bb48b3241ccf"
@@ -4286,6 +5724,15 @@
         "p5": "hutt fräi",
         "p6": "hu fräi"
       },
+      "past": {
+        "p1": "hu fräigehat",
+        "p2": "hues fräigehat",
+        "p3": "huet fräigehat",
+        "p4": "hu fräigehat",
+        "p5": "hutt fräigehat",
+        "p6": "hu fräigehat"
+      },
+      "imperative": null,
       "example": {
         "lb": "de Mëtteg hunn d'Schüler fräi",
         "audioId": "6020bef9f6518dd819f09917b855eb1e"
@@ -4312,6 +5759,18 @@
         "p4": "kréien",
         "p5": "kréit",
         "p6": "kréien"
+      },
+      "past": {
+        "p1": "hu gekréit",
+        "p2": "hues gekréit",
+        "p3": "huet gekréit",
+        "p4": "hu gekréit",
+        "p5": "hutt gekréit",
+        "p6": "hu gekréit"
+      },
+      "imperative": {
+        "p2": "kréi!",
+        "p5": "kréit!"
       },
       "example": {
         "lb": "ech hunn haut näischt mat der Post kritt",
@@ -4349,6 +5808,18 @@
         "p5": "schmaacht of",
         "p6": "schmaachen of"
       },
+      "past": {
+        "p1": "hunn ofgeschmaacht",
+        "p2": "hues ofgeschmaacht",
+        "p3": "huet ofgeschmaacht",
+        "p4": "hunn ofgeschmaacht",
+        "p5": "hutt ofgeschmaacht",
+        "p6": "hunn ofgeschmaacht"
+      },
+      "imperative": {
+        "p2": "schmaach of!",
+        "p5": "schmaacht of!"
+      },
       "example": null,
       "topics": [],
       "topicVia": null,
@@ -4373,6 +5844,15 @@
         "p5": "picknickt",
         "p6": "picknicken"
       },
+      "past": {
+        "p1": "hu picknickt",
+        "p2": "hues picknickt",
+        "p3": "huet picknickt",
+        "p4": "hu picknickt",
+        "p5": "hutt picknickt",
+        "p6": "hu picknickt"
+      },
+      "imperative": null,
       "example": {
         "lb": "e Sonndeg gi mer mat Frënn picknicken",
         "audioId": "ab8dd12e5d3da9fb7f1ee32411b49bb7"
@@ -4405,6 +5885,18 @@
         "p5": "dréckt platt",
         "p6": "drécke platt"
       },
+      "past": {
+        "p1": "hu plattgedréckt",
+        "p2": "hues plattgedréckt",
+        "p3": "huet plattgedréckt",
+        "p4": "hu plattgedréckt",
+        "p5": "hutt plattgedréckt",
+        "p6": "hu plattgedréckt"
+      },
+      "imperative": {
+        "p2": "dréck platt!",
+        "p5": "dréckt platt!"
+      },
       "example": {
         "lb": "esoubal ech eng Spann gesinn, drécken ech se platt",
         "audioId": "0277ba19ea9d271b7ebf4280d3b2c226"
@@ -4431,6 +5923,18 @@
         "p4": "shoppen",
         "p5": "shoppt",
         "p6": "shoppen"
+      },
+      "past": {
+        "p1": "hu geshoppt",
+        "p2": "hues geshoppt",
+        "p3": "huet geshoppt",
+        "p4": "hu geshoppt",
+        "p5": "hutt geshoppt",
+        "p6": "hu geshoppt"
+      },
+      "imperative": {
+        "p2": "shopp!",
+        "p5": "shoppt!"
       },
       "example": {
         "lb": "hues de Loscht, muer de Mëtteg mat mir an d'Stad shoppen ze goen?",
@@ -4464,6 +5968,18 @@
         "p5": "passt",
         "p6": "passen"
       },
+      "past": {
+        "p1": "hu gepasst",
+        "p2": "hues gepasst",
+        "p3": "huet gepasst",
+        "p4": "hu gepasst",
+        "p5": "hutt gepasst",
+        "p6": "hunn gepasst"
+      },
+      "imperative": {
+        "p2": "pass!",
+        "p5": "passt!"
+      },
       "example": {
         "lb": "dës Schong passe mer net, se sinn eng Nummer ze kleng",
         "audioId": "903c868a931992847894bdfac741784e"
@@ -4492,6 +6008,18 @@
         "p4": "rechnen",
         "p5": "rechent",
         "p6": "rechnen"
+      },
+      "past": {
+        "p1": "hu gerechent",
+        "p2": "hues gerechent",
+        "p3": "huet gerechent",
+        "p4": "hu gerechent",
+        "p5": "hutt gerechent",
+        "p6": "hunn gerechent"
+      },
+      "imperative": {
+        "p2": "rechen!",
+        "p5": "rechent!"
       },
       "example": {
         "lb": "erklär mer emol, wéi een d'Fläch vun engem Dräieck rechent!",
@@ -4532,6 +6060,18 @@
         "p5": "entschëllegt",
         "p6": "entschëllegen"
       },
+      "past": {
+        "p1": "hunn entschëllegt",
+        "p2": "hues entschëllegt",
+        "p3": "huet entschëllegt",
+        "p4": "hunn entschëllegt",
+        "p5": "hutt entschëllegt",
+        "p6": "hunn entschëllegt"
+      },
+      "imperative": {
+        "p2": "entschëlleg!",
+        "p5": "entschëllegt!"
+      },
       "example": {
         "lb": "entschëllegt den Derangement, wannechgelift!",
         "audioId": "34d48ca19399d071f1b58f3a6eaeb492"
@@ -4563,6 +6103,18 @@
         "p4": "treffen",
         "p5": "trefft",
         "p6": "treffen"
+      },
+      "past": {
+        "p1": "hunn getraff",
+        "p2": "hues getraff",
+        "p3": "huet getraff",
+        "p4": "hunn getraff",
+        "p5": "hutt getraff",
+        "p6": "hunn getraff"
+      },
+      "imperative": {
+        "p2": "treff!",
+        "p5": "trefft!"
       },
       "example": {
         "lb": "d'Kugel huet d'Zaldotin an de Réck getraff",
@@ -4597,6 +6149,18 @@
         "p4": "kommen un",
         "p5": "kommt un",
         "p6": "kommen un"
+      },
+      "past": {
+        "p1": "sinn ukomm",
+        "p2": "bass ukomm",
+        "p3": "ass ukomm",
+        "p4": "sinn ukomm",
+        "p5": "sidd ukomm",
+        "p6": "sinn ukomm"
+      },
+      "imperative": {
+        "p2": "komm un!",
+        "p5": "kommt un!"
       },
       "example": {
         "lb": "et dauert zwee Deeg, bis de Bréif ukënnt",
@@ -4636,6 +6200,18 @@
         "p5": "freet",
         "p6": "freeën"
       },
+      "past": {
+        "p1": "hunn gefreet",
+        "p2": "hues gefreet",
+        "p3": "huet gefreet",
+        "p4": "hunn gefreet",
+        "p5": "hutt gefreet",
+        "p6": "hunn gefreet"
+      },
+      "imperative": {
+        "p2": "free!",
+        "p5": "freet!"
+      },
       "example": {
         "lb": "et géif eis freeën, wa mer eng Kéier zesumme géifen iesse goen",
         "audioId": "6cd0eb96511188b4423298d8c7f0d154"
@@ -4670,6 +6246,18 @@
         "p5": "schenkt",
         "p6": "schenken"
       },
+      "past": {
+        "p1": "hu geschenkt",
+        "p2": "hues geschenkt",
+        "p3": "huet geschenkt",
+        "p4": "hu geschenkt",
+        "p5": "hutt geschenkt",
+        "p6": "hu geschenkt"
+      },
+      "imperative": {
+        "p2": "schenk!",
+        "p5": "schenkt!"
+      },
       "example": {
         "lb": "wat kënne mer dem Papp fir säi Gebuertsdag schenken?",
         "audioId": "4eb9678ab321f83f7567e3d5f8dbacaf"
@@ -4703,6 +6291,18 @@
         "p4": "hänken",
         "p5": "hänkt",
         "p6": "hänken"
+      },
+      "past": {
+        "p1": "hu gehaangen",
+        "p2": "hues gehaangen",
+        "p3": "huet gehaangen",
+        "p4": "hu gehaangen",
+        "p5": "hutt gehaangen",
+        "p6": "hu gehaangen"
+      },
+      "imperative": {
+        "p2": "hänk!",
+        "p5": "hänkt!"
       },
       "example": {
         "lb": "ech hunn eis zwee nei Tabloen an de Salon gehaangen",
@@ -4741,6 +6341,18 @@
         "p5": "leet",
         "p6": "leeën"
       },
+      "past": {
+        "p1": "hunn geluecht",
+        "p2": "hues geluecht",
+        "p3": "huet geluecht",
+        "p4": "hunn geluecht",
+        "p5": "hutt geluecht",
+        "p6": "hunn geluecht"
+      },
+      "imperative": {
+        "p2": "lee!",
+        "p5": "leet!"
+      },
       "example": {
         "lb": "fir dës Übung musst Der Iech flaach op de Buedem leeën",
         "audioId": "7991401eb96bd8b451eb6b39620dc92c"
@@ -4774,6 +6386,18 @@
         "p4": "schécken",
         "p5": "schéckt",
         "p6": "schécken"
+      },
+      "past": {
+        "p1": "hunn geschéckt",
+        "p2": "hues geschéckt",
+        "p3": "huet geschéckt",
+        "p4": "hunn geschéckt",
+        "p5": "hutt geschéckt",
+        "p6": "hunn geschéckt"
+      },
+      "imperative": {
+        "p2": "schéck!",
+        "p5": "schéckt!"
       },
       "example": {
         "lb": "du muss de Krankeschäin op d'Krankekeess schécken",
@@ -4809,6 +6433,18 @@
         "p5": "feelt",
         "p6": "feelen"
       },
+      "past": {
+        "p1": "hu gefeelt",
+        "p2": "hues gefeelt",
+        "p3": "huet gefeelt",
+        "p4": "hu gefeelt",
+        "p5": "hutt gefeelt",
+        "p6": "hu gefeelt"
+      },
+      "imperative": {
+        "p2": "feel!",
+        "p5": "feelt!"
+      },
       "example": {
         "lb": "wie feelt haut?",
         "audioId": "6a20362e75cbb5198a836949be1cc8d1"
@@ -4842,6 +6478,18 @@
         "p4": "fëmmen",
         "p5": "fëmmt",
         "p6": "fëmmen"
+      },
+      "past": {
+        "p1": "hu gefëmmt",
+        "p2": "hues gefëmmt",
+        "p3": "huet gefëmmt",
+        "p4": "hu gefëmmt",
+        "p5": "hutt gefëmmt",
+        "p6": "hu gefëmmt"
+      },
+      "imperative": {
+        "p2": "fëmm!",
+        "p5": "fëmmt!"
       },
       "example": {
         "lb": "mäi Bop fëmmt d'Päif",
@@ -4877,6 +6525,18 @@
         "p5": "probéiert",
         "p6": "probéieren"
       },
+      "past": {
+        "p1": "hu probéiert",
+        "p2": "hues probéiert",
+        "p3": "huet probéiert",
+        "p4": "hu probéiert",
+        "p5": "hutt probéiert",
+        "p6": "hu probéiert"
+      },
+      "imperative": {
+        "p2": "probéier!",
+        "p5": "probéiert!"
+      },
       "example": {
         "lb": "probéier emol en anert Medikament!",
         "audioId": "13d2f82508a808b563cf9d6cc4922cbd"
@@ -4911,6 +6571,18 @@
         "p5": "ännert",
         "p6": "änneren"
       },
+      "past": {
+        "p1": "hunn geännert",
+        "p2": "hues geännert",
+        "p3": "huet geännert",
+        "p4": "hunn geännert",
+        "p5": "hutt geännert",
+        "p6": "hunn geännert"
+      },
+      "imperative": {
+        "p2": "änner!",
+        "p5": "ännert!"
+      },
       "example": {
         "lb": "deen Text ass schonn zweemol geännert ginn",
         "audioId": "4165b987d34fb0ba95c4584d5515735f"
@@ -4944,6 +6616,18 @@
         "p4": "drécken",
         "p5": "dréckt",
         "p6": "drécken"
+      },
+      "past": {
+        "p1": "hunn gedréckt",
+        "p2": "hues gedréckt",
+        "p3": "huet gedréckt",
+        "p4": "hunn gedréckt",
+        "p5": "hutt gedréckt",
+        "p6": "hunn gedréckt"
+      },
+      "imperative": {
+        "p2": "dréck!",
+        "p5": "dréckt!"
       },
       "example": {
         "lb": "du muss de Knäppchen drécken, soss bleift de Bus net halen!",
@@ -4984,6 +6668,18 @@
         "p5": "gewannt",
         "p6": "gewannen"
       },
+      "past": {
+        "p1": "hu gewonnen",
+        "p2": "hues gewonnen",
+        "p3": "huet gewonnen",
+        "p4": "hu gewonnen",
+        "p5": "hutt gewonnen",
+        "p6": "hu gewonnen"
+      },
+      "imperative": {
+        "p2": "gewann!",
+        "p5": "gewannt!"
+      },
       "example": {
         "lb": "eis Basketsekipp huet dës Saison all Match gewonnen",
         "audioId": "b0ca5a20b96a2bf60a5830859a48f6d3"
@@ -5017,6 +6713,18 @@
         "p4": "mellen",
         "p5": "mellt",
         "p6": "mellen"
+      },
+      "past": {
+        "p1": "hunn gemellt",
+        "p2": "hues gemellt",
+        "p3": "huet gemellt",
+        "p4": "hunn gemellt",
+        "p5": "hutt gemellt",
+        "p6": "hunn gemellt"
+      },
+      "imperative": {
+        "p2": "mell!",
+        "p5": "mellt!"
       },
       "example": {
         "lb": "de Radio mellt fir muer Kontrollen op de Stroossen",
@@ -5054,6 +6762,18 @@
         "p5": "botzt",
         "p6": "botzen"
       },
+      "past": {
+        "p1": "hu gebotzt",
+        "p2": "hues gebotzt",
+        "p3": "huet gebotzt",
+        "p4": "hu gebotzt",
+        "p5": "hutt gebotzt",
+        "p6": "hu gebotzt"
+      },
+      "imperative": {
+        "p2": "botz!",
+        "p5": "botzt!"
+      },
       "example": {
         "lb": "meng Mamm huet gëschter dat ganzt Haus gebotzt",
         "audioId": "e576bdf315205394209c18dfbbb5bd96"
@@ -5088,6 +6808,15 @@
         "p5": "gefaalt",
         "p6": "gefalen"
       },
+      "past": {
+        "p1": "hu gefall",
+        "p2": "hues gefall",
+        "p3": "huet gefall",
+        "p4": "hu gefall",
+        "p5": "hutt gefall",
+        "p6": "hu gefall"
+      },
+      "imperative": null,
       "example": {
         "lb": "dat ass e Film, deen dir bestëmmt gefält",
         "audioId": "f61ca645daa3a1b58007cefe61936320"
@@ -5122,6 +6851,18 @@
         "p5": "organiséiert",
         "p6": "organiséieren"
       },
+      "past": {
+        "p1": "hunn organiséiert",
+        "p2": "hues organiséiert",
+        "p3": "huet organiséiert",
+        "p4": "hunn organiséiert",
+        "p5": "hutt organiséiert",
+        "p6": "hunn organiséiert"
+      },
+      "imperative": {
+        "p2": "organiséier!",
+        "p5": "organiséiert!"
+      },
       "example": {
         "lb": "d'Gemeng organiséiert all Joer eng grouss Botzaktioun",
         "audioId": "c0e2b95189f57bcc129f0320a49cbd1e"
@@ -5153,6 +6894,18 @@
         "p4": "roden",
         "p5": "rot",
         "p6": "roden"
+      },
+      "past": {
+        "p1": "hu geroden",
+        "p2": "hues geroden",
+        "p3": "huet geroden",
+        "p4": "hu geroden",
+        "p5": "hutt geroden",
+        "p6": "hu geroden"
+      },
+      "imperative": {
+        "p2": "rot!",
+        "p5": "rot!"
       },
       "example": {
         "lb": "du réits ni, wiem ech an der Stad begéint sinn!",
@@ -5189,6 +6942,15 @@
         "p5": "schéngt",
         "p6": "schéngen"
       },
+      "past": {
+        "p1": "hu geschéngt",
+        "p2": "hues geschéngt",
+        "p3": "huet geschéngt",
+        "p4": "hu geschéngt",
+        "p5": "hutt geschéngt",
+        "p6": "hu geschéngt"
+      },
+      "imperative": null,
       "example": {
         "lb": "d'Sonn schéngt iwwer Bierg an Dall",
         "audioId": "c6364cff147c6aaec7503f7540fa687d"
@@ -5224,6 +6986,18 @@
         "p5": "laacht",
         "p6": "laachen"
       },
+      "past": {
+        "p1": "hu gelaacht",
+        "p2": "hues gelaacht",
+        "p3": "huet gelaacht",
+        "p4": "hu gelaacht",
+        "p5": "hutt gelaacht",
+        "p6": "hu gelaacht"
+      },
+      "imperative": {
+        "p2": "laach!",
+        "p5": "laacht!"
+      },
       "example": {
         "lb": "hie laacht, datt em d'Tréinen d'Baken eroflafen!",
         "audioId": "44061fb85b6ec4c7b101db5235213b87"
@@ -5257,6 +7031,18 @@
         "p4": "liewen",
         "p5": "lieft",
         "p6": "liewen"
+      },
+      "past": {
+        "p1": "hu gelieft",
+        "p2": "hues gelieft",
+        "p3": "huet gelieft",
+        "p4": "hu gelieft",
+        "p5": "hutt gelieft",
+        "p6": "hu gelieft"
+      },
+      "imperative": {
+        "p2": "lief!",
+        "p5": "lieft!"
       },
       "example": {
         "lb": "ären Hond gesäit schlecht aus, ech mengen, dee lieft net méi laang",
@@ -5292,6 +7078,18 @@
         "p5": "späert",
         "p6": "spären"
       },
+      "past": {
+        "p1": "hu gespaart",
+        "p2": "hues gespaart",
+        "p3": "huet gespaart",
+        "p4": "hu gespaart",
+        "p5": "hutt gespaart",
+        "p6": "hu gespaart"
+      },
+      "imperative": {
+        "p2": "spär!",
+        "p5": "späert!"
+      },
       "example": {
         "lb": "d'Bréck gouf gespaart, well se baufälleg ass",
         "audioId": "b4f2981f7dfb23e732e9a5f1c3820a36"
@@ -5325,6 +7123,18 @@
         "p4": "sträichen un",
         "p5": "sträicht un",
         "p6": "sträichen un"
+      },
+      "past": {
+        "p1": "hunn ugestrach",
+        "p2": "hues ugestrach",
+        "p3": "huet ugestrach",
+        "p4": "hunn ugestrach",
+        "p5": "hutt ugestrach",
+        "p6": "hunn ugestrach"
+      },
+      "imperative": {
+        "p2": "sträich un!",
+        "p5": "sträicht un!"
       },
       "example": {
         "lb": "mir wëllen eis Schlofkummer mat frëndleche Faarwen usträichen",
@@ -5360,6 +7170,18 @@
         "p5": "zielt",
         "p6": "zielen"
       },
+      "past": {
+        "p1": "hu gezielt",
+        "p2": "hues gezielt",
+        "p3": "huet gezielt",
+        "p4": "hu gezielt",
+        "p5": "hutt gezielt",
+        "p6": "hu gezielt"
+      },
+      "imperative": {
+        "p2": "ziel!",
+        "p5": "zielt!"
+      },
       "example": null,
       "topics": [
         "famill"
@@ -5385,6 +7207,18 @@
         "p4": "deelen",
         "p5": "deelt",
         "p6": "deelen"
+      },
+      "past": {
+        "p1": "hu gedeelt",
+        "p2": "hues gedeelt",
+        "p3": "huet gedeelt",
+        "p4": "hu gedeelt",
+        "p5": "hutt gedeelt",
+        "p6": "hunn gedeelt"
+      },
+      "imperative": {
+        "p2": "deel!",
+        "p5": "deelt!"
       },
       "example": {
         "lb": "dat Klengt huet säi Schockela mat senge Frëndinne gedeelt",
@@ -5423,6 +7257,18 @@
         "p5": "fillt",
         "p6": "fillen"
       },
+      "past": {
+        "p1": "hunn gefillt",
+        "p2": "hues gefillt",
+        "p3": "huet gefillt",
+        "p4": "hunn gefillt",
+        "p5": "hutt gefillt",
+        "p6": "hunn gefillt"
+      },
+      "imperative": {
+        "p2": "fill!",
+        "p5": "fillt!"
+      },
       "example": {
         "lb": "nom Iesse fillen ech dacks en Drock am Mo",
         "audioId": "108a73d00997d5337ab1daa8f8a9bd31"
@@ -5458,6 +7304,18 @@
         "p4": "richen",
         "p5": "richt",
         "p6": "richen"
+      },
+      "past": {
+        "p1": "hu gericht",
+        "p2": "hues gericht",
+        "p3": "huet gericht",
+        "p4": "hu gericht",
+        "p5": "hutt gericht",
+        "p6": "hu gericht"
+      },
+      "imperative": {
+        "p2": "rich!",
+        "p5": "richt!"
       },
       "example": {
         "lb": "ech richen Zigarettendamp, wien huet hei gefëmmt?",
@@ -5495,6 +7353,18 @@
         "p5": "verdrot",
         "p6": "verdroen"
       },
+      "past": {
+        "p1": "hunn verdroen",
+        "p2": "hues verdroen",
+        "p3": "huet verdroen",
+        "p4": "hunn verdroen",
+        "p5": "hutt verdroen",
+        "p6": "hunn verdroen"
+      },
+      "imperative": {
+        "p2": "verdro!",
+        "p5": "verdrot!"
+      },
       "example": {
         "lb": "ech verdroen dat fettegt Iessen net",
         "audioId": "4a81875f1751d247e978e3d075a5d7bb"
@@ -5529,6 +7399,18 @@
         "p5": "verpasst",
         "p6": "verpassen"
       },
+      "past": {
+        "p1": "hu verpasst",
+        "p2": "hues verpasst",
+        "p3": "huet verpasst",
+        "p4": "hu verpasst",
+        "p5": "hutt verpasst",
+        "p6": "hu verpasst"
+      },
+      "imperative": {
+        "p2": "verpass!",
+        "p5": "verpasst!"
+      },
       "example": {
         "lb": "tommel dech, soss verpasse mer de leschte Metro!",
         "audioId": "dba0cd09f36eab1750a5d72809ad8537"
@@ -5560,6 +7442,18 @@
         "p4": "invitéieren",
         "p5": "invitéiert",
         "p6": "invitéieren"
+      },
+      "past": {
+        "p1": "hunn invitéiert",
+        "p2": "hues invitéiert",
+        "p3": "huet invitéiert",
+        "p4": "hunn invitéiert",
+        "p5": "hutt invitéiert",
+        "p6": "hunn invitéiert"
+      },
+      "imperative": {
+        "p2": "invitéier!",
+        "p5": "invitéiert!"
       },
       "example": {
         "lb": "ech hunn zwanzeg Leit op mäi Gebuertsdag invitéiert",
@@ -5595,6 +7489,18 @@
         "p5": "léint",
         "p6": "léinen"
       },
+      "past": {
+        "p1": "hu geléint",
+        "p2": "hues geléint",
+        "p3": "huet geléint",
+        "p4": "hu geléint",
+        "p5": "hutt geléint",
+        "p6": "hu geléint"
+      },
+      "imperative": {
+        "p2": "léin!",
+        "p5": "léint!"
+      },
       "example": {
         "lb": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic léinen?",
         "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943"
@@ -5628,6 +7534,18 @@
         "p4": "operéieren",
         "p5": "operéiert",
         "p6": "operéieren"
+      },
+      "past": {
+        "p1": "hunn operéiert",
+        "p2": "hues operéiert",
+        "p3": "huet operéiert",
+        "p4": "hunn operéiert",
+        "p5": "hutt operéiert",
+        "p6": "hunn operéiert"
+      },
+      "imperative": {
+        "p2": "operéier!",
+        "p5": "operéiert!"
       },
       "example": {
         "lb": "ech ginn d'nächst Woch operéiert",
@@ -5663,6 +7581,18 @@
         "p5": "passt op",
         "p6": "passen op"
       },
+      "past": {
+        "p1": "hunn opgepasst",
+        "p2": "hues opgepasst",
+        "p3": "huet opgepasst",
+        "p4": "hunn opgepasst",
+        "p5": "hutt opgepasst",
+        "p6": "hunn opgepasst"
+      },
+      "imperative": {
+        "p2": "pass op!",
+        "p5": "passt op!"
+      },
       "example": {
         "lb": "pass op, datt s de net fäls!",
         "audioId": "72ba758e6ea7ab0a70b376ad9d881a65"
@@ -5691,6 +7621,18 @@
         "p4": "ënnerschreiwen",
         "p5": "ënnerschreift",
         "p6": "ënnerschreiwen"
+      },
+      "past": {
+        "p1": "hunn ënnerschriwwen",
+        "p2": "hues ënnerschriwwen",
+        "p3": "huet ënnerschriwwen",
+        "p4": "hunn ënnerschriwwen",
+        "p5": "hutt ënnerschriwwen",
+        "p6": "hunn ënnerschriwwen"
+      },
+      "imperative": {
+        "p2": "ënnerschreif!",
+        "p5": "ënnerschreift!"
       },
       "example": {
         "lb": "de Kontrakt muss nach haut ënnerschriwwe ginn",
@@ -5724,6 +7666,18 @@
         "p5": "erlaabt",
         "p6": "erlaben"
       },
+      "past": {
+        "p1": "hunn erlaabt",
+        "p2": "hues erlaabt",
+        "p3": "huet erlaabt",
+        "p4": "hunn erlaabt",
+        "p5": "hutt erlaabt",
+        "p6": "hunn erlaabt"
+      },
+      "imperative": {
+        "p2": "erlab!",
+        "p5": "erlaabt!"
+      },
       "example": {
         "lb": "d'Elteren hunn hirem Jong erlaabt, an Amerika ze fléien",
         "audioId": "0609860027a950a8801c4f159ab0de5e"
@@ -5755,6 +7709,18 @@
         "p4": "ginn of",
         "p5": "gitt of",
         "p6": "ginn of"
+      },
+      "past": {
+        "p1": "hunn ofginn",
+        "p2": "hues ofginn",
+        "p3": "huet ofginn",
+        "p4": "hunn ofginn",
+        "p5": "hutt ofginn",
+        "p6": "hunn ofginn"
+      },
+      "imperative": {
+        "p2": "gëff of!",
+        "p5": "gitt of!"
       },
       "example": {
         "lb": "en éierleche Mënsch huet Äre Portmonni bei der Police ofginn",
@@ -5789,6 +7755,18 @@
         "p4": "huelen of",
         "p5": "huelt of",
         "p6": "huelen of"
+      },
+      "past": {
+        "p1": "hunn ofgeholl",
+        "p2": "hues ofgeholl",
+        "p3": "huet ofgeholl",
+        "p4": "hunn ofgeholl",
+        "p5": "hutt ofgeholl",
+        "p6": "hunn ofgeholl"
+      },
+      "imperative": {
+        "p2": "huel of!",
+        "p5": "huelt of!"
       },
       "example": {
         "lb": "ech muss nach e Pak op der Post ofhuelen",
@@ -5827,6 +7805,18 @@
         "p5": "trëppelt",
         "p6": "trëppelen"
       },
+      "past": {
+        "p1": "hu getrëppelt",
+        "p2": "hues getrëppelt",
+        "p3": "huet getrëppelt",
+        "p4": "hu getrëppelt",
+        "p5": "hutt getrëppelt",
+        "p6": "hu getrëppelt"
+      },
+      "imperative": {
+        "p2": "trëppel!",
+        "p5": "trëppelt!"
+      },
       "example": {
         "lb": "do läit eng Kaz, pass op, datt s de se net trëppels!",
         "audioId": "74c37f48efe066dc80720498d14f4adf"
@@ -5862,6 +7852,18 @@
         "p5": "verbrennt",
         "p6": "verbrennen"
       },
+      "past": {
+        "p1": "hu verbrannt",
+        "p2": "hues verbrannt",
+        "p3": "huet verbrannt",
+        "p4": "hu verbrannt",
+        "p5": "hutt verbrannt",
+        "p6": "hu verbrannt"
+      },
+      "imperative": {
+        "p2": "verbrenn!",
+        "p5": "verbrennt!"
+      },
       "example": {
         "lb": "ech hunn déi eidel Këschten am Gaart verbrannt",
         "audioId": "7785a203b7a839201ca914145da47c25"
@@ -5895,6 +7897,18 @@
         "p4": "zeechnen",
         "p5": "zeechent",
         "p6": "zeechnen"
+      },
+      "past": {
+        "p1": "hu gezeechent",
+        "p2": "hues gezeechent",
+        "p3": "huet gezeechent",
+        "p4": "hu gezeechent",
+        "p5": "hutt gezeechent",
+        "p6": "hu gezeechent"
+      },
+      "imperative": {
+        "p2": "zeechen!",
+        "p5": "zeechent!"
       },
       "example": {
         "lb": "am Architektebüro gëtt hautdesdaags mam Computer gezeechent",
@@ -5932,6 +7946,18 @@
         "p5": "maacht aus",
         "p6": "maachen aus"
       },
+      "past": {
+        "p1": "hunn ausgemaach",
+        "p2": "hues ausgemaach",
+        "p3": "huet ausgemaach",
+        "p4": "hunn ausgemaach",
+        "p5": "hutt ausgemaach",
+        "p6": "hunn ausgemaach"
+      },
+      "imperative": {
+        "p2": "maach aus!",
+        "p5": "maacht aus!"
+      },
       "example": {
         "lb": "am Fliger muss een den Handy ausmaachen",
         "audioId": "50a3fcfcdc0286c6f235ff6a094ca61b"
@@ -5967,6 +7993,18 @@
         "p5": "bloost",
         "p6": "blosen"
       },
+      "past": {
+        "p1": "hu geblosen",
+        "p2": "hues geblosen",
+        "p3": "huet geblosen",
+        "p4": "hu geblosen",
+        "p5": "hutt geblosen",
+        "p6": "hu geblosen"
+      },
+      "imperative": {
+        "p2": "blos!",
+        "p5": "bloost!"
+      },
       "example": {
         "lb": "gëschter huet e staarke Wand geblosen",
         "audioId": "fd787b000cc9e89746df79aaa0d81b47"
@@ -6001,6 +8039,18 @@
         "p5": "wielt",
         "p6": "wielen"
       },
+      "past": {
+        "p1": "hu gewielt",
+        "p2": "hues gewielt",
+        "p3": "huet gewielt",
+        "p4": "hu gewielt",
+        "p5": "hutt gewielt",
+        "p6": "hu gewielt"
+      },
+      "imperative": {
+        "p2": "wiel!",
+        "p5": "wielt!"
+      },
       "example": {
         "lb": "bei der Reservatioun kann ee seng Plaz online wielen",
         "audioId": "f475a8726d7a352d4b97ffb00f06e3cf"
@@ -6034,6 +8084,18 @@
         "p4": "wiesselen",
         "p5": "wiesselt",
         "p6": "wiesselen"
+      },
+      "past": {
+        "p1": "hu gewiesselt",
+        "p2": "hues gewiesselt",
+        "p3": "huet gewiesselt",
+        "p4": "hu gewiesselt",
+        "p5": "hutt gewiesselt",
+        "p6": "hu gewiesselt"
+      },
+      "imperative": {
+        "p2": "wiessel!",
+        "p5": "wiesselt!"
       },
       "example": {
         "lb": "de Schrëftsteller huet de Verlag gewiesselt",
@@ -6072,6 +8134,18 @@
         "p5": "genéisst",
         "p6": "genéissen"
       },
+      "past": {
+        "p1": "hu genoss",
+        "p2": "hues genoss",
+        "p3": "huet genoss",
+        "p4": "hu genoss",
+        "p5": "hutt genoss",
+        "p6": "hu genoss"
+      },
+      "imperative": {
+        "p2": "genéiss!",
+        "p5": "genéisst!"
+      },
       "example": {
         "lb": "ech hunn de Kuch ganz lues giess, ech hunn e richteg genoss",
         "audioId": "a8e3ae35d6337a7fbbb732eea88f2361"
@@ -6107,6 +8181,18 @@
         "p5": "kommt heem",
         "p6": "kommen heem"
       },
+      "past": {
+        "p1": "sinn heemkomm",
+        "p2": "bass heemkomm",
+        "p3": "ass heemkomm",
+        "p4": "sinn heemkomm",
+        "p5": "sidd heemkomm",
+        "p6": "sinn heemkomm"
+      },
+      "imperative": {
+        "p2": "komm heem!",
+        "p5": "kommt heem!"
+      },
       "example": {
         "lb": "wann ech owes no der Aarbecht heemkommen, da raschten ech gär e bëssen",
         "audioId": "de1083318f4c366a03d811a494142345"
@@ -6141,6 +8227,18 @@
         "p5": "kräischt",
         "p6": "kräischen"
       },
+      "past": {
+        "p1": "hu gekrasch",
+        "p2": "hues gekrasch",
+        "p3": "huet gekrasch",
+        "p4": "hu gekrasch",
+        "p5": "hutt gekrasch",
+        "p6": "hu gekrasch"
+      },
+      "imperative": {
+        "p2": "kräisch!",
+        "p5": "kräischt!"
+      },
       "example": {
         "lb": "de klenge Bouf huet haart gekrasch, well e vun der Klunsch gefall war",
         "audioId": "94d499706683623ccca890d109c5cadf"
@@ -6173,6 +8271,18 @@
         "p5": "gitt op",
         "p6": "ginn op"
       },
+      "past": {
+        "p1": "sinn opgaangen",
+        "p2": "bass opgaangen",
+        "p3": "ass opgaangen",
+        "p4": "sinn opgaangen",
+        "p5": "sidd opgaangen",
+        "p6": "sinn opgaangen"
+      },
+      "imperative": {
+        "p2": "géi op!",
+        "p5": "gitt op!"
+      },
       "example": {
         "lb": "d'Sonn geet geschwënn op",
         "audioId": "2671b4b700440329d799e7f698e31455"
@@ -6202,6 +8312,18 @@
         "p4": "hänken op",
         "p5": "hänkt op",
         "p6": "hänken op"
+      },
+      "past": {
+        "p1": "hunn opgehaangen",
+        "p2": "hues opgehaangen",
+        "p3": "huet opgehaangen",
+        "p4": "hunn opgehaangen",
+        "p5": "hutt opgehaangen",
+        "p6": "hunn opgehaangen"
+      },
+      "imperative": {
+        "p2": "hänk op!",
+        "p5": "hänkt op!"
       },
       "example": {
         "lb": "wou solle mer dat Bild hei ophänken?",
@@ -6239,6 +8361,18 @@
         "p5": "plangt",
         "p6": "plangen"
       },
+      "past": {
+        "p1": "hu geplangt",
+        "p2": "hues geplangt",
+        "p3": "huet geplangt",
+        "p4": "hu geplangt",
+        "p5": "hutt geplangt",
+        "p6": "hu geplangt"
+      },
+      "imperative": {
+        "p2": "plang!",
+        "p5": "plangt!"
+      },
       "example": {
         "lb": "d'Rees huet vill méi deier kascht, wéi mer et geplangt haten",
         "audioId": "926bc376360d671ee31b68733d4e6782"
@@ -6274,6 +8408,18 @@
         "p5": "wënscht",
         "p6": "wënschen"
       },
+      "past": {
+        "p1": "hu gewënscht",
+        "p2": "hues gewënscht",
+        "p3": "huet gewënscht",
+        "p4": "hu gewënscht",
+        "p5": "hutt gewënscht",
+        "p6": "hu gewënscht"
+      },
+      "imperative": {
+        "p2": "wënsch!",
+        "p5": "wënscht!"
+      },
       "example": {
         "lb": "ech wënschen der, datt deng Dreem sech eng Kéier erfëllen",
         "audioId": "415d9c19cc9937bee1099a0b0655058e"
@@ -6307,6 +8453,18 @@
         "p4": "benotzen",
         "p5": "benotzt",
         "p6": "benotzen"
+      },
+      "past": {
+        "p1": "hu benotzt",
+        "p2": "hues benotzt",
+        "p3": "huet benotzt",
+        "p4": "hu benotzt",
+        "p5": "hutt benotzt",
+        "p6": "hu benotzt"
+      },
+      "imperative": {
+        "p2": "benotz!",
+        "p5": "benotzt!"
       },
       "example": {
         "lb": "dat Wuert gëtt bal ni benotzt",
@@ -6342,6 +8500,18 @@
         "p5": "diskutéiert",
         "p6": "diskutéieren"
       },
+      "past": {
+        "p1": "hunn diskutéiert",
+        "p2": "hues diskutéiert",
+        "p3": "huet diskutéiert",
+        "p4": "hunn diskutéiert",
+        "p5": "hutt diskutéiert",
+        "p6": "hunn diskutéiert"
+      },
+      "imperative": {
+        "p2": "diskutéier!",
+        "p5": "diskutéiert!"
+      },
       "example": {
         "lb": "haut gëtt dat neit Gesetz an der Chamber diskutéiert",
         "audioId": "6ecf9348d1d5a68a1b5f49573f024708"
@@ -6375,6 +8545,18 @@
         "p4": "erreechen",
         "p5": "erreecht",
         "p6": "erreechen"
+      },
+      "past": {
+        "p1": "hunn erreecht",
+        "p2": "hues erreecht",
+        "p3": "huet erreecht",
+        "p4": "hunn erreecht",
+        "p5": "hutt erreecht",
+        "p6": "hunn erreecht"
+      },
+      "imperative": {
+        "p2": "erreech!",
+        "p5": "erreecht!"
       },
       "example": {
         "lb": "du kanns mech dëse Weekend um Handy erreechen",
@@ -6410,6 +8592,18 @@
         "p5": "këmmert iech",
         "p6": "këmmeren sech"
       },
+      "past": {
+        "p1": "hu mech gekëmmert",
+        "p2": "hues dech gekëmmert",
+        "p3": "huet sech gekëmmert",
+        "p4": "hunn eis gekëmmert",
+        "p5": "hutt iech gekëmmert",
+        "p6": "hunn sech gekëmmert"
+      },
+      "imperative": {
+        "p2": "këmmer dech!",
+        "p5": "këmmert iech!"
+      },
       "example": {
         "lb": "d'Elteren hu sech vill ëm hir Kanner gekëmmert",
         "audioId": "245b495fbad3424507374d5c4ae3cfb3"
@@ -6444,6 +8638,18 @@
         "p5": "léiert kennen",
         "p6": "léiere kennen"
       },
+      "past": {
+        "p1": "hu kenne geléiert",
+        "p2": "hues kenne geléiert",
+        "p3": "huet kenne geléiert",
+        "p4": "hu kenne geléiert",
+        "p5": "hutt kenne geléiert",
+        "p6": "hu kenne geléiert"
+      },
+      "imperative": {
+        "p2": "léier kennen!",
+        "p5": "léiert kennen!"
+      },
       "example": {
         "lb": "et géif eis freeën, däin neie Frënd kennen ze léieren",
         "audioId": "bee06b8b8f32a0f891d74147d36bdba4"
@@ -6473,6 +8679,18 @@
         "p4": "klaken",
         "p5": "klaakt",
         "p6": "klaken"
+      },
+      "past": {
+        "p1": "hu geklaakt",
+        "p2": "hues geklaakt",
+        "p3": "huet geklaakt",
+        "p4": "hu geklaakt",
+        "p5": "hutt geklaakt",
+        "p6": "hu geklaakt"
+      },
+      "imperative": {
+        "p2": "klak!",
+        "p5": "klaakt!"
       },
       "example": {
         "lb": "klak d'Dieren net esou!",
@@ -6507,6 +8725,18 @@
         "p4": "profitéieren",
         "p5": "profitéiert",
         "p6": "profitéieren"
+      },
+      "past": {
+        "p1": "hu profitéiert",
+        "p2": "hues profitéiert",
+        "p3": "huet profitéiert",
+        "p4": "hu profitéiert",
+        "p5": "hutt profitéiert",
+        "p6": "hu profitéiert"
+      },
+      "imperative": {
+        "p2": "profitéier!",
+        "p5": "profitéiert!"
       },
       "example": {
         "lb": "mir hunn zwar eng Buedbidden, mee mer profitéieren se ni",
@@ -6543,6 +8773,18 @@
         "p5": "suergt",
         "p6": "suergen"
       },
+      "past": {
+        "p1": "hu gesuergt",
+        "p2": "hues gesuergt",
+        "p3": "huet gesuergt",
+        "p4": "hu gesuergt",
+        "p5": "hutt gesuergt",
+        "p6": "hu gesuergt"
+      },
+      "imperative": {
+        "p2": "suerg!",
+        "p5": "suergt!"
+      },
       "example": {
         "lb": "d'Wittfra muss eleng fir den Ënnerhalt vum Stot suergen",
         "audioId": "113457c31d0e793afd53cb698a8e1619"
@@ -6578,6 +8820,18 @@
         "p5": "dot",
         "p6": "doen"
       },
+      "past": {
+        "p1": "hunn ugedoen",
+        "p2": "hues ugedoen",
+        "p3": "huet ugedoen",
+        "p4": "hunn ugedoen",
+        "p5": "hutt ugedoen",
+        "p6": "hunn ugedoen"
+      },
+      "imperative": {
+        "p2": "do!",
+        "p5": "dot!"
+      },
       "example": {
         "lb": "am Summer dinn ech praktesch nëmme kuerz Boxen un",
         "audioId": "82d4fc832a62345611dc09f53c3be036"
@@ -6606,6 +8860,18 @@
         "p4": "verbidden",
         "p5": "verbitt",
         "p6": "verbidden"
+      },
+      "past": {
+        "p1": "hu verbueden",
+        "p2": "hues verbueden",
+        "p3": "huet verbueden",
+        "p4": "hu verbueden",
+        "p5": "hutt verbueden",
+        "p6": "hu verbueden"
+      },
+      "imperative": {
+        "p2": "verbitt!",
+        "p5": "verbitt!"
       },
       "example": {
         "lb": "wéinst der Dréchent verbitt d'Gemeng de Leit, den Auto ze wäschen",
@@ -6641,6 +8907,18 @@
         "p5": "verhaalt",
         "p6": "verhalen"
       },
+      "past": {
+        "p1": "hunn verhalen",
+        "p2": "hues verhalen",
+        "p3": "huet verhalen",
+        "p4": "hunn verhalen",
+        "p5": "hutt verhalen",
+        "p6": "hunn verhalen"
+      },
+      "imperative": {
+        "p2": "verhal!",
+        "p5": "verhaalt!"
+      },
       "example": {
         "lb": "et ass schwéier, déi onreegelméisseg Verben all ze verhalen",
         "audioId": "e1ff902306ae92d0d798a76ba0ed6649"
@@ -6672,6 +8950,18 @@
         "p4": "verschreiwen",
         "p5": "verschreift",
         "p6": "verschreiwen"
+      },
+      "past": {
+        "p1": "hunn verschriwwen",
+        "p2": "hues verschriwwen",
+        "p3": "huet verschriwwen",
+        "p4": "hunn verschriwwen",
+        "p5": "hutt verschriwwen",
+        "p6": "hunn verschriwwen"
+      },
+      "imperative": {
+        "p2": "verschreif!",
+        "p5": "verschreift!"
       },
       "example": {
         "lb": "d'Mëttel, dat d'Doktesch mer verschriwwen hat, huet direkt gewierkt",
@@ -6706,6 +8996,18 @@
         "p4": "erkalen",
         "p5": "erkaalt",
         "p6": "erkalen"
+      },
+      "past": {
+        "p1": "hunn erkaalt",
+        "p2": "hues erkaalt",
+        "p3": "huet erkaalt",
+        "p4": "hunn erkaalt",
+        "p5": "hutt erkaalt",
+        "p6": "hunn erkaalt"
+      },
+      "imperative": {
+        "p2": "erkal!",
+        "p5": "erkaalt!"
       },
       "example": {
         "lb": "bei deem Wieder ass et kee Wonner, datt mir eis all erkaalt hunn",
@@ -6742,6 +9044,18 @@
         "p5": "erzielt",
         "p6": "erzielen"
       },
+      "past": {
+        "p1": "hunn erzielt",
+        "p2": "hues erzielt",
+        "p3": "huet erzielt",
+        "p4": "hunn erzielt",
+        "p5": "hutt erzielt",
+        "p6": "hunn erzielt"
+      },
+      "imperative": {
+        "p2": "erziel!",
+        "p5": "erzielt!"
+      },
       "example": {
         "lb": "de Grousspapp erzielt sengem Enkelkand all Dag eng Geschicht",
         "audioId": "92732d29e8b5ca3977023d1bc6fb6af9"
@@ -6773,6 +9087,18 @@
         "p4": "interesséieren",
         "p5": "interesséiert",
         "p6": "interesséieren"
+      },
+      "past": {
+        "p1": "hunn interesséiert",
+        "p2": "hues interesséiert",
+        "p3": "huet interesséiert",
+        "p4": "hunn interesséiert",
+        "p5": "hutt interesséiert",
+        "p6": "hunn interesséiert"
+      },
+      "imperative": {
+        "p2": "interesséier!",
+        "p5": "interesséiert!"
       },
       "example": {
         "lb": "dee Film interesséiert kee Mënsch",
@@ -6807,6 +9133,18 @@
         "p4": "halen un",
         "p5": "haalt un",
         "p6": "halen un"
+      },
+      "past": {
+        "p1": "hunn ugehalen",
+        "p2": "hues ugehalen",
+        "p3": "huet ugehalen",
+        "p4": "hunn ugehalen",
+        "p5": "hutt ugehalen",
+        "p6": "hunn ugehalen"
+      },
+      "imperative": {
+        "p2": "hal un!",
+        "p5": "haalt un!"
       },
       "example": {
         "lb": "d'Police huet bei enger Kontroll all Auto ugehalen",
@@ -6844,6 +9182,15 @@
         "p5": "wierkt",
         "p6": "wierken"
       },
+      "past": {
+        "p1": "hu gewierkt",
+        "p2": "hues gewierkt",
+        "p3": "huet gewierkt",
+        "p4": "hu gewierkt",
+        "p5": "hutt gewierkt",
+        "p6": "hu gewierkt"
+      },
+      "imperative": null,
       "example": {
         "lb": "den Dosage muss stëmmen, fir datt d'Sprëtzmëttel wierkt",
         "audioId": "6b5d7b182d1d0a4133d4b2780c18be8d"
@@ -6878,6 +9225,18 @@
         "p5": "stellt an",
         "p6": "stellen an"
       },
+      "past": {
+        "p1": "hunn agestallt",
+        "p2": "hues agestallt",
+        "p3": "huet agestallt",
+        "p4": "hunn agestallt",
+        "p5": "hutt agestallt",
+        "p6": "hunn agestallt"
+      },
+      "imperative": {
+        "p2": "stell an!",
+        "p5": "stellt an"
+      },
       "example": {
         "lb": "d'Firma stellt 20 nei Aarbechter an",
         "audioId": "7d80f203236b0ef58a86bde0fb0eed9c"
@@ -6906,6 +9265,18 @@
         "p4": "erënneren",
         "p5": "erënnert",
         "p6": "erënneren"
+      },
+      "past": {
+        "p1": "hunn erënnert",
+        "p2": "hues erënnert",
+        "p3": "huet erënnert",
+        "p4": "hunn erënnert",
+        "p5": "hutt erënnert",
+        "p6": "hunn erënnert"
+      },
+      "imperative": {
+        "p2": "erënner!",
+        "p5": "erënnert!"
       },
       "example": {
         "lb": "d'Mamm erënnert d'Kanner un hire Rendez-vous beim Coiffer",
@@ -6942,6 +9313,18 @@
         "p5": "mierkt",
         "p6": "mierken"
       },
+      "past": {
+        "p1": "hu gemierkt",
+        "p2": "hues gemierkt",
+        "p3": "huet gemierkt",
+        "p4": "hu gemierkt",
+        "p5": "hutt gemierkt",
+        "p6": "hu gemierkt"
+      },
+      "imperative": {
+        "p2": "mierk!",
+        "p5": "mierkt!"
+      },
       "example": {
         "lb": "ech hunn net gemierkt, wéi den Täschendéif mer de Portmonni aus der Täsch gezunn huet",
         "audioId": "5c6d72ac68182bf096e7f69ddfaff988"
@@ -6973,6 +9356,18 @@
         "p4": "raumen",
         "p5": "raumt",
         "p6": "raumen"
+      },
+      "past": {
+        "p1": "hu geraumt",
+        "p2": "hues geraumt",
+        "p3": "huet geraumt",
+        "p4": "hu geraumt",
+        "p5": "hutt geraumt",
+        "p6": "hu geraumt"
+      },
+      "imperative": {
+        "p2": "raum!",
+        "p5": "raumt!"
       },
       "example": {
         "lb": "wéini hues de wëlles, deng Kummer ze raumen?",
@@ -7008,6 +9403,18 @@
         "p5": "schellt",
         "p6": "schellen"
       },
+      "past": {
+        "p1": "hu geschellt",
+        "p2": "hues geschellt",
+        "p3": "huet geschellt",
+        "p4": "hu geschellt",
+        "p5": "hutt geschellt",
+        "p6": "hu geschellt"
+      },
+      "imperative": {
+        "p2": "schell!",
+        "p5": "schellt!"
+      },
       "example": {
         "lb": "den Telefon schellt, kanns du ophiewen?",
         "audioId": "b9a6727cd46ecf7965f5fd1046c0280e"
@@ -7041,6 +9448,18 @@
         "p4": "maachen un",
         "p5": "maacht un",
         "p6": "maachen un"
+      },
+      "past": {
+        "p1": "hunn ugemaach",
+        "p2": "hues ugemaach",
+        "p3": "huet ugemaach",
+        "p4": "hunn ugemaach",
+        "p5": "hutt ugemaach",
+        "p6": "hunn ugemaach"
+      },
+      "imperative": {
+        "p2": "maach un!",
+        "p5": "maacht un!"
       },
       "example": {
         "lb": "ech hu menger Mamm niewent der Bidden e Grëff ugemaach, fir datt se sech kann unhalen",
@@ -7079,6 +9498,15 @@
         "p5": "gesitt aus",
         "p6": "gesinn aus"
       },
+      "past": {
+        "p1": "hunn ausgesinn",
+        "p2": "hues ausgesinn",
+        "p3": "huet ausgesinn",
+        "p4": "hunn ausgesinn",
+        "p5": "hutt ausgesinn",
+        "p6": "hunn ausgesinn"
+      },
+      "imperative": null,
       "example": {
         "lb": "mäi Schwéierpapp gesäit nach ëmmer richteg jonk aus",
         "audioId": "6628a967bf1d7aaa906c31a687b54b40"
@@ -7105,6 +9533,18 @@
         "p4": "bestueden",
         "p5": "bestuet",
         "p6": "bestueden"
+      },
+      "past": {
+        "p1": "hunn bestuet",
+        "p2": "hues bestuet",
+        "p3": "huet bestuet",
+        "p4": "hunn bestuet",
+        "p5": "hutt bestuet",
+        "p6": "hunn bestuet"
+      },
+      "imperative": {
+        "p2": "bestuet!",
+        "p5": "bestuet!"
       },
       "example": {
         "lb": "de Buergermeeschter huet déi jonk Koppel bestuet",
@@ -7134,6 +9574,18 @@
         "p4": "ginn eraus",
         "p5": "gitt eraus",
         "p6": "ginn eraus"
+      },
+      "past": {
+        "p1": "sinn erausgaangen",
+        "p2": "bass erausgaangen",
+        "p3": "ass erausgaangen",
+        "p4": "sinn erausgaangen",
+        "p5": "sidd erausgaangen",
+        "p6": "sinn erausgaangen"
+      },
+      "imperative": {
+        "p2": "géi eraus!",
+        "p5": "gitt eraus!"
       },
       "example": {
         "lb": "wann et der an der Sauna ze waarm gëtt, muss de erausgoen!",
@@ -7171,6 +9623,18 @@
         "p5": "spillt mat",
         "p6": "spille mat"
       },
+      "past": {
+        "p1": "hu matgespillt",
+        "p2": "hues matgespillt",
+        "p3": "huet matgespillt",
+        "p4": "hu matgespillt",
+        "p5": "hutt matgespillt",
+        "p6": "hu matgespillt"
+      },
+      "imperative": {
+        "p2": "spill mat!",
+        "p5": "spillt mat!"
+      },
       "example": {
         "lb": "ech spillen nach eng Partie Kaart mat, an da ginn ech heem",
         "audioId": "337ea86b0c575b9e228f5d5a8e06efdb"
@@ -7199,6 +9663,18 @@
         "p4": "kucken no",
         "p5": "kuckt no",
         "p6": "kucken no"
+      },
+      "past": {
+        "p1": "hunn nogekuckt",
+        "p2": "hues nogekuckt",
+        "p3": "huet nogekuckt",
+        "p4": "hunn nogekuckt",
+        "p5": "hutt nogekuckt",
+        "p6": "hunn nogekuckt"
+      },
+      "imperative": {
+        "p2": "kuck no!",
+        "p5": "kuckt no!"
       },
       "example": {
         "lb": "ech hunn dem Schëff nogekuckt, bis et um Horizont verschwonne war",
@@ -7235,6 +9711,18 @@
         "p5": "lauschtert no",
         "p6": "lauschteren no"
       },
+      "past": {
+        "p1": "hunn nogelauschtert",
+        "p2": "hues nogelauschtert",
+        "p3": "huet nogelauschtert",
+        "p4": "hunn nogelauschtert",
+        "p5": "hutt nogelauschtert",
+        "p6": "hunn nogelauschtert"
+      },
+      "imperative": {
+        "p2": "lauschter no!",
+        "p5": "lauschtert no!"
+      },
       "example": {
         "lb": "lauschter mir gutt no, ech soen der et keng zweemol!",
         "audioId": "101b3405d901ab9890c452ee2aec4245"
@@ -7261,6 +9749,18 @@
         "p4": "produzéieren",
         "p5": "produzéiert",
         "p6": "produzéieren"
+      },
+      "past": {
+        "p1": "hunn produzéiert",
+        "p2": "hues produzéiert",
+        "p3": "huet produzéiert",
+        "p4": "hunn produzéiert",
+        "p5": "hutt produzéiert",
+        "p6": "hunn produzéiert"
+      },
+      "imperative": {
+        "p2": "produzéier!",
+        "p5": "produzéiert!"
       },
       "example": {
         "lb": "dës Molkerei produzéiert verschidden Zorte Kéis",
@@ -7294,6 +9794,18 @@
         "p5": "reagéiert",
         "p6": "reagéieren"
       },
+      "past": {
+        "p1": "hu reagéiert",
+        "p2": "hues reagéiert",
+        "p3": "huet reagéiert",
+        "p4": "hu reagéiert",
+        "p5": "hutt reagéiert",
+        "p6": "hu reagéiert"
+      },
+      "imperative": {
+        "p2": "reagéier!",
+        "p5": "reagéiert!"
+      },
       "example": {
         "lb": "hien huet net op mäi Bréif reagéiert",
         "audioId": "94fe69f6dca03978eec0d9c076a5ce7e"
@@ -7325,6 +9837,18 @@
         "p4": "réckelen",
         "p5": "réckelt",
         "p6": "réckelen"
+      },
+      "past": {
+        "p1": "hu geréckelt",
+        "p2": "hues geréckelt",
+        "p3": "huet geréckelt",
+        "p4": "hu geréckelt",
+        "p5": "hutt geréckelt",
+        "p6": "hu geréckelt"
+      },
+      "imperative": {
+        "p2": "réckel!",
+        "p5": "réckelt!"
       },
       "example": {
         "lb": "wa mer den Dësch bei d'Mauer réckelen, komme mer besser laanscht",
@@ -7360,6 +9884,18 @@
         "p5": "respektéiert",
         "p6": "respektéieren"
       },
+      "past": {
+        "p1": "hu respektéiert",
+        "p2": "hues respektéiert",
+        "p3": "huet respektéiert",
+        "p4": "hu respektéiert",
+        "p5": "hutt respektéiert",
+        "p6": "hu respektéiert"
+      },
+      "imperative": {
+        "p2": "respektéier!",
+        "p5": "respektéiert!"
+      },
       "example": {
         "lb": "ech respektéieren hie fir seng Éierlechkeet",
         "audioId": "878aab3186da9dbd3ca8ea6dd243d76d"
@@ -7392,6 +9928,18 @@
         "p5": "maacht zou",
         "p6": "maachen zou"
       },
+      "past": {
+        "p1": "hunn zougemaach",
+        "p2": "hues zougemaach",
+        "p3": "huet zougemaach",
+        "p4": "hunn zougemaach",
+        "p5": "hutt zougemaach",
+        "p6": "hunn zougemaach"
+      },
+      "imperative": {
+        "p2": "maach zou!",
+        "p5": "maacht zou!"
+      },
       "example": {
         "lb": "maach deng Jackett zou, soss gëss de kal!",
         "audioId": "b6b48e083978fdc7f2c4d7d3f179808c"
@@ -7423,6 +9971,18 @@
         "p4": "schwätzen aus",
         "p5": "schwätzt aus",
         "p6": "schwätzen aus"
+      },
+      "past": {
+        "p1": "hunn ausgeschwat",
+        "p2": "hues ausgeschwat",
+        "p3": "huet ausgeschwat",
+        "p4": "hunn ausgeschwat",
+        "p5": "hutt ausgeschwat",
+        "p6": "hunn ausgeschwat"
+      },
+      "imperative": {
+        "p2": "schwätz aus!",
+        "p5": "schwätzt aus!"
       },
       "example": {
         "lb": "mengem Brudder seng kleng Duechter kann hiren Numm scho richteg ausschwätzen",
@@ -7457,6 +10017,18 @@
         "p4": "beweegen",
         "p5": "beweegt",
         "p6": "beweegen"
+      },
+      "past": {
+        "p1": "hunn beweegt",
+        "p2": "hues beweegt",
+        "p3": "huet beweegt",
+        "p4": "hunn beweegt",
+        "p5": "hutt beweegt",
+        "p6": "hunn beweegt"
+      },
+      "imperative": {
+        "p2": "beweeg!",
+        "p5": "beweegt!"
       },
       "example": {
         "lb": "nom Accident konnt mäi Papp säi rietst Been net méi beweegen",
@@ -7493,6 +10065,18 @@
         "p5": "hofft",
         "p6": "hoffen"
       },
+      "past": {
+        "p1": "hu gehofft",
+        "p2": "hues gehofft",
+        "p3": "huet gehofft",
+        "p4": "hu gehofft",
+        "p5": "hutt gehofft",
+        "p6": "hu gehofft"
+      },
+      "imperative": {
+        "p2": "hoff!",
+        "p5": "hofft!"
+      },
       "example": {
         "lb": "ech hoffen, datt mer d'Wallissen all an den Auto kréien",
         "audioId": "a768c83cbee70a3fd7aabc86f4ac936e"
@@ -7527,6 +10111,18 @@
         "p5": "iert iech",
         "p6": "ieren sech"
       },
+      "past": {
+        "p1": "hu mech geiert",
+        "p2": "hues dech geiert",
+        "p3": "huet sech geiert",
+        "p4": "hunn eis geiert",
+        "p5": "hutt iech geiert",
+        "p6": "hunn sech geiert"
+      },
+      "imperative": {
+        "p2": "ier dech!",
+        "p5": "iert iech!"
+      },
       "example": {
         "lb": "all Mënsch ka sech emol ieren",
         "audioId": "a2037f9c989cf18c3feee4bf4f5fc0f8"
@@ -7559,6 +10155,18 @@
         "p5": "kommt laanscht",
         "p6": "komme laanscht"
       },
+      "past": {
+        "p1": "si laanschtkomm",
+        "p2": "bass laanschtkomm",
+        "p3": "ass laanschtkomm",
+        "p4": "si laanschtkomm",
+        "p5": "sidd laanschtkomm",
+        "p6": "si laanschtkomm"
+      },
+      "imperative": {
+        "p2": "komm laanscht!",
+        "p5": "kommt laanscht!"
+      },
       "example": {
         "lb": "ech kommen den Owend nach laanscht",
         "audioId": "a2bfe8b41ff30623979b2d39bd467f67"
@@ -7587,6 +10195,18 @@
         "p4": "maache mat",
         "p5": "maacht mat",
         "p6": "maache mat"
+      },
+      "past": {
+        "p1": "hu matgemaach",
+        "p2": "hues matgemaach",
+        "p3": "huet matgemaach",
+        "p4": "hu matgemaach",
+        "p5": "hutt matgemaach",
+        "p6": "hu matgemaach"
+      },
+      "imperative": {
+        "p2": "maach mat!",
+        "p5": "maacht mat!"
       },
       "example": {
         "lb": "well en d'Formatioun net matgemaach huet, kann en am Betrib net avancéieren!",
@@ -7623,6 +10243,18 @@
         "p5": "schreift op",
         "p6": "schreiwen op"
       },
+      "past": {
+        "p1": "hunn opgeschriwwen",
+        "p2": "hues opgeschriwwen",
+        "p3": "huet opgeschriwwen",
+        "p4": "hunn opgeschriwwen",
+        "p5": "hutt opgeschriwwen",
+        "p6": "hunn opgeschriwwen"
+      },
+      "imperative": {
+        "p2": "schreif op!",
+        "p5": "schreift op!"
+      },
       "example": {
         "lb": "ech hat vergiess, mer deng Telefonsnummer opzeschreiwen",
         "audioId": "0ab869b69f3c2112c58867a4eff93bfe"
@@ -7656,6 +10288,18 @@
         "p4": "stëbsen",
         "p5": "stëbst",
         "p6": "stëbsen"
+      },
+      "past": {
+        "p1": "hu gestëbst",
+        "p2": "hues gestëbst",
+        "p3": "huet gestëbst",
+        "p4": "hu gestëbst",
+        "p5": "hutt gestëbst",
+        "p6": "hu gestëbst"
+      },
+      "imperative": {
+        "p2": "stëbs!",
+        "p5": "stëbst!"
       },
       "example": {
         "lb": "ech misst d'Bicher an der Etagère emol nees stëbsen",
@@ -7691,6 +10335,18 @@
         "p5": "rufft un",
         "p6": "ruffen un"
       },
+      "past": {
+        "p1": "hunn ugeruff",
+        "p2": "hues ugeruff",
+        "p3": "huet ugeruff",
+        "p4": "hunn ugeruff",
+        "p5": "hutt ugeruff",
+        "p6": "hunn ugeruff"
+      },
+      "imperative": {
+        "p2": "ruff un!",
+        "p5": "rufft un!"
+      },
       "example": {
         "lb": "riffs de vun doheem aus un oder bass de ënnerwee?",
         "audioId": "0ff890a918d49bce758286e6d98e1e04"
@@ -7719,6 +10375,18 @@
         "p4": "stiechen un",
         "p5": "stiecht un",
         "p6": "stiechen un"
+      },
+      "past": {
+        "p1": "hunn ugestach",
+        "p2": "hues ugestach",
+        "p3": "huet ugestach",
+        "p4": "hunn ugestach",
+        "p5": "hutt ugestach",
+        "p6": "hunn ugestach"
+      },
+      "imperative": {
+        "p2": "stiech un!",
+        "p5": "stiecht un!"
       },
       "example": {
         "lb": "mäi Brudder huet mech mat der Gripp ugestach",
@@ -7754,6 +10422,18 @@
         "p5": "gitt an",
         "p6": "ginn an"
       },
+      "past": {
+        "p1": "hunn aginn",
+        "p2": "hues aginn",
+        "p3": "huet aginn",
+        "p4": "hunn aginn",
+        "p5": "hutt aginn",
+        "p6": "hunn aginn"
+      },
+      "imperative": {
+        "p2": "gëff an!",
+        "p5": "gitt an!"
+      },
       "example": {
         "lb": "et ass net einfach, engem klenge Kand e Sirop anzeginn",
         "audioId": "52b2dd39b58242245b8222b26682e66b"
@@ -7788,6 +10468,18 @@
         "p4": "paken an",
         "p5": "paakt an",
         "p6": "paken an"
+      },
+      "past": {
+        "p1": "hunn agepaakt",
+        "p2": "hues agepaakt",
+        "p3": "huet agepaakt",
+        "p4": "hunn agepaakt",
+        "p5": "hutt agepaakt",
+        "p6": "hunn agepaakt"
+      },
+      "imperative": {
+        "p2": "pak an!",
+        "p5": "paakt an!"
       },
       "example": {
         "lb": "ech loosse mer d'Vas als Kaddo apaken",
@@ -7825,6 +10517,18 @@
         "p5": "dreemt",
         "p6": "dreemen"
       },
+      "past": {
+        "p1": "hu gedreemt",
+        "p2": "hues gedreemt",
+        "p3": "huet gedreemt",
+        "p4": "hu gedreemt",
+        "p5": "hutt gedreemt",
+        "p6": "hu gedreemt"
+      },
+      "imperative": {
+        "p2": "dreem!",
+        "p5": "dreemt!"
+      },
       "example": {
         "lb": "ech dreemen déi lescht Zäit ëmmer nees dat selwecht",
         "audioId": "8a706396080fe501e5bcec1e7cd658d7"
@@ -7859,6 +10563,18 @@
         "p5": "entspaant",
         "p6": "entspanen"
       },
+      "past": {
+        "p1": "hunn entspaant",
+        "p2": "hues entspaant",
+        "p3": "huet entspaant",
+        "p4": "hunn entspaant",
+        "p5": "hutt entspaant",
+        "p6": "hunn entspaant"
+      },
+      "imperative": {
+        "p2": "entspan!",
+        "p5": "entspaant!"
+      },
       "example": {
         "lb": "mir hunn alles gemaach, fir d'Situatioun ze entspanen",
         "audioId": "5b20105d05bce24625b399d62cbccbf1"
@@ -7890,6 +10606,18 @@
         "p4": "fréieren",
         "p5": "fréiert",
         "p6": "fréieren"
+      },
+      "past": {
+        "p1": "si gefruer",
+        "p2": "bass gefruer",
+        "p3": "ass gefruer",
+        "p4": "si gefruer",
+        "p5": "sidd gefruer",
+        "p6": "si gefruer"
+      },
+      "imperative": {
+        "p2": "fréier!",
+        "p5": "fréiert!"
       },
       "example": {
         "lb": "dëse Wanter ass de Buedem dacks gefruer",
@@ -7925,6 +10653,18 @@
         "p5": "informéiert",
         "p6": "informéieren"
       },
+      "past": {
+        "p1": "hunn informéiert",
+        "p2": "hues informéiert",
+        "p3": "huet informéiert",
+        "p4": "hunn informéiert",
+        "p5": "hutt informéiert",
+        "p6": "hunn informéiert"
+      },
+      "imperative": {
+        "p2": "informéier!",
+        "p5": "informéiert!"
+      },
       "example": {
         "lb": "et huet keen eis informéiert, datt d'Strooss gespaart ass",
         "audioId": "0fd9e96abbdd68360c7505240776459b"
@@ -7959,6 +10699,18 @@
         "p5": "bréngt mat",
         "p6": "brénge mat"
       },
+      "past": {
+        "p1": "hu matbruecht",
+        "p2": "hues matbruecht",
+        "p3": "huet matbruecht",
+        "p4": "hu matbruecht",
+        "p5": "hutt matbruecht",
+        "p6": "hu matbruecht"
+      },
+      "imperative": {
+        "p2": "bréng mat!",
+        "p5": "bréngt mat!"
+      },
       "example": {
         "lb": "bréng e puer Fläsche Béier aus dem Keller mat!",
         "audioId": "1fffbefd373a90407ff99b2dcd39201f"
@@ -7987,6 +10739,18 @@
         "p4": "moossen",
         "p5": "moosst",
         "p6": "moossen"
+      },
+      "past": {
+        "p1": "hunn gemooss",
+        "p2": "hues gemooss",
+        "p3": "huet gemooss",
+        "p4": "hunn gemooss",
+        "p5": "hutt gemooss",
+        "p6": "hunn gemooss"
+      },
+      "imperative": {
+        "p2": "mooss!",
+        "p5": "moosst!"
       },
       "example": {
         "lb": "den Dokter huet dem Blesséierten de Bols geholl an de Bluttdrock gemooss",
@@ -8024,6 +10788,18 @@
         "p5": "maacht no",
         "p6": "maachen no"
       },
+      "past": {
+        "p1": "hunn nogemaach",
+        "p2": "hues nogemaach",
+        "p3": "huet nogemaach",
+        "p4": "hunn nogemaach",
+        "p5": "hutt nogemaach",
+        "p6": "hunn nogemaach"
+      },
+      "imperative": {
+        "p2": "maach no!",
+        "p5": "maacht no!"
+      },
       "example": {
         "lb": "dee freche Bouf huet d'Joffer nogemaach",
         "audioId": "011376bfb441c87f643cecbce0a36b29"
@@ -8057,6 +10833,18 @@
         "p4": "soen of",
         "p5": "sot of",
         "p6": "soen of"
+      },
+      "past": {
+        "p1": "hunn ofgesot",
+        "p2": "hues ofgesot",
+        "p3": "huet ofgesot",
+        "p4": "hunn ofgesot",
+        "p5": "hutt ofgesot",
+        "p6": "hunn ofgesot"
+      },
+      "imperative": {
+        "p2": "so of!",
+        "p5": "sot of!"
       },
       "example": {
         "lb": "d'Federatioun huet all d'Matcher wéinst dem schlechte Wieder ofgesot",
@@ -8092,6 +10880,18 @@
         "p5": "hieft op",
         "p6": "hiewen op"
       },
+      "past": {
+        "p1": "hunn opgehuewen",
+        "p2": "hues opgehuewen",
+        "p3": "huet opgehuewen",
+        "p4": "hunn opgehuewen",
+        "p5": "hutt opgehuewen",
+        "p6": "hunn opgehuewen"
+      },
+      "imperative": {
+        "p2": "hief op!",
+        "p5": "hieft op!"
+      },
       "example": {
         "lb": "hief déi Këscht op a stell se an d'Regal!",
         "audioId": "1e472ff6699939ca80c9811ff66f28a9"
@@ -8120,6 +10920,18 @@
         "p4": "paken",
         "p5": "paakt",
         "p6": "paken"
+      },
+      "past": {
+        "p1": "hu gepaakt",
+        "p2": "hues gepaakt",
+        "p3": "huet gepaakt",
+        "p4": "hu gepaakt",
+        "p5": "hutt gepaakt",
+        "p6": "hu gepaakt"
+      },
+      "imperative": {
+        "p2": "pak!",
+        "p5": "paakt!"
       },
       "example": {
         "lb": "pak däi Schoulsak owes, da brauchs de dech mueres net esou ze fläissen!",
@@ -8151,6 +10963,18 @@
         "p5": "verbannt",
         "p6": "verbannen"
       },
+      "past": {
+        "p1": "hu verbonnen",
+        "p2": "hues verbonnen",
+        "p3": "huet verbonnen",
+        "p4": "hu verbonnen",
+        "p5": "hutt verbonnen",
+        "p6": "hunn verbonnen"
+      },
+      "imperative": {
+        "p2": "verbann!",
+        "p5": "verbannt!"
+      },
       "example": {
         "lb": "de Blesséierte krut nach op der Plaz vum Accident den Aarm verbonnen",
         "audioId": "ba24abb0d373901bc96b24c21997bc89"
@@ -8180,6 +11004,18 @@
         "p4": "verdéngen",
         "p5": "verdéngt",
         "p6": "verdéngen"
+      },
+      "past": {
+        "p1": "hu verdéngt",
+        "p2": "hues verdéngt",
+        "p3": "huet verdéngt",
+        "p4": "hu verdéngt",
+        "p5": "hutt verdéngt",
+        "p6": "hu verdéngt"
+      },
+      "imperative": {
+        "p2": "verdéng!",
+        "p5": "verdéngt!"
       },
       "example": {
         "lb": "den neie Steiersystem favoriséiert d'Leit, déi net vill verdéngen",
@@ -8215,6 +11051,18 @@
         "p5": "verléiert",
         "p6": "verléieren"
       },
+      "past": {
+        "p1": "hunn verluer",
+        "p2": "hues verluer",
+        "p3": "huet verluer",
+        "p4": "hunn verluer",
+        "p5": "hutt verluer",
+        "p6": "hunn verluer"
+      },
+      "imperative": {
+        "p2": "verléier!",
+        "p5": "verléiert!"
+      },
       "example": {
         "lb": "wat muss ee maachen, wann ee säi Pass am Ausland verléiert?",
         "audioId": "4b151084f4fd07dec8321e3715d80c6e"
@@ -8248,6 +11096,18 @@
         "p4": "wanderen",
         "p5": "wandert",
         "p6": "wanderen"
+      },
+      "past": {
+        "p1": "si gewandert",
+        "p2": "bass gewandert",
+        "p3": "ass gewandert",
+        "p4": "si gewandert",
+        "p5": "sidd gewandert",
+        "p6": "si gewandert"
+      },
+      "imperative": {
+        "p2": "wander!",
+        "p5": "wandert!"
       },
       "example": {
         "lb": "gees de am Summer mat an d'Bierger wanderen?",
@@ -8283,6 +11143,18 @@
         "p5": "gitt weider",
         "p6": "gi weider"
       },
+      "past": {
+        "p1": "si weidergaangen",
+        "p2": "bass weidergaangen",
+        "p3": "ass weidergaangen",
+        "p4": "si weidergaangen",
+        "p5": "sidd weidergaangen",
+        "p6": "si weidergaangen"
+      },
+      "imperative": {
+        "p2": "géi weider!",
+        "p5": "gitt weider!"
+      },
       "example": {
         "lb": "déi zwee Kolleegen hu sech zoufälleg begéint a sinn zesumme weidergaangen",
         "audioId": "20d039a9c61060813fc93f556b09cafd"
@@ -8317,6 +11189,18 @@
         "p5": "klammt eraus",
         "p6": "klammen eraus"
       },
+      "past": {
+        "p1": "sinn erausgeklommen",
+        "p2": "bass erausgeklommen",
+        "p3": "ass erausgeklommen",
+        "p4": "sinn erausgeklommen",
+        "p5": "sidd erausgeklommen",
+        "p6": "sinn erausgeklommen"
+      },
+      "imperative": {
+        "p2": "klamm eraus!",
+        "p5": "klammt eraus!"
+      },
       "example": {
         "lb": "well d'Dier net méi opgoung, si mir zur Fënster erausgeklommen",
         "audioId": "c6e947649b1c08bd4aed1c0e5c4a5a2a"
@@ -8348,6 +11232,18 @@
         "p4": "fleegen",
         "p5": "fleegt",
         "p6": "fleegen"
+      },
+      "past": {
+        "p1": "hunn gefleegt",
+        "p2": "hues gefleegt",
+        "p3": "huet gefleegt",
+        "p4": "hunn gefleegt",
+        "p5": "hutt gefleegt",
+        "p6": "hunn gefleegt"
+      },
+      "imperative": {
+        "p2": "fleeg!",
+        "p5": "fleegt!"
       },
       "example": {
         "lb": "et ass net einfach, en Doudkranke richteg ze fleegen",
@@ -8383,6 +11279,18 @@
         "p5": "kämmt",
         "p6": "kämmen"
       },
+      "past": {
+        "p1": "hu gekämmt",
+        "p2": "hues gekämmt",
+        "p3": "huet gekämmt",
+        "p4": "hu gekämmt",
+        "p5": "hutt gekämmt",
+        "p6": "hu gekämmt"
+      },
+      "imperative": {
+        "p2": "kämm!",
+        "p5": "kämmt!"
+      },
       "example": {
         "lb": "ier mer ginn, muss ech mech nach kämmen",
         "audioId": "6f53ea25da3c851d862816f3af6b69c0"
@@ -8415,6 +11323,18 @@
         "p5": "streit",
         "p6": "streiden"
       },
+      "past": {
+        "p1": "hunn gestridden",
+        "p2": "hues gestridden",
+        "p3": "huet gestridden",
+        "p4": "hunn gestridden",
+        "p5": "hutt gestridden",
+        "p6": "hunn gestridden"
+      },
+      "imperative": {
+        "p2": "streit!",
+        "p5": "streit!"
+      },
       "example": {
         "lb": "esoubal d'Kanner ugefaangen hunn ze streiden, huet de Schoulmeeschter agegraff",
         "audioId": "80dc68a6633949bc4d7d9a43cf6b9613"
@@ -8446,6 +11366,18 @@
         "p4": "verlounen",
         "p5": "verlount",
         "p6": "verlounen"
+      },
+      "past": {
+        "p1": "hu verlount",
+        "p2": "hues verlount",
+        "p3": "huet verlount",
+        "p4": "hu verlount",
+        "p5": "hutt verlount",
+        "p6": "hu verlount"
+      },
+      "imperative": {
+        "p2": "verloun!",
+        "p5": "verlount!"
       },
       "example": {
         "lb": "d'Appartement gëtt fir 700 Euro ouni Chargë verlount",
@@ -8481,6 +11413,18 @@
         "p5": "huelt zou",
         "p6": "huelen zou"
       },
+      "past": {
+        "p1": "hunn zougeholl",
+        "p2": "hues zougeholl",
+        "p3": "huet zougeholl",
+        "p4": "hunn zougeholl",
+        "p5": "hutt zougeholl",
+        "p6": "hunn zougeholl"
+      },
+      "imperative": {
+        "p2": "huel zou!",
+        "p5": "huelt zou!"
+      },
       "example": {
         "lb": "hien huet an der Vakanz zougeholl",
         "audioId": "6c919458a82f8e15ef096358fe9b94b8"
@@ -8514,6 +11458,18 @@
         "p4": "annuléieren",
         "p5": "annuléiert",
         "p6": "annuléieren"
+      },
+      "past": {
+        "p1": "hunn annuléiert",
+        "p2": "hues annuléiert",
+        "p3": "huet annuléiert",
+        "p4": "hunn annuléiert",
+        "p5": "hutt annuléiert",
+        "p6": "hunn annuléiert"
+      },
+      "imperative": {
+        "p2": "annuléier!",
+        "p5": "annuléiert!"
       },
       "example": {
         "lb": "et hate sech esou wéineg Leit ageschriwwen, datt d'Formatioun annuléiert gouf",
@@ -8549,6 +11505,18 @@
         "p5": "gitt aus",
         "p6": "ginn aus"
       },
+      "past": {
+        "p1": "hunn ausginn",
+        "p2": "hues ausginn",
+        "p3": "huet ausginn",
+        "p4": "hunn ausginn",
+        "p5": "hutt ausginn",
+        "p6": "hunn ausginn"
+      },
+      "imperative": {
+        "p2": "gëff aus!",
+        "p5": "gitt aus!"
+      },
       "example": {
         "lb": "ech ginn am Stot déi mannst Suen aus",
         "audioId": "45ffb99d33bdf97603bf6655dc3c88f3"
@@ -8577,6 +11545,18 @@
         "p4": "besetzen",
         "p5": "besetzt",
         "p6": "besetzen"
+      },
+      "past": {
+        "p1": "hu besat",
+        "p2": "hues besat",
+        "p3": "huet besat",
+        "p4": "hu besat",
+        "p5": "hutt besat",
+        "p6": "hu besat"
+      },
+      "imperative": {
+        "p2": "besetz!",
+        "p5": "besetzt!"
       },
       "example": {
         "lb": "mäi Brudder huet eng Plaz um Dësch fir seng Frëndin besat",
@@ -8610,6 +11590,18 @@
         "p5": "depriméiert",
         "p6": "depriméieren"
       },
+      "past": {
+        "p1": "hunn depriméiert",
+        "p2": "hues depriméiert",
+        "p3": "huet depriméiert",
+        "p4": "hunn depriméiert",
+        "p5": "hutt depriméiert",
+        "p6": "hunn depriméiert"
+      },
+      "imperative": {
+        "p2": "depriméier!",
+        "p5": "depriméiert!"
+      },
       "example": {
         "lb": "dat Abrëllswieder depriméiert mech",
         "audioId": "761e6fbd758fd40870979eb27a0fae33"
@@ -8641,6 +11633,18 @@
         "p4": "ënnersichen",
         "p5": "ënnersicht",
         "p6": "ënnersichen"
+      },
+      "past": {
+        "p1": "hunn ënnersicht",
+        "p2": "hues ënnersicht",
+        "p3": "huet ënnersicht",
+        "p4": "hunn ënnersicht",
+        "p5": "hutt ënnersicht",
+        "p6": "hunn ënnersicht"
+      },
+      "imperative": {
+        "p2": "ënnersich!",
+        "p5": "ënnersicht!"
       },
       "example": {
         "lb": "de Laborant huet d'Buedemprouwen ënnersicht",
@@ -8675,6 +11679,18 @@
         "p4": "entdecken",
         "p5": "entdeckt",
         "p6": "entdecken"
+      },
+      "past": {
+        "p1": "hunn entdeckt",
+        "p2": "hues entdeckt",
+        "p3": "huet entdeckt",
+        "p4": "hunn entdeckt",
+        "p5": "hutt entdeckt",
+        "p6": "hunn entdeckt"
+      },
+      "imperative": {
+        "p2": "entdeck!",
+        "p5": "entdeckt!"
       },
       "example": {
         "lb": "et ass eng nei Orchideeënzort entdeckt ginn",
@@ -8711,6 +11727,18 @@
         "p5": "klammt eran",
         "p6": "klammen eran"
       },
+      "past": {
+        "p1": "sinn erageklommen",
+        "p2": "bass erageklommen",
+        "p3": "ass erageklommen",
+        "p4": "sinn erageklommen",
+        "p5": "sidd erageklommen",
+        "p6": "sinn erageklommen"
+      },
+      "imperative": {
+        "p2": "klamm eran!",
+        "p5": "klammt eran!"
+      },
       "example": {
         "lb": "d'Abriecher sinn duerch d'Kichefënster erageklommen",
         "audioId": "86db5323defea9b37904d519533da9b9"
@@ -8744,6 +11772,18 @@
         "p4": "fotograféieren",
         "p5": "fotograféiert",
         "p6": "fotograféieren"
+      },
+      "past": {
+        "p1": "hu fotograféiert",
+        "p2": "hues fotograféiert",
+        "p3": "huet fotograféiert",
+        "p4": "hu fotograféiert",
+        "p5": "hutt fotograféiert",
+        "p6": "hu fotograféiert"
+      },
+      "imperative": {
+        "p2": "fotograféier!",
+        "p5": "fotograféiert!"
       },
       "example": {
         "lb": "et ass schwéier, d'Déieren an der Natur ze fotograféieren",
@@ -8779,6 +11819,18 @@
         "p5": "gratuléiert",
         "p6": "gratuléieren"
       },
+      "past": {
+        "p1": "hu gratuléiert",
+        "p2": "hues gratuléiert",
+        "p3": "huet gratuléiert",
+        "p4": "hu gratuléiert",
+        "p5": "hutt gratuléiert",
+        "p6": "hu gratuléiert"
+      },
+      "imperative": {
+        "p2": "gratuléier!",
+        "p5": "gratuléiert!"
+      },
       "example": {
         "lb": "de Jury huet dem Gewënner vum Museksconcours gratuléiert",
         "audioId": "b382dd751d3c5bfadc8099c614862270"
@@ -8811,6 +11863,18 @@
         "p5": "hannerloosst",
         "p6": "hannerloossen"
       },
+      "past": {
+        "p1": "hunn hannerlooss",
+        "p2": "hues hannerlooss",
+        "p3": "huet hannerlooss",
+        "p4": "hunn hannerlooss",
+        "p5": "hutt hannerlooss",
+        "p6": "hunn hannerlooss"
+      },
+      "imperative": {
+        "p2": "hannerlooss!",
+        "p5": "hannerloosst!"
+      },
       "example": {
         "lb": "d'Kanner hunn doheem e risege Chaos hannerlooss",
         "audioId": "d9db7db0c5db4a5a2e6fd33055a91ceb"
@@ -8842,6 +11906,18 @@
         "p4": "iwwerraschen",
         "p5": "iwwerrascht",
         "p6": "iwwerraschen"
+      },
+      "past": {
+        "p1": "hunn iwwerrascht",
+        "p2": "hues iwwerrascht",
+        "p3": "huet iwwerrascht",
+        "p4": "hunn iwwerrascht",
+        "p5": "hutt iwwerrascht",
+        "p6": "hunn iwwerrascht"
+      },
+      "imperative": {
+        "p2": "iwwerrasch!",
+        "p5": "iwwerrascht!"
       },
       "example": {
         "lb": "mäi Mann huet mech mat engem Bijou iwwerrascht",
@@ -8877,6 +11953,18 @@
         "p5": "kombinéiert",
         "p6": "kombinéieren"
       },
+      "past": {
+        "p1": "hu kombinéiert",
+        "p2": "hues kombinéiert",
+        "p3": "huet kombinéiert",
+        "p4": "hu kombinéiert",
+        "p5": "hutt kombinéiert",
+        "p6": "hu kombinéiert"
+      },
+      "imperative": {
+        "p2": "kombinéier!",
+        "p5": "kombinéiert!"
+      },
       "example": {
         "lb": "hatt huet hell an donkel Kleeder flott matenee kombinéiert",
         "audioId": "3ce162bc3274162bd0c42201aac8f501"
@@ -8909,6 +11997,18 @@
         "p5": "reklaméiert",
         "p6": "reklaméieren"
       },
+      "past": {
+        "p1": "hu reklaméiert",
+        "p2": "hues reklaméiert",
+        "p3": "huet reklaméiert",
+        "p4": "hu reklaméiert",
+        "p5": "hutt reklaméiert",
+        "p6": "hu reklaméiert"
+      },
+      "imperative": {
+        "p2": "reklaméier!",
+        "p5": "reklaméiert!"
+      },
       "example": {
         "lb": "mir kruten e Bréif, an deem d'Bank hir Sue reklaméiert",
         "audioId": "83d9cfec3710fbecdd65ee12cf21c67c"
@@ -8940,6 +12040,18 @@
         "p4": "stéieren",
         "p5": "stéiert",
         "p6": "stéieren"
+      },
+      "past": {
+        "p1": "hunn gestéiert",
+        "p2": "hues gestéiert",
+        "p3": "huet gestéiert",
+        "p4": "hunn gestéiert",
+        "p5": "hutt gestéiert",
+        "p6": "hunn gestéiert"
+      },
+      "imperative": {
+        "p2": "stéier!",
+        "p5": "stéiert!"
       },
       "example": {
         "lb": "ech wëll de Moien um Büro net gestéiert ginn",
@@ -8978,6 +12090,18 @@
         "p5": "taascht",
         "p6": "taaschten"
       },
+      "past": {
+        "p1": "hunn getaascht",
+        "p2": "hues getaascht",
+        "p3": "huet getaascht",
+        "p4": "hunn getaascht",
+        "p5": "hutt getaascht",
+        "p6": "hunn getaascht"
+      },
+      "imperative": {
+        "p2": "taascht!",
+        "p5": "taascht!"
+      },
       "example": {
         "lb": "ech hunn an der Däischtert am Tirang getaascht, fir eng Täscheluucht ze fannen",
         "audioId": "d2badc012bb1cf77fddb55a474089a71"
@@ -9010,6 +12134,18 @@
         "p5": "tätowéiert",
         "p6": "tätowéieren"
       },
+      "past": {
+        "p1": "hunn tätowéiert",
+        "p2": "hues tätowéiert",
+        "p3": "huet tätowéiert",
+        "p4": "hunn tätowéiert",
+        "p5": "hutt tätowéiert",
+        "p6": "hunn tätowéiert"
+      },
+      "imperative": {
+        "p2": "tätowéier!",
+        "p5": "tätowéiert!"
+      },
       "example": {
         "lb": "ech hu mer eng Rous op d'Schëller tätowéiere gelooss",
         "audioId": "e7b350ee4d5c9debc4836e6e2178c6ed"
@@ -9041,6 +12177,18 @@
         "p4": "verbréngen",
         "p5": "verbréngt",
         "p6": "verbréngen"
+      },
+      "past": {
+        "p1": "hu verbruecht",
+        "p2": "hues verbruecht",
+        "p3": "huet verbruecht",
+        "p4": "hu verbruecht",
+        "p5": "hutt verbruecht",
+        "p6": "hu verbruecht"
+      },
+      "imperative": {
+        "p2": "verbréng!",
+        "p5": "verbréngt!"
       },
       "example": {
         "lb": "mäi Papp verbréngt de ganzen Dag virum Computer",
@@ -9077,6 +12225,18 @@
         "p5": "verstoppt",
         "p6": "verstoppen"
       },
+      "past": {
+        "p1": "hunn verstoppt",
+        "p2": "hues verstoppt",
+        "p3": "huet verstoppt",
+        "p4": "hunn verstoppt",
+        "p5": "hutt verstoppt",
+        "p6": "hunn verstoppt"
+      },
+      "imperative": {
+        "p2": "verstopp!",
+        "p5": "verstoppt!"
+      },
       "example": {
         "lb": "eisen Hond huet e Lach gewullt, fir seng Schank ze verstoppen",
         "audioId": "8ce8ec33e74240e3bf0580ed3f9ff140"
@@ -9111,6 +12271,18 @@
         "p5": "verzicht",
         "p6": "verzichten"
       },
+      "past": {
+        "p1": "hu verzicht",
+        "p2": "hues verzicht",
+        "p3": "huet verzicht",
+        "p4": "hu verzicht",
+        "p5": "hutt verzicht",
+        "p6": "hu verzicht"
+      },
+      "imperative": {
+        "p2": "verzicht!",
+        "p5": "verzicht!"
+      },
       "example": {
         "lb": "d'Museker, déi um Concert fir e gudden Zweck opgetruede sinn, hunn op hir Gage verzicht",
         "audioId": "83df36f49eb0741975132dc43c1f9059"
@@ -9142,6 +12314,18 @@
         "p4": "ginn zeréck",
         "p5": "gitt zeréck",
         "p6": "ginn zeréck"
+      },
+      "past": {
+        "p1": "sinn zeréckgaangen",
+        "p2": "bass zeréckgaangen",
+        "p3": "ass zeréckgaangen",
+        "p4": "sinn zeréckgaangen",
+        "p5": "sidd zeréckgaangen",
+        "p6": "sinn zeréckgaangen"
+      },
+      "imperative": {
+        "p2": "géi zeréck!",
+        "p5": "gitt zeréck!"
       },
       "example": {
         "lb": "ech hunn eppes am Auto vergiess, ech muss nach eng Kéier zeréckgoen",
@@ -9179,6 +12363,18 @@
         "p5": "fëllt aus",
         "p6": "fëllen aus"
       },
+      "past": {
+        "p1": "hunn ausgefëllt",
+        "p2": "hues ausgefëllt",
+        "p3": "huet ausgefëllt",
+        "p4": "hunn ausgefëllt",
+        "p5": "hutt ausgefëllt",
+        "p6": "hunn ausgefëllt"
+      },
+      "imperative": {
+        "p2": "fëll aus!",
+        "p5": "fëllt aus!"
+      },
       "example": {
         "lb": "et brauch ee just fënnef Minutten, fir de Questionnaire auszefëllen",
         "audioId": "31108f7631a606c8fdd707faf6d1d071"
@@ -9213,6 +12409,18 @@
         "p5": "paakt aus",
         "p6": "paken aus"
       },
+      "past": {
+        "p1": "hunn ausgepaakt",
+        "p2": "hues ausgepaakt",
+        "p3": "huet ausgepaakt",
+        "p4": "hunn ausgepaakt",
+        "p5": "hutt ausgepaakt",
+        "p6": "hunn ausgepaakt"
+      },
+      "imperative": {
+        "p2": "pak aus!",
+        "p5": "paakt aus!"
+      },
       "example": {
         "lb": "d'Kanner paken d'Kaddoen aus",
         "audioId": "01adfdc57a45a8f60bb827311200c595"
@@ -9241,6 +12449,18 @@
         "p4": "bécken",
         "p5": "béckt",
         "p6": "bécken"
+      },
+      "past": {
+        "p1": "hunn gebéckt",
+        "p2": "hues gebéckt",
+        "p3": "huet gebéckt",
+        "p4": "hunn gebéckt",
+        "p5": "hutt gebéckt",
+        "p6": "hunn gebéckt"
+      },
+      "imperative": {
+        "p2": "béck!",
+        "p5": "béckt!"
       },
       "example": {
         "lb": "du muss de Kapp bécken, fir duerch d'Dier ze kommen",
@@ -9277,6 +12497,18 @@
         "p5": "bucht",
         "p6": "buchen"
       },
+      "past": {
+        "p1": "hu gebucht",
+        "p2": "hues gebucht",
+        "p3": "huet gebucht",
+        "p4": "hu gebucht",
+        "p5": "hutt gebucht",
+        "p6": "hu gebucht"
+      },
+      "imperative": {
+        "p2": "buch!",
+        "p5": "bucht!"
+      },
       "example": {
         "lb": "mir hunn eis Rees dräi Méint am Viraus gebucht",
         "audioId": "4d909da09ce29ae45433908922307783"
@@ -9311,6 +12543,18 @@
         "p5": "erkläert",
         "p6": "erklären"
       },
+      "past": {
+        "p1": "hunn erkläert",
+        "p2": "hues erkläert",
+        "p3": "huet erkläert",
+        "p4": "hunn erkläert",
+        "p5": "hutt erkläert",
+        "p6": "hunn erkläert"
+      },
+      "imperative": {
+        "p2": "erklär!",
+        "p5": "erkläert!"
+      },
       "example": {
         "lb": "erklär eis dat emol an aller Rou!",
         "audioId": "8c85a5959c67f453d7713c6fec611bc1"
@@ -9342,6 +12586,18 @@
         "p4": "favoriséieren",
         "p5": "favoriséiert",
         "p6": "favoriséieren"
+      },
+      "past": {
+        "p1": "hu favoriséiert",
+        "p2": "hues favoriséiert",
+        "p3": "huet favoriséiert",
+        "p4": "hu favoriséiert",
+        "p5": "hutt favoriséiert",
+        "p6": "hu favoriséiert"
+      },
+      "imperative": {
+        "p2": "favoriséier!",
+        "p5": "favoriséiert!"
       },
       "example": {
         "lb": "dëse Steiersystem favoriséiert déi Leit, déi net vill verdéngen",
@@ -9377,6 +12633,18 @@
         "p5": "improviséiert",
         "p6": "improviséieren"
       },
+      "past": {
+        "p1": "hunn improviséiert",
+        "p2": "hues improviséiert",
+        "p3": "huet improviséiert",
+        "p4": "hunn improviséiert",
+        "p5": "hutt improviséiert",
+        "p6": "hunn improviséiert"
+      },
+      "imperative": {
+        "p2": "improviséier!",
+        "p5": "improviséiert!"
+      },
       "example": {
         "lb": "well ech keng Zäit hat, mech virzebereeden, hunn ech meng Ried missen improviséieren",
         "audioId": null
@@ -9410,6 +12678,18 @@
         "p4": "komme mat",
         "p5": "kommt mat",
         "p6": "komme mat"
+      },
+      "past": {
+        "p1": "si matkomm",
+        "p2": "bass matkomm",
+        "p3": "ass matkomm",
+        "p4": "si matkomm",
+        "p5": "sidd matkomm",
+        "p6": "si matkomm"
+      },
+      "imperative": {
+        "p2": "komm mat!",
+        "p5": "kommt mat!"
       },
       "example": {
         "lb": "mäi Frënd ass net matkomm, well en huet misse schaffen",
@@ -9446,6 +12726,18 @@
         "p5": "nätzt",
         "p6": "nätzen"
       },
+      "past": {
+        "p1": "hu genat",
+        "p2": "hues genat",
+        "p3": "huet genat",
+        "p4": "hu genat",
+        "p5": "hutt genat",
+        "p6": "hu genat"
+      },
+      "imperative": {
+        "p2": "nätz!",
+        "p5": "nätzt!"
+      },
       "example": {
         "lb": "ech hunn d'Blumme mat der Strenz genat",
         "audioId": "4d33425d298ce3f40850fabb437896be"
@@ -9477,6 +12769,18 @@
         "p4": "spären op",
         "p5": "späert op",
         "p6": "spären op"
+      },
+      "past": {
+        "p1": "hunn opgespaart",
+        "p2": "hues opgespaart",
+        "p3": "huet opgespaart",
+        "p4": "hunn opgespaart",
+        "p5": "hutt opgespaart",
+        "p6": "hunn opgespaart"
+      },
+      "imperative": {
+        "p2": "spär op!",
+        "p5": "späert op!"
       },
       "example": {
         "lb": "de Gardien huet eis d'Dier opgespaart",
@@ -9510,6 +12814,18 @@
         "p5": "raséiert",
         "p6": "raséieren"
       },
+      "past": {
+        "p1": "hu raséiert",
+        "p2": "hues raséiert",
+        "p3": "huet raséiert",
+        "p4": "hu raséiert",
+        "p5": "hutt raséiert",
+        "p6": "hu raséiert"
+      },
+      "imperative": {
+        "p2": "raséier!",
+        "p5": "raséiert!"
+      },
       "example": {
         "lb": "d'Prisonéier kruten de Kapp raséiert",
         "audioId": "b70078d7ec8b4f06640d988a53566cb2"
@@ -9542,6 +12858,18 @@
         "p5": "realiséiert",
         "p6": "realiséieren"
       },
+      "past": {
+        "p1": "hu realiséiert",
+        "p2": "hues realiséiert",
+        "p3": "huet realiséiert",
+        "p4": "hu realiséiert",
+        "p5": "hutt realiséiert",
+        "p6": "hu realiséiert"
+      },
+      "imperative": {
+        "p2": "realiséier!",
+        "p5": "realiséiert!"
+      },
       "example": {
         "lb": "ech hunn nach ëmmer net realiséiert, datt ech pensionéiert sinn",
         "audioId": "7771192ec06fc4cb2e8a93379799421f"
@@ -9573,6 +12901,18 @@
         "p4": "reesen",
         "p5": "reest",
         "p6": "reesen"
+      },
+      "past": {
+        "p1": "si gereest",
+        "p2": "bass gereest",
+        "p3": "ass gereest",
+        "p4": "si gereest",
+        "p5": "sidd gereest",
+        "p6": "si gereest"
+      },
+      "imperative": {
+        "p2": "rees!",
+        "p5": "reest!"
       },
       "example": {
         "lb": "mäi Papp reest d'nächst Woch an Amerika",
@@ -9608,6 +12948,18 @@
         "p5": "reservéiert",
         "p6": "reservéieren"
       },
+      "past": {
+        "p1": "hu reservéiert",
+        "p2": "hues reservéiert",
+        "p3": "huet reservéiert",
+        "p4": "hu reservéiert",
+        "p5": "hutt reservéiert",
+        "p6": "hu reservéiert"
+      },
+      "imperative": {
+        "p2": "reservéier!",
+        "p5": "reservéiert!"
+      },
       "example": {
         "lb": "mir hu fir eng Woch en Zëmmer mat Hallefpensioun reservéiert",
         "audioId": "e5d222571b3041a2a4893b9aa3d03e65"
@@ -9637,6 +12989,18 @@
         "p4": "schnäizen",
         "p5": "schnäizt",
         "p6": "schnäizen"
+      },
+      "past": {
+        "p1": "hunn geschnäizt",
+        "p2": "hues geschnäizt",
+        "p3": "huet geschnäizt",
+        "p4": "hunn geschnäizt",
+        "p5": "hutt geschnäizt",
+        "p6": "hunn geschnäizt"
+      },
+      "imperative": {
+        "p2": "schnäiz!",
+        "p5": "schnäizt!"
       },
       "example": {
         "lb": "de Papp huet de Kanner d'Nues geschnäizt, wéi se aus dem Waasser koumen",
@@ -9674,6 +13038,18 @@
         "p5": "späichert",
         "p6": "späicheren"
       },
+      "past": {
+        "p1": "hu gespäichert",
+        "p2": "hues gespäichert",
+        "p3": "huet gespäichert",
+        "p4": "hu gespäichert",
+        "p5": "hutt gespäichert",
+        "p6": "hu gespäichert"
+      },
+      "imperative": {
+        "p2": "späicher!",
+        "p5": "späichert!"
+      },
       "example": {
         "lb": "e Kacheluewe späichert d'Hëtzt besser ewéi eng Schminni",
         "audioId": "88a65e2fd0755c15e66fad59cde9cb86"
@@ -9708,6 +13084,18 @@
         "p5": "frot un",
         "p6": "froen un"
       },
+      "past": {
+        "p1": "hunn ugefrot",
+        "p2": "hues ugefrot",
+        "p3": "huet ugefrot",
+        "p4": "hunn ugefrot",
+        "p5": "hutt ugefrot",
+        "p6": "hunn ugefrot"
+      },
+      "imperative": {
+        "p2": "fro un!",
+        "p5": "frot un!"
+      },
       "example": {
         "lb": "de Journalist huet eng Entrevue bei der Ministesch ugefrot",
         "audioId": "d2817cc6f52464568be03d3c305af6ed"
@@ -9739,6 +13127,18 @@
         "p4": "moossen un",
         "p5": "moosst un",
         "p6": "moossen un"
+      },
+      "past": {
+        "p1": "hunn ugemooss",
+        "p2": "hues ugemooss",
+        "p3": "huet ugemooss",
+        "p4": "hunn ugemooss",
+        "p5": "hutt ugemooss",
+        "p6": "hunn ugemooss"
+      },
+      "imperative": {
+        "p2": "mooss un!",
+        "p5": "moosst un!"
       },
       "example": {
         "lb": "esoubal eng Kabinn fräi ass, kënnt Der d'Box umoossen",
@@ -9772,6 +13172,15 @@
         "p5": "hutt un",
         "p6": "hunn un"
       },
+      "past": {
+        "p1": "hunn ugehat",
+        "p2": "hues ugehat",
+        "p3": "huet ugehat",
+        "p4": "hunn ugehat",
+        "p5": "hutt ugehat",
+        "p6": "hunn ugehat"
+      },
+      "imperative": null,
       "example": {
         "lb": "fréier haten d'Schoulkanner all Schiertecher un",
         "audioId": "ff3a7a16c6e4e8d0852d426ab8ce913e"
@@ -9801,6 +13210,18 @@
         "p5": "kommt zeréck",
         "p6": "kommen zeréck"
       },
+      "past": {
+        "p1": "sinn zeréckkomm",
+        "p2": "bass zeréckkomm",
+        "p3": "ass zeréckkomm",
+        "p4": "sinn zeréckkomm",
+        "p5": "sidd zeréckkomm",
+        "p6": "sinn zeréckkomm"
+      },
+      "imperative": {
+        "p2": "komm zeréck!",
+        "p5": "kommt zeréck!"
+      },
       "example": {
         "lb": "am Fréijoer kommen d'Schmuebelen zeréck",
         "audioId": "907c44a8ee98535d91fe5112b35206b9"
@@ -9829,6 +13250,18 @@
         "p4": "ruffen zeréck",
         "p5": "rufft zeréck",
         "p6": "ruffen zeréck"
+      },
+      "past": {
+        "p1": "hunn zeréckgeruff",
+        "p2": "hues zeréckgeruff",
+        "p3": "huet zeréckgeruff",
+        "p4": "hunn zeréckgeruff",
+        "p5": "hutt zeréckgeruff",
+        "p6": "hunn zeréckgeruff"
+      },
+      "imperative": {
+        "p2": "ruff zeréck!",
+        "p5": "rufft zeréck!"
       },
       "example": {
         "lb": "wéinst dem Attentat huet de Premier d'Ministeren aus der Vakanz zeréckgeruff",
@@ -9864,6 +13297,18 @@
         "p5": "hänkt an",
         "p6": "hänken an"
       },
+      "past": {
+        "p1": "hunn agehaangen",
+        "p2": "hues agehaangen",
+        "p3": "huet agehaangen",
+        "p4": "hunn agehaangen",
+        "p5": "hutt agehaangen",
+        "p6": "hunn agehaangen"
+      },
+      "imperative": {
+        "p2": "hänk an!",
+        "p5": "hänkt an!"
+      },
       "example": {
         "lb": "hëllefs de mer wannechgelift, déi zwou Fënsteren anzehänken?",
         "audioId": "d1d70aaf5deeeb0d06074631409b7925"
@@ -9898,6 +13343,18 @@
         "p5": "schlooft an",
         "p6": "schlofen an"
       },
+      "past": {
+        "p1": "sinn ageschlof",
+        "p2": "bass ageschlof",
+        "p3": "ass ageschlof",
+        "p4": "sinn ageschlof",
+        "p5": "sidd ageschlof",
+        "p6": "sinn ageschlof"
+      },
+      "imperative": {
+        "p2": "schlof an!",
+        "p5": "schlooft an!"
+      },
       "example": {
         "lb": "no deem ganzen Dag an der frëscher Loft sinn d'Kanner owes direkt ageschlof",
         "audioId": "4dc4940ad79bf036a628393c6dbc36c8"
@@ -9929,6 +13386,18 @@
         "p4": "léinen aus",
         "p5": "léint aus",
         "p6": "léinen aus"
+      },
+      "past": {
+        "p1": "hunn ausgeléint",
+        "p2": "hues ausgeléint",
+        "p3": "huet ausgeléint",
+        "p4": "hunn ausgeléint",
+        "p5": "hutt ausgeléint",
+        "p6": "hunn ausgeléint"
+      },
+      "imperative": {
+        "p2": "léin aus!",
+        "p5": "léint aus!"
       },
       "example": {
         "lb": "de Sportsclub kann eis déi néideg Ausrüstung ausléinen",
@@ -9964,6 +13433,15 @@
         "p5": "kommt bäi",
         "p6": "komme bäi"
       },
+      "past": {
+        "p1": "si bäikomm",
+        "p2": "bass bäikomm",
+        "p3": "ass bäikomm",
+        "p4": "si bäikomm",
+        "p5": "sidd bäikomm",
+        "p6": "si bäikomm"
+      },
+      "imperative": null,
       "example": {
         "lb": "an dësem Schouljoer kënnt fir eist Jéngst Englesch als Fach bäi",
         "audioId": "1e4f081199c8a5795df4985aabce4cbd"
@@ -9992,6 +13470,18 @@
         "p4": "beschreiwen",
         "p5": "beschreift",
         "p6": "beschreiwen"
+      },
+      "past": {
+        "p1": "hu beschriwwen",
+        "p2": "hues beschriwwen",
+        "p3": "huet beschriwwen",
+        "p4": "hu beschriwwen",
+        "p5": "hutt beschriwwen",
+        "p6": "hu beschriwwen"
+      },
+      "imperative": {
+        "p2": "beschreif!",
+        "p5": "beschreift!"
       },
       "example": {
         "lb": "ech kann der net beschreiwen, wéi ech mech opgereegt hunn!",
@@ -10024,6 +13514,18 @@
         "p4": "blëtzen",
         "p5": "blëtzt",
         "p6": "blëtzen"
+      },
+      "past": {
+        "p1": "hu geblëtzt",
+        "p2": "hues geblëtzt",
+        "p3": "huet geblëtzt",
+        "p4": "hu geblëtzt",
+        "p5": "hutt geblëtzt",
+        "p6": "hu geblëtzt"
+      },
+      "imperative": {
+        "p2": "blëtz!",
+        "p5": "blëtzt!"
       },
       "example": {
         "lb": "et blëtzt an donnert, mee nach reent et net!",
@@ -10059,6 +13561,18 @@
         "p5": "desinfizéiert",
         "p6": "desinfizéieren"
       },
+      "past": {
+        "p1": "hunn desinfizéiert",
+        "p2": "hues desinfizéiert",
+        "p3": "huet desinfizéiert",
+        "p4": "hunn desinfizéiert",
+        "p5": "hutt desinfizéiert",
+        "p6": "hunn desinfizéiert"
+      },
+      "imperative": {
+        "p2": "desinfizéier!",
+        "p5": "desinfizéiert!"
+      },
       "example": {
         "lb": "de Chirurg desinfizéiert seng Hänn, ier en operéiert",
         "audioId": "fed2dcd770c1d9940caf1db1291292f9"
@@ -10092,6 +13606,18 @@
         "p4": "fueren eran",
         "p5": "fuert eran",
         "p6": "fueren eran"
+      },
+      "past": {
+        "p1": "sinn eragefuer",
+        "p2": "bass eragefuer",
+        "p3": "ass eragefuer",
+        "p4": "sinn eragefuer",
+        "p5": "sidd eragefuer",
+        "p6": "sinn eragefuer"
+      },
+      "imperative": {
+        "p2": "fuer eran!",
+        "p5": "fuert eran!"
       },
       "example": {
         "lb": "du muss méi wäit mam Auto erafueren, soss geet d'Paart net ganz zou",
@@ -10127,6 +13653,18 @@
         "p5": "geheit ewech",
         "p6": "geheien ewech"
       },
+      "past": {
+        "p1": "hunn ewechgeheit",
+        "p2": "hues ewechgeheit",
+        "p3": "huet ewechgeheit",
+        "p4": "hunn ewechgeheit",
+        "p5": "hutt ewechgeheit",
+        "p6": "hunn ewechgeheit"
+      },
+      "imperative": {
+        "p2": "gehei ewech!",
+        "p5": "geheit ewech!"
+      },
       "example": {
         "lb": "bei eis doheem gëtt näischt ewechgehäit",
         "audioId": "2adda0e0f1e62ffc659d69fa2d93bd56"
@@ -10160,6 +13698,18 @@
         "p4": "huelen ewech",
         "p5": "huelt ewech",
         "p6": "huelen ewech"
+      },
+      "past": {
+        "p1": "hunn ewechgeholl",
+        "p2": "hues ewechgeholl",
+        "p3": "huet ewechgeholl",
+        "p4": "hunn ewechgeholl",
+        "p5": "hutt ewechgeholl",
+        "p6": "hunn ewechgeholl"
+      },
+      "imperative": {
+        "p2": "huel ewech!",
+        "p5": "huelt ewech!"
       },
       "example": {
         "lb": "d'Mamm huet hirem klenge Bouf d'Täschemesser ewechgeholl",
@@ -10196,6 +13746,18 @@
         "p5": "houscht",
         "p6": "houschten"
       },
+      "past": {
+        "p1": "hu gehouscht",
+        "p2": "hues gehouscht",
+        "p3": "huet gehouscht",
+        "p4": "hu gehouscht",
+        "p5": "hutt gehouscht",
+        "p6": "hu gehouscht"
+      },
+      "imperative": {
+        "p2": "houscht!",
+        "p5": "houscht!"
+      },
       "example": {
         "lb": "wann ech muer nach ëmmer esou vill muss houschten, da ginn ech bei den Dokter",
         "audioId": "91736e7768c46f290c6c860df64adc75"
@@ -10229,6 +13791,18 @@
         "p4": "lafe mat",
         "p5": "laaft mat",
         "p6": "lafe mat"
+      },
+      "past": {
+        "p1": "si matgelaf",
+        "p2": "bass matgelaf",
+        "p3": "ass matgelaf",
+        "p4": "si matgelaf",
+        "p5": "sidd matgelaf",
+        "p6": "si matgelaf"
+      },
+      "imperative": {
+        "p2": "laf mat!",
+        "p5": "laaft mat!"
       },
       "example": {
         "lb": "well ech mäi Knéi wéi hunn, weess ech net, ob ech de Marathon ka matlafen",
@@ -10264,6 +13838,18 @@
         "p5": "meckert",
         "p6": "meckeren"
       },
+      "past": {
+        "p1": "hu gemeckert",
+        "p2": "hues gemeckert",
+        "p3": "huet gemeckert",
+        "p4": "hu gemeckert",
+        "p5": "hutt gemeckert",
+        "p6": "hu gemeckert"
+      },
+      "imperative": {
+        "p2": "mecker!",
+        "p5": "meckert!"
+      },
       "example": {
         "lb": "et héiert een d'Geessen am Stall meckeren",
         "audioId": "9ab84305ed3795beda942acaafac8c5e"
@@ -10296,6 +13882,18 @@
         "p5": "montéiert",
         "p6": "montéieren"
       },
+      "past": {
+        "p1": "hu montéiert",
+        "p2": "hues montéiert",
+        "p3": "huet montéiert",
+        "p4": "hu montéiert",
+        "p5": "hutt montéiert",
+        "p6": "hu montéiert"
+      },
+      "imperative": {
+        "p2": "montéier!",
+        "p5": "montéiert!"
+      },
       "example": {
         "lb": "ech hu mäi Schaf selwer montéiert",
         "audioId": "8b8b094635b410308cc656fd4ba0e551"
@@ -10327,6 +13925,18 @@
         "p4": "lauschteren of",
         "p5": "lauschtert of",
         "p6": "lauschteren of"
+      },
+      "past": {
+        "p1": "hunn ofgelauschtert",
+        "p2": "hues ofgelauschtert",
+        "p3": "huet ofgelauschtert",
+        "p4": "hunn ofgelauschtert",
+        "p5": "hutt ofgelauschtert",
+        "p6": "hunn ofgelauschtert"
+      },
+      "imperative": {
+        "p2": "lauschter of!",
+        "p5": "lauschtert of!"
       },
       "example": {
         "lb": "d'Doktesch huet mech ofgelauschtert",
@@ -10362,6 +13972,18 @@
         "p5": "pecht op",
         "p6": "pechen op"
       },
+      "past": {
+        "p1": "hunn opgepecht",
+        "p2": "hues opgepecht",
+        "p3": "huet opgepecht",
+        "p4": "hunn opgepecht",
+        "p5": "hutt opgepecht",
+        "p6": "hunn opgepecht"
+      },
+      "imperative": {
+        "p2": "pech op!",
+        "p5": "pecht op!"
+      },
       "example": {
         "lb": "déi Logoen hei si geduecht fir opzepechen",
         "audioId": "69d919d2b9e6498a07c70bcde427772b"
@@ -10394,6 +14016,18 @@
         "p5": "parkt",
         "p6": "parken"
       },
+      "past": {
+        "p1": "hu geparkt",
+        "p2": "hues geparkt",
+        "p3": "huet geparkt",
+        "p4": "hu geparkt",
+        "p5": "hutt geparkt",
+        "p6": "hu geparkt"
+      },
+      "imperative": {
+        "p2": "park!",
+        "p5": "parkt!"
+      },
       "example": null,
       "topics": [
         "transport"
@@ -10419,6 +14053,18 @@
         "p4": "recommandéieren",
         "p5": "recommandéiert",
         "p6": "recommandéieren"
+      },
+      "past": {
+        "p1": "hu recommandéiert",
+        "p2": "hues recommandéiert",
+        "p3": "huet recommandéiert",
+        "p4": "hu recommandéiert",
+        "p5": "hutt recommandéiert",
+        "p6": "hu recommandéiert"
+      },
+      "imperative": {
+        "p2": "recommandéier!",
+        "p5": "recommandéiert!"
       },
       "example": {
         "lb": "ech kann Iech deen Dokter nëmme recommandéieren!",
@@ -10454,6 +14100,18 @@
         "p5": "reit",
         "p6": "reiden"
       },
+      "past": {
+        "p1": "si geridden",
+        "p2": "bass geridden",
+        "p3": "ass geridden",
+        "p4": "si geridden",
+        "p5": "sidd geridden",
+        "p6": "si geridden"
+      },
+      "imperative": {
+        "p2": "reit!",
+        "p5": "reit!"
+      },
       "example": {
         "lb": "meng kleng Schwëster léiert zënter enger Woch reiden",
         "audioId": "b4b02a5325f24468f0a01ecbb96f9e76"
@@ -10488,6 +14146,18 @@
         "p5": "sabbelt",
         "p6": "sabbelen"
       },
+      "past": {
+        "p1": "hunn gesabbelt",
+        "p2": "hues gesabbelt",
+        "p3": "huet gesabbelt",
+        "p4": "hunn gesabbelt",
+        "p5": "hutt gesabbelt",
+        "p6": "hunn gesabbelt"
+      },
+      "imperative": {
+        "p2": "sabbel!",
+        "p5": "sabbelt!"
+      },
       "example": {
         "lb": "sabbel kee Roude Wäin op den Teppech, déi Flecke ginn net méi eraus!",
         "audioId": "073a6aab700c7ec8a103ecf1125ec85f"
@@ -10516,6 +14186,18 @@
         "p4": "schminken",
         "p5": "schminkt",
         "p6": "schminken"
+      },
+      "past": {
+        "p1": "hu geschminkt",
+        "p2": "hues geschminkt",
+        "p3": "huet geschminkt",
+        "p4": "hu geschminkt",
+        "p5": "hutt geschminkt",
+        "p6": "hu geschminkt"
+      },
+      "imperative": {
+        "p2": "schmink!",
+        "p5": "schminkt!"
       },
       "example": {
         "lb": "ech schminke mech all Mueren, fir méi e frëschen Teint ze hunn",
@@ -10551,6 +14233,18 @@
         "p5": "sténkt",
         "p6": "sténken"
       },
+      "past": {
+        "p1": "hu gestonk",
+        "p2": "hues gestonk",
+        "p3": "huet gestonk",
+        "p4": "hu gestonk",
+        "p5": "hutt gestonk",
+        "p6": "hu gestonk"
+      },
+      "imperative": {
+        "p2": "sténk!",
+        "p5": "sténkt!"
+      },
       "example": {
         "lb": "wat sténkt hei esou?",
         "audioId": "e275c96d620d5fde914709d4fa31a20c"
@@ -10582,6 +14276,18 @@
         "p4": "strecken",
         "p5": "streckt",
         "p6": "strecken"
+      },
+      "past": {
+        "p1": "hunn gestreckt",
+        "p2": "hues gestreckt",
+        "p3": "huet gestreckt",
+        "p4": "hunn gestreckt",
+        "p5": "hutt gestreckt",
+        "p6": "hunn gestreckt"
+      },
+      "imperative": {
+        "p2": "streck!",
+        "p5": "streckt!"
       },
       "example": {
         "lb": "mäi Brudder wäscht a streckt seng Kleeder selwer",
@@ -10617,6 +14323,18 @@
         "p5": "vergläicht",
         "p6": "vergläichen"
       },
+      "past": {
+        "p1": "hu verglach",
+        "p2": "hues verglach",
+        "p3": "huet verglach",
+        "p4": "hu verglach",
+        "p5": "hutt verglach",
+        "p6": "hu verglach"
+      },
+      "imperative": {
+        "p2": "vergläich!",
+        "p5": "vergläicht!"
+      },
       "example": {
         "lb": "um Internet kann ee kamoud d'Präisser (mateneen) vergläichen",
         "audioId": "727dc771d2e124d6ae8a145951d6c42a"
@@ -10650,6 +14368,18 @@
         "p4": "hëllefe weider",
         "p5": "hëlleft weider",
         "p6": "hëllefe weider"
+      },
+      "past": {
+        "p1": "hu weidergehollef",
+        "p2": "hues weidergehollef",
+        "p3": "huet weidergehollef",
+        "p4": "hu weidergehollef",
+        "p5": "hutt weidergehollef",
+        "p6": "hu weidergehollef"
+      },
+      "imperative": {
+        "p2": "hëllef weider!",
+        "p5": "hëlleft weider!"
       },
       "example": {
         "lb": "déi zoustänneg Verwaltung huet eis vill weidergehollef",
@@ -10685,6 +14415,18 @@
         "p5": "maacht weider",
         "p6": "maache weider"
       },
+      "past": {
+        "p1": "hu weidergemaach",
+        "p2": "hues weidergemaach",
+        "p3": "huet weidergemaach",
+        "p4": "hu weidergemaach",
+        "p5": "hutt weidergemaach",
+        "p6": "hu weidergemaach"
+      },
+      "imperative": {
+        "p2": "maach weider!",
+        "p5": "maacht weider!"
+      },
       "example": {
         "lb": "wéi et opgehalen hat mat reenen, konnten d'Leit mat hirer Aarbecht weidermaachen",
         "audioId": "7feffb0bcbb593df7eb807f90bbb86c8"
@@ -10719,6 +14461,18 @@
         "p5": "raumt an",
         "p6": "raumen an"
       },
+      "past": {
+        "p1": "hunn ageraumt",
+        "p2": "hues ageraumt",
+        "p3": "huet ageraumt",
+        "p4": "hunn ageraumt",
+        "p5": "hutt ageraumt",
+        "p6": "hunn ageraumt"
+      },
+      "imperative": {
+        "p2": "raum an!",
+        "p5": "raumt an!"
+      },
       "example": {
         "lb": "dëse Weekend raumen ech mäin Handwierksgeschier propper an",
         "audioId": "aba8980e3bf11c7c623eccd06e326c82"
@@ -10747,6 +14501,18 @@
         "p4": "doen",
         "p5": "dot",
         "p6": "doen"
+      },
+      "past": {
+        "p1": "hunn ausgedoen",
+        "p2": "hues ausgedoen",
+        "p3": "huet ausgedoen",
+        "p4": "hunn ausgedoen",
+        "p5": "hutt ausgedoen",
+        "p6": "hunn ausgedoen"
+      },
+      "imperative": {
+        "p2": "do!",
+        "p5": "dot!"
       },
       "example": {
         "lb": "ditt är knaschteg Schong aus, wannechgelift!",
@@ -10779,6 +14545,18 @@
         "p5": "checkt",
         "p6": "checken"
       },
+      "past": {
+        "p1": "hu gecheckt",
+        "p2": "hues gecheckt",
+        "p3": "huet gecheckt",
+        "p4": "hu gecheckt",
+        "p5": "hutt gecheckt",
+        "p6": "hu gecheckt"
+      },
+      "imperative": {
+        "p2": "check!",
+        "p5": "checkt!"
+      },
       "example": {
         "lb": "mer mussen nach checken, ob mer näischt vun eiser Lëscht vergiess hunn",
         "audioId": "593b1de02c32da8a0f61410199a863b5"
@@ -10810,6 +14588,18 @@
         "p4": "chillen",
         "p5": "chillt",
         "p6": "chillen"
+      },
+      "past": {
+        "p1": "hu gechillt",
+        "p2": "hues gechillt",
+        "p3": "huet gechillt",
+        "p4": "hu gechillt",
+        "p5": "hutt gechillt",
+        "p6": "hu gechillt"
+      },
+      "imperative": {
+        "p2": "chill!",
+        "p5": "chillt!"
       },
       "example": {
         "lb": "ech hu mer virgeholl, iwwer d'Feierdeeg weider näischt ze maachen, ewéi ze chillen",
@@ -10844,6 +14634,18 @@
         "p4": "maachen drop",
         "p5": "maacht drop",
         "p6": "maachen drop"
+      },
+      "past": {
+        "p1": "hunn dropgemaach",
+        "p2": "hues dropgemaach",
+        "p3": "huet dropgemaach",
+        "p4": "hunn dropgemaach",
+        "p5": "hutt dropgemaach",
+        "p6": "hunn dropgemaach"
+      },
+      "imperative": {
+        "p2": "maach drop!",
+        "p5": "maacht drop!"
       },
       "example": {
         "lb": "hatt huet an der Vakanz seng ganz Pai dropgemaach",
@@ -10880,6 +14682,18 @@
         "p5": "klammt ëm",
         "p6": "klammen ëm"
       },
+      "past": {
+        "p1": "sinn ëmgeklommen",
+        "p2": "bass ëmgeklommen",
+        "p3": "ass ëmgeklommen",
+        "p4": "sinn ëmgeklommen",
+        "p5": "sidd ëmgeklommen",
+        "p6": "sinn ëmgeklommen"
+      },
+      "imperative": {
+        "p2": "klamm ëm!",
+        "p5": "klammt ëm!"
+      },
       "example": {
         "lb": "wann ech mam Bus op d'Aarbecht fueren, muss ech zweemol ëmklammen",
         "audioId": "48738a9689eb7c670b0a3cb3bf5c66a9"
@@ -10915,6 +14729,18 @@
         "p5": "engagéiert",
         "p6": "engagéieren"
       },
+      "past": {
+        "p1": "hunn engagéiert",
+        "p2": "hues engagéiert",
+        "p3": "huet engagéiert",
+        "p4": "hunn engagéiert",
+        "p5": "hutt engagéiert",
+        "p6": "hunn engagéiert"
+      },
+      "imperative": {
+        "p2": "engagéier!",
+        "p5": "engagéiert!"
+      },
       "example": {
         "lb": "d'Koppel huet en Detektiv engagéiert",
         "audioId": "a92fe68d0e8ec8a539537e4dda20ec9a"
@@ -10942,6 +14768,18 @@
         "p5": "gitt eran",
         "p6": "ginn eran"
       },
+      "past": {
+        "p1": "sinn eragaangen",
+        "p2": "bass eragaangen",
+        "p3": "ass eragaangen",
+        "p4": "sinn eragaangen",
+        "p5": "sidd eragaangen",
+        "p6": "sinn eragaangen"
+      },
+      "imperative": {
+        "p2": "géi eran!",
+        "p5": "gitt eran!"
+      },
       "example": {
         "lb": "gitt schonn eran, mir kommen no!",
         "audioId": "0987cda4a008a51d45a97d299689a9f6"
@@ -10968,6 +14806,18 @@
         "p4": "ginn ewech",
         "p5": "gitt ewech",
         "p6": "ginn ewech"
+      },
+      "past": {
+        "p1": "hunn ewechginn",
+        "p2": "hues ewechginn",
+        "p3": "huet ewechginn",
+        "p4": "hunn ewechginn",
+        "p5": "hutt ewechginn",
+        "p6": "hunn ewechginn"
+      },
+      "imperative": {
+        "p2": "gëff ewech!",
+        "p5": "gitt ewech!"
       },
       "example": {
         "lb": "mäi Brudder huet säin ale Vëlo ewechginn",
@@ -11003,6 +14853,18 @@
         "p5": "iwwerweist",
         "p6": "iwwerweisen"
       },
+      "past": {
+        "p1": "hunn iwwerwisen",
+        "p2": "hues iwwerwisen",
+        "p3": "huet iwwerwisen",
+        "p4": "hunn iwwerwisen",
+        "p5": "hutt iwwerwisen",
+        "p6": "hunn iwwerwisen"
+      },
+      "imperative": {
+        "p2": "iwwerweis!",
+        "p5": "iwwerweist!"
+      },
       "example": {
         "lb": "mäi Monni huet mir fir mäi Gebuertsdag e schéint Stéck Geld iwwerwisen",
         "audioId": "bce1a9e87e384d2ee8ed126dd3e6116b"
@@ -11037,6 +14899,18 @@
         "p5": "kontaktéiert",
         "p6": "kontaktéieren"
       },
+      "past": {
+        "p1": "hu kontaktéiert",
+        "p2": "hues kontaktéiert",
+        "p3": "huet kontaktéiert",
+        "p4": "hu kontaktéiert",
+        "p5": "hutt kontaktéiert",
+        "p6": "hu kontaktéiert"
+      },
+      "imperative": {
+        "p2": "kontaktéier!",
+        "p5": "kontaktéiert!"
+      },
       "example": {
         "lb": "fir eppes gewuer ze ginn, muss de déi richteg Leit kontaktéieren!",
         "audioId": "a2979c78ee9741b71c4ba9bf14413da8"
@@ -11068,6 +14942,18 @@
         "p4": "lounen",
         "p5": "lount",
         "p6": "lounen"
+      },
+      "past": {
+        "p1": "hu gelount",
+        "p2": "hues gelount",
+        "p3": "huet gelount",
+        "p4": "hu gelount",
+        "p5": "hutt gelount",
+        "p6": "hu gelount"
+      },
+      "imperative": {
+        "p2": "loun!",
+        "p5": "lount!"
       },
       "example": {
         "lb": "déi jonk Koppel iwwerleet, ob si en Appartement soll kafen oder lounen",
@@ -11103,6 +14989,18 @@
         "p5": "miwweléiert",
         "p6": "miwweléieren"
       },
+      "past": {
+        "p1": "hu miwweléiert",
+        "p2": "hues miwweléiert",
+        "p3": "huet miwweléiert",
+        "p4": "hu miwweléiert",
+        "p5": "hutt miwweléiert",
+        "p6": "hu miwweléiert"
+      },
+      "imperative": {
+        "p2": "miwweléier!",
+        "p5": "miwweléiert!"
+      },
       "example": {
         "lb": "d'Kummeren um zweete Stack mussen nach miwweléiert ginn",
         "audioId": "cf98d0cec9851307a5be9fb103b2a65a"
@@ -11137,6 +15035,18 @@
         "p5": "motivéiert",
         "p6": "motivéieren"
       },
+      "past": {
+        "p1": "hu motivéiert",
+        "p2": "hues motivéiert",
+        "p3": "huet motivéiert",
+        "p4": "hu motivéiert",
+        "p5": "hutt motivéiert",
+        "p6": "hu motivéiert"
+      },
+      "imperative": {
+        "p2": "motivéier!",
+        "p5": "motivéiert!"
+      },
       "example": {
         "lb": "vun der Cheffin geet eng Energie aus, déi de ganze Betrib motivéiert",
         "audioId": "11c933f32124e21b2ed8bdd5b5862cbe"
@@ -11169,6 +15079,18 @@
         "p5": "nummeréiert",
         "p6": "nummeréieren"
       },
+      "past": {
+        "p1": "hunn nummeréiert",
+        "p2": "hues nummeréiert",
+        "p3": "huet nummeréiert",
+        "p4": "hunn nummeréiert",
+        "p5": "hutt nummeréiert",
+        "p6": "hunn nummeréiert"
+      },
+      "imperative": {
+        "p2": "nummeréier!",
+        "p5": "nummeréiert!"
+      },
       "example": {
         "lb": "du muss d'Këschten nummeréieren",
         "audioId": "bad5d39c8ce15e5bd63bf18c38b6fef8"
@@ -11200,6 +15122,18 @@
         "p4": "botzen op",
         "p5": "botzt op",
         "p6": "botzen op"
+      },
+      "past": {
+        "p1": "hunn opgebotzt",
+        "p2": "hues opgebotzt",
+        "p3": "huet opgebotzt",
+        "p4": "hunn opgebotzt",
+        "p5": "hutt opgebotzt",
+        "p6": "hunn opgebotzt"
+      },
+      "imperative": {
+        "p2": "botz op!",
+        "p5": "botzt op!"
       },
       "example": {
         "lb": "kanns de dat Waasser vum Buedem opbotzen?",
@@ -11235,6 +15169,18 @@
         "p5": "relaxt",
         "p6": "relaxen"
       },
+      "past": {
+        "p1": "hu relaxt",
+        "p2": "hues relaxt",
+        "p3": "huet relaxt",
+        "p4": "hu relaxt",
+        "p5": "hutt relaxt",
+        "p6": "hu relaxt"
+      },
+      "imperative": {
+        "p2": "relax!",
+        "p5": "relaxt!"
+      },
       "example": {
         "lb": "an der Vakanz kann een esou richteg relaxen",
         "audioId": "73cf87d2b392c5c52f62d18cd58ee3b7"
@@ -11269,6 +15215,18 @@
         "p5": "schmitt",
         "p6": "schmidden"
       },
+      "past": {
+        "p1": "hu geschmitt",
+        "p2": "hues geschmitt",
+        "p3": "huet geschmitt",
+        "p4": "hu geschmitt",
+        "p5": "hutt geschmitt",
+        "p6": "hu geschmitt"
+      },
+      "imperative": {
+        "p2": "schmitt!",
+        "p5": "schmitt!"
+      },
       "example": {
         "lb": "de Gesell huet d'Eise geschmitt, esoulaang et nach gliddeg war",
         "audioId": "1760824a1d93908b8b627be4919dcaee"
@@ -11300,6 +15258,18 @@
         "p4": "streiken",
         "p5": "streikt",
         "p6": "streiken"
+      },
+      "past": {
+        "p1": "hu gestreikt",
+        "p2": "hues gestreikt",
+        "p3": "huet gestreikt",
+        "p4": "hu gestreikt",
+        "p5": "hutt gestreikt",
+        "p6": "hu gestreikt"
+      },
+      "imperative": {
+        "p2": "streik!",
+        "p5": "streikt!"
       },
       "example": {
         "lb": "d'Aarbechter streiken, well se dëse Mount nach keng Pai kruten",
@@ -11335,6 +15305,18 @@
         "p5": "surft",
         "p6": "surfen"
       },
+      "past": {
+        "p1": "si gesurft",
+        "p2": "bass gesurft",
+        "p3": "ass gesurft",
+        "p4": "si gesurft",
+        "p5": "sidd gesurft",
+        "p6": "si gesurft"
+      },
+      "imperative": {
+        "p2": "surf!",
+        "p5": "surft!"
+      },
       "example": {
         "lb": "ouni Wellen ass net gutt surfen",
         "audioId": "596b8436bed387a8be99f48ecbf2c623"
@@ -11368,6 +15350,18 @@
         "p4": "tommelen eis",
         "p5": "tommelt iech",
         "p6": "tommelen sech"
+      },
+      "past": {
+        "p1": "hu mech getommelt",
+        "p2": "hues dech getommelt",
+        "p3": "huet sech getommelt",
+        "p4": "hunn eis getommelt",
+        "p5": "hutt iech getommelt",
+        "p6": "hunn sech getommelt"
+      },
+      "imperative": {
+        "p2": "tommel dech!",
+        "p5": "tommelt iech!"
       },
       "example": {
         "lb": "maach gemälleg, et gëtt kee Grond, fir sech ze tommelen!",
@@ -11403,6 +15397,18 @@
         "p5": "klickt un",
         "p6": "klicken un"
       },
+      "past": {
+        "p1": "hunn ugeklickt",
+        "p2": "hues ugeklickt",
+        "p3": "huet ugeklickt",
+        "p4": "hunn ugeklickt",
+        "p5": "hutt ugeklickt",
+        "p6": "hunn ugeklickt"
+      },
+      "imperative": {
+        "p2": "klick un!",
+        "p5": "klickt un!"
+      },
       "example": {
         "lb": "wann dir dee Link uklickt, kommt der op eis Homepage",
         "audioId": "e6f828d9fc36cd13146327e2502e9d96"
@@ -11435,6 +15441,18 @@
         "p5": "verréckelt",
         "p6": "verréckelen"
       },
+      "past": {
+        "p1": "hu verréckelt",
+        "p2": "hues verréckelt",
+        "p3": "huet verréckelt",
+        "p4": "hu verréckelt",
+        "p5": "hutt verréckelt",
+        "p6": "hu verréckelt"
+      },
+      "imperative": {
+        "p2": "verréckel!",
+        "p5": "verréckelt!"
+      },
       "example": {
         "lb": "ech muss eise Rendez-vous verréckelen, well ech d'nächst Woch am Ausland sinn",
         "audioId": "3b6610c579a9c08e243290b2f3ecc72a"
@@ -11466,6 +15484,18 @@
         "p4": "verstauchen",
         "p5": "verstaucht",
         "p6": "verstauchen"
+      },
+      "past": {
+        "p1": "hu verstaucht",
+        "p2": "hues verstaucht",
+        "p3": "huet verstaucht",
+        "p4": "hu verstaucht",
+        "p5": "hutt verstaucht",
+        "p6": "hu verstaucht"
+      },
+      "imperative": {
+        "p2": "verstauch!",
+        "p5": "verstaucht!"
       },
       "example": {
         "lb": "eng vun eise beschte Spillerinnen huet sech beim Training den Enkel verstaucht",
@@ -11501,6 +15531,15 @@
         "p5": "kennt iech aus",
         "p6": "kennen sech aus"
       },
+      "past": {
+        "p1": "hu mech auskannt",
+        "p2": "hues dech auskannt",
+        "p3": "huet sech auskannt",
+        "p4": "hunn eis auskannt",
+        "p5": "hutt iech auskannt",
+        "p6": "hunn sech auskannt"
+      },
+      "imperative": null,
       "example": {
         "lb": "hie kennt sech a ville Groussstied aus",
         "audioId": "658bcde5cd53c3b785bf3643fba2f0d5"
@@ -11527,6 +15566,18 @@
         "p4": "coifféieren",
         "p5": "coifféiert",
         "p6": "coifféieren"
+      },
+      "past": {
+        "p1": "hu coifféiert",
+        "p2": "hues coifféiert",
+        "p3": "huet coifféiert",
+        "p4": "hu coifféiert",
+        "p5": "hutt coifféiert",
+        "p6": "hu coifféiert"
+      },
+      "imperative": {
+        "p2": "coifféier!",
+        "p5": "coifféiert!"
       },
       "example": {
         "lb": "si huet vill Zäit gebraucht, fir sech ze coifféieren",
@@ -11559,6 +15610,18 @@
         "p4": "leeën ewech",
         "p5": "leet ewech",
         "p6": "leeën ewech"
+      },
+      "past": {
+        "p1": "hunn ewechgeluecht",
+        "p2": "hues ewechgeluecht",
+        "p3": "huet ewechgeluecht",
+        "p4": "hunn ewechgeluecht",
+        "p5": "hutt ewechgeluecht",
+        "p6": "hunn ewechgeluecht"
+      },
+      "imperative": {
+        "p2": "lee ewech!",
+        "p5": "leet ewech!"
       },
       "example": {
         "lb": "d'Sekretärin huet d'Zeitung ewechgeluecht, wéi hire Chef erakoum",
@@ -11596,6 +15659,18 @@
         "p5": "fiddert",
         "p6": "fidderen"
       },
+      "past": {
+        "p1": "hu gefiddert",
+        "p2": "hues gefiddert",
+        "p3": "huet gefiddert",
+        "p4": "hu gefiddert",
+        "p5": "hutt gefiddert",
+        "p6": "hu gefiddert"
+      },
+      "imperative": {
+        "p2": "fidder!",
+        "p5": "fiddert!"
+      },
       "example": {
         "lb": "ech hu mer meng Liederjackett nei fiddere gelooss",
         "audioId": "0ca6ad5369c2ddecca2511bd008e11a5"
@@ -11624,6 +15699,18 @@
         "p4": "joggen",
         "p5": "joggt",
         "p6": "joggen"
+      },
+      "past": {
+        "p1": "si gejoggt",
+        "p2": "bass gejoggt",
+        "p3": "ass gejoggt",
+        "p4": "si gejoggt",
+        "p5": "sidd gejoggt",
+        "p6": "si gejoggt"
+      },
+      "imperative": {
+        "p2": "jogg!",
+        "p5": "joggt!"
       },
       "example": {
         "lb": "solle mer an de Bësch fuere fir ze joggen?",
@@ -11656,6 +15743,18 @@
         "p4": "schreiwe krank",
         "p5": "schreift krank",
         "p6": "schreiwe krank"
+      },
+      "past": {
+        "p1": "hu krankgeschriwwen",
+        "p2": "hues krankgeschriwwen",
+        "p3": "huet krankgeschriwwen",
+        "p4": "hu krankgeschriwwen",
+        "p5": "hutt krankgeschriwwen",
+        "p6": "hu krankgeschriwwen"
+      },
+      "imperative": {
+        "p2": "schreif krank!",
+        "p5": "schreift krank!"
       },
       "example": {
         "lb": "no menger Operatioun huet d'Doktesch mech sechs Woche krankgeschriwwen",
@@ -11691,6 +15790,18 @@
         "p5": "schéckt mat",
         "p6": "schécke mat"
       },
+      "past": {
+        "p1": "hu matgeschéckt",
+        "p2": "hues matgeschéckt",
+        "p3": "huet matgeschéckt",
+        "p4": "hu matgeschéckt",
+        "p5": "hutt matgeschéckt",
+        "p6": "hu matgeschéckt"
+      },
+      "imperative": {
+        "p2": "schéck mat!",
+        "p5": "schéckt mat!"
+      },
       "example": {
         "lb": "mir hunn Iech d'Dokumentatioun matgeschéckt",
         "audioId": "a596f079efd56f5b558be9cbf2927fb5"
@@ -11723,6 +15834,18 @@
         "p5": "meditéiert",
         "p6": "meditéieren"
       },
+      "past": {
+        "p1": "hu meditéiert",
+        "p2": "hues meditéiert",
+        "p3": "huet meditéiert",
+        "p4": "hu meditéiert",
+        "p5": "hutt meditéiert",
+        "p6": "hu meditéiert"
+      },
+      "imperative": {
+        "p2": "meditéier!",
+        "p5": "meditéiert!"
+      },
       "example": {
         "lb": "ech huele mer all Dag zéng Minutten Zäit fir ze meditéieren",
         "audioId": "c9bb91a6d651b2fe5ef4edcb6d677301"
@@ -11754,6 +15877,18 @@
         "p4": "spullen",
         "p5": "spullt",
         "p6": "spullen"
+      },
+      "past": {
+        "p1": "hu gespullt",
+        "p2": "hues gespullt",
+        "p3": "huet gespullt",
+        "p4": "hu gespullt",
+        "p5": "hutt gespullt",
+        "p6": "hu gespullt"
+      },
+      "imperative": {
+        "p2": "spull!",
+        "p5": "spullt!"
       },
       "example": {
         "lb": "huel frëscht Waasser, fir d'Glieser ze spullen!",
@@ -11789,6 +15924,18 @@
         "p5": "ditt",
         "p6": "dinn"
       },
+      "past": {
+        "p1": "hu wéigedoen",
+        "p2": "hues wéigedoen",
+        "p3": "huet wéigedoen",
+        "p4": "hu wéigedoen",
+        "p5": "hutt wéigedoen",
+        "p6": "hu wéigedoen"
+      },
+      "imperative": {
+        "p2": "déi!",
+        "p5": "ditt!"
+      },
       "example": null,
       "topics": [],
       "topicVia": null,
@@ -11812,6 +15959,18 @@
         "p4": "fueren zeréck",
         "p5": "fuert zeréck",
         "p6": "fueren zeréck"
+      },
+      "past": {
+        "p1": "sinn zeréckgefuer",
+        "p2": "bass zeréckgefuer",
+        "p3": "ass zeréckgefuer",
+        "p4": "sinn zeréckgefuer",
+        "p5": "sidd zeréckgefuer",
+        "p6": "sinn zeréckgefuer"
+      },
+      "imperative": {
+        "p2": "fuer zeréck!",
+        "p5": "fuert zeréck!"
       },
       "example": {
         "lb": "wéi ech gemierkt hunn, datt ech mäi Prabbeli am Restaurant leie gelooss hat, sinn ech direkt zeréckgefuer",
@@ -11848,6 +16007,18 @@
         "p5": "späert zou",
         "p6": "spären zou"
       },
+      "past": {
+        "p1": "hunn zougespaart",
+        "p2": "hues zougespaart",
+        "p3": "huet zougespaart",
+        "p4": "hunn zougespaart",
+        "p5": "hutt zougespaart",
+        "p6": "hunn zougespaart"
+      },
+      "imperative": {
+        "p2": "spär zou!",
+        "p5": "späert zou!"
+      },
       "example": {
         "lb": "spär d'Viischt Dier zou, wann s de schlofe gees!",
         "audioId": "ecf04dc55d910b5ba44c06c5a4d97b04"
@@ -11874,6 +16045,18 @@
         "p4": "schreiwen an",
         "p5": "schreift an",
         "p6": "schreiwen an"
+      },
+      "past": {
+        "p1": "hunn ageschriwwen",
+        "p2": "hues ageschriwwen",
+        "p3": "huet ageschriwwen",
+        "p4": "hunn ageschriwwen",
+        "p5": "hutt ageschriwwen",
+        "p6": "hunn ageschriwwen"
+      },
+      "imperative": {
+        "p2": "schreif an!",
+        "p5": "schreift an!"
       },
       "example": {
         "lb": "de Personalchef schreift all Dag d'Absencen an",
@@ -11904,6 +16087,18 @@
         "p5": "dréint",
         "p6": "dréinen"
       },
+      "past": {
+        "p1": "hunn gedréint",
+        "p2": "hues gedréint",
+        "p3": "huet gedréint",
+        "p4": "hunn gedréint",
+        "p5": "hutt gedréint",
+        "p6": "hunn gedréint"
+      },
+      "imperative": {
+        "p2": "dréin!",
+        "p5": "dréint!"
+      },
       "example": null,
       "topics": [],
       "topicVia": null,
@@ -11927,6 +16122,18 @@
         "p4": "sträichen duerch",
         "p5": "sträicht duerch",
         "p6": "sträichen duerch"
+      },
+      "past": {
+        "p1": "hunn duerchgestrach",
+        "p2": "hues duerchgestrach",
+        "p3": "huet duerchgestrach",
+        "p4": "hunn duerchgestrach",
+        "p5": "hutt duerchgestrach",
+        "p6": "hunn duerchgestrach"
+      },
+      "imperative": {
+        "p2": "sträich duerch!",
+        "p5": "sträicht duerch!"
       },
       "example": {
         "lb": "sträich dee Saz duerch a schreif en nei!",
@@ -11954,6 +16161,18 @@
         "p4": "maachen eidel",
         "p5": "maacht eidel",
         "p6": "maachen eidel"
+      },
+      "past": {
+        "p1": "hunn eidel gemaach",
+        "p2": "hues eidel gemaach",
+        "p3": "huet eidel gemaach",
+        "p4": "hunn eidel gemaach",
+        "p5": "hutt eidel gemaach",
+        "p6": "hunn eidel gemaach"
+      },
+      "imperative": {
+        "p2": "maach eidel!",
+        "p5": "maacht eidel!"
       },
       "example": {
         "lb": "meng Fra huet gëschter mat enger Frëndin zesummen eng ganz Fläsch Porto eidel gemaach",
@@ -11984,6 +16203,18 @@
         "p5": "dréint ëm",
         "p6": "dréinen ëm"
       },
+      "past": {
+        "p1": "hunn ëmgedréint",
+        "p2": "hues ëmgedréint",
+        "p3": "huet ëmgedréint",
+        "p4": "hunn ëmgedréint",
+        "p5": "hutt ëmgedréint",
+        "p6": "hunn ëmgedréint"
+      },
+      "imperative": {
+        "p2": "dréin ëm!",
+        "p5": "dréint ëm!"
+      },
       "example": null,
       "topics": [],
       "topicVia": null,
@@ -12007,6 +16238,18 @@
         "p4": "intresséieren",
         "p5": "intresséiert",
         "p6": "intresséieren"
+      },
+      "past": {
+        "p1": "hunn intresséiert",
+        "p2": "hues intresséiert",
+        "p3": "huet intresséiert",
+        "p4": "hunn intresséiert",
+        "p5": "hutt intresséiert",
+        "p6": "hunn intresséiert"
+      },
+      "imperative": {
+        "p2": "intresséier!",
+        "p5": "intresséiert!"
       },
       "example": null,
       "topics": [],
@@ -12032,6 +16275,15 @@
         "p5": "dot",
         "p6": "doen"
       },
+      "past": {
+        "p1": "hu leedgedoen",
+        "p2": "hues leedgedoen",
+        "p3": "huet leedgedoen",
+        "p4": "hu leedgedoen",
+        "p5": "hutt leedgedoen",
+        "p6": "hu leedgedoen"
+      },
+      "imperative": null,
       "example": {
         "lb": "dee Mënsch deet mer wierklech leed!",
         "audioId": "45f3c33fc06b91a3925a6e039ae638a9"
@@ -12059,6 +16311,18 @@
         "p5": "rascht",
         "p6": "raschten"
       },
+      "past": {
+        "p1": "hu gerascht",
+        "p2": "hues gerascht",
+        "p3": "huet gerascht",
+        "p4": "hu gerascht",
+        "p5": "hutt gerascht",
+        "p6": "hu gerascht"
+      },
+      "imperative": {
+        "p2": "rascht!",
+        "p5": "rascht!"
+      },
       "example": {
         "lb": "nom Mëttegiesse rascht de Bopi gewéinlech eng Stonn",
         "audioId": "8fb6d8ade5a897cfe62a3b8e4addf544"
@@ -12085,6 +16349,18 @@
         "p4": "spueren",
         "p5": "spuert",
         "p6": "spueren"
+      },
+      "past": {
+        "p1": "hu gespuert",
+        "p2": "hues gespuert",
+        "p3": "huet gespuert",
+        "p4": "hu gespuert",
+        "p5": "hutt gespuert",
+        "p6": "hu gespuert"
+      },
+      "imperative": {
+        "p2": "spuer!",
+        "p5": "spuert!"
       },
       "example": {
         "lb": "duerch dës Moossnam wäerte mer vill Sue spueren",
@@ -12121,6 +16397,18 @@
         "p5": "stréckt",
         "p6": "strécken"
       },
+      "past": {
+        "p1": "hu gestréckt",
+        "p2": "hues gestréckt",
+        "p3": "huet gestréckt",
+        "p4": "hu gestréckt",
+        "p5": "hutt gestréckt",
+        "p6": "hu gestréckt"
+      },
+      "imperative": {
+        "p2": "stréck!",
+        "p5": "stréckt!"
+      },
       "example": {
         "lb": "ech bräicht chinéiert Woll, fir mer e Pullover ze strécken",
         "audioId": "0edfed55ec09ef2da76285dc6358768f"
@@ -12156,6 +16444,18 @@
         "p5": "verspillt",
         "p6": "verspillen"
       },
+      "past": {
+        "p1": "hunn verspillt",
+        "p2": "hues verspillt",
+        "p3": "huet verspillt",
+        "p4": "hunn verspillt",
+        "p5": "hutt verspillt",
+        "p6": "hunn verspillt"
+      },
+      "imperative": {
+        "p2": "verspill!",
+        "p5": "verspillt!"
+      },
       "example": {
         "lb": "well ech nom 31. August gebuer sinn, hunn ech e Joer an der Schoul verspillt",
         "audioId": "8ca605f76ce45ee1e835944fa7539304"
@@ -12185,6 +16485,15 @@
         "p5": "kritt zou",
         "p6": "kréien zou"
       },
+      "past": {
+        "p1": "hunn zoukritt",
+        "p2": "hues zoukritt",
+        "p3": "huet zoukritt",
+        "p4": "hunn zoukritt",
+        "p5": "hutt zoukritt",
+        "p6": "hunn zoukritt"
+      },
+      "imperative": null,
       "example": {
         "lb": "ech muss de Bauch anzéien, soss kréien ech meng Box net zou",
         "audioId": "5822e8c6116d3d558082f187c10b9d9a"

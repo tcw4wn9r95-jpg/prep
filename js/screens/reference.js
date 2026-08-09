@@ -49,6 +49,19 @@ const PERSON_LABELS = [
   { key: 'p6', pronoun: 'si' },
 ];
 
+/** The imperative only ever addresses "you" — matches pipeline/build-verbs.js
+ * `IMPERATIVE_PERSONS`, and only those two keys exist on `item.imperative`. */
+const IMPERATIVE_LABELS = [
+  { key: 'p2', pronoun: 'du' },
+  { key: 'p5', pronoun: 'dir' },
+];
+
+/** How many entries the "100 verbs" tab shows. Not a round import of the
+ * whole deck: 100 is what fits a quick lookup, ranked by how often each verb
+ * actually turns up in the corpus (pipeline/build-learn.js `rank`), so the
+ * cut lands after the verbs a beginner is actually likely to reach for. */
+const VERB_LIST_SIZE = 100;
+
 /** One line of English on what each phrase group is for. Grammar description,
  * not translation — nothing here is Luxembourgish text of its own. */
 const GROUP_NOTES = {
@@ -70,16 +83,46 @@ export function pronounRows(vocab) {
     .map((item) => ({ lb: item.lb, en: item.en }));
 }
 
-/** One row per core verb: its gloss and its six present-tense forms, in the
- * fixed person order the conjugation drill card already uses. */
+/** One `{pronoun, form}` row per label that actually has a form — an
+ * imperative missing its "du" side (rare, but real: see build-verbs.js) drops
+ * that row rather than showing a blank one. */
+function personForms(byPerson, labels) {
+  return labels.map(({ key, pronoun }) => ({ pronoun, form: byPerson?.[key] ?? null })).filter((row) => row.form);
+}
+
+/** A raw verbs.json entry, reduced to what a cheat-sheet card renders: its
+ * gloss, its six present-tense forms, and past/imperative forms where LOD
+ * publishes them (pipeline/build-verbs.js — most verbs have both, a handful
+ * of modals have neither imperative nor a natural command form). `null` for
+ * anything without a complete present tense, since that is the one thing
+ * every card on this screen assumes it can show. */
+function toVerbTable(item) {
+  if (!item?.present) return null;
+  return {
+    infinitive: item.infinitive,
+    en: item.en,
+    forms: personForms(item.present, PERSON_LABELS),
+    pastForms: item.past ? personForms(item.past, PERSON_LABELS) : null,
+    imperativeForms: item.imperative ? personForms(item.imperative, IMPERATIVE_LABELS) : null,
+  };
+}
+
+/** One row per core verb — the handful that carry most sentences, present +
+ * past + imperative, in the fixed person order the conjugation drill uses. */
 export function verbTables(verbs) {
-  return CORE_VERBS.map((infinitive) => verbs.find((item) => item.infinitive === infinitive))
-    .filter((item) => item?.present)
-    .map((item) => ({
-      infinitive: item.infinitive,
-      en: item.en,
-      forms: PERSON_LABELS.map(({ key, pronoun }) => ({ pronoun, form: item.present[key] })),
-    }));
+  return CORE_VERBS.map((infinitive) => toVerbTable(verbs.find((item) => item.infinitive === infinitive))).filter(Boolean);
+}
+
+/** The most-used verbs in the corpus, ranked, present + past + imperative —
+ * the "100 verbs" tab. Same card shape as `verbTables`, just a longer and
+ * frequency-ordered list rather than the nine hand-picked core verbs. */
+export function rankedVerbTables(verbs, count = VERB_LIST_SIZE) {
+  return [...verbs]
+    .filter((item) => typeof item.rank === 'number')
+    .sort((a, b) => a.rank - b.rank)
+    .slice(0, count)
+    .map(toVerbTable)
+    .filter(Boolean);
 }
 
 /** The 34 phrase frames, grouped and titled the same way Phrases drills them. */
@@ -148,14 +191,65 @@ export function adjectiveExamples(grammar, count = 4) {
   return picked;
 }
 
-/** Builds the cheat sheet body into `container`. Shared by the routed screen
- * and the in-session sheet, so the two never drift apart. */
+/**
+ * Builds the cheat sheet body into `container`. Shared by the routed screen
+ * and the in-session sheet, so the two never drift apart.
+ *
+ * Two tabs, not one long scroll with a 100th verb added to the bottom of it.
+ * "Basics" is everything this screen already showed — pronouns, the nine
+ * verbs that carry most sentences, sentence patterns, the grammar rules — and
+ * stays the default, since it is what "cheat sheet" has always meant here.
+ * "100 verbs" is a lookup table: ranked by how often each verb actually turns
+ * up in the corpus, present + past + imperative, for the moment mid-sentence
+ * when the verb needed is not one of the nine.
+ */
 export function renderContent(container, { vocab, verbs, phrases, groups, grammar }) {
-  container.append(
+  const panels = {
+    basics: () => basicsPanel({ vocab, verbs, phrases, groups, grammar }),
+    verbs: () => verbListPanel(verbs),
+  };
+
+  const body = el('div', {});
+  const tabs = TABS.map((tab) =>
+    el(
+      'button',
+      {
+        type: 'button',
+        role: 'tab',
+        class: `chip chip--pick${tab.id === TABS[0].id ? ' is-picked' : ''}`,
+        'aria-selected': tab.id === TABS[0].id ? 'true' : 'false',
+        onclick: () => selectTab(tab.id),
+      },
+      tab.label,
+    ),
+  );
+
+  function selectTab(id) {
+    for (const [index, node] of tabs.entries()) {
+      const isMe = TABS[index].id === id;
+      node.classList.toggle('is-picked', isMe);
+      node.setAttribute('aria-selected', isMe ? 'true' : 'false');
+    }
+    body.replaceChildren(panels[id]());
+  }
+
+  container.append(el('div', { class: 'row', role: 'tablist', style: { gap: 'var(--s2)', marginBlockEnd: 'var(--s4)' } }, ...tabs), body);
+  body.append(panels[TABS[0].id]());
+}
+
+const TABS = [
+  { id: 'basics', label: 'Basics' },
+  { id: 'verbs', label: '100 verbs' },
+];
+
+function basicsPanel({ vocab, verbs, phrases, groups, grammar }) {
+  return el(
+    'div',
+    { class: 'stack stack--lg' },
     section('Subject pronouns', el('div', { class: 'ref-pronouns' }, ...pronounRows(vocab).map(pronounTile))),
     section(
       'Key verbs',
-      el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } }, 'Tap a verb for all six forms.'),
+      el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } }, 'Tap a verb for its present, past and imperative.'),
       ...verbTables(verbs).map(verbDetails),
     ),
     section(
@@ -189,6 +283,23 @@ export function renderContent(container, { vocab, verbs, phrases, groups, gramma
       'Adjective endings, in practice',
       el('p', { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } }, 'Both spellings below are real:'),
       ...adjectiveExamples(grammar).map(adjectiveCard),
+    ),
+  );
+}
+
+function verbListPanel(verbs) {
+  const list = rankedVerbTables(verbs);
+  return el(
+    'div',
+    { class: 'stack stack--lg' },
+    section(
+      `${list.length} most-used verbs`,
+      el(
+        'p',
+        { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
+        'Ranked by how often each one actually turns up in the corpus, most first. Tap one for its present, past and imperative.',
+      ),
+      ...list.map(verbDetails),
     ),
   );
 }
@@ -281,11 +392,31 @@ function pronounTile({ lb, en }) {
   return el('div', { class: 'ref-pronoun' }, el('p', { class: 'ref-pronoun__lb' }, lb), el('p', { class: 'ref-pronoun__en' }, en));
 }
 
-function verbDetails({ infinitive, en, forms }) {
+/**
+ * A verb's card: present always, past and imperative only where LOD publishes
+ * them (a few modals — kënnen, mussen, sollen, wëllen — have neither, since
+ * "can!" is not a command in any language). Labelled subgroups only appear
+ * once there is more than one tense to tell apart; a verb with present alone
+ * still reads as a plain table, the way this card always has.
+ */
+function verbDetails({ infinitive, en, forms, pastForms, imperativeForms }) {
+  const groups = [{ label: 'Present', forms }];
+  if (pastForms?.length) groups.push({ label: 'Past', forms: pastForms });
+  if (imperativeForms?.length) groups.push({ label: 'Imperative', forms: imperativeForms });
+
   return el(
     'details',
     { class: 'ref-verb' },
     el('summary', {}, el('span', { class: 'card__title' }, infinitive), el('span', { class: 'card__note' }, ` — ${en}`)),
+    ...groups.map((group) => verbFormGroup(group, groups.length > 1)),
+  );
+}
+
+function verbFormGroup({ label, forms }, labelled) {
+  return el(
+    'div',
+    { style: { marginBlockStart: 'var(--s2)' } },
+    labelled ? el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s3)', marginBlockEnd: 'var(--s1)' } }, label) : null,
     el(
       'div',
       { class: 'ref-verb__forms' },
