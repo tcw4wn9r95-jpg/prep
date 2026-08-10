@@ -535,13 +535,13 @@ async function main() {
     process.stdout.write(`  largest board clears the bottom by ${fit.floor - fit.bottom}px\n`);
   });
 
-  await step('What is this? shows a picture, multiple choice first, then spelling', async () => {
+  await step('What is this? shows a picture and asks for the word, multiple choice only', async () => {
     // pipeline/fetch-object-images.js pulls from Wikimedia Commons at fetch
     // time — this repo does not commit the photos it finds, the same reason
     // images.json/podcasts.json are not committed either. So this step covers
     // both states a real checkout can be in: the graceful "not fetched yet"
-    // message if nobody has run the script, or the full two-phase round if
-    // they have. Whichever branch runs, it is testing a real code path.
+    // message if nobody has run the script, or the full round if they have.
+    // Whichever branch runs, it is testing a real code path.
     let objectsFile = { items: [] };
     try {
       objectsFile = JSON.parse(await fsp.readFile(path.join(APP_DIR, 'data', 'word-images.json'), 'utf8'));
@@ -562,7 +562,7 @@ async function main() {
     await page.waitForSelector('.options .option', { timeout: 5000 });
 
     const phaseLabel = () => page.locator('#screen .meter__label').first().textContent();
-    if (!/multiple choice/i.test((await phaseLabel()) ?? '')) throw new Error(`expected the multiple-choice phase first, got "${await phaseLabel()}"`);
+    if (!/multiple choice/i.test((await phaseLabel()) ?? '')) throw new Error(`expected a multiple-choice card, got "${await phaseLabel()}"`);
 
     const img = page.locator('#screen img').first();
     if (!(await img.isVisible())) throw new Error('no picture is shown for the first card');
@@ -570,22 +570,18 @@ async function main() {
     if (!credit || credit === '·') throw new Error(`expected a credit/licence line under the picture, got "${credit}"`);
     await shot('16h-objects-choice');
 
-    // Answer all eight multiple-choice cards (right or wrong does not matter
-    // for this check — only that the game reaches the spelling phase).
+    // Answer all eight cards (right or wrong does not matter for this check —
+    // only that the round is multiple choice throughout and reaches the end).
     for (let i = 0; i < 8; i += 1) {
       await page.waitForSelector('.options .option', { timeout: 5000 });
       await page.locator('.options .option').first().click();
       await page.waitForTimeout(1700); // the engine's own wrong-answer pause is 1600ms
     }
 
-    await page.waitForFunction(() => /spell/i.test(document.querySelector('#screen .meter__label')?.textContent ?? ''), { timeout: 5000 });
-    await page.waitForSelector('.bank__tile', { timeout: 5000 });
-    const tiles = await page.locator('.bank__tile').count();
-    if (tiles < 2) throw new Error(`expected letter tiles for the spelling phase, found ${tiles}`);
-    // Letter tiles, not word tiles — single Luxembourgish words, one glyph each.
-    const longTile = await page.locator('.bank__tile').evaluateAll((nodes) => nodes.some((node) => node.textContent.trim().length > 2));
-    if (longTile) throw new Error('spelling phase is offering word tiles, not letters');
-    await shot('16i-objects-spell');
+    await page.waitForSelector('text=Another round', { timeout: 5000 });
+    const bankTiles = await page.locator('.bank__tile').count();
+    if (bankTiles > 0) throw new Error('expected no letter-bank spelling phase, found bank tiles');
+    await shot('16i-objects-done');
   });
 
   await step('the cheat sheet shows pronouns, verb tables and sentence patterns', async () => {

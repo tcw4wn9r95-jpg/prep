@@ -1289,17 +1289,20 @@ A fourth issue was in the title check itself, not the search: requiring the
 "Chips" — real Commons titles pluralise as often as not. Loosened to a
 leading word-boundary only.
 
-## The round: multiple choice, then spelling — as asked
+## The round: multiple choice, and only that
 
-One round is the same eight pictures twice: a multiple-choice pass first
-(the real word plus three distractors, reusing `drill/inputs.js`'s
-`choiceInput`), then a letter-tile pass on the same eight (`bankInput` with
-`letterBank`) — retrieval practice on a word just met, not a cold guess. Both
-input widgets are the drill engine's own; a picture card has nothing to teach
-a "tap the right option" or "build the word from tiles" control the
-vocabulary drill has not already taught it. Same optional-game shape as
-Pairs and Gender Sort: counts for the streak, never touches the Leitner
-boxes.
+One round is eight pictures, each a multiple-choice card (the real word plus
+three distractors, reusing `drill/inputs.js`'s `choiceInput`) — recognise the
+word, not produce it. This originally shipped as two passes over the same
+eight pictures, choice then a letter-tile spelling pass, but that duplicated
+what the vocabulary drill's own production cards already test once a word is
+strong enough to be asked that way; asked to narrow the game back to
+guessing, the spelling pass was cut rather than kept as a second, weaker copy
+of a task the main deck already owns. The input widget is still the drill
+engine's own — a picture card has nothing to teach a "tap the right option"
+control the vocabulary drill has not already taught it. Same optional-game
+shape as Pairs and Gender Sort: counts for the streak, never touches the
+Leitner boxes.
 
 ## What did not ship today
 
@@ -1320,7 +1323,7 @@ Second, the honest state is shipped rather than papered over: `app/js/screens/ob
 already has a graceful "not enough photos yet — run `npm run fetch:object-images`"
 state for exactly this situation (mirroring `speaking.js`'s existing
 image-description empty state), and the walkthrough test covers *both*
-branches — the full two-phase round when photos exist, the empty state when
+branches — the full round when photos exist, the empty state when
 they do not — so either state a real checkout is in is a tested path, not a
 gap. Running `npm run fetch:object-images` (idempotent, resumable, and now
 part of the `content` pipeline) on a connection Commons has not rate-limited

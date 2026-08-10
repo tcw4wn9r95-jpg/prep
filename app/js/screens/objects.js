@@ -7,12 +7,14 @@
  * test, and letting an easy win move that schedule would drift it without
  * anything looking wrong.
  *
- * One round is two passes over the same eight pictures, easiest question
- * first: multiple choice, then spelling the word letter by letter. Both input
- * widgets are the drill engine's own (`drill/inputs.js`) — a picture card has
- * nothing to teach a shared "tap the right option" or "build the word from
- * tiles" widget that the vocabulary drill has not already taught it, so this
- * screen borrows them rather than building a third copy.
+ * One round is one multiple-choice pass over eight pictures — recognise the
+ * word, not produce it from memory. The input widget is the drill engine's
+ * own (`drill/inputs.js`) — a picture card has nothing to teach a shared "tap
+ * the right option" widget the vocabulary drill has not already taught it, so
+ * this screen borrows it rather than building a second copy. Spelling from
+ * memory is what the vocabulary drill's production cards already test, once
+ * a word is strong enough to be asked that way — this screen stays a quick,
+ * low-stakes recognition game rather than duplicating that harder task.
  *
  * Every photograph is openly licensed, sourced by pipeline/fetch-object-images.js
  * from Wikimedia Commons, for a word the vocabulary deck already ships — never
@@ -26,8 +28,7 @@ import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { loadWordImages } from '../content.js';
 import { touchStreak } from '../store.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
-import { choiceInput, bankInput } from '../drill/inputs.js';
-import { letterBank } from '../drill/match.js';
+import { choiceInput } from '../drill/inputs.js';
 
 const ROUND_SIZE = 8;
 const OPTION_COUNT = 4;
@@ -96,63 +97,41 @@ export async function render(root, { settings, navigate }) {
 }
 
 /**
- * `words` is one fixed set of pictures for the whole round; `phase` decides
- * how they are asked about, and every picture is seen once in each phase
- * before the round ends — the multiple-choice pass first, so the letter pass
- * is retrieval practice on a word just met, not a cold guess.
+ * `words` is one fixed set of pictures for the round, each shown once as a
+ * multiple-choice card.
  */
 function playRound({ body, pool, words, settings, navigate }) {
-  const PHASES = ['choice', 'spell'];
-  let phase = 0;
   let index = 0;
   let correct = 0;
-  const totalCards = words.length * PHASES.length;
+  const totalCards = words.length;
 
   const amelie = new Amelie({ size: 'sm', bubble: true });
   const scoreLabel = el('span', { class: 'chip' }, `0 of ${totalCards}`);
   const photo = el('img', { alt: '', loading: 'lazy', style: { width: '100%', borderRadius: 'var(--r-lg)' } });
   const credit = el('p', { class: 'source-note', style: { textAlign: 'center' } });
-  const instruction = el('p', { class: 'drill__instruction' });
+  const instruction = el('p', { class: 'drill__instruction' }, 'What is this?');
   const inputHolder = el('div', {});
 
   fill(
     body,
-    el(
-      'div',
-      { class: 'row row--between' },
-      el('span', { class: 'meter__label' }, PHASES[phase] === 'choice' ? 'Multiple choice' : 'Spell it'),
-      scoreLabel,
-    ),
+    el('div', { class: 'row row--between' }, el('span', { class: 'meter__label' }, 'Multiple choice'), scoreLabel),
     el('div', { class: 'card', style: { textAlign: 'center' } }, photo, credit),
     instruction,
     inputHolder,
     el('div', { class: 'card' }, amelie.el),
   );
 
-  amelie.say(
-    PHASES[phase] === 'choice' ? 'What is this? Tap the Lëtzebuergesch word.' : 'You have seen these — now spell them.',
-    'idle',
-  );
+  amelie.say('What is this? Tap the Lëtzebuergesch word.', 'idle');
 
   showCard();
-
-  function currentPhaseLabel() {
-    return PHASES[phase] === 'choice' ? 'Multiple choice' : 'Spell it';
-  }
 
   function showCard() {
     const item = words[index];
     photo.src = item.imageUrl;
     photo.alt = 'Guess the word';
     credit.textContent = `${item.imageCredit ?? 'Unknown'} · ${item.imageLicence ?? ''}`;
-    instruction.textContent = PHASES[phase] === 'choice' ? 'What is this?' : 'Spell it';
-    body.querySelector('.meter__label').textContent = currentPhaseLabel();
 
-    const input =
-      PHASES[phase] === 'choice'
-        ? choiceInput({ options: choiceOptionsFor(item, pool) }, (result) => onAnswer(item, result))
-        : bankInput({ bank: letterBank(item.lb), bankKind: 'letter', answer: item.lb }, (result) => onAnswer(item, result));
-
+    const input = choiceInput({ options: choiceOptionsFor(item, pool) }, (result) => onAnswer(item, result));
     fill(inputHolder, input.el);
   }
 
@@ -170,16 +149,10 @@ function playRound({ body, pool, words, settings, navigate }) {
     setTimeout(
       () => {
         index += 1;
-        const enteringNewPhase = index >= words.length && phase + 1 < PHASES.length;
         if (index >= words.length) {
-          phase += 1;
-          index = 0;
-        }
-        if (phase >= PHASES.length) {
           finish();
           return;
         }
-        if (enteringNewPhase) amelie.say('Same pictures — now spell them.', 'idle');
         showCard();
       },
       result.correct ? 700 : 1600,
@@ -205,7 +178,7 @@ function playRound({ body, pool, words, settings, navigate }) {
           { class: 'card', style: { textAlign: 'center' } },
           el('p', { class: 'meter__label' }, 'This round'),
           el('p', { class: 'meter__value' }, `${correct} / ${totalCards}`),
-          el('p', { class: 'card__note' }, `${pct}% · ${plural(words.length, 'picture')}, multiple choice then spelling`),
+          el('p', { class: 'card__note' }, `${pct}% · ${plural(words.length, 'picture')}`),
         ),
         button('Another round', {
           variant: 'primary',
