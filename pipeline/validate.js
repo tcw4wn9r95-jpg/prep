@@ -55,6 +55,9 @@ const LUXEMBOURGISH_FIELDS = new Set([
   'participle',
   'moved',
   'conjunction',
+  // pipeline/build-grammar.js — dativeItems() records the preposition that
+  // governs the gapped pronoun; it is a real corpus token, not free text.
+  'preposition',
   'p1',
   'p2',
   'p3',

@@ -1377,3 +1377,117 @@ their entries removed from `word-images.json`, and their mirrored `.jpg`s
 deleted. 116 shipped, all hand-checked. `npm test` 203, `validate` PASS.
 Fewer correct pictures beat a full-looking deck with a stranger's photo or
 a metal nut captioned "Noss" in it.
+
+---
+
+# Follow-up 9 — multiple choice only, and three new grammar topics
+
+Two requests together: make the picture game only about guessing (no
+spelling pass), and "make sure I'm learning the N rule, how to describe
+what I like (and not), the dative and speaking in the past."
+
+## What is this? — multiple choice only
+
+The game shipped as two passes over the same eight pictures: choice, then a
+letter-tile spelling pass on the same eight. Asked to narrow it back to
+guessing, the spelling pass is cut rather than kept as a weaker second copy
+of a task the vocabulary drill's own production cards already own. A round
+is now one multiple-choice pass, half the length it was.
+
+## The audit: which of the four were already built
+
+Before writing anything new, each of the four asks was checked against what
+already ships, the same way every feature in this doc starts from what is
+actually there rather than an assumption:
+
+- **The n-rule** already has a theory topic, 250 mined practice items, a
+  cheat-sheet section, and a guaranteed share of every session's grammar
+  reserve. Checked the round-robin ordering (`content.js orderGrammar`)
+  specifically for the bug that motivated `STRUCTURE_RESERVE` in Follow-up
+  8 — a kind with many more items crowding out one with few — and it does
+  not apply here: fresh items are introduced in a fixed round-robin across
+  all nine (now twelve) kinds, one per kind per round, so `nrule`'s pool
+  size relative to `gender`'s 1,134 doesn't change how often either is
+  introduced. Nothing to fix.
+- **Speaking in the past** already has a theory topic (`perfect`, citing
+  that the interview has a whole phase on it) and, more directly, 17 of the
+  18 interview topics carry a `past` phase with the hint "Use the perfect:
+  hunn / sinn plus the participle" — an actual spoken-and-recorded task, not
+  a written recognition drill. Nothing to fix.
+- **The dative** and **likes/dislikes** were genuinely missing — not a
+  single grammar kind covers either, and vocab.json ships `gär` and
+  `gefalen` as ordinary one-word flashcards with no theory around them at
+  all.
+
+## Numbers, dative and likes: same shape, three new mined kinds
+
+All three follow the pattern `pipeline/build-grammar.js` already uses:
+closed-class Luxembourgish forms are named by hand (like the two perfect
+auxiliaries or the gender articles), checked against an independent source,
+then checked again by `assertAttested` against the LOD lexicon so the build
+fails rather than ships a typo. Everything else is mined from real corpus
+sentences.
+
+**Numbers.** LOD's own Grondwuertschatz — the exam-scoped word list this
+whole app is built from — turns out to lexicalise almost no numbers: of
+2,204 entries, exactly one ("nonzeg") is a number word. So there is no
+flashcard deck to build the way there is for nouns. What exists instead is
+518 real, audio-backed example sentences that happen to use a number in
+context — an age, a price, a quantity — which is also closer to what the
+exam actually asks. `numberItems()` gaps the number out of one of those
+sentences; the three distractors are other real number words from a
+hand-specified, lexicon-verified list of the 30 needed for 0–19, the tens,
+honnert and dausend. Two of those spellings — fofzéng (not "fënnefzéng"),
+uechtzéng (not "aachtzéng") — are not the regular digit+suffix an English
+speaker would predict, which is exactly why they are checked against a
+source rather than derived. 150 items.
+
+**Dative.** mat, bei, vun and no always take the dative, and the seven
+personal pronouns shift form for it: mir, dir, him, hir, eis, iech, hinnen.
+`dativeItems()` mines a real sentence where one of those pronouns directly
+follows one of those four prepositions, gaps the pronoun, and offers the
+other six as distractors — real forms, just naming a different person here.
+mir and dir are flagged explicitly in the theory: both are also, in a
+different sentence, the nominative plural "we" and the plural/formal "you"
+— the same spelling doing an unrelated job, the same trap the pronouns
+topic already calls out for dir alone. 96 items.
+
+**Likes and dislikes.** There is no separate Luxembourgish verb for "to
+like" — gär (or gären) is added to an ordinary verb and, like net, sits
+late in the clause rather than glued to it. `likesItems()` reuses
+`orderItems()` — the exact machinery `negation` already uses — pointed at
+gär/gären instead of net: three real orderings of one real sentence, only
+one of them correct. A sentence that already contains both net and gär
+mines naturally into a "doesn't like" item; nothing extra was needed for
+the negative case. 38 items.
+
+## Wiring three new kinds through, not just adding data
+
+Mining the items was the smaller half. Making them actually reachable
+touched: `drill/cards.js`'s `has.grammarChoice` gate (without this, the
+items exist but are never offered — the mistake that would make this land
+as "nothing happened"), the per-kind instruction/task/fact text so an
+explanation and a missed-card correction both know what to say, `likes`
+joining `SENTENCE_KINDS` (it shares negation's whole-sentence-options
+shape), `content.js`'s round-robin `KIND_ORDER`, and `pipeline/validate.js`
+— the new `preposition` field on dative items was rejected outright by the
+schema gate until it was declared, which is that gate doing exactly its
+job on a field nobody had told it about yet.
+
+The "explain this" system prompt (both `app/js/anthropic.js` and the
+Cloudflare Worker's copy, kept in sync by hand as the header there already
+requires) also needed a correction: it told the model Luxembourgish "has no
+case endings... and no genitive" while banning the word "dative" outright.
+That was fine when nothing taught a case; it is now misleading, so both
+copies now name the dative as a real, small exception — pronouns only,
+nowhere else — rather than let a model contradict a lesson the app itself
+just taught.
+
+## Verification
+
+`npm test` 211 (12 new fixture and real-data tests for the three miners) ·
+`validate` PASS (the `preposition` schema fix above) · `npm run walkthrough`
+45/45, including the shortened multiple-choice-only picture round · a direct
+in-browser check that a numbers, dative and likes item each build into a
+real card with no thrown error, and that all twelve grammar-guide topics
+render on the cheat sheet with zero console errors.

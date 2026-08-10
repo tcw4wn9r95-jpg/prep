@@ -100,8 +100,48 @@ const MAX_SUBCLAUSE_ITEMS = 160;
 const SUBORDINATORS = ['datt', 'ob'];
 
 /** Short, stable id prefixes per kind. */
-const ID_PREFIX = { wordorder: 'order', bracket: 'brkt', negation: 'neg' };
+const ID_PREFIX = { wordorder: 'order', bracket: 'brkt', negation: 'neg', likes: 'likes' };
 const MAX_NEGATION_ITEMS = 180;
+
+/**
+ * Cardinal numbers 0-19, the tens, and honnert/dausend — a closed class, like
+ * the auxiliaries above, so it is named here rather than mined. Each spelling
+ * was checked two ways before being trusted: against languagesandnumbers.com
+ * (an independent source, not LOD), then against `assertAttested` in main(),
+ * which refuses to build if the lexicon does not carry it. That second check
+ * is not decorative — several plausible guesses failed it during research
+ * ("aachtzéng" for 18, "fënnefzéng" for 15, "siechzeg" for 70) because
+ * Luxembourgish numbers are not a regular -zéng/-zeg suffix on the digit the
+ * way German's mostly are; the corpus's own spelling is the tie-breaker, not
+ * a guess extrapolated from the pattern.
+ */
+const NUMBER_WORDS = [
+  'null', 'eent', 'zwee', 'dräi', 'véier', 'fënnef', 'sechs', 'siwen', 'aacht', 'néng', 'zéng',
+  'eelef', 'zwielef', 'dräizéng', 'véierzéng', 'fofzéng', 'siechzéng', 'siwwenzéng', 'uechtzéng', 'nonzéng',
+  'zwanzeg', 'drësseg', 'véierzeg', 'fofzeg', 'sechzeg', 'siwwenzeg', 'achtzeg', 'nonzeg',
+  'honnert', 'dausend',
+];
+const MAX_NUMBER_ITEMS = 150;
+const MAX_PER_NUMBER_WORD = 15;
+
+/**
+ * The seven dative personal-pronoun forms — also a closed class, checked the
+ * same two ways as the numbers above (an independent grammar source, then
+ * `assertAttested`). `mir` and `dir` are real traps: they are also the
+ * nominative-plural "we" and the formal/plural "you", and the theory topic
+ * says so rather than leaving it to be noticed the hard way.
+ */
+const DATIVE_PRONOUNS = ['mir', 'dir', 'him', 'hir', 'eis', 'iech', 'hinnen'];
+const MAX_DATIVE_ITEMS = 150;
+const MAX_PER_DATIVE_PRONOUN = 20;
+
+/** Prepositions that always govern the dative case in Luxembourgish. */
+const DATIVE_PREPOSITIONS = new Set(['mat', 'bei', 'vun', 'no']);
+
+/** How you say you (dis)like something: gär/gären placed late in the clause,
+ * the same slot net occupies — "net gär" is simply both at once. */
+const LIKES_WORDS = new Set(['gär', 'gären']);
+const MAX_LIKES_ITEMS = 150;
 
 function shortHash(text) {
   return crypto.createHash('sha1').update(text).digest('hex').slice(0, 10);
@@ -722,6 +762,179 @@ function subclauseItems(corpus, lexicon, verbs) {
   return items;
 }
 
+/* ------------------------------------------------------------------ numbers */
+
+/**
+ * A number word, gapped out of a real sentence that already contains one.
+ *
+ * Same cloze shape as `perfectFormItems`: the sentence is LOD's, the gap is
+ * where LOD wrote the number, and the distractors are other real number words
+ * from the closed `NUMBER_WORDS` list — wrong for this sentence, never
+ * invented. The exam-scoped Grondwuertschatz corpus this app is otherwise
+ * built from carries almost no numbers as dictionary headwords (one, "nonzeg"
+ * — see docs/ui-content-benchmark.md), so this is the only honest source of
+ * number practice available: real sentences that happen to use one, not
+ * flashcards for words the corpus never lexicalised.
+ *
+ * The target is skipped at sentence position 0: a number opening a sentence
+ * is capitalised the way none of the other 29 options ever would be, which
+ * would make the answer identifiable by casing alone rather than by knowing
+ * the word.
+ */
+function numberItems(corpus, lexicon) {
+  const isClean = makeGate(lexicon);
+  const wordSet = new Set(NUMBER_WORDS);
+  const items = [];
+  const seen = new Set();
+  const perWord = new Map();
+
+  outer: for (const entry of corpus.entries) {
+    for (const meaning of entry.meanings ?? []) {
+      for (const example of meaning.examples ?? []) {
+        if (!example.text) continue;
+        for (const sentence of sentences(example.text)) {
+          const tokens = tokenise(sentence);
+          for (let i = 0; i < tokens.length; i += 1) {
+            if (i === 0) continue;
+            const token = tokens[i];
+            const key = token.value.toLowerCase();
+            if (!wordSet.has(key)) continue;
+            if ((perWord.get(key) ?? 0) >= MAX_PER_NUMBER_WORD) continue;
+
+            const sentenceKey = `${key}|${sentence}`;
+            if (seen.has(sentenceKey)) continue;
+            if (!isClean(sentence)) continue;
+
+            const span = spanOf(sentence, token.raw);
+            if (!span) continue;
+
+            const id = `gr-number-${shortHash(sentenceKey)}`;
+            const pool = NUMBER_WORDS.filter((word) => word !== key);
+            const picked = [];
+            for (let n = 0; n < 3 && pool.length; n += 1) {
+              const at = parseInt(shortHash(`${id}:${n}`).slice(0, 6), 16) % pool.length;
+              picked.push(pool.splice(at, 1)[0]);
+            }
+            if (picked.length < 3) continue;
+
+            const options = [token.raw, ...picked];
+            const at = rotate(id, options.length);
+            const rotated = [...options.slice(at), ...options.slice(0, at)];
+
+            items.push({
+              id,
+              kind: 'numbers',
+              before: sentence.slice(0, span.start),
+              after: sentence.slice(span.end),
+              options_lb: rotated,
+              correct: rotated.indexOf(token.raw),
+              entryId: entry.id,
+            });
+            seen.add(sentenceKey);
+            perWord.set(key, (perWord.get(key) ?? 0) + 1);
+            if (items.length >= MAX_NUMBER_ITEMS) break outer;
+          }
+        }
+      }
+    }
+  }
+  return items;
+}
+
+/* ------------------------------------------------------------------ dative */
+
+/**
+ * A dative personal pronoun, gapped out of a real sentence where it directly
+ * follows a preposition that governs the dative (`DATIVE_PREPOSITIONS`).
+ *
+ * The distractors are the other six dative pronoun forms, never a
+ * nominative or accusative one — the question this asks is "which person
+ * does this sentence actually name", the same honesty `adjectiveItems`
+ * documents for its own contrasts: every option is real and grammatical
+ * somewhere, just not what LOD wrote here.
+ */
+function dativeItems(corpus, lexicon) {
+  const isClean = makeGate(lexicon);
+  const items = [];
+  const seen = new Set();
+  const perPronoun = new Map();
+
+  outer: for (const entry of corpus.entries) {
+    for (const meaning of entry.meanings ?? []) {
+      for (const example of meaning.examples ?? []) {
+        if (!example.text) continue;
+        for (const sentence of sentences(example.text)) {
+          const tokens = tokenise(sentence);
+          for (let i = 0; i < tokens.length - 1; i += 1) {
+            const prep = tokens[i];
+            if (prep.pauseAfter || prep.isClitic) continue;
+            if (!DATIVE_PREPOSITIONS.has(prep.value.toLowerCase())) continue;
+            const target = tokens[i + 1];
+            if (target.isClitic) continue;
+            const key = target.value.toLowerCase();
+            if (!DATIVE_PRONOUNS.includes(key)) continue;
+            if ((perPronoun.get(key) ?? 0) >= MAX_PER_DATIVE_PRONOUN) continue;
+
+            const sentenceKey = `${key}|${sentence}`;
+            if (seen.has(sentenceKey)) continue;
+            if (!isClean(sentence)) continue;
+
+            const span = spanOf(sentence, target.raw);
+            if (!span) continue;
+
+            const id = `gr-dative-${shortHash(sentenceKey)}`;
+            const pool = DATIVE_PRONOUNS.filter((pronoun) => pronoun !== key);
+            const picked = [];
+            for (let n = 0; n < 3 && pool.length; n += 1) {
+              const at = parseInt(shortHash(`${id}:${n}`).slice(0, 6), 16) % pool.length;
+              picked.push(pool.splice(at, 1)[0]);
+            }
+            if (picked.length < 3) continue;
+
+            const options = [target.raw, ...picked];
+            const at = rotate(id, options.length);
+            const rotated = [...options.slice(at), ...options.slice(0, at)];
+
+            items.push({
+              id,
+              kind: 'dative',
+              before: sentence.slice(0, span.start),
+              after: sentence.slice(span.end),
+              preposition: prep.value,
+              options_lb: rotated,
+              correct: rotated.indexOf(target.raw),
+              entryId: entry.id,
+            });
+            seen.add(sentenceKey);
+            perPronoun.set(key, (perPronoun.get(key) ?? 0) + 1);
+            if (items.length >= MAX_DATIVE_ITEMS) break outer;
+          }
+        }
+      }
+    }
+  }
+  return items;
+}
+
+/* ------------------------------------------------------------------- likes */
+
+/**
+ * Where gär/gären goes — reuses `orderItems` exactly like `negation` does,
+ * because it is the same shape of rule: a particle that sits late in the
+ * clause rather than glued to the verb. A sentence already carrying `net`
+ * ahead of `gär` mines naturally into a "does not like" item; nothing extra
+ * is needed to teach the negative case.
+ */
+function likesItems(corpus, lexicon) {
+  return orderItems(corpus, lexicon, {
+    kind: 'likes',
+    findIndex: (tokens) => tokens.findIndex((token) => LIKES_WORDS.has(token.value.toLowerCase())),
+    limit: MAX_LIKES_ITEMS,
+    minWords: 4,
+    maxWords: 9,
+  });
+}
+
 /* ------------------------------------------------------------------------ */
 
 async function main() {
@@ -737,15 +950,21 @@ async function main() {
   for (const verb of verbs) for (const form of Object.values(verb.present ?? {})) if (form) finiteForms.add(form.toLowerCase());
 
   // The handful of Luxembourgish strings this file names rather than mines —
-  // the two auxiliaries and their finite forms. They are how a perfect is
-  // recognised at all, so a typo here would silently mine the wrong sentences.
-  assertAttested(lexicon, [...AUXILIARIES, ...FINITE_AUX_FORMS, NEGATOR]);
+  // the two auxiliaries and their finite forms, the numbers, the dative
+  // pronouns and the like/dislike particle. They are how each of those
+  // exercises is recognised at all, so a typo here would silently mine the
+  // wrong sentences or, for numbers/dative, ship a spelling the lexicon
+  // itself never attests.
+  assertAttested(lexicon, [...AUXILIARIES, ...FINITE_AUX_FORMS, NEGATOR, ...NUMBER_WORDS, ...DATIVE_PRONOUNS, ...LIKES_WORDS]);
 
   const gender = genderItems(vocab.items);
   const nrule = nRuleItems(corpus, lexicon);
   const adjective = adjectiveItems(corpus, lexicon);
   const perfectAux = perfectAuxItems(verbs);
   const perfectForm = perfectFormItems(corpus, lexicon, verbs);
+  const numbers = numberItems(corpus, lexicon);
+  const dative = dativeItems(corpus, lexicon);
+  const likes = likesItems(corpus, lexicon);
   const wordorder = orderItems(corpus, lexicon, {
     kind: 'wordorder',
     // The finite verb: the word the V2 rule is about. Recognised as a present
@@ -772,12 +991,16 @@ async function main() {
   const bracket = bracketItems(corpus, lexicon, verbs);
   const subclause = subclauseItems(corpus, lexicon, verbs);
 
-  const items = [...gender, ...nrule, ...adjective, ...perfectAux, ...perfectForm, ...wordorder, ...bracket, ...subclause, ...negation];
+  const items = [
+    ...gender, ...nrule, ...adjective, ...perfectAux, ...perfectForm, ...wordorder, ...bracket, ...subclause,
+    ...negation, ...numbers, ...dative, ...likes,
+  ];
 
   console.log(
     `grammar: ${gender.length} gender, ${nrule.length} n-rule, ${adjective.length} adjective-agreement, ` +
       `${perfectAux.length} perfect-auxiliary, ${perfectForm.length} perfect-participle, ` +
-      `${wordorder.length} word-order, ${bracket.length} verb-bracket, ${subclause.length} verb-final, ${negation.length} negation (${items.length} total)`,
+      `${wordorder.length} word-order, ${bracket.length} verb-bracket, ${subclause.length} verb-final, ` +
+      `${negation.length} negation, ${numbers.length} numbers, ${dative.length} dative, ${likes.length} likes (${items.length} total)`,
   );
 
   const payload = {
@@ -798,6 +1021,9 @@ async function main() {
         bracket: bracket.length,
         subclause: subclause.length,
         negation: negation.length,
+        numbers: numbers.length,
+        dative: dative.length,
+        likes: likes.length,
         total: items.length,
       },
     },
@@ -816,4 +1042,7 @@ if (require.main === module) {
   });
 }
 
-module.exports = { genderItems, nRuleItems, adjectiveItems };
+module.exports = {
+  genderItems, nRuleItems, adjectiveItems, numberItems, dativeItems, likesItems,
+  NUMBER_WORDS, DATIVE_PRONOUNS, DATIVE_PREPOSITIONS, LIKES_WORDS,
+};

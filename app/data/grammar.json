@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-07T10:43:21.180Z",
+    "generatedAt": "2026-08-10T21:17:30.067Z",
     "generator": "pipeline/build-grammar.js",
     "note": "Every option is either a value LOD itself assigned (noun gender/article) or a span copied verbatim from a real LOD example sentence. Nothing here is generated, inflected or corrected by this script - see the file header.",
     "counts": {
@@ -13,7 +13,10 @@
       "bracket": 200,
       "subclause": 98,
       "negation": 180,
-      "total": 3087
+      "numbers": 150,
+      "dative": 96,
+      "likes": 38,
+      "total": 3371
     }
   },
   "items": [
@@ -49052,6 +49055,4002 @@
       ],
       "correct": 1,
       "entryId": "MOTIVEIEREN1"
+    },
+    {
+      "id": "gr-number-5a2e8f1eab",
+      "kind": "numbers",
+      "before": "wat genee geschitt ass, soen ech der eng Kéier ënner ",
+      "after": " Aen",
+      "options_lb": [
+        "null",
+        "honnert",
+        "véier",
+        "véierzeg"
+      ],
+      "correct": 2,
+      "entryId": "A1"
+    },
+    {
+      "id": "gr-number-6bc2689f85",
+      "kind": "numbers",
+      "before": "e Wierfel huet ",
+      "after": " Säiten an 21 Aen",
+      "options_lb": [
+        "véier",
+        "null",
+        "dräi",
+        "sechs"
+      ],
+      "correct": 3,
+      "entryId": "A1"
+    },
+    {
+      "id": "gr-number-5449b2ae92",
+      "kind": "numbers",
+      "before": "am Musée sinn am Moment d'Aarbechte vu ",
+      "after": " bekannte Kënschtler ausgestallt",
+      "options_lb": [
+        "zwee",
+        "siwwenzéng",
+        "sechs",
+        "eelef"
+      ],
+      "correct": 2,
+      "entryId": "AARBECHT1"
+    },
+    {
+      "id": "gr-number-275c6ba140",
+      "kind": "numbers",
+      "before": "de Kran, deen ëmgefall ass, huet ",
+      "after": " Aarbechter blesséiert",
+      "options_lb": [
+        "néng",
+        "zwee",
+        "véier",
+        "siwwenzéng"
+      ],
+      "correct": 1,
+      "entryId": "AARBECHTER1"
+    },
+    {
+      "id": "gr-number-f45da5139b",
+      "kind": "numbers",
+      "before": "en Oktopus erkennt een u sengen ",
+      "after": " Äerm",
+      "options_lb": [
+        "véier",
+        "nonzeg",
+        "honnert",
+        "aacht"
+      ],
+      "correct": 3,
+      "entryId": "AARM2"
+    },
+    {
+      "id": "gr-number-c553829142",
+      "kind": "numbers",
+      "before": "de Floss spléckt sech an ",
+      "after": " Äerm",
+      "options_lb": [
+        "véierzeg",
+        "zwee",
+        "eelef",
+        "nonzeg"
+      ],
+      "correct": 1,
+      "entryId": "AARM2"
+    },
+    {
+      "id": "gr-number-ee7492816e",
+      "kind": "numbers",
+      "before": "no ",
+      "after": " Joer an Däitschland hat e säi lëtzebuergeschen Accent verluer",
+      "options_lb": [
+        "néng",
+        "sechs",
+        "zwanzeg",
+        "zéng"
+      ],
+      "correct": 3,
+      "entryId": "ACCENT1"
+    },
+    {
+      "id": "gr-number-062b52a482",
+      "kind": "numbers",
+      "before": "een Af mécht der ",
+      "after": "",
+      "options_lb": [
+        "véierzéng",
+        "zwielef",
+        "siechzéng",
+        "honnert"
+      ],
+      "correct": 3,
+      "entryId": "AF1"
+    },
+    {
+      "id": "gr-number-9670d3d078",
+      "kind": "numbers",
+      "before": "deen ",
+      "after": " Joer ale Bam huet missen ëmgeluecht ginn",
+      "options_lb": [
+        "honnert",
+        "siechzéng",
+        "véierzéng",
+        "fofzéng"
+      ],
+      "correct": 0,
+      "entryId": "AL1"
+    },
+    {
+      "id": "gr-number-34f3667a1f",
+      "kind": "numbers",
+      "before": "hatt ass ",
+      "after": " Joer al",
+      "options_lb": [
+        "dausend",
+        "fofzéng",
+        "fënnef",
+        "drësseg"
+      ],
+      "correct": 3,
+      "entryId": "AL1"
+    },
+    {
+      "id": "gr-number-c687a34fc1",
+      "kind": "numbers",
+      "before": "bei dësem Gedicht huet all Stroph ",
+      "after": " Versen",
+      "options_lb": [
+        "zwee",
+        "dausend",
+        "aacht",
+        "siwen"
+      ],
+      "correct": 2,
+      "entryId": "ALL2"
+    },
+    {
+      "id": "gr-number-37148a2e60",
+      "kind": "numbers",
+      "before": "an deem Geschäft leien d'Präisser vun de Schong alleguer ëm ",
+      "after": " Euro",
+      "options_lb": [
+        "null",
+        "achtzeg",
+        "honnert",
+        "zwee"
+      ],
+      "correct": 2,
+      "entryId": "ALLEGUER1"
+    },
+    {
+      "id": "gr-number-d7aaa1d5e8",
+      "kind": "numbers",
+      "before": "eis Kanner kruten alle ",
+      "after": " de Bloen Houscht",
+      "options_lb": [
+        "null",
+        "fofzéng",
+        "véier",
+        "fënnef"
+      ],
+      "correct": 2,
+      "entryId": "ALLEN1"
+    },
+    {
+      "id": "gr-number-c3dfae7653",
+      "kind": "numbers",
+      "before": "d'Täter sinn allen ",
+      "after": " ongeféier 30 Joer al",
+      "options_lb": [
+        "uechtzéng",
+        "zwee",
+        "siechzéng",
+        "zwielef"
+      ],
+      "correct": 1,
+      "entryId": "ALLEN1"
+    },
+    {
+      "id": "gr-number-4e7632689f",
+      "kind": "numbers",
+      "before": "mir hunn der Nopesch hir Bouwen allen ",
+      "after": " am Park gesinn",
+      "options_lb": [
+        "dräi",
+        "null",
+        "siwwenzeg",
+        "fofzeg"
+      ],
+      "correct": 0,
+      "entryId": "ALLEN1"
+    },
+    {
+      "id": "gr-number-9cb6d3abe5",
+      "kind": "numbers",
+      "before": "dat gouf am Februar gemaach, also virun ",
+      "after": " Méint",
+      "options_lb": [
+        "siwwenzeg",
+        "dräi",
+        "véier",
+        "zwee"
+      ],
+      "correct": 3,
+      "entryId": "ALSO1"
+    },
+    {
+      "id": "gr-number-676aba2670",
+      "kind": "numbers",
+      "before": "ech hunn alt esou meng Bedenken, ob dat eppes gëtt mat hinnen ",
+      "after": "",
+      "options_lb": [
+        "fofzéng",
+        "nonzeg",
+        "zwee",
+        "dausend"
+      ],
+      "correct": 2,
+      "entryId": "ALT2"
+    },
+    {
+      "id": "gr-number-f028f4aa71",
+      "kind": "numbers",
+      "before": "et waren direkt ",
+      "after": " Ambulanzen op der Plaz vum Accident",
+      "options_lb": [
+        "zwielef",
+        "dräi",
+        "siwwenzéng",
+        "nonzeg"
+      ],
+      "correct": 1,
+      "entryId": "AMBULANZ1"
+    },
+    {
+      "id": "gr-number-b132756dc2",
+      "kind": "numbers",
+      "before": "an ",
+      "after": " Deeg hunn ech e Rendez-vous beim Dokter",
+      "options_lb": [
+        "achtzeg",
+        "zwee",
+        "siwen",
+        "eent"
+      ],
+      "correct": 1,
+      "entryId": "AN3"
+    },
+    {
+      "id": "gr-number-48533d6ac4",
+      "kind": "numbers",
+      "before": "dës Aarbecht kann an ",
+      "after": " Stonne gemaach ginn",
+      "options_lb": [
+        "néng",
+        "nonzéng",
+        "zéng",
+        "dräi"
+      ],
+      "correct": 3,
+      "entryId": "AN3"
+    },
+    {
+      "id": "gr-number-8895d680d1",
+      "kind": "numbers",
+      "before": "dat ",
+      "after": " ergëtt sech aus deem aneren",
+      "options_lb": [
+        "eent",
+        "véierzeg",
+        "fënnef",
+        "zwanzeg"
+      ],
+      "correct": 0,
+      "entryId": "ANEREN1"
+    },
+    {
+      "id": "gr-number-122498cdd1",
+      "kind": "numbers",
+      "before": "d'Kanner hu sech ",
+      "after": " dat anert ageseeft",
+      "options_lb": [
+        "fofzéng",
+        "eent",
+        "sechs",
+        "dräizéng"
+      ],
+      "correct": 1,
+      "entryId": "ANERT1"
+    },
+    {
+      "id": "gr-number-0545edb3bc",
+      "kind": "numbers",
+      "before": "géi wannechgelift bei de Bäcker ",
+      "after": " Aachtercher an zwou Äppeltäsche kafen!",
+      "options_lb": [
+        "null",
+        "aacht",
+        "dräi",
+        "uechtzéng"
+      ],
+      "correct": 2,
+      "entryId": "APPELTASCH1"
+    },
+    {
+      "id": "gr-number-94c6d89aea",
+      "kind": "numbers",
+      "before": "et sinn ",
+      "after": " Architekten um Bauprojet bedeelegt",
+      "options_lb": [
+        "zwee",
+        "nonzeg",
+        "dräizéng",
+        "fofzeg"
+      ],
+      "correct": 0,
+      "entryId": "ARCHITEKT1"
+    },
+    {
+      "id": "gr-number-ef5a7089d0",
+      "kind": "numbers",
+      "before": "mir treffen eis ëm ",
+      "after": " Auer owes",
+      "options_lb": [
+        "siwen",
+        "véier",
+        "eelef",
+        "aacht"
+      ],
+      "correct": 3,
+      "entryId": "AUER1"
+    },
+    {
+      "id": "gr-number-88a9f10d9a",
+      "kind": "numbers",
+      "before": "d'Geschäfter maachen haut schonn ëm ",
+      "after": " Auer zou",
+      "options_lb": [
+        "sechs",
+        "uechtzéng",
+        "zwee",
+        "véier"
+      ],
+      "correct": 3,
+      "entryId": "AUER1"
+    },
+    {
+      "id": "gr-number-62ee7aab60",
+      "kind": "numbers",
+      "before": "ech kommen eng Auer ",
+      "after": "",
+      "options_lb": [
+        "siechzéng",
+        "dräi",
+        "zwielef",
+        "nonzeg"
+      ],
+      "correct": 1,
+      "entryId": "AUER1"
+    },
+    {
+      "id": "gr-number-789e1ce530",
+      "kind": "numbers",
+      "before": "meng Mamm ass nervös, se kuckt all ",
+      "after": " Minutten op d'Auer",
+      "options_lb": [
+        "véierzéng",
+        "zéng",
+        "siwwenzeg",
+        "eelef"
+      ],
+      "correct": 1,
+      "entryId": "AUER1"
+    },
+    {
+      "id": "gr-number-32f65e4ae4",
+      "kind": "numbers",
+      "before": "et brauch ee just ",
+      "after": " Minutten, fir de Questionnaire auszefëllen",
+      "options_lb": [
+        "dräi",
+        "aacht",
+        "sechzeg",
+        "fënnef"
+      ],
+      "correct": 3,
+      "entryId": "AUSFELLEN1"
+    },
+    {
+      "id": "gr-number-ef9da5467b",
+      "kind": "numbers",
+      "before": "eis ",
+      "after": " Kanner wunnen am Ausland",
+      "options_lb": [
+        "siwwenzeg",
+        "dausend",
+        "zwee",
+        "fofzéng"
+      ],
+      "correct": 2,
+      "entryId": "AUSLAND1"
+    },
+    {
+      "id": "gr-number-6ed12aeb0d",
+      "kind": "numbers",
+      "before": "d'Autorisatioun leeft no ",
+      "after": " Joer automatesch of",
+      "options_lb": [
+        "sechzeg",
+        "dräi",
+        "zéng",
+        "zwee"
+      ],
+      "correct": 1,
+      "entryId": "AUTOMATESCH1"
+    },
+    {
+      "id": "gr-number-a770d03792",
+      "kind": "numbers",
+      "before": "mer hu mam Auto ",
+      "after": " Stonne gebraucht, awer mer haten och vill Stau ënnerwee",
+      "options_lb": [
+        "dräi",
+        "zéng",
+        "sechs",
+        "eelef"
+      ],
+      "correct": 2,
+      "entryId": "AWER2"
+    },
+    {
+      "id": "gr-number-64ebf45347",
+      "kind": "numbers",
+      "before": "am Laf vum Joer sinn ",
+      "after": " nei Schüler an eis Klass bäikomm",
+      "options_lb": [
+        "fofzeg",
+        "zwee",
+        "eent",
+        "achtzeg"
+      ],
+      "correct": 1,
+      "entryId": "BAIKOMMEN1"
+    },
+    {
+      "id": "gr-number-85ad188c6f",
+      "kind": "numbers",
+      "before": "de Bäcker huet fir e Client ",
+      "after": " Baguettë gebak",
+      "options_lb": [
+        "fofzeg",
+        "achtzeg",
+        "honnert",
+        "dräi"
+      ],
+      "correct": 0,
+      "entryId": "BAKEN1"
+    },
+    {
+      "id": "gr-number-352a85ed34",
+      "kind": "numbers",
+      "before": "meng Schwëster ka mat ",
+      "after": " Bäll jongléieren",
+      "options_lb": [
+        "dräi",
+        "dausend",
+        "siechzéng",
+        "null"
+      ],
+      "correct": 0,
+      "entryId": "BALL1"
+    },
+    {
+      "id": "gr-number-4e3844c882",
+      "kind": "numbers",
+      "before": "dëse Bam ass méi ewéi ",
+      "after": " Joer al",
+      "options_lb": [
+        "dräizéng",
+        "honnert",
+        "zwielef",
+        "fofzéng"
+      ],
+      "correct": 1,
+      "entryId": "BAM1"
+    },
+    {
+      "id": "gr-number-147772c80b",
+      "kind": "numbers",
+      "before": "an dengem Kaartespill sinn nëmmen ",
+      "after": " Baier!",
+      "options_lb": [
+        "dräi",
+        "nonzéng",
+        "véierzeg",
+        "eelef"
+      ],
+      "correct": 0,
+      "entryId": "BAUER1"
+    },
+    {
+      "id": "gr-number-b119439b73",
+      "kind": "numbers",
+      "before": "bestell eis nach ",
+      "after": " Béier!",
+      "options_lb": [
+        "dausend",
+        "dräizéng",
+        "zwielef",
+        "zwee"
+      ],
+      "correct": 3,
+      "entryId": "BEIER1"
+    },
+    {
+      "id": "gr-number-f459729a02",
+      "kind": "numbers",
+      "before": "ech hu fir ",
+      "after": " Auer en Taxi bestallt",
+      "options_lb": [
+        "siwwenzéng",
+        "aacht",
+        "achtzeg",
+        "zéng"
+      ],
+      "correct": 3,
+      "entryId": "BESTELLEN1"
+    },
+    {
+      "id": "gr-number-def83ca1f7",
+      "kind": "numbers",
+      "before": "et ass Véierel bis ",
+      "after": "",
+      "options_lb": [
+        "nonzéng",
+        "néng",
+        "véierzéng",
+        "fënnef"
+      ],
+      "correct": 1,
+      "entryId": "BIS1"
+    },
+    {
+      "id": "gr-number-5d6c329ff5",
+      "kind": "numbers",
+      "before": "et ass ",
+      "after": " Minutte bis dräi",
+      "options_lb": [
+        "aacht",
+        "sechzeg",
+        "néng",
+        "eelef"
+      ],
+      "correct": 0,
+      "entryId": "BIS1"
+    },
+    {
+      "id": "gr-number-e23f6ec0bc",
+      "kind": "numbers",
+      "before": "et ass aacht Minutte bis ",
+      "after": "",
+      "options_lb": [
+        "fënnef",
+        "sechzeg",
+        "dräi",
+        "zwanzeg"
+      ],
+      "correct": 2,
+      "entryId": "BIS1"
+    },
+    {
+      "id": "gr-number-8c4887fdc3",
+      "kind": "numbers",
+      "before": "et ass ",
+      "after": " (Minutten) bis dräi",
+      "options_lb": [
+        "véierzéng",
+        "zéng",
+        "siwwenzeg",
+        "fënnef"
+      ],
+      "correct": 1,
+      "entryId": "BIS1"
+    },
+    {
+      "id": "gr-number-98b2c07d02",
+      "kind": "numbers",
+      "before": "et ass zéng (Minutten) bis ",
+      "after": "",
+      "options_lb": [
+        "néng",
+        "nonzeg",
+        "dräi",
+        "eent"
+      ],
+      "correct": 2,
+      "entryId": "BIS1"
+    },
+    {
+      "id": "gr-number-ab6a68133c",
+      "kind": "numbers",
+      "before": "et ass ",
+      "after": " bis hallwer",
+      "options_lb": [
+        "siwen",
+        "fënnef",
+        "véierzeg",
+        "siwwenzéng"
+      ],
+      "correct": 1,
+      "entryId": "BIS1"
+    },
+    {
+      "id": "gr-number-38ba6cb29d",
+      "kind": "numbers",
+      "before": "de Bus fiert all Stonn um ",
+      "after": " Minutte bis",
+      "options_lb": [
+        "sechs",
+        "néng",
+        "siechzéng",
+        "fënnef"
+      ],
+      "correct": 0,
+      "entryId": "BIS1"
+    },
+    {
+      "id": "gr-number-d119fa791a",
+      "kind": "numbers",
+      "before": "de Bus fiert all Stonn um ",
+      "after": " (Minutten) bis",
+      "options_lb": [
+        "fënnef",
+        "siechzéng",
+        "nonzéng",
+        "néng"
+      ],
+      "correct": 0,
+      "entryId": "BIS1"
+    },
+    {
+      "id": "gr-number-4481c619bb",
+      "kind": "numbers",
+      "before": "Kanéngercher kënne bis zu ",
+      "after": " Joer al ginn",
+      "options_lb": [
+        "zwielef",
+        "eelef",
+        "sechs",
+        "dräi"
+      ],
+      "correct": 0,
+      "entryId": "BIS1"
+    },
+    {
+      "id": "gr-number-c1c2b29c7a",
+      "kind": "numbers",
+      "before": "meng Frëndin huet an der Prüfung ",
+      "after": " Blieder voll geschriwwen",
+      "options_lb": [
+        "dräi",
+        "siwwenzéng",
+        "zwielef",
+        "véier"
+      ],
+      "correct": 0,
+      "entryId": "BLAT1"
+    },
+    {
+      "id": "gr-number-332145f131",
+      "kind": "numbers",
+      "before": "kanns de mir ",
+      "after": " Blat Pabeier léinen?",
+      "options_lb": [
+        "zwee",
+        "véier",
+        "aacht",
+        "sechzeg"
+      ],
+      "correct": 0,
+      "entryId": "BLAT1"
+    },
+    {
+      "id": "gr-number-ba4fe90b3d",
+      "kind": "numbers",
+      "before": "de Garage huet ",
+      "after": " Deeg gebraucht, fir d'Boîte vum Auto ze ersetzen",
+      "options_lb": [
+        "zwee",
+        "siechzéng",
+        "aacht",
+        "véierzeg"
+      ],
+      "correct": 0,
+      "entryId": "BOITE1"
+    },
+    {
+      "id": "gr-number-37442d38d8",
+      "kind": "numbers",
+      "before": "dem Kand seng ",
+      "after": " Bopae liewen nach",
+      "options_lb": [
+        "dräi",
+        "zwielef",
+        "dausend",
+        "zwee"
+      ],
+      "correct": 3,
+      "entryId": "BOPA1"
+    },
+    {
+      "id": "gr-number-492bcf5681",
+      "kind": "numbers",
+      "before": "eis Noperen hunn ",
+      "after": " Bouwen",
+      "options_lb": [
+        "siwen",
+        "néng",
+        "zwee",
+        "véierzeg"
+      ],
+      "correct": 2,
+      "entryId": "BOUF1"
+    },
+    {
+      "id": "gr-number-5c30ca9f4a",
+      "kind": "numbers",
+      "before": "mäi Mann huet ",
+      "after": " Brëller, ee fir no an ee fir wäit",
+      "options_lb": [
+        "nonzeg",
+        "dausend",
+        "zwee",
+        "dräizéng"
+      ],
+      "correct": 2,
+      "entryId": "BRELL1"
+    },
+    {
+      "id": "gr-number-a9b4055d22",
+      "kind": "numbers",
+      "before": "mat ",
+      "after": " Dioptrien op deenen zwee Ae wier ech ouni Brëll verluer",
+      "options_lb": [
+        "fofzeg",
+        "sechs",
+        "siwwenzeg",
+        "véierzeg"
+      ],
+      "correct": 1,
+      "entryId": "BRELL1"
+    },
+    {
+      "id": "gr-number-dc83556095",
+      "kind": "numbers",
+      "before": "mir hunn eis Rees ",
+      "after": " Méint am Viraus gebucht",
+      "options_lb": [
+        "nonzéng",
+        "siwen",
+        "achtzeg",
+        "dräi"
+      ],
+      "correct": 3,
+      "entryId": "BUCHEN1"
+    },
+    {
+      "id": "gr-number-eff70379cc",
+      "kind": "numbers",
+      "before": "déi ",
+      "after": " lescht Budgete waren ausgeglach",
+      "options_lb": [
+        "néng",
+        "dräi",
+        "eent",
+        "fofzéng"
+      ],
+      "correct": 1,
+      "entryId": "BUDGET1"
+    },
+    {
+      "id": "gr-number-3023cc0a5e",
+      "kind": "numbers",
+      "before": "d'Stad huet ",
+      "after": " nei Busse bestallt",
+      "options_lb": [
+        "fënnef",
+        "sechzeg",
+        "siechzéng",
+        "véierzéng"
+      ],
+      "correct": 0,
+      "entryId": "BUS1"
+    },
+    {
+      "id": "gr-number-3e0295d148",
+      "kind": "numbers",
+      "before": "setz dech op deng ",
+      "after": " Buschtawen!",
+      "options_lb": [
+        "véier",
+        "néng",
+        "honnert",
+        "achtzeg"
+      ],
+      "correct": 0,
+      "entryId": "BUSCHTAF1"
+    },
+    {
+      "id": "gr-number-59d82b5eba",
+      "kind": "numbers",
+      "before": "eise Buttek huet sonndes vun ",
+      "after": " bis zwielef Auer op",
+      "options_lb": [
+        "dräi",
+        "aacht",
+        "véierzeg",
+        "eelef"
+      ],
+      "correct": 1,
+      "entryId": "BUTTEK1"
+    },
+    {
+      "id": "gr-number-35b8c5fa2e",
+      "kind": "numbers",
+      "before": "eise Buttek huet sonndes vun aacht bis ",
+      "after": " Auer op",
+      "options_lb": [
+        "zwielef",
+        "drësseg",
+        "dräizéng",
+        "nonzéng"
+      ],
+      "correct": 0,
+      "entryId": "BUTTEK1"
+    },
+    {
+      "id": "gr-number-ff1c72d71c",
+      "kind": "numbers",
+      "before": "d'Affekotin huet ",
+      "after": " Leit an hirem Cabinet schaffen",
+      "options_lb": [
+        "fënnef",
+        "véierzeg",
+        "zwee",
+        "siwen"
+      ],
+      "correct": 0,
+      "entryId": "CABINET1"
+    },
+    {
+      "id": "gr-number-64395b5a85",
+      "kind": "numbers",
+      "before": "de Camion ass fir eng maximal Charge vu ",
+      "after": " Tonnen zougelooss",
+      "options_lb": [
+        "véierzeg",
+        "fënnef",
+        "siwen",
+        "zwee"
+      ],
+      "correct": 0,
+      "entryId": "CHARGE2"
+    },
+    {
+      "id": "gr-number-9ca2c9b868",
+      "kind": "numbers",
+      "before": "de Chantier däerft ëm déi ",
+      "after": " Joer daueren",
+      "options_lb": [
+        "siechzéng",
+        "véierzéng",
+        "véierzeg",
+        "dräi"
+      ],
+      "correct": 3,
+      "entryId": "DAERFEN1"
+    },
+    {
+      "id": "gr-number-897fa588c2",
+      "kind": "numbers",
+      "before": "ech hu ",
+      "after": " Deeg laang op däi Bréif gewaart",
+      "options_lb": [
+        "aacht",
+        "véier",
+        "siwwenzéng",
+        "uechtzéng"
+      ],
+      "correct": 1,
+      "entryId": "DAG1"
+    },
+    {
+      "id": "gr-number-04a3f07c43",
+      "kind": "numbers",
+      "before": "de Festival dauert ",
+      "after": " Deeg",
+      "options_lb": [
+        "aacht",
+        "fofzeg",
+        "nonzéng",
+        "dräi"
+      ],
+      "correct": 0,
+      "entryId": "DAG1"
+    },
+    {
+      "id": "gr-number-73f105ffd8",
+      "kind": "numbers",
+      "before": "haut (an) ",
+      "after": " Deeg gi mir bestuet",
+      "options_lb": [
+        "drësseg",
+        "eelef",
+        "aacht",
+        "fofzéng"
+      ],
+      "correct": 2,
+      "entryId": "DAG1"
+    },
+    {
+      "id": "gr-number-b98e2e1552",
+      "kind": "numbers",
+      "before": "eist Geschäft ass ",
+      "after": " Deeg op siwen op",
+      "options_lb": [
+        "uechtzéng",
+        "siwwenzeg",
+        "dausend",
+        "siwen"
+      ],
+      "correct": 3,
+      "entryId": "DAG1"
+    },
+    {
+      "id": "gr-number-f41617c7db",
+      "kind": "numbers",
+      "before": "et sinn haut op den Dag ",
+      "after": " Joer, datt ech deen Accident hat",
+      "options_lb": [
+        "dräi",
+        "zwee",
+        "fofzéng",
+        "sechs"
+      ],
+      "correct": 0,
+      "entryId": "DAG1"
+    },
+    {
+      "id": "gr-number-ae07716b57",
+      "kind": "numbers",
+      "before": "deen décke Bam ass bal ",
+      "after": " Joer al",
+      "options_lb": [
+        "dräi",
+        "honnert",
+        "sechs",
+        "dausend"
+      ],
+      "correct": 1,
+      "entryId": "DECK1"
+    },
+    {
+      "id": "gr-number-ad562b000d",
+      "kind": "numbers",
+      "before": "d'Briet ass ",
+      "after": " Millimeter déck",
+      "options_lb": [
+        "zéng",
+        "eent",
+        "nonzéng",
+        "uechtzéng"
+      ],
+      "correct": 0,
+      "entryId": "DECK1"
+    },
+    {
+      "id": "gr-number-9e13e296f6",
+      "kind": "numbers",
+      "before": "géint ",
+      "after": " Auer nomëttes ass ëmmer décken Trafick an der Stad",
+      "options_lb": [
+        "siwwenzeg",
+        "fënnef",
+        "null",
+        "véierzéng"
+      ],
+      "correct": 1,
+      "entryId": "DECK1"
+    },
+    {
+      "id": "gr-number-9706a854c2",
+      "kind": "numbers",
+      "before": "den Déngscht fir de Verstuerwenen ass muer ëm ",
+      "after": " Auer",
+      "options_lb": [
+        "véier",
+        "véierzeg",
+        "drësseg",
+        "néng"
+      ],
+      "correct": 0,
+      "entryId": "DENGSCHT1"
+    },
+    {
+      "id": "gr-number-4124f86408",
+      "kind": "numbers",
+      "before": "dës Spillsaach ass geduecht fir Kanner ënner ",
+      "after": " Joer",
+      "options_lb": [
+        "zéng",
+        "véier",
+        "fënnef",
+        "achtzeg"
+      ],
+      "correct": 2,
+      "entryId": "DENKEN1"
+    },
+    {
+      "id": "gr-number-9bf96baaad",
+      "kind": "numbers",
+      "before": "den Depart vum Zuch ass ëm ",
+      "after": " Auer",
+      "options_lb": [
+        "siechzéng",
+        "honnert",
+        "aacht",
+        "dausend"
+      ],
+      "correct": 2,
+      "entryId": "DEPART1"
+    },
+    {
+      "id": "gr-number-7c9c87d2b7",
+      "kind": "numbers",
+      "before": "ech wëll nëmmen en Auto mat ",
+      "after": " Dieren",
+      "options_lb": [
+        "véier",
+        "sechs",
+        "zéng",
+        "nonzeg"
+      ],
+      "correct": 0,
+      "entryId": "DIER1"
+    },
+    {
+      "id": "gr-number-eff4b1a6be",
+      "kind": "numbers",
+      "before": "vun do bis heihi sinn et ",
+      "after": " Kilometer",
+      "options_lb": [
+        "nonzéng",
+        "zéng",
+        "dräi",
+        "siwen"
+      ],
+      "correct": 1,
+      "entryId": "DO1"
+    },
+    {
+      "id": "gr-number-45758b3f42",
+      "kind": "numbers",
+      "before": "ech wäert haut net virun ",
+      "after": " Auer doheem sinn",
+      "options_lb": [
+        "null",
+        "achtzeg",
+        "fofzeg",
+        "aacht"
+      ],
+      "correct": 3,
+      "entryId": "DOHEEM2"
+    },
+    {
+      "id": "gr-number-1d0079d141",
+      "kind": "numbers",
+      "before": "de Film geet eréischt ëm ",
+      "after": " Auer un, bis dohi musst Der Iech nach gedëllegen",
+      "options_lb": [
+        "néng",
+        "null",
+        "dräi",
+        "eelef"
+      ],
+      "correct": 0,
+      "entryId": "DOHIN1"
+    },
+    {
+      "id": "gr-number-ff109f3a7e",
+      "kind": "numbers",
+      "before": "mäi beschte Frënd ass elo schonn iwwer ",
+      "after": " Joer dréchen",
+      "options_lb": [
+        "véierzéng",
+        "aacht",
+        "zéng",
+        "zwielef"
+      ],
+      "correct": 2,
+      "entryId": "DRECHEN1"
+    },
+    {
+      "id": "gr-number-00573fe98f",
+      "kind": "numbers",
+      "before": "mir sinn ëm ",
+      "after": " Ecke Famill mateneen",
+      "options_lb": [
+        "siechzéng",
+        "siwen",
+        "fënnef",
+        "sechs"
+      ],
+      "correct": 1,
+      "entryId": "ECK1"
+    },
+    {
+      "id": "gr-number-22a3cd3771",
+      "kind": "numbers",
+      "before": "d'Ëffnungszäite vum Service si vun ",
+      "after": " bis zwielef a vun dräizéng bis siwwenzéng Auer",
+      "options_lb": [
+        "aacht",
+        "siwwenzeg",
+        "uechtzéng",
+        "fofzeg"
+      ],
+      "correct": 0,
+      "entryId": "EFFNUNGSZAITEN1"
+    },
+    {
+      "id": "gr-number-121dc1cbd4",
+      "kind": "numbers",
+      "before": "d'Ëffnungszäite vum Service si vun aacht bis ",
+      "after": " a vun dräizéng bis siwwenzéng Auer",
+      "options_lb": [
+        "siechzéng",
+        "nonzéng",
+        "zwielef",
+        "véierzéng"
+      ],
+      "correct": 2,
+      "entryId": "EFFNUNGSZAITEN1"
+    },
+    {
+      "id": "gr-number-45a3056491",
+      "kind": "numbers",
+      "before": "d'Ëffnungszäite vum Service si vun aacht bis zwielef a vun ",
+      "after": " bis siwwenzéng Auer",
+      "options_lb": [
+        "fofzeg",
+        "dräizéng",
+        "nonzeg",
+        "siwwenzéng"
+      ],
+      "correct": 1,
+      "entryId": "EFFNUNGSZAITEN1"
+    },
+    {
+      "id": "gr-number-0e32c22c6d",
+      "kind": "numbers",
+      "before": "d'Ëffnungszäite vum Service si vun aacht bis zwielef a vun dräizéng bis ",
+      "after": " Auer",
+      "options_lb": [
+        "null",
+        "dräizéng",
+        "siwwenzéng",
+        "fënnef"
+      ],
+      "correct": 2,
+      "entryId": "EFFNUNGSZAITEN1"
+    },
+    {
+      "id": "gr-number-0b751224da",
+      "kind": "numbers",
+      "before": "ech ka fir ",
+      "after": " Auer do sinn, net éischter!",
+      "options_lb": [
+        "siwen",
+        "fofzéng",
+        "zwanzeg",
+        "siwwenzeg"
+      ],
+      "correct": 0,
+      "entryId": "EISCHTER1"
+    },
+    {
+      "id": "gr-number-9f236de1e7",
+      "kind": "numbers",
+      "before": "de Film geet ëm ",
+      "after": " Auer un",
+      "options_lb": [
+        "néng",
+        "fofzéng",
+        "siwwenzéng",
+        "siechzéng"
+      ],
+      "correct": 0,
+      "entryId": "EM2"
+    },
+    {
+      "id": "gr-number-00a57950e0",
+      "kind": "numbers",
+      "before": "de Film geet eréischt ëm ",
+      "after": " Auer un",
+      "options_lb": [
+        "siwen",
+        "sechzeg",
+        "néng",
+        "achtzeg"
+      ],
+      "correct": 2,
+      "entryId": "EREISCHT1"
+    },
+    {
+      "id": "gr-number-45baa63ebf",
+      "kind": "numbers",
+      "before": "erwäch mech muer de Moien ëm ",
+      "after": " Auer!",
+      "options_lb": [
+        "achtzeg",
+        "zéng",
+        "honnert",
+        "siwen"
+      ],
+      "correct": 3,
+      "entryId": "ERWACHEN1"
+    },
+    {
+      "id": "gr-number-a4b844f02e",
+      "kind": "numbers",
+      "before": "am Kaartespill gëtt et ",
+      "after": " Faarwen",
+      "options_lb": [
+        "fofzeg",
+        "null",
+        "siwwenzeg",
+        "véier"
+      ],
+      "correct": 3,
+      "entryId": "FAARF1"
+    },
+    {
+      "id": "gr-number-089aa92afd",
+      "kind": "numbers",
+      "before": "mat ",
+      "after": " Kanner si mir eng aussergewéinlech grouss Famill",
+      "options_lb": [
+        "aacht",
+        "zwee",
+        "eelef",
+        "sechzeg"
+      ],
+      "correct": 0,
+      "entryId": "FAMILL1"
+    },
+    {
+      "id": "gr-number-dd5551308d",
+      "kind": "numbers",
+      "before": "si huet der un all Fanger ",
+      "after": "!",
+      "options_lb": [
+        "fofzeg",
+        "véierzéng",
+        "zéng",
+        "nonzeg"
+      ],
+      "correct": 2,
+      "entryId": "FANGER1"
+    },
+    {
+      "id": "gr-number-6c66703fa1",
+      "kind": "numbers",
+      "before": "de Fësch ass ",
+      "after": " vun den zwielef Stärenzeechen",
+      "options_lb": [
+        "eent",
+        "achtzeg",
+        "véier",
+        "véierzeg"
+      ],
+      "correct": 0,
+      "entryId": "FESCH1"
+    },
+    {
+      "id": "gr-number-437bddd8ea",
+      "kind": "numbers",
+      "before": "de Fësch ass eent vun den ",
+      "after": " Stärenzeechen",
+      "options_lb": [
+        "zéng",
+        "zwielef",
+        "véier",
+        "dausend"
+      ],
+      "correct": 1,
+      "entryId": "FESCH1"
+    },
+    {
+      "id": "gr-number-f2043a0b10",
+      "kind": "numbers",
+      "before": "de Verbriecher ass fir ",
+      "after": " Joer agespaart ginn",
+      "options_lb": [
+        "fënnef",
+        "null",
+        "véierzeg",
+        "nonzéng"
+      ],
+      "correct": 0,
+      "entryId": "FIR2"
+    },
+    {
+      "id": "gr-number-4c6af92ea5",
+      "kind": "numbers",
+      "before": "fir d'Formatioun vum Fakelzuch musst der all ëm ",
+      "after": " Auer do sinn",
+      "options_lb": [
+        "nonzéng",
+        "siwen",
+        "siwwenzeg",
+        "dausend"
+      ],
+      "correct": 1,
+      "entryId": "FORMATIOUN1"
+    },
+    {
+      "id": "gr-number-e3816d866a",
+      "kind": "numbers",
+      "before": "ech muss spéitstens ëm ",
+      "after": " Auer fortfueren, fir matzäit op der Aarbecht ze sinn",
+      "options_lb": [
+        "null",
+        "siwen",
+        "fofzéng",
+        "véierzéng"
+      ],
+      "correct": 1,
+      "entryId": "FORTFUEREN1"
+    },
+    {
+      "id": "gr-number-9144359f60",
+      "kind": "numbers",
+      "before": "mäi Patron ass zënter ",
+      "after": " Joer mat senger Fra bestuet",
+      "options_lb": [
+        "zwielef",
+        "drësseg",
+        "sechs",
+        "néng"
+      ],
+      "correct": 1,
+      "entryId": "FRA1"
+    },
+    {
+      "id": "gr-number-d408e5fa0c",
+      "kind": "numbers",
+      "before": "et sinn nach ",
+      "after": " Parkplaze fräi",
+      "options_lb": [
+        "siwwenzéng",
+        "fofzéng",
+        "véierzeg",
+        "véier"
+      ],
+      "correct": 3,
+      "entryId": "FRAI1"
+    },
+    {
+      "id": "gr-number-437f9eaa8b",
+      "kind": "numbers",
+      "before": "no ",
+      "after": " Déngschtjore freeën ech mech elo op meng Pensioun",
+      "options_lb": [
+        "achtzeg",
+        "eelef",
+        "siwwenzeg",
+        "véierzeg"
+      ],
+      "correct": 3,
+      "entryId": "FREEEN1"
+    },
+    {
+      "id": "gr-number-30e9e55e76",
+      "kind": "numbers",
+      "before": "ech si scho säit ",
+      "after": " Joer mat menger Frëndin zesummen",
+      "options_lb": [
+        "véier",
+        "siechzéng",
+        "siwwenzéng",
+        "eent"
+      ],
+      "correct": 0,
+      "entryId": "FRENDIN1"
+    },
+    {
+      "id": "gr-number-2f5c24518b",
+      "kind": "numbers",
+      "before": "d'Vas ass mer gefall an an (",
+      "after": ") Stécker gefuer",
+      "options_lb": [
+        "eent",
+        "zwee",
+        "eelef",
+        "dausend"
+      ],
+      "correct": 3,
+      "entryId": "FUEREN1"
+    },
+    {
+      "id": "gr-number-7c8bd193a3",
+      "kind": "numbers",
+      "before": "vill nei Autoen hunn haut ",
+      "after": " Gäng",
+      "options_lb": [
+        "drësseg",
+        "sechs",
+        "siwwenzéng",
+        "achtzeg"
+      ],
+      "correct": 1,
+      "entryId": "GANK1"
+    },
+    {
+      "id": "gr-number-d3ea136db1",
+      "kind": "numbers",
+      "before": "dee Mann schafft schonn ",
+      "after": " Joer als Mecanicien am selwechte Garage",
+      "options_lb": [
+        "achtzeg",
+        "zwanzeg",
+        "véier",
+        "fënnef"
+      ],
+      "correct": 1,
+      "entryId": "GARAGE1"
+    },
+    {
+      "id": "gr-number-1df2cd921d",
+      "kind": "numbers",
+      "before": "zu Lëtzebuerg gëtt et iwwer ",
+      "after": " Gemengen",
+      "options_lb": [
+        "sechzeg",
+        "siechzéng",
+        "eent",
+        "honnert"
+      ],
+      "correct": 3,
+      "entryId": "GEMENG1"
+    },
+    {
+      "id": "gr-number-418e65ae82",
+      "kind": "numbers",
+      "before": "d'Geschäfter maachen haut schonn ëm ",
+      "after": " Auer zou",
+      "options_lb": [
+        "dausend",
+        "zwielef",
+        "fënnef",
+        "fofzéng"
+      ],
+      "correct": 2,
+      "entryId": "GESCHAFT1"
+    },
+    {
+      "id": "gr-number-16ebfa6245",
+      "kind": "numbers",
+      "before": "de Brot muss nach ",
+      "after": " Minutte goen",
+      "options_lb": [
+        "véierzéng",
+        "zéng",
+        "dräizéng",
+        "néng"
+      ],
+      "correct": 1,
+      "entryId": "GOEN1"
+    },
+    {
+      "id": "gr-number-92beb707c8",
+      "kind": "numbers",
+      "before": "muer gëtt et bis zwee Grad ënner ",
+      "after": "",
+      "options_lb": [
+        "siwwenzéng",
+        "fofzeg",
+        "dräizéng",
+        "null"
+      ],
+      "correct": 3,
+      "entryId": "GRAD1"
+    },
+    {
+      "id": "gr-number-b930b6bcd0",
+      "kind": "numbers",
+      "before": "e Grupp vun ",
+      "after": " Leit huet sech fir eng Visite guidée ugemellt",
+      "options_lb": [
+        "zéng",
+        "zwielef",
+        "sechzeg",
+        "dräi"
+      ],
+      "correct": 0,
+      "entryId": "GRUPP1"
+    },
+    {
+      "id": "gr-number-13f6c345c4",
+      "kind": "numbers",
+      "before": "ëm ",
+      "after": " Auer maachen d'Guicheten zou",
+      "options_lb": [
+        "véierzeg",
+        "siwen",
+        "achtzeg",
+        "zwielef"
+      ],
+      "correct": 1,
+      "entryId": "GUICHET1"
+    },
+    {
+      "id": "gr-number-87e3e4c884",
+      "kind": "numbers",
+      "before": "et ass haart, all Moien um ",
+      "after": " Auer opzestoen!",
+      "options_lb": [
+        "eelef",
+        "fofzeg",
+        "véier",
+        "achtzeg"
+      ],
+      "correct": 2,
+      "entryId": "HAART1"
+    },
+    {
+      "id": "gr-number-ab6e2a0404",
+      "kind": "numbers",
+      "before": "haut (an) ",
+      "after": " Deeg geet d'Fréijoer un",
+      "options_lb": [
+        "zéng",
+        "siwwenzeg",
+        "siwwenzéng",
+        "aacht"
+      ],
+      "correct": 3,
+      "entryId": "HAUT1"
+    },
+    {
+      "id": "gr-number-f3966fe5d9",
+      "kind": "numbers",
+      "before": "déi Mauer ass ",
+      "after": " Meter héich",
+      "options_lb": [
+        "zwielef",
+        "sechzeg",
+        "drësseg",
+        "véier"
+      ],
+      "correct": 3,
+      "entryId": "HEICH1"
+    },
+    {
+      "id": "gr-number-99babac5e3",
+      "kind": "numbers",
+      "before": "hei däerf een net méi héich bauen ewéi ",
+      "after": " Stäck",
+      "options_lb": [
+        "véier",
+        "zwee",
+        "siwen",
+        "honnert"
+      ],
+      "correct": 0,
+      "entryId": "HEICH1"
+    },
+    {
+      "id": "gr-number-7889bbec26",
+      "kind": "numbers",
+      "before": "d'Bank wëllt d'nächst Joer ",
+      "after": " nei Informatiker astellen",
+      "options_lb": [
+        "véier",
+        "null",
+        "sechs",
+        "eelef"
+      ],
+      "correct": 0,
+      "entryId": "INFORMATIKER1"
+    },
+    {
+      "id": "gr-number-5a33381ea9",
+      "kind": "numbers",
+      "before": "et hu ",
+      "after": " Leit sech op d'Plaz gemellt, mir hunn der dräi an den Interview geruff",
+      "options_lb": [
+        "eent",
+        "véier",
+        "sechs",
+        "siechzéng"
+      ],
+      "correct": 2,
+      "entryId": "INTERVIEW1"
+    },
+    {
+      "id": "gr-number-b2e11c8a5a",
+      "kind": "numbers",
+      "before": "ech hunn ",
+      "after": " Leit op mäi Gebuertsdag invitéiert",
+      "options_lb": [
+        "null",
+        "eelef",
+        "fofzéng",
+        "zwanzeg"
+      ],
+      "correct": 3,
+      "entryId": "INVITEIEREN1"
+    },
+    {
+      "id": "gr-number-3cbe9ec49f",
+      "kind": "numbers",
+      "before": "mäi Brudder huet am Juni ",
+      "after": " Joer kritt",
+      "options_lb": [
+        "null",
+        "eent",
+        "uechtzéng",
+        "fënnef"
+      ],
+      "correct": 3,
+      "entryId": "JOER1"
+    },
+    {
+      "id": "gr-number-6079d02ded",
+      "kind": "numbers",
+      "before": "de Papp wunnt bei engem vu senge ",
+      "after": " Jongen",
+      "options_lb": [
+        "zwanzeg",
+        "sechzeg",
+        "véierzéng",
+        "véier"
+      ],
+      "correct": 3,
+      "entryId": "JONG1"
+    },
+    {
+      "id": "gr-number-4f66c7c4e4",
+      "kind": "numbers",
+      "before": "meng Fra seet der de Gebuertsdag vun deenen ",
+      "after": " Enkelkanner aus dem Kapp",
+      "options_lb": [
+        "aacht",
+        "zwee",
+        "achtzeg",
+        "siechzéng"
+      ],
+      "correct": 0,
+      "entryId": "KAPP1"
+    },
+    {
+      "id": "gr-number-0f60591d90",
+      "kind": "numbers",
+      "before": "hien ass en Tour vu ",
+      "after": " Kilometer gelaf",
+      "options_lb": [
+        "achtzeg",
+        "siwen",
+        "drësseg",
+        "fënnef"
+      ],
+      "correct": 3,
+      "entryId": "KILOMETER1"
+    },
+    {
+      "id": "gr-number-740ba2b63e",
+      "kind": "numbers",
+      "before": "eist klengt Meedche ka scho bis ",
+      "after": " zielen",
+      "options_lb": [
+        "zéng",
+        "fofzéng",
+        "siwwenzeg",
+        "achtzeg"
+      ],
+      "correct": 0,
+      "entryId": "KLENG1"
+    },
+    {
+      "id": "gr-number-6432b52ba4",
+      "kind": "numbers",
+      "before": "ech hu ",
+      "after": " Kilo zougeholl, ech kommen net méi a mäi Gezei!",
+      "options_lb": [
+        "siwwenzeg",
+        "drësseg",
+        "fofzeg",
+        "fënnef"
+      ],
+      "correct": 3,
+      "entryId": "KOMMEN1"
+    },
+    {
+      "id": "gr-number-bb0fd7777c",
+      "kind": "numbers",
+      "before": "a ",
+      "after": " Minutte mussen d'Schüler hir Kopien ofginn",
+      "options_lb": [
+        "siwwenzéng",
+        "dräi",
+        "fofzéng",
+        "fënnef"
+      ],
+      "correct": 3,
+      "entryId": "KOPIE1"
+    },
+    {
+      "id": "gr-number-29344fc797",
+      "kind": "numbers",
+      "before": "no menger Operatioun huet d'Doktesch mech ",
+      "after": " Woche krankgeschriwwen",
+      "options_lb": [
+        "sechs",
+        "siwen",
+        "nonzeg",
+        "fënnef"
+      ],
+      "correct": 0,
+      "entryId": "KRANKSCHREIWEN1"
+    },
+    {
+      "id": "gr-number-9c83f63ddd",
+      "kind": "numbers",
+      "before": "meng Fra louch ",
+      "after": " Stonnen an de Wéien",
+      "options_lb": [
+        "nonzéng",
+        "honnert",
+        "dräizéng",
+        "zwee"
+      ],
+      "correct": 2,
+      "entryId": "LEIEN2"
+    },
+    {
+      "id": "gr-number-834553ba3a",
+      "kind": "numbers",
+      "before": "d'Asätz leien alleguer ëm ",
+      "after": " Euro",
+      "options_lb": [
+        "siwwenzeg",
+        "honnert",
+        "sechs",
+        "nonzeg"
+      ],
+      "correct": 1,
+      "entryId": "LEIEN2"
+    },
+    {
+      "id": "gr-number-92f2205fe2",
+      "kind": "numbers",
+      "before": "et hate sech nëmmen ",
+      "after": " Leit fir eisen Trëppeltour ugemellt",
+      "options_lb": [
+        "véierzeg",
+        "siwen",
+        "zéng",
+        "eent"
+      ],
+      "correct": 2,
+      "entryId": "LEIT1"
+    },
+    {
+      "id": "gr-number-cf00366470",
+      "kind": "numbers",
+      "before": "Judd mat Gaardebounen ass ",
+      "after": " vu menge Liblingsiessen",
+      "options_lb": [
+        "eent",
+        "zwee",
+        "siwwenzéng",
+        "siechzéng"
+      ],
+      "correct": 0,
+      "entryId": "LIBLINGSIESSEN1"
+    },
+    {
+      "id": "gr-number-8232fe3334",
+      "kind": "numbers",
+      "before": "d'Schoulflicht zu Lëtzebuerg ëmfaasst ",
+      "after": " Joer, no der Primärschoul nach e puer Joer (am) Lycée",
+      "options_lb": [
+        "siechzéng",
+        "zéng",
+        "dräizéng",
+        "fofzeg"
+      ],
+      "correct": 1,
+      "entryId": "LYCEE1"
+    },
+    {
+      "id": "gr-number-bffaf05c3e",
+      "kind": "numbers",
+      "before": "ech hunn ",
+      "after": " nei E-Mailen a menger Mailbox",
+      "options_lb": [
+        "dräizéng",
+        "zwee",
+        "véierzeg",
+        "néng"
+      ],
+      "correct": 3,
+      "entryId": "MAILBOX1"
+    },
+    {
+      "id": "gr-number-b910cebfba",
+      "kind": "numbers",
+      "before": "si sinn zu ",
+      "after": " Mann komm, fir déi Aarbecht ze maachen",
+      "options_lb": [
+        "dräi",
+        "zéng",
+        "fënnef",
+        "aacht"
+      ],
+      "correct": 1,
+      "entryId": "MANN1"
+    },
+    {
+      "id": "gr-number-f7caa20c2f",
+      "kind": "numbers",
+      "before": "hatt huet mat ",
+      "after": " Joer säin éischt Kand kritt",
+      "options_lb": [
+        "zwielef",
+        "zwanzeg",
+        "drësseg",
+        "null"
+      ],
+      "correct": 1,
+      "entryId": "MAT1"
+    },
+    {
+      "id": "gr-number-f119f76123",
+      "kind": "numbers",
+      "before": "de Waggon ass fir eng maximal Charge vu ",
+      "after": " Tonnen zougelooss",
+      "options_lb": [
+        "eelef",
+        "achtzeg",
+        "fofzéng",
+        "véierzeg"
+      ],
+      "correct": 3,
+      "entryId": "MAXIMAL1"
+    },
+    {
+      "id": "gr-number-f2153ea36a",
+      "kind": "numbers",
+      "before": "ech huele mer all Dag ",
+      "after": " Minutten Zäit fir ze meditéieren",
+      "options_lb": [
+        "nonzéng",
+        "zéng",
+        "siwwenzeg",
+        "nonzeg"
+      ],
+      "correct": 1,
+      "entryId": "MEDITEIEREN1"
+    },
+    {
+      "id": "gr-number-f612aa8f9c",
+      "kind": "numbers",
+      "before": "d'Briet ass ",
+      "after": " Millimeter déck",
+      "options_lb": [
+        "sechzeg",
+        "véier",
+        "aacht",
+        "siwwenzeg"
+      ],
+      "correct": 2,
+      "entryId": "MILLIMETER1"
+    },
+    {
+      "id": "gr-number-864e63b1c5",
+      "kind": "numbers",
+      "before": "minus dräi mol minus dräi gëtt plus ",
+      "after": "",
+      "options_lb": [
+        "néng",
+        "drësseg",
+        "zéng",
+        "véierzeg"
+      ],
+      "correct": 0,
+      "entryId": "MINUS3"
+    },
+    {
+      "id": "gr-number-ced461383d",
+      "kind": "numbers",
+      "before": "de Moien huet den Thermometer minus ",
+      "after": " Grad ugewisen",
+      "options_lb": [
+        "zwielef",
+        "fënnef",
+        "uechtzéng",
+        "zéng"
+      ],
+      "correct": 1,
+      "entryId": "MINUS3"
+    },
+    {
+      "id": "gr-number-535c887c0b",
+      "kind": "numbers",
+      "before": "den Zuch fiert a ",
+      "after": " Minutten",
+      "options_lb": [
+        "siwwenzéng",
+        "fënnef",
+        "siechzéng",
+        "dräizéng"
+      ],
+      "correct": 1,
+      "entryId": "MINUTT1"
+    },
+    {
+      "id": "gr-number-0a043e4f30",
+      "kind": "numbers",
+      "before": "d'Joer huet ",
+      "after": " Méint",
+      "options_lb": [
+        "dausend",
+        "aacht",
+        "zwielef",
+        "drësseg"
+      ],
+      "correct": 2,
+      "entryId": "MOUNT1"
+    },
+    {
+      "id": "gr-number-7abf87f3be",
+      "kind": "numbers",
+      "before": "dee leschte Mount huet eis Bom ",
+      "after": " Joer kritt",
+      "options_lb": [
+        "fofzeg",
+        "nonzeg",
+        "sechs",
+        "véierzeg"
+      ],
+      "correct": 1,
+      "entryId": "MOUNT1"
+    },
+    {
+      "id": "gr-number-a8b7605bc2",
+      "kind": "numbers",
+      "before": "hien huet nobäi ",
+      "after": " Joer",
+      "options_lb": [
+        "drësseg",
+        "uechtzéng",
+        "fofzeg",
+        "néng"
+      ],
+      "correct": 2,
+      "entryId": "NOBAI1"
+    },
+    {
+      "id": "gr-number-1e3b2fc007",
+      "kind": "numbers",
+      "before": "meng Boma huet viru Kuerzem ",
+      "after": " Joer kritt",
+      "options_lb": [
+        "sechzeg",
+        "sechs",
+        "siechzéng",
+        "nonzeg"
+      ],
+      "correct": 3,
+      "entryId": "NONZEG1"
+    },
+    {
+      "id": "gr-number-f689a5adb4",
+      "kind": "numbers",
+      "before": "nonzeg gedeelt duerch dräi gëtt ",
+      "after": "",
+      "options_lb": [
+        "honnert",
+        "dausend",
+        "véierzéng",
+        "drësseg"
+      ],
+      "correct": 3,
+      "entryId": "NONZEG1"
+    },
+    {
+      "id": "gr-number-5710068147",
+      "kind": "numbers",
+      "before": "mir iesse gewéinlech ëm ",
+      "after": " Auer zu Nuecht",
+      "options_lb": [
+        "eent",
+        "dräi",
+        "siwen",
+        "dräizéng"
+      ],
+      "correct": 2,
+      "entryId": "NUECHT1"
+    },
+    {
+      "id": "gr-number-fbfcce72fe",
+      "kind": "numbers",
+      "before": "a sengem Fach ass hien d'Nummer ",
+      "after": "",
+      "options_lb": [
+        "eent",
+        "dräizéng",
+        "sechs",
+        "nonzeg"
+      ],
+      "correct": 0,
+      "entryId": "NUMMER1"
+    },
+    {
+      "id": "gr-number-2ecd4190de",
+      "kind": "numbers",
+      "before": "samschdes sinn d'Geschäfter bis ",
+      "after": " Auer op",
+      "options_lb": [
+        "zéng",
+        "eent",
+        "sechs",
+        "dräi"
+      ],
+      "correct": 2,
+      "entryId": "OP1"
+    },
+    {
+      "id": "gr-number-2430aa2d0f",
+      "kind": "numbers",
+      "before": "et ass Véierel op ",
+      "after": "",
+      "options_lb": [
+        "néng",
+        "fënnef",
+        "siwwenzéng",
+        "véierzeg"
+      ],
+      "correct": 0,
+      "entryId": "OP2"
+    },
+    {
+      "id": "gr-number-01c5bbbe36",
+      "kind": "numbers",
+      "before": "et ass ",
+      "after": " Minutten op dräi",
+      "options_lb": [
+        "aacht",
+        "fofzéng",
+        "honnert",
+        "null"
+      ],
+      "correct": 0,
+      "entryId": "OP2"
+    },
+    {
+      "id": "gr-number-b0c6fadf68",
+      "kind": "numbers",
+      "before": "de Bus fiert all Stonn um ",
+      "after": " Minutten op",
+      "options_lb": [
+        "sechs",
+        "dausend",
+        "siwwenzéng",
+        "uechtzéng"
+      ],
+      "correct": 0,
+      "entryId": "OP2"
+    },
+    {
+      "id": "gr-dative-8177f3c16f",
+      "kind": "dative",
+      "before": "dës Decisioun gouf vun ",
+      "after": " alleguer guttgeheescht",
+      "preposition": "vun",
+      "options_lb": [
+        "mir",
+        "hir",
+        "dir",
+        "eis"
+      ],
+      "correct": 3,
+      "entryId": "ALLEGUER1"
+    },
+    {
+      "id": "gr-dative-b32cc027c5",
+      "kind": "dative",
+      "before": "ech hunn alt esou meng Bedenken, ob dat eppes gëtt mat ",
+      "after": " zwee",
+      "preposition": "mat",
+      "options_lb": [
+        "eis",
+        "mir",
+        "iech",
+        "hinnen"
+      ],
+      "correct": 3,
+      "entryId": "ALT2"
+    },
+    {
+      "id": "gr-dative-387fd4a93f",
+      "kind": "dative",
+      "before": "wat hues du geäntwert, wéi en dech no ",
+      "after": " gefrot huet?",
+      "preposition": "no",
+      "options_lb": [
+        "dir",
+        "mir",
+        "iech",
+        "eis"
+      ],
+      "correct": 1,
+      "entryId": "ANTWEREN1"
+    },
+    {
+      "id": "gr-dative-581d87868d",
+      "kind": "dative",
+      "before": "ëm wéi vill Auer gëtt bei ",
+      "after": " zu Nuecht giess?",
+      "preposition": "bei",
+      "options_lb": [
+        "hinnen",
+        "iech",
+        "hir",
+        "mir"
+      ],
+      "correct": 1,
+      "entryId": "AUER1"
+    },
+    {
+      "id": "gr-dative-d4b4097959",
+      "kind": "dative",
+      "before": "egal, wat s de um Häerz hues, du kanns dech bei ",
+      "after": " ausschwätzen",
+      "preposition": "bei",
+      "options_lb": [
+        "hinnen",
+        "iech",
+        "mir",
+        "eis"
+      ],
+      "correct": 2,
+      "entryId": "AUSSCHWATZEN1"
+    },
+    {
+      "id": "gr-dative-861aedc956",
+      "kind": "dative",
+      "before": "d'Bäckesch bei ",
+      "after": " ëm den Eck verkeeft samschdes vegan Kaffiskichelcher",
+      "preposition": "bei",
+      "options_lb": [
+        "him",
+        "mir",
+        "iech",
+        "eis"
+      ],
+      "correct": 3,
+      "entryId": "BACKESCH1"
+    },
+    {
+      "id": "gr-dative-00395394e9",
+      "kind": "dative",
+      "before": "de Ball läit bei ",
+      "after": "",
+      "preposition": "bei",
+      "options_lb": [
+        "him",
+        "hinnen",
+        "dir",
+        "eis"
+      ],
+      "correct": 1,
+      "entryId": "BALL1"
+    },
+    {
+      "id": "gr-dative-ec480586e1",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " gëtt et vu Joer zu Joer manner Baueren",
+      "preposition": "bei",
+      "options_lb": [
+        "hinnen",
+        "him",
+        "eis",
+        "iech"
+      ],
+      "correct": 2,
+      "entryId": "BAUER1"
+    },
+    {
+      "id": "gr-dative-1d88f937a4",
+      "kind": "dative",
+      "before": "kommt dir den Owend bei ",
+      "after": " iessen?",
+      "preposition": "bei",
+      "options_lb": [
+        "mir",
+        "hir",
+        "hinnen",
+        "eis"
+      ],
+      "correct": 3,
+      "entryId": "BEI2"
+    },
+    {
+      "id": "gr-dative-ff906adb0f",
+      "kind": "dative",
+      "before": "do sinn ech ganz bei ",
+      "after": "",
+      "preposition": "bei",
+      "options_lb": [
+        "hinnen",
+        "iech",
+        "hir",
+        "dir"
+      ],
+      "correct": 3,
+      "entryId": "BEI2"
+    },
+    {
+      "id": "gr-dative-557331cc2d",
+      "kind": "dative",
+      "before": "du kanns dach net bei ",
+      "after": " zou seng Schwëster esou erofmaachen!",
+      "preposition": "bei",
+      "options_lb": [
+        "hir",
+        "eis",
+        "mir",
+        "him"
+      ],
+      "correct": 3,
+      "entryId": "BEI2"
+    },
+    {
+      "id": "gr-dative-b4374c210d",
+      "kind": "dative",
+      "before": "firwat bass de béis mat ",
+      "after": "?",
+      "preposition": "mat",
+      "options_lb": [
+        "eis",
+        "iech",
+        "dir",
+        "hir"
+      ],
+      "correct": 0,
+      "entryId": "BEIS1"
+    },
+    {
+      "id": "gr-dative-a947434bec",
+      "kind": "dative",
+      "before": "ech sinn net mat ",
+      "after": " bestuet",
+      "preposition": "mat",
+      "options_lb": [
+        "mir",
+        "eis",
+        "him",
+        "hir"
+      ],
+      "correct": 2,
+      "entryId": "BESTUET1"
+    },
+    {
+      "id": "gr-dative-316b4ad2bb",
+      "kind": "dative",
+      "before": "mir kommen deemnächst eng Kéier bei ",
+      "after": " op Besuch",
+      "preposition": "bei",
+      "options_lb": [
+        "iech",
+        "eis",
+        "hinnen",
+        "dir"
+      ],
+      "correct": 0,
+      "entryId": "BESUCH1"
+    },
+    {
+      "id": "gr-dative-79b6ff4c6c",
+      "kind": "dative",
+      "before": "ech hu meng Kreditkaart net bei ",
+      "after": ", kann ech och boer bezuelen?",
+      "preposition": "bei",
+      "options_lb": [
+        "him",
+        "iech",
+        "hir",
+        "mir"
+      ],
+      "correct": 3,
+      "entryId": "BOER1"
+    },
+    {
+      "id": "gr-dative-2b514499a8",
+      "kind": "dative",
+      "before": "wien huet bei ",
+      "after": " doheem d'Box un?",
+      "preposition": "bei",
+      "options_lb": [
+        "eis",
+        "dir",
+        "iech",
+        "him"
+      ],
+      "correct": 2,
+      "entryId": "BOX1"
+    },
+    {
+      "id": "gr-dative-7f453dee64",
+      "kind": "dative",
+      "before": "meng Fra bekëmmert sech bei ",
+      "after": " am Stot ëm de Budget",
+      "preposition": "bei",
+      "options_lb": [
+        "eis",
+        "hinnen",
+        "iech",
+        "him"
+      ],
+      "correct": 0,
+      "entryId": "BUDGET1"
+    },
+    {
+      "id": "gr-dative-9528c5bcf1",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " maache vill Caféë schonn ëm Hallefnuecht zou",
+      "preposition": "bei",
+      "options_lb": [
+        "mir",
+        "eis",
+        "hir",
+        "him"
+      ],
+      "correct": 1,
+      "entryId": "CAFE1"
+    },
+    {
+      "id": "gr-dative-247c4209b3",
+      "kind": "dative",
+      "before": "ech hu wëlles, dëser Deeg (een) bei ",
+      "after": " laanschtzekommen",
+      "preposition": "bei",
+      "options_lb": [
+        "dir",
+        "hir",
+        "eis",
+        "iech"
+      ],
+      "correct": 0,
+      "entryId": "DAG1"
+    },
+    {
+      "id": "gr-dative-c11bc1d0a1",
+      "kind": "dative",
+      "before": "mat ",
+      "after": " géif ech duerch déck an dënn goen",
+      "preposition": "mat",
+      "options_lb": [
+        "hinnen",
+        "iech",
+        "hir",
+        "dir"
+      ],
+      "correct": 3,
+      "entryId": "DECK1"
+    },
+    {
+      "id": "gr-dative-6d73f31832",
+      "kind": "dative",
+      "before": "datt ech dee Schüler eng Kéier e Ligener genannt hunn, dat sëtzt déif bei ",
+      "after": "",
+      "preposition": "bei",
+      "options_lb": [
+        "iech",
+        "him",
+        "hinnen",
+        "dir"
+      ],
+      "correct": 1,
+      "entryId": "DEIF2"
+    },
+    {
+      "id": "gr-dative-1b32364f24",
+      "kind": "dative",
+      "before": "wien hätt dat (vun ",
+      "after": ") geduecht?",
+      "preposition": "vun",
+      "options_lb": [
+        "eis",
+        "iech",
+        "him",
+        "mir"
+      ],
+      "correct": 2,
+      "entryId": "DENKEN1"
+    },
+    {
+      "id": "gr-dative-ea0a04cfc2",
+      "kind": "dative",
+      "before": "mir goufe vun ",
+      "after": " schéin iwwer den Dësch gezunn!",
+      "preposition": "vun",
+      "options_lb": [
+        "eis",
+        "hinnen",
+        "mir",
+        "him"
+      ],
+      "correct": 3,
+      "entryId": "DESCH1"
+    },
+    {
+      "id": "gr-dative-054ccd5fd3",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " am Betrib sinn dräi Leit virun d'Dier gesat ginn",
+      "preposition": "bei",
+      "options_lb": [
+        "mir",
+        "hinnen",
+        "dir",
+        "eis"
+      ],
+      "correct": 3,
+      "entryId": "DIER1"
+    },
+    {
+      "id": "gr-dative-d8acb5af5f",
+      "kind": "dative",
+      "before": "mat dengen Argumenter renns de bei ",
+      "after": " oppen Dieren an",
+      "preposition": "bei",
+      "options_lb": [
+        "him",
+        "mir",
+        "eis",
+        "dir"
+      ],
+      "correct": 1,
+      "entryId": "DIER1"
+    },
+    {
+      "id": "gr-dative-7747ad48f0",
+      "kind": "dative",
+      "before": "ech diskutéiere gär mat ",
+      "after": " iwwer Theologie",
+      "preposition": "mat",
+      "options_lb": [
+        "him",
+        "eis",
+        "dir",
+        "iech"
+      ],
+      "correct": 0,
+      "entryId": "DISKUTEIEREN1"
+    },
+    {
+      "id": "gr-dative-a6b0decbed",
+      "kind": "dative",
+      "before": "et ass am hellen Do bei ",
+      "after": " agebrach ginn!",
+      "preposition": "bei",
+      "options_lb": [
+        "him",
+        "hir",
+        "iech",
+        "eis"
+      ],
+      "correct": 3,
+      "entryId": "DO6"
+    },
+    {
+      "id": "gr-dative-39ae8ed227",
+      "kind": "dative",
+      "before": "dohi ginn ech ni méi, déi Vendeure waren net fei mat ",
+      "after": "!",
+      "preposition": "mat",
+      "options_lb": [
+        "mir",
+        "dir",
+        "eis",
+        "iech"
+      ],
+      "correct": 0,
+      "entryId": "DOHIN1"
+    },
+    {
+      "id": "gr-dative-5d80f64a0f",
+      "kind": "dative",
+      "before": "meng Bomi huet all Joer op Fetten Donneschdeg mat ",
+      "after": " Fuesent gebak",
+      "preposition": "mat",
+      "options_lb": [
+        "eis",
+        "dir",
+        "mir",
+        "hinnen"
+      ],
+      "correct": 0,
+      "entryId": "DONNESCHDEG1"
+    },
+    {
+      "id": "gr-dative-bbe3006a96",
+      "kind": "dative",
+      "before": "ech halen drop, datt bei ",
+      "after": " doheem Tüben an Dëppercher ganz eidel gemaach ginn",
+      "preposition": "bei",
+      "options_lb": [
+        "mir",
+        "eis",
+        "dir",
+        "hir"
+      ],
+      "correct": 1,
+      "entryId": "EIDELMAACHEN1"
+    },
+    {
+      "id": "gr-dative-dfd4513840",
+      "kind": "dative",
+      "before": "ech wäert dir dat ni verzeien, a wann s de dech honnertmol (bei ",
+      "after": ") entschëllegs!",
+      "preposition": "bei",
+      "options_lb": [
+        "hinnen",
+        "hir",
+        "him",
+        "mir"
+      ],
+      "correct": 3,
+      "entryId": "ENTSCHELLEGEN1"
+    },
+    {
+      "id": "gr-dative-a11840af06",
+      "kind": "dative",
+      "before": "ech erlabe mer, net mat ",
+      "after": " averstanen ze sinn!",
+      "preposition": "mat",
+      "options_lb": [
+        "mir",
+        "eis",
+        "dir",
+        "Iech"
+      ],
+      "correct": 3,
+      "entryId": "ERLABEN1"
+    },
+    {
+      "id": "gr-dative-bd3e8b878c",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " doheem gëtt näischt ewechgehäit",
+      "preposition": "bei",
+      "options_lb": [
+        "dir",
+        "eis",
+        "hir",
+        "hinnen"
+      ],
+      "correct": 1,
+      "entryId": "EWECHGEHEIEN1"
+    },
+    {
+      "id": "gr-dative-c1ceb0e641",
+      "kind": "dative",
+      "before": "déi musikalesch Begabung läit bei ",
+      "after": " an der Famill",
+      "preposition": "bei",
+      "options_lb": [
+        "mir",
+        "hinnen",
+        "eis",
+        "him"
+      ],
+      "correct": 2,
+      "entryId": "FAMILL1"
+    },
+    {
+      "id": "gr-dative-6dda892826",
+      "kind": "dative",
+      "before": "ech fannen et net schéi vun ",
+      "after": ", datt s de mer ëmmer an de Réck fäls!",
+      "preposition": "vun",
+      "options_lb": [
+        "iech",
+        "him",
+        "eis",
+        "dir"
+      ],
+      "correct": 3,
+      "entryId": "FANNEN1"
+    },
+    {
+      "id": "gr-dative-0c2c8baf88",
+      "kind": "dative",
+      "before": "haut fierwen d'Kanner bei ",
+      "after": " doheem d'Ouschtereeër",
+      "preposition": "bei",
+      "options_lb": [
+        "dir",
+        "eis",
+        "mir",
+        "hir"
+      ],
+      "correct": 1,
+      "entryId": "FIERWEN1"
+    },
+    {
+      "id": "gr-dative-b617bba60e",
+      "kind": "dative",
+      "before": "mir fille mat ",
+      "after": "!",
+      "preposition": "mat",
+      "options_lb": [
+        "mir",
+        "iech",
+        "him",
+        "dir"
+      ],
+      "correct": 3,
+      "entryId": "FILLEN1"
+    },
+    {
+      "id": "gr-dative-701708dae6",
+      "kind": "dative",
+      "before": "mäi Bopa ass net méi fit genuch, fir mat ",
+      "after": " wanderen ze goen",
+      "preposition": "mat",
+      "options_lb": [
+        "hir",
+        "eis",
+        "mir",
+        "hinnen"
+      ],
+      "correct": 1,
+      "entryId": "FIT1"
+    },
+    {
+      "id": "gr-dative-40d4dc8d63",
+      "kind": "dative",
+      "before": "dat ass bei ",
+      "after": " eng fix Iddi ginn",
+      "preposition": "bei",
+      "options_lb": [
+        "iech",
+        "mir",
+        "him",
+        "dir"
+      ],
+      "correct": 2,
+      "entryId": "FIX1"
+    },
+    {
+      "id": "gr-dative-39829c05f1",
+      "kind": "dative",
+      "before": "ech si jorelaang gutt mat ",
+      "after": " gefuer",
+      "preposition": "mat",
+      "options_lb": [
+        "eis",
+        "mir",
+        "dir",
+        "him"
+      ],
+      "correct": 3,
+      "entryId": "FUEREN1"
+    },
+    {
+      "id": "gr-dative-b412af97e1",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " an der Strooss ass an der Nuecht e Mord geschitt",
+      "preposition": "bei",
+      "options_lb": [
+        "him",
+        "eis",
+        "dir",
+        "hir"
+      ],
+      "correct": 1,
+      "entryId": "GESCHEIEN1"
+    },
+    {
+      "id": "gr-dative-4753c9e812",
+      "kind": "dative",
+      "before": "hat kee vun ",
+      "after": " dee Problem gesinn?",
+      "preposition": "vun",
+      "options_lb": [
+        "eis",
+        "him",
+        "mir",
+        "iech"
+      ],
+      "correct": 3,
+      "entryId": "GESINN1"
+    },
+    {
+      "id": "gr-dative-3204468049",
+      "kind": "dative",
+      "before": "gees de mat ",
+      "after": " op de Bal?",
+      "preposition": "mat",
+      "options_lb": [
+        "iech",
+        "him",
+        "hir",
+        "eis"
+      ],
+      "correct": 3,
+      "entryId": "GOEN1"
+    },
+    {
+      "id": "gr-dative-d46803cbd0",
+      "kind": "dative",
+      "before": "geet et da mat ",
+      "after": "!",
+      "preposition": "mat",
+      "options_lb": [
+        "him",
+        "eis",
+        "dir",
+        "hir"
+      ],
+      "correct": 2,
+      "entryId": "GOEN1"
+    },
+    {
+      "id": "gr-dative-c7f4c57b5f",
+      "kind": "dative",
+      "before": "ass bei ",
+      "after": " d'Haaptmolzecht mëttes oder owes?",
+      "preposition": "bei",
+      "options_lb": [
+        "hinnen",
+        "dir",
+        "iech",
+        "him"
+      ],
+      "correct": 2,
+      "entryId": "HAAPTMOLZECHT1"
+    },
+    {
+      "id": "gr-dative-ec9a613dd1",
+      "kind": "dative",
+      "before": "hal deng Hänn bei ",
+      "after": "!",
+      "preposition": "bei",
+      "options_lb": [
+        "eis",
+        "hinnen",
+        "iech",
+        "dir"
+      ],
+      "correct": 3,
+      "entryId": "HALEN1"
+    },
+    {
+      "id": "gr-dative-07fed3f7eb",
+      "kind": "dative",
+      "before": "den Hond ass bei ",
+      "after": " a gudden Hänn",
+      "preposition": "bei",
+      "options_lb": [
+        "hir",
+        "him",
+        "mir",
+        "eis"
+      ],
+      "correct": 3,
+      "entryId": "HAND1"
+    },
+    {
+      "id": "gr-dative-42ef936303",
+      "kind": "dative",
+      "before": "et huet en eeleren Här no ",
+      "after": " gefrot",
+      "preposition": "no",
+      "options_lb": [
+        "eis",
+        "hinnen",
+        "hir",
+        "dir"
+      ],
+      "correct": 3,
+      "entryId": "HAR2"
+    },
+    {
+      "id": "gr-dative-a403c9ad64",
+      "kind": "dative",
+      "before": "gëschter ass bei ",
+      "after": " um Büro d'Heizung ausgefall",
+      "preposition": "bei",
+      "options_lb": [
+        "eis",
+        "dir",
+        "him",
+        "mir"
+      ],
+      "correct": 0,
+      "entryId": "HEIZUNG1"
+    },
+    {
+      "id": "gr-dative-ef3aabebd5",
+      "kind": "dative",
+      "before": "ech war mat ",
+      "after": " an de Guiden",
+      "preposition": "mat",
+      "options_lb": [
+        "dir",
+        "hinnen",
+        "eis",
+        "him"
+      ],
+      "correct": 3,
+      "entryId": "HIM1"
+    },
+    {
+      "id": "gr-dative-546463ecd6",
+      "kind": "dative",
+      "before": "wann dat klengt Kand net esou gekrasch hätt, wiere seng Elteren net mat ",
+      "after": " bei den Dokter gaangen",
+      "preposition": "mat",
+      "options_lb": [
+        "him",
+        "dir",
+        "mir",
+        "eis"
+      ],
+      "correct": 0,
+      "entryId": "HIM1"
+    },
+    {
+      "id": "gr-dative-a08de23b9b",
+      "kind": "dative",
+      "before": "hutt Dir Äre Fürerschäi bei ",
+      "after": "?",
+      "preposition": "bei",
+      "options_lb": [
+        "mir",
+        "Iech",
+        "hinnen",
+        "hir"
+      ],
+      "correct": 1,
+      "entryId": "HUNN1"
+    },
+    {
+      "id": "gr-dative-3fd7a6b09f",
+      "kind": "dative",
+      "before": "meng Eltere ginn den Owend op e grousst Iesse bei ",
+      "after": " Frënn",
+      "preposition": "bei",
+      "options_lb": [
+        "eis",
+        "dir",
+        "hir",
+        "hinnen"
+      ],
+      "correct": 2,
+      "entryId": "IESSEN1"
+    },
+    {
+      "id": "gr-dative-92bb5b9dae",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " wiisst kee Kaffi",
+      "preposition": "bei",
+      "options_lb": [
+        "hinnen",
+        "eis",
+        "iech",
+        "hir"
+      ],
+      "correct": 1,
+      "entryId": "KAFFI1"
+    },
+    {
+      "id": "gr-dative-93fbcf6d85",
+      "kind": "dative",
+      "before": "et kascht mech Iwwerwannung, fir mat ",
+      "after": " ze schwätzen",
+      "preposition": "mat",
+      "options_lb": [
+        "hinnen",
+        "hir",
+        "iech",
+        "him"
+      ],
+      "correct": 3,
+      "entryId": "KASCHTEN2"
+    },
+    {
+      "id": "gr-dative-763d7d949f",
+      "kind": "dative",
+      "before": "et ka sinn, datt mer muer bei ",
+      "after": " laanschtkommen",
+      "preposition": "bei",
+      "options_lb": [
+        "iech",
+        "hir",
+        "dir",
+        "him"
+      ],
+      "correct": 2,
+      "entryId": "KENNEN1"
+    },
+    {
+      "id": "gr-dative-7821ac35fb",
+      "kind": "dative",
+      "before": "hien ass all Dag no ",
+      "after": " kucke komm",
+      "preposition": "no",
+      "options_lb": [
+        "hinnen",
+        "mir",
+        "eis",
+        "him"
+      ],
+      "correct": 1,
+      "entryId": "KOMMEN1"
+    },
+    {
+      "id": "gr-dative-8bfdc9abea",
+      "kind": "dative",
+      "before": "fänk näischt mat ",
+      "after": " un, hien ass e Komplizéierten!",
+      "preposition": "mat",
+      "options_lb": [
+        "iech",
+        "him",
+        "hir",
+        "dir"
+      ],
+      "correct": 1,
+      "entryId": "KOMPLIZEIERT1"
+    },
+    {
+      "id": "gr-dative-be1313e341",
+      "kind": "dative",
+      "before": "wéi kann ech mat ",
+      "after": " a Kontakt trieden?",
+      "preposition": "mat",
+      "options_lb": [
+        "eis",
+        "mir",
+        "hir",
+        "Iech"
+      ],
+      "correct": 3,
+      "entryId": "KONTAKT1"
+    },
+    {
+      "id": "gr-dative-ea84534b02",
+      "kind": "dative",
+      "before": "ech hunn dat kreatiivt Gespréich mat ",
+      "after": " richteg genoss",
+      "preposition": "mat",
+      "options_lb": [
+        "hir",
+        "iech",
+        "dir",
+        "him"
+      ],
+      "correct": 2,
+      "entryId": "KREATIV1"
+    },
+    {
+      "id": "gr-dative-c3e6ddf860",
+      "kind": "dative",
+      "before": "wat war gëschter bei ",
+      "after": " doheem lass?",
+      "preposition": "bei",
+      "options_lb": [
+        "him",
+        "iech",
+        "hir",
+        "dir"
+      ],
+      "correct": 1,
+      "entryId": "LASS1"
+    },
+    {
+      "id": "gr-dative-7a00dcf272",
+      "kind": "dative",
+      "before": "meng Mamm huet mat ",
+      "after": " geléiert",
+      "preposition": "mat",
+      "options_lb": [
+        "mir",
+        "hir",
+        "iech",
+        "dir"
+      ],
+      "correct": 0,
+      "entryId": "LEIEREN2"
+    },
+    {
+      "id": "gr-dative-a3130e7edb",
+      "kind": "dative",
+      "before": "dat ass léif vun ",
+      "after": "!",
+      "preposition": "vun",
+      "options_lb": [
+        "Iech",
+        "mir",
+        "eis",
+        "him"
+      ],
+      "correct": 0,
+      "entryId": "LEIF2"
+    },
+    {
+      "id": "gr-dative-30f5b4536e",
+      "kind": "dative",
+      "before": "well hatt rose mat ",
+      "after": " war, huet hatt hie lénks leie gelooss",
+      "preposition": "mat",
+      "options_lb": [
+        "mir",
+        "him",
+        "dir",
+        "hinnen"
+      ],
+      "correct": 1,
+      "entryId": "LENKS2"
+    },
+    {
+      "id": "gr-dative-120aed6692",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " am Stot ass den Ament déck Loft",
+      "preposition": "bei",
+      "options_lb": [
+        "eis",
+        "mir",
+        "hinnen",
+        "him"
+      ],
+      "correct": 2,
+      "entryId": "LOFT1"
+    },
+    {
+      "id": "gr-dative-1043a34f26",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " ass d'Loft eraus",
+      "preposition": "bei",
+      "options_lb": [
+        "dir",
+        "iech",
+        "him",
+        "mir"
+      ],
+      "correct": 2,
+      "entryId": "LOFT1"
+    },
+    {
+      "id": "gr-dative-a050c82063",
+      "kind": "dative",
+      "before": "hues de keng Loscht, mat ",
+      "after": " an d'Stad ze goen?",
+      "preposition": "mat",
+      "options_lb": [
+        "mir",
+        "him",
+        "eis",
+        "hir"
+      ],
+      "correct": 0,
+      "entryId": "LOSCHT1"
+    },
+    {
+      "id": "gr-dative-53315a536d",
+      "kind": "dative",
+      "before": "mat ",
+      "after": " méchs de net, wat s de wëlls!",
+      "preposition": "mat",
+      "options_lb": [
+        "eis",
+        "mir",
+        "hir",
+        "him"
+      ],
+      "correct": 1,
+      "entryId": "MAACHEN1"
+    },
+    {
+      "id": "gr-dative-57beb07a18",
+      "kind": "dative",
+      "before": "et ass eng Madamm un der Dier, déi mat ",
+      "after": " wëllt schwätzen",
+      "preposition": "mat",
+      "options_lb": [
+        "iech",
+        "dir",
+        "hinnen",
+        "him"
+      ],
+      "correct": 1,
+      "entryId": "MADAMM1"
+    },
+    {
+      "id": "gr-dative-b23d79aa2a",
+      "kind": "dative",
+      "before": "et ass kee Mënsch an d'Spidol no ",
+      "after": " kucke gaangen",
+      "preposition": "no",
+      "options_lb": [
+        "him",
+        "hir",
+        "dir",
+        "iech"
+      ],
+      "correct": 0,
+      "entryId": "MENSCH1"
+    },
+    {
+      "id": "gr-dative-92765ddf8b",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " muss ëmmer alles op der Minutt gemaach ginn!",
+      "preposition": "bei",
+      "options_lb": [
+        "hinnen",
+        "mir",
+        "him",
+        "eis"
+      ],
+      "correct": 2,
+      "entryId": "MINUTT1"
+    },
+    {
+      "id": "gr-dative-244db36b68",
+      "kind": "dative",
+      "before": "ech loosse mir net vun ",
+      "after": " de Mond verbidden!",
+      "preposition": "vun",
+      "options_lb": [
+        "him",
+        "dir",
+        "iech",
+        "mir"
+      ],
+      "correct": 1,
+      "entryId": "MOND1"
+    },
+    {
+      "id": "gr-dative-6ba8b4b3b9",
+      "kind": "dative",
+      "before": "no ",
+      "after": " kënns du un d'Rei!",
+      "preposition": "no",
+      "options_lb": [
+        "eis",
+        "hinnen",
+        "hir",
+        "mir"
+      ],
+      "correct": 3,
+      "entryId": "NO1"
+    },
+    {
+      "id": "gr-dative-04455f908b",
+      "kind": "dative",
+      "before": "meng gutt Réit gi bei ",
+      "after": " zu engem Ouer eran an zu deem aneren eraus!",
+      "preposition": "bei",
+      "options_lb": [
+        "iech",
+        "him",
+        "hir",
+        "hinnen"
+      ],
+      "correct": 1,
+      "entryId": "OUER1"
+    },
+    {
+      "id": "gr-dative-61fc66a909",
+      "kind": "dative",
+      "before": "mat ",
+      "after": " kanns de Päerd stiele goen",
+      "preposition": "mat",
+      "options_lb": [
+        "hir",
+        "dir",
+        "iech",
+        "him"
+      ],
+      "correct": 3,
+      "entryId": "PAERD1"
+    },
+    {
+      "id": "gr-dative-fda0522a40",
+      "kind": "dative",
+      "before": "wie vun ",
+      "after": " Kanner ka gutt rechnen?",
+      "preposition": "vun",
+      "options_lb": [
+        "hir",
+        "iech",
+        "him",
+        "mir"
+      ],
+      "correct": 1,
+      "entryId": "RECHNEN1"
+    },
+    {
+      "id": "gr-dative-6d83ca03ee",
+      "kind": "dative",
+      "before": "ech hat fest mat ",
+      "after": " gerechent, fir mer ze hëllefen, an du hues mech am Plang gelooss!",
+      "preposition": "mat",
+      "options_lb": [
+        "iech",
+        "dir",
+        "mir",
+        "hinnen"
+      ],
+      "correct": 1,
+      "entryId": "RECHNEN1"
+    },
+    {
+      "id": "gr-dative-d64e3f4953",
+      "kind": "dative",
+      "before": "wat ass dat eng Rees, fir bei ",
+      "after": " ze kommen!",
+      "preposition": "bei",
+      "options_lb": [
+        "mir",
+        "hir",
+        "hinnen",
+        "iech"
+      ],
+      "correct": 3,
+      "entryId": "REES1"
+    },
+    {
+      "id": "gr-dative-f1041afb7f",
+      "kind": "dative",
+      "before": "ass alles an der Rei bei ",
+      "after": "?",
+      "preposition": "bei",
+      "options_lb": [
+        "hinnen",
+        "hir",
+        "him",
+        "dir"
+      ],
+      "correct": 3,
+      "entryId": "REI2"
+    },
+    {
+      "id": "gr-dative-aa3b08a364",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " läit de Rimm erof",
+      "preposition": "bei",
+      "options_lb": [
+        "mir",
+        "iech",
+        "dir",
+        "eis"
+      ],
+      "correct": 0,
+      "entryId": "RIMM1"
+    },
+    {
+      "id": "gr-dative-4852ab03f8",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " ass et schéi gemittlech",
+      "preposition": "bei",
+      "options_lb": [
+        "hir",
+        "iech",
+        "mir",
+        "eis"
+      ],
+      "correct": 1,
+      "entryId": "SCHEIN1"
+    },
+    {
+      "id": "gr-dative-a47ac7a6e2",
+      "kind": "dative",
+      "before": "et ass schéi vun ",
+      "after": ", datt s de mer hëllefs",
+      "preposition": "vun",
+      "options_lb": [
+        "eis",
+        "hir",
+        "dir",
+        "mir"
+      ],
+      "correct": 2,
+      "entryId": "SCHEIN1"
+    },
+    {
+      "id": "gr-dative-f7fd0fa0c0",
+      "kind": "dative",
+      "before": "mäi Frënd huet gëschter mat ",
+      "after": " Schluss gemaach",
+      "preposition": "mat",
+      "options_lb": [
+        "dir",
+        "eis",
+        "hinnen",
+        "mir"
+      ],
+      "correct": 3,
+      "entryId": "SCHLUSS1"
+    },
+    {
+      "id": "gr-dative-ec387412c2",
+      "kind": "dative",
+      "before": "wie vun ",
+      "after": " hat schonn d'Waasserpouken?",
+      "preposition": "vun",
+      "options_lb": [
+        "mir",
+        "hir",
+        "iech",
+        "dir"
+      ],
+      "correct": 2,
+      "entryId": "SCHONN1"
+    },
+    {
+      "id": "gr-dative-c257f49594",
+      "kind": "dative",
+      "before": "mat ",
+      "after": " ass net ze schwätzen!",
+      "preposition": "mat",
+      "options_lb": [
+        "eis",
+        "hinnen",
+        "mir",
+        "dir"
+      ],
+      "correct": 3,
+      "entryId": "SCHWATZEN1"
+    },
+    {
+      "id": "gr-dative-5301c63df5",
+      "kind": "dative",
+      "before": "et ass awer ëmmer dat selwecht mat ",
+      "after": "!",
+      "preposition": "mat",
+      "options_lb": [
+        "him",
+        "hir",
+        "dir",
+        "eis"
+      ],
+      "correct": 2,
+      "entryId": "SELWECHT1"
+    },
+    {
+      "id": "gr-dative-2e9d31981d",
+      "kind": "dative",
+      "before": "hues de Loscht, muer de Mëtteg mat ",
+      "after": " an d'Stad shoppen ze goen?",
+      "preposition": "mat",
+      "options_lb": [
+        "hinnen",
+        "iech",
+        "mir",
+        "dir"
+      ],
+      "correct": 2,
+      "entryId": "SHOPPEN1"
+    },
+    {
+      "id": "gr-dative-82b7daa8cd",
+      "kind": "dative",
+      "before": "ech muss soen, dat hätt ech net vun ",
+      "after": " geduecht",
+      "preposition": "vun",
+      "options_lb": [
+        "dir",
+        "hinnen",
+        "hir",
+        "eis"
+      ],
+      "correct": 0,
+      "entryId": "SOEN1"
+    },
+    {
+      "id": "gr-dative-568b6ca9d6",
+      "kind": "dative",
+      "before": "ech hu bei ",
+      "after": " e Steen am Briet",
+      "preposition": "bei",
+      "options_lb": [
+        "hir",
+        "mir",
+        "iech",
+        "him"
+      ],
+      "correct": 3,
+      "entryId": "STEEN1"
+    },
+    {
+      "id": "gr-dative-cc27a40727",
+      "kind": "dative",
+      "before": "mäin Auto streikt erëm, kann ech mat ",
+      "after": " fueren?",
+      "preposition": "mat",
+      "options_lb": [
+        "dir",
+        "mir",
+        "him",
+        "hir"
+      ],
+      "correct": 0,
+      "entryId": "STREIKEN1"
+    },
+    {
+      "id": "gr-dative-446318a90a",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " am Büro ass et ëmmer esou schéin uerdentlech!",
+      "preposition": "bei",
+      "options_lb": [
+        "dir",
+        "iech",
+        "hinnen",
+        "eis"
+      ],
+      "correct": 0,
+      "entryId": "UERDENTLECH1"
+    },
+    {
+      "id": "gr-dative-84d6b9052b",
+      "kind": "dative",
+      "before": "dat ass awer léif vun ",
+      "after": "!",
+      "preposition": "vun",
+      "options_lb": [
+        "eis",
+        "Iech",
+        "mir",
+        "dir"
+      ],
+      "correct": 1,
+      "entryId": "VUN1"
+    },
+    {
+      "id": "gr-dative-55bdd3f641",
+      "kind": "dative",
+      "before": "wie këmmert sech bei ",
+      "after": " am Stot ëm d'Wäsch?",
+      "preposition": "bei",
+      "options_lb": [
+        "him",
+        "hir",
+        "iech",
+        "mir"
+      ],
+      "correct": 2,
+      "entryId": "WASCH1"
+    },
+    {
+      "id": "gr-dative-db5fcf2aea",
+      "kind": "dative",
+      "before": "bei ",
+      "after": " weisen sech déi éischt gro Hoer",
+      "preposition": "bei",
+      "options_lb": [
+        "dir",
+        "mir",
+        "him",
+        "hir"
+      ],
+      "correct": 1,
+      "entryId": "WEISEN1"
+    },
+    {
+      "id": "gr-dative-e25f2ddb63",
+      "kind": "dative",
+      "before": "hie rifft vun Zäit zu Zäit bei ",
+      "after": " un",
+      "preposition": "bei",
+      "options_lb": [
+        "eis",
+        "mir",
+        "dir",
+        "him"
+      ],
+      "correct": 1,
+      "entryId": "ZAIT1"
+    },
+    {
+      "id": "gr-dative-27db5600b0",
+      "kind": "dative",
+      "before": "zënter dem Doud vu senger Fra héiert een net méi vill vun ",
+      "after": "",
+      "preposition": "vun",
+      "options_lb": [
+        "him",
+        "hinnen",
+        "iech",
+        "dir"
+      ],
+      "correct": 0,
+      "entryId": "ZENTER1"
+    },
+    {
+      "id": "gr-likes-e457777c19",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech hunn ëmmer gär en Apel fir den Duuscht",
+        "ech gär hunn ëmmer en Apel fir den Duuscht",
+        "ech hunn gär ëmmer en Apel fir den Duuscht"
+      ],
+      "correct": 0,
+      "entryId": "APEL1"
+    },
+    {
+      "id": "gr-likes-15bd61b8ac",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "meng gär Nopesch rappt de Bak op",
+        "meng Nopesch gär rappt de Bak op",
+        "meng Nopesch rappt gär de Bak op"
+      ],
+      "correct": 2,
+      "entryId": "BAK1"
+    },
+    {
+      "id": "gr-likes-09fc137c64",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "dee berüümte Filmstar deelt gär Autogrammen aus",
+        "dee gär berüümte Filmstar deelt Autogrammen aus",
+        "dee berüümte gär Filmstar deelt Autogrammen aus"
+      ],
+      "correct": 0,
+      "entryId": "BERUUMT1"
+    },
+    {
+      "id": "gr-likes-464ffff913",
+      "kind": "likes",
+      "moved": "gären",
+      "options_lb": [
+        "ech gären hu e Blat Zalot bei menger Kotlett",
+        "ech hu e Blat gären Zalot bei menger Kotlett",
+        "ech hu gären e Blat Zalot bei menger Kotlett"
+      ],
+      "correct": 2,
+      "entryId": "BLAT1"
+    },
+    {
+      "id": "gr-likes-122b0adeb3",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech liese gär Stécker mat absurden Dialogen",
+        "ech gär liese Stécker mat absurden Dialogen",
+        "ech liese Stécker gär mat absurden Dialogen"
+      ],
+      "correct": 0,
+      "entryId": "DIALOG1"
+    },
+    {
+      "id": "gr-likes-5bbfd61585",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech diskutéiere mat gär him iwwer Theologie",
+        "ech diskutéiere gär mat him iwwer Theologie",
+        "ech gär diskutéiere mat him iwwer Theologie"
+      ],
+      "correct": 1,
+      "entryId": "DISKUTEIEREN1"
+    },
+    {
+      "id": "gr-likes-9ea77e3d83",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech hätt eng gär hallef Dose Mëtschen",
+        "ech hätt gär eng hallef Dose Mëtschen",
+        "ech gär hätt eng hallef Dose Mëtschen"
+      ],
+      "correct": 1,
+      "entryId": "DOSEN1"
+    },
+    {
+      "id": "gr-likes-fa5a97675d",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "hie léisst sech gär feieren",
+        "hie gär léisst sech feieren",
+        "hie léisst gär sech feieren"
+      ],
+      "correct": 0,
+      "entryId": "FEIEREN1"
+    },
+    {
+      "id": "gr-likes-46b79c6e8c",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "als Kanner hu mir gär an der Baach gespillt",
+        "als gär Kanner hu mir an der Baach gespillt",
+        "als Kanner gär hu mir an der Baach gespillt"
+      ],
+      "correct": 0,
+      "entryId": "GAR1"
+    },
+    {
+      "id": "gr-likes-da7a6de77d",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "dat gleewen ech dir gär!",
+        "dat gär gleewen ech dir!",
+        "dat gleewen ech gär dir!"
+      ],
+      "correct": 0,
+      "entryId": "GAR1"
+    },
+    {
+      "id": "gr-likes-3c8445453f",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "dat gär hunn ech net gemaach!",
+        "dat hunn gär ech net gemaach!",
+        "dat hunn ech net gär gemaach!"
+      ],
+      "correct": 2,
+      "entryId": "GAR1"
+    },
+    {
+      "id": "gr-likes-4140f8b593",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech gär hunn dech!",
+        "ech hunn gär dech!",
+        "ech hunn dech gär!"
+      ],
+      "correct": 2,
+      "entryId": "GAR1"
+    },
+    {
+      "id": "gr-likes-47335fcad9",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "du kanns gär mech hunn!",
+        "du kanns mech gär hunn!",
+        "du gär kanns mech hunn!"
+      ],
+      "correct": 1,
+      "entryId": "GAR1"
+    },
+    {
+      "id": "gr-likes-4671b64ccf",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "wien hätt net vill gär Suen!",
+        "wien hätt net gär vill Suen!",
+        "wien hätt gär net vill Suen!"
+      ],
+      "correct": 1,
+      "entryId": "GAR1"
+    },
+    {
+      "id": "gr-likes-60bb549387",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "dat geséich ech gär!",
+        "dat gär geséich ech!",
+        "dat geséich gär ech!"
+      ],
+      "correct": 0,
+      "entryId": "GESINN1"
+    },
+    {
+      "id": "gr-likes-825a84a27a",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "mäi Papp geet gär un de Schockela",
+        "mäi gär Papp geet un de Schockela",
+        "mäi Papp gär geet un de Schockela"
+      ],
+      "correct": 0,
+      "entryId": "GOEN1"
+    },
+    {
+      "id": "gr-likes-2103de2f16",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech gär ginn der meng al Diske vun Häerze",
+        "ech ginn gär der meng al Diske vun Häerze",
+        "ech ginn der meng al Diske vun Häerze gär"
+      ],
+      "correct": 2,
+      "entryId": "HAERZ1"
+    },
+    {
+      "id": "gr-likes-a4ca2e1303",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "hie geet gär mat de groussen Honn pissen",
+        "hie gär geet mat de groussen Honn pissen",
+        "hie geet mat gär de groussen Honn pissen"
+      ],
+      "correct": 0,
+      "entryId": "HOND1"
+    },
+    {
+      "id": "gr-likes-4f72abc9be",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "häss gär de e Glas Jus?",
+        "häss de e gär Glas Jus?",
+        "häss de gär e Glas Jus?"
+      ],
+      "correct": 2,
+      "entryId": "JUS1"
+    },
+    {
+      "id": "gr-likes-56ca8c700d",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech kache fir mäi Liewe gär!",
+        "ech gär kache fir mäi Liewe!",
+        "ech kache gär fir mäi Liewe!"
+      ],
+      "correct": 0,
+      "entryId": "KACHEN2"
+    },
+    {
+      "id": "gr-likes-c90014f920",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech hunn gär déi japanesch Kichen extra",
+        "ech hunn déi japanesch Kichen extra gär",
+        "ech gär hunn déi japanesch Kichen extra"
+      ],
+      "correct": 1,
+      "entryId": "KICHEN1"
+    },
+    {
+      "id": "gr-likes-b04158bb9e",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "sonndes bleiwen ech méi gär laang leien",
+        "sonndes bleiwen ech gär méi laang leien",
+        "sonndes gär bleiwen ech méi laang leien"
+      ],
+      "correct": 1,
+      "entryId": "LEIEN2"
+    },
+    {
+      "id": "gr-likes-0785063e16",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech gär kache fir mäi Liewe",
+        "ech kache gär fir mäi Liewe",
+        "ech kache fir mäi Liewe gär"
+      ],
+      "correct": 2,
+      "entryId": "LIEWEN1"
+    },
+    {
+      "id": "gr-likes-e60b8dff7c",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "hie steet gär am Mëttelpunkt",
+        "hie gär steet am Mëttelpunkt",
+        "hie steet am gär Mëttelpunkt"
+      ],
+      "correct": 0,
+      "entryId": "METTELPUNKT1"
+    },
+    {
+      "id": "gr-likes-7221b67214",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "hien ass gär de Mëttelpunkt",
+        "hien ass de gär Mëttelpunkt",
+        "hien ass de Mëttelpunkt gär"
+      ],
+      "correct": 0,
+      "entryId": "METTELPUNKT1"
+    },
+    {
+      "id": "gr-likes-b98c768d1c",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "als Kand hunn ech ëmmer gär gemoolt",
+        "als gär Kand hunn ech ëmmer gemoolt",
+        "als Kand gär hunn ech ëmmer gemoolt"
+      ],
+      "correct": 0,
+      "entryId": "MOLEN1"
+    },
+    {
+      "id": "gr-likes-0260136e7b",
+      "kind": "likes",
+      "moved": "gären",
+      "options_lb": [
+        "hien huet déi klassesch Musek net besonnesch gären",
+        "hien huet gären déi klassesch Musek net besonnesch",
+        "hien huet déi klassesch Musek gären net besonnesch"
+      ],
+      "correct": 0,
+      "entryId": "MUSEK1"
+    },
+    {
+      "id": "gr-likes-8f5c522cee",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech gär hu Anchoisen op der Pizza",
+        "ech hu Anchoisen op gär der Pizza",
+        "ech hu gär Anchoisen op der Pizza"
+      ],
+      "correct": 2,
+      "entryId": "PIZZA1"
+    },
+    {
+      "id": "gr-likes-72cc081ba4",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech si gär mäi Liewe laang gereest",
+        "ech si mäi Liewe laang gär gereest",
+        "ech gär si mäi Liewe laang gereest"
+      ],
+      "correct": 1,
+      "entryId": "REESEN1"
+    },
+    {
+      "id": "gr-likes-c10c27f152",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "mir gär kafen eis en neit Schlofzëmmer",
+        "mir kafen eis en neit gär Schlofzëmmer",
+        "mir kafen eis gär en neit Schlofzëmmer"
+      ],
+      "correct": 2,
+      "entryId": "SCHLOFZEMMER1"
+    },
+    {
+      "id": "gr-likes-0a04f8f95f",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech hunn gär de Goût vum Schof net",
+        "ech hunn de Goût vum Schof net gär",
+        "ech gär hunn de Goût vum Schof net"
+      ],
+      "correct": 1,
+      "entryId": "SCHOF1"
+    },
+    {
+      "id": "gr-likes-7efa7559e9",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "de Weess huet gär schwéiere Buedem",
+        "de gär Weess huet schwéiere Buedem",
+        "de Weess gär huet schwéiere Buedem"
+      ],
+      "correct": 0,
+      "entryId": "SCHWEIER1"
+    },
+    {
+      "id": "gr-likes-bd868d3b26",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech gi mëttelalterlech gär Stied kucken",
+        "ech gi gär mëttelalterlech Stied kucken",
+        "ech gär gi mëttelalterlech Stied kucken"
+      ],
+      "correct": 1,
+      "entryId": "STAD1"
+    },
+    {
+      "id": "gr-likes-a986cdbc80",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech drénke gär mäi Kaffi net am Stoen",
+        "ech drénke mäi Kaffi net gär am Stoen",
+        "ech gär drénke mäi Kaffi net am Stoen"
+      ],
+      "correct": 1,
+      "entryId": "STOEN1"
+    },
+    {
+      "id": "gr-likes-cdbcfbcfdd",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "ech gär maachen de Stot net",
+        "ech maachen de gär Stot net",
+        "ech maachen de Stot net gär"
+      ],
+      "correct": 2,
+      "entryId": "STOT1"
+    },
+    {
+      "id": "gr-likes-9d0cfaf94a",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "de Monni gär verbréngt seng Zäit nawell am Bistro",
+        "de Monni verbréngt seng Zäit nawell gär am Bistro",
+        "de gär Monni verbréngt seng Zäit nawell am Bistro"
+      ],
+      "correct": 1,
+      "entryId": "VERBRENGEN1"
+    },
+    {
+      "id": "gr-likes-540ae46769",
+      "kind": "likes",
+      "moved": "gären",
+      "options_lb": [
+        "ech gären drénke beim Iesse e Pättche Roude Wäin",
+        "ech drénke beim gären Iesse e Pättche Roude Wäin",
+        "ech drénke beim Iesse gären e Pättche Roude Wäin"
+      ],
+      "correct": 2,
+      "entryId": "WAIN1"
+    },
+    {
+      "id": "gr-likes-7ecf3ad1c1",
+      "kind": "likes",
+      "moved": "gär",
+      "options_lb": [
+        "wéi gär wier ech méi laang bliwwen!",
+        "wéi wier gär ech méi laang bliwwen!",
+        "wéi wier ech gär méi laang bliwwen!"
+      ],
+      "correct": 0,
+      "entryId": "WEI3"
     }
   ]
 }

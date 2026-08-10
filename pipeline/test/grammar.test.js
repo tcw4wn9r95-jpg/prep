@@ -18,7 +18,10 @@ const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 
 const ROOT = path.join(__dirname, '..', '..');
-const { genderItems, nRuleItems, adjectiveItems } = require('../build-grammar.js');
+const {
+  genderItems, nRuleItems, adjectiveItems, numberItems, dativeItems, likesItems,
+  NUMBER_WORDS, DATIVE_PRONOUNS, DATIVE_PREPOSITIONS,
+} = require('../build-grammar.js');
 
 /* --------------------------------------------------------------- fixtures */
 
@@ -179,6 +182,86 @@ test('grammar/adjective: options are never authored — always a subset of what 
   }
 });
 
+/* ---------------------------------------------------------------- numbers */
+
+function withForms(lexicon, words) {
+  for (const word of words) lexicon.forms[word.toLowerCase()] ??= `spelling:${word.toUpperCase()}FIX`;
+  return lexicon;
+}
+
+test('grammar/numbers: gaps a real number word, offering only other real number words as distractors', () => {
+  const lexicon = withForms(withForms(fixtureLexicon(), NUMBER_WORDS), ['e', 'wierfel', 'huet', 'säiten']);
+  const corpus = {
+    entries: [{ id: 'A1', partOfSpeech: 'SUBST', meanings: [{ examples: [{ text: 'e Wierfel huet sechs Säiten.' }] }] }],
+  };
+  const items = numberItems(corpus, lexicon);
+  assert.ok(items.length >= 1, 'a real sentence with a number word should be mined');
+  for (const item of items) {
+    assert.equal(item.kind, 'numbers');
+    assert.equal(item.options_lb.length, 4);
+    assert.equal(new Set(item.options_lb.map((o) => o.toLowerCase())).size, 4, 'options must be distinct');
+    for (const option of item.options_lb) {
+      assert.ok(NUMBER_WORDS.includes(option.toLowerCase()), `"${option}" is not one of the 30 real number words`);
+    }
+    assert.equal(item.options_lb[item.correct].toLowerCase(), 'sechs');
+    assert.equal(`${item.before}${item.options_lb[item.correct]}${item.after}`, 'e Wierfel huet sechs Säiten.');
+  }
+});
+
+test('grammar/numbers: never gaps a number word that opens the sentence', () => {
+  // A sentence-initial number is capitalised the way none of the 29 other
+  // options ever are, which would give the answer away by casing alone.
+  const lexicon = withForms(withForms(fixtureLexicon(), NUMBER_WORDS), ['joer', 'sinn', 'laang']);
+  const corpus = {
+    entries: [{ id: 'A1', partOfSpeech: 'SUBST', meanings: [{ examples: [{ text: 'Zéng Joer sinn laang.' }] }] }],
+  };
+  assert.equal(numberItems(corpus, lexicon).length, 0);
+});
+
+/* ----------------------------------------------------------------- dative */
+
+test('grammar/dative: gaps a dative pronoun that follows a dative preposition, offering only the other six as distractors', () => {
+  const lexicon = withForms(withForms(fixtureLexicon(), DATIVE_PRONOUNS), ['dës', 'decisioun', 'gouf', 'vun', 'alleguer', 'guttgeheescht']);
+  const corpus = {
+    entries: [{ id: 'A1', partOfSpeech: 'SUBST', meanings: [{ examples: [{ text: 'dës Decisioun gouf vun eis alleguer guttgeheescht.' }] }] }],
+  };
+  const items = dativeItems(corpus, lexicon);
+  assert.ok(items.length >= 1);
+  for (const item of items) {
+    assert.equal(item.kind, 'dative');
+    assert.ok(DATIVE_PREPOSITIONS.has(item.preposition.toLowerCase()));
+    assert.equal(item.options_lb.length, 4);
+    for (const option of item.options_lb) assert.ok(DATIVE_PRONOUNS.includes(option.toLowerCase()));
+    assert.equal(item.options_lb[item.correct].toLowerCase(), 'eis');
+  }
+});
+
+test('grammar/dative: only mines a pronoun directly after one of the four dative prepositions', () => {
+  // "eis" here is the direct object of "hunn", not preceded by a dative
+  // preposition, so it must not be mined as a dative item.
+  const lexicon = withForms(withForms(fixtureLexicon(), DATIVE_PRONOUNS), ['ech', 'hunn', 'kanner', 'gär']);
+  const corpus = {
+    entries: [{ id: 'A1', partOfSpeech: 'SUBST', meanings: [{ examples: [{ text: 'ech hunn eis Kanner gär.' }] }] }],
+  };
+  assert.equal(dativeItems(corpus, lexicon).length, 0);
+});
+
+/* ------------------------------------------------------------------ likes */
+
+test('grammar/likes: mines gär placement the same way negation mines net', () => {
+  const lexicon = withForms(fixtureLexicon(), ['ech', 'hunn', 'ëmmer', 'gär', 'kaffi']);
+  const corpus = {
+    entries: [{ id: 'A1', partOfSpeech: 'SUBST', meanings: [{ examples: [{ text: 'ech hunn ëmmer gär Kaffi.' }] }] }],
+  };
+  const items = likesItems(corpus, lexicon);
+  assert.ok(items.length >= 1);
+  for (const item of items) {
+    assert.equal(item.kind, 'likes');
+    assert.ok(['gär', 'gären'].includes(item.moved.toLowerCase()));
+    assert.equal(item.options_lb.length, 3);
+  }
+});
+
 /* ------------------------------------------------------- the shipped-file guard */
 
 const SHIPPED = path.join(ROOT, 'app', 'data', 'grammar.json');
@@ -197,7 +280,10 @@ test('grammar: the shipped deck carries only declared kinds, each internally con
     assert.ok(!seenIds.has(item.id), `duplicate id ${item.id}`);
     seenIds.add(item.id);
     assert.ok(
-      ['gender', 'nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'bracket', 'subclause', 'negation'].includes(item.kind),
+      [
+        'gender', 'nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'bracket', 'subclause', 'negation',
+        'numbers', 'dative', 'likes',
+      ].includes(item.kind),
       `${item.id}: unknown kind "${item.kind}"`,
     );
 
@@ -241,9 +327,9 @@ test('grammar: a perfect-auxiliary card never asks a circular question', (t) => 
   }
 });
 
-test('grammar: word-order and negation options differ only in word order', (t) => {
+test('grammar: word-order, negation and likes options differ only in word order', (t) => {
   if (!fs.existsSync(SHIPPED)) return t.skip('no grammar.json yet');
-  const items = shipped().filter((item) => ['wordorder', 'bracket', 'subclause', 'negation'].includes(item.kind));
+  const items = shipped().filter((item) => ['wordorder', 'bracket', 'subclause', 'negation', 'likes'].includes(item.kind));
   assert.ok(items.length > 100, `expected real ordering decks, got ${items.length}`);
 
   const bag = (sentence) =>
@@ -263,6 +349,7 @@ test('grammar: word-order and negation options differ only in word order', (t) =
     }
     assert.ok(item.moved, `${item.id}: should record which word moved`);
     if (item.kind === 'negation') assert.equal(item.moved.toLowerCase(), 'net');
+    if (item.kind === 'likes') assert.ok(['gär', 'gären'].includes(item.moved.toLowerCase()));
   }
 });
 
@@ -270,7 +357,7 @@ test('grammar: every ordering option keeps the punctuation LOD wrote', (t) => {
   if (!fs.existsSync(SHIPPED)) return t.skip('no grammar.json yet');
   // Rejoining tokens with spaces silently drops commas, which would ship a
   // rewrite of the sentence as though it were the sentence.
-  for (const item of shipped().filter((i) => ['wordorder', 'bracket', 'subclause', 'negation'].includes(i.kind))) {
+  for (const item of shipped().filter((i) => ['wordorder', 'bracket', 'subclause', 'negation', 'likes'].includes(i.kind))) {
     for (const option of item.options_lb) {
       assert.ok(!option.includes(' ,') && !option.includes(' .'), `${item.id}: stray spacing before punctuation`);
       assert.ok(!/,,|\s{2,}/.test(option), `${item.id}: doubled punctuation or whitespace`);
@@ -298,6 +385,55 @@ test('grammar: a perfect-participle gap is answerable and really a perfect', (t)
     const context = `${item.before} ${item.after}`.toLowerCase();
     const words = context.match(/[\p{L}][\p{L}'’-]*/gu) ?? [];
     assert.ok(words.some((word) => AUX.has(word)), `${item.id}: no auxiliary, so this is not a perfect`);
+  }
+});
+
+test('grammar: a numbers gap only ever offers real number words, and the sentence really contains the answer', (t) => {
+  if (!fs.existsSync(SHIPPED)) return t.skip('no grammar.json yet');
+  const items = shipped().filter((item) => item.kind === 'numbers');
+  assert.ok(items.length > 50, `expected a real numbers deck, got ${items.length}`);
+  for (const item of items) {
+    assert.equal(item.options_lb.length, 4, `${item.id}: four options`);
+    assert.equal(new Set(item.options_lb.map((o) => o.toLowerCase())).size, 4, `${item.id}: options must be distinct`);
+    for (const option of item.options_lb) {
+      assert.ok(NUMBER_WORDS.includes(option.toLowerCase()), `${item.id}: "${option}" is not one of the 30 real number words`);
+    }
+    const answer = item.options_lb[item.correct];
+    assert.equal(`${item.before}${answer}${item.after}`.length > 0, true);
+    assert.notEqual(item.before.length + item.after.length, 0, `${item.id}: no surrounding sentence`);
+  }
+});
+
+test('grammar: a dative gap only ever offers a real dative pronoun, right after a real dative preposition', (t) => {
+  if (!fs.existsSync(SHIPPED)) return t.skip('no grammar.json yet');
+  const items = shipped().filter((item) => item.kind === 'dative');
+  assert.ok(items.length > 30, `expected a real dative deck, got ${items.length}`);
+  for (const item of items) {
+    assert.ok(DATIVE_PREPOSITIONS.has(item.preposition?.toLowerCase()), `${item.id}: "${item.preposition}" is not a dative preposition`);
+    assert.equal(item.options_lb.length, 4, `${item.id}: four options`);
+    assert.equal(new Set(item.options_lb.map((o) => o.toLowerCase())).size, 4, `${item.id}: options must be distinct`);
+    for (const option of item.options_lb) {
+      assert.ok(DATIVE_PRONOUNS.includes(option.toLowerCase()), `${item.id}: "${option}" is not one of the seven dative pronouns`);
+    }
+    // The preposition must actually sit right before the gap in the sentence
+    // (stray leading punctuation on the preceding word, like an opening
+    // parenthesis, does not break that).
+    const beforeWords = item.before.trim().match(/[\p{L}][\p{L}'’-]*/gu) ?? [];
+    assert.equal(
+      beforeWords[beforeWords.length - 1]?.toLowerCase(),
+      item.preposition.toLowerCase(),
+      `${item.id}: preposition does not immediately precede the gap`,
+    );
+  }
+});
+
+test('grammar: a likes item moves only gär or gären, the same shape as the other ordering kinds', (t) => {
+  if (!fs.existsSync(SHIPPED)) return t.skip('no grammar.json yet');
+  const items = shipped().filter((item) => item.kind === 'likes');
+  assert.ok(items.length > 10, `expected a real likes deck, got ${items.length}`);
+  for (const item of items) {
+    assert.ok(['gär', 'gären'].includes(item.moved.toLowerCase()), `${item.id}: moved word is not gär/gären`);
+    assert.equal(item.options_lb.length, 3, `${item.id}: three orderings`);
   }
 });
 
