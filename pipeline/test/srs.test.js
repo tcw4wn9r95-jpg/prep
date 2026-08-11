@@ -66,10 +66,18 @@ test('srs: production stays locked until the word is recognised', async () => {
   const locked = store.buildSession([items[0]], { recv, prod: new Map() }, { limit: 10, newTarget: 0, now: NOW });
   assert.deepEqual(locked.map((card) => card.strand), [store.STRANDS.recv]);
 
+  // Both strands are due here, and this test is about the unlock rule, not
+  // about STALE_REVIEW_SAMPLE (below) — so both are marked as mistakes, which
+  // always come back, rather than leaving it to a 20% draw whether the test
+  // sees one strand or two.
+  const mistakes = store.mistakeEntryKeys([
+    { deck: undefined, strand: 'recv', itemId: 'W0' },
+    { deck: undefined, strand: 'prod', itemId: 'W0' },
+  ]);
   const unlocked = store.buildSession(
     [items[0]],
     { recv: new Map([['W0', seen(store.PROD_UNLOCK_BOX, NOW - 1)]]), prod: new Map() },
-    { limit: 10, newTarget: 0, now: NOW },
+    { limit: 10, newTarget: 0, now: NOW, mistakes },
   );
   assert.deepEqual(unlocked.map((card) => card.strand).sort(), ['prod', 'recv']);
 });
@@ -90,16 +98,20 @@ test('srs: words that are not due yet are left alone', async () => {
   assert.deepEqual(session, []);
 });
 
-test('srs: reviews are not buried under new words when both are available', async () => {
-  // 20 cards due and a full deck of unmet words: the session is reviews only.
-  // This used to reserve the new-word slots first and hand back 4 new + 8
-  // reviews, which added four cards to the backlog for every session that
-  // cleared eight — the queue could never drain.
+test('srs: new words are not buried under a review backlog of held words', async () => {
+  // 20 words due for review — none of them mistakes — and a full deck of
+  // unmet words. This used to reserve the review slots first and hand back
+  // 8 reviews + 4 new, on the theory that a due card is a memory about to be
+  // lost. It no longer is one: only a genuine mistake is treated that way now
+  // (see STALE_REVIEW_SAMPLE), so new words win their full daily target and
+  // the backlog only tops up whatever is left, throttled — which is also why
+  // the session can come back shorter than `limit`, the same way a spent
+  // newTarget already caps a session short of `limit` today.
   const recv = new Map(items.slice(0, 20).map((item) => [item.id, seen(1, NOW - 1)]));
   const session = store.buildSession(items, { recv, prod: new Map() }, { limit: 12, newTarget: 4, now: NOW });
-  assert.equal(session.length, 12);
-  assert.equal(session.filter((card) => card.isNew).length, 0);
-  assert.equal(session.filter((card) => !card.isNew).length, 12);
+  assert.equal(session.filter((card) => card.isNew).length, 4, 'the daily new-word target is met in full');
+  assert.ok(session.length <= 12, 'never exceeds the limit');
+  assert.ok(session.length - 4 <= Math.ceil(20 * 0.2), 'the review portion never exceeds a fifth of what is due');
 });
 
 test('srs: the session never exceeds its limit', async () => {
@@ -195,21 +207,21 @@ test('srs: a single-deck session is just a mixed session with one group', async 
   assert.ok(plain.every((card) => card.deck === undefined), 'a single-deck plan leaves the deck to runSession');
 });
 
-test('srs: a review backlog is cleared before any new words are added', async () => {
-  // The bug this guards: the new-word slots were reserved *first*, so a
-  // backlog of 24 due cards handed back 4 reviews and 8 new words. Every
-  // session then grew the backlog by four while the home screen kept
-  // reporting 24 due — "I have 24 cards but I cannot find them".
+test('srs: new words fill their full daily target even with a large review backlog', async () => {
+  // The bug this used to guard was the opposite of what it guards now: new-
+  // word slots reserved first meant a 24-card backlog handed back only 4
+  // reviews, so the backlog never drained. It was fixed by putting reviews
+  // first — which then buried new words the other way, which is exactly what
+  // was asked to be undone. Now: 24 due, none of them mistakes, and a full
+  // daily target of 8 new words. New words get all 8; the backlog only tops
+  // up whatever room is left, throttled.
   const met = Array.from({ length: 24 }, (_, index) => ({ id: `M${index}`, stage: 1, rank: index }));
   const unmet = Array.from({ length: 200 }, (_, index) => ({ id: `U${index}`, stage: 1, rank: 100 + index }));
   const recv = new Map(met.map((item) => [item.id, seen(1, NOW - 86400000)]));
 
   const session = store.buildSession([...met, ...unmet], { recv, prod: new Map() }, { limit: 12, newTarget: 8, now: NOW });
-  assert.equal(session.length, 12);
-  assert.ok(
-    session.every((card) => !card.isNew),
-    'with 24 cards due, a 12-card session must be all reviews',
-  );
+  assert.equal(session.filter((card) => card.isNew).length, 8, 'the daily new-word target is met in full, whatever the backlog');
+  assert.ok(session.length - 8 <= Math.ceil(24 * 0.2), 'the review portion never exceeds a fifth of what is due');
 });
 
 test('srs: new words still fill the rest of a session when the backlog is small', async () => {
@@ -223,6 +235,70 @@ test('srs: new words still fill the rest of a session when the backlog is small'
   const fresh = session.filter((card) => card.isNew).length;
   assert.equal(fresh, 8, 'the daily new-word target still applies when the backlog fits');
   assert.equal(session.length - fresh, 1, 'the one due card is in there too');
+});
+
+/* -------------------------------------------- mistakes vs. the held backlog
+ * A card just missed is tracked separately (store.recordMistake/listMistakes)
+ * from the Leitner box that decides when a *correctly* held word is due.
+ * buildMixedSession only treats the first kind as urgent; the second is
+ * throttled to STALE_REVIEW_SAMPLE so a long backlog of words already known
+ * cannot outnumber new words the way an uncapped one used to.
+ */
+
+test('srs: a mistake always comes back, never subject to the review throttle', async () => {
+  // 19 ordinary due reviews plus one flagged mistake: with newTarget: 0 there
+  // is nothing but the review pool to draw from, and ceil(20 * 0.2) = 4 would
+  // easily miss any one specific card by chance if mistakes were not pulled
+  // out first. Run several times, with real randomness, to be sure this is a
+  // guarantee and not a coin flip that happened to land right once.
+  const due = items.slice(0, 20);
+  const recv = new Map(due.map((item) => [item.id, seen(1, NOW - 1)]));
+  const mistakes = store.mistakeEntryKeys([{ deck: undefined, strand: 'recv', itemId: due[0].id }]);
+
+  for (let run = 0; run < 20; run += 1) {
+    const session = store.buildSession(due, { recv, prod: new Map() }, { limit: 4, newTarget: 0, now: NOW, mistakes });
+    assert.ok(
+      session.some((card) => card.item.id === due[0].id),
+      'the flagged mistake must appear even though it is one of only a few slots',
+    );
+  }
+});
+
+test('srs: a held-but-correct backlog is capped at roughly a fifth of what is due', async () => {
+  const due = items.slice(0, 30);
+  const recv = new Map(due.map((item) => [item.id, seen(1, NOW - 1)]));
+  // No mistakes, no new words, and room for the whole backlog if nothing
+  // throttled it — so whatever comes back is entirely down to the cap.
+  const session = store.buildSession(due, { recv, prod: new Map() }, { limit: 30, newTarget: 0, now: NOW });
+  assert.equal(session.length, Math.ceil(30 * 0.2), 'up to 20% of the due backlog, not all of it');
+});
+
+test('srs: the throttled slice is random, not the same fifth every time', async () => {
+  const due = items.slice(0, 30);
+  const recv = new Map(due.map((item) => [item.id, seen(1, NOW - 1)]));
+  const draws = Array.from({ length: 10 }, () =>
+    store
+      .buildSession(due, { recv, prod: new Map() }, { limit: 30, newTarget: 0, now: NOW })
+      .map((card) => card.item.id)
+      .sort()
+      .join(','),
+  );
+  assert.ok(new Set(draws).size > 1, 'ten draws from a 30-item backlog should not all pick the same six');
+});
+
+test('srs: mistakes and new words both come before the throttled backlog', async () => {
+  const due = items.slice(0, 20); // held, not mistakes
+  const unmet = items.slice(20); // 20 fresh words
+  const recv = new Map(due.map((item) => [item.id, seen(1, NOW - 1)]));
+  const mistakes = store.mistakeEntryKeys([{ deck: undefined, strand: 'recv', itemId: due[0].id }]);
+
+  const session = store.buildSession([...due, ...unmet], { recv, prod: new Map() }, { limit: 5, newTarget: 3, now: NOW, mistakes });
+  assert.equal(session.length, 5);
+  assert.ok(session.some((card) => card.item.id === due[0].id), 'the mistake is in there');
+  assert.equal(session.filter((card) => card.isNew).length, 3, 'the new-word target is met in full');
+  // One slot left over (5 - 1 mistake - 3 new): a held, non-mistake review.
+  const leftover = session.find((card) => !card.isNew && card.item.id !== due[0].id);
+  assert.ok(leftover && due.some((item) => item.id === leftover.item.id), 'the last slot is a throttled review, not another mistake or new word');
 });
 
 /* ------------------------------------------------------------- daily goal */

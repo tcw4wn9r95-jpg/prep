@@ -1491,3 +1491,79 @@ just taught.
 in-browser check that a numbers, dative and likes item each build into a
 real card with no thrown error, and that all twelve grammar-guide topics
 render on the cheat sheet with zero console errors.
+
+---
+
+# Follow-up 10 — old words stop crowding out new ones
+
+> "We shouldn't bring back old words that much, especially before new words.
+> Let's remove that completely, only bring back mistakes and then after a few
+> days randomly bring back up to 20% of the old words." Plus: remove the copy
+> that told a learner 197 words had to be repeated before any new one, and
+> "same as the review 197 words path, I want to move forward."
+
+## What was actually happening
+
+`buildMixedSession` (`app/js/store.js`) put every due review ahead of every
+new word, on purpose — a deliberate fix from earlier in this project (a
+review backlog used to get crowded out by new words, meaning it could never
+drain). That fix solved the wrong side of the trade for a two-person app with
+thousands of words already met: a big, entirely healthy backlog of
+correctly-held words could now block new intake for as long as it kept
+refilling, which is the exact complaint above. Today's screen said so in as
+many words: "197 words you have met before are ready to come round again …
+so they come before new words."
+
+## The fix keeps two kinds of "due" apart
+
+The app already tracks a card just gotten wrong separately from the Leitner
+box — `store.recordMistake`/`listMistakes`, the data behind the existing
+"Your mistakes" screen, cleared the moment that exact card is answered right
+again. That distinction turns out to be exactly the one asked for:
+
+- **A mistake** — a card currently in that list — still comes back
+  reliably, same as before. It is a gap actively closing, not a queue.
+- **A held word** — correctly answered, its Leitner box interval simply
+  elapsed — is no longer treated as equally urgent. `buildMixedSession` now
+  draws only a random slice of these, capped at `STALE_REVIEW_SAMPLE` (20%)
+  of whatever is currently due, re-rolled every time a session is built.
+
+Fill order is now: mistakes, then new words up to the daily target, then the
+throttled slice of held words fills whatever is left. A session can
+legitimately come back shorter than its limit when the backlog is being
+rationed rather than padded out — the same way a spent new-word budget
+already caps a session short today, so this isn't a new kind of behaviour,
+just a second reason for it.
+
+Every screen that draws from the scheduler (`#/session`, `#/vocab`,
+`#/verbs`, `#/phrases`, `#/grammar`) now fetches the mistake list and passes
+it through — `buildSession`'s single-deck callers name their deck with a new
+`deckId` option so the mistake lookup does not need `card.deck`, which
+stays `undefined` for a single-deck plan exactly as before.
+
+## The copy
+
+Today's and Learn's own "what to do now" logic both put reviews first with
+the removed line built in — Learn's had its own, independent copy of the
+same policy ("Words already met come before new ones … New words
+otherwise"), not just Today's. Both now check new words first, and the
+"N words are ready to come round again … so they come before new words"
+framing is gone from both — replaced with copy that describes what actually
+happens now (a mistake comes straight back; everything else "only now and
+then"), not a promise about volume that the throttle would immediately
+contradict. The Learn hub's own "are you moving forward" panel made a
+similar claim in its own words ("reviews are taken before new words … once
+enough are in circulation intake stops," with a simulated "settles around
+150 words met" figure) — also rewritten, since intake is no longer gated by
+the backlog at all now, only by the existing daily new-word cap.
+
+## Verification
+
+`npm test` 215 (rewrote the two srs.test.js cases that asserted the old
+review-first priority, since asserting the opposite is now correct; added
+four new ones covering the mistake guarantee under real randomness, the ~20%
+cap measured directly, that the throttled slice actually varies run to run,
+and the mistake/new/throttled fill order together) · `validate` PASS ·
+`npm run walkthrough` 45/45 · direct in-browser checks of both Today branches
+(new words available, and new words spent) and the Learn hub's own button,
+all rendering the new copy with zero console errors.

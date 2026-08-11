@@ -651,17 +651,23 @@ export function pickDue(items, stateByItemId, limit) {
 /**
  * The session plan: a list of `{ item, strand }` pairs.
  *
- * Reviews come first in the pool and new words are capped at `newTarget`, so a
- * long backlog never gets buried under fresh intake. Everything then gets
- * interleaved — mixing strands and decks within a session retains better than
- * blocking one type together — except that a word being met for the very first
- * time contributes only its receptive card, so first exposure stays simple.
+ * Mistakes come first, new words next (capped at `newTarget`), and a
+ * throttled slice of the rest of the backlog fills in last — see the block
+ * comment above `STALE_REVIEW_SAMPLE` in `buildMixedSession` for why.
+ * Everything is then interleaved — mixing strands and decks within a session
+ * retains better than blocking one type together — except that a word being
+ * met for the very first time contributes only its receptive card, so first
+ * exposure stays simple.
+ *
+ * `options.deckId` names the deck for matching against the `mistakes` list
+ * only — it does not become `card.deck` the way a mixed session's groups do;
+ * a single-deck plan still leaves that to `runSession`'s own `deck` option.
  *
  * @param {Array} items
  * @param {{recv: Map, prod: Map}} states
  */
-export function buildSession(items, states, options = {}) {
-  return buildMixedSession([{ items, states }], options);
+export function buildSession(items, states, { deckId, ...options } = {}) {
+  return buildMixedSession([{ items, states, mistakeDeck: deckId }], options);
 }
 
 /**
@@ -685,17 +691,30 @@ export function buildSession(items, states, options = {}) {
  *
  * @param {Array<{deck?: object, pool?: Array, items: Array, states: {recv: Map, prod: Map}}>} groups
  * @param {Record<string, number>} [options.reserve] deck id → minimum cards
+ * @param {Set<string>} [options.mistakes] entry keys (`mistakeEntryKey`) of cards
+ *   currently in the mistakes list — see the note above `STALE_REVIEW_SAMPLE`.
  */
-export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TARGET, now = Date.now(), reserve = {} } = {}) {
-  const reviews = [];
+export function buildMixedSession(
+  groups,
+  { limit = 12, newTarget = DAILY_NEW_TARGET, now = Date.now(), reserve = {}, mistakes = EMPTY_SET, random = Math.random } = {},
+) {
+  const mistakeReviews = [];
+  const staleReviews = [];
   const fresh = [];
 
   for (const group of groups) {
-    const { items, states, deck, pool, reserveId } = group;
+    const { items, states, deck, pool, reserveId, mistakeDeck } = group;
     // `reserveId` lets two groups share a deck — and therefore a Leitner row —
     // while being reserved separately. Sentence structure is a slice of the
     // grammar deck that has to be guaranteed on its own.
     const from = (item, strand, isNew) => ({ item, strand, isNew, deck, pool: pool ?? items, reserveId: reserveId ?? deck?.id });
+    // A card the learner actually got wrong, versus one whose box interval
+    // simply elapsed — see the block comment above STALE_REVIEW_SAMPLE for why
+    // the two are no longer treated the same. `mistakeDeck` lets a single-deck
+    // `buildSession` call name its deck for this lookup without that deck
+    // becoming `card.deck` (see buildSession's own doc comment).
+    const deckId = mistakeDeck ?? deck?.id;
+    const bucket = (entry) => (mistakes.has(mistakeEntryKey(deckId, entry.strand, entry.item.id)) ? mistakeReviews : staleReviews).push(entry);
 
     for (const item of items) {
       const recv = states.recv.get(item.id);
@@ -705,18 +724,24 @@ export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TA
         fresh.push(from(item, STRANDS.recv, true));
         continue;
       }
-      if (recv.dueAt <= now) reviews.push(from(item, STRANDS.recv, false));
+      if (recv.dueAt <= now) bucket(from(item, STRANDS.recv, false));
 
       // Production only opens once the word is recognised, and an unseen prod
       // strand on an unlocked word is itself a review — the word is known, the
       // skill is not.
       if (recv.box < PROD_UNLOCK_BOX) continue;
-      if (!prod) reviews.push(from(item, STRANDS.prod, false));
-      else if (prod.dueAt <= now) reviews.push(from(item, STRANDS.prod, false));
+      if (!prod) bucket(from(item, STRANDS.prod, false));
+      else if (prod.dueAt <= now) bucket(from(item, STRANDS.prod, false));
     }
   }
 
-  shuffle(reviews);
+  shuffle(mistakeReviews, random);
+  shuffle(staleReviews, random);
+  // "Up to 20%" of whatever is currently due and not a mistake — a random
+  // slice, re-rolled every time a session is built, rather than the same
+  // fifth of the backlog every day. See the block comment above
+  // STALE_REVIEW_SAMPLE for why this exists at all.
+  const throttledStale = staleReviews.slice(0, Math.ceil(staleReviews.length * STALE_REVIEW_SAMPLE));
 
   // New words are taken in order, never shuffled. The deck is sorted so that
   // the sentence skeleton comes first and the rest follows how often the word
@@ -724,12 +749,11 @@ export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TA
   // here was what put `Wunngemeinschaft` in front of a beginner before `ech`.
   fresh.sort((a, b) => (a.item.stage ?? 9) - (b.item.stage ?? 9) || (a.item.rank ?? 0) - (b.item.rank ?? 0));
 
-  // Reviews fill the session first; new words take whatever is left, up to the
-  // daily cap. The order matters more than it looks: reserving the new-word
-  // slots first meant a backlog of 24 due cards handed back 4 reviews and 8
-  // new words, so every session *grew* the backlog by four while reporting 24
-  // due on the home screen. A card that is due is a memory about to be lost —
-  // it outranks a word that has never been met.
+  // Mistakes fill the session first — a card just got wrong is an active gap,
+  // not a queue to manage. New words come next: the whole point of throttling
+  // old reviews (above) is that they should not be the thing standing between
+  // a learner and the next new word. Whatever is left, a random slice of the
+  // held-and-correct backlog fills in, last.
   const reserveTotal = Object.values(reserve).reduce((sum, n) => sum + n, 0);
   const generalLimit = Math.max(0, limit - reserveTotal);
 
@@ -757,12 +781,15 @@ export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TA
     return out;
   };
 
-  const chosenReviews = take(reviews, generalLimit);
-  const newSlots = Math.max(0, Math.min(newTarget, generalLimit - chosenReviews.length));
-  const general = [...chosenReviews, ...take(fresh, newSlots)];
+  const chosenMistakes = take(mistakeReviews, generalLimit);
+  const newSlots = Math.max(0, Math.min(newTarget, generalLimit - chosenMistakes.length));
+  const chosenFresh = take(fresh, newSlots);
+  const staleSlots = Math.max(0, generalLimit - chosenMistakes.length - chosenFresh.length);
+  const general = [...chosenMistakes, ...chosenFresh, ...take(throttledStale, staleSlots)];
 
-  // Whatever the general pool did not already take, per reserved deck — reviews
-  // before fresh, same priority as everywhere else in this function.
+  // Whatever the general pool did not already take, per reserved deck — same
+  // priority as everywhere else in this function: mistakes, then fresh, then
+  // a throttled slice of the rest.
   const reserved = [];
   // The reserve draws from the same daily new-word budget as everything else.
   // Without this it topped every session up with fresh grammar items whatever
@@ -770,7 +797,9 @@ export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TA
   // per session, and a session can be started as often as you like.
   let freshBudget = Math.max(0, newTarget - general.filter((entry) => entry.isNew).length);
   for (const [deckId, min] of Object.entries(reserve)) {
-    const candidates = [...reviews, ...fresh].filter((entry) => entry.reserveId === deckId && !taken.has(entryKey(entry)));
+    const candidates = [...mistakeReviews, ...fresh, ...throttledStale].filter(
+      (entry) => entry.reserveId === deckId && !taken.has(entryKey(entry)),
+    );
     for (const entry of candidates.slice(0, min)) {
       if (entry.isNew) {
         if (freshBudget <= 0) continue;
@@ -782,13 +811,45 @@ export function buildMixedSession(groups, { limit = 12, newTarget = DAILY_NEW_TA
   }
 
   const chosen = [...general, ...reserved];
-  shuffle(chosen);
+  shuffle(chosen, random);
   return chosen;
 }
 
-function shuffle(list) {
+/**
+ * A card just missed is a gap in memory that is actively closing — it should
+ * come back. A card the Leitner box has simply not reviewed yet in a while is
+ * a different thing: it is *held*, not fading, and treating every one of a
+ * long backlog as equally urgent is what buried new words under "197 words
+ * ready to come round again" and made every session a review session. So only
+ * two kinds of card are drawn back into a session now: a genuine mistake
+ * (tracked by the separate `mistakes` store, cleared the moment it is
+ * answered right — see the block comment above `recordMistake`), which always
+ * comes back; and a random slice of the rest of what is due, capped at this
+ * fraction, so old words still resurface — spaced repetition still works —
+ * without ever being able to outnumber new words the way an uncapped backlog
+ * did.
+ */
+const STALE_REVIEW_SAMPLE = 0.2;
+
+const EMPTY_SET = new Set();
+
+/** The key `mistakes` entries are looked up by — matches `mistakeKey` in
+ * shape (`deck:strand:itemId`) but named separately because it is keyed by a
+ * *deck id string*, the same thing `buildMixedSession`'s own `entryKey` reads
+ * off `entry.deck?.id`, not by the deck object itself. */
+function mistakeEntryKey(deckId, strand, itemId) {
+  return `${deckId ?? ''}:${strand}:${itemId}`;
+}
+
+/** `listMistakes()` rows → the Set `buildMixedSession` wants. Exported so
+ * every screen that builds a session constructs this the same way. */
+export function mistakeEntryKeys(rows) {
+  return new Set((rows ?? []).map((row) => mistakeEntryKey(row.deck, row.strand, row.itemId)));
+}
+
+function shuffle(list, random = Math.random) {
   for (let i = list.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(random() * (i + 1));
     [list[i], list[j]] = [list[j], list[i]];
   }
 }
