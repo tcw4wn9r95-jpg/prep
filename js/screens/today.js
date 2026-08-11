@@ -16,10 +16,12 @@
  *
  *   1. your partner is waiting on a review — it blocks *their* progress, and
  *      it is worth the most points for exactly that reason
- *   2. cards are due — spaced repetition only works if reviews happen on time
- *   3. no listening this week — the B1 half needs a set
- *   4. no speaking in three days — the half you must pass
- *   5. otherwise, new words
+ *   2. no listening this week — the B1 half needs a set
+ *   3. no speaking in three days — the half you must pass
+ *   4. otherwise, new words — a card just got wrong still comes straight
+ *      back on its own (store.js buildMixedSession), but a backlog of
+ *      correctly-held words is no longer treated as more urgent than a word
+ *      never met at all
  */
 
 import { el, screenHead, button, plural, formatPercent, settingsButton } from '../dom.js';
@@ -226,7 +228,6 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics })
   const lastSpoke = myRecordings.reduce((latest, record) => Math.max(latest, Date.parse(record.at) || 0), 0);
   const daysSinceSpoke = lastSpoke === 0 ? Infinity : (Date.now() - lastSpoke) / 86400000;
 
-  const dueTotal = due.recv + due.prod;
   const newLeft = Math.max(0, due.target - due.newToday);
   const grammarToday = today.byDeck?.grammar ?? 0;
   // Counted separately by drill/engine.js, because "six grammar cards" can be
@@ -297,7 +298,7 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics })
     },
   ];
 
-  return { dueTotal, newLeft, today, waitingOnMe, listenedThisWeek, daysSinceSpoke, plan };
+  return { newLeft, today, waitingOnMe, listenedThisWeek, daysSinceSpoke, plan };
 }
 
 /**
@@ -341,16 +342,16 @@ function nextAction(state, partner) {
         why: `${state.today.cards} cards done today, ${left} to reach the goal. The count of what is due moves around as you work; this one only goes up.`,
       };
     }
-    return state.dueTotal > 0
+    return state.newLeft > 0
       ? {
-          label: `Review ${plural(state.dueTotal, 'word')}`,
-          href: '#/session',
-          why: `${plural(state.dueTotal, 'word')} you have met before are ready to come round again. Repeating them today is what makes them stick, so they come before new words. Today's goal is ${state.today.goal} cards.`,
-        }
-      : {
           label: `Learn ${state.newLeft} new words`,
           href: '#/session',
-          why: `Nothing is due yet. Start with words — the listening and speaking drills assume you have them. Today's goal is ${state.today.goal} cards.`,
+          why: `New words come first. Today's goal is ${state.today.goal} cards — a card you get wrong comes straight back, and older words you already know return only now and then.`,
+        }
+      : {
+          label: 'Practise today\'s words',
+          href: '#/session',
+          why: `Today's new words are done. This round is mistakes plus a handful of older words — today's goal is ${state.today.goal} cards.`,
         };
   }
   if (step.id === 'grammar') {

@@ -8,7 +8,7 @@
  */
 
 import { loadVerbs, loadTopics } from '../content.js';
-import { getLearnDeckStates, buildSession, newWordsLeftToday } from '../store.js';
+import { getLearnDeckStates, buildSession, newWordsLeftToday, listMistakes, mistakeEntryKeys } from '../store.js';
 import { DECKS, isDrillable, boxIndex } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
@@ -16,11 +16,12 @@ const SESSION_SIZE = 12;
 
 export async function render(root, { params, settings, navigate }) {
   const topicId = params?.[0] ?? null;
-  const [everything, states, topics, newLeft] = await Promise.all([
+  const [everything, states, topics, newLeft, mistakeRows] = await Promise.all([
     loadVerbs(),
     getLearnDeckStates(settings.playerId, 'verb'),
     topicId ? loadTopics() : Promise.resolve([]),
     newWordsLeftToday(settings.playerId),
+    listMistakes(settings.playerId),
   ]);
 
   // A few LOD entries carry no English gloss, so there is nothing to ask about
@@ -31,7 +32,7 @@ export async function render(root, { params, settings, navigate }) {
   const title = topic ? `${topic.title_en ?? topic.en} verbs` : 'Verbs';
   const again = topicId ? `#/verbs/${encodeURIComponent(topicId)}` : '#/verbs';
 
-  const plan = buildSession(pool, states, { limit: SESSION_SIZE, newTarget: newLeft });
+  const plan = buildSession(pool, states, { limit: SESSION_SIZE, newTarget: newLeft, deckId: 'verb', mistakes: mistakeEntryKeys(mistakeRows) });
   if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total: pool.length, capped: newLeft === 0 });
 
   return runSession({

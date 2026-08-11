@@ -93,6 +93,9 @@ const GRAMMAR_KIND_LABELS = {
   bracket: 'verb bracket',
   subclause: 'verb at the end',
   negation: 'negation',
+  numbers: 'numbers',
+  dative: 'dative case',
+  likes: 'likes and dislikes',
 };
 
 /**
@@ -128,10 +131,13 @@ export const GRAMMAR_TASKS = {
   bracket: 'They were asked which of three orderings is correct — the question is where the second half of the verb goes, the participle or infinitive that closes the sentence.',
   subclause: 'They were asked which of three orderings is correct — the question is where the conjugated verb goes inside a subordinate clause introduced by datt or ob.',
   negation: 'They were asked which of three orderings of this sentence is the correct one — the question is where net goes.',
+  numbers: 'They were asked which number word fills the gap in this sentence.',
+  dative: 'They were asked which dative pronoun fills the gap after the preposition in this sentence.',
+  likes: 'They were asked which of three orderings of this sentence is the correct one — the question is where gär (or gären) goes.',
 };
 
 /** The kinds whose options are whole sentences rather than a gapped one. */
-const SENTENCE_KINDS = new Set(['wordorder', 'bracket', 'subclause', 'negation']);
+const SENTENCE_KINDS = new Set(['wordorder', 'bracket', 'subclause', 'negation', 'likes']);
 
 /**
  * Sentence structure: the three kinds that ask where the verb goes.
@@ -205,6 +211,14 @@ export function factsFor(card) {
   if (item.kind === 'perfect-form' && right) {
     const meaning = item.en ? ` (${item.en})` : '';
     return `LOD records "${right}" as the past participle of ${item.infinitive}${meaning}. The other options are genuine past participles, but of other verbs.`;
+  }
+
+  if (item.kind === 'numbers' && right) {
+    return `"${right}" is the number LOD actually wrote in this sentence. "${others.join('", "')}" are real Luxembourgish number words too, just not the ones in this sentence.`;
+  }
+
+  if (item.kind === 'dative' && right) {
+    return `After "${item.preposition}", the pronoun goes into the dative — "${right}" is the one LOD wrote here. "${others.join('", "')}" are the other dative pronouns, real but naming a different person.`;
   }
 
   if (card.deck?.id === 'vocab' && item.pos === 'SUBST' && item.article) {
@@ -328,7 +342,9 @@ const has = {
   present: (item) => Boolean(item.present),
   grammarChoice: (item) =>
     (item.kind === 'gender' && Array.isArray(item.options) && Number.isInteger(item.correct)) ||
-    (['nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'bracket', 'subclause', 'negation'].includes(item.kind) &&
+    (['nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'bracket', 'subclause', 'negation', 'numbers', 'dative', 'likes'].includes(
+      item.kind,
+    ) &&
       Array.isArray(item.options_lb) &&
       Number.isInteger(item.correct)),
 };
@@ -686,6 +702,7 @@ const SENTENCE_INSTRUCTIONS = {
   bracket: 'Where does the second half of the verb go?',
   subclause: 'Where does the verb go after datt / ob?',
   negation: 'Where does net go?',
+  likes: 'Where does gär (or gären) go?',
 };
 
 /** What the gapped-sentence grammar cards ask. */
@@ -693,6 +710,8 @@ const GRAMMAR_INSTRUCTIONS = {
   nrule: 'Which spelling is correct here (the Eifeler Regel)?',
   adjective: 'Which form of the word fits this sentence?',
   'perfect-form': 'Which past participle fills the gap?',
+  numbers: 'Which number fits this sentence?',
+  dative: 'Which word fits after the preposition?',
 };
 
 /** The recording to offer, or null when it is not mirrored yet. */

@@ -67,11 +67,11 @@ export async function render(root, { settings, navigate }) {
   const seen = new Set([...seenVocab.keys(), ...seenVerb.keys(), ...seenPhrase.keys()]);
   const path = stagePath(stages, all, seen);
   const current = path.find((stage) => stage.started < stage.total) ?? null;
-  const next = nextAction(due, today, current);
+  const next = nextAction(due, today, current, mistakes.length);
 
   const amelie = new Amelie({ size: 'md', bubble: true });
   amelie.setProgress(today.pct, today.met);
-  amelie.say(adviceFor(due, vocabRecv, vocabProd, current), 'idle');
+  amelie.say(adviceFor(vocabRecv, vocabProd, current), 'idle');
 
   root.append(
     screenHead({
@@ -228,12 +228,12 @@ export async function render(root, { settings, navigate }) {
  * stalled reality. So this reports the front of the deck rather than its size:
  * how many words were met *this week*, and how many keep coming back.
  *
- * The note at the bottom is the honest mechanism. Reviews are taken before new
- * words — deliberately, because a due card is a memory about to be lost — so
- * once enough words are in circulation they fill the session and intake stops.
- * Simulated over 90 days at the default goal that settles at roughly 150 words
- * met, against a theoretical cap of 720. The learner cannot infer that from
- * anywhere, and the lever is the daily goal, so the screen says both.
+ * The note at the bottom is the honest mechanism. New words go into every
+ * session first, up to the daily cap (`DAILY_NEW_TARGET`) — a review backlog
+ * no longer stands between a learner and the next new word, the way it used
+ * to. So the ceiling on intake is now just the daily cap itself: practise on
+ * fewer days, or stop a session early most days, and `perDay` falls below it
+ * without anything holding new words back on purpose.
  */
 function progressPanel(flow, today) {
   if (flow.met === 0) return null;
@@ -262,7 +262,7 @@ function progressPanel(flow, today) {
       ? el(
           'p',
           { class: 'card__note' },
-          `About ${perDay.toFixed(1)} new words a day lately, against a cap of ${DAILY_NEW_TARGET}. Reviews are taken before new words, so once enough are in circulation they fill the session and intake slows. Raise the daily goal in Settings to answer more cards and let new ones back in.`,
+          `About ${perDay.toFixed(1)} new words a day lately, against a cap of ${DAILY_NEW_TARGET} a day. New words are the first thing in every session now — start one on the days you skip to close the gap.`,
         )
       : el('p', { class: 'card__note' }, `About ${perDay.toFixed(1)} new words a day lately. ${today.met ? "Today's goal is met." : ''}`),
     flow.undated > 0
@@ -312,19 +312,13 @@ function mistakeRow(count) {
 /**
  * The one thing to do now, and the number behind it.
  *
- * Words already met come before new ones: the spacing is the whole mechanism,
- * and a repeat is worth most on the day it falls due. New words otherwise.
+ * New words come first, up to the daily budget — a big backlog of words
+ * already held should never be the thing standing between a learner and the
+ * next new one. A mistake still comes back on its own (`#/session` always
+ * includes it) and a named, finite mistake list is one tap away; everything
+ * else already known resurfaces only occasionally, a few at a time.
  */
-function nextAction(due, today, current) {
-  const waiting = due.recv + due.prod;
-  if (waiting > 0) {
-    return {
-      label: `Review ${plural(waiting, 'word')}`,
-      href: '#/session',
-      note: `${due.recv} to understand · ${due.prod} to say · twelve at a time`,
-    };
-  }
-
+function nextAction(due, today, current, mistakeCount) {
   const left = Math.max(0, due.target - due.newToday);
   if (left > 0) {
     return {
@@ -334,10 +328,18 @@ function nextAction(due, today, current) {
     };
   }
 
+  if (mistakeCount > 0) {
+    return {
+      label: `Clear ${plural(mistakeCount, 'mistake')}`,
+      href: '#/mistakes',
+      note: 'Cards you got wrong, most-missed first — they leave the list once you get them right.',
+    };
+  }
+
   return {
     label: 'Practise anyway',
     href: '#/session',
-    note: `Today's ${due.target} new words are done and nothing is due. Anything more is a bonus.`,
+    note: `Today's ${due.target} new words are done. Anything more is a bonus.`,
   };
 }
 
@@ -532,16 +534,9 @@ function untaggedNote(items) {
   );
 }
 
-function adviceFor(due, recv, prod, current) {
+function adviceFor(recv, prod, current) {
   if (recv.started === 0) return 'Start at the beginning: I, you, and the words that hold a sentence together. Everything else needs those first.';
-  // Not "the ones about to fade": that describes our scheduler, not anything
-  // the learner can see or act on, and it reads as a warning about words they
-  // have no way to identify. What they actually need to know is that these are
-  // words they have met before, and that today is when repeating them sticks.
-  if (due.recv + due.prod > 0) {
-    return `${due.recv + due.prod} words you have met before are ready to come round again. Today is the day they stick.`;
-  }
   if (prod.strong * 2 < recv.strong) return 'You recognise far more than you can say. The speaking part only scores what you can say.';
   if (current) return `You are on ${current.title.toLowerCase()} — ${current.total - current.started} to go.`;
-  return 'Nothing due. Pick a topic and take on new words.';
+  return 'Pick a topic and take on new words.';
 }

@@ -119,20 +119,25 @@ export function orderGrammar(items) {
 function sentenceLength(item) {
   let sentence = '';
   if (item.kind === 'gender') sentence = item.example?.lb ?? '';
-  else if (['wordorder', 'bracket', 'subclause', 'negation'].includes(item.kind)) sentence = item.options_lb?.[item.correct] ?? '';
+  else if (['wordorder', 'bracket', 'subclause', 'negation', 'likes'].includes(item.kind)) sentence = item.options_lb?.[item.correct] ?? '';
   else if (item.kind !== 'perfect-aux') sentence = `${item.before ?? ''} ${item.after ?? ''}`;
   return sentence.trim().split(/\s+/).filter(Boolean).length;
 }
 
 /**
- * The order the seven-plus kinds take turns in.
+ * The order the twelve kinds take turns in.
  *
  * The three sentence-structure kinds are deliberately spread and in ascending
  * difficulty: `wordorder` (the verb is second) before `bracket` (and the other
  * half goes last) before `subclause` (except after datt, where it goes last).
- * Each one assumes the one before it.
+ * Each one assumes the one before it. `likes` sits next to `negation` because
+ * it is the same rule seen twice — a particle placed late in the clause — and
+ * `numbers`/`dative` are added at the end as the newer kinds.
  */
-const KIND_ORDER = ['gender', 'perfect-aux', 'wordorder', 'nrule', 'bracket', 'negation', 'adjective', 'subclause', 'perfect-form'];
+const KIND_ORDER = [
+  'gender', 'perfect-aux', 'wordorder', 'nrule', 'bracket', 'negation', 'likes', 'adjective', 'subclause',
+  'perfect-form', 'numbers', 'dative',
+];
 
 /**
  * INLL podcast episodes — metadata only, written by pipeline/fetch-podcasts.js.
