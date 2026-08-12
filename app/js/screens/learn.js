@@ -140,7 +140,7 @@ export async function render(root, { settings, navigate }) {
       unit: 'exercise',
       recv: grammarRecv,
       prod: grammarProd,
-      note: 'Gender, n-rule, adjective agreement, the perfect',
+      note: 'Gender, n-rule, adjectives, the perfect, word order, numbers, the dative',
     }),
     el(
       'div',
@@ -150,6 +150,15 @@ export async function render(root, { settings, navigate }) {
         { class: 'card', href: '#/gender-sort', style: { display: 'block', flex: 1 } },
         el('p', { style: { fontSize: '22px', textAlign: 'center' } }, '⚤'),
         el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Gender Sort'),
+      ),
+      // The dative as a table to learn rather than four options to guess
+      // between — see screens/forms.js for why that is a different exercise
+      // from the deck's own dative cards.
+      el(
+        'a',
+        { class: 'card', href: '#/forms', style: { display: 'block', flex: 1 } },
+        el('p', { style: { fontSize: '22px', textAlign: 'center' } }, '🔁'),
+        el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Change the word'),
       ),
       el(
         'a',

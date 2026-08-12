@@ -1567,3 +1567,84 @@ and the mistake/new/throttled fill order together) · `validate` PASS ·
 `npm run walkthrough` 45/45 · direct in-browser checks of both Today branches
 (new words available, and new words spent) and the Learn hub's own button,
 all rendering the new copy with zero console errors.
+
+---
+
+# Follow-up 11 — an activity for the dative
+
+> "Create an activity to learn the dative and those type of grammar skills"
+
+## What the drill could not teach
+
+Follow-up 9 added 96 mined `dative` items, and they are good items — a real
+LOD sentence with the pronoun gapped out, four real dative pronouns to choose
+from. But every one of them is a *recognition* question, and a recognition
+question about a closed set of seven words can be answered by ear, or by
+elimination, without ever learning the thing underneath.
+
+The thing underneath is a table. `ech` becomes `mir`; `mir` becomes `eis`;
+`du` becomes `dir` and `dir` becomes `iech`. Until those pairs are known, a
+dative card is a guess between four plausible-looking words — and the deck
+has no exercise that asks for the pair directly.
+
+## Change the word — `#/forms`
+
+So the activity asks the transformation itself: **`bei` + `ech` → ?**, four
+real dative pronouns to pick from. That is the production form of the skill,
+which is what the interview actually needs and what the gapped card cannot
+test.
+
+Two design decisions carry most of the value:
+
+**The English gloss is always shown.** `mir` and `dir` sit on *both* sides of
+this table — `mir` is "we" going in and "to me" coming out, `dir` is "to you"
+from `du` while "you (plural)" produces `iech` — and `si` is both "she"
+(→ hir) and "they" (→ hinnen). Without a gloss, several cards would be
+genuinely unanswerable rather than hard. A test asserts the gloss is present
+and that the two `si` rows are told apart by it.
+
+**Every card ends on a real sentence.** Answering reveals LOD's own sentence
+using that exact preposition and pronoun — `dës Decisioun gouf vun **eis**
+alleguer guttgeheescht` — pulled from the mined items, so the table never
+stays an abstraction and no example here is written. This also decides the
+question set: the pool is built *from* those items, so a pair only becomes a
+card if the corpus attests it — 20 of the 28 the table allows, covering all
+seven pronouns and all four prepositions. One card per preposition+pronoun
+pair, because "bei eis" is mined fifteen times and fifteen cards with the
+same answer is not a round.
+
+The round ends on the whole eight-row table, rendered from the same constant
+the questions are asked from, so the summary and the questions cannot
+disagree.
+
+Same optional-game shape as Pairs, Gender Sort and What is this?: counts for
+the streak, never touches the Leitner boxes. The grammar deck's own dative
+cards remain the scheduled version of this material.
+
+## The one thing here that cannot be mined
+
+Every other Luxembourgish claim in this app traces to a corpus record. This
+one cannot: LOD attests "bei mir" but nowhere says that `mir` is what `ech`
+becomes. The mapping is a grammatical claim, taken from the same cited source
+the `dative` guide topic already uses, and that makes it exactly the kind of
+thing that can rot silently. So `pipeline/test/forms.test.js` checks it from
+three directions: every form in the table is attested by a shipped deck; the
+table's dative side is asserted **deep-equal** to the `DATIVE_PRONOUNS` set
+`build-grammar.js` mines against, so the game and the miner cannot drift
+apart; and every generated question is traced back to the mined item it came
+from, with its sentence pieces and answer compared field by field.
+
+## Also fixed
+
+Two labels had gone stale when Follow-up 9 added three kinds: Learn's grammar
+row and Today's grammar step both still described the deck as "gender, the
+n-rule, adjective endings, the perfect". Both now name the newer kinds too.
+
+## Verification
+
+`npm test` 223 (8 new in `pipeline/test/forms.test.js`) · `validate` PASS ·
+`npm run walkthrough` 46/46, the new step asserting the transformation prompt,
+the disambiguating gloss, four options, the revealed LOD sentence and the
+closing table · screenshots checked by eye, including the Learn hub's grammar
+row now carrying three tiles at iPhone width with no horizontal overflow ·
+`sw.js` → `v32`, with `js/screens/forms.js` added to the precache list.

@@ -361,7 +361,7 @@ function nextAction(state, partner) {
       why:
         step.href === '#/structure'
           ? 'Where the verb goes. It is the rule English speakers break most, and Morphosyntax is marked in the interview — read it, then three cards.'
-          : 'Gender, the n-rule, adjective endings — a quick focused round.',
+          : 'Gender, the n-rule, adjective endings, numbers, the dative — a quick focused round.',
     };
   }
   if (step.id === 'listening') {

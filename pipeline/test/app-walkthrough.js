@@ -584,6 +584,43 @@ async function main() {
     await shot('16i-objects-done');
   });
 
+  await step('Change the word asks the dative transformation, then shows a real sentence', async () => {
+    await openFresh('#/forms');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+
+    // The prompt is the transformation itself — "bei + ech → ?" — not a gapped
+    // sentence, which is what makes this a different exercise from the
+    // grammar deck's own dative cards.
+    const prompt = (await page.locator('#screen .screen__title').last().textContent()) ?? '';
+    if (!/\+.*→/.test(prompt)) throw new Error(`expected a "prep + pronoun → ?" prompt, got "${prompt}"`);
+    // The English gloss is what tells si (she) from si (they) and mir (we)
+    // from mir (to me) — without it a card is unanswerable.
+    const gloss = await page.locator('#screen .card__note').first().textContent();
+    if (!/means/.test(gloss ?? '')) throw new Error(`expected a gloss disambiguating the pronoun, got "${gloss}"`);
+    await shot('16j-forms-prompt');
+
+    const options = await page.locator('.options .option').count();
+    if (options !== 4) throw new Error(`expected four dative options, found ${options}`);
+
+    // Answering reveals LOD's own sentence using that preposition and pronoun.
+    await page.locator('.options .option').first().click();
+    await page.waitForFunction(
+      () => [...document.querySelectorAll('#screen .source-note')].some((node) => /real sentence from LOD/i.test(node.textContent ?? '')),
+      { timeout: 5000 },
+    );
+    await shot('16k-forms-answered');
+
+    // Play the round out; it ends on the whole eight-row table.
+    for (let i = 0; i < 10; i += 1) {
+      const remaining = await page.locator('.options .option').count();
+      if (remaining === 0) break;
+      await page.locator('.options .option').first().click();
+      await page.waitForTimeout(2700); // the wrong-answer pause is 2600ms
+    }
+    await page.waitForSelector('text=The whole table', { timeout: 5000 });
+    await shot('16l-forms-done');
+  });
+
   await step('the cheat sheet shows pronouns, verb tables and sentence patterns', async () => {
     await openFresh('#/reference');
     await page.waitForSelector('.ref-pronoun', { timeout: 5000 });
