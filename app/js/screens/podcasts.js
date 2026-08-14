@@ -32,17 +32,109 @@ import { Clip } from '../audio.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
 import { loadPodcasts, podcastEpisode } from '../content.js';
 import { requestEpisodeQuestions } from '../sync.js';
-import { saveAttempt, touchStreak, weekSeed, setVerdict, POINTS } from '../store.js';
+import { saveAttempt, touchStreak, weekSeed, setVerdict, POINTS, attemptsFor, saveSettings } from '../store.js';
 
 export async function render(root, { params, settings, navigate }) {
   const id = params?.[0] ?? null;
-  return id ? renderEpisode(root, id, { settings, navigate }) : renderIndex(root, { navigate });
+  return id ? renderEpisode(root, id, { settings, navigate }) : renderIndex(root, { settings, navigate });
 }
 
 /* ----------------------------------------------------------------- index */
 
-async function renderIndex(root, { navigate }) {
-  const episodes = await loadPodcasts();
+/**
+ * CEFR order, which is not the order the feed arrives in.
+ *
+ * The index used to group by `level` in first-appearance order, so the
+ * headings came out however INLL happened to publish that month — B1 above A2
+ * above A1 was normal. With 200 episodes in the catalogue that is not a
+ * cosmetic problem: the first thing an A1 learner scrolled past was whatever
+ * shipped most recently.
+ *
+ * The hyphenated labels are INLL's own ("A2-B1"), not something split here.
+ */
+const LEVEL_ORDER = ['A1', 'A1-A2', 'A2', 'A2-B1', 'B1', 'B1-B2', 'B2'];
+const UNLABELLED = 'Unlabelled';
+
+/** The CEFR bands a level label covers. "A2-B1" is genuinely both, so it
+ * answers to either filter rather than to a third chip of its own. */
+export function bandsOf(level) {
+  return [...String(level ?? '').matchAll(/[ABC][12]/g)].map((match) => match[0]);
+}
+
+/** Sorts a level label into CEFR order; anything unrecognised sorts last. */
+export function levelRank(level) {
+  const index = LEVEL_ORDER.indexOf(level);
+  return index === -1 ? LEVEL_ORDER.length : index;
+}
+
+/** Every band present in the catalogue, in CEFR order — the filter chips. */
+export function bandsPresent(episodes) {
+  const bands = new Set();
+  for (const episode of episodes ?? []) for (const band of bandsOf(episode.level)) bands.add(band);
+  return [...bands].sort();
+}
+
+/**
+ * Only a hard `false` counts as "no transcript": an index built before the
+ * field existed leaves it undefined, and that is unknown rather than absent.
+ */
+const lacksTranscript = (episode) => episode.hasTranscript === false;
+
+/**
+ * Which episodes have already been passed, read off the attempt log.
+ *
+ * No new storage: finishing an episode's questions already writes an attempt
+ * tagged `topic: 'podcast'` with the episode id, so "have I done this one"
+ * is a question the existing data can answer. Keyed to the best attempt, so
+ * passing once is permanent — going back and scoring worse on a re-listen
+ * does not un-pass it.
+ */
+export function episodeScores(attempts, playerId) {
+  const best = new Map();
+  for (const attempt of attempts ?? []) {
+    if (attempt.topic !== 'podcast' || attempt.playerId !== playerId) continue;
+    if (!attempt.itemId || !attempt.total) continue;
+    const pct = (attempt.correct / attempt.total) * 100;
+    const previous = best.get(attempt.itemId);
+    if (previous && previous.pct >= pct) continue;
+    best.set(attempt.itemId, { pct, correct: attempt.correct, total: attempt.total, passed: setVerdict(pct).passed });
+  }
+  return best;
+}
+
+/** The filters, applied together. Pure, so the counts on screen and the rows
+ * under them cannot disagree. */
+export function filterEpisodes(episodes, { band, questionsOnly, hidePassed, scores }) {
+  return (episodes ?? []).filter((episode) => {
+    if (band && !bandsOf(episode.level).includes(band)) return false;
+    if (questionsOnly && lacksTranscript(episode)) return false;
+    if (hidePassed && scores?.get(episode.id)?.passed) return false;
+    return true;
+  });
+}
+
+/** Grouped into CEFR-ordered sections, newest episode first inside each. */
+export function groupByLevel(episodes) {
+  const byLevel = new Map();
+  for (const episode of episodes ?? []) {
+    const key = episode.level ?? UNLABELLED;
+    if (!byLevel.has(key)) byLevel.set(key, []);
+    byLevel.get(key).push(episode);
+  }
+  return [...byLevel.entries()]
+    .sort(([a], [b]) => levelRank(a) - levelRank(b) || a.localeCompare(b))
+    .map(([level, rows]) => ({
+      level,
+      episodes: [...rows].sort((a, b) => String(b.publishedAt ?? '').localeCompare(String(a.publishedAt ?? ''))),
+    }));
+}
+
+/** How many rows a level section shows before it needs asking. A2 alone has
+ * 111 episodes; rendering every one of them is a scroll, not a list. */
+const VISIBLE_PER_LEVEL = 8;
+
+async function renderIndex(root, { settings, navigate }) {
+  const [episodes, attempts] = await Promise.all([loadPodcasts(), attemptsFor(settings.playerId)]);
 
   root.append(
     screenHead({
@@ -69,7 +161,18 @@ async function renderIndex(root, { navigate }) {
     return { destroy() {} };
   }
 
+  const scores = episodeScores(attempts, settings.playerId);
   const answerable = episodes.filter((episode) => !lacksTranscript(episode)).length;
+  const passed = episodes.filter((episode) => scores.get(episode.id)?.passed).length;
+
+  // Filter choices persist. A learner who only ever wants B1 episodes with
+  // questions should not have to say so on every visit.
+  let band = settings.podcastBand ?? null;
+  let questionsOnly = settings.podcastQuestionsOnly ?? false;
+  let hidePassed = settings.podcastHidePassed ?? false;
+  // A band saved before the catalogue changed could now match nothing.
+  const bands = bandsPresent(episodes);
+  if (band && !bands.includes(band)) band = null;
 
   root.append(
     el(
@@ -77,69 +180,160 @@ async function renderIndex(root, { navigate }) {
       { class: 'card__note' },
       'Real connected speech from the exam board, at natural speed — the closest thing to the B1 paper. Listen, then answer.',
     ),
-    // Stated once, here, so a "listen only" chip further down reads as a known
-    // property of the source rather than as something broken.
-    answerable < episodes.length
-      ? el(
-          'p',
-          { class: 'source-note' },
-          `${answerable} of ${episodes.length} episodes come with a transcript and can ask you questions. The rest are marked “listen only”.`,
-        )
-      : null,
-  );
-
-  // Grouped by level so a B1 episode is never the first thing an A2 learner
-  // meets by accident.
-  const byLevel = new Map();
-  for (const episode of episodes) {
-    const key = episode.level ?? 'Unlabelled';
-    if (!byLevel.has(key)) byLevel.set(key, []);
-    byLevel.get(key).push(episode);
-  }
-
-  for (const [level, rows] of byLevel) {
-    root.append(
-      el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)', marginBlockEnd: 'var(--s2)' } }, level),
-      el('div', { class: 'stack' }, ...rows.map(episodeRow)),
-    );
-  }
-
-  root.append(
     el(
       'p',
       { class: 'source-note' },
-      'Poterkëscht vum INLL, streamed from the publisher. ',
-      el('a', { href: 'https://www.inll.lu/en/poterkescht-the-podcast-in-luxembourgish-from-inll/', target: '_blank', rel: 'noreferrer' }, 'inll.lu'),
+      `${answerable} of ${episodes.length} come with a transcript and can ask you questions; the rest are marked “listen only”.` +
+        (passed > 0 ? ` You have passed ${passed}.` : ''),
     ),
   );
 
+  const filters = el('div', { class: 'stack', style: { marginBlockStart: 'var(--s4)' } });
+  const list = el('div');
+  root.append(filters, list);
+
+  /** A chip that reads as pressed — same shape the cheat sheet's tabs use. */
+  function chip(label, active, onclick) {
+    return el(
+      'button',
+      {
+        type: 'button',
+        class: `chip chip--pick${active ? ' is-picked' : ''}`,
+        'aria-pressed': active ? 'true' : 'false',
+        onclick,
+      },
+      label,
+    );
+  }
+
+  function set(patch) {
+    if ('band' in patch) band = patch.band;
+    if ('questionsOnly' in patch) questionsOnly = patch.questionsOnly;
+    if ('hidePassed' in patch) hidePassed = patch.hidePassed;
+    // Remembered for next time, but the screen never waits on the write.
+    saveSettings({ podcastBand: band, podcastQuestionsOnly: questionsOnly, podcastHidePassed: hidePassed });
+    draw();
+  }
+
+  function draw() {
+    fill(
+      filters,
+      el(
+        'div',
+        { class: 'row', style: { gap: 'var(--s2)', flexWrap: 'wrap' } },
+        chip('All levels', band === null, () => set({ band: null })),
+        ...bands.map((value) => chip(value, band === value, () => set({ band: value }))),
+      ),
+      el(
+        'div',
+        { class: 'row', style: { gap: 'var(--s2)', flexWrap: 'wrap' } },
+        chip('With questions', questionsOnly, () => set({ questionsOnly: !questionsOnly })),
+        chip('Hide passed', hidePassed, () => set({ hidePassed: !hidePassed })),
+      ),
+    );
+
+    const shown = filterEpisodes(episodes, { band, questionsOnly, hidePassed, scores });
+    fill(list);
+
+    if (shown.length === 0) {
+      list.append(
+        el(
+          'div',
+          { class: 'empty' },
+          el('p', {}, 'Nothing matches those filters.'),
+          el('p', { class: 'card__note' }, hidePassed && passed > 0 ? 'You may have passed everything at this level — try another one.' : 'Try a different level.'),
+          button('Show everything', { variant: 'secondary', onclick: () => set({ band: null, questionsOnly: false, hidePassed: false }) }),
+        ),
+      );
+      return;
+    }
+
+    list.append(
+      el('p', { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } }, `Showing ${plural(shown.length, 'episode')}.`),
+    );
+
+    for (const group of groupByLevel(shown)) {
+      const section = el('div', { style: { marginBlockStart: 'var(--s5)' } });
+      const rows = el('div', { class: 'stack' });
+      let expanded = false;
+
+      const paint = () => {
+        const visible = expanded ? group.episodes : group.episodes.slice(0, VISIBLE_PER_LEVEL);
+        fill(rows, ...visible.map((episode) => episodeRow(episode, scores.get(episode.id))));
+        if (group.episodes.length > VISIBLE_PER_LEVEL) {
+          rows.append(
+            button(expanded ? 'Show fewer' : `Show all ${group.episodes.length}`, {
+              variant: 'ghost',
+              class: 'btn btn--ghost btn--block',
+              onclick: () => {
+                expanded = !expanded;
+                paint();
+              },
+            }),
+          );
+        }
+      };
+      paint();
+
+      section.append(
+        el(
+          'div',
+          { class: 'row row--between', style: { marginBlockEnd: 'var(--s2)' } },
+          // The level alone in the label — the count sits beside it rather
+          // than inside, so the heading stays the level and nothing else.
+          el('p', { class: 'meter__label' }, group.level),
+          el('span', { class: 'card__note' }, plural(group.episodes.length, 'episode')),
+        ),
+        rows,
+      );
+      list.append(section);
+    }
+
+    list.append(
+      el(
+        'p',
+        { class: 'source-note', style: { marginBlockStart: 'var(--s5)' } },
+        'Poterkëscht vum INLL, streamed from the publisher. ',
+        el('a', { href: 'https://www.inll.lu/en/poterkescht-the-podcast-in-luxembourgish-from-inll/', target: '_blank', rel: 'noreferrer' }, 'inll.lu'),
+      ),
+    );
+  }
+
+  draw();
   return { destroy() {} };
 }
 
-/**
- * Only a hard `false` counts as "no transcript": an index built before the
- * field existed leaves it undefined, and that is unknown rather than absent.
- */
-const lacksTranscript = (episode) => episode.hasTranscript === false;
-
-function episodeRow(episode) {
+function episodeRow(episode, score) {
   return el(
     'a',
     { class: 'card', href: `#/podcasts/${encodeURIComponent(episode.id)}`, style: { display: 'block' } },
     el(
       'div',
       { class: 'row' },
-      el('span', { style: { fontSize: '26px' } }, '🎧'),
+      el('span', { style: { fontSize: '26px' } }, score?.passed ? '✅' : '🎧'),
       el(
         'div',
         { class: 'spacer' },
         el('p', { class: 'card__title' }, episode.episodeTitle),
-        el('p', { class: 'card__note' }, [episode.publishedAt, formatDuration(episode.durationSec)].filter(Boolean).join(' · ')),
+        el(
+          'p',
+          { class: 'card__note' },
+          [
+            episode.publishedAt,
+            formatDuration(episode.durationSec),
+            // What you scored, so a re-listen is a choice rather than a
+            // rediscovery. Only the best attempt is kept.
+            score ? `${score.correct}/${score.total}` : null,
+          ]
+            .filter(Boolean)
+            .join(' · '),
+        ),
       ),
       // Said on the row rather than only after tapping: whether an episode can
       // be answered is a reason to pick it, so it belongs where the choice is
       // made. Listening still works on every episode.
       lacksTranscript(episode) ? el('span', { class: 'chip' }, 'listen only') : null,
+      score?.passed ? el('span', { class: 'chip' }, 'passed') : null,
     ),
   );
 }

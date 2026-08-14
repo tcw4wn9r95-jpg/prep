@@ -1170,7 +1170,41 @@ async function main() {
     // transcript.
     const listenOnly = await page.locator('a[href^="#/podcasts/"] .chip', { hasText: 'listen only' }).count();
     if (listenOnly !== 1) throw new Error(`expected 1 "listen only" episode marked in the list, found ${listenOnly}`);
+
+    // Levels are in CEFR order, not the order the feed happened to arrive in.
+    const ordered = levels.filter((text) => /^[ABC][12](-[ABC][12])?$/.test(text));
+    if (ordered.join(',') !== [...ordered].sort().join(',')) {
+      throw new Error(`level sections are not in CEFR order: ${ordered.join(', ')}`);
+    }
     await shot('25-podcasts');
+  });
+
+  await step('the podcast filters narrow by level and drop the listen-only episodes', async () => {
+    await openFresh('#/podcasts');
+    await page.waitForSelector('a[href^="#/podcasts/"]', { timeout: 5000 });
+
+    // "With questions" hides the one fixture episode that has no transcript.
+    await page.locator('.chip--pick', { hasText: 'With questions' }).click();
+    await page.waitForFunction(() => document.querySelectorAll('a[href^="#/podcasts/"]').length === 2, { timeout: 5000 });
+    const stillListenOnly = await page.locator('a[href^="#/podcasts/"] .chip', { hasText: 'listen only' }).count();
+    if (stillListenOnly !== 0) throw new Error('a listen-only episode survived the "with questions" filter');
+
+    // A level chip narrows further — one of the two remaining is A2.
+    await page.locator('.chip--pick', { hasText: 'A2' }).first().click();
+    await page.waitForFunction(() => document.querySelectorAll('a[href^="#/podcasts/"]').length === 1, { timeout: 5000 });
+    await shot('25c-podcasts-filtered');
+
+    // The choice survives a reload — a filter you have to reapply every visit
+    // is not a filter.
+    await openFresh('#/podcasts');
+    await page.waitForSelector('a[href^="#/podcasts/"]', { timeout: 5000 });
+    const remembered = await page.locator('a[href^="#/podcasts/"]').count();
+    if (remembered !== 1) throw new Error(`filters did not persist across a reload, ${remembered} rows showed`);
+
+    // And can be cleared back to the whole catalogue.
+    await page.locator('.chip--pick', { hasText: 'All levels' }).click();
+    await page.locator('.chip--pick', { hasText: 'With questions' }).click();
+    await page.waitForFunction(() => document.querySelectorAll('a[href^="#/podcasts/"]').length === 3, { timeout: 5000 });
   });
 
   await step('an episode with no transcript says so instead of offering questions', async () => {
@@ -1273,6 +1307,30 @@ async function main() {
     await page.evaluate(async () => {
       await (await import('./js/store.js')).saveSettings({ workerUrl: '' });
     });
+  });
+
+  await step('a passed episode is marked on the index and can be hidden', async () => {
+    // The step above scored 2/2 on pod-test0001. Knowing that without opening
+    // the episode again is the whole point — otherwise the only way to find
+    // out whether you have done one is to do it twice.
+    await openFresh('#/podcasts');
+    await page.waitForSelector('a[href^="#/podcasts/"]', { timeout: 5000 });
+
+    const passedChips = await page.locator('a[href^="#/podcasts/"] .chip', { hasText: 'passed' }).count();
+    if (passedChips !== 1) throw new Error(`expected the passed episode to be marked once, found ${passedChips}`);
+    const row = page.locator('a[href="#/podcasts/pod-test0001"]');
+    const rowText = (await row.textContent()) ?? '';
+    if (!/2\/2/.test(rowText)) throw new Error(`expected the score on the row, got "${rowText.trim()}"`);
+    await shot('25d-podcasts-passed');
+
+    // And it can be taken out of the way entirely.
+    await page.locator('.chip--pick', { hasText: 'Hide passed' }).click();
+    await page.waitForFunction(() => document.querySelectorAll('a[href^="#/podcasts/"]').length === 2, { timeout: 5000 });
+    if (await page.locator('a[href="#/podcasts/pod-test0001"]').count()) {
+      throw new Error('the passed episode survived "hide passed"');
+    }
+    await page.locator('.chip--pick', { hasText: 'Hide passed' }).click();
+    await page.waitForFunction(() => document.querySelectorAll('a[href^="#/podcasts/"]').length === 3, { timeout: 5000 });
   });
 
   await step('without a Worker, the screen says why rather than failing', async () => {

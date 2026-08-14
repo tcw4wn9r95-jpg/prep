@@ -1648,3 +1648,101 @@ the disambiguating gloss, four options, the revealed LOD sentence and the
 closing table · screenshots checked by eye, including the Learn hub's grammar
 row now carrying three tiles at iPhone width with no horizontal overflow ·
 `sw.js` → `v32`, with `js/screens/forms.js` added to the precache list.
+
+---
+
+# Follow-up 12 — the podcast catalogue, and a look at LuxASR
+
+> "Make the podcasts better organized by level and also add a filter to remove
+> the audio only. Also, keep track of the ones where I pass the quiz to avoid
+> doing it twice. Finally, look if we can use this tool for the speaking
+> https://luxasr.uni.lu"
+
+## 200 episodes in first-appearance order
+
+The index did group by level, but by *first appearance in the feed* — so the
+headings came out in whatever order INLL happened to publish that month, and
+B1 above A1 was the normal case. That is a cosmetic problem at 10 episodes and
+a real one at 200, which is what the catalogue now holds: A1 17, A1-A2 4,
+A2 111, A2-B1 7, B1 48, B1-B2 4, and 9 unlabelled.
+
+**Levels are now CEFR-ordered** (`LEVEL_ORDER`), each section headed with its
+count, newest episode first inside it. A section shows 8 rows before offering
+"Show all N" — A2 alone is 111 episodes, and rendering every one of them is a
+scroll rather than a list.
+
+**Three filters, and they persist.** Level chips, "With questions", "Hide
+passed". A hyphenated level answers to either band — "A2-B1" is genuinely
+useful at both, so it appears under both filters rather than needing a third
+chip. The choices are saved to settings: a filter you have to reapply on every
+visit is not a filter.
+
+**"With questions" is the audio-only filter.** 84 of the 200 episodes have no
+INLL transcript, and questions are quoted verbatim from one, so those can only
+ever be listened to. Note that only a hard `hasTranscript === false` counts —
+an index built before that field existed leaves it undefined, which is unknown
+rather than absent, and dropping those would hide real episodes.
+
+## Passing an episode, tracked without new storage
+
+Finishing an episode's questions already wrote an attempt tagged
+`topic: 'podcast'` with the episode id — so "have I done this one" was
+answerable from data the app was already keeping, and needed no schema change,
+no migration and no second source of truth. `episodeScores()` reads the
+attempt log and keeps the **best** attempt per episode, so passing once is
+permanent: going back for a re-listen and scoring worse cannot un-pass it.
+
+A passed episode shows ✅, a "passed" chip and its score on the row, so a
+re-listen is a choice rather than a rediscovery — and "Hide passed" takes them
+out of the way entirely. Deliberately, only a *pass* is hidden: an episode
+scored 1/10 stays in the list, because it still needs doing.
+
+## LuxASR — usable, but not something to switch on unasked
+
+`https://luxasr.uni.lu` is the University of Luxembourg's Luxembourgish ASR
+(Peter Gilles, Dept. of Humanities). It is a genuinely good fit for the one
+thing this app cannot currently do: the speaking module records an answer and
+hands it to a human partner to score, so between recordings there is no
+feedback at all. An ASR transcript would show the learner what a machine
+actually heard, which is the closest thing to pronunciation feedback available
+without a teacher.
+
+The API is a queued job flow: `POST /asr2` with the raw file bytes in the body
+(not multipart) and an `audio/*` content type, then poll
+`GET /v3/asr/jobs/<id>` and fetch `GET /v3/asr/jobs/<id>/result`.
+
+Four things decide how it should be used, and together they say "offer it,
+do not default to it":
+
+1. **Permission is required first.** Access is explicitly limited, and the
+   published terms say to contact them before integrating into another
+   application. That is an email to peter.gilles@uni.lu, not a code change,
+   and it has to happen before any traffic is sent.
+2. **It uploads the learner's voice.** Recordings currently never leave the
+   phone except to the partner. Sending them to a third party — even a
+   university one that states it stores nothing and processes only in
+   Luxembourg — is a different privacy posture and needs an explicit opt-in,
+   not a default.
+3. **It cannot be a score.** This repo already tells the learner that
+   Luxembourgish speech recognition is poor, in the note under machine-made
+   podcast questions. A transcript is evidence to read, never a mark; the
+   existing human-scored rubric stays the assessment.
+4. **It would route through the Worker.** A browser calling a third-party host
+   directly runs into CORS, and the Worker already exists for exactly this
+   shape of call.
+
+There is also `unilux/whisper-medium-v1-luxembourgish` on Hugging Face — the
+same group's model, self-hostable, which sidesteps the permission and privacy
+questions at the cost of running it somewhere.
+
+Nothing was built for this. It is a feasibility answer, and the next step is
+an email rather than a commit.
+
+## Verification
+
+`npm test` 229 (14 new in `pipeline/test/podcasts.test.js`, including a check
+against the real 200-episode catalogue that every level label the live feed
+uses is one the CEFR ordering knows — the assertion that catches INLL
+inventing a new label) · `validate` PASS · `npm run walkthrough` 48/48, two new
+steps driving the filters, their persistence across a reload, and a passed
+episode being marked and then hidden · `sw.js` → `v33`.

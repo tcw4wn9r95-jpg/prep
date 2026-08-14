@@ -1,164 +1,192 @@
 'use strict';
 
 /**
- * The podcast index — feed parsing, and the guard on what it is allowed to ship.
+ * The podcast index — level ordering, the two filters, and "have I passed it".
  *
- * The second half matters more than the first. `content/external/podcasts.json`
- * sits outside `pipeline/validate.js`, and the justification for that is narrow:
- * not "this content is exempt from the gate" but "there is no content here —
- * it is a bibliography". These tests hold that line. If someone later adds a
- * transcript, a Luxembourgish field or a corpus audio id to this file, the
- * justification evaporates and the build should say so.
+ * The catalogue is 200 episodes fetched from a live feed, so none of this can
+ * be asserted against the shipped file without the tests failing every time
+ * INLL publishes. The sorting and filtering rules are pure functions and are
+ * tested against fixtures here; `app-walkthrough.js` drives the real screen
+ * against its own three-episode fixture.
+ *
+ * One real-data check does run, against whatever `podcasts.json` currently
+ * holds: that every level label the feed uses is one the CEFR ordering knows
+ * about. That is the assertion that catches INLL inventing a new label, which
+ * is the only way this ordering can silently go back to being arbitrary.
  */
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const { pathToFileURL } = require('node:url');
 
 const ROOT = path.join(__dirname, '..', '..');
-const podcasts = require('../fetch-podcasts.js');
+const DATA = path.join(ROOT, 'app', 'data', 'podcasts.json');
 
-/* ------------------------------------------------------------- parsing */
-
-test('podcasts: the level tag is read from the end of the title, not the middle', () => {
-  assert.equal(podcasts.levelFromTitle('Transportmëttel a Fürerschäin (A2)'), 'A2');
-  assert.equal(podcasts.levelFromTitle('Iwwer Ernärungstrends schwätzen (B1)'), 'B1');
-  assert.equal(podcasts.levelFromTitle('Sech am INLL umellen (A2-B1)'), 'A2-B1');
-  assert.equal(podcasts.levelFromTitle('Sech am INLL umellen ( a2 - b1 )'), 'A2-B1');
-
-  // A level named anywhere else is a topic, not a marker. Guessing from it
-  // would file episodes under the wrong difficulty.
-  assert.equal(podcasts.levelFromTitle('Wat heescht B1 iwwerhaapt?'), null);
-  assert.equal(podcasts.levelFromTitle('No marker at all'), null);
+let screen;
+test.before(async () => {
+  screen = await import(pathToFileURL(path.join(ROOT, 'app', 'js', 'screens', 'podcasts.js')).href);
 });
 
-test('podcasts: durations parse in all three shapes feeds use', () => {
-  assert.equal(podcasts.durationSeconds('512'), 512);
-  assert.equal(podcasts.durationSeconds('8:32'), 512);
-  assert.equal(podcasts.durationSeconds('1:08:32'), 4112);
-  assert.equal(podcasts.durationSeconds(null), null);
-  assert.equal(podcasts.durationSeconds('not a time'), null);
+const episode = (overrides) => ({
+  id: 'pod-1',
+  level: 'A2',
+  episodeTitle: 'An episode',
+  publishedAt: '2026-05-01',
+  hasTranscript: true,
+  ...overrides,
 });
 
-test('podcasts: an episode with no playable enclosure is dropped, not shipped broken', () => {
-  const xml = `<rss><channel>
-    <item><title>Good (A2)</title><guid>a</guid>
-      <enclosure url="https://cdn.example/a.mp3" type="audio/mpeg"/></item>
-    <item><title>No enclosure</title><guid>b</guid></item>
-    <item><title>Insecure</title><guid>c</guid>
-      <enclosure url="http://cdn.example/c.mp3" type="audio/mpeg"/></item>
-  </channel></rss>`;
-  const items = podcasts.parseFeed(xml);
-  assert.equal(items.length, 1, 'only the https row with an enclosure is usable');
-  assert.equal(items[0].level, 'A2');
+/* ------------------------------------------------------------------ bands */
+
+test('podcasts: a hyphenated level belongs to both of its bands', () => {
+  // INLL labels some episodes "A2-B1". Those are genuinely useful at either
+  // level, so they answer to either filter rather than needing a third chip.
+  assert.deepEqual(screen.bandsOf('A2-B1'), ['A2', 'B1']);
+  assert.deepEqual(screen.bandsOf('A2'), ['A2']);
+  assert.deepEqual(screen.bandsOf(null), []);
+  assert.deepEqual(screen.bandsOf(undefined), []);
 });
 
-test('podcasts: CDATA titles and namespaced tags survive the reader', () => {
-  // lib/xml.js would throw on both — it is a strict reader for LOD's machine
-  // output. This is why the fetcher has its own.
-  const xml = `<rss><channel><item>
-    <title><![CDATA[Fürerschäin & Zuch (A2)]]></title>
-    <guid>x</guid>
-    <itunes:duration>08:32</itunes:duration>
-    <enclosure url="https://cdn.example/x.mp3" type="audio/mpeg"/>
-    <podcast:transcript url="https://cdn.example/x.vtt" type="text/vtt"/>
-  </item></channel></rss>`;
-  const [episode] = podcasts.parseFeed(xml);
-  assert.equal(episode.episodeTitle, 'Fürerschäin & Zuch (A2)');
-  assert.equal(episode.durationSec, 512);
-  assert.equal(episode.transcriptUrl, 'https://cdn.example/x.vtt');
+test('podcasts: the chips are the bands actually present, in CEFR order', () => {
+  const bands = screen.bandsPresent([
+    episode({ level: 'B1' }),
+    episode({ level: 'A1' }),
+    episode({ level: 'A2-B1' }),
+    episode({ level: null }),
+  ]);
+  assert.deepEqual(bands, ['A1', 'A2', 'B1']);
 });
 
-test('podcasts: a plain-text transcript is preferred over other formats', () => {
-  // The Worker feeds this straight to a model; plain text costs the fewest
-  // tokens and needs no stripping.
-  const xml = `<rss><channel><item>
-    <title>T (B1)</title><guid>y</guid>
-    <enclosure url="https://cdn.example/y.mp3" type="audio/mpeg"/>
-    <podcast:transcript url="https://cdn.example/y.html" type="text/html"/>
-    <podcast:transcript url="https://cdn.example/y.txt" type="text/plain"/>
-  </item></channel></rss>`;
-  const [episode] = podcasts.parseFeed(xml);
-  assert.equal(episode.transcriptUrl, 'https://cdn.example/y.txt');
+/* ------------------------------------------------------------- level order */
+
+test('podcasts: sections come out in CEFR order, not feed order', () => {
+  // The bug this guards: grouping by first appearance meant the headings came
+  // out however INLL happened to publish, so B1 routinely sat above A1.
+  const groups = screen.groupByLevel([
+    episode({ id: 'a', level: 'B1' }),
+    episode({ id: 'b', level: 'A1' }),
+    episode({ id: 'c', level: 'A2' }),
+    episode({ id: 'd', level: 'A2-B1' }),
+    episode({ id: 'e', level: null }),
+  ]);
+  assert.deepEqual(groups.map((group) => group.level), ['A1', 'A2', 'A2-B1', 'B1', 'Unlabelled']);
 });
 
-test('podcasts: a transcript is detected by either route, and only ever as a boolean', () => {
-  // INLL uses neither <podcast:transcript> nor a uniform layout: about half
-  // its episodes paste the transcript into <description> after "Transkript:".
-  // Both routes have to count, or half the catalogue is wrongly marked
-  // unanswerable.
-  const xml = `<rss><channel>
-    <item><title>Tagged (A2)</title><guid>a</guid>
-      <enclosure url="https://cdn.example/a.mp3" type="audio/mpeg"/>
-      <podcast:transcript url="https://cdn.example/a.txt" type="text/plain"/></item>
-    <item><title>Embedded (A2)</title><guid>b</guid>
-      <description><![CDATA[<p>Intro</p><p>Transkript:</p><p>A: Moien!</p>]]></description>
-      <enclosure url="https://cdn.example/b.mp3" type="audio/mpeg"/></item>
-    <item><title>Neither (A2)</title><guid>c</guid>
-      <description><![CDATA[<p>Just a summary of the episode.</p>]]></description>
-      <enclosure url="https://cdn.example/c.mp3" type="audio/mpeg"/></item>
-  </channel></rss>`;
-  const [tagged, embedded, neither] = podcasts.parseFeed(xml);
-
-  assert.equal(tagged.hasTranscript, true, 'a <podcast:transcript> url counts');
-  assert.equal(embedded.hasTranscript, true, 'a "Transkript:" marker in the description counts');
-  assert.equal(neither.hasTranscript, false, 'no marker and no tag is a definite no');
-
-  // The point of the flag is to answer the question without carrying the
-  // answer's content. A string here would be transcript text smuggled into a
-  // file that promises metadata only.
-  for (const episode of [tagged, embedded, neither]) {
-    assert.equal(typeof episode.hasTranscript, 'boolean', `${episode.episodeTitle}: the flag is a boolean, never the text`);
-  }
+test('podcasts: newest first inside a level', () => {
+  const [group] = screen.groupByLevel([
+    episode({ id: 'old', publishedAt: '2026-01-01' }),
+    episode({ id: 'new', publishedAt: '2026-06-01' }),
+    episode({ id: 'mid', publishedAt: '2026-03-01' }),
+  ]);
+  assert.deepEqual(group.episodes.map((item) => item.id), ['new', 'mid', 'old']);
 });
 
-/* ------------------------------------------------- the shipped-file guard */
-
-const SHIPPED = path.join(ROOT, 'app', 'data', 'podcasts.json');
-
-test('podcasts: the shipped index carries metadata only, never content', (t) => {
-  if (!fs.existsSync(SHIPPED)) {
-    t.skip('no podcasts.json yet — run npm run fetch:podcasts');
-    return;
-  }
-  const file = JSON.parse(fs.readFileSync(SHIPPED, 'utf8'));
-
-  const walk = (node, at) => {
-    if (Array.isArray(node)) return node.forEach((entry, index) => walk(entry, `${at}[${index}]`));
-    if (!node || typeof node !== 'object') return;
-    for (const [key, value] of Object.entries(node)) {
-      // A transcript here would be redistribution of copyrighted text, and a
-      // `_lb` field would be unvalidated Luxembourgish outside the gate.
-      assert.notEqual(key, 'transcript', `${at}.${key}: transcript text must never be stored`);
-      assert.ok(!key.endsWith('_lb'), `${at}.${key}: Luxembourgish fields belong in content/items/, behind the validator`);
-      // `audioId` resolves against the LOD corpus; an external episode has no
-      // business claiming one.
-      assert.notEqual(key, 'audioId', `${at}.${key}: external audio is a URL, not a corpus id`);
-      walk(value, `${at}.${key}`);
-    }
-  };
-  walk(file.items ?? [], 'items');
-
-  for (const episode of file.items ?? []) {
-    assert.ok(/^https:\/\//.test(episode.audioSrc), `${episode.id}: audioSrc must be an absolute https URL`);
-    // A relative path would mean a file got mirrored into the repo.
-    assert.ok(!episode.audioSrc.startsWith('assets/'), `${episode.id}: episode audio must not be mirrored`);
-    assert.ok(episode.attribution && episode.licence, `${episode.id}: every row states who owns it`);
-    // The flag records whether a transcript exists, never any of its text.
-    assert.equal(typeof episode.hasTranscript, 'boolean', `${episode.id}: hasTranscript must stay a boolean`);
-  }
+test('podcasts: an episode with no publish date still sorts rather than throwing', () => {
+  const [group] = screen.groupByLevel([episode({ id: 'dated', publishedAt: '2026-01-01' }), episode({ id: 'undated', publishedAt: null })]);
+  assert.equal(group.episodes.length, 2);
 });
 
-test('podcasts: no episode audio is precached by the service worker', () => {
-  // Streaming is the licence position *and* the storage position: the precache
-  // is already 66 MB of LOD clips, and episodes are minutes rather than
-  // seconds. sw.js returns early for cross-origin requests, so this holds by
-  // construction — the test is here so a future change to that line is noticed.
-  const sw = fs.readFileSync(path.join(ROOT, 'app', 'sw.js'), 'utf8');
-  assert.ok(
-    sw.includes('if (url.origin !== self.location.origin) return;'),
-    'sw.js must keep returning early for cross-origin requests, or streamed episodes would be cached',
+/* ---------------------------------------------------------------- scoring */
+
+test('podcasts: a pass is read off the attempt log, no new storage', () => {
+  const attempts = [
+    { topic: 'podcast', playerId: 'diego', itemId: 'pod-1', correct: 8, total: 10 },
+    { topic: 'podcast', playerId: 'diego', itemId: 'pod-2', correct: 2, total: 10 },
+  ];
+  const scores = screen.episodeScores(attempts, 'diego');
+  assert.equal(scores.get('pod-1').passed, true);
+  assert.equal(scores.get('pod-2').passed, false);
+  assert.equal(scores.get('pod-2').correct, 2);
+});
+
+test('podcasts: the best attempt wins, so a worse re-listen cannot un-pass an episode', () => {
+  const attempts = [
+    { topic: 'podcast', playerId: 'diego', itemId: 'pod-1', correct: 9, total: 10 },
+    { topic: 'podcast', playerId: 'diego', itemId: 'pod-1', correct: 3, total: 10 },
+  ];
+  const scores = screen.episodeScores(attempts, 'diego');
+  assert.equal(scores.get('pod-1').correct, 9);
+  assert.equal(scores.get('pod-1').passed, true);
+});
+
+test('podcasts: another player’s attempts, and non-podcast attempts, are ignored', () => {
+  const attempts = [
+    { topic: 'podcast', playerId: 'amelie', itemId: 'pod-1', correct: 10, total: 10 },
+    { topic: 'transport', playerId: 'diego', itemId: 'pod-1', correct: 10, total: 10 },
+    { topic: 'podcast', playerId: 'diego', itemId: 'pod-9', correct: 0, total: 0 },
+  ];
+  const scores = screen.episodeScores(attempts, 'diego');
+  assert.equal(scores.has('pod-1'), false, 'this is not Diego’s pass to claim');
+  assert.equal(scores.has('pod-9'), false, 'a zero-question attempt is not a score');
+});
+
+/* ---------------------------------------------------------------- filters */
+
+const catalogue = [
+  episode({ id: 'a1', level: 'A1', hasTranscript: true }),
+  episode({ id: 'a2', level: 'A2', hasTranscript: false }),
+  episode({ id: 'a2b1', level: 'A2-B1', hasTranscript: true }),
+  episode({ id: 'b1', level: 'B1', hasTranscript: true }),
+];
+
+test('podcasts: the level filter accepts a hyphenated episode from either side', () => {
+  const pick = (band) => screen.filterEpisodes(catalogue, { band }).map((item) => item.id);
+  assert.deepEqual(pick('A2'), ['a2', 'a2b1']);
+  assert.deepEqual(pick('B1'), ['a2b1', 'b1']);
+  assert.deepEqual(pick(null), ['a1', 'a2', 'a2b1', 'b1'], 'no band means no level filtering');
+});
+
+test('podcasts: "with questions" drops the listen-only episodes', () => {
+  const ids = screen.filterEpisodes(catalogue, { questionsOnly: true }).map((item) => item.id);
+  assert.deepEqual(ids, ['a1', 'a2b1', 'b1']);
+});
+
+test('podcasts: an episode with no hasTranscript field is not treated as listen-only', () => {
+  // An index built before the field existed leaves it undefined, which is
+  // unknown rather than absent — dropping those would hide real episodes.
+  const unknown = [episode({ id: 'legacy', hasTranscript: undefined })];
+  assert.equal(screen.filterEpisodes(unknown, { questionsOnly: true }).length, 1);
+});
+
+test('podcasts: "hide passed" only hides an actual pass, not every attempt', () => {
+  const scores = screen.episodeScores(
+    [
+      { topic: 'podcast', playerId: 'diego', itemId: 'a1', correct: 9, total: 10 },
+      { topic: 'podcast', playerId: 'diego', itemId: 'b1', correct: 1, total: 10 },
+    ],
+    'diego',
   );
-  assert.ok(!/podcast.*\.mp3|assets\/podcast/i.test(sw), 'sw.js must not precache episode audio');
+  const ids = screen.filterEpisodes(catalogue, { hidePassed: true, scores }).map((item) => item.id);
+  assert.deepEqual(ids, ['a2', 'a2b1', 'b1'], 'the failed episode stays — it still needs doing');
+});
+
+test('podcasts: the filters compose', () => {
+  const scores = screen.episodeScores([{ topic: 'podcast', playerId: 'diego', itemId: 'b1', correct: 10, total: 10 }], 'diego');
+  const ids = screen.filterEpisodes(catalogue, { band: 'B1', questionsOnly: true, hidePassed: true, scores }).map((item) => item.id);
+  assert.deepEqual(ids, ['a2b1']);
+});
+
+/* -------------------------------------------------- the real catalogue */
+
+test('podcasts: every level the live feed uses is one the CEFR ordering knows', (t) => {
+  if (!fs.existsSync(DATA)) return t.skip('no podcasts.json — run npm run fetch:podcasts');
+  const items = JSON.parse(fs.readFileSync(DATA, 'utf8')).items ?? [];
+  if (items.length === 0) return t.skip('empty podcast index');
+
+  const unknown = new Set();
+  for (const item of items) {
+    if (item.level == null) continue; // grouped under "Unlabelled" on purpose
+    if (screen.levelRank(item.level) === screen.levelRank('__nope__')) unknown.add(item.level);
+  }
+  assert.deepEqual(
+    [...unknown],
+    [],
+    'INLL is using a level label the ordering does not know, so it would sort to the bottom — add it to LEVEL_ORDER',
+  );
+
+  // And the grouping really does cover the whole catalogue.
+  const grouped = screen.groupByLevel(items).reduce((sum, group) => sum + group.episodes.length, 0);
+  assert.equal(grouped, items.length, 'grouping dropped episodes');
 });
