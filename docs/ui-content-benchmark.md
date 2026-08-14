@@ -1827,3 +1827,68 @@ measurement if this gets pursued.
 
 No app code changed. `npm test` 229 and `validate` PASS are unaffected;
 `research/` is documentation and a standalone script, outside the build.
+
+---
+
+# Follow-up 14 — the whole Whisper family, and a surprise
+
+Follow-up 13 measured `unilux/whisper-medium-v1-luxembourgish` at 3.8% WER but
+ruled it out on cost: 0.20× realtime on CPU means a GPU, and there is nowhere
+in a Pages-plus-Worker stack to put one. The obvious next question was whether
+a smaller sibling is fast enough to change that. All four were run on the
+identical 30 clips and seed.
+
+| model | params | WER | exact | speed |
+| --- | --- | --- | --- | --- |
+| tiny | 39 M | 10.3% | 14/30 | 4.10× realtime |
+| **base** | **74 M** | **5.0%** | **22/30** | **2.33× realtime** |
+| small | 244 M | 8.8% | 17/30 | 0.77× realtime |
+| medium | 769 M | 3.8% | 22/30 | 0.20× realtime |
+
+**`base` is the answer.** 1.2 points of WER behind `medium`, the *same* 22/30
+exact sentences, and **11.6× faster** — comfortably above realtime, so a
+60-second answer transcribes in about 26 seconds on four CPU cores.
+
+**`small` is worse than `base` on both axes**, which model size does not
+predict: three times slower and nearly twice the error rate. That is a
+property of these checkpoints rather than of Whisper, and it is exactly the
+kind of thing that only shows up if you measure instead of assuming the middle
+option is the safe one.
+
+## A scoring bug found by reading the output
+
+`tiny` and `small` write the elided article with a space — `d' zäit` where the
+corpus writes `d'zäit`. Scored naively that is two word errors on a four-word
+sentence. It was costing `tiny` six points of WER and `small` seven, entirely
+for an orthographic convention that no learner-facing use of a transcript
+would care about. Corrected in `norm()` and re-scored from the saved outputs
+without re-running anything; `base` and `medium` were unaffected because they
+already close it up. Both figures are published in `research/asr/README.md`
+rather than only the flattering one.
+
+## What it does not change
+
+`base` makes the same word-order error `medium` did — silently reordering
+`muss nach haut` into the more frequent `muss haut nach` — and one of its
+other misses is an n-rule difference (`en` → `den`). Those are two of the
+things this app most explicitly teaches and marks. So the conclusion holds at
+every size: a transcript is evidence for the learner to read, never a score,
+and the screen would have to say that a strange-looking word may be the
+machine rather than them.
+
+## What it does change
+
+The hosting objection is gone. At ~145 MB and 2.33× realtime, `base` runs on a
+small CPU box with no GPU — and in-browser via `transformers.js`/ONNX becomes
+plausible rather than fanciful, which would remove the privacy question
+entirely by keeping the recording on the phone. That last part is **not
+tested**: it needs an ONNX export of this fine-tune and a measurement on a
+phone-class device, with mobile Safari the likely obstacle.
+
+Still nothing built, and still no app code touched. But the open question is
+now a specific experiment rather than a shrug.
+
+## Verification
+
+No app code changed. `npm test` 229 and `validate` PASS are unaffected;
+`research/` is documentation plus a standalone script, outside the build.

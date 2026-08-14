@@ -1,0 +1,74 @@
+model: unilux/whisper-tiny-v1-luxembourgish
+clips: 30 LOD recordings with known transcripts
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/167 [00:00<?, ?it/s]Loading weights: 100%|██████████| 167/167 [00:00<00:00, 2652.60it/s]
+loaded in 11s
+
+[transformers] A custom logits processor of type <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> has been passed to `.generate()`, but it was also created in `.generate()`, given its parameterization. The custom <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> will take precedence. Please check the docstring of <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> to see related `.generate()` flags.
+[transformers] A custom logits processor of type <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> has been passed to `.generate()`, but it was also created in `.generate()`, given its parameterization. The custom <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> will take precedence. Please check the docstring of <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> to see related `.generate()` flags.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[1/30] WER 0%
+[2/30] WER 44%
+[3/30] WER 33%
+[4/30] WER 10%
+[5/30] WER 0%
+[6/30] WER 0%
+[7/30] WER 0%
+[8/30] WER 30%
+[9/30] WER 11%
+[10/30] WER 29%
+[11/30] WER 0%
+[12/30] WER 29%
+[13/30] WER 50%
+[14/30] WER 33%
+[15/30] WER 0%
+[16/30] WER 33%
+[17/30] WER 29%
+[18/30] WER 0%
+[19/30] WER 29%
+[20/30] WER 12%
+[21/30] WER 0%
+[22/30] WER 29%
+[23/30] WER 0%
+[24/30] WER 33%
+[25/30] WER 33%
+[26/30] WER 10%
+[27/30] WER 18%
+[28/30] WER 31%
+[29/30] WER 0%
+[30/30] WER 0%
+
+======================================================================
+WER            16.4%   (word error rate, lower is better)
+CER            3.7%   (character error rate)
+exact match    11/30 sentences
+speed          4.10x realtime on 4 CPU cores
+               0.7s per clip, clips avg 3.0s
+======================================================================
+A1: mean per-sentence WER 18.8% over 12 clips
+A2: mean per-sentence WER 16.7% over 18 clips
+
+--- best ---
+  truth: ech iessen all mueren e jugurt
+  heard: ech iessen all mueren e jugurt
+
+  truth: den auspuff vu mengem auto mécht e schreckleche kaméidi
+  heard: den auspuff vu mengem auto mécht e schreckleche kaméidi
+
+  truth: vum laange sëtze virum computer hunn ech mäi genéck total verspaant
+  heard: vum laange sëtze virum computer hunn ech mäi genéck total verspaant
+
+--- worst ---
+  truth: d'zäit bleift net stoen
+  heard: d' zäit bleift net stoen
+
+  truth: d'mëttel dat d'doktesch mer verschriwwen hat huet direkt gewierkt
+  heard: d' mëttel dat d' doktesch mer verschriwwen hat huet direkt gewierkt
+
+  truth: sinn är pijen och gutt säfteg
+  heard: sinn är pijen och gutt setzt ech
+
+  truth: de clown ameséiert esouwuel d'kanner ewéi och hir elteren
+  heard: de kloen ameséiert esouwuel d' kanner ewéi och hir elteren
+

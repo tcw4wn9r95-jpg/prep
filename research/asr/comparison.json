@@ -1,0 +1,30 @@
+{
+ "tiny": {
+  "wer_raw": 16.4,
+  "wer_norm": 10.3,
+  "exact_raw": 11,
+  "exact_norm": 14,
+  "n": 30
+ },
+ "base": {
+  "wer_raw": 5.0,
+  "wer_norm": 5.0,
+  "exact_raw": 22,
+  "exact_norm": 22,
+  "n": 30
+ },
+ "small": {
+  "wer_raw": 15.3,
+  "wer_norm": 8.8,
+  "exact_raw": 12,
+  "exact_norm": 17,
+  "n": 30
+ },
+ "medium": {
+  "wer_raw": 3.8,
+  "wer_norm": 3.8,
+  "exact_raw": 22,
+  "exact_norm": 22,
+  "n": 30
+ }
+}

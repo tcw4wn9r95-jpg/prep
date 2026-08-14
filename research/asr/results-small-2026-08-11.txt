@@ -1,0 +1,74 @@
+model: unilux/whisper-small-v1-luxembourgish
+clips: 30 LOD recordings with known transcripts
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/479 [00:00<?, ?it/s]Loading weights:  36%|███▌      | 171/479 [00:00<00:00, 1698.31it/s]Loading weights: 100%|██████████| 479/479 [00:00<00:00, 2443.63it/s]
+loaded in 26s
+
+[transformers] A custom logits processor of type <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> has been passed to `.generate()`, but it was also created in `.generate()`, given its parameterization. The custom <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> will take precedence. Please check the docstring of <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> to see related `.generate()` flags.
+[transformers] A custom logits processor of type <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> has been passed to `.generate()`, but it was also created in `.generate()`, given its parameterization. The custom <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> will take precedence. Please check the docstring of <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> to see related `.generate()` flags.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[1/30] WER 17%
+[2/30] WER 33%
+[3/30] WER 17%
+[4/30] WER 10%
+[5/30] WER 0%
+[6/30] WER 18%
+[7/30] WER 0%
+[8/30] WER 30%
+[9/30] WER 0%
+[10/30] WER 43%
+[11/30] WER 0%
+[12/30] WER 0%
+[13/30] WER 50%
+[14/30] WER 33%
+[15/30] WER 0%
+[16/30] WER 22%
+[17/30] WER 57%
+[18/30] WER 0%
+[19/30] WER 29%
+[20/30] WER 12%
+[21/30] WER 0%
+[22/30] WER 14%
+[23/30] WER 0%
+[24/30] WER 0%
+[25/30] WER 50%
+[26/30] WER 20%
+[27/30] WER 36%
+[28/30] WER 15%
+[29/30] WER 0%
+[30/30] WER 0%
+
+======================================================================
+WER            15.3%   (word error rate, lower is better)
+CER            3.3%   (character error rate)
+exact match    12/30 sentences
+speed          0.77x realtime on 4 CPU cores
+               3.9s per clip, clips avg 3.0s
+======================================================================
+A1: mean per-sentence WER 18.8% over 12 clips
+A2: mean per-sentence WER 15.7% over 18 clips
+
+--- best ---
+  truth: den auspuff vu mengem auto mécht e schreckleche kaméidi
+  heard: den auspuff vu mengem auto mécht e schreckleche kaméidi
+
+  truth: ech hunn näischt fir ze schreiwen kanns du mer däi bic léinen
+  heard: ech hunn näischt fir ze schreiwen kanns du mer däi bic léinen
+
+  truth: kuck um kalenner ob mir nächste freideg doheem sinn
+  heard: kuck um kalenner ob mir nächste freideg doheem sinn
+
+--- worst ---
+  truth: wann däi skateboard jiipst da schmier d'achsen
+  heard: wann däi skateboard jeepst dasch mir dacksen
+
+  truth: d'zäit bleift net stoen
+  heard: d' zäit bleift net stoen
+
+  truth: mäin auto huet hannen eng téitsch
+  heard: mäin auto et hann en eng téitsch
+
+  truth: duerch d'e-maile ginn ëmmer manner bréiwer geschriwwen
+  heard: duerch d' e mailë ginn ëmmer manner bréiwer geschriwwen
+

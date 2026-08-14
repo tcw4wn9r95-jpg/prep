@@ -26,10 +26,18 @@ def decode(path):
 def norm(text):
     """Lowercase, strip punctuation, collapse space. Deliberately does NOT
     strip accents: ë/é are the letters, and an ASR that loses them is wrong in
-    a way this app would care about."""
+    a way this app would care about.
+
+    The elided article is closed up ("d' zäit" -> "d'zäit"). Luxembourgish
+    writes it that way and the corpus does too, but the tiny and base
+    checkpoints emit a space. Left alone that is scored as two word errors on
+    a four-word sentence — it cost `tiny` six points of WER and `small` seven,
+    for an orthographic convention no learner-facing use of the transcript
+    would care about."""
     text = text.lower().replace("’", "'")
     text = re.sub(r"[^\w\s'-]", " ", text)
-    return re.sub(r"\s+", " ", text).strip()
+    text = re.sub(r"\s+", " ", text).strip()
+    return re.sub(r"(\w')\s+", r"\1", text)
 
 def edits(a, b):
     """Levenshtein over token lists."""
