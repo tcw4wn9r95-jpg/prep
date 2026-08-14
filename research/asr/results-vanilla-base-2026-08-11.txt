@@ -1,0 +1,71 @@
+model: openai/whisper-base
+clips: 30 LOD recordings with known transcripts
+
+Device set to use cpu
+loaded in 8s
+
+`return_token_timestamps` is deprecated for WhisperFeatureExtractor and will be removed in Transformers v5. Use `return_attention_mask` instead, as the number of frames can be inferred from it.
+[1/30] WER 100%
+[2/30] WER 78%
+[3/30] WER 2483%
+[4/30] WER 100%
+[5/30] WER 89%
+[6/30] WER 82%
+[7/30] WER 92%
+[8/30] WER 70%
+[9/30] WER 78%
+[10/30] WER 114%
+[11/30] WER 100%
+[12/30] WER 86%
+[13/30] WER 100%
+[14/30] WER 78%
+[15/30] WER 80%
+[16/30] WER 89%
+[17/30] WER 86%
+[18/30] WER 88%
+[19/30] WER 57%
+[20/30] WER 100%
+[21/30] WER 86%
+[22/30] WER 100%
+[23/30] WER 73%
+[24/30] WER 92%
+[25/30] WER 133%
+[26/30] WER 100%
+[27/30] WER 91%
+[28/30] WER 85%
+[29/30] WER 100%
+[30/30] WER 82%
+
+======================================================================
+WER            143.5%   (word error rate, lower is better)
+CER            93.8%   (character error rate)
+exact match    0/30 sentences
+speed          1.35x realtime on 4 CPU cores
+               2.2s per clip, clips avg 3.0s
+======================================================================
+A1: mean per-sentence WER 290.8% over 12 clips
+A2: mean per-sentence WER 88.9% over 18 clips
+
+--- best ---
+  truth: et héiert een d'geessen am stall meckeren
+  heard: et herdi'nd gesen am stau meckeren
+
+  truth: d'relève vun der gard beim palais ass eng touristesch attraktioun
+  heard: trelef von der gart beim palais asenk touristisch attraktion
+
+  truth: wärend eiser safari hu mir e puermol an enger lodge geschlof
+  heard: während eiser safari humire puermool annenger lutsch geschlof
+
+--- worst ---
+  truth: sinn är pijen och gutt säfteg
+  heard: ži nepij ži noch ku žaft ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ži ž
+
+  truth: mäin auto huet hannen eng téitsch
+  heard: my no to it on an ink teach
+
+  truth: duerch d'e-maile ginn ëmmer manner bréiwer geschriwwen
+  heard: durch die meile ging immer man abriva geschrieben
+
+  truth: ech iessen all mueren e jugurt
+  heard: ich essen almurren erjugurt
+

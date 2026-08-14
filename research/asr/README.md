@@ -99,22 +99,76 @@ transcript is evidence for the learner to read, never a score, and it needs
 saying on screen that a strange-looking word may be the machine rather than
 them.
 
-## What `base` changes about deployment
+## Round 3 — the browser is out, and the fine-tune is mandatory
 
-The first round ruled the open-weights path out on hosting: `medium` needs a
-GPU, and the app is a static Pages site plus a Cloudflare Worker. `base` at
-2.33× realtime and ~145 MB reopens two doors that were shut:
+Two experiments closed the remaining questions.
 
-- **A small always-on CPU box** is now enough — no GPU bill.
-- **In the browser** becomes plausible rather than fanciful. `whisper-base` is
-  a standard `transformers.js` / ONNX target, and running it client-side would
-  make the privacy question disappear entirely: the recording would never
-  leave the phone, which is the posture the rest of this app already holds to.
-  **Not tested here** — it needs an ONNX export of this fine-tune and a
-  measurement on a phone-class device, and mobile Safari is the risk.
+### In-browser: ruled out on payload
 
-Still nothing built. But the next step is now a concrete experiment (export
-`base` to ONNX, measure in-browser on a phone) rather than an open question.
+`base` exported to ONNX cleanly (max logit diff 5e-05), but int8 quantisation
+does not get it small enough for a phone to download:
+
+| file | int8 |
+| --- | --- |
+| encoder | 23.2 MB |
+| decoder | 79.1 MB |
+| decoder_with_past (needed for usable speed) | 75.9 MB |
+| tokenizer + config | 3.9 MB |
+| **minimum, no KV cache** | **106 MB** |
+| **realistic, with KV cache** | **182 MB** |
+
+An offline-first PWA cannot ask for a 106–182 MB download, and that is before
+asking whether WASM inference on a phone CPU would hit realtime — it almost
+certainly would not, given 2.33× on four desktop cores.
+
+One export note worth keeping: `decoder_model_merged.onnx` barely shrinks
+under dynamic quantisation (315 MB → 314.8 MB) because its weights sit inside
+`If` subgraphs that `quantize_dynamic` skips. The unmerged pair quantises
+properly, which is why the realistic figure ships two decoders.
+
+### Vanilla Whisper on Luxembourgish: unusable
+
+Cloudflare Workers AI ships `@cf/openai/whisper`, which would have been a
+near-zero-effort path since this app already runs a Worker. Measured on the
+same 30 clips:
+
+| model | WER | exact |
+| --- | --- | --- |
+| `unilux/whisper-base` (fine-tuned) | **5.0%** | 22/30 |
+| `openai/whisper-base` (vanilla) | **143.5%** | 0/30 |
+
+143.5% WER — worse than useless; it transcribes Luxembourgish into
+German-ish approximations (`d'geessen` → `gesen`, `d'relève` → `trelef`). The
+Luxembourgish fine-tune is not an optimisation, it is the whole thing, and
+Workers AI is therefore not an option.
+
+## Where that leaves it
+
+Four paths were on the table. Three are now closed by measurement:
+
+| path | verdict |
+| --- | --- |
+| In-browser (ONNX/transformers.js) | **out** — 106–182 MB download, and WASM on a phone would not hit realtime |
+| Cloudflare Workers AI | **out** — vanilla Whisper is 143.5% WER on Luxembourgish |
+| Self-host `base` on a CPU box | **works** — 5.0% WER at 2.33× realtime, no GPU, but a server to run and pay for |
+| **LuxASR** (`luxasr.uni.lu`) | **the practical one** — free, purpose-built, no model hosting; needs written permission first |
+
+The fine-tune being mandatory (5.0% vs 143.5%) is what removes the easy
+option: there is no general-purpose ASR to lean on, so either the University
+of Luxembourg hosts it or we do.
+
+LuxASR is the same group's own service and almost certainly runs a model at
+least as good as `medium` (3.8%). Its accuracy is **not** measured here: their
+terms ask that you contact them before integrating, and sending a learner's
+audio — or a batch of corpus clips — to evaluate it felt like the wrong side
+of that line to cross unasked.
+
+So the next step is an email, not a commit. Draft in `permission-email.md`.
+
+Whichever host wins, the app-side design is already settled by the error
+analysis above: an **opt-in** "what did the machine hear?" panel on the
+speaking screen, showing the transcript as evidence next to the recording,
+labelled as approximate, with the human rubric untouched as the actual score.
 
 ## Reproducing
 

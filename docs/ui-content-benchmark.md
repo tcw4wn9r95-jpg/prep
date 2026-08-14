@@ -1892,3 +1892,80 @@ now a specific experiment rather than a shrug.
 
 No app code changed. `npm test` 229 and `validate` PASS are unaffected;
 `research/` is documentation plus a standalone script, outside the build.
+
+---
+
+# Follow-up 15 — the browser is out, and vanilla Whisper is useless
+
+> "Yes, I'm ok if the grading is not exact in all cases it's just an
+> indication"
+
+That settles the *product* question — a transcript shown as an indication, not
+a grade — so this round was purely about where the model can run. Two
+experiments, both negative, and both worth having run.
+
+## ONNX in the browser: out on payload
+
+`unilux/whisper-base` exported to ONNX cleanly (max logit diff 5e-05). int8
+quantisation does not get it small enough:
+
+| file | int8 |
+| --- | --- |
+| encoder | 23.2 MB |
+| decoder | 79.1 MB |
+| decoder_with_past (needed for usable speed) | 75.9 MB |
+| **minimum / realistic total** | **106 MB / 182 MB** |
+
+An offline-first PWA cannot ask a phone for a 106–182 MB download — and that
+is before asking whether WASM inference would hit realtime on a phone CPU,
+which at 2.33× on four desktop cores it almost certainly would not.
+
+(Export note worth keeping: `decoder_model_merged.onnx` barely shrinks under
+dynamic quantisation, 315 MB → 314.8 MB, because its weights sit inside `If`
+subgraphs that `quantize_dynamic` skips. The unmerged pair quantises properly,
+which is why the realistic figure carries two decoders.)
+
+## Cloudflare Workers AI: out on accuracy
+
+Workers AI ships `@cf/openai/whisper`, which would have been almost free to
+adopt — the app already runs a Worker. On the same 30 clips:
+
+| model | WER | exact |
+| --- | --- | --- |
+| `unilux/whisper-base` (fine-tuned) | **5.0%** | 22/30 |
+| `openai/whisper-base` (vanilla) | **143.5%** | 0/30 |
+
+143.5% is worse than useless: it renders Luxembourgish as German-ish
+approximations (`d'geessen` → `gesen`, `d'relève` → `trelef`). The
+Luxembourgish fine-tune is not an optimisation, it is the entire thing — so
+there is no general-purpose ASR to lean on, and either the University of
+Luxembourg hosts it or we do.
+
+## What is left
+
+| path | verdict |
+| --- | --- |
+| In-browser ONNX | out — payload |
+| Workers AI | out — 143.5% WER |
+| Self-host `base` on a CPU box | works — 5.0% at 2.33× realtime, no GPU, but a server to pay for |
+| **LuxASR** | **the practical one** — free, purpose-built; needs written permission first |
+
+LuxASR's own accuracy is deliberately **not** measured here. Their terms ask
+that you make contact before integrating, and sending either a learner's audio
+or a batch of corpus clips to evaluate it is the wrong side of that line to
+cross unasked.
+
+So the blocker is now an email rather than engineering, and
+`research/asr/permission-email.md` is a ready-to-send draft — including the
+benchmark numbers above, which make the case that the ask is informed and the
+volume is tiny.
+
+The app-side design is already settled by the earlier error analysis: an
+opt-in "what did the machine hear?" panel beside the recording, labelled
+approximate, with the human INLL rubric untouched as the actual score. Nothing
+is built until there is somewhere to send the audio.
+
+## Verification
+
+No app code changed. `npm test` 229 and `validate` PASS are unaffected;
+`research/` is documentation plus standalone scripts, outside the build.
