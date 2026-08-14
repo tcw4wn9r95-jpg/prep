@@ -1746,3 +1746,84 @@ uses is one the CEFR ordering knows — the assertion that catches INLL
 inventing a new label) · `validate` PASS · `npm run walkthrough` 48/48, two new
 steps driving the filters, their persistence across a reload, and a passed
 episode being marked and then hidden · `sw.js` → `v33`.
+
+---
+
+# Follow-up 13 — measuring the Luxembourgish ASR model
+
+> "Try the huggingface path"
+
+Follow-up 12 flagged `unilux/whisper-medium-v1-luxembourgish` as the
+self-hostable alternative to LuxASR's hosted service, which needs written
+permission before use. This is what happened when it was actually run.
+
+## The test set was already on disk
+
+The model card publishes no WER, so the number had to be measured. It could
+be measured honestly rather than eyeballed because the repo already mirrors
+2,263 LOD example recordings and knows the exact transcript of each — the
+`example.lb` string the vocabulary deck ships. That is 2,010 (audio,
+known-correct text) pairs with no annotation needed, and the reference text
+is the corpus's own rather than something written for the test.
+
+`research/asr/benchmark.py` samples 30 of them with a fixed seed, transcribes,
+and scores against the corpus text. Full output and per-clip results are in
+`research/asr/`.
+
+## It is much better than its reputation
+
+| metric | value |
+| --- | --- |
+| WER | **3.8%** |
+| CER | **1.5%** |
+| exact-match sentences | 22 / 30 |
+| speed | **0.20× realtime** on 4 CPU cores |
+
+3.8% is a good ASR by any standard, and it contradicts the note this app
+currently shows under machine-made podcast questions. That note stays anyway,
+for the reason below.
+
+**The number is an upper bound.** Every clip is a studio recording of a
+prepared sentence read by a professional dictionary voice. A learner's answer
+is a phone mic, a room, hesitation and a foreign accent. Nothing here measures
+that, and that is the only case the speaking module has. 3.8% means "good at
+clean Luxembourgish", not "this is what a learner would see".
+
+## How it fails matters more than how often
+
+One error decided the recommendation on its own:
+
+```
+truth: ech muss nach haut iwwer eng wichteg saach mat der schwätzen
+heard: ech muss haut nach iwwer eng wichteg saach mat der schwätzen
+```
+
+The model silently reordered two words into a more frequent pattern. This app
+teaches word order, reserves session slots for it, and the interview is scored
+on it. An ASR that quietly normalises a learner's correct ordering — or
+invents a wrong one — is actively harmful feedback on the exact criterion that
+matters most. The other misses (`d'e-maile` → `déi maile`, `pijen` → `pigen`)
+are elided articles and rare words coming out as plausible neighbours, which
+read as the learner's mistake unless the transcript is heavily caveated.
+
+## Why it is still not shippable
+
+- **Not on HF's serverless Inference API.** The model's API record returns
+  `inferenceProviderMapping: null` (128 downloads a month), so there is no
+  free hosted endpoint. A dedicated Inference Endpoint is a paid always-on
+  instance.
+- **0.20× realtime on CPU** — a 60-second answer is about five minutes of
+  compute. GPU-only in practice.
+- **Nowhere in this stack to run it.** Static Pages site plus a Cloudflare
+  Worker; a Worker cannot hold 2.9 GB of PyTorch, and Workers AI ships base
+  Whisper rather than this fine-tune.
+
+So the open-weights path trades LuxASR's permission-and-privacy problem for a
+hosting bill. Still nothing built — but the question is now answered with a
+number instead of a guess, and `whisper-small`/`base` are the obvious next
+measurement if this gets pursued.
+
+## Verification
+
+No app code changed. `npm test` 229 and `validate` PASS are unaffected;
+`research/` is documentation and a standalone script, outside the build.
