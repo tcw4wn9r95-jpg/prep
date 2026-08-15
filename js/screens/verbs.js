@@ -8,7 +8,7 @@
  */
 
 import { loadVerbs, loadTopics } from '../content.js';
-import { getLearnDeckStates, buildSession, newWordsLeftToday, listMistakes, mistakeEntryKeys } from '../store.js';
+import { getLearnDeckStates, buildSession, newWordsLeftToday, newWordGoal, listMistakes, mistakeEntryKeys } from '../store.js';
 import { DECKS, isDrillable, boxIndex } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
@@ -20,7 +20,7 @@ export async function render(root, { params, settings, navigate }) {
     loadVerbs(),
     getLearnDeckStates(settings.playerId, 'verb'),
     topicId ? loadTopics() : Promise.resolve([]),
-    newWordsLeftToday(settings.playerId),
+    newWordsLeftToday(settings.playerId, { target: newWordGoal(settings) }),
     listMistakes(settings.playerId),
   ]);
 
