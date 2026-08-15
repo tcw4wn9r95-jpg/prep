@@ -116,7 +116,9 @@ Match the existing personal stack: cheap, mostly static, no ops burden.
 /app           the PWA — static, no build step, zero runtime dependencies
   js/screens/        onboarding · today · journey · learn · session · reference · pairs ·
                      podcasts · vocab · verbs · phrases · listening · speaking · review ·
-                     readiness · duel · settings
+                     readiness · duel · settings · notecards · structure
+  js/grammar-guide.js   the grammar course: 24 numbered levels of theory
+  js/grammar-examples.js   renders whichever shape of example a level produced
   js/chime.js        the right-answer sound, synthesised (no asset to ship)
   js/anthropic.js    direct Claude calls, for when there is no Worker
   js/drill/          the Learn engine: one session runner, seven card types,
@@ -358,6 +360,53 @@ Two smaller rules that matter more than they look:
 - A typed answer right apart from its diacritics counts as correct but holds its box. On a
   phone `ë`/`é`/`ä` are several taps deep, and failing someone over that turns a vocabulary
   drill into a keyboard drill. The exact spelling is shown, and the word comes back.
+
+---
+
+## The grammar course
+
+> **Added 2026-08.** The app drilled grammar without ever teaching it. Gender, the n-rule and
+> adjective endings each had a one-line rule; word order, the perfect, negation and the rest
+> had none at all. A drill you can only pass by having already learned the rule somewhere else
+> is a test, not teaching — so the theory now comes first, and it is ordered as a course.
+
+**Notecards** (`#/notecards`) is the grammar as 24 numbered levels. Each level is one card:
+the rule in a sentence, a few paragraphs of teaching, real sentences that show it, and a
+button through to the drill where a deck exists.
+
+The numbering is not invented here. Levels 1–19 follow **RTL Today's _Learn Luxembourgish:
+Language Basics_ series**, the one free, Luxembourg-published grammar syllabus written for
+exactly this audience — adults learning from English, in the order a teacher introduces it.
+Following it means the course has an external spine, and that someone reading the articles
+alongside the app can line the two up.
+
+| levels | unit | |
+| --- | --- | --- |
+| 1–6 | Getting started | numbers · the n-rule · gender · op/bei · ordinals · du vs Dir |
+| 7–11 | Verbs and tenses | the present · sinn · hunn · the perfect · the future |
+| 12–17 | Agreement | possessives · comparatives · cases · pronouns · prepositions · adjectives |
+| 18–19 | The character of the language | diminutives and the lost genitive · where the vocabulary comes from |
+| 20–24 | What the Sproochentest also marks | verb second · the verb bracket · subordinate clauses · negation · gär |
+
+Levels 20–24 are this app's own. The series never covers word order, and Morphosyntax is a
+scored criterion in the interview, so they are taught rather than left out — grouped after the
+series so it stays clear which is which.
+
+**How the language rule applies here.** The prose is English and free to write; the
+Luxembourgish is corpus-locked as everywhere else, but the two halves are checked against
+different sources:
+
+- **Examples** are never written at all. Each level has an `examples(data)` function that mines
+  the shipped decks — real LOD sentences, real inflection tables — so an illustration cannot be
+  an invention. Checked against the decks only.
+- **Prose** may name any real Luxembourgish word, checked against the full LOD form index in
+  `content/lexicon.json`. A level that has to list the dative prepositions will reach words no
+  deck example happens to contain; the lexicon still rejects plausible-looking inventions.
+
+Where the syllabus asks for something the corpus cannot show, the level says so in its
+`sources` rather than filling the gap. Two cases today: country and nationality names, which
+the exam-scoped vocabulary does not lexicalise, and a few two-way prepositions the decks do
+not attest.
 
 ---
 

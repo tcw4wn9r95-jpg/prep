@@ -155,6 +155,33 @@ export const STRUCTURE_KINDS = ['wordorder', 'bracket', 'subclause'];
 export const isStructure = (item) => STRUCTURE_KINDS.includes(item?.kind);
 
 /**
+ * Every exercise kind pipeline/build-grammar.js emits.
+ *
+ * Used to build the `#/grammar/<kind>` filters, so each notecard that has a
+ * deck behind it can send you straight to that deck alone. Only the three
+ * structure kinds had a filter before, which meant a "practise this" button on
+ * the gender card would have quietly run the whole mixed grammar deck instead.
+ *
+ * `pipeline/test/grammar.test.js` checks this against the kinds the built deck
+ * actually contains, so a new kind cannot be added to the builder without
+ * turning up here.
+ */
+export const GRAMMAR_KINDS = [
+  'gender',
+  'nrule',
+  'adjective',
+  'perfect-aux',
+  'perfect-form',
+  'wordorder',
+  'bracket',
+  'subclause',
+  'negation',
+  'numbers',
+  'dative',
+  'likes',
+];
+
+/**
  * What LOD already records about this item, handed to the explainer as fact.
  *
  * Written because an explanation was caught inventing the things it could not

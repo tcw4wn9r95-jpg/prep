@@ -265,6 +265,42 @@ async function main() {
     await page.waitForSelector('.plan', { timeout: 5000 });
   });
 
+  await step('the notecards are a course you can walk through', async () => {
+    // The grammar as levels rather than as a reference to dip into: a contents
+    // page, then a card per level that states the rule, teaches it, and shows
+    // real sentences, with the next level and the matching drill both one tap
+    // away. The whole point is that it can be read start to finish, so the
+    // check is that the walk actually works, not just that the page renders.
+    await page.goto(`${base}#/notecards`, { waitUntil: 'networkidle' });
+    await page.waitForSelector('a.card[href^="#/notecards/"]', { timeout: 5000 });
+    const levels = await page.locator('a.card[href^="#/notecards/"]').count();
+    if (levels < 19) throw new Error(`the course lists ${levels} levels, fewer than the published syllabus`);
+    await shot('00d-notecards');
+
+    // Level 1, and from there the walk onwards.
+    await page.locator('a.card[href^="#/notecards/"]').first().click();
+    await page.waitForSelector('.ref-topic__rule', { timeout: 5000 });
+    const points = await page.locator('.ref-topic__point').count();
+    if (points < 2) throw new Error(`a notecard carried ${points} paragraphs of teaching`);
+    const shown = await page.locator('.ref-topic__sentence, .ref-frame').count();
+    if (shown === 0) throw new Error('a notecard stated a rule with nothing to illustrate it');
+    const sub = (await page.locator('#screen .screen__sub').first().textContent())?.trim();
+    if (!/Level 1 of/.test(sub ?? '')) throw new Error(`the first card says "${sub}" rather than naming its level`);
+    await shot('00e-notecard');
+
+    // Next → level 2, and the drill button lands on that level's own cards.
+    await page.locator('a.card[href="#/notecards/nrule"]').first().click();
+    await page.waitForSelector('.ref-topic__rule', { timeout: 5000 });
+    await page.locator('#screen > .btn--primary').click();
+    await page.waitForSelector('#screen .screen__title', { timeout: 5000 });
+    const title = (await page.locator('#screen .screen__title').first().textContent())?.trim();
+    if (title !== 'The n-rule (Eifeler Regel)') throw new Error(`practising the n-rule notecard landed on "${title}"`);
+    await shot('00f-notecard-drill');
+
+    await page.goto(`${base}#/today`, { waitUntil: 'networkidle' });
+    await page.waitForSelector('.plan', { timeout: 5000 });
+  });
+
   await step('the next action leads somewhere real', async () => {
     await page.locator('#screen > .btn--primary').click();
     await page.waitForSelector('#screen .screen__title', { timeout: 5000 });

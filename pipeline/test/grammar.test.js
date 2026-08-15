@@ -444,6 +444,17 @@ test('grammar: every kind the deck ships has theory behind it', async () => {
   for (const kind of kinds) {
     assert.ok(guide.topicFor(kind), `the ${kind} deck is drilled with no rule explaining it`);
   }
+
+  // GRAMMAR_KINDS builds the `#/grammar/<kind>` filters that each notecard's
+  // "practise this" button links to. A kind the builder emits but that list
+  // has forgotten silently becomes undrillable on its own; a kind listed there
+  // that the builder no longer emits gives an empty session.
+  const cards = await import(pathToFileURL(path.join(ROOT, 'app', 'js', 'drill', 'cards.js')).href);
+  assert.deepEqual(
+    [...cards.GRAMMAR_KINDS].sort(),
+    [...kinds].sort(),
+    'GRAMMAR_KINDS and the kinds the built deck ships have drifted apart',
+  );
 });
 
 test('grammar: the sentence-structure decks move only the word they name', (t) => {

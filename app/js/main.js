@@ -22,6 +22,7 @@ import * as verbs from './screens/verbs.js';
 import * as phrases from './screens/phrases.js';
 import * as grammar from './screens/grammar.js';
 import * as structure from './screens/structure.js';
+import * as notecards from './screens/notecards.js';
 import * as genderSort from './screens/gender-sort.js';
 import * as objects from './screens/objects.js';
 import * as forms from './screens/forms.js';
@@ -47,6 +48,7 @@ const ROUTES = {
   phrases,
   grammar,
   structure,
+  notecards,
   'gender-sort': genderSort,
   objects,
   forms,

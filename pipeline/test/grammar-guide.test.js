@@ -55,6 +55,92 @@ test('guide: every topic states a rule and teaches it', () => {
   }
 });
 
+test('guide: it is a course — numbered, contiguous, and grouped into units', () => {
+  // The topics used to sit in an arbitrary order, which made the guide
+  // something to dip into rather than work through. The notecards screen
+  // renders them as levels 1..N and walks between them with prev/next, so a
+  // duplicated or missing level number is a broken screen, not a cosmetic slip.
+  const levels = guide.GRAMMAR_GUIDE.map((topic) => topic.level);
+  assert.equal(new Set(levels).size, levels.length, 'two topics claim the same level');
+  assert.deepEqual(
+    levels,
+    [...levels].sort((a, b) => a - b),
+    'GRAMMAR_GUIDE should already be in course order',
+  );
+  assert.deepEqual(levels, Array.from({ length: levels.length }, (_, i) => i + 1), 'levels should run 1..N with no gaps');
+
+  for (const topic of guide.GRAMMAR_GUIDE) {
+    assert.ok(guide.UNITS.includes(topic.unit), `${topic.id}: "${topic.unit}" is not one of the declared units`);
+  }
+  // Units have to stay contiguous, since the contents page prints each one
+  // once and lists the levels under it.
+  const order = guide.GRAMMAR_GUIDE.map((topic) => guide.UNITS.indexOf(topic.unit));
+  assert.deepEqual(order, [...order].sort((a, b) => a - b), 'the units are interleaved rather than in blocks');
+});
+
+test('guide: it covers the whole published syllabus, not just the drilled kinds', () => {
+  // The course follows RTL Today's Language Basics 1-19. These are the topics
+  // that series teaches which the app had no theory for at all before — losing
+  // one of them silently would put the numbering back out of step with the
+  // articles it claims to follow.
+  for (const id of ['opbei', 'ordinals', 'formal', 'present', 'sinn', 'hunn', 'future', 'possessive', 'comparative', 'prepositions', 'wordbuilding', 'origins']) {
+    const topic = guide.GRAMMAR_GUIDE.find((entry) => entry.id === id);
+    assert.ok(topic, `the course lost its ${id} level`);
+    assert.ok(topic.level >= 1 && topic.level <= 19, `${id} should sit inside the 19 levels the series covers`);
+  }
+});
+
+test('guide: every topic can actually show an example', () => {
+  // A topic whose `examples()` returns nothing renders as theory with no
+  // illustration, which is the failure mode this whole screen exists to fix.
+  // These are mined by pattern out of the shipped sentences, so a content
+  // rebuild that drops the wrong sentences would empty one silently.
+  const data = { vocab, verbs, phrases, grammar };
+  for (const topic of guide.GRAMMAR_GUIDE) {
+    const groups = topic.examples(data) ?? [];
+    const rows = groups.reduce(
+      (sum, group) => sum + (group.items?.length ?? 0) + (group.pairs?.length ?? 0) + (group.sentences?.length ?? 0) + (group.verbs?.length ?? 0),
+      0,
+    );
+    assert.ok(rows > 0, `${topic.id}: the theory has no worked example behind it`);
+    for (const group of groups) assert.ok(group.label, `${topic.id}: an example group with no label`);
+  }
+});
+
+test('guide: a topic that names a drill points at one that exists', () => {
+  // The "practise this" button on a notecard. A route that filters to nothing
+  // would drop the reader into an empty session straight after reading the
+  // rule it was meant to practise.
+  const kinds = new Set(grammar.map((item) => item.kind));
+  for (const topic of guide.GRAMMAR_GUIDE) {
+    if (!topic.drill) continue;
+    const match = /^#\/grammar\/(.+)$/.exec(topic.drill);
+    if (!match) continue;
+    assert.ok(kinds.has(match[1]), `${topic.id}: drills #/grammar/${match[1]}, which the built deck has no items for`);
+  }
+});
+
+test('guide: the vocabulary-origins level shows LOD’s own translations, not asserted etymologies', () => {
+  // LOD records no etymology, so this level cannot claim where a word came
+  // from. What it shows instead is evidence: entries whose Luxembourgish
+  // headword is spelled exactly like the dictionary's own German or French
+  // translation of it. `from` therefore has to *be* that translation — a
+  // hand-written source word would turn evidence back into an assertion.
+  const strip = (value) => String(value).replace(/^(?:der|die|das|le|la|les|l')\s+/i, '').trim();
+  const groups = guide.topicFor('origins').examples({ vocab, verbs, phrases, grammar });
+  const items = groups.flatMap((group) => group.items ?? []);
+  assert.ok(items.length >= 8, 'the origins level should show a pattern, not one or two words');
+  for (const item of items) {
+    assert.ok(item.from, `${item.lb}: shown as a loanword with no source word`);
+    const entry = vocab.find((row) => row.lb === item.lb.replace(/^(?:d’|d'|de|den|déi)\s*/, ''));
+    assert.ok(entry, `${item.lb} is not a vocabulary entry`);
+    assert.ok(
+      strip(entry.de ?? '') === item.from || strip(entry.fr ?? '') === item.from,
+      `${item.lb}: "${item.from}" is not LOD's German or French translation of it`,
+    );
+  }
+});
+
 test('guide: the three drilled kinds each have their theory', () => {
   // drill/engine.js looks a card's theory up by `item.kind`, so these ids are
   // load-bearing rather than decorative.
@@ -102,10 +188,23 @@ test('guide: no example is invented — every one comes from a shipped deck', ()
 });
 
 test('guide: the Luxembourgish written into the prose is attested too', () => {
-  // The teaching text names closed-class forms inline — the articles, `net`,
-  // the two auxiliaries. Those are the only Luxembourgish tokens allowed to be
-  // hand-written here, and they still have to be real.
+  // The teaching text names Luxembourgish forms inline — the articles, the
+  // pronouns, the preposition lists, the two auxiliaries. Every one of them
+  // still has to be real.
+  //
+  // Prose is checked against the full LOD form index rather than against the
+  // shipped decks alone. The decks are an exam-scoped subset of the
+  // dictionary, so a level that has to *name* the dative prepositions or the
+  // irregular comparatives will legitimately reach words no deck example
+  // happens to contain. `content/lexicon.json` is still LOD — 258,946 real
+  // forms — so this stays an attestation check and not a rubber stamp; it
+  // rejects plausible-looking inventions like "sinnen" or "geliest".
+  //
+  // Examples are held to the stricter deck-only rule, in the test above. The
+  // asymmetry is deliberate: a rule may name any real word, but an
+  // illustration has to be a sentence somebody actually wrote.
   const attested = attestedForms();
+  const lexicon = new Set(Object.keys(require(path.join(ROOT, 'content', 'lexicon.json')).forms).map((form) => form.toLowerCase()));
   const LATIN_ONLY = /^[a-zA-ZäëéöüÄËÉÖÜ]+$/;
   const ENGLISH = new Set(
     ('a an and are as at be before but by can change do does end ending endings every everything for form forms from front gender genitive go goes has have here how in is it its kind know learn like many most no not noun nouns of on one or other others out part past perfect place plural position put question questions rule rules same say says sentence sentences several shape so some speaking start starts still subject take takes tense that the their them then there these they thing this those three time to two up use used verb verbs way what when where which who whole why with word words work you your after all also always another any because been being both come comes could down each even first four give given group had hard he her him his if into just keep kept less let long look made make me more much must my near never new next now off often only over own place plain point real reason right run same second see seen sentence set she should side simple since single sit sits small something sound sounds speak spelled spelling still such sure take talk than their there through together too under until very want was were will would write written wrong yes yet').split(
@@ -122,12 +221,12 @@ test('guide: the Luxembourgish written into the prose is attested too', () => {
         // anything clearly English is not a Luxembourgish claim at all.
         if (!LATIN_ONLY.test(word)) continue;
         if (ENGLISH.has(lower)) continue;
-        if (attested.has(lower)) continue;
+        if (attested.has(lower) || lexicon.has(lower)) continue;
         // Anything left must be English prose the crude list above missed, not
         // a Luxembourgish form. Flag the ones that look Luxembourgish.
         assert.ok(
           !/[äëéöü’]/.test(word) && !/^(de|den|d|dat|eng|en|dem|der|hunn|sinn|net|ech|du|hien|si|hatt|mir|dir)$/.test(lower),
-          `${topic.id}: "${word}" is written into the prose but no shipped deck attests it`,
+          `${topic.id}: "${word}" is written into the prose but LOD does not attest it`,
         );
       }
     }
