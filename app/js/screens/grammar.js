@@ -17,7 +17,7 @@
  */
 
 import { loadGrammar } from '../content.js';
-import { getLearnDeckStates, buildSession, newWordsLeftToday, listMistakes, mistakeEntryKeys } from '../store.js';
+import { getLearnDeckStates, buildSession, newWordsLeftToday, newWordGoal, listMistakes, mistakeEntryKeys } from '../store.js';
 import { DECKS, isDrillable, boxIndex, isStructure, GRAMMAR_KINDS } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 import { topicFor } from '../grammar-guide.js';
@@ -56,7 +56,7 @@ export async function render(root, { params, settings, navigate }) {
   const [everything, states, newLeft, mistakeRows] = await Promise.all([
     loadGrammar(),
     getLearnDeckStates(settings.playerId, 'grammar'),
-    newWordsLeftToday(settings.playerId),
+    newWordsLeftToday(settings.playerId, { target: newWordGoal(settings) }),
     listMistakes(settings.playerId),
   ]);
 

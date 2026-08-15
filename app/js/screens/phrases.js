@@ -12,7 +12,7 @@
  */
 
 import { loadPhrases } from '../content.js';
-import { getLearnDeckStates, buildSession, newWordsLeftToday, listMistakes, mistakeEntryKeys } from '../store.js';
+import { getLearnDeckStates, buildSession, newWordsLeftToday, newWordGoal, listMistakes, mistakeEntryKeys } from '../store.js';
 import { DECKS, isDrillable, boxIndex } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
@@ -22,7 +22,7 @@ export async function render(root, { settings, navigate }) {
   const [everything, states, newLeft, mistakeRows] = await Promise.all([
     loadPhrases(),
     getLearnDeckStates(settings.playerId, 'phrase'),
-    newWordsLeftToday(settings.playerId),
+    newWordsLeftToday(settings.playerId, { target: newWordGoal(settings) }),
     listMistakes(settings.playerId),
   ]);
 

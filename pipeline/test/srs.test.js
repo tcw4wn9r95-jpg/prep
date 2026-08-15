@@ -386,6 +386,23 @@ test('srs: newTarget caps new words, including the reserved deck', async () => {
   }
 });
 
+test('srs: newWordGoal resolves the Settings picker to the right daily cap', async () => {
+  // The picker in settings.js stores an id ('steady' / 'brisk' / 'push') on
+  // settings.newWordGoal, not a card count — newWordGoal(settings) is the one
+  // place that turns it back into the number every call site actually needs.
+  // A typo in either the id here or in NEW_WORD_GOALS would silently fall
+  // back to the default, which is the bug this guards.
+  assert.equal(store.newWordGoal({}), store.DAILY_NEW_TARGET, 'no choice made yet should be the shipped default');
+  assert.equal(store.newWordGoal({ newWordGoal: 'nonsense' }), store.DAILY_NEW_TARGET, 'an unknown id should not silently zero the budget');
+  for (const option of store.NEW_WORD_GOALS) {
+    assert.equal(store.newWordGoal({ newWordGoal: option.id }), option.words, `${option.id} should resolve to ${option.words} words`);
+  }
+  // 'steady' is the id the picker defaults to on a fresh install, so it has
+  // to actually match DAILY_NEW_TARGET or the picker and the unset case would
+  // show two different numbers for what is meant to be the same default.
+  assert.equal(store.NEW_WORD_GOALS.find((option) => option.id === 'steady')?.words, store.DAILY_NEW_TARGET);
+});
+
 test('srs: a spent budget yields no new words, however many sessions are started', async () => {
   // Everything below is unseen, so every available card is a new word. With
   // the budget spent, starting another session has to hand back nothing rather

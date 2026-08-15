@@ -16,7 +16,7 @@
  */
 
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadStages } from '../content.js';
-import { getLearnDeckStates, buildMixedSession, newWordsLeftToday, listMistakes, mistakeEntryKeys } from '../store.js';
+import { getLearnDeckStates, buildMixedSession, newWordsLeftToday, newWordGoal, listMistakes, mistakeEntryKeys } from '../store.js';
 import { DECKS, isDrillable, boxIndex, isStructure } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
@@ -54,7 +54,7 @@ export async function render(root, { params, settings, navigate }) {
     getLearnDeckStates(settings.playerId, 'verb'),
     getLearnDeckStates(settings.playerId, 'phrase'),
     getLearnDeckStates(settings.playerId, 'grammar'),
-    newWordsLeftToday(settings.playerId),
+    newWordsLeftToday(settings.playerId, { target: newWordGoal(settings) }),
     listMistakes(settings.playerId),
   ]);
   const mistakes = mistakeEntryKeys(mistakeRows);

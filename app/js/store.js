@@ -530,6 +530,30 @@ export const STRONG_BOX = 3;
 export const DAILY_NEW_TARGET = 8;
 
 /**
+ * The new-word budget, as something the learner picks rather than something
+ * the app imposes — the same reasoning as `DAILY_GOALS` below, applied to
+ * intake instead of card count.
+ *
+ * `DAILY_NEW_TARGET` stays the shipped default and the number the retention
+ * comment above is written about. This is the override for a day that
+ * actually has the time for it: a deliberate choice made once in Settings,
+ * not a permanently raised ceiling that quietly outlives the day it was set
+ * for. Nothing here changes what "above roughly ten" costs in retention —
+ * picking Brisk or Push is choosing to pay that, not being told it stopped
+ * applying.
+ */
+export const NEW_WORD_GOALS = [
+  { id: 'steady', words: 8, label: 'Steady', note: 'the default' },
+  { id: 'brisk', words: 15, label: 'Brisk', note: 'a day with real time to spend' },
+  { id: 'push', words: 25, label: 'Push', note: 'expect more of these to need repeats' },
+];
+
+/** The chosen new-word budget, defaulting to `DAILY_NEW_TARGET`. */
+export function newWordGoal(settings) {
+  return NEW_WORD_GOALS.find((goal) => goal.id === settings?.newWordGoal)?.words ?? DAILY_NEW_TARGET;
+}
+
+/**
  * Cards to answer in a day — the goal the learner is actually shown.
  *
  * Everything else on the home screen is queue depth: how many words are due,
@@ -1120,7 +1144,7 @@ export async function throughput(playerId, { days = 7, now = Date.now() } = {}) 
  * What is waiting right now, across both decks and both strands, plus how many
  * new words have been started today. Drives the Learn hub.
  */
-export async function dueCounts(playerId, { now = Date.now() } = {}) {
+export async function dueCounts(playerId, { now = Date.now(), target = DAILY_NEW_TARGET } = {}) {
   const decks = Object.values(LEARN_DECKS);
   const strands = Object.values(STRANDS);
   const rowSets = await Promise.all(
@@ -1132,7 +1156,7 @@ export async function dueCounts(playerId, { now = Date.now() } = {}) {
   startOfDay.setHours(0, 0, 0, 0);
   const dayStart = startOfDay.getTime();
 
-  const counts = { recv: 0, prod: 0, newToday: 0, target: DAILY_NEW_TARGET };
+  const counts = { recv: 0, prod: 0, newToday: 0, target };
   for (const row of rows) {
     if (row.dueAt <= now) counts[row.strand] += 1;
     // seen === 1 on a recv row means the word was met for the first time; the
@@ -1141,7 +1165,7 @@ export async function dueCounts(playerId, { now = Date.now() } = {}) {
       counts.newToday += 1;
     }
   }
-  counts.newLeft = Math.max(0, DAILY_NEW_TARGET - counts.newToday);
+  counts.newLeft = Math.max(0, target - counts.newToday);
   return counts;
 }
 
@@ -1153,8 +1177,13 @@ export async function dueCounts(playerId, { now = Date.now() } = {}) {
  * from the same `seen === 1` evidence the Learn hub already reports as "N new
  * words left today" — the hub was computing it for display while the builder
  * ignored it, which is exactly how the two came to disagree.
+ *
+ * `target` defaults to `DAILY_NEW_TARGET` but every call site should pass
+ * `newWordGoal(settings)` instead, so a raised Settings picker actually
+ * reaches the session it is meant to widen rather than being read back on the
+ * Learn hub and ignored everywhere new words are actually handed out.
  */
-export async function newWordsLeftToday(playerId, { now = Date.now() } = {}) {
-  const counts = await dueCounts(playerId, { now });
+export async function newWordsLeftToday(playerId, { now = Date.now(), target = DAILY_NEW_TARGET } = {}) {
+  const counts = await dueCounts(playerId, { now, target });
   return counts.newLeft;
 }

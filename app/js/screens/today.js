@@ -39,6 +39,7 @@ import {
   weekSeed,
   otherPlayer,
   goalCards,
+  newWordGoal,
   listMistakes,
   PLAYERS,
 } from '../store.js';
@@ -74,7 +75,7 @@ export async function render(root, { settings, navigate }) {
     listRecordings(),
     listReviews(),
     getStreak(settings.playerId),
-    dueCounts(settings.playerId),
+    dueCounts(settings.playerId, { target: newWordGoal(settings) }),
     todayProgress(settings.playerId, { goal: goalCards(settings) }),
     loadTopics(),
   ]);

@@ -30,7 +30,7 @@
 import { el, screenHead, button, plural, settingsButton } from '../dom.js';
 import { Amelie } from '../amelie.js';
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadTopics, loadStages, topicIcon } from '../content.js';
-import { learnProgress, dueCounts, todayProgress, getLearnDeckState, goalCards, listMistakes, newWordsLeftToday, throughput, DAILY_NEW_TARGET, STRANDS } from '../store.js';
+import { learnProgress, dueCounts, todayProgress, getLearnDeckState, goalCards, newWordGoal, listMistakes, newWordsLeftToday, throughput, STRANDS } from '../store.js';
 
 export async function render(root, { settings, navigate }) {
   const [vocabItems, verbItems, phraseItems, grammarItems, topics, stages] = await Promise.all([
@@ -51,13 +51,13 @@ export async function render(root, { settings, navigate }) {
       learnProgress(settings.playerId, 'phrase', STRANDS.prod, phraseItems.length),
       learnProgress(settings.playerId, 'grammar', STRANDS.recv, grammarItems.length),
       learnProgress(settings.playerId, 'grammar', STRANDS.prod, grammarItems.length),
-      dueCounts(settings.playerId),
+      dueCounts(settings.playerId, { target: newWordGoal(settings) }),
       todayProgress(settings.playerId, { goal: goalCards(settings) }),
       getLearnDeckState(settings.playerId, 'vocab', STRANDS.recv),
       getLearnDeckState(settings.playerId, 'verb', STRANDS.recv),
       getLearnDeckState(settings.playerId, 'phrase', STRANDS.recv),
       listMistakes(settings.playerId),
-      newWordsLeftToday(settings.playerId),
+      newWordsLeftToday(settings.playerId, { target: newWordGoal(settings) }),
       throughput(settings.playerId),
     ]);
 
@@ -104,7 +104,7 @@ export async function render(root, { settings, navigate }) {
       today.met ? `Goal met — ${plural(today.cards, 'card')} today.` : `${today.cards} of ${today.goal} cards today.`,
     ),
 
-    progressPanel(flow, today),
+    progressPanel(flow, today, due.target),
     mistakeRow(mistakes.length),
 
     sectionLabel('Grammar'),
@@ -256,16 +256,21 @@ export async function render(root, { settings, navigate }) {
  * how many words were met *this week*, and how many keep coming back.
  *
  * The note at the bottom is the honest mechanism. New words go into every
- * session first, up to the daily cap (`DAILY_NEW_TARGET`) — a review backlog
- * no longer stands between a learner and the next new word, the way it used
- * to. So the ceiling on intake is now just the daily cap itself: practise on
- * fewer days, or stop a session early most days, and `perDay` falls below it
+ * session first, up to the daily cap — a review backlog no longer stands
+ * between a learner and the next new word, the way it used to. So the
+ * ceiling on intake is now just the daily cap itself: practise on fewer
+ * days, or stop a session early most days, and `perDay` falls below it
  * without anything holding new words back on purpose.
+ *
+ * `target` is the cap actually in force — `newWordGoal(settings)`, not the
+ * shipped default — so raising it in Settings for a busy week also raises
+ * the bar this panel measures against, rather than quietly flagging normal
+ * progress as stalling.
  */
-function progressPanel(flow, today) {
+function progressPanel(flow, today, target) {
   if (flow.met === 0) return null;
   const perDay = flow.perDay;
-  const stalling = perDay < DAILY_NEW_TARGET / 4;
+  const stalling = perDay < target / 4;
 
   return el(
     'div',
@@ -289,7 +294,7 @@ function progressPanel(flow, today) {
       ? el(
           'p',
           { class: 'card__note' },
-          `About ${perDay.toFixed(1)} new words a day lately, against a cap of ${DAILY_NEW_TARGET} a day. New words are the first thing in every session now — start one on the days you skip to close the gap.`,
+          `About ${perDay.toFixed(1)} new words a day lately, against a cap of ${target} a day. New words are the first thing in every session now — start one on the days you skip to close the gap.`,
         )
       : el('p', { class: 'card__note' }, `About ${perDay.toFixed(1)} new words a day lately. ${today.met ? "Today's goal is met." : ''}`),
     flow.undated > 0
