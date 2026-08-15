@@ -352,9 +352,13 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
       el('summary', {}, first ? `The rule — ${topic.title}` : 'Remind me of the rule'),
       el('p', { class: 'drill__teach-rule' }, topic.rule),
       ...topic.points.slice(0, 2).map((point) => el('p', { class: 'drill__teach-point' }, point)),
+      // Straight to this rule's own notecard rather than to the cheat sheet.
+      // The sheet is one long page with every topic collapsed on it, so
+      // "full explanation" used to mean "find your own way back to the thing
+      // you were just stuck on".
       el(
         'a',
-        { class: 'drill__teach-more', href: '#/reference' },
+        { class: 'drill__teach-more', href: `#/notecards/${topic.id}` },
         'Full explanation in the guide',
       ),
     );

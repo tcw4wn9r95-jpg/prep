@@ -117,6 +117,24 @@ export async function render(root, { settings, navigate }) {
     // is theory-first — the rule, then the practice — because word order is
     // the one thing an English speaker will not absorb by answering cards: the
     // mistake feels correct until someone explains why it is not.
+    // The whole grammar as a course, above the drills. Someone who has never
+    // been told what the n-rule *is* should meet it as a page of teaching
+    // before meeting it as a card with two spellings and a coin to flip.
+    el(
+      'a',
+      { class: 'card', href: '#/notecards', style: { display: 'block', marginBlockEnd: 'var(--s3)' } },
+      el(
+        'div',
+        { class: 'row' },
+        el('span', { style: { fontSize: '28px' } }, '🗂️'),
+        el(
+          'div',
+          { class: 'spacer' },
+          el('p', { class: 'card__title' }, 'Notecards'),
+          el('p', { class: 'card__note' }, 'The grammar in 24 levels, in order — the rule, the teaching, then real sentences. Read one, then drill it.'),
+        ),
+      ),
+    ),
     el(
       'a',
       { class: 'card', href: '#/structure', style: { display: 'block', marginBlockEnd: 'var(--s3)' } },

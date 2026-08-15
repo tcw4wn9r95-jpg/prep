@@ -33,6 +33,7 @@ import { el, screenHead } from '../dom.js';
 import { loadVocab, loadVerbs, loadPhrases, loadPhraseGroups, loadGrammar } from '../content.js';
 import { GENDER_LABELS, joinArticle } from '../drill/cards.js';
 import { GRAMMAR_GUIDE } from '../grammar-guide.js';
+import { exampleGroup, safeExamples } from '../grammar-examples.js';
 
 const PRONOUNS = ['ech', 'du', 'hien', 'si', 'hatt', 'mir', 'dir'];
 
@@ -313,12 +314,7 @@ function verbListPanel(verbs) {
  * without examples instead of falling back to a made-up sentence.
  */
 function topicCard(topic, data) {
-  let groups = [];
-  try {
-    groups = topic.examples(data) ?? [];
-  } catch {
-    groups = [];
-  }
+  const groups = safeExamples(topic, data);
 
   return el(
     'details',
@@ -331,37 +327,6 @@ function topicCard(topic, data) {
       ? el('p', { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } }, `Forms from LOD — ${topic.sources.join('; ')}.`)
       : null,
   );
-}
-
-/** Renders whichever shape of example a topic produced. */
-function exampleGroup(group) {
-  const rows = [];
-  for (const item of group.items ?? []) {
-    rows.push(el('div', { class: 'ref-frame' }, el('span', {}, item.lb), el('span', { class: 'card__note' }, item.en)));
-  }
-  for (const verb of group.verbs ?? []) {
-    rows.push(
-      el(
-        'div',
-        { class: 'ref-frame' },
-        el('span', {}, `${verb.aux} … ${verb.participle}`),
-        el('span', { class: 'card__note' }, `${verb.infinitive} — ${verb.en}`),
-      ),
-    );
-  }
-  for (const pair of group.pairs ?? []) {
-    rows.push(
-      el('div', { class: 'ref-frame' }, el('span', {}, pair.forms.join(' / ')), pair.en ? el('span', { class: 'card__note' }, pair.en) : null),
-    );
-  }
-  for (const sentence of group.sentences ?? []) {
-    rows.push(
-      sentence.form
-        ? el('p', { class: 'ref-topic__sentence' }, sentence.before, el('strong', {}, sentence.form), sentence.after)
-        : el('p', { class: 'ref-topic__sentence' }, sentence.lb),
-    );
-  }
-  return el('div', { style: { marginBlockStart: 'var(--s3)' } }, el('p', { class: 'meter__label' }, group.label), ...rows);
 }
 
 export async function render(root, { navigate }) {
