@@ -157,11 +157,25 @@ The fine-tune being mandatory (5.0% vs 143.5%) is what removes the easy
 option: there is no general-purpose ASR to lean on, so either the University
 of Luxembourg hosts it or we do.
 
-LuxASR is the same group's own service and almost certainly runs a model at
-least as good as `medium` (3.8%). Its accuracy is **not** measured here: their
-terms ask that you contact them before integrating, and sending a learner's
-audio — or a batch of corpus clips — to evaluate it felt like the wrong side
-of that line to cross unasked.
+LuxASR is the same group's own service, and the model cards settle what it
+runs: *"the tiny, base, small and medium models are open-sourced; the larger
+flagship LuxASR model, used in the webservice, the API and the iOS and Android
+apps, remains closed-source."* So the API is better than the 3.8% measured
+here on `medium` — which is an argument for asking rather than self-hosting.
+
+Its accuracy is **not** measured here: their terms ask that you contact them
+before integrating, and sending a learner's audio — or a batch of corpus clips
+— to evaluate it felt like the wrong side of that line to cross unasked.
+
+Two other things the model cards settled:
+
+- **The open checkpoints are licensed `open-mdw`**, stated in the card
+  frontmatter even though Hugging Face's API does not surface it for `base`,
+  `small` or `medium`. Self-hosting is therefore legitimate, not a grey area.
+- **There are official iOS and Android apps.** Which means the feature can be
+  tried by hand today — record in this app, run the clip through theirs —
+  before anything is integrated. That is the cheapest way to find out whether
+  a transcript is actually useful to a learner.
 
 So the next step is an email, not a commit. Draft in `permission-email.md`.
 
