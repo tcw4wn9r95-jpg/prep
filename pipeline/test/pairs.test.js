@@ -96,3 +96,55 @@ test('pairs: the last level fits and the one past it does not exist', () => {
   assert.ok(pairs.wordsForLevel(pool, max), 'the last level must be playable');
   assert.equal(pairs.wordsForLevel(pool, max + 1), null, 'one past the end must not build a short board');
 });
+
+/* ------------------------------------------------- homograph sense picking */
+
+test('pairs: every preferred gloss is a real LOD gloss for that lemma', () => {
+  // PREFERRED_GLOSS selects between senses LOD already publishes — it must
+  // never introduce a translation of our own. Checked against the shipped
+  // decks, so a content rebuild that drops or rewords one of these senses
+  // fails here rather than silently reverting the fix.
+  const byLemma = new Map();
+  const add = (lb, en) => {
+    if (!lb || !en) return;
+    const key = lb.toLowerCase();
+    if (!byLemma.has(key)) byLemma.set(key, new Set());
+    byLemma.get(key).add(en);
+  };
+  for (const item of vocab) add(item.lb, item.en);
+  for (const item of verbs) add(item.infinitive, item.en);
+
+  for (const [lemma, gloss] of Object.entries(pairs.PREFERRED_GLOSS)) {
+    const glosses = byLemma.get(lemma);
+    assert.ok(glosses, `"${lemma}" is named in PREFERRED_GLOSS but is not in the decks at all`);
+    assert.ok(
+      glosses.has(gloss),
+      `PREFERRED_GLOSS says ${lemma} = "${gloss}", which LOD does not publish for it. Real glosses: ${[...glosses].join(', ')}`,
+    );
+  }
+});
+
+test('pairs: the preferred sense is the one that reaches the board', () => {
+  // The bug this guards: LOD ships homographs as separate entries, and the
+  // pool kept whichever sorted first — which is decided by a frequency count
+  // that credits every occurrence of a spelling to a single entry (see the
+  // comment on PREFERRED_GLOSS). That put "awer = nevertheless" and
+  // "no = nearby" on the board instead of "but" and "after".
+  const byLemma = new Map(pool.map((word) => [word.lb.toLowerCase(), word.en]));
+  for (const [lemma, gloss] of Object.entries(pairs.PREFERRED_GLOSS)) {
+    // A lemma can legitimately be absent — two overrides both resolve to
+    // "but", and the English-side deduplication drops the later one.
+    if (!byLemma.has(lemma)) continue;
+    assert.equal(byLemma.get(lemma), gloss, `${lemma} reached the board glossed "${byLemma.get(lemma)}"`);
+  }
+});
+
+test('pairs: choosing a sense does not move the word', () => {
+  // Correcting *which* entry represents a spelling must not change *where*
+  // that spelling sits, or every level's contents shift and a half-finished
+  // player's next board is not the one they were expecting.
+  const positions = pool.map((word) => word.lb.toLowerCase());
+  assert.equal(new Set(positions).size, positions.length, 'a lemma appears twice');
+  // The opening levels are the sentence skeleton, whatever the sense fix did.
+  assert.deepEqual(positions.slice(0, 5), ['ech', 'net', 'mir', 'hien', 'du']);
+});

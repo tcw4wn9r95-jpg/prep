@@ -78,6 +78,46 @@ export function offsetForLevel(level) {
 }
 
 /**
+ * Which sense wins when one spelling is two different words.
+ *
+ * LOD ships homographs as separate entries — `awer` is both an adverb
+ * ("nevertheless") and a conjunction ("but"), `no` both an adjective
+ * ("nearby") and a preposition ("after"). A tile can only carry one gloss, so
+ * the pool has to pick, and left to itself it picked the wrong one on every
+ * word below.
+ *
+ * The reason is a frequency bug one layer down, in `pipeline/lib/frequency.js`.
+ * It counts surface forms against `lexicon.forms`, which maps a spelling to
+ * exactly *one* entry id — so every one of the 209 occurrences of `no` in the
+ * corpus is credited to the adjective and the preposition is left on zero.
+ * The artefact then wins the sort, and the everyday sense of the word sorts
+ * near the bottom of the deck. Same for `fir` (1035 occurrences all to the
+ * conjunction, "for" on zero) and `un` (315 to the adverb, "on" on zero).
+ *
+ * Fixing the count properly needs the corpus part-of-speech tagged, which is
+ * not something this pipeline can do honestly. So the *display* choice is
+ * corrected here instead, by hand, for the words where the automatic pick is
+ * plainly wrong for a beginner.
+ *
+ * Every value below is a gloss LOD itself publishes for that lemma — this
+ * selects between real senses, it does not write new ones, and
+ * `pairs.test.js` fails if any of them stops matching a shipped entry.
+ * Left alone deliberately: `hunn` ("to have", not "cock"), `iessen` ("to eat",
+ * not "meal"), `an` ("and", not "in") and the rest, where the automatic pick
+ * is already the sense a learner wants.
+ */
+export const PREFERRED_GLOSS = {
+  awer: 'but', // not "nevertheless"
+  ginn: 'to give', // the bare infinitive; "there is" is the et gëtt construction
+  no: 'after', // not "nearby" — and it is one of the four dative prepositions
+  fir: 'for', // not "to"
+  un: 'on', // not "to be on"
+  mee: 'but', // not "May"
+  puer: '(a) few', // "e puer" — not "pair"
+  grad: 'right now', // not "degree"
+};
+
+/**
  * The word pool, most basic first.
  *
  * Deduplicated on both sides. Two tiles reading "no" (`keen` and `keng` both
@@ -93,16 +133,32 @@ export function orderedPairPool(vocab, verbs) {
 
   words.sort((a, b) => (a.stage ?? 9) - (b.stage ?? 9) || (a.rank ?? 0) - (b.rank ?? 0));
 
+  // Which entry represents each spelling — the named sense where there is one,
+  // otherwise the first as before. Chosen up front and separately from the
+  // walk below, so that picking a different *sense* never moves the *word*:
+  // a lemma still enters the pool at the position its earliest entry earned,
+  // and levels stay exactly where they were.
+  const chosen = new Map();
+  for (const word of words) {
+    const lb = word.lb.toLowerCase();
+    const wanted = PREFERRED_GLOSS[lb];
+    const current = chosen.get(lb);
+    if (!current) chosen.set(lb, word);
+    else if (wanted && word.en === wanted && current.en !== wanted) chosen.set(lb, word);
+  }
+
   const seenLb = new Set();
   const seenEn = new Set();
   const pool = [];
   for (const word of words) {
     const lb = word.lb.toLowerCase();
-    const en = word.en.toLowerCase();
-    if (seenLb.has(lb) || seenEn.has(en)) continue;
+    if (seenLb.has(lb)) continue;
+    const pick = chosen.get(lb);
+    const en = pick.en.toLowerCase();
+    if (seenEn.has(en)) continue;
     seenLb.add(lb);
     seenEn.add(en);
-    pool.push(word);
+    pool.push(pick);
   }
   return pool;
 }

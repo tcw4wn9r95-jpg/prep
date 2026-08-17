@@ -1969,3 +1969,90 @@ is built until there is somewhere to send the audio.
 
 No app code changed. `npm test` 229 and `validate` PASS are unaffected;
 `research/` is documentation plus standalone scripts, outside the build.
+
+---
+
+# Follow-up 16 — wrong translations in Pairs, and the bug underneath
+
+> "Check that the word translations in the card match games are correct. There
+> are some that seem wrong"
+
+They were. `awer = "nevertheless"` on level 5, `ginn = "there is"` on level 6,
+`no = "nearby"`, `fir = "to"`, `puer = "pair"`, `grad = "degree"`.
+
+## Not bad glosses — the wrong sense of a homograph
+
+Every one of those is a real LOD gloss. The problem is that LOD ships
+homographs as separate entries — `awer` is an adverb ("nevertheless") *and* a
+conjunction ("but"); `no` an adjective ("nearby") *and* a preposition
+("after") — and a Pairs tile can only carry one. The pool deduplicates by
+lemma and kept whichever sorted first, which turned out to be the rarer sense
+almost every time.
+
+## Why it was almost every time
+
+Not luck. `pipeline/lib/frequency.js` counts surface forms against
+`lexicon.forms`, and that index maps a spelling to exactly **one** entry id.
+So the entire corpus count for a spelling lands on one homograph and its
+sibling is left on zero:
+
+| lemma | kept sense | freq | dropped sense | freq |
+| --- | --- | --- | --- | --- |
+| `fir` | "to" (CONJ) | 1035 | **"for"** (PREP) | 0 |
+| `un` | "to be on" (ADV) | 315 | **"on"** (PREP) | 0 |
+| `no` | "nearby" (ADJ) | 209 | **"after"** (PREP) | 0 |
+| `mee` | "May" (SUBST) | 84 | **"but"** (CONJ) | 0 |
+
+The artefact wins the sort every time, so the everyday sense is the one that
+loses. `no` is the sharpest case: it is one of the four dative prepositions
+the app now teaches, while Pairs was calling it "nearby".
+
+## What was fixed, and what was not
+
+Fixing the count properly needs the corpus part-of-speech tagged, which this
+pipeline cannot do honestly — and re-ranking the deck would reshuffle the
+learning path under a half-finished learner. So the **display choice** is
+corrected instead: `PREFERRED_GLOSS` in `screens/pairs.js` names the eight
+lemmas where the automatic pick is plainly wrong for a beginner.
+
+Two properties make that safe rather than a patch:
+
+- **It selects, it does not author.** Every value is a gloss LOD already
+  publishes for that lemma, and a test fails if one stops matching a shipped
+  entry — so a content rebuild cannot silently revert the fix.
+- **It changes the sense, never the position.** The representative entry is
+  chosen up front and separately from the ordering walk, so a lemma still
+  enters the pool where its earliest entry earned. `awer` is still #22. A test
+  pins that too, because otherwise every level's contents shift and a
+  half-finished player's next board is not the one they were promised.
+
+Left alone deliberately: `hunn` ("to have", not "cock"), `iessen` ("to eat",
+not "meal"), `an` ("and", not "in") and the rest of the 31 collisions, where
+the automatic pick is already the sense a learner wants.
+
+`un` and `mee` now drop out of the pool entirely rather than appear wrong —
+their correct glosses ("on", "but") are already taken by `op` and `awer`, and
+two tiles reading the same English is the unmatchable board the pool has
+always refused to build.
+
+## Only Pairs was affected
+
+Checked rather than assumed: the vocabulary drill ships each sense as its own
+card (`AWER1` and `AWER2` are both in the deck, at stages 1 and 4), so it
+teaches both and is correct as it stands. Pairs is the only screen that has to
+make one tile stand for a whole spelling.
+
+## Still open
+
+The frequency mis-attribution itself. It does not only affect glosses — it
+sets `stage` and `rank`, so `fir` = "for" currently sits at rank 1972 and is
+introduced near the end of the deck, while `fir` = "to" is taught at rank 6.
+Correcting it means either POS-tagging the corpus or splitting an ambiguous
+count across its candidates, and either way it reorders the path. Worth doing,
+worth doing on purpose, and not folded into a translation fix.
+
+## Verification
+
+`npm test` 238 (3 new in `pairs.test.js`: every override is a real LOD gloss,
+the preferred sense is what reaches the board, and choosing a sense does not
+move the word) · `validate` PASS · `npm run walkthrough` 49/49 · `sw.js` → `v36`.
