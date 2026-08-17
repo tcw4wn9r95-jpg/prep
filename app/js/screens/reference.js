@@ -71,6 +71,7 @@ const GROUP_NOTES = {
   pointing: 'et and dat name a situation before saying who or what is in it.',
   modal: 'Can, must, want — a second verb follows at the end, in its plain form.',
   past: 'The simple past of hunn and sinn, for what already happened.',
+  future: 'wäert plus a verb at the end, for what is going to happen.',
   polite: 'The conditional — for requests and "would".',
   asking: 'The verb moves in front of the subject to make a question.',
   joining: 'wann and wéi push the conjugated verb to the end of their clause.',

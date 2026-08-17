@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-07-29T16:09:56.238Z",
+    "generatedAt": "2026-08-17T19:10:49.084Z",
     "generator": "pipeline/build-phrases.js",
     "license": "CC0-1.0",
     "corpus": {
@@ -47,6 +47,10 @@
         "title": "Talking about the past"
       },
       {
+        "id": "future",
+        "title": "Talking about what will happen"
+      },
+      {
         "id": "polite",
         "title": "Being polite"
       },
@@ -60,7 +64,7 @@
       }
     ],
     "counts": {
-      "items": 34,
+      "items": 42,
       "withVariant": 6
     }
   },
@@ -312,6 +316,46 @@
       "stage": 1
     },
     {
+      "id": "PHRASE-ECH-FANNEN",
+      "lb": "ech fannen",
+      "en": "I think, I find",
+      "fr": "je trouve",
+      "group": "self",
+      "level": "A2",
+      "attestations": 15,
+      "variant": null,
+      "example": {
+        "lb": "ech fannen d'Haltestell net um Plang",
+        "audioId": "78d1a6c006c478114ede3f44f2696b82",
+        "local": false
+      },
+      "examples": [
+        {
+          "lb": "ech fannen d'Haltestell net um Plang",
+          "audioId": "78d1a6c006c478114ede3f44f2696b82",
+          "local": false
+        },
+        {
+          "lb": "ech fannen déi hëlze Biedem wonnerschéin",
+          "audioId": "8db6f7d46ff9b3b940d3f3adffae3697",
+          "local": false
+        },
+        {
+          "lb": "ech fannen et schued, datt d'Party ofgesot ass",
+          "audioId": "f5dbce29e63135b40b8170f20bc7c2e6",
+          "local": false
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech fannen",
+        "after": " d'Haltestell net um Plang",
+        "via": "frame"
+      },
+      "rank": 7,
+      "stage": 1
+    },
+    {
       "id": "PHRASE-HIEN-HUET",
       "lb": "hien huet",
       "en": "he has",
@@ -348,7 +392,7 @@
         "after": " ëmmer gutt Iddien",
         "via": "frame"
       },
-      "rank": 7,
+      "rank": 8,
       "stage": 1
     },
     {
@@ -391,7 +435,7 @@
         "after": " doheem haart Waasser",
         "via": "frame"
       },
-      "rank": 8,
+      "rank": 9,
       "stage": 1
     },
     {
@@ -431,7 +475,7 @@
         "after": " e grousst Kand",
         "via": "frame"
       },
-      "rank": 9,
+      "rank": 10,
       "stage": 1
     },
     {
@@ -471,7 +515,7 @@
         "after": " e schwéiere Beruff",
         "via": "frame"
       },
-      "rank": 10,
+      "rank": 11,
       "stage": 1
     },
     {
@@ -514,7 +558,7 @@
         "after": " op zwou Zeitungen abonéiert",
         "via": "frame"
       },
-      "rank": 11,
+      "rank": 12,
       "stage": 1
     },
     {
@@ -554,7 +598,7 @@
         "after": " e klengen, dommen, arrogante Knëff!",
         "via": "frame"
       },
-      "rank": 12,
+      "rank": 13,
       "stage": 1
     },
     {
@@ -597,7 +641,7 @@
         "after": " an deem klengen Haus eng daierlech Existenz geféiert",
         "via": "frame"
       },
-      "rank": 13,
+      "rank": 14,
       "stage": 1
     },
     {
@@ -637,7 +681,7 @@
         "after": " Mëtteg",
         "via": "frame"
       },
-      "rank": 14,
+      "rank": 15,
       "stage": 1
     },
     {
@@ -677,7 +721,7 @@
         "after": " eng super Iddi",
         "via": "frame"
       },
-      "rank": 15,
+      "rank": 16,
       "stage": 1
     },
     {
@@ -717,7 +761,87 @@
         "after": " hënt Schnéi",
         "via": "frame"
       },
-      "rank": 16,
+      "rank": 17,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-DO-ASS",
+      "lb": "do ass",
+      "en": "there is (over there)",
+      "fr": "là est",
+      "group": "pointing",
+      "level": "A2",
+      "attestations": 45,
+      "variant": null,
+      "example": {
+        "lb": "dat do ass eng bëlleg Excuse",
+        "audioId": "36c9f770cb5add1a04e44f3b580b1abc",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "dat do ass eng bëlleg Excuse",
+          "audioId": "36c9f770cb5add1a04e44f3b580b1abc",
+          "local": true
+        },
+        {
+          "lb": "dat do ass eng komplizéiert Rechnung",
+          "audioId": "0a4db74eb1837c9b63074e148d73a627",
+          "local": true
+        },
+        {
+          "lb": "dat do ass Schnéi vu gëschter",
+          "audioId": "0d2fb8a0ae601dcb7085db49c216ccaa",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "dat ",
+        "form": "do ass",
+        "after": " eng bëlleg Excuse",
+        "via": "frame"
+      },
+      "rank": 18,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-HEI-ASS",
+      "lb": "hei ass",
+      "en": "here is",
+      "fr": "voici",
+      "group": "pointing",
+      "level": "A2",
+      "attestations": 8,
+      "variant": null,
+      "example": {
+        "lb": "hei ass (sech) näischt ze mussen!",
+        "audioId": "30033ae71d079e4c03836d991bcd480b",
+        "local": false
+      },
+      "examples": [
+        {
+          "lb": "hei ass (sech) näischt ze mussen!",
+          "audioId": "30033ae71d079e4c03836d991bcd480b",
+          "local": false
+        },
+        {
+          "lb": "dat hei ass e Buch fir Kanner",
+          "audioId": "f3f5753f6706ac5acf64ecbb4245d53d",
+          "local": false
+        },
+        {
+          "lb": "gëff mer eng aner Schrauf, déi hei ass geckeg!",
+          "audioId": "9545ae7ad369821fdd8fea9eee7b64a2",
+          "local": false
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "hei ass",
+        "after": " (sech) näischt ze mussen!",
+        "via": "frame"
+      },
+      "rank": 19,
       "stage": 1
     },
     {
@@ -757,7 +881,7 @@
         "after": " eppes drénken",
         "via": "frame"
       },
-      "rank": 17,
+      "rank": 20,
       "stage": 1
     },
     {
@@ -797,7 +921,7 @@
         "after": " d'Këschten nummeréieren",
         "via": "frame"
       },
-      "rank": 18,
+      "rank": 21,
       "stage": 1
     },
     {
@@ -837,7 +961,7 @@
         "after": " déi Invitatioun net refuséieren",
         "via": "frame"
       },
-      "rank": 19,
+      "rank": 22,
       "stage": 1
     },
     {
@@ -880,7 +1004,7 @@
         "after": " net dofir!",
         "via": "frame"
       },
-      "rank": 20,
+      "rank": 23,
       "stage": 1
     },
     {
@@ -920,7 +1044,7 @@
         "after": " de Moien um Büro net gestéiert ginn",
         "via": "frame"
       },
-      "rank": 21,
+      "rank": 24,
       "stage": 1
     },
     {
@@ -960,7 +1084,7 @@
         "after": " e Pak op d'Post siche goen",
         "via": "frame"
       },
-      "rank": 22,
+      "rank": 25,
       "stage": 1
     },
     {
@@ -1000,7 +1124,7 @@
         "after": " vergiess, mer deng Telefonsnummer opzeschreiwen",
         "via": "frame"
       },
-      "rank": 23,
+      "rank": 26,
       "stage": 1
     },
     {
@@ -1040,7 +1164,7 @@
         "after": " nach ëmmer en onsportleche Mënsch",
         "via": "frame"
       },
-      "rank": 24,
+      "rank": 27,
       "stage": 1
     },
     {
@@ -1080,7 +1204,7 @@
         "after": " e richteg relaxe Weekend",
         "via": "frame"
       },
-      "rank": 25,
+      "rank": 28,
       "stage": 1
     },
     {
@@ -1120,7 +1244,47 @@
         "after": " mer gesot, e géing mer gär hëllefen, mee e war paff, wéi ech en du beim Wuert geholl hunn",
         "via": "frame"
       },
-      "rank": 26,
+      "rank": 29,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-ECH-WÄERT",
+      "lb": "ech wäert",
+      "en": "I will",
+      "fr": "je vais",
+      "group": "future",
+      "level": "A2",
+      "attestations": 11,
+      "variant": null,
+      "example": {
+        "lb": "ech wäert dech léieren!",
+        "audioId": "943a68d1eee558db822d5d67c49297f0",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech wäert dech léieren!",
+          "audioId": "943a68d1eee558db822d5d67c49297f0",
+          "local": true
+        },
+        {
+          "lb": "ech wäert haut net virun aacht Auer doheem sinn",
+          "audioId": "bb10bb2d469b545200ef52cf7a1ef116",
+          "local": true
+        },
+        {
+          "lb": "ech wäert deem Gedeessems en Enn maachen!",
+          "audioId": "8c7a0c487596f72c0227818a5384d768",
+          "local": false
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "ech wäert",
+        "after": " dech léieren!",
+        "via": "frame"
+      },
+      "rank": 30,
       "stage": 1
     },
     {
@@ -1160,7 +1324,7 @@
         "after": " gär eng hallef Dose Mëtschen",
         "via": "frame"
       },
-      "rank": 27,
+      "rank": 31,
       "stage": 1
     },
     {
@@ -1200,7 +1364,47 @@
         "after": " dech fäerten!",
         "via": "frame"
       },
-      "rank": 28,
+      "rank": 32,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-GËTT-ET",
+      "lb": "gëtt et",
+      "en": "is there",
+      "fr": "y a-t-il",
+      "group": "asking",
+      "level": "A2",
+      "attestations": 66,
+      "variant": null,
+      "example": {
+        "lb": "am Wanter gëtt et fréi däischter",
+        "audioId": "457408e30c1a90216919ceb9f55e2922",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "am Wanter gëtt et fréi däischter",
+          "audioId": "457408e30c1a90216919ceb9f55e2922",
+          "local": true
+        },
+        {
+          "lb": "am Wanter gëtt et fréi däischter",
+          "audioId": "457408e30c1a90216919ceb9f55e2922",
+          "local": true
+        },
+        {
+          "lb": "géint der Owend gëtt et kill",
+          "audioId": "48a978c60c2d3dbd2c6259f2f8c0d6f0",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "am Wanter ",
+        "form": "gëtt et",
+        "after": " fréi däischter",
+        "via": "frame"
+      },
+      "rank": 33,
       "stage": 1
     },
     {
@@ -1240,7 +1444,7 @@
         "after": " d'Mauséiercherszalot scho gebotzt?",
         "via": "frame"
       },
-      "rank": 29,
+      "rank": 34,
       "stage": 1
     },
     {
@@ -1280,7 +1484,7 @@
         "after": " Auer ass et?",
         "via": "frame"
       },
-      "rank": 30,
+      "rank": 35,
       "stage": 1
     },
     {
@@ -1320,7 +1524,47 @@
         "after": " e Genre vu Musek lauschters du?",
         "via": "frame"
       },
-      "rank": 31,
+      "rank": 36,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-KANN-ECH",
+      "lb": "kann ech",
+      "en": "can I",
+      "fr": "puis-je",
+      "group": "asking",
+      "level": "A2",
+      "attestations": 25,
+      "variant": null,
+      "example": {
+        "lb": "kann ech nach e Stéck Meloun kréien, wannechgelift?",
+        "audioId": "2aad15742448d6a2d1c82a752d5d7027",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "kann ech nach e Stéck Meloun kréien, wannechgelift?",
+          "audioId": "2aad15742448d6a2d1c82a752d5d7027",
+          "local": true
+        },
+        {
+          "lb": "mäin Auto streikt erëm, kann ech mat dir fueren?",
+          "audioId": "5b767af88efdeb6b9c086f69594666e2",
+          "local": true
+        },
+        {
+          "lb": "esou e Feeler kann ech eemol verzeien, awer net zweemol",
+          "audioId": "d69c87a580ba0e855bbdc71ceaa57278",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "kann ech",
+        "after": " nach e Stéck Meloun kréien, wannechgelift?",
+        "via": "frame"
+      },
+      "rank": 37,
       "stage": 1
     },
     {
@@ -1360,7 +1604,47 @@
         "after": " däi Frënd vu Beruff?",
         "via": "frame"
       },
-      "rank": 32,
+      "rank": 38,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-KANNS-DU",
+      "lb": "kanns du",
+      "en": "can you",
+      "fr": "peux-tu",
+      "group": "asking",
+      "level": "A2",
+      "attestations": 12,
+      "variant": null,
+      "example": {
+        "lb": "kanns du um Réck schwammen?",
+        "audioId": "2d07a9520f8cd84bf86b43e4cb097a62",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "kanns du um Réck schwammen?",
+          "audioId": "2d07a9520f8cd84bf86b43e4cb097a62",
+          "local": true
+        },
+        {
+          "lb": "den Telefon schellt, kanns du ophiewen?",
+          "audioId": "b9a6727cd46ecf7965f5fd1046c0280e",
+          "local": true
+        },
+        {
+          "lb": "ech hunn näischt fir ze schreiwen, kanns du mer däi Bic léinen?",
+          "audioId": "52e0cc158e41926e76f44ae11fd84a21",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "",
+        "form": "kanns du",
+        "after": " um Réck schwammen?",
+        "via": "frame"
+      },
+      "rank": 39,
       "stage": 1
     },
     {
@@ -1400,7 +1684,47 @@
         "after": " de Mueren opgestane sinn, louch Schnéi",
         "via": "frame"
       },
-      "rank": 33,
+      "rank": 40,
+      "stage": 1
+    },
+    {
+      "id": "PHRASE-WELL-ECH",
+      "lb": "well ech",
+      "en": "because I",
+      "fr": "parce que je",
+      "group": "joining",
+      "level": "A2",
+      "attestations": 44,
+      "variant": null,
+      "example": {
+        "lb": "ech krut Antibiotiquë verschriwwen, well ech Bazillen am Waasser hat",
+        "audioId": "f91ae01ad31d0fe1c47d96028562d03a",
+        "local": true
+      },
+      "examples": [
+        {
+          "lb": "ech krut Antibiotiquë verschriwwen, well ech Bazillen am Waasser hat",
+          "audioId": "f91ae01ad31d0fe1c47d96028562d03a",
+          "local": true
+        },
+        {
+          "lb": "d'Wuer ass net matkomm, well ech d'Commande ze spéit opginn hat",
+          "audioId": "b4f7000bf43d076575771bbe38e5f441",
+          "local": true
+        },
+        {
+          "lb": "ech kann net mat an d'Schwämm goen, well ech den Houscht hunn",
+          "audioId": "cd404ee2163e0179a13ef7c2c4ad8fd4",
+          "local": true
+        }
+      ],
+      "cloze": {
+        "before": "ech krut Antibiotiquë verschriwwen, ",
+        "form": "well ech",
+        "after": " Bazillen am Waasser hat",
+        "via": "frame"
+      },
+      "rank": 41,
       "stage": 1
     },
     {
@@ -1440,7 +1764,7 @@
         "after": " fort sinn, däerfs de kengem d'Dier opmaachen!",
         "via": "frame"
       },
-      "rank": 34,
+      "rank": 42,
       "stage": 1
     }
   ]

@@ -2056,3 +2056,155 @@ worth doing on purpose, and not folded into a translation fix.
 `npm test` 238 (3 new in `pairs.test.js`: every override is a real LOD gloss,
 the preferred sense is what reaches the board, and choosing a sense does not
 move the word) · `validate` PASS · `npm run walkthrough` 49/49 · `sw.js` → `v36`.
+
+---
+
+# Follow-up 17 — the Arcade: fifteen sentence functions, off the clock
+
+> "Create a new tab called arcade which has different games with the goal to
+> learn the standard sentence structures: 1. Naming, 2. Existence, 3. Having,
+> 4. Wanting, 5. Requesting, 6. Ability & permission, 7. Need & obligation,
+> 8. Liking (note: many languages invert this, e.g. Spanish me gusta, so learn
+> the structure, not the translation), 9. Opinion, 10. Location, 11. Question
+> words, 12. Quantity & price, 13. Negation, 14. Time reference,
+> 15. Connectors. These games do not count on the daily goals so are also not
+> limited to a number of words per day or anything."
+
+## Functions, not translations
+
+The brief already contains the hard part, in the note on Liking. A sentence
+function is what you are *trying to do* — ask for something, say where it is,
+say you like it — and the shape that performs it is different per language.
+Luxembourgish has no verb "to like" at all: you take an ordinary verb and drop
+`gär` in late, near where `net` goes. So a pattern in `app/js/arcade/patterns.js`
+names the function and points at whatever the corpus actually uses to do it,
+rather than translating an English sentence.
+
+That matters most where the two diverge, which is exactly where a learner who
+translates gets stuck.
+
+## Everything is corpus-attested, including what is missing
+
+The corpus-lock rule applies unchanged: no Luxembourgish was written for this
+tab. Each of the fifteen points at material already shipped and already
+proven — phrase frames (attested ≥ 8× in LOD's own examples, or
+`build-phrases.js` fails the build), grammar items mined from real sentences,
+and vocabulary lemmas. `arcade.test.js` re-resolves every one of those
+references against the shipped decks, so a pattern cannot quietly start
+pointing at something that stopped shipping.
+
+Eight new frames were needed and all eight cleared the threshold on their own:
+
+| frame | gloss | attestations |
+| --- | --- | --- |
+| `gëtt et` | is there | 66 |
+| `do ass` | there is (over there) | 45 |
+| `well ech` | because I | 44 |
+| `kann ech` | can I | 25 |
+| `ech fannen` | I think, I find | 15 |
+| `kanns du` | can you | 12 |
+| `ech wäert` | I will | 11 |
+| `hei ass` | here is | 8 |
+
+The phrase deck is now 42 frames. `ech wäert` also needed a new `future`
+group — it had been mis-filed under `past`, which is the wrong half of the
+timeline to teach it from.
+
+### Four functions the corpus does not write the expected way
+
+Audited before designing, not discovered after:
+
+| wanted | occurrences | what is taught instead |
+| --- | --- | --- |
+| `ech heeschen` ("my name is") | 0 | `ech sinn` / `dat ass`, which is what LOD uses |
+| `wou ass` ("where is") | 2 | the answering side (`hei ass`, `do ass`) plus `wou` itself |
+| `et gëtt keen` ("there isn't") | 0 | the negation rule, where `net` and `keen` are actually drilled |
+| a verb "to like" | — | where `gär` lands in the clause |
+
+Each of those patterns carries a `gap` note that says so on screen. A learner
+told "the corpus does not write it this way" has learned something true; one
+handed an invented frame has learned something wrong.
+
+## Four card shapes, chosen by what the pattern is
+
+Not every function is the same kind of thing, so one mechanic would have been
+wrong for most of them:
+
+- **`frame`** — which opener performs this? The frame, chosen against three
+  other real frames. One per frame, not per example: the answer is the frame,
+  so three examples of it is the same question three times.
+- **`build`** — the same sentence reassembled from word tiles, one per short
+  example (3–8 words; a fourteen-word sentence rebuilt from tiles is a memory
+  test, not a structure one). This is what keeps the thin patterns playable —
+  `existence` has only two attested frames, and without their other examples a
+  round would be four cards long.
+- **`item`** — a mined grammar card, for the patterns whose whole content is a
+  rule: liking (38 items), negation (180), quantity (150), time (300).
+- **`word`** — for the four functions that *are* a closed set of words. Question
+  words is six words; there is nothing else to teach about it. Each is gapped
+  out of its own LOD example and the pattern's other words are the wrong
+  answers, so choosing between `wien`/`wat`/`wou` is the exercise.
+
+Two things the `word` shape had to get right. It gaps on whole words, so `no`
+does not cut itself out of `noen` and leave a card whose own answer will not
+fit the hole. And it only asks about words the pattern glosses *uniquely* —
+`keen` and `keng` are both "no", and a card with two right answers is not a
+card. Both are pinned by tests.
+
+Fourteen of the fifteen fill the full eight-card round. `wanting` reaches six,
+because its three frames all carry long examples; six is asserted as the floor
+so a pattern cannot decay into a tile on the index that disappoints.
+
+## The tab costs nothing to play
+
+This is the whole reason it exists — somewhere to keep going once the day's
+new-word budget is spent — so it is enforced rather than intended:
+
+- **no Leitner writes.** Nothing here moves a review schedule, so playing for
+  an hour cannot push a word's next review past what the evidence supports.
+- **no daily-goal counting.** Rounds never reach `runSession`, so the day's
+  card count is untouched.
+- **no new-word cap.** Nothing consults `newWordsLeftToday`, so the Arcade
+  still works when the budget is gone.
+
+`touchStreak` is the one number it moves, like Pairs and Gender Sort, because
+it is genuinely practice.
+
+Asserted twice, deliberately. `arcade.test.js` reads `screens/arcade.js` and
+fails if the words `recordLearnResult`, `recordLearnSession`,
+`newWordsLeftToday`, `buildSession`, `buildMixedSession` or `runSession`
+appear — a property of what is *not* called, which only the source can show.
+And the walkthrough plays a full round in the browser between two reads of
+Today's card count and fails if the number moved.
+
+## Two bugs the verification caught
+
+**`wordBank` was called without its pool.** `wordBank(answer, pool)` draws its
+decoy tiles from `pool` and nowhere else — precisely so no plausible-looking
+Luxembourgish is invented to pad a bank. Calling it one-argument threw `pool is
+not iterable` on the first build card the walkthrough reached. Fixed by giving
+each build question the other example sentences of its own pattern, which keeps
+the wrong tiles in the same register as the right ones; a test now fails if a
+build question ships without a pool, or with a pool sentence that is not from
+the phrase deck.
+
+**Seven tabs overflowed at 360px.** Adding Arcade made it seven, and
+`grid-auto-columns: 1fr` refuses to shrink a column below its label, so the bar
+ran off the side on the narrowest common Android width while looking correct on
+the iPhone viewport everything else is measured at. Fixed with
+`minmax(0, 1fr)`, `min-width: 0` and an ellipsis on the label; the walkthrough
+now measures the bar at 393, 360 and 320px.
+
+## Pre-existing, not introduced
+
+The walkthrough exits non-zero on `main` today and did so before this change:
+thirteen listening clips referenced by `listening.json` were never mirrored to
+`app/assets/audio/`, and are absent from the audio manifest too, so they 404.
+Confirmed against a stashed tree — the same thirteen, same count. Fixing it
+needs a LOD fetch, so it is left as its own piece of work rather than folded in
+here.
+
+## Verification
+
+`npm test` 248 (10 new in `arcade.test.js`) · `validate` PASS · `npm run
+walkthrough` 52/52 steps, run twice for flakiness · `sw.js` → `v37`.

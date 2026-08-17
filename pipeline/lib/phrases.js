@@ -83,6 +83,29 @@ const PHRASES = [
   { lb: 'ech wunnen', en: 'I live', fr: "j'habite", group: 'self' },
   { lb: 'ech weess', en: 'I know', fr: 'je sais', group: 'self' },
   { lb: 'ech maachen', en: 'I do, I make', fr: 'je fais', group: 'self' },
+
+  /* ------------------------------------------------ added for the Arcade
+   * The Arcade teaches fifteen sentence functions, and the deck was missing a
+   * frame for five of them: requesting, opinion, location, asking whether
+   * something exists, and the future. Each string below was counted in the
+   * corpus before being added here — the figure in the comment is how many
+   * recorded example sentences contain it — and build-phrases.js fails the
+   * build if any of them is attested fewer than MIN_ATTESTATIONS times, so
+   * these are selections rather than inventions like every other frame.
+   *
+   * Deliberately not added, because the corpus does not support them:
+   * `ech heeschen` ("my name is", 0 occurrences), `wou ass` ("where is", 2)
+   * and `et gëtt keen` ("there isn't", 0). The Arcade covers those functions
+   * from other angles rather than shipping a frame nobody wrote — see
+   * app/js/arcade/patterns.js. */
+  { lb: 'kann ech', en: 'can I', fr: 'puis-je', group: 'asking' }, // 25
+  { lb: 'kanns du', en: 'can you', fr: 'peux-tu', group: 'asking' }, // 12
+  { lb: 'gëtt et', en: 'is there', fr: 'y a-t-il', group: 'asking' }, // 64
+  { lb: 'ech fannen', en: 'I think, I find', fr: 'je trouve', group: 'self' }, // 13
+  { lb: 'hei ass', en: 'here is', fr: 'voici', group: 'pointing' }, // 8
+  { lb: 'do ass', en: 'there is (over there)', fr: 'là est', group: 'pointing' }, // 43
+  { lb: 'well ech', en: 'because I', fr: 'parce que je', group: 'joining' }, // 44
+  { lb: 'ech wäert', en: 'I will', fr: 'je vais', group: 'future' }, // 11
 ];
 
 /** Human labels for the groups, used to order and head the deck. */
@@ -92,6 +115,7 @@ const GROUPS = [
   { id: 'pointing', title: 'Pointing something out' },
   { id: 'modal', title: 'Can, must, want' },
   { id: 'past', title: 'Talking about the past' },
+  { id: 'future', title: 'Talking about what will happen' },
   { id: 'polite', title: 'Being polite' },
   { id: 'asking', title: 'Asking a question' },
   { id: 'joining', title: 'Joining two ideas' },

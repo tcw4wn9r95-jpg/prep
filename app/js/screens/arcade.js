@@ -1,0 +1,383 @@
+/**
+ * Arcade — the fifteen sentence functions, as games.
+ *
+ * The decks teach words and the grammar deck teaches rules, but neither
+ * answers the question a beginner actually has in a shop or an interview:
+ * *how do I say that I want something?* That is a sentence function, and the
+ * fifteen here are the ones that carry ordinary life — naming, existence,
+ * having, wanting, requesting, ability, obligation, liking, opinion,
+ * location, question words, quantity, negation, time and connectors.
+ *
+ * ## It costs nothing to play
+ *
+ * Deliberately outside every progress system in the app:
+ *
+ *   - **no Leitner writes.** Nothing here moves a review schedule, so playing
+ *     for an hour cannot push a word's next review past the point the
+ *     evidence supports.
+ *   - **no daily-goal counting.** These rounds never reach `runSession`, so
+ *     they do not add to today's card count and the goal is unaffected.
+ *   - **no new-word cap.** Nothing here consults `newWordsLeftToday`, so the
+ *     Arcade keeps working when the day's intake is spent. That is the point:
+ *     it is the thing to play *after* the budget is gone.
+ *
+ * It counts for the streak, like Pairs and Gender Sort, because it is
+ * genuinely practice — but that is the only number it touches.
+ *
+ * ## Nothing here is authored
+ *
+ * Every question is built from material the app already proves: phrase frames
+ * attested at least eight times in LOD's own examples, grammar items mined
+ * from real corpus sentences, and vocabulary lemmas. See `arcade/patterns.js`
+ * for the mapping, including the three functions the corpus could not support
+ * and what is shown instead.
+ */
+
+import { el, fill, screenHead, button, plural } from '../dom.js';
+import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
+import { loadPhrases, loadGrammar, loadVocab } from '../content.js';
+import { touchStreak } from '../store.js';
+import { chimeCorrect, resetChimeStreak } from '../chime.js';
+import { choiceInput, bankInput } from '../drill/inputs.js';
+import { wordBank } from '../drill/match.js';
+import { PATTERNS, patternById, materialFor, isPlayable } from '../arcade/patterns.js';
+
+const ROUND_SIZE = 8;
+const OPTION_COUNT = 4;
+
+function shuffle(list, random = Math.random) {
+  const copy = [...list];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+/**
+ * The questions a pattern can ask, newest mechanic first.
+ *
+ * Three shapes, all reusing the drill engine's own widgets rather than
+ * inventing a fourth kind of button:
+ *
+ *   `frame`   which opener performs this function — the frame gapped out of
+ *             one of its own real example sentences.
+ *   `build`   the same sentence, assembled from word tiles.
+ *   `item`    a grammar card as mined, for the patterns whose whole content is
+ *             a rule (liking, negation, quantity, time).
+ *   `word`    a single word gapped out of its own LOD example, for the four
+ *             patterns that *are* a small closed set of words — question
+ *             words, connectors, the here/there of location, negation.
+ */
+export function questionsFor(pattern, decks, random = Math.random) {
+  const { frames, items, words } = materialFor(pattern, decks);
+  const questions = [];
+
+  // Decoy tiles for the build questions. wordBank draws them from this pool
+  // and nowhere else, so it has to be real Luxembourgish: the other example
+  // sentences of this same pattern, which keeps the wrong tiles plausible
+  // (same register, same kind of sentence) without a word being invented.
+  const pool = frames.flatMap((frame) => (frame.examples ?? []).map((example) => example.lb).filter(Boolean));
+
+  const others = frames.length >= OPTION_COUNT ? frames : [...frames, ...(decks.phrases ?? [])];
+  for (const frame of frames) {
+    const examples = (frame.examples ?? [frame.example]).filter((example) => example?.lb);
+    if (examples.length === 0) continue;
+
+    // One choice card per frame, not per example: the answer is the frame, so
+    // three examples of it would be the same question asked three times.
+    const distractors = shuffle(others.filter((other) => other.lb !== frame.lb), random)
+      .slice(0, OPTION_COUNT - 1)
+      .map((other) => ({ value: other.lb, correct: false }));
+    if (distractors.length === OPTION_COUNT - 1) {
+      questions.push({
+        kind: 'frame',
+        prompt: frame.en,
+        sentence: examples[0].lb,
+        answer: frame.lb,
+        options: shuffle([{ value: frame.lb, correct: true }, ...distractors], random),
+      });
+    }
+
+    // Build cards, on the other hand, are a different sentence every time, so
+    // every example the frame carries is worth one. This is what keeps the
+    // thin patterns playable: `existence` has only two attested frames, and
+    // without their other examples a round would be four cards long.
+    for (const example of examples) {
+      // Short sentences only: a fourteen-word sentence rebuilt from tiles is a
+      // memory test, not a structure one.
+      const words = example.lb.split(/\s+/).filter(Boolean);
+      if (words.length < 3 || words.length > 8) continue;
+      questions.push({
+        kind: 'build',
+        prompt: frame.en,
+        answer: example.lb,
+        pool: pool.filter((sentence) => sentence !== example.lb),
+      });
+    }
+  }
+
+  for (const item of items) {
+    if (!Array.isArray(item.options_lb) || !Number.isInteger(item.correct)) continue;
+    questions.push({
+      kind: 'item',
+      prompt: pattern.ask,
+      before: item.before,
+      after: item.after,
+      answer: item.options_lb[item.correct],
+      options: shuffle(
+        item.options_lb.map((value, index) => ({ value, correct: index === item.correct })),
+        random,
+      ),
+    });
+  }
+
+  for (const question of wordQuestions(pattern, words, random)) questions.push(question);
+
+  return shuffle(questions, random).slice(0, ROUND_SIZE);
+}
+
+/**
+ * Splits an example sentence around the first whole-word occurrence of `word`.
+ *
+ * Whole-word, so `no` does not gap itself out of `noen` and leave a card whose
+ * answer does not fit the hole. Returns null when the lemma does not appear as
+ * written — a real case, since LOD's example for a lemma often uses an
+ * inflected form — and the caller then simply asks about a different word.
+ */
+export function gapExample(word, sentence) {
+  const tokens = String(sentence ?? '').split(/(\s+)/);
+  const index = tokens.findIndex((token) => token.replace(/^[^\p{L}]+|[^\p{L}]+$/gu, '').toLowerCase() === word.toLowerCase());
+  if (index === -1) return null;
+  return { before: tokens.slice(0, index).join(''), after: tokens.slice(index + 1).join('') };
+}
+
+/**
+ * Four of the fifteen functions are not a frame or a rule — they *are* a small
+ * closed set of words. "Question words" is six words; there is nothing else to
+ * teach about it. So each one is gapped out of its own LOD example and the
+ * other words of the same pattern are the wrong answers, which is what makes
+ * the card discriminating: choosing between wien/wat/wou is the exercise.
+ */
+function wordQuestions(pattern, words, random) {
+  // A gloss shared by two words makes an unanswerable card — keen and keng are
+  // both "no". Only ask about words this pattern glosses uniquely; the ones
+  // dropped are still taught by the pattern's grammar items.
+  const byGloss = new Map();
+  for (const word of words) byGloss.set(word.en, [...(byGloss.get(word.en) ?? []), word]);
+  const askable = words.filter((word) => byGloss.get(word.en).length === 1);
+  if (askable.length < 2) return [];
+
+  const questions = [];
+  for (const word of askable) {
+    const gap = gapExample(word.lb, word.example?.lb);
+    if (!gap) continue;
+    const distractors = shuffle(askable.filter((other) => other.lb !== word.lb), random)
+      .slice(0, OPTION_COUNT - 1)
+      .map((other) => ({ value: other.lb, correct: false }));
+
+    questions.push({
+      kind: 'word',
+      prompt: `${pattern.ask} — “${word.en}”`,
+      gloss: word.en,
+      ...gap,
+      answer: word.lb,
+      options: shuffle([{ value: word.lb, correct: true }, ...distractors], random),
+    });
+  }
+  return questions;
+}
+
+export async function render(root, { params, settings, navigate }) {
+  const [phrases, grammar, vocab] = await Promise.all([loadPhrases(), loadGrammar(), loadVocab()]);
+  const decks = { phrases, grammar, vocab };
+  const pattern = params?.[0] ? patternById(params[0]) : null;
+  return pattern ? renderRound(root, pattern, decks, { settings, navigate }) : renderIndex(root, decks, { navigate });
+}
+
+/* ------------------------------------------------------------------ index */
+
+function renderIndex(root, decks, { navigate }) {
+  void navigate;
+  const playable = PATTERNS.filter((pattern) => isPlayable(pattern, decks));
+
+  root.append(
+    screenHead({ title: 'Arcade', sub: 'The sentences that carry a conversation' }),
+    el(
+      'p',
+      { class: 'card__note' },
+      'Fifteen things you actually need a sentence to do. Play as much as you like — these do not count towards the daily goal, ' +
+        'do not move your review schedule, and are never capped by the new-word budget.',
+    ),
+    el(
+      'div',
+      { class: 'stack', style: { marginBlockStart: 'var(--s4)' } },
+      ...playable.map((pattern, index) =>
+        el(
+          'a',
+          { class: 'plan', href: `#/arcade/${pattern.id}` },
+          el('span', { class: 'plan__n', 'aria-hidden': 'true' }, String(index + 1)),
+          el(
+            'span',
+            { class: 'spacer' },
+            el('span', { class: 'card__title' }, pattern.title),
+            el('span', { class: 'plan__for' }, pattern.ask),
+          ),
+          el(
+            'svg',
+            { class: 'plan__chevron', viewBox: '0 0 24 24', width: '20', height: '20', 'aria-hidden': 'true' },
+            el('path', { d: 'M9 6 L15 12 L9 18', fill: 'none', stroke: 'currentColor', 'stroke-width': '2.5', 'stroke-linecap': 'round' }),
+          ),
+        ),
+      ),
+    ),
+    el(
+      'p',
+      { class: 'source-note', style: { marginBlockStart: 'var(--s5)' } },
+      'Every sentence here is one LOD published — the openers are attested at least eight times in the dictionary’s own examples. ' +
+        'Where the corpus does not write a pattern, the game says so rather than inventing one.',
+    ),
+  );
+
+  return { destroy() {} };
+}
+
+/* ------------------------------------------------------------------ round */
+
+function renderRound(root, pattern, decks, { settings, navigate }) {
+  const questions = questionsFor(pattern, decks);
+
+  root.append(screenHead({ title: pattern.title, sub: pattern.ask, back: '#/arcade' }));
+  const body = el('div', { class: 'stack stack--lg' });
+  root.append(body);
+
+  if (questions.length === 0) {
+    fill(
+      body,
+      el(
+        'div',
+        { class: 'empty' },
+        el('p', {}, 'Nothing to play here yet.'),
+        el('p', { class: 'source-note' }, pattern.gap ?? 'Run npm run content to build the decks this pattern draws on.'),
+        button('Back to Arcade', { variant: 'secondary', onclick: () => navigate('#/arcade') }),
+      ),
+    );
+    return { destroy() {} };
+  }
+
+  playRound({ body, pattern, questions, settings, navigate });
+  return { destroy() {} };
+}
+
+function playRound({ body, pattern, questions, settings, navigate }) {
+  let index = 0;
+  let correct = 0;
+
+  const amelie = new Amelie({ size: 'sm', bubble: true });
+  amelie.say(pattern.gap ?? `How Luxembourgish says: ${pattern.ask}`, 'idle');
+
+  const scoreLabel = el('span', { class: 'chip' }, `0 of ${questions.length}`);
+  const instruction = el('p', { class: 'drill__instruction' });
+  const promptCard = el('div', { class: 'card' });
+  const inputHolder = el('div', {});
+
+  fill(
+    body,
+    el('div', { class: 'row row--between' }, el('span', { class: 'meter__label' }, pattern.title), scoreLabel),
+    promptCard,
+    instruction,
+    inputHolder,
+    el('div', { class: 'card' }, amelie.el),
+  );
+
+  show();
+
+  function show() {
+    const question = questions[index];
+
+    if (question.kind === 'build') {
+      instruction.textContent = 'Build the sentence';
+      fill(promptCard, el('p', { class: 'card__title', style: { textAlign: 'center' } }, question.prompt));
+      const input = bankInput(
+        { bank: wordBank(question.answer, question.pool ?? []), bankKind: 'word', answer: question.answer },
+        (result) => answered(question, result),
+      );
+      fill(inputHolder, input.el);
+      return;
+    }
+
+    if (question.kind === 'item' || question.kind === 'word') {
+      instruction.textContent = question.kind === 'word' ? `Which word means “${question.gloss}”?` : 'Which one fits?';
+      fill(
+        promptCard,
+        el('p', { style: { textAlign: 'center' } }, question.before ?? '', el('strong', {}, ' ___ '), question.after ?? ''),
+      );
+    } else {
+      instruction.textContent = 'Which opener says this?';
+      fill(
+        promptCard,
+        el('p', { class: 'card__title', style: { textAlign: 'center' } }, question.prompt),
+        el('p', { class: 'card__note', style: { textAlign: 'center', marginBlockStart: 'var(--s2)' } }, question.sentence ?? ''),
+      );
+    }
+
+    const input = choiceInput({ options: question.options }, (result) => answered(question, result));
+    fill(inputHolder, input.el);
+  }
+
+  function answered(question, result) {
+    if (result.correct) {
+      correct += 1;
+      chimeCorrect();
+      amelie.say(pickLine(AMELIE_LINES.correct), 'celebrating');
+    } else {
+      resetChimeStreak();
+      amelie.say(`It is “${question.answer}”.`, 'encouraging');
+    }
+    scoreLabel.textContent = `${correct} of ${questions.length}`;
+
+    setTimeout(
+      () => {
+        index += 1;
+        if (index >= questions.length) finish();
+        else show();
+      },
+      result.correct ? 800 : 1800,
+    );
+  }
+
+  async function finish() {
+    // The only number the Arcade touches. No Leitner row, no daily card count,
+    // no new-word budget — see the header for why.
+    touchStreak(settings.playerId);
+    const pct = Math.round((correct / questions.length) * 100);
+
+    const done = new Amelie({ size: 'lg', bubble: true });
+    done.el.classList.add('amelie--stack', 'amelie--hero');
+    done.celebrate(pct >= 80 ? 'That is the pattern. Now it is a sentence you own.' : 'Round done — play it again, it costs nothing.');
+
+    fill(
+      body,
+      el(
+        'div',
+        { class: 'stack stack--lg', style: { paddingBlockStart: 'var(--s5)' } },
+        done.el,
+        el(
+          'div',
+          { class: 'card', style: { textAlign: 'center' } },
+          el('p', { class: 'meter__label' }, 'This round'),
+          el('p', { class: 'meter__value' }, `${correct} / ${questions.length}`),
+          el('p', { class: 'card__note' }, `${pct}% · ${plural(questions.length, 'question')}`),
+        ),
+        pattern.gap ? el('div', { class: 'card' }, el('p', { class: 'card__note' }, pattern.gap)) : null,
+        button('Again', { variant: 'primary', class: 'btn btn--primary btn--block', onclick: () => navigate(`#/arcade/${pattern.id}`) }),
+        button('Another pattern', { variant: 'secondary', class: 'btn btn--secondary btn--block', onclick: () => navigate('#/arcade') }),
+        el(
+          'p',
+          { class: 'source-note' },
+          'Arcade rounds count for your streak and nothing else: no review schedule moved, no daily goal advanced, no cap on how many you play.',
+        ),
+      ),
+    );
+  }
+}

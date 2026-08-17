@@ -657,6 +657,132 @@ async function main() {
     await shot('16l-forms-done');
   });
 
+  await step('the Arcade lists all fifteen sentence functions and plays a round', async () => {
+    await openFresh('#/arcade');
+    await page.waitForSelector('.plan', { timeout: 5000 });
+
+    const games = await page.locator('#screen .plan').count();
+    if (games !== 15) throw new Error(`expected fifteen sentence functions, found ${games}`);
+    // Each row has to say what the sentence is *for* — "Having" alone does not
+    // tell a beginner they are about to learn "I have / do you have".
+    const asks = await page.locator('#screen .plan__for').allTextContents();
+    if (asks.length !== 15 || asks.some((ask) => !ask.trim())) throw new Error('a pattern does not say what it is for');
+    await shot('16m-arcade-index');
+
+    await page.locator('#screen .plan').first().click();
+    await page.waitForSelector('.options .option, .bank__tile', { timeout: 5000 });
+    await shot('16n-arcade-round');
+
+    // Answering right or wrong does not matter here — only that every question
+    // shape the round can serve (a choice, or a sentence built from word
+    // tiles) is drivable and the round reaches its end card.
+    for (let guard = 0; guard < 20; guard += 1) {
+      if ((await page.locator('.options .option').count()) > 0) {
+        await page.locator('.options .option').first().click();
+      } else if ((await page.locator('.bank__tile').count()) > 0) {
+        await page.locator('.bank__tile').first().click();
+        await page.getByRole('button', { name: 'Check' }).click();
+      } else {
+        break;
+      }
+      await page.waitForTimeout(1900); // the wrong-answer pause is 1800ms
+    }
+    await page.waitForSelector('text=This round', { timeout: 5000 });
+    await shot('16o-arcade-done');
+
+    // The word patterns — question words, connectors, here/there — are a
+    // closed set of words rather than a frame, so their card is the word
+    // gapped out of its own LOD example, with the gloss as the question.
+    await openFresh('#/arcade/questions');
+    await page.waitForSelector('.drill__instruction', { timeout: 5000 });
+
+    // Play the whole round, collecting what each card asked. A round is a
+    // shuffled mix of card shapes, so the word card is not necessarily first —
+    // and a build card in the middle must not stop the walk.
+    const asked = [];
+    let gapped = '';
+    for (let guard = 0; guard < 12; guard += 1) {
+      const instruction = (await page.locator('.drill__instruction').textContent().catch(() => null)) ?? '';
+      if (!instruction) break;
+      asked.push(instruction);
+      if (/Which word means/.test(instruction) && !gapped) {
+        gapped = (await page.locator('#screen .card p').first().textContent()) ?? '';
+        await shot('16p-arcade-word');
+      }
+      if ((await page.locator('.options .option').count()) > 0) {
+        await page.locator('.options .option').first().click();
+      } else if ((await page.locator('.bank__tile').count()) > 0) {
+        await page.locator('.bank__tile').first().click();
+        await page.getByRole('button', { name: 'Check' }).click();
+      } else {
+        break;
+      }
+      await page.waitForTimeout(1900);
+    }
+
+    if (!asked.some((instruction) => /Which word means/.test(instruction))) {
+      throw new Error(`the question-words round never asked about a question word; it asked: ${[...new Set(asked)].join(' / ')}`);
+    }
+    // The answer must not be sitting in the sentence it was cut out of.
+    if (!gapped.includes('___')) throw new Error(`expected a gapped sentence, got "${gapped}"`);
+  });
+
+  await step('an Arcade round costs nothing: the daily goal does not move', async () => {
+    // This is the whole reason the tab exists — somewhere to keep playing once
+    // the day's new-word budget is spent. If a round quietly counted towards
+    // the goal it would be just another session with a different skin, so the
+    // promise is asserted end-to-end rather than only in arcade.test.js.
+    const readCards = async () => {
+      await openFresh('#/today');
+      await page.waitForSelector('.plan', { timeout: 5000 });
+      const note = (await page.locator('.plan').first().innerText()).trim();
+      const match = note.match(/(\d+)\s+of\s+\d+\s+cards|Done — (\d+) cards?/);
+      if (!match) throw new Error(`the Words step does not report a card count: "${note.replace(/\n/g, ' | ')}"`);
+      return Number(match[1] ?? match[2]);
+    };
+
+    const before = await readCards();
+    await openFresh('#/arcade/having');
+    await page.waitForSelector('.options .option, .bank__tile', { timeout: 5000 });
+    let answered = 0;
+    for (let guard = 0; guard < 20; guard += 1) {
+      if ((await page.locator('.options .option').count()) > 0) {
+        await page.locator('.options .option').first().click();
+      } else if ((await page.locator('.bank__tile').count()) > 0) {
+        await page.locator('.bank__tile').first().click();
+        await page.getByRole('button', { name: 'Check' }).click();
+      } else {
+        break;
+      }
+      answered += 1;
+      await page.waitForTimeout(1900);
+    }
+    if (answered === 0) throw new Error('the Arcade round offered nothing to answer');
+    await page.waitForSelector('text=This round', { timeout: 5000 });
+
+    const after = await readCards();
+    if (after !== before) throw new Error(`${answered} Arcade questions moved the daily count ${before} → ${after}`);
+    process.stdout.write(`  ${answered} Arcade questions, daily count unchanged at ${before}\n`);
+  });
+
+  await step('seven tabs still fit, down to the narrowest Android width', async () => {
+    // Adding Arcade made it seven, and `grid-auto-columns: 1fr` refuses to
+    // shrink a column below its label — so the bar overflowed at 360px while
+    // looking fine on the iPhone viewport everything else is measured at.
+    const sizes = [VIEWPORT, { width: 360, height: 780 }, { width: 320, height: 568 }];
+    for (const size of sizes) {
+      await page.setViewportSize(size);
+      await openFresh('#/today');
+      await page.waitForSelector('.tabbar__item', { timeout: 5000 });
+      const tabs = await page.locator('.tabbar__item').count();
+      if (tabs !== 7) throw new Error(`expected seven tabs, found ${tabs}`);
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      if (overflow > 1) throw new Error(`the tab bar overflows by ${overflow}px at ${size.width}px`);
+    }
+    await page.setViewportSize(VIEWPORT);
+    process.stdout.write(`  no overflow at ${sizes.map((size) => `${size.width}px`).join(', ')}\n`);
+  });
+
   await step('the cheat sheet shows pronouns, verb tables and sentence patterns', async () => {
     await openFresh('#/reference');
     await page.waitForSelector('.ref-pronoun', { timeout: 5000 });
