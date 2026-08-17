@@ -204,7 +204,10 @@ img, svg {
   z-index: 20;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  /* minmax(0, 1fr), not 1fr: a plain 1fr track refuses to shrink below its
+     content, so the seventh tab pushed the bar past a 360px Android screen
+     and the whole page scrolled sideways. */
+  grid-auto-columns: minmax(0, 1fr);
   gap: var(--s1);
   padding: var(--s2) var(--s3) calc(var(--s2) + env(safe-area-inset-bottom));
   /* Was 92% surface: the bar is sticky, so the last card of a long screen
@@ -224,6 +227,9 @@ img, svg {
   justify-content: center;
   gap: 3px;
   min-height: var(--tap);
+  /* Paired with minmax(0, 1fr) above — without min-width the flex content
+     still sets a floor and the track cannot shrink. */
+  min-width: 0;
   padding: var(--s1) var(--s2);
   border-radius: var(--r-lg);
   color: var(--text-faint);
@@ -233,6 +239,15 @@ img, svg {
 }
 
 .tabbar__item:active { transform: scale(0.92); }
+
+/* The label rides along with the shrinking track rather than setting its
+   width. Seven tabs at 360px leaves ~45px each, which fits "Arcade". */
+.tabbar__item > span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .tabbar__item[aria-current='page'] {
   color: var(--accent);
