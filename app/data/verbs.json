@@ -101,6 +101,10 @@
         "surface": 22,
         "none": 66
       }
+    },
+    "a1": {
+      "rows": 365,
+      "readable": 111
     }
   },
   "items": [
@@ -133,7 +137,8 @@
       },
       "example": {
         "lb": "de Schrëftsteller huet de Verlag gewiesselt",
-        "audioId": "a2eed5d4d441b5572aac95187722cc08"
+        "audioId": "a2eed5d4d441b5572aac95187722cc08",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -156,7 +161,8 @@
       },
       "freq": 1655,
       "rank": 1,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "GINN1",
@@ -187,7 +193,8 @@
       },
       "example": {
         "lb": "et gëtt ëmmer méi Leit, déi un Allergië leiden",
-        "audioId": "9b68905f0b6363db54494f25234069a4"
+        "audioId": "9b68905f0b6363db54494f25234069a4",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -204,7 +211,8 @@
       },
       "freq": 666,
       "rank": 2,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "KENNEN1",
@@ -232,7 +240,8 @@
       "imperative": null,
       "example": {
         "lb": "ech kann net dofir!",
-        "audioId": "56b116b5babd2e8ca667a34cff16cec5"
+        "audioId": "56b116b5babd2e8ca667a34cff16cec5",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -249,7 +258,8 @@
       },
       "freq": 536,
       "rank": 3,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "SINN1",
@@ -280,7 +290,8 @@
       },
       "example": {
         "lb": "d'Vëloskette war mer erofgesprongen",
-        "audioId": "c845b15c9a740cbe62b39519eee1c6d0"
+        "audioId": "c845b15c9a740cbe62b39519eee1c6d0",
+        "a1": false
       },
       "topics": [
         "joreszäiten",
@@ -298,7 +309,8 @@
       },
       "freq": 483,
       "rank": 4,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "MUSSEN1",
@@ -326,7 +338,8 @@
       "imperative": null,
       "example": {
         "lb": "jidderee muss d'Sécherheetsvirschrëften anhalen",
-        "audioId": "d8ef652277c9024816702029b75efacc"
+        "audioId": "d8ef652277c9024816702029b75efacc",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -345,7 +358,8 @@
       },
       "freq": 408,
       "rank": 5,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "GOEN1",
@@ -376,7 +390,8 @@
       },
       "example": {
         "lb": "géi méi séier, soss verpass de den Zuch!",
-        "audioId": "8190ef4a1f594b8ddf2f698ec1f55543"
+        "audioId": "8190ef4a1f594b8ddf2f698ec1f55543",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -386,7 +401,8 @@
       "cloze": null,
       "freq": 328,
       "rank": 6,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "MAACHEN1",
@@ -417,7 +433,8 @@
       },
       "example": {
         "lb": "wat méchs du do?",
-        "audioId": "054d8836b1f67d8500ce82dad3d2fab1"
+        "audioId": "054d8836b1f67d8500ce82dad3d2fab1",
+        "a1": true
       },
       "topics": [
         "aarbecht",
@@ -439,7 +456,8 @@
       },
       "freq": 304,
       "rank": 7,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "KOMMEN1",
@@ -470,7 +488,8 @@
       },
       "example": {
         "lb": "kenns du de Mann, deen do kënnt?",
-        "audioId": "3b91a88196c6697376f2dee572489987"
+        "audioId": "3b91a88196c6697376f2dee572489987",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -482,7 +501,8 @@
       "cloze": null,
       "freq": 282,
       "rank": 8,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "IESSEN3",
@@ -513,7 +533,8 @@
       },
       "example": {
         "lb": "mir iessen de Mëtteg Nuddelen",
-        "audioId": "5e9519e356633c585228f11ac2ada6c6"
+        "audioId": "5e9519e356633c585228f11ac2ada6c6",
+        "a1": true
       },
       "topics": [
         "iessen"
@@ -528,7 +549,8 @@
       },
       "freq": 154,
       "rank": 9,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "LEIEN2",
@@ -559,7 +581,8 @@
       },
       "example": {
         "lb": "d'Kanner leie schonn am Bett",
-        "audioId": "59c8b1899ae7d98796e8073bd99d6fa6"
+        "audioId": "59c8b1899ae7d98796e8073bd99d6fa6",
+        "a1": true
       },
       "topics": [
         "gesondheet"
@@ -574,7 +597,8 @@
       },
       "freq": 137,
       "rank": 10,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "HUELEN1",
@@ -605,7 +629,8 @@
       },
       "example": {
         "lb": "huel (der) e Stull, et sinn der genuch do!",
-        "audioId": "08c307a9ed816b77a81923758ad2d7a6"
+        "audioId": "08c307a9ed816b77a81923758ad2d7a6",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -615,7 +640,8 @@
       "cloze": null,
       "freq": 135,
       "rank": 11,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "LOOSSEN1",
@@ -646,7 +672,8 @@
       },
       "example": {
         "lb": "kanns de mer d'Buch bis muer loossen?",
-        "audioId": "0a5287e7adb232b8d9e402ee9b8e0fc1"
+        "audioId": "0a5287e7adb232b8d9e402ee9b8e0fc1",
+        "a1": true
       },
       "topics": [
         "iessen",
@@ -665,7 +692,8 @@
       },
       "freq": 122,
       "rank": 12,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "SOLLEN1",
@@ -693,7 +721,8 @@
       "imperative": null,
       "example": {
         "lb": "du solls follegen, wann deng Elteren der eppes soen!",
-        "audioId": "2e95aa85637a3558536c4cf6df34159c"
+        "audioId": "2e95aa85637a3558536c4cf6df34159c",
+        "a1": false
       },
       "topics": [
         "gesondheet",
@@ -713,7 +742,8 @@
       },
       "freq": 118,
       "rank": 13,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "GESINN1",
@@ -744,7 +774,8 @@
       },
       "example": {
         "lb": "vu menger Fënster aus gesinn ech d'Kathedral",
-        "audioId": "d5118ae56baba0e2014ad54e5c85abd3"
+        "audioId": "d5118ae56baba0e2014ad54e5c85abd3",
+        "a1": false
       },
       "topics": [
         "medien"
@@ -759,7 +790,8 @@
       },
       "freq": 110,
       "rank": 14,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "SCHWATZEN1",
@@ -790,7 +822,8 @@
       },
       "example": {
         "lb": "mäi Monni schwätzt fléissend véier Sproochen",
-        "audioId": "59444f1440aa975ceca1079a26e7ed3b"
+        "audioId": "59444f1440aa975ceca1079a26e7ed3b",
+        "a1": false
       },
       "topics": [
         "sproochen"
@@ -805,7 +838,8 @@
       },
       "freq": 103,
       "rank": 15,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "SPILLEN1",
@@ -836,7 +870,8 @@
       },
       "example": {
         "lb": "d'Kanner spillen an der Paus gär Fänkches",
-        "audioId": "a5e7b9abacf2c150e58940b217b42a98"
+        "audioId": "a5e7b9abacf2c150e58940b217b42a98",
+        "a1": false
       },
       "topics": [
         "kreativitéit",
@@ -853,7 +888,8 @@
       },
       "freq": 97,
       "rank": 16,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "STOEN1",
@@ -884,7 +920,8 @@
       },
       "example": {
         "lb": "no deem laange Sëtze war ech frou, emol nees ze stoen",
-        "audioId": "51daeb980d8091f2f8353aa98cd1accd"
+        "audioId": "51daeb980d8091f2f8353aa98cd1accd",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -906,7 +943,8 @@
       },
       "freq": 96,
       "rank": 17,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "KAFEN1",
@@ -937,7 +975,8 @@
       },
       "example": {
         "lb": "ech kafe mir elo eng gutt Mettwurscht!",
-        "audioId": "159b2f3bc7e5931b96528aaf9cf947bf"
+        "audioId": "159b2f3bc7e5931b96528aaf9cf947bf",
+        "a1": true
       },
       "topics": [
         "wunnen"
@@ -952,7 +991,8 @@
       },
       "freq": 83,
       "rank": 18,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "SETZEN2",
@@ -983,7 +1023,8 @@
       },
       "example": {
         "lb": "setz den Auto an d'Garage, ier et reent!",
-        "audioId": "02ec7802b08ff4846a41efa44f974d7d"
+        "audioId": "02ec7802b08ff4846a41efa44f974d7d",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -998,7 +1039,8 @@
       },
       "freq": 83,
       "rank": 19,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "FALEN1",
@@ -1029,7 +1071,8 @@
       },
       "example": {
         "lb": "pass op, d'Äsche vun denger Zigarett falen op de Buedem!",
-        "audioId": "98054ed24ea6003364e5117c6c77d5d8"
+        "audioId": "98054ed24ea6003364e5117c6c77d5d8",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -1048,7 +1091,8 @@
       },
       "freq": 81,
       "rank": 20,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "BLEIWEN1",
@@ -1079,7 +1123,8 @@
       },
       "example": {
         "lb": "ech kann net laang bleiwen, ech hunn ëm zwou Auer e Rendez-vous",
-        "audioId": "22be5faf3350cb4add29d0b92b09ff75"
+        "audioId": "22be5faf3350cb4add29d0b92b09ff75",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -1096,7 +1141,8 @@
       },
       "freq": 77,
       "rank": 21,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "WELLEN1",
@@ -1124,7 +1170,8 @@
       "imperative": null,
       "example": {
         "lb": "trotz staarke Protester wëllt d'Regierung un der Reform festhalen",
-        "audioId": "079adf149c1fc25ff1ba6898964a61da"
+        "audioId": "079adf149c1fc25ff1ba6898964a61da",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -1136,7 +1183,8 @@
       "cloze": null,
       "freq": 76,
       "rank": 22,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "FUEREN1",
@@ -1167,7 +1215,8 @@
       },
       "example": {
         "lb": "all Dag fueren Dausende vun Automobilisten iwwer dës Bréck",
-        "audioId": "fb796442cdb0a87946c592af55abc89c"
+        "audioId": "fb796442cdb0a87946c592af55abc89c",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -1182,7 +1231,8 @@
       },
       "freq": 73,
       "rank": 23,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "HALEN1",
@@ -1213,7 +1263,8 @@
       },
       "example": {
         "lb": "ech schëdden, hal du den Triichter!",
-        "audioId": "38f31a00f6504d7909895ee58cf09c13"
+        "audioId": "38f31a00f6504d7909895ee58cf09c13",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -1229,7 +1280,8 @@
       "cloze": null,
       "freq": 71,
       "rank": 24,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "KUCKEN1",
@@ -1260,7 +1312,8 @@
       },
       "example": {
         "lb": "kuck mech emol an d'Aen!",
-        "audioId": "37674f1846b21b43bd187db7040b8ec1"
+        "audioId": "37674f1846b21b43bd187db7040b8ec1",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -1272,7 +1325,8 @@
       "cloze": null,
       "freq": 69,
       "rank": 25,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "DRENKEN1",
@@ -1303,7 +1357,8 @@
       },
       "example": {
         "lb": "ech drénke just e Glas Waasser",
-        "audioId": "8ef1572e3a9716211d5a00aa4d1eca5f"
+        "audioId": "8ef1572e3a9716211d5a00aa4d1eca5f",
+        "a1": true
       },
       "topics": [
         "famill",
@@ -1321,7 +1376,8 @@
       },
       "freq": 66,
       "rank": 26,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "SCHREIWEN1",
@@ -1352,7 +1408,8 @@
       },
       "example": {
         "lb": "den Expediteur hat vergiess, seng Adress op de Pak ze schreiwen",
-        "audioId": "3f78d4da1da3a60d92eb8714ba4ba988"
+        "audioId": "3f78d4da1da3a60d92eb8714ba4ba988",
+        "a1": false
       },
       "topics": [
         "liesen"
@@ -1367,7 +1424,8 @@
       },
       "freq": 61,
       "rank": 27,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "SCHAFFEN3",
@@ -1398,7 +1456,8 @@
       },
       "example": {
         "lb": "d'Aarbechter hu séier an effikass geschafft",
-        "audioId": "cdb190c1cb670f8aa5050814a6c186bd"
+        "audioId": "cdb190c1cb670f8aa5050814a6c186bd",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -1413,7 +1472,8 @@
       },
       "freq": 60,
       "rank": 28,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "SETZEN1",
@@ -1444,7 +1504,8 @@
       },
       "example": {
         "lb": "no deem laange Stoen deet et gutt, emol erëm kënnen ze sëtzen",
-        "audioId": "f520258ee403079d11b714f81de868e0"
+        "audioId": "f520258ee403079d11b714f81de868e0",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -1460,7 +1521,8 @@
       },
       "freq": 57,
       "rank": 29,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "SOEN1",
@@ -1491,7 +1553,8 @@
       },
       "example": {
         "lb": "eist Klengt ka schonn eng ganz Partie Wierder soen",
-        "audioId": "f2469768c8c9982341d52ce46a3b3492"
+        "audioId": "f2469768c8c9982341d52ce46a3b3492",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -1512,7 +1575,8 @@
       },
       "freq": 57,
       "rank": 30,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "BRENGEN1",
@@ -1543,7 +1607,8 @@
       },
       "example": {
         "lb": "eisen Noper bréngt eis haut eng Kouert Holz",
-        "audioId": "b8cc05655ac37a3366d9b070245e5396"
+        "audioId": "b8cc05655ac37a3366d9b070245e5396",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -1558,7 +1623,8 @@
       },
       "freq": 56,
       "rank": 31,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "FANNEN1",
@@ -1589,7 +1655,8 @@
       },
       "example": {
         "lb": "ech hunn am Bësch eng Auer fonnt",
-        "audioId": "a30c14d3c55cd2dc4b5589f9fbe017fb"
+        "audioId": "a30c14d3c55cd2dc4b5589f9fbe017fb",
+        "a1": true
       },
       "topics": [
         "aarbecht",
@@ -1606,7 +1673,8 @@
       },
       "freq": 56,
       "rank": 32,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "WUNNEN1",
@@ -1634,7 +1702,8 @@
       "imperative": null,
       "example": {
         "lb": "mir wunnen an enger aler Millen, déi mer restauréiert hunn",
-        "audioId": "7901a74ac5b46d5b2c0ec4562b8b88d1"
+        "audioId": "7901a74ac5b46d5b2c0ec4562b8b88d1",
+        "a1": false
       },
       "topics": [
         "wunnen"
@@ -1649,7 +1718,8 @@
       },
       "freq": 56,
       "rank": 33,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "DENKEN1",
@@ -1680,7 +1750,8 @@
       },
       "example": {
         "lb": "ech ka vu Middegkeet net méi kloer denken",
-        "audioId": "c457e876713f1d375386b2b84e6d8564"
+        "audioId": "c457e876713f1d375386b2b84e6d8564",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -1698,7 +1769,8 @@
       },
       "freq": 52,
       "rank": 34,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "LAFEN1",
@@ -1729,7 +1801,8 @@
       },
       "example": {
         "lb": "du kanns méi séier lafen ewéi ech",
-        "audioId": "c7af9f0278417e0d2f2e06f76b445e96"
+        "audioId": "c7af9f0278417e0d2f2e06f76b445e96",
+        "a1": true
       },
       "topics": [
         "sport"
@@ -1744,7 +1817,8 @@
       },
       "freq": 52,
       "rank": 35,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "DAERFEN1",
@@ -1772,7 +1846,8 @@
       "imperative": null,
       "example": {
         "lb": "an enger Demokratie däerf all Bierger seng Meenung soen",
-        "audioId": "6dad4644aa33441ad1b87bb9948b7429"
+        "audioId": "6dad4644aa33441ad1b87bb9948b7429",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -1785,7 +1860,8 @@
       },
       "freq": 48,
       "rank": 36,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "BRAUCHEN1",
@@ -1816,7 +1892,8 @@
       },
       "example": {
         "lb": "bei dësem Dokter brauch een net laang ze waarden, fir e Rendez-vous ze kréien",
-        "audioId": "7e01e818396f83e68e8cc8096e815198"
+        "audioId": "7e01e818396f83e68e8cc8096e815198",
+        "a1": false
       },
       "topics": [
         "hobbyen"
@@ -1826,7 +1903,8 @@
       "cloze": null,
       "freq": 45,
       "rank": 37,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "BRIECHEN1",
@@ -1857,7 +1935,8 @@
       },
       "example": {
         "lb": "d'Kanner hu beim Spillen eng Vas gebrach",
-        "audioId": "7a4d07a58f9df3e0b0cef3d995fae357"
+        "audioId": "7a4d07a58f9df3e0b0cef3d995fae357",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -1872,7 +1951,8 @@
       },
       "freq": 41,
       "rank": 38,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "KENNEN2",
@@ -1900,7 +1980,8 @@
       "imperative": null,
       "example": {
         "lb": "mir kennen eis zënter e puer Joer",
-        "audioId": "04b1b2a7bdd9e7a9019944be941b7dd0"
+        "audioId": "04b1b2a7bdd9e7a9019944be941b7dd0",
+        "a1": false
       },
       "topics": [
         "famill"
@@ -1915,7 +1996,8 @@
       },
       "freq": 41,
       "rank": 39,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "STELLEN1",
@@ -1946,7 +2028,8 @@
       },
       "example": {
         "lb": "fir de Wäin ze versuergen, soll een d'Fläsche leeën, net stellen",
-        "audioId": "7aeadf45728b81092d4bcc5020a35c30"
+        "audioId": "7aeadf45728b81092d4bcc5020a35c30",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -1961,7 +2044,8 @@
       },
       "freq": 41,
       "rank": 40,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "WEISEN1",
@@ -1992,7 +2076,8 @@
       },
       "example": {
         "lb": "ech weisen der de Plang vum Haus, fir datt s de der kanns eng Iddi dervu maachen",
-        "audioId": "edfcfac7ccaefa5950bbb4a073559890"
+        "audioId": "edfcfac7ccaefa5950bbb4a073559890",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -2011,7 +2096,8 @@
       },
       "freq": 41,
       "rank": 41,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "RUFFEN1",
@@ -2042,7 +2128,8 @@
       },
       "example": {
         "lb": "ruff mech, wann d'Iesse fäerdeg ass!",
-        "audioId": "8faf4d6f32d706eece1b3d64a40df4ad"
+        "audioId": "8faf4d6f32d706eece1b3d64a40df4ad",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -2054,7 +2141,8 @@
       "cloze": null,
       "freq": 40,
       "rank": 42,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "UFANKEN1",
@@ -2085,7 +2173,8 @@
       },
       "example": {
         "lb": "ier s de deng Ried ufänks, muss de der Gehéier verschafen",
-        "audioId": "d5db3ceed5d91e433f8b5d69bcccc60c"
+        "audioId": "d5db3ceed5d91e433f8b5d69bcccc60c",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -2105,7 +2194,8 @@
       },
       "freq": 40,
       "rank": 43,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "VERSTOEN1",
@@ -2136,7 +2226,8 @@
       },
       "example": {
         "lb": "fir deen Text ze verstoen, hunn ech dacks am Dictionnaire missen nokucken",
-        "audioId": "76845ac778757e02ff20dd67f858e771"
+        "audioId": "76845ac778757e02ff20dd67f858e771",
+        "a1": false
       },
       "topics": [
         "sproochen"
@@ -2151,7 +2242,8 @@
       },
       "freq": 40,
       "rank": 44,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "BEZUELEN1",
@@ -2182,7 +2274,8 @@
       },
       "example": {
         "lb": "de Client huet d'Wuer boer bezuelt",
-        "audioId": "b4106f74ed76cd8508de17a6bbfc6935"
+        "audioId": "b4106f74ed76cd8508de17a6bbfc6935",
+        "a1": true
       },
       "topics": [
         "wunnen"
@@ -2197,7 +2290,8 @@
       },
       "freq": 38,
       "rank": 45,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "SENGEN2",
@@ -2228,7 +2322,8 @@
       },
       "example": {
         "lb": "ech hu meng nei Blus beim Strecke gesengt",
-        "audioId": "8aac4f926407dcb165343890692cfa53"
+        "audioId": "8aac4f926407dcb165343890692cfa53",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -2241,7 +2336,8 @@
       },
       "freq": 38,
       "rank": 46,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "ANTWEREN1",
@@ -2272,7 +2368,8 @@
       },
       "example": {
         "lb": "äntwer iergendeppes, hien ass souwisou hallef daf!",
-        "audioId": "87d26d534ea75fcb54228db7231a7f80"
+        "audioId": "87d26d534ea75fcb54228db7231a7f80",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -2285,7 +2382,8 @@
       },
       "freq": 37,
       "rank": 47,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "SCHLOFEN1",
@@ -2316,7 +2414,8 @@
       },
       "example": {
         "lb": "ech leie gär um Bauch fir ze schlofen",
-        "audioId": "3c78dc5384f52f01dacad72006d5aacd"
+        "audioId": "3c78dc5384f52f01dacad72006d5aacd",
+        "a1": true
       },
       "topics": [
         "feierdeeg"
@@ -2331,7 +2430,8 @@
       },
       "freq": 35,
       "rank": 48,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "LEIEREN2",
@@ -2362,7 +2462,8 @@
       },
       "example": {
         "lb": "ech sinn an engem Cours, fir Lëtzebuergesch ze léieren",
-        "audioId": "d9bdb5dab947d1ebae3ba6167867c58a"
+        "audioId": "d9bdb5dab947d1ebae3ba6167867c58a",
+        "a1": true
       },
       "topics": [
         "sproochen"
@@ -2377,7 +2478,8 @@
       },
       "freq": 31,
       "rank": 49,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "FLEIEN1",
@@ -2408,7 +2510,8 @@
       },
       "example": {
         "lb": "d'Schmuebele fléien héich iwwer den Haiser",
-        "audioId": "3eb7328da6921ab94585b6a73d3e4bcc"
+        "audioId": "3eb7328da6921ab94585b6a73d3e4bcc",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -2424,7 +2527,8 @@
       },
       "freq": 30,
       "rank": 50,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "OPMAACHEN1",
@@ -2455,7 +2559,8 @@
       },
       "example": {
         "lb": "hien huet d'Fënster opgemaach, fir den Donst erauszeloossen",
-        "audioId": "4792739ee70116080ab10a73599c58d5"
+        "audioId": "4792739ee70116080ab10a73599c58d5",
+        "a1": false
       },
       "topics": [
         "joreszäiten",
@@ -2473,7 +2578,8 @@
       },
       "freq": 30,
       "rank": 51,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "PACKEN1",
@@ -2504,7 +2610,8 @@
       },
       "example": {
         "lb": "wa Grëffer um Cageot wieren, géif ech e besser packen",
-        "audioId": "f11d137ffe2e6e787e94fc6f2c462a94"
+        "audioId": "f11d137ffe2e6e787e94fc6f2c462a94",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -2521,7 +2628,8 @@
       },
       "freq": 29,
       "rank": 52,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "FAERTEN1",
@@ -2552,7 +2660,8 @@
       },
       "example": {
         "lb": "d'Kanner fäerten den Houseker",
-        "audioId": "062a94ae1cb38c621e485e0399b92f98"
+        "audioId": "062a94ae1cb38c621e485e0399b92f98",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -2567,7 +2676,8 @@
       },
       "freq": 28,
       "rank": 53,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "SCHNEIDEN1",
@@ -2598,7 +2708,8 @@
       },
       "example": {
         "lb": "du muss d'Fleesch géint de Fuedem schneiden",
-        "audioId": "610a2bb4680edfb6d667c4a1b7c9f9eb"
+        "audioId": "610a2bb4680edfb6d667c4a1b7c9f9eb",
+        "a1": false
       },
       "topics": [
         "transport",
@@ -2614,7 +2725,8 @@
       },
       "freq": 28,
       "rank": 54,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "WAARDEN1",
@@ -2645,7 +2757,8 @@
       },
       "example": {
         "lb": "waart, bis de geruff gëss!",
-        "audioId": "5422904ca656361822715f881b1d9188"
+        "audioId": "5422904ca656361822715f881b1d9188",
+        "a1": false
       },
       "topics": [
         "iessen"
@@ -2655,7 +2768,8 @@
       "cloze": null,
       "freq": 28,
       "rank": 55,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "FANKEN1",
@@ -2686,7 +2800,8 @@
       },
       "example": {
         "lb": "d'Zaldoten hunn dräi Partisane gefaangen",
-        "audioId": "b2cfcbd78390ffe9ee0f2257129e3e51"
+        "audioId": "b2cfcbd78390ffe9ee0f2257129e3e51",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -2699,7 +2814,8 @@
       },
       "freq": 26,
       "rank": 56,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "KLAMMEN1",
@@ -2730,7 +2846,8 @@
       },
       "example": {
         "lb": "fir kënnen ze klammen, muss e Ballon mat waarmer Loft gefëllt ginn",
-        "audioId": "294c093e4000d2b63dd8757add93c372"
+        "audioId": "294c093e4000d2b63dd8757add93c372",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -2745,7 +2862,8 @@
       },
       "freq": 26,
       "rank": 57,
-      "stage": 2
+      "stage": 2,
+      "a1": false
     },
     {
       "id": "SCHMAACHEN1",
@@ -2776,7 +2894,8 @@
       },
       "example": {
         "lb": "dee Fësch huet e komesche Goût, schmaachs de dat net?",
-        "audioId": "0501746efdfad220aea7bdf52c87b4d1"
+        "audioId": "0501746efdfad220aea7bdf52c87b4d1",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -2792,7 +2911,8 @@
       },
       "freq": 26,
       "rank": 58,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "SCHWAMMEN1",
@@ -2823,7 +2943,8 @@
       },
       "example": {
         "lb": "meng Mamm huet eréischt spéit schwamme geléiert",
-        "audioId": "ccf3f795ea2040424f1c23c53bd7e4c0"
+        "audioId": "ccf3f795ea2040424f1c23c53bd7e4c0",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -2838,7 +2959,8 @@
       },
       "freq": 26,
       "rank": 59,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "BESTELLEN1",
@@ -2869,7 +2991,8 @@
       },
       "example": {
         "lb": "eist Klengt huet sech ganz eleng bei der Serveuse en Dessert bestallt",
-        "audioId": "8b9aaad288e4ebbf30b90db1226fbc71"
+        "audioId": "8b9aaad288e4ebbf30b90db1226fbc71",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -2884,7 +3007,8 @@
       },
       "freq": 25,
       "rank": 60,
-      "stage": 2
+      "stage": 2,
+      "a1": true
     },
     {
       "id": "VERKAFEN1",
@@ -2915,7 +3039,8 @@
       },
       "example": {
         "lb": "wa meng Aktie bis geklomme sinn, verkafen ech se!",
-        "audioId": "8d8469197700ede9bf652b0bd8b6ee07"
+        "audioId": "8d8469197700ede9bf652b0bd8b6ee07",
+        "a1": false
       },
       "topics": [
         "liesen"
@@ -2930,7 +3055,8 @@
       },
       "freq": 24,
       "rank": 66,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "HELLEFEN1",
@@ -2961,7 +3087,8 @@
       },
       "example": {
         "lb": "hie steet do, näischt ze maachen, amplaz ze hëllefen",
-        "audioId": "6929fa5a42fe706a167a9453c0ccc821"
+        "audioId": "6929fa5a42fe706a167a9453c0ccc821",
+        "a1": false
       },
       "topics": [
         "gesondheet",
@@ -2977,7 +3104,8 @@
       },
       "freq": 23,
       "rank": 68,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "HEESCHEN1",
@@ -3005,7 +3133,8 @@
       "imperative": null,
       "example": {
         "lb": "wéi heeschs du?",
-        "audioId": "1b3d09cd6408058d530540cd16c578a6"
+        "audioId": "1b3d09cd6408058d530540cd16c578a6",
+        "a1": true
       },
       "topics": [
         "sproochen",
@@ -3021,7 +3150,8 @@
       },
       "freq": 21,
       "rank": 75,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "LAUSCHTEREN1",
@@ -3052,7 +3182,8 @@
       },
       "example": {
         "lb": "hues du de Moien de Radio gelauschtert?",
-        "audioId": "4baecf86c904acb21ed87df1a3d2986e"
+        "audioId": "4baecf86c904acb21ed87df1a3d2986e",
+        "a1": true
       },
       "topics": [
         "kreativitéit",
@@ -3068,7 +3199,8 @@
       },
       "freq": 21,
       "rank": 76,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "BESTOEN1",
@@ -3099,7 +3231,8 @@
       },
       "example": {
         "lb": "dëse Buttek besteet schonn zënter méi ewéi 100 Joer",
-        "audioId": "c47f0ca9c2aee76d2c51278e5c045d9d"
+        "audioId": "c47f0ca9c2aee76d2c51278e5c045d9d",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -3114,7 +3247,8 @@
       },
       "freq": 20,
       "rank": 79,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "MENGEN1",
@@ -3145,7 +3279,8 @@
       },
       "example": {
         "lb": "meng net, ech géif dech fäerten!",
-        "audioId": "d4a77362dfdf3ce60f4f84a0fec4b53b"
+        "audioId": "d4a77362dfdf3ce60f4f84a0fec4b53b",
+        "a1": false
       },
       "topics": [
         "sproochen",
@@ -3156,7 +3291,8 @@
       "cloze": null,
       "freq": 20,
       "rank": 83,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "OPSTOEN2",
@@ -3187,7 +3323,8 @@
       },
       "example": {
         "lb": "d'Leit sinn opgestanen, wéi d'Nationalhymn gespillt gouf",
-        "audioId": "542bdd14508d32346b30f1ce021e9b23"
+        "audioId": "542bdd14508d32346b30f1ce021e9b23",
+        "a1": false
       },
       "topics": [
         "gesondheet",
@@ -3203,7 +3340,8 @@
       },
       "freq": 20,
       "rank": 84,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "OPHALEN1",
@@ -3234,7 +3372,8 @@
       },
       "example": {
         "lb": "hien huet der Madamm d'Dier opgehalen",
-        "audioId": "e55f34cf1c4dda1f845875a7e7c77378"
+        "audioId": "e55f34cf1c4dda1f845875a7e7c77378",
+        "a1": true
       },
       "topics": [
         "wunnen"
@@ -3249,7 +3388,8 @@
       },
       "freq": 19,
       "rank": 87,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "SPRANGEN1",
@@ -3280,7 +3420,8 @@
       },
       "example": {
         "lb": "ech ka méi héich sprangen ewéi mäi Brudder",
-        "audioId": "7b09927d28bcde38c65d080bc969fbb2"
+        "audioId": "7b09927d28bcde38c65d080bc969fbb2",
+        "a1": false
       },
       "topics": [
         "iessen"
@@ -3295,7 +3436,8 @@
       },
       "freq": 19,
       "rank": 91,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "SICHEN1",
@@ -3326,7 +3468,8 @@
       },
       "example": {
         "lb": "ech hunn de ganzen Dag mäi Liesbrëll gesicht",
-        "audioId": "fc69c112a55b36e9d710bbd30832682c"
+        "audioId": "fc69c112a55b36e9d710bbd30832682c",
+        "a1": false
       },
       "topics": [
         "vakanz"
@@ -3341,7 +3484,8 @@
       },
       "freq": 17,
       "rank": 100,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "SANGEN1",
@@ -3372,7 +3516,8 @@
       },
       "example": {
         "lb": "fir Chrëschtdag huet de Chouer all déi bekannt Lidder gesongen",
-        "audioId": "5805a84d6e0e2577b7f1ad587e5f72e4"
+        "audioId": "5805a84d6e0e2577b7f1ad587e5f72e4",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -3387,7 +3532,8 @@
       },
       "freq": 16,
       "rank": 107,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "BAKEN1",
@@ -3418,7 +3564,8 @@
       },
       "example": {
         "lb": "de Bäcker huet fir e Client fofzeg Baguettë gebak",
-        "audioId": "18aed6852f23359cd45f78e7b0faba5f"
+        "audioId": "18aed6852f23359cd45f78e7b0faba5f",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -3433,7 +3580,8 @@
       },
       "freq": 15,
       "rank": 108,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "KONTROLLEIEREN1",
@@ -3464,7 +3612,8 @@
       },
       "example": {
         "lb": "nom Uschlag huet d'Police all Ausgäng vun der Gare kontrolléiert",
-        "audioId": "a9cfc3d7744eb2d7f4119178d020e419"
+        "audioId": "a9cfc3d7744eb2d7f4119178d020e419",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -3479,7 +3628,8 @@
       },
       "freq": 15,
       "rank": 111,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "PRESENTEIEREN1",
@@ -3510,7 +3660,8 @@
       },
       "example": {
         "lb": "um Enn presentéiere mir d'Conclusioune vun eiser Diskussioun",
-        "audioId": "fb6338e20110a8c37c615ad92816939b"
+        "audioId": "fb6338e20110a8c37c615ad92816939b",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -3525,7 +3676,8 @@
       },
       "freq": 15,
       "rank": 114,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "UMELLEN1",
@@ -3556,7 +3708,8 @@
       },
       "example": {
         "lb": "de Papp ass ganz houfereg seng Zwillingen op d'Gemeng umelle gaangen",
-        "audioId": "0d09f2d6908ac6213cc6b12dfb456cd8"
+        "audioId": "0d09f2d6908ac6213cc6b12dfb456cd8",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -3573,7 +3726,8 @@
       },
       "freq": 15,
       "rank": 116,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "FROEN1",
@@ -3604,7 +3758,8 @@
       },
       "example": {
         "lb": "et huet keen dech eppes gefrot!",
-        "audioId": "975b057d120842ac1da5a1a4d582908b"
+        "audioId": "975b057d120842ac1da5a1a4d582908b",
+        "a1": true
       },
       "topics": [
         "aarbecht",
@@ -3620,7 +3775,8 @@
       },
       "freq": 14,
       "rank": 121,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "SAMMELEN1",
@@ -3651,7 +3807,8 @@
       },
       "example": {
         "lb": "am Hierscht sammelen d'Kaweechelcher äifereg Nëss an Eechelen",
-        "audioId": "51835657953e65ca41ce2fdfccf4540a"
+        "audioId": "51835657953e65ca41ce2fdfccf4540a",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -3666,7 +3823,8 @@
       },
       "freq": 14,
       "rank": 122,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "WAERTEN1",
@@ -3687,7 +3845,8 @@
       "imperative": null,
       "example": {
         "lb": "si wäerten ni en Amateur fannen, wann se de Präis vum Haus net erofsetzen",
-        "audioId": "7c9d6b6b1bf60b8959fa26686c15889f"
+        "audioId": "7c9d6b6b1bf60b8959fa26686c15889f",
+        "a1": false
       },
       "topics": [
         "iessen",
@@ -3706,7 +3865,8 @@
       },
       "freq": 14,
       "rank": 123,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "DANZEN1",
@@ -3737,7 +3897,8 @@
       },
       "example": {
         "lb": "d'Brautpuer huet eng Walz gedanzt",
-        "audioId": "5bdd1d3c05e47e7b0f0e11a06b649d4e"
+        "audioId": "5bdd1d3c05e47e7b0f0e11a06b649d4e",
+        "a1": false
       },
       "topics": [
         "hobbyen"
@@ -3752,7 +3913,8 @@
       },
       "freq": 13,
       "rank": 126,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "KACHEN2",
@@ -3783,7 +3945,8 @@
       },
       "example": {
         "lb": "du hues d'Nuddelen eng Grimmel ze laang gekacht",
-        "audioId": "af46df71d62338f1eff54f9585d652a1"
+        "audioId": "af46df71d62338f1eff54f9585d652a1",
+        "a1": false
       },
       "topics": [
         "iessen"
@@ -3798,7 +3961,8 @@
       },
       "freq": 13,
       "rank": 129,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "DECKEN2",
@@ -3829,7 +3993,8 @@
       },
       "example": {
         "lb": "den Daach vum Haus muss nach virum Wanter nei gedeckt ginn",
-        "audioId": "c236889e29b39a35b7c0774dcaa95601"
+        "audioId": "c236889e29b39a35b7c0774dcaa95601",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -3844,7 +4009,8 @@
       },
       "freq": 12,
       "rank": 136,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "ERWACHEN1",
@@ -3875,7 +4041,8 @@
       },
       "example": {
         "lb": "erwäch mech muer de Moien ëm siwen Auer!",
-        "audioId": "9bd1640635f4d3031bc70763e5aa8694"
+        "audioId": "9bd1640635f4d3031bc70763e5aa8694",
+        "a1": false
       },
       "topics": [
         "medien"
@@ -3890,7 +4057,8 @@
       },
       "freq": 12,
       "rank": 139,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "MOLEN1",
@@ -3921,7 +4089,8 @@
       },
       "example": {
         "lb": "et huet e Kënschtler e Portrait vu mir gemoolt",
-        "audioId": "b189c9e17511362d939e9ec86c79cd39"
+        "audioId": "b189c9e17511362d939e9ec86c79cd39",
+        "a1": false
       },
       "topics": [
         "kreativitéit"
@@ -3936,7 +4105,8 @@
       },
       "freq": 12,
       "rank": 143,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "TELEFONEIEREN1",
@@ -3967,7 +4137,8 @@
       },
       "example": {
         "lb": "déi zwou Frëndinnen telefonéieren heiansdo stonnelaang mateneen",
-        "audioId": "b106e28b6f2f5b49d5b1bd66d5bb9134"
+        "audioId": "b106e28b6f2f5b49d5b1bd66d5bb9134",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -3982,7 +4153,8 @@
       },
       "freq": 12,
       "rank": 146,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "WIDDERHUELEN1",
@@ -4013,7 +4185,8 @@
       },
       "example": {
         "lb": "kanns de däi leschte Saz wannechgelift widderhuelen?",
-        "audioId": "43967de58a6d09d4d3c4046b235836e4"
+        "audioId": "43967de58a6d09d4d3c4046b235836e4",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -4026,7 +4199,8 @@
       },
       "freq": 11,
       "rank": 155,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "AMESEIEREN1",
@@ -4057,7 +4231,8 @@
       },
       "example": {
         "lb": "de Clown ameséiert esouwuel d'Kanner ewéi och hir Elteren",
-        "audioId": "a734944030829cc2dc98827a881809c7"
+        "audioId": "a734944030829cc2dc98827a881809c7",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -4070,7 +4245,8 @@
       },
       "freq": 10,
       "rank": 157,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "BASTELEN1",
@@ -4101,7 +4277,8 @@
       },
       "example": {
         "lb": "mir bastelen e Päerdchen aus Drot, dat ech an enger Zeitung fonnt hunn",
-        "audioId": "b15ba43fd19adf8cc480ea76669f1554"
+        "audioId": "b15ba43fd19adf8cc480ea76669f1554",
+        "a1": false
       },
       "topics": [
         "kaddoen",
@@ -4117,7 +4294,8 @@
       },
       "freq": 10,
       "rank": 159,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "FEIEREN1",
@@ -4148,7 +4326,8 @@
       },
       "example": {
         "lb": "e Samschdeg feieren ech mäi Gebuertsdag",
-        "audioId": "2f5d63b5d9c3185d82947c1da1408c34"
+        "audioId": "2f5d63b5d9c3185d82947c1da1408c34",
+        "a1": true
       },
       "topics": [
         "kaddoen"
@@ -4163,7 +4342,8 @@
       },
       "freq": 10,
       "rank": 161,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "HEIEREN1",
@@ -4194,7 +4374,8 @@
       },
       "example": {
         "lb": "wéinst dem Kaméidi huet keen héieren, wat de Riedner gesot huet",
-        "audioId": "46e16a36352c1a27b618b96766cc97e9"
+        "audioId": "46e16a36352c1a27b618b96766cc97e9",
+        "a1": false
       },
       "topics": [
         "sproochen"
@@ -4209,7 +4390,8 @@
       },
       "freq": 10,
       "rank": 162,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "LIESEN1",
@@ -4240,7 +4422,8 @@
       },
       "example": {
         "lb": "ech liese grad e spannend Buch",
-        "audioId": "755618236ed389a5c7293b44a41a3c68"
+        "audioId": "755618236ed389a5c7293b44a41a3c68",
+        "a1": false
       },
       "topics": [
         "hobbyen"
@@ -4250,7 +4433,8 @@
       "cloze": null,
       "freq": 10,
       "rank": 163,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "BRODEN1",
@@ -4281,7 +4465,8 @@
       },
       "example": {
         "lb": "de Kach bréit d'Gromperen an enger gossener Pan",
-        "audioId": "75e7d985f843781b8cfc6d2be1a5d23f"
+        "audioId": "75e7d985f843781b8cfc6d2be1a5d23f",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -4289,7 +4474,8 @@
       "cloze": null,
       "freq": 9,
       "rank": 170,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "MATHUELEN1",
@@ -4320,7 +4506,8 @@
       },
       "example": {
         "lb": "an der Hetz hat ech vergiess, e Prabbeli matzehuelen",
-        "audioId": "0512952a2607b6057faec213e5799653"
+        "audioId": "0512952a2607b6057faec213e5799653",
+        "a1": false
       },
       "topics": [
         "iessen",
@@ -4336,7 +4523,8 @@
       },
       "freq": 9,
       "rank": 172,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "WASCHEN1",
@@ -4367,7 +4555,8 @@
       },
       "example": {
         "lb": "géi wäsch deng knaschteg Fangeren!",
-        "audioId": "28cfe814bb5b3c7a821b0d98e2b10394"
+        "audioId": "28cfe814bb5b3c7a821b0d98e2b10394",
+        "a1": false
       },
       "topics": [
         "stot"
@@ -4377,7 +4566,8 @@
       "cloze": null,
       "freq": 9,
       "rank": 180,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "BESICHEN1",
@@ -4408,7 +4598,8 @@
       },
       "example": {
         "lb": "kommt eis dach emol besichen!",
-        "audioId": "5a64ac7759757a0cde7ebe05a4dc2837"
+        "audioId": "5a64ac7759757a0cde7ebe05a4dc2837",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -4421,7 +4612,8 @@
       },
       "freq": 8,
       "rank": 183,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "FIERWEN1",
@@ -4452,7 +4644,8 @@
       },
       "example": {
         "lb": "eis Léierin huet hir Neel ëmmer rout gefierft",
-        "audioId": "d8ccfaa44e41599a05224f570aaa916d"
+        "audioId": "d8ccfaa44e41599a05224f570aaa916d",
+        "a1": false
       },
       "topics": [
         "kreativitéit",
@@ -4468,7 +4661,8 @@
       },
       "freq": 8,
       "rank": 185,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "SPADSEIEREN1",
@@ -4499,7 +4693,8 @@
       },
       "example": {
         "lb": "mir ginn all Sonndeg an de Bësch spadséieren",
-        "audioId": "675bcdc0762e2cac17f765c8de8797de"
+        "audioId": "675bcdc0762e2cac17f765c8de8797de",
+        "a1": true
       },
       "topics": [],
       "topicVia": null,
@@ -4512,7 +4707,8 @@
       },
       "freq": 8,
       "rank": 191,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "STEMMEN1",
@@ -4543,7 +4739,8 @@
       },
       "example": {
         "lb": "d'Gesetz gouf vun der Majoritéit gestëmmt",
-        "audioId": "a644a61e57238ae4829ca21cf8c67337"
+        "audioId": "a644a61e57238ae4829ca21cf8c67337",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -4556,7 +4753,8 @@
       },
       "freq": 8,
       "rank": 193,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "STIERWEN2",
@@ -4587,7 +4785,8 @@
       },
       "example": {
         "lb": "fréier si méi Leit un enger Blinddarmentzündung gestuerwen ewéi haut",
-        "audioId": null
+        "audioId": null,
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -4602,7 +4801,8 @@
       },
       "freq": 8,
       "rank": 194,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "STUDEIEREN1",
@@ -4633,7 +4833,8 @@
       },
       "example": {
         "lb": "ech studéiere Chimie op enger auslännescher Universitéit",
-        "audioId": "1981e5ee743b2efdd22d263f2c8db0dd"
+        "audioId": "1981e5ee743b2efdd22d263f2c8db0dd",
+        "a1": false
       },
       "topics": [
         "liesen"
@@ -4648,7 +4849,8 @@
       },
       "freq": 8,
       "rank": 195,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "TRAINEIEREN1",
@@ -4679,7 +4881,8 @@
       },
       "example": {
         "lb": "wien trainéiert déi Jonk an Ärem Club?",
-        "audioId": "985d9f80b654f124532990b8d595b96e"
+        "audioId": "985d9f80b654f124532990b8d595b96e",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -4694,7 +4897,8 @@
       },
       "freq": 8,
       "rank": 196,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "PLENNEREN2",
@@ -4725,7 +4929,8 @@
       },
       "example": {
         "lb": "dëse Weekend muss ech e puer Miwwele plënneren",
-        "audioId": "456f271b18a9c8e0ca918e69923e7ed2"
+        "audioId": "456f271b18a9c8e0ca918e69923e7ed2",
+        "a1": false
       },
       "topics": [
         "wunnen"
@@ -4740,7 +4945,8 @@
       },
       "freq": 7,
       "rank": 211,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "SCHIELEN1",
@@ -4771,7 +4977,8 @@
       },
       "example": {
         "lb": "hëllefs de mer d'Grompere schielen?",
-        "audioId": "e3f8fc6db146320ba0b3808245cdb6df"
+        "audioId": "e3f8fc6db146320ba0b3808245cdb6df",
+        "a1": true
       },
       "topics": [],
       "topicVia": null,
@@ -4784,7 +4991,8 @@
       },
       "freq": 7,
       "rank": 212,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "VERGIESSEN1",
@@ -4815,7 +5023,8 @@
       },
       "example": {
         "lb": "hien huet eise Rendez-vous vun de Mueren doudsécher vergiess",
-        "audioId": "381b5f26b0ef4c1ee962093c69d740d8"
+        "audioId": "381b5f26b0ef4c1ee962093c69d740d8",
+        "a1": false
       },
       "topics": [
         "gesondheet",
@@ -4826,7 +5035,8 @@
       "cloze": null,
       "freq": 7,
       "rank": 215,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "AKAFEN1",
@@ -4857,7 +5067,8 @@
       },
       "example": {
         "lb": "de Grosist huet seng Wueren zu engem gënschtege Präis akaaft",
-        "audioId": "63bf40942e85933735acdbe500374d84"
+        "audioId": "63bf40942e85933735acdbe500374d84",
+        "a1": false
       },
       "topics": [
         "stot"
@@ -4872,7 +5083,8 @@
       },
       "freq": 6,
       "rank": 219,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "FORTFUEREN1",
@@ -4903,7 +5115,8 @@
       },
       "example": {
         "lb": "ech muss spéitstens ëm siwen Auer fortfueren, fir matzäit op der Aarbecht ze sinn",
-        "audioId": "f840b983d3b94f5e5f7dcf5885190401"
+        "audioId": "f840b983d3b94f5e5f7dcf5885190401",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -4918,7 +5131,8 @@
       },
       "freq": 6,
       "rank": 222,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "LIICHTEN1",
@@ -4949,7 +5163,8 @@
       },
       "example": {
         "lb": "meng Auer liicht an der Däischtert",
-        "audioId": "76306f68da4ec82fd87028b4cb5339f1"
+        "audioId": "76306f68da4ec82fd87028b4cb5339f1",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -4957,7 +5172,8 @@
       "cloze": null,
       "freq": 5,
       "rank": 239,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "MATGOEN1",
@@ -4988,7 +5204,8 @@
       },
       "example": {
         "lb": "wëllt däi Brudder net matgoen?",
-        "audioId": "940829d74f5d9c5c89332d00c5a16396"
+        "audioId": "940829d74f5d9c5c89332d00c5a16396",
+        "a1": true
       },
       "topics": [
         "vakanz"
@@ -5003,7 +5220,8 @@
       },
       "freq": 5,
       "rank": 240,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "WESSEN2",
@@ -5031,7 +5249,8 @@
       "imperative": null,
       "example": {
         "lb": "eise Professer weess vill iwwer déi griichesch Mythologie",
-        "audioId": "9e6ae23bdfe895924e9541d969345e02"
+        "audioId": "9e6ae23bdfe895924e9541d969345e02",
+        "a1": false
       },
       "topics": [
         "hobbyen",
@@ -5043,7 +5262,8 @@
       "cloze": null,
       "freq": 5,
       "rank": 248,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "MESCHEN1",
@@ -5074,7 +5294,8 @@
       },
       "example": {
         "lb": "bei deem Rezept muss de fir d'éischt Zocker an Eeër mëschen",
-        "audioId": "c1db0fbb6f75a2a3e62f4c68c5f6e8e9"
+        "audioId": "c1db0fbb6f75a2a3e62f4c68c5f6e8e9",
+        "a1": true
       },
       "topics": [],
       "topicVia": null,
@@ -5087,7 +5308,8 @@
       },
       "freq": 4,
       "rank": 258,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "NOTEIEREN1",
@@ -5118,7 +5340,8 @@
       },
       "example": {
         "lb": "de Sekretär huet eis Iwwerleeungen all notéiert",
-        "audioId": "28cd9f540626262ec689fa27967e980d"
+        "audioId": "28cd9f540626262ec689fa27967e980d",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -5131,7 +5354,8 @@
       },
       "freq": 4,
       "rank": 260,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "PREPAREIEREN1",
@@ -5162,7 +5386,8 @@
       },
       "example": {
         "lb": "d'Politikerin hat hir Ried gutt preparéiert",
-        "audioId": "5ad6e0f4965d4b27a9553e38ea1f3cf1"
+        "audioId": "5ad6e0f4965d4b27a9553e38ea1f3cf1",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -5175,7 +5400,8 @@
       },
       "freq": 4,
       "rank": 262,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "STAUBSAUGEN1",
@@ -5206,7 +5432,8 @@
       },
       "example": {
         "lb": "hues du d'Stuff scho gestaubsaugt?",
-        "audioId": "1f7f7b22853d5c62f1ee4f9ab7f77d09"
+        "audioId": "1f7f7b22853d5c62f1ee4f9ab7f77d09",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -5219,7 +5446,8 @@
       },
       "freq": 4,
       "rank": 269,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "PACSEN1",
@@ -5250,7 +5478,8 @@
       },
       "example": {
         "lb": "de Buergermeeschter huet d'Koppel gepacst",
-        "audioId": "db0f01835e9e06980d117ac4346c1c54"
+        "audioId": "db0f01835e9e06980d117ac4346c1c54",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -5263,7 +5492,8 @@
       },
       "freq": 3,
       "rank": 291,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "HEEMFUEREN1",
@@ -5294,7 +5524,8 @@
       },
       "example": {
         "lb": "drénk net esou vill, du muss nach heemfueren!",
-        "audioId": "ae4c659826e0c87e63563cc93010823f"
+        "audioId": "ae4c659826e0c87e63563cc93010823f",
+        "a1": true
       },
       "topics": [
         "joreszäiten",
@@ -5310,7 +5541,8 @@
       },
       "freq": 2,
       "rank": 311,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "KASCHTEN2",
@@ -5338,7 +5570,8 @@
       "imperative": null,
       "example": {
         "lb": "d'Renovatiounsaarbechte kaschten ëm déi 50.000 Euro",
-        "audioId": "7e1ff90a83e77de8cd00d8b29e529d21"
+        "audioId": "7e1ff90a83e77de8cd00d8b29e529d21",
+        "a1": false
       },
       "topics": [
         "sproochen"
@@ -5353,7 +5586,8 @@
       },
       "freq": 2,
       "rank": 313,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "REPAREIEREN1",
@@ -5384,7 +5618,8 @@
       },
       "example": {
         "lb": "den Elektriker weess net, ob en de Radio nach ka reparéieren",
-        "audioId": "e035530dbb5dcff461dc47ebc4ee8a73"
+        "audioId": "e035530dbb5dcff461dc47ebc4ee8a73",
+        "a1": false
       },
       "topics": [
         "medien",
@@ -5400,7 +5635,8 @@
       },
       "freq": 2,
       "rank": 321,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "TANKEN1",
@@ -5431,7 +5667,8 @@
       },
       "example": {
         "lb": "ech tanke kee Bensinn, mäin Auto ass en Diesel",
-        "audioId": "f2d406c0f34ef392712391f97ed19801"
+        "audioId": "f2d406c0f34ef392712391f97ed19801",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -5441,7 +5678,8 @@
       "cloze": null,
       "freq": 2,
       "rank": 325,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "BUSCHTAWEIEREN1",
@@ -5472,7 +5710,8 @@
       },
       "example": {
         "lb": "d'Joffer buschtawéiert de Kanner déi schwéier Wierder",
-        "audioId": "39d848bb4f08d4bf9d6a10247d1e3be7"
+        "audioId": "39d848bb4f08d4bf9d6a10247d1e3be7",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -5485,7 +5724,8 @@
       },
       "freq": 1,
       "rank": 331,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "DUSCHEN1",
@@ -5516,7 +5756,8 @@
       },
       "example": {
         "lb": "d'Mamm duscht d'Kanner all Owend",
-        "audioId": "68a7dcd05d6890a56c78aeeb31f80ea0"
+        "audioId": "68a7dcd05d6890a56c78aeeb31f80ea0",
+        "a1": true
       },
       "topics": [
         "famill"
@@ -5531,7 +5772,8 @@
       },
       "freq": 1,
       "rank": 333,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "GRILLEN1",
@@ -5562,7 +5804,8 @@
       },
       "example": {
         "lb": "den Owend gi mer bei den Noper grillen",
-        "audioId": "7eeff11e70ae496b4b7800e79c470291"
+        "audioId": "7eeff11e70ae496b4b7800e79c470291",
+        "a1": true
       },
       "topics": [],
       "topicVia": null,
@@ -5575,7 +5818,8 @@
       },
       "freq": 1,
       "rank": 336,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "IWWERSETZEN1",
@@ -5606,7 +5850,8 @@
       },
       "example": {
         "lb": "ech hat nach keng Zäit, fir däin Text op Lëtzebuergesch ze iwwersetzen",
-        "audioId": "b27574edb287cac178d0b439bd043aec"
+        "audioId": "b27574edb287cac178d0b439bd043aec",
+        "a1": false
       },
       "topics": [
         "liesen",
@@ -5622,7 +5867,8 @@
       },
       "freq": 1,
       "rank": 337,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "RAPPEN1",
@@ -5653,7 +5899,8 @@
       },
       "example": {
         "lb": "mäi Mixer huet en Opsaz, fir Geméis ze rappen",
-        "audioId": "e3de8adb65f8624aa6df69124baca265"
+        "audioId": "e3de8adb65f8624aa6df69124baca265",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -5666,7 +5913,8 @@
       },
       "freq": 1,
       "rank": 342,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "DOHEEMBLEIWEN1",
@@ -5697,7 +5945,8 @@
       },
       "example": {
         "lb": "d'Consignen an de Message vun der Regierung si ganz kloer: Bleift doheem!",
-        "audioId": "162aefafe18860bb16b3bb48b3241ccf"
+        "audioId": "162aefafe18860bb16b3bb48b3241ccf",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -5707,7 +5956,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 348,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "FRAIHUNN1",
@@ -5735,7 +5985,8 @@
       "imperative": null,
       "example": {
         "lb": "de Mëtteg hunn d'Schüler fräi",
-        "audioId": "6020bef9f6518dd819f09917b855eb1e"
+        "audioId": "6020bef9f6518dd819f09917b855eb1e",
+        "a1": true
       },
       "topics": [],
       "topicVia": null,
@@ -5743,7 +5994,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 353,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "KREIEN1",
@@ -5774,7 +6026,8 @@
       },
       "example": {
         "lb": "ech hunn haut näischt mat der Post kritt",
-        "audioId": "8969e16f13a19de0abafa23509036b12"
+        "audioId": "8969e16f13a19de0abafa23509036b12",
+        "a1": true
       },
       "topics": [
         "aarbecht",
@@ -5791,7 +6044,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 355,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "OFSCHMAACHEN1",
@@ -5827,7 +6081,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 357,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "PICKNICKEN1",
@@ -5855,7 +6110,8 @@
       "imperative": null,
       "example": {
         "lb": "e Sonndeg gi mer mat Frënn picknicken",
-        "audioId": "ab8dd12e5d3da9fb7f1ee32411b49bb7"
+        "audioId": "ab8dd12e5d3da9fb7f1ee32411b49bb7",
+        "a1": true
       },
       "topics": [],
       "topicVia": null,
@@ -5868,7 +6124,8 @@
       },
       "freq": 0,
       "rank": 358,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "PLATTDRECKEN1",
@@ -5899,7 +6156,8 @@
       },
       "example": {
         "lb": "esoubal ech eng Spann gesinn, drécken ech se platt",
-        "audioId": "0277ba19ea9d271b7ebf4280d3b2c226"
+        "audioId": "0277ba19ea9d271b7ebf4280d3b2c226",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -5907,7 +6165,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 359,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "SHOPPEN1",
@@ -5938,7 +6197,8 @@
       },
       "example": {
         "lb": "hues de Loscht, muer de Mëtteg mat mir an d'Stad shoppen ze goen?",
-        "audioId": "1bf4f537bfcfd089f9b9e62830f7abc4"
+        "audioId": "1bf4f537bfcfd089f9b9e62830f7abc4",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -5951,7 +6211,8 @@
       },
       "freq": 0,
       "rank": 361,
-      "stage": 4
+      "stage": 4,
+      "a1": true
     },
     {
       "id": "PASSEN2",
@@ -5982,7 +6243,8 @@
       },
       "example": {
         "lb": "dës Schong passe mer net, se sinn eng Nummer ze kleng",
-        "audioId": "903c868a931992847894bdfac741784e"
+        "audioId": "903c868a931992847894bdfac741784e",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -5992,7 +6254,8 @@
       "cloze": null,
       "freq": 25,
       "rank": 61,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "RECHNEN1",
@@ -6023,7 +6286,8 @@
       },
       "example": {
         "lb": "erklär mer emol, wéi een d'Fläch vun engem Dräieck rechent!",
-        "audioId": "5c44496ff83768baf7a6e9a33fed3633"
+        "audioId": "5c44496ff83768baf7a6e9a33fed3633",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -6043,7 +6307,8 @@
       },
       "freq": 25,
       "rank": 62,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ENTSCHELLEGEN1",
@@ -6074,7 +6339,8 @@
       },
       "example": {
         "lb": "entschëllegt den Derangement, wannechgelift!",
-        "audioId": "34d48ca19399d071f1b58f3a6eaeb492"
+        "audioId": "34d48ca19399d071f1b58f3a6eaeb492",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -6087,7 +6353,8 @@
       },
       "freq": 24,
       "rank": 63,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "TREFFEN1",
@@ -6118,7 +6385,8 @@
       },
       "example": {
         "lb": "d'Kugel huet d'Zaldotin an de Réck getraff",
-        "audioId": "2b2a4364876dbb47d71a41ba6cfd1c7a"
+        "audioId": "2b2a4364876dbb47d71a41ba6cfd1c7a",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -6133,7 +6401,8 @@
       },
       "freq": 24,
       "rank": 64,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "UKOMMEN1",
@@ -6164,7 +6433,8 @@
       },
       "example": {
         "lb": "et dauert zwee Deeg, bis de Bréif ukënnt",
-        "audioId": "82efda5fdfa45a0f06dc8e7369c8fa2a"
+        "audioId": "82efda5fdfa45a0f06dc8e7369c8fa2a",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -6183,7 +6453,8 @@
       },
       "freq": 24,
       "rank": 65,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "FREEEN1",
@@ -6214,7 +6485,8 @@
       },
       "example": {
         "lb": "et géif eis freeën, wa mer eng Kéier zesumme géifen iesse goen",
-        "audioId": "6cd0eb96511188b4423298d8c7f0d154"
+        "audioId": "6cd0eb96511188b4423298d8c7f0d154",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -6229,7 +6501,8 @@
       },
       "freq": 23,
       "rank": 67,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SCHENKEN1",
@@ -6260,7 +6533,8 @@
       },
       "example": {
         "lb": "wat kënne mer dem Papp fir säi Gebuertsdag schenken?",
-        "audioId": "4eb9678ab321f83f7567e3d5f8dbacaf"
+        "audioId": "4eb9678ab321f83f7567e3d5f8dbacaf",
+        "a1": false
       },
       "topics": [
         "kaddoen"
@@ -6275,7 +6549,8 @@
       },
       "freq": 23,
       "rank": 69,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "HANKEN1",
@@ -6306,7 +6581,8 @@
       },
       "example": {
         "lb": "ech hunn eis zwee nei Tabloen an de Salon gehaangen",
-        "audioId": "1721481b6c52b02ec90919abb3128683"
+        "audioId": "1721481b6c52b02ec90919abb3128683",
+        "a1": false
       },
       "topics": [
         "joreszäiten",
@@ -6324,7 +6600,8 @@
       },
       "freq": 22,
       "rank": 70,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "LEEEN1",
@@ -6355,7 +6632,8 @@
       },
       "example": {
         "lb": "fir dës Übung musst Der Iech flaach op de Buedem leeën",
-        "audioId": "7991401eb96bd8b451eb6b39620dc92c"
+        "audioId": "7991401eb96bd8b451eb6b39620dc92c",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -6370,7 +6648,8 @@
       },
       "freq": 22,
       "rank": 71,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SCHECKEN1",
@@ -6401,7 +6680,8 @@
       },
       "example": {
         "lb": "du muss de Krankeschäin op d'Krankekeess schécken",
-        "audioId": "39514f52b3e78cb81e55db3a446cc2de"
+        "audioId": "39514f52b3e78cb81e55db3a446cc2de",
+        "a1": false
       },
       "topics": [
         "vakanz"
@@ -6416,7 +6696,8 @@
       },
       "freq": 22,
       "rank": 72,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "FEELEN1",
@@ -6447,7 +6728,8 @@
       },
       "example": {
         "lb": "wie feelt haut?",
-        "audioId": "6a20362e75cbb5198a836949be1cc8d1"
+        "audioId": "6a20362e75cbb5198a836949be1cc8d1",
+        "a1": false
       },
       "topics": [
         "joreszäiten"
@@ -6462,7 +6744,8 @@
       },
       "freq": 21,
       "rank": 73,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "FEMMEN1",
@@ -6493,7 +6776,8 @@
       },
       "example": {
         "lb": "mäi Bop fëmmt d'Päif",
-        "audioId": "6a202251b07c1b96dcf20175a53de65a"
+        "audioId": "6a202251b07c1b96dcf20175a53de65a",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -6508,7 +6792,8 @@
       },
       "freq": 21,
       "rank": 74,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "PROBEIEREN1",
@@ -6539,7 +6824,8 @@
       },
       "example": {
         "lb": "probéier emol en anert Medikament!",
-        "audioId": "13d2f82508a808b563cf9d6cc4922cbd"
+        "audioId": "13d2f82508a808b563cf9d6cc4922cbd",
+        "a1": false
       },
       "topics": [
         "kleeder"
@@ -6554,7 +6840,8 @@
       },
       "freq": 21,
       "rank": 77,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ANNEREN1",
@@ -6585,7 +6872,8 @@
       },
       "example": {
         "lb": "deen Text ass schonn zweemol geännert ginn",
-        "audioId": "4165b987d34fb0ba95c4584d5515735f"
+        "audioId": "4165b987d34fb0ba95c4584d5515735f",
+        "a1": false
       },
       "topics": [
         "joreszäiten"
@@ -6600,7 +6888,8 @@
       },
       "freq": 20,
       "rank": 78,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "DRECKEN1",
@@ -6631,7 +6920,8 @@
       },
       "example": {
         "lb": "du muss de Knäppchen drécken, soss bleift de Bus net halen!",
-        "audioId": "effeab39832204c195e6ed5a81b9306b"
+        "audioId": "effeab39832204c195e6ed5a81b9306b",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -6651,7 +6941,8 @@
       },
       "freq": 20,
       "rank": 80,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "GEWANNEN1",
@@ -6682,7 +6973,8 @@
       },
       "example": {
         "lb": "eis Basketsekipp huet dës Saison all Match gewonnen",
-        "audioId": "b0ca5a20b96a2bf60a5830859a48f6d3"
+        "audioId": "b0ca5a20b96a2bf60a5830859a48f6d3",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -6697,7 +6989,8 @@
       },
       "freq": 20,
       "rank": 81,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MELLEN1",
@@ -6728,7 +7021,8 @@
       },
       "example": {
         "lb": "de Radio mellt fir muer Kontrollen op de Stroossen",
-        "audioId": "5749c6ad698eada5d7c953b7d87c70db"
+        "audioId": "5749c6ad698eada5d7c953b7d87c70db",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -6745,7 +7039,8 @@
       },
       "freq": 20,
       "rank": 82,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "BOTZEN1",
@@ -6776,7 +7071,8 @@
       },
       "example": {
         "lb": "meng Mamm huet gëschter dat ganzt Haus gebotzt",
-        "audioId": "e576bdf315205394209c18dfbbb5bd96"
+        "audioId": "e576bdf315205394209c18dfbbb5bd96",
+        "a1": false
       },
       "topics": [
         "stot"
@@ -6791,7 +7087,8 @@
       },
       "freq": 19,
       "rank": 85,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "GEFALEN1",
@@ -6819,7 +7116,8 @@
       "imperative": null,
       "example": {
         "lb": "dat ass e Film, deen dir bestëmmt gefält",
-        "audioId": "f61ca645daa3a1b58007cefe61936320"
+        "audioId": "f61ca645daa3a1b58007cefe61936320",
+        "a1": false
       },
       "topics": [
         "medien"
@@ -6834,7 +7132,8 @@
       },
       "freq": 19,
       "rank": 86,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ORGANISEIEREN1",
@@ -6865,7 +7164,8 @@
       },
       "example": {
         "lb": "d'Gemeng organiséiert all Joer eng grouss Botzaktioun",
-        "audioId": "c0e2b95189f57bcc129f0320a49cbd1e"
+        "audioId": "c0e2b95189f57bcc129f0320a49cbd1e",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -6878,7 +7178,8 @@
       },
       "freq": 19,
       "rank": 88,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "RODEN1",
@@ -6909,7 +7210,8 @@
       },
       "example": {
         "lb": "du réits ni, wiem ech an der Stad begéint sinn!",
-        "audioId": "c1eb517e91628ed23c38e6e772172dcf"
+        "audioId": "c1eb517e91628ed23c38e6e772172dcf",
+        "a1": false
       },
       "topics": [
         "vakanz",
@@ -6925,7 +7227,8 @@
       },
       "freq": 19,
       "rank": 89,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SCHENGEN1",
@@ -6953,7 +7256,8 @@
       "imperative": null,
       "example": {
         "lb": "d'Sonn schéngt iwwer Bierg an Dall",
-        "audioId": "c6364cff147c6aaec7503f7540fa687d"
+        "audioId": "c6364cff147c6aaec7503f7540fa687d",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -6969,7 +7273,8 @@
       },
       "freq": 19,
       "rank": 90,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "LAACHEN1",
@@ -7000,7 +7305,8 @@
       },
       "example": {
         "lb": "hie laacht, datt em d'Tréinen d'Baken eroflafen!",
-        "audioId": "44061fb85b6ec4c7b101db5235213b87"
+        "audioId": "44061fb85b6ec4c7b101db5235213b87",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -7015,7 +7321,8 @@
       },
       "freq": 18,
       "rank": 92,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "LIEWEN2",
@@ -7046,7 +7353,8 @@
       },
       "example": {
         "lb": "ären Hond gesäit schlecht aus, ech mengen, dee lieft net méi laang",
-        "audioId": "26df6680160ae140374d4e0520384dd0"
+        "audioId": "26df6680160ae140374d4e0520384dd0",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -7061,7 +7369,8 @@
       },
       "freq": 18,
       "rank": 93,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SPAREN1",
@@ -7092,7 +7401,8 @@
       },
       "example": {
         "lb": "d'Bréck gouf gespaart, well se baufälleg ass",
-        "audioId": "b4f2981f7dfb23e732e9a5f1c3820a36"
+        "audioId": "b4f2981f7dfb23e732e9a5f1c3820a36",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -7107,7 +7417,8 @@
       },
       "freq": 18,
       "rank": 94,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "USTRAICHEN1",
@@ -7138,7 +7449,8 @@
       },
       "example": {
         "lb": "mir wëllen eis Schlofkummer mat frëndleche Faarwen usträichen",
-        "audioId": "b00a876b0e374764cd1e93d79d3ff7ea"
+        "audioId": "b00a876b0e374764cd1e93d79d3ff7ea",
+        "a1": false
       },
       "topics": [
         "kreativitéit"
@@ -7153,7 +7465,8 @@
       },
       "freq": 18,
       "rank": 95,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ZIELEN1",
@@ -7191,7 +7504,8 @@
       "cloze": null,
       "freq": 18,
       "rank": 96,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "DEELEN1",
@@ -7222,7 +7536,8 @@
       },
       "example": {
         "lb": "dat Klengt huet säi Schockela mat senge Frëndinne gedeelt",
-        "audioId": "ba6f20a5030f139d5a3b6c2c88f98888"
+        "audioId": "ba6f20a5030f139d5a3b6c2c88f98888",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -7240,7 +7555,8 @@
       },
       "freq": 17,
       "rank": 97,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "FILLEN1",
@@ -7271,7 +7587,8 @@
       },
       "example": {
         "lb": "nom Iesse fillen ech dacks en Drock am Mo",
-        "audioId": "108a73d00997d5337ab1daa8f8a9bd31"
+        "audioId": "108a73d00997d5337ab1daa8f8a9bd31",
+        "a1": false
       },
       "topics": [
         "gesondheet",
@@ -7288,7 +7605,8 @@
       },
       "freq": 17,
       "rank": 98,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "RICHEN1",
@@ -7319,7 +7637,8 @@
       },
       "example": {
         "lb": "ech richen Zigarettendamp, wien huet hei gefëmmt?",
-        "audioId": "ce5729bedc7fcc9b125365ee44e128c2"
+        "audioId": "ce5729bedc7fcc9b125365ee44e128c2",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -7336,7 +7655,8 @@
       },
       "freq": 17,
       "rank": 99,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERDROEN1",
@@ -7367,7 +7687,8 @@
       },
       "example": {
         "lb": "ech verdroen dat fettegt Iessen net",
-        "audioId": "4a81875f1751d247e978e3d075a5d7bb"
+        "audioId": "4a81875f1751d247e978e3d075a5d7bb",
+        "a1": false
       },
       "topics": [
         "iessen"
@@ -7382,7 +7703,8 @@
       },
       "freq": 17,
       "rank": 101,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERPASSEN1",
@@ -7413,7 +7735,8 @@
       },
       "example": {
         "lb": "tommel dech, soss verpasse mer de leschte Metro!",
-        "audioId": "dba0cd09f36eab1750a5d72809ad8537"
+        "audioId": "dba0cd09f36eab1750a5d72809ad8537",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -7426,7 +7749,8 @@
       },
       "freq": 17,
       "rank": 102,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "INVITEIEREN1",
@@ -7457,7 +7781,8 @@
       },
       "example": {
         "lb": "ech hunn zwanzeg Leit op mäi Gebuertsdag invitéiert",
-        "audioId": "d7745ca99cbc03a00bed698fd632fbba"
+        "audioId": "d7745ca99cbc03a00bed698fd632fbba",
+        "a1": false
       },
       "topics": [
         "kaddoen"
@@ -7472,7 +7797,8 @@
       },
       "freq": 16,
       "rank": 103,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "LEINEN1",
@@ -7503,7 +7829,8 @@
       },
       "example": {
         "lb": "ech hunn näischt fir ze schreiwen, kanns de mer däi Bic léinen?",
-        "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943"
+        "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943",
+        "a1": false
       },
       "topics": [
         "liesen"
@@ -7518,7 +7845,8 @@
       },
       "freq": 16,
       "rank": 104,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OPEREIEREN1",
@@ -7549,7 +7877,8 @@
       },
       "example": {
         "lb": "ech ginn d'nächst Woch operéiert",
-        "audioId": "8ca16054fcc6c35f945b4727372835c5"
+        "audioId": "8ca16054fcc6c35f945b4727372835c5",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -7564,7 +7893,8 @@
       },
       "freq": 16,
       "rank": 105,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OPPASSEN1",
@@ -7595,7 +7925,8 @@
       },
       "example": {
         "lb": "pass op, datt s de net fäls!",
-        "audioId": "72ba758e6ea7ab0a70b376ad9d881a65"
+        "audioId": "72ba758e6ea7ab0a70b376ad9d881a65",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -7605,7 +7936,8 @@
       "cloze": null,
       "freq": 16,
       "rank": 106,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ENNERSCHREIWEN1",
@@ -7636,7 +7968,8 @@
       },
       "example": {
         "lb": "de Kontrakt muss nach haut ënnerschriwwe ginn",
-        "audioId": "b2aafa59270c6b026d01ad8bbf3af61a"
+        "audioId": "b2aafa59270c6b026d01ad8bbf3af61a",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -7649,7 +7982,8 @@
       },
       "freq": 15,
       "rank": 109,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ERLABEN1",
@@ -7680,7 +8014,8 @@
       },
       "example": {
         "lb": "d'Elteren hunn hirem Jong erlaabt, an Amerika ze fléien",
-        "audioId": "0609860027a950a8801c4f159ab0de5e"
+        "audioId": "0609860027a950a8801c4f159ab0de5e",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -7693,7 +8028,8 @@
       },
       "freq": 15,
       "rank": 110,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OFGINN1",
@@ -7724,7 +8060,8 @@
       },
       "example": {
         "lb": "en éierleche Mënsch huet Äre Portmonni bei der Police ofginn",
-        "audioId": "822e647d6a307f859957f845f275d52a"
+        "audioId": "822e647d6a307f859957f845f275d52a",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -7739,7 +8076,8 @@
       },
       "freq": 15,
       "rank": 112,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OFHUELEN1",
@@ -7770,7 +8108,8 @@
       },
       "example": {
         "lb": "ech muss nach e Pak op der Post ofhuelen",
-        "audioId": "c56b1df8fabe5aa6de05d8578cd6fb8a"
+        "audioId": "c56b1df8fabe5aa6de05d8578cd6fb8a",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -7788,7 +8127,8 @@
       },
       "freq": 15,
       "rank": 113,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "TREPPELEN2",
@@ -7819,7 +8159,8 @@
       },
       "example": {
         "lb": "do läit eng Kaz, pass op, datt s de se net trëppels!",
-        "audioId": "74c37f48efe066dc80720498d14f4adf"
+        "audioId": "74c37f48efe066dc80720498d14f4adf",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -7835,7 +8176,8 @@
       },
       "freq": 15,
       "rank": 115,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERBRENNEN1",
@@ -7866,7 +8208,8 @@
       },
       "example": {
         "lb": "ech hunn déi eidel Këschten am Gaart verbrannt",
-        "audioId": "7785a203b7a839201ca914145da47c25"
+        "audioId": "7785a203b7a839201ca914145da47c25",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -7881,7 +8224,8 @@
       },
       "freq": 15,
       "rank": 117,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ZEECHNEN1",
@@ -7912,7 +8256,8 @@
       },
       "example": {
         "lb": "am Architektebüro gëtt hautdesdaags mam Computer gezeechent",
-        "audioId": "5b22e3ca08e3888158c1685325855961"
+        "audioId": "5b22e3ca08e3888158c1685325855961",
+        "a1": false
       },
       "topics": [
         "hobbyen",
@@ -7929,7 +8274,8 @@
       },
       "freq": 15,
       "rank": 118,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "AUSMAACHEN1",
@@ -7960,7 +8306,8 @@
       },
       "example": {
         "lb": "am Fliger muss een den Handy ausmaachen",
-        "audioId": "50a3fcfcdc0286c6f235ff6a094ca61b"
+        "audioId": "50a3fcfcdc0286c6f235ff6a094ca61b",
+        "a1": false
       },
       "topics": [
         "medien",
@@ -7976,7 +8323,8 @@
       },
       "freq": 14,
       "rank": 119,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "BLOSEN1",
@@ -8007,7 +8355,8 @@
       },
       "example": {
         "lb": "gëschter huet e staarke Wand geblosen",
-        "audioId": "fd787b000cc9e89746df79aaa0d81b47"
+        "audioId": "fd787b000cc9e89746df79aaa0d81b47",
+        "a1": false
       },
       "topics": [
         "joreszäiten"
@@ -8022,7 +8371,8 @@
       },
       "freq": 14,
       "rank": 120,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "WIELEN1",
@@ -8053,7 +8403,8 @@
       },
       "example": {
         "lb": "bei der Reservatioun kann ee seng Plaz online wielen",
-        "audioId": "f475a8726d7a352d4b97ffb00f06e3cf"
+        "audioId": "f475a8726d7a352d4b97ffb00f06e3cf",
+        "a1": false
       },
       "topics": [
         "sproochen"
@@ -8068,7 +8419,8 @@
       },
       "freq": 14,
       "rank": 124,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "WIESSELEN1",
@@ -8099,7 +8451,8 @@
       },
       "example": {
         "lb": "de Schrëftsteller huet de Verlag gewiesselt",
-        "audioId": "a2eed5d4d441b5572aac95187722cc08"
+        "audioId": "a2eed5d4d441b5572aac95187722cc08",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -8117,7 +8470,8 @@
       },
       "freq": 14,
       "rank": 125,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "GENEISSEN1",
@@ -8148,7 +8502,8 @@
       },
       "example": {
         "lb": "ech hunn de Kuch ganz lues giess, ech hunn e richteg genoss",
-        "audioId": "a8e3ae35d6337a7fbbb732eea88f2361"
+        "audioId": "a8e3ae35d6337a7fbbb732eea88f2361",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -8164,7 +8519,8 @@
       },
       "freq": 13,
       "rank": 127,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "HEEMKOMMEN1",
@@ -8195,7 +8551,8 @@
       },
       "example": {
         "lb": "wann ech owes no der Aarbecht heemkommen, da raschten ech gär e bëssen",
-        "audioId": "de1083318f4c366a03d811a494142345"
+        "audioId": "de1083318f4c366a03d811a494142345",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -8210,7 +8567,8 @@
       },
       "freq": 13,
       "rank": 128,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "KRAISCHEN1",
@@ -8241,7 +8599,8 @@
       },
       "example": {
         "lb": "de klenge Bouf huet haart gekrasch, well e vun der Klunsch gefall war",
-        "audioId": "94d499706683623ccca890d109c5cadf"
+        "audioId": "94d499706683623ccca890d109c5cadf",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -8254,7 +8613,8 @@
       },
       "freq": 13,
       "rank": 130,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OPGOEN1",
@@ -8285,7 +8645,8 @@
       },
       "example": {
         "lb": "d'Sonn geet geschwënn op",
-        "audioId": "2671b4b700440329d799e7f698e31455"
+        "audioId": "2671b4b700440329d799e7f698e31455",
+        "a1": true
       },
       "topics": [
         "aarbecht",
@@ -8296,7 +8657,8 @@
       "cloze": null,
       "freq": 13,
       "rank": 131,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OPHANKEN1",
@@ -8327,7 +8689,8 @@
       },
       "example": {
         "lb": "wou solle mer dat Bild hei ophänken?",
-        "audioId": "3e83a7ca6643f1ed4cba327d6f935bfa"
+        "audioId": "3e83a7ca6643f1ed4cba327d6f935bfa",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -8344,7 +8707,8 @@
       },
       "freq": 13,
       "rank": 132,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "PLANGEN1",
@@ -8375,7 +8739,8 @@
       },
       "example": {
         "lb": "d'Rees huet vill méi deier kascht, wéi mer et geplangt haten",
-        "audioId": "926bc376360d671ee31b68733d4e6782"
+        "audioId": "926bc376360d671ee31b68733d4e6782",
+        "a1": false
       },
       "topics": [
         "transport",
@@ -8391,7 +8756,8 @@
       },
       "freq": 13,
       "rank": 133,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "WENSCHEN1",
@@ -8422,7 +8788,8 @@
       },
       "example": {
         "lb": "ech wënschen der, datt deng Dreem sech eng Kéier erfëllen",
-        "audioId": "415d9c19cc9937bee1099a0b0655058e"
+        "audioId": "415d9c19cc9937bee1099a0b0655058e",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -8437,7 +8804,8 @@
       },
       "freq": 13,
       "rank": 134,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "BENOTZEN1",
@@ -8468,7 +8836,8 @@
       },
       "example": {
         "lb": "dat Wuert gëtt bal ni benotzt",
-        "audioId": "ba475ecade153bef72bb6f29f623fb48"
+        "audioId": "ba475ecade153bef72bb6f29f623fb48",
+        "a1": false
       },
       "topics": [
         "sproochen"
@@ -8483,7 +8852,8 @@
       },
       "freq": 12,
       "rank": 135,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "DISKUTEIEREN1",
@@ -8514,7 +8884,8 @@
       },
       "example": {
         "lb": "haut gëtt dat neit Gesetz an der Chamber diskutéiert",
-        "audioId": "6ecf9348d1d5a68a1b5f49573f024708"
+        "audioId": "6ecf9348d1d5a68a1b5f49573f024708",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -8529,7 +8900,8 @@
       },
       "freq": 12,
       "rank": 137,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ERREECHEN1",
@@ -8560,7 +8932,8 @@
       },
       "example": {
         "lb": "du kanns mech dëse Weekend um Handy erreechen",
-        "audioId": "12909fa006fabf591d73a9af7668b29a"
+        "audioId": "12909fa006fabf591d73a9af7668b29a",
+        "a1": false
       },
       "topics": [
         "vakanz"
@@ -8575,7 +8948,8 @@
       },
       "freq": 12,
       "rank": 138,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "KEMMEREN1",
@@ -8606,7 +8980,8 @@
       },
       "example": {
         "lb": "d'Elteren hu sech vill ëm hir Kanner gekëmmert",
-        "audioId": "245b495fbad3424507374d5c4ae3cfb3"
+        "audioId": "245b495fbad3424507374d5c4ae3cfb3",
+        "a1": false
       },
       "topics": [
         "iessen"
@@ -8621,7 +8996,8 @@
       },
       "freq": 12,
       "rank": 140,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "KENNELEIEREN1",
@@ -8652,7 +9028,8 @@
       },
       "example": {
         "lb": "et géif eis freeën, däin neie Frënd kennen ze léieren",
-        "audioId": "bee06b8b8f32a0f891d74147d36bdba4"
+        "audioId": "bee06b8b8f32a0f891d74147d36bdba4",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -8663,7 +9040,8 @@
       "cloze": null,
       "freq": 12,
       "rank": 141,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "KLAKEN1",
@@ -8694,7 +9072,8 @@
       },
       "example": {
         "lb": "klak d'Dieren net esou!",
-        "audioId": "cc36790f85403584b88dc9be7f4aba92"
+        "audioId": "cc36790f85403584b88dc9be7f4aba92",
+        "a1": false
       },
       "topics": [
         "famill"
@@ -8709,7 +9088,8 @@
       },
       "freq": 12,
       "rank": 142,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "PROFITEIEREN1",
@@ -8740,7 +9120,8 @@
       },
       "example": {
         "lb": "mir hunn zwar eng Buedbidden, mee mer profitéieren se ni",
-        "audioId": "8c62d3a29719a852a93351418f942b2f"
+        "audioId": "8c62d3a29719a852a93351418f942b2f",
+        "a1": false
       },
       "topics": [
         "hobbyen",
@@ -8756,7 +9137,8 @@
       },
       "freq": 12,
       "rank": 144,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SUERGEN1",
@@ -8787,7 +9169,8 @@
       },
       "example": {
         "lb": "d'Wittfra muss eleng fir den Ënnerhalt vum Stot suergen",
-        "audioId": "113457c31d0e793afd53cb698a8e1619"
+        "audioId": "113457c31d0e793afd53cb698a8e1619",
+        "a1": false
       },
       "topics": [
         "iessen",
@@ -8803,7 +9186,8 @@
       },
       "freq": 12,
       "rank": 145,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "UNDOEN1",
@@ -8834,7 +9218,8 @@
       },
       "example": {
         "lb": "am Summer dinn ech praktesch nëmme kuerz Boxen un",
-        "audioId": "82d4fc832a62345611dc09f53c3be036"
+        "audioId": "82d4fc832a62345611dc09f53c3be036",
+        "a1": false
       },
       "topics": [
         "kleeder"
@@ -8844,7 +9229,8 @@
       "cloze": null,
       "freq": 12,
       "rank": 147,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERBIDDEN1",
@@ -8875,7 +9261,8 @@
       },
       "example": {
         "lb": "wéinst der Dréchent verbitt d'Gemeng de Leit, den Auto ze wäschen",
-        "audioId": "bf64d96afd5ae3ec8afc75195c98f24c"
+        "audioId": "bf64d96afd5ae3ec8afc75195c98f24c",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -8890,7 +9277,8 @@
       },
       "freq": 12,
       "rank": 148,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERHALEN1",
@@ -8921,7 +9309,8 @@
       },
       "example": {
         "lb": "et ass schwéier, déi onreegelméisseg Verben all ze verhalen",
-        "audioId": "e1ff902306ae92d0d798a76ba0ed6649"
+        "audioId": "e1ff902306ae92d0d798a76ba0ed6649",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -8934,7 +9323,8 @@
       },
       "freq": 12,
       "rank": 149,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERSCHREIWEN1",
@@ -8965,7 +9355,8 @@
       },
       "example": {
         "lb": "d'Mëttel, dat d'Doktesch mer verschriwwen hat, huet direkt gewierkt",
-        "audioId": "0581b7603bfc421b911b7c028023feed"
+        "audioId": "0581b7603bfc421b911b7c028023feed",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -8980,7 +9371,8 @@
       },
       "freq": 12,
       "rank": 150,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ERKALEN1",
@@ -9011,7 +9403,8 @@
       },
       "example": {
         "lb": "bei deem Wieder ass et kee Wonner, datt mir eis all erkaalt hunn",
-        "audioId": "49a4a21e9bedf37272d768451ed60a07"
+        "audioId": "49a4a21e9bedf37272d768451ed60a07",
+        "a1": false
       },
       "topics": [
         "gesondheet",
@@ -9027,7 +9420,8 @@
       },
       "freq": 11,
       "rank": 151,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ERZIELEN1",
@@ -9058,7 +9452,8 @@
       },
       "example": {
         "lb": "de Grousspapp erzielt sengem Enkelkand all Dag eng Geschicht",
-        "audioId": "92732d29e8b5ca3977023d1bc6fb6af9"
+        "audioId": "92732d29e8b5ca3977023d1bc6fb6af9",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -9071,7 +9466,8 @@
       },
       "freq": 11,
       "rank": 152,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "INTERESSEIEREN1",
@@ -9102,7 +9498,8 @@
       },
       "example": {
         "lb": "dee Film interesséiert kee Mënsch",
-        "audioId": "bb036b159ad5d2d1fd2ce956794ebcff"
+        "audioId": "bb036b159ad5d2d1fd2ce956794ebcff",
+        "a1": false
       },
       "topics": [
         "medien"
@@ -9117,7 +9514,8 @@
       },
       "freq": 11,
       "rank": 153,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "UNHALEN1",
@@ -9148,7 +9546,8 @@
       },
       "example": {
         "lb": "d'Police huet bei enger Kontroll all Auto ugehalen",
-        "audioId": "2fe2bee960756e9f8adb36fe8458f15c"
+        "audioId": "2fe2bee960756e9f8adb36fe8458f15c",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -9165,7 +9564,8 @@
       },
       "freq": 11,
       "rank": 154,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "WIERKEN1",
@@ -9193,7 +9593,8 @@
       "imperative": null,
       "example": {
         "lb": "den Dosage muss stëmmen, fir datt d'Sprëtzmëttel wierkt",
-        "audioId": "6b5d7b182d1d0a4133d4b2780c18be8d"
+        "audioId": "6b5d7b182d1d0a4133d4b2780c18be8d",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -9208,7 +9609,8 @@
       },
       "freq": 11,
       "rank": 156,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ASTELLEN1",
@@ -9239,7 +9641,8 @@
       },
       "example": {
         "lb": "d'Firma stellt 20 nei Aarbechter an",
-        "audioId": "7d80f203236b0ef58a86bde0fb0eed9c"
+        "audioId": "7d80f203236b0ef58a86bde0fb0eed9c",
+        "a1": false
       },
       "topics": [
         "joreszäiten"
@@ -9249,7 +9652,8 @@
       "cloze": null,
       "freq": 10,
       "rank": 158,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ERENNEREN1",
@@ -9280,7 +9684,8 @@
       },
       "example": {
         "lb": "d'Mamm erënnert d'Kanner un hire Rendez-vous beim Coiffer",
-        "audioId": "97198e7787e59742cfba42def3924c81"
+        "audioId": "97198e7787e59742cfba42def3924c81",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -9296,7 +9701,8 @@
       },
       "freq": 10,
       "rank": 160,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MIERKEN1",
@@ -9327,7 +9733,8 @@
       },
       "example": {
         "lb": "ech hunn net gemierkt, wéi den Täschendéif mer de Portmonni aus der Täsch gezunn huet",
-        "audioId": "5c6d72ac68182bf096e7f69ddfaff988"
+        "audioId": "5c6d72ac68182bf096e7f69ddfaff988",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -9340,7 +9747,8 @@
       },
       "freq": 10,
       "rank": 164,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "RAUMEN1",
@@ -9371,7 +9779,8 @@
       },
       "example": {
         "lb": "wéini hues de wëlles, deng Kummer ze raumen?",
-        "audioId": "4b90c10f95d029c54eb4ff26ba144832"
+        "audioId": "4b90c10f95d029c54eb4ff26ba144832",
+        "a1": false
       },
       "topics": [
         "stot"
@@ -9386,7 +9795,8 @@
       },
       "freq": 10,
       "rank": 165,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SCHELLEN1",
@@ -9417,7 +9827,8 @@
       },
       "example": {
         "lb": "den Telefon schellt, kanns du ophiewen?",
-        "audioId": "b9a6727cd46ecf7965f5fd1046c0280e"
+        "audioId": "b9a6727cd46ecf7965f5fd1046c0280e",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -9432,7 +9843,8 @@
       },
       "freq": 10,
       "rank": 166,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "UMAACHEN1",
@@ -9463,7 +9875,8 @@
       },
       "example": {
         "lb": "ech hu menger Mamm niewent der Bidden e Grëff ugemaach, fir datt se sech kann unhalen",
-        "audioId": "c2aa5a0894423fe9ef358d129db0f502"
+        "audioId": "c2aa5a0894423fe9ef358d129db0f502",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -9481,7 +9894,8 @@
       },
       "freq": 10,
       "rank": 167,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "AUSGESINN1",
@@ -9509,7 +9923,8 @@
       "imperative": null,
       "example": {
         "lb": "mäi Schwéierpapp gesäit nach ëmmer richteg jonk aus",
-        "audioId": "6628a967bf1d7aaa906c31a687b54b40"
+        "audioId": "6628a967bf1d7aaa906c31a687b54b40",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -9517,7 +9932,8 @@
       "cloze": null,
       "freq": 9,
       "rank": 168,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "BESTUEDEN1",
@@ -9548,7 +9964,8 @@
       },
       "example": {
         "lb": "de Buergermeeschter huet déi jonk Koppel bestuet",
-        "audioId": "c2a0199999b0444b84081d39d4465569"
+        "audioId": "c2a0199999b0444b84081d39d4465569",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -9558,7 +9975,8 @@
       "cloze": null,
       "freq": 9,
       "rank": 169,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ERAUSGOEN1",
@@ -9589,7 +10007,8 @@
       },
       "example": {
         "lb": "wann et der an der Sauna ze waarm gëtt, muss de erausgoen!",
-        "audioId": "568f02c4c1c694a75103ba72bf37766c"
+        "audioId": "568f02c4c1c694a75103ba72bf37766c",
+        "a1": false
       },
       "topics": [
         "joreszäiten",
@@ -9606,7 +10025,8 @@
       },
       "freq": 9,
       "rank": 171,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MATSPILLEN1",
@@ -9637,7 +10057,8 @@
       },
       "example": {
         "lb": "ech spillen nach eng Partie Kaart mat, an da ginn ech heem",
-        "audioId": "337ea86b0c575b9e228f5d5a8e06efdb"
+        "audioId": "337ea86b0c575b9e228f5d5a8e06efdb",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -9647,7 +10068,8 @@
       "cloze": null,
       "freq": 9,
       "rank": 173,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "NOKUCKEN1",
@@ -9678,7 +10100,8 @@
       },
       "example": {
         "lb": "ech hunn dem Schëff nogekuckt, bis et um Horizont verschwonne war",
-        "audioId": "e214edbe311813b2a5043da4466c1cf0"
+        "audioId": "e214edbe311813b2a5043da4466c1cf0",
+        "a1": false
       },
       "topics": [
         "sport",
@@ -9694,7 +10117,8 @@
       },
       "freq": 9,
       "rank": 174,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "NOLAUSCHTEREN1",
@@ -9725,7 +10149,8 @@
       },
       "example": {
         "lb": "lauschter mir gutt no, ech soen der et keng zweemol!",
-        "audioId": "101b3405d901ab9890c452ee2aec4245"
+        "audioId": "101b3405d901ab9890c452ee2aec4245",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -9733,7 +10158,8 @@
       "cloze": null,
       "freq": 9,
       "rank": 175,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "PRODUZEIEREN1",
@@ -9764,7 +10190,8 @@
       },
       "example": {
         "lb": "dës Molkerei produzéiert verschidden Zorte Kéis",
-        "audioId": "13c5aa01947880ecd685f63e42e19e46"
+        "audioId": "13c5aa01947880ecd685f63e42e19e46",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -9777,7 +10204,8 @@
       },
       "freq": 9,
       "rank": 176,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "REAGEIEREN1",
@@ -9808,7 +10236,8 @@
       },
       "example": {
         "lb": "hien huet net op mäi Bréif reagéiert",
-        "audioId": "94fe69f6dca03978eec0d9c076a5ce7e"
+        "audioId": "94fe69f6dca03978eec0d9c076a5ce7e",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -9821,7 +10250,8 @@
       },
       "freq": 9,
       "rank": 177,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "RECKELEN1",
@@ -9852,7 +10282,8 @@
       },
       "example": {
         "lb": "wa mer den Dësch bei d'Mauer réckelen, komme mer besser laanscht",
-        "audioId": "7455925659b624c2e63dcd572c55b662"
+        "audioId": "7455925659b624c2e63dcd572c55b662",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -9867,7 +10298,8 @@
       },
       "freq": 9,
       "rank": 178,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "RESPEKTEIEREN1",
@@ -9898,7 +10330,8 @@
       },
       "example": {
         "lb": "ech respektéieren hie fir seng Éierlechkeet",
-        "audioId": "878aab3186da9dbd3ca8ea6dd243d76d"
+        "audioId": "878aab3186da9dbd3ca8ea6dd243d76d",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -9911,7 +10344,8 @@
       },
       "freq": 9,
       "rank": 179,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ZOUMAACHEN1",
@@ -9942,7 +10376,8 @@
       },
       "example": {
         "lb": "maach deng Jackett zou, soss gëss de kal!",
-        "audioId": "b6b48e083978fdc7f2c4d7d3f179808c"
+        "audioId": "b6b48e083978fdc7f2c4d7d3f179808c",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -9955,7 +10390,8 @@
       "cloze": null,
       "freq": 9,
       "rank": 181,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "AUSSCHWATZEN1",
@@ -9986,7 +10422,8 @@
       },
       "example": {
         "lb": "mengem Brudder seng kleng Duechter kann hiren Numm scho richteg ausschwätzen",
-        "audioId": "6eb24ed99d5b5a2c2184fee0359d9be8"
+        "audioId": "6eb24ed99d5b5a2c2184fee0359d9be8",
+        "a1": false
       },
       "topics": [
         "sproochen"
@@ -10001,7 +10438,8 @@
       },
       "freq": 8,
       "rank": 182,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "BEWEEGEN1",
@@ -10032,7 +10470,8 @@
       },
       "example": {
         "lb": "nom Accident konnt mäi Papp säi rietst Been net méi beweegen",
-        "audioId": "539a24af9f991004371a9f9ff383c9d9"
+        "audioId": "539a24af9f991004371a9f9ff383c9d9",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -10048,7 +10487,8 @@
       },
       "freq": 8,
       "rank": 184,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "HOFFEN1",
@@ -10079,7 +10519,8 @@
       },
       "example": {
         "lb": "ech hoffen, datt mer d'Wallissen all an den Auto kréien",
-        "audioId": "a768c83cbee70a3fd7aabc86f4ac936e"
+        "audioId": "a768c83cbee70a3fd7aabc86f4ac936e",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -10094,7 +10535,8 @@
       },
       "freq": 8,
       "rank": 186,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "IEREN2",
@@ -10125,7 +10567,8 @@
       },
       "example": {
         "lb": "all Mënsch ka sech emol ieren",
-        "audioId": "a2037f9c989cf18c3feee4bf4f5fc0f8"
+        "audioId": "a2037f9c989cf18c3feee4bf4f5fc0f8",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -10138,7 +10581,8 @@
       },
       "freq": 8,
       "rank": 187,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "LAANSCHTKOMMEN1",
@@ -10169,7 +10613,8 @@
       },
       "example": {
         "lb": "ech kommen den Owend nach laanscht",
-        "audioId": "a2bfe8b41ff30623979b2d39bd467f67"
+        "audioId": "a2bfe8b41ff30623979b2d39bd467f67",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -10179,7 +10624,8 @@
       "cloze": null,
       "freq": 8,
       "rank": 188,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MATMAACHEN1",
@@ -10210,7 +10656,8 @@
       },
       "example": {
         "lb": "well en d'Formatioun net matgemaach huet, kann en am Betrib net avancéieren!",
-        "audioId": "7fea93afe88a7f69728dccb82f96967a"
+        "audioId": "7fea93afe88a7f69728dccb82f96967a",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -10226,7 +10673,8 @@
       },
       "freq": 8,
       "rank": 189,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OPSCHREIWEN1",
@@ -10257,7 +10705,8 @@
       },
       "example": {
         "lb": "ech hat vergiess, mer deng Telefonsnummer opzeschreiwen",
-        "audioId": "0ab869b69f3c2112c58867a4eff93bfe"
+        "audioId": "0ab869b69f3c2112c58867a4eff93bfe",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -10272,7 +10721,8 @@
       },
       "freq": 8,
       "rank": 190,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "STEBSEN1",
@@ -10303,7 +10753,8 @@
       },
       "example": {
         "lb": "ech misst d'Bicher an der Etagère emol nees stëbsen",
-        "audioId": "12eef5338b8e1fee642e0b9e3678278c"
+        "audioId": "12eef5338b8e1fee642e0b9e3678278c",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -10318,7 +10769,8 @@
       },
       "freq": 8,
       "rank": 192,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "URUFFEN1",
@@ -10349,7 +10801,8 @@
       },
       "example": {
         "lb": "riffs de vun doheem aus un oder bass de ënnerwee?",
-        "audioId": "0ff890a918d49bce758286e6d98e1e04"
+        "audioId": "0ff890a918d49bce758286e6d98e1e04",
+        "a1": false
       },
       "topics": [
         "medien"
@@ -10359,7 +10812,8 @@
       "cloze": null,
       "freq": 8,
       "rank": 197,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "USTIECHEN1",
@@ -10390,7 +10844,8 @@
       },
       "example": {
         "lb": "mäi Brudder huet mech mat der Gripp ugestach",
-        "audioId": "dd5a11e10a060fe66bf2dad084019cd9"
+        "audioId": "dd5a11e10a060fe66bf2dad084019cd9",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -10405,7 +10860,8 @@
       },
       "freq": 8,
       "rank": 198,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "AGINN1",
@@ -10436,7 +10892,8 @@
       },
       "example": {
         "lb": "et ass net einfach, engem klenge Kand e Sirop anzeginn",
-        "audioId": "52b2dd39b58242245b8222b26682e66b"
+        "audioId": "52b2dd39b58242245b8222b26682e66b",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -10452,7 +10909,8 @@
       },
       "freq": 7,
       "rank": 199,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "APAKEN1",
@@ -10483,7 +10941,8 @@
       },
       "example": {
         "lb": "ech loosse mer d'Vas als Kaddo apaken",
-        "audioId": "801228e0fd7ed210ce2a146520bbca79"
+        "audioId": "801228e0fd7ed210ce2a146520bbca79",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -10500,7 +10959,8 @@
       },
       "freq": 7,
       "rank": 200,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "DREEMEN1",
@@ -10531,7 +10991,8 @@
       },
       "example": {
         "lb": "ech dreemen déi lescht Zäit ëmmer nees dat selwecht",
-        "audioId": "8a706396080fe501e5bcec1e7cd658d7"
+        "audioId": "8a706396080fe501e5bcec1e7cd658d7",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -10546,7 +11007,8 @@
       },
       "freq": 7,
       "rank": 201,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ENTSPANEN1",
@@ -10577,7 +11039,8 @@
       },
       "example": {
         "lb": "mir hunn alles gemaach, fir d'Situatioun ze entspanen",
-        "audioId": "5b20105d05bce24625b399d62cbccbf1"
+        "audioId": "5b20105d05bce24625b399d62cbccbf1",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -10590,7 +11053,8 @@
       },
       "freq": 7,
       "rank": 202,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "FREIEREN1",
@@ -10621,7 +11085,8 @@
       },
       "example": {
         "lb": "dëse Wanter ass de Buedem dacks gefruer",
-        "audioId": "74666a87c4d8a7d84984d10f5b1566c5"
+        "audioId": "74666a87c4d8a7d84984d10f5b1566c5",
+        "a1": false
       },
       "topics": [
         "joreszäiten"
@@ -10636,7 +11101,8 @@
       },
       "freq": 7,
       "rank": 203,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "INFORMEIEREN1",
@@ -10667,7 +11133,8 @@
       },
       "example": {
         "lb": "et huet keen eis informéiert, datt d'Strooss gespaart ass",
-        "audioId": "0fd9e96abbdd68360c7505240776459b"
+        "audioId": "0fd9e96abbdd68360c7505240776459b",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -10682,7 +11149,8 @@
       },
       "freq": 7,
       "rank": 204,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MATBRENGEN1",
@@ -10713,7 +11181,8 @@
       },
       "example": {
         "lb": "bréng e puer Fläsche Béier aus dem Keller mat!",
-        "audioId": "1fffbefd373a90407ff99b2dcd39201f"
+        "audioId": "1fffbefd373a90407ff99b2dcd39201f",
+        "a1": false
       },
       "topics": [
         "vakanz"
@@ -10723,7 +11192,8 @@
       "cloze": null,
       "freq": 7,
       "rank": 205,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MOOSSEN1",
@@ -10754,7 +11224,8 @@
       },
       "example": {
         "lb": "den Dokter huet dem Blesséierten de Bols geholl an de Bluttdrock gemooss",
-        "audioId": "af3e6bd5f363172b85bb8e4fc65b2846"
+        "audioId": "af3e6bd5f363172b85bb8e4fc65b2846",
+        "a1": false
       },
       "topics": [
         "gesondheet",
@@ -10771,7 +11242,8 @@
       },
       "freq": 7,
       "rank": 206,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "NOMAACHEN1",
@@ -10802,7 +11274,8 @@
       },
       "example": {
         "lb": "dee freche Bouf huet d'Joffer nogemaach",
-        "audioId": "011376bfb441c87f643cecbce0a36b29"
+        "audioId": "011376bfb441c87f643cecbce0a36b29",
+        "a1": false
       },
       "topics": [
         "famill"
@@ -10817,7 +11290,8 @@
       },
       "freq": 7,
       "rank": 207,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OFSOEN1",
@@ -10848,7 +11322,8 @@
       },
       "example": {
         "lb": "d'Federatioun huet all d'Matcher wéinst dem schlechte Wieder ofgesot",
-        "audioId": "d6b316d0d759b525836f322a8e2c3be8"
+        "audioId": "d6b316d0d759b525836f322a8e2c3be8",
+        "a1": false
       },
       "topics": [
         "joreszäiten"
@@ -10863,7 +11338,8 @@
       },
       "freq": 7,
       "rank": 208,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OPHIEWEN1",
@@ -10894,7 +11370,8 @@
       },
       "example": {
         "lb": "hief déi Këscht op a stell se an d'Regal!",
-        "audioId": "1e472ff6699939ca80c9811ff66f28a9"
+        "audioId": "1e472ff6699939ca80c9811ff66f28a9",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -10904,7 +11381,8 @@
       "cloze": null,
       "freq": 7,
       "rank": 209,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "PAKEN1",
@@ -10935,7 +11413,8 @@
       },
       "example": {
         "lb": "pak däi Schoulsak owes, da brauchs de dech mueres net esou ze fläissen!",
-        "audioId": "20a63aa3a8536ab96a9ae01b58931329"
+        "audioId": "20a63aa3a8536ab96a9ae01b58931329",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -10946,7 +11425,8 @@
       "cloze": null,
       "freq": 7,
       "rank": 210,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERBANNEN1",
@@ -10977,7 +11457,8 @@
       },
       "example": {
         "lb": "de Blesséierte krut nach op der Plaz vum Accident den Aarm verbonnen",
-        "audioId": "ba24abb0d373901bc96b24c21997bc89"
+        "audioId": "ba24abb0d373901bc96b24c21997bc89",
+        "a1": false
       },
       "topics": [
         "feierdeeg",
@@ -10988,7 +11469,8 @@
       "cloze": null,
       "freq": 7,
       "rank": 213,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERDENGEN1",
@@ -11019,7 +11501,8 @@
       },
       "example": {
         "lb": "den neie Steiersystem favoriséiert d'Leit, déi net vill verdéngen",
-        "audioId": "e633f4f313968505865f7b91021a4901"
+        "audioId": "e633f4f313968505865f7b91021a4901",
+        "a1": false
       },
       "topics": [
         "vakanz"
@@ -11034,7 +11517,8 @@
       },
       "freq": 7,
       "rank": 214,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERLEIEREN1",
@@ -11065,7 +11549,8 @@
       },
       "example": {
         "lb": "wat muss ee maachen, wann ee säi Pass am Ausland verléiert?",
-        "audioId": "4b151084f4fd07dec8321e3715d80c6e"
+        "audioId": "4b151084f4fd07dec8321e3715d80c6e",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -11080,7 +11565,8 @@
       },
       "freq": 7,
       "rank": 216,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "WANDEREN1",
@@ -11111,7 +11597,8 @@
       },
       "example": {
         "lb": "gees de am Summer mat an d'Bierger wanderen?",
-        "audioId": "f9ae9e6972406564bc13b28218099e97"
+        "audioId": "f9ae9e6972406564bc13b28218099e97",
+        "a1": false
       },
       "topics": [
         "joreszäiten"
@@ -11126,7 +11613,8 @@
       },
       "freq": 7,
       "rank": 217,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "WEIDERGOEN1",
@@ -11157,7 +11645,8 @@
       },
       "example": {
         "lb": "déi zwee Kolleegen hu sech zoufälleg begéint a sinn zesumme weidergaangen",
-        "audioId": "20d039a9c61060813fc93f556b09cafd"
+        "audioId": "20d039a9c61060813fc93f556b09cafd",
+        "a1": false
       },
       "topics": [
         "famill"
@@ -11172,7 +11661,8 @@
       },
       "freq": 7,
       "rank": 218,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ERAUSKLAMMEN1",
@@ -11203,7 +11693,8 @@
       },
       "example": {
         "lb": "well d'Dier net méi opgoung, si mir zur Fënster erausgeklommen",
-        "audioId": "c6e947649b1c08bd4aed1c0e5c4a5a2a"
+        "audioId": "c6e947649b1c08bd4aed1c0e5c4a5a2a",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -11216,7 +11707,8 @@
       },
       "freq": 6,
       "rank": 220,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "FLEEGEN1",
@@ -11247,7 +11739,8 @@
       },
       "example": {
         "lb": "et ass net einfach, en Doudkranke richteg ze fleegen",
-        "audioId": "ec21ff1b9e778ce85be700184ac94362"
+        "audioId": "ec21ff1b9e778ce85be700184ac94362",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -11262,7 +11755,8 @@
       },
       "freq": 6,
       "rank": 221,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "KAMMEN1",
@@ -11293,7 +11787,8 @@
       },
       "example": {
         "lb": "ier mer ginn, muss ech mech nach kämmen",
-        "audioId": "6f53ea25da3c851d862816f3af6b69c0"
+        "audioId": "6f53ea25da3c851d862816f3af6b69c0",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -11306,7 +11801,8 @@
       },
       "freq": 6,
       "rank": 223,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "STREIDEN1",
@@ -11337,7 +11833,8 @@
       },
       "example": {
         "lb": "esoubal d'Kanner ugefaangen hunn ze streiden, huet de Schoulmeeschter agegraff",
-        "audioId": "80dc68a6633949bc4d7d9a43cf6b9613"
+        "audioId": "80dc68a6633949bc4d7d9a43cf6b9613",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -11350,7 +11847,8 @@
       },
       "freq": 6,
       "rank": 224,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERLOUNEN1",
@@ -11381,7 +11879,8 @@
       },
       "example": {
         "lb": "d'Appartement gëtt fir 700 Euro ouni Chargë verlount",
-        "audioId": "7d8d61fc93ef2981d2e42452eda5bb36"
+        "audioId": "7d8d61fc93ef2981d2e42452eda5bb36",
+        "a1": false
       },
       "topics": [
         "wunnen"
@@ -11396,7 +11895,8 @@
       },
       "freq": 6,
       "rank": 225,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ZOUHUELEN1",
@@ -11427,7 +11927,8 @@
       },
       "example": {
         "lb": "hien huet an der Vakanz zougeholl",
-        "audioId": "6c919458a82f8e15ef096358fe9b94b8"
+        "audioId": "6c919458a82f8e15ef096358fe9b94b8",
+        "a1": false
       },
       "topics": [
         "vakanz"
@@ -11442,7 +11943,8 @@
       },
       "freq": 6,
       "rank": 226,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ANNULEIEREN1",
@@ -11473,7 +11975,8 @@
       },
       "example": {
         "lb": "et hate sech esou wéineg Leit ageschriwwen, datt d'Formatioun annuléiert gouf",
-        "audioId": "8281af9312999fc9ec614095749efb6c"
+        "audioId": "8281af9312999fc9ec614095749efb6c",
+        "a1": false
       },
       "topics": [
         "joreszäiten"
@@ -11488,7 +11991,8 @@
       },
       "freq": 5,
       "rank": 227,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "AUSGINN1",
@@ -11519,7 +12023,8 @@
       },
       "example": {
         "lb": "ech ginn am Stot déi mannst Suen aus",
-        "audioId": "45ffb99d33bdf97603bf6655dc3c88f3"
+        "audioId": "45ffb99d33bdf97603bf6655dc3c88f3",
+        "a1": true
       },
       "topics": [
         "transport"
@@ -11529,7 +12034,8 @@
       "cloze": null,
       "freq": 5,
       "rank": 228,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "BESETZEN1",
@@ -11560,7 +12066,8 @@
       },
       "example": {
         "lb": "mäi Brudder huet eng Plaz um Dësch fir seng Frëndin besat",
-        "audioId": "a3c7a8a57115428fc712b7322f6498ba"
+        "audioId": "a3c7a8a57115428fc712b7322f6498ba",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -11573,7 +12080,8 @@
       },
       "freq": 5,
       "rank": 229,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "DEPRIMEIEREN1",
@@ -11604,7 +12112,8 @@
       },
       "example": {
         "lb": "dat Abrëllswieder depriméiert mech",
-        "audioId": "761e6fbd758fd40870979eb27a0fae33"
+        "audioId": "761e6fbd758fd40870979eb27a0fae33",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -11617,7 +12126,8 @@
       },
       "freq": 5,
       "rank": 230,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ENNERSICHEN1",
@@ -11648,7 +12158,8 @@
       },
       "example": {
         "lb": "de Laborant huet d'Buedemprouwen ënnersicht",
-        "audioId": "55fa4932187020b39ba0b288235ca5d4"
+        "audioId": "55fa4932187020b39ba0b288235ca5d4",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -11663,7 +12174,8 @@
       },
       "freq": 5,
       "rank": 231,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ENTDECKEN1",
@@ -11694,7 +12206,8 @@
       },
       "example": {
         "lb": "et ass eng nei Orchideeënzort entdeckt ginn",
-        "audioId": "457e2e69d067bb229c60e91d87ff5975"
+        "audioId": "457e2e69d067bb229c60e91d87ff5975",
+        "a1": false
       },
       "topics": [
         "iessen",
@@ -11710,7 +12223,8 @@
       },
       "freq": 5,
       "rank": 232,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ERAKLAMMEN1",
@@ -11741,7 +12255,8 @@
       },
       "example": {
         "lb": "d'Abriecher sinn duerch d'Kichefënster erageklommen",
-        "audioId": "86db5323defea9b37904d519533da9b9"
+        "audioId": "86db5323defea9b37904d519533da9b9",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -11756,7 +12271,8 @@
       },
       "freq": 5,
       "rank": 233,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "FOTOGRAFEIEREN1",
@@ -11787,7 +12303,8 @@
       },
       "example": {
         "lb": "et ass schwéier, d'Déieren an der Natur ze fotograféieren",
-        "audioId": "3db501990246bb32b8a529c9e03ee682"
+        "audioId": "3db501990246bb32b8a529c9e03ee682",
+        "a1": false
       },
       "topics": [
         "kreativitéit"
@@ -11802,7 +12319,8 @@
       },
       "freq": 5,
       "rank": 234,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "GRATULEIEREN1",
@@ -11833,7 +12351,8 @@
       },
       "example": {
         "lb": "de Jury huet dem Gewënner vum Museksconcours gratuléiert",
-        "audioId": "b382dd751d3c5bfadc8099c614862270"
+        "audioId": "b382dd751d3c5bfadc8099c614862270",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -11846,7 +12365,8 @@
       },
       "freq": 5,
       "rank": 235,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "HANNERLOOSSEN1",
@@ -11877,7 +12397,8 @@
       },
       "example": {
         "lb": "d'Kanner hunn doheem e risege Chaos hannerlooss",
-        "audioId": "d9db7db0c5db4a5a2e6fd33055a91ceb"
+        "audioId": "d9db7db0c5db4a5a2e6fd33055a91ceb",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -11890,7 +12411,8 @@
       },
       "freq": 5,
       "rank": 236,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "IWWERRASCHEN1",
@@ -11921,7 +12443,8 @@
       },
       "example": {
         "lb": "mäi Mann huet mech mat engem Bijou iwwerrascht",
-        "audioId": "06b0c3e30282542f7e092a4185556e1b"
+        "audioId": "06b0c3e30282542f7e092a4185556e1b",
+        "a1": false
       },
       "topics": [
         "joreszäiten"
@@ -11936,7 +12459,8 @@
       },
       "freq": 5,
       "rank": 237,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "KOMBINEIEREN1",
@@ -11967,7 +12491,8 @@
       },
       "example": {
         "lb": "hatt huet hell an donkel Kleeder flott matenee kombinéiert",
-        "audioId": "3ce162bc3274162bd0c42201aac8f501"
+        "audioId": "3ce162bc3274162bd0c42201aac8f501",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -11980,7 +12505,8 @@
       },
       "freq": 5,
       "rank": 238,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "REKLAMEIEREN1",
@@ -12011,7 +12537,8 @@
       },
       "example": {
         "lb": "mir kruten e Bréif, an deem d'Bank hir Sue reklaméiert",
-        "audioId": "83d9cfec3710fbecdd65ee12cf21c67c"
+        "audioId": "83d9cfec3710fbecdd65ee12cf21c67c",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -12024,7 +12551,8 @@
       },
       "freq": 5,
       "rank": 241,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "STEIEREN1",
@@ -12055,7 +12583,8 @@
       },
       "example": {
         "lb": "ech wëll de Moien um Büro net gestéiert ginn",
-        "audioId": "ab649a2c20b34d08ed476df841f8678c"
+        "audioId": "ab649a2c20b34d08ed476df841f8678c",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -12073,7 +12602,8 @@
       },
       "freq": 5,
       "rank": 242,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "TAASCHTEN1",
@@ -12104,7 +12634,8 @@
       },
       "example": {
         "lb": "ech hunn an der Däischtert am Tirang getaascht, fir eng Täscheluucht ze fannen",
-        "audioId": "d2badc012bb1cf77fddb55a474089a71"
+        "audioId": "d2badc012bb1cf77fddb55a474089a71",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -12117,7 +12648,8 @@
       },
       "freq": 5,
       "rank": 243,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "TATOWEIEREN1",
@@ -12148,7 +12680,8 @@
       },
       "example": {
         "lb": "ech hu mer eng Rous op d'Schëller tätowéiere gelooss",
-        "audioId": "e7b350ee4d5c9debc4836e6e2178c6ed"
+        "audioId": "e7b350ee4d5c9debc4836e6e2178c6ed",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -12161,7 +12694,8 @@
       },
       "freq": 5,
       "rank": 244,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERBRENGEN1",
@@ -12192,7 +12726,8 @@
       },
       "example": {
         "lb": "mäi Papp verbréngt de ganzen Dag virum Computer",
-        "audioId": "8752400b1541be1b1aba805051a8b5f4"
+        "audioId": "8752400b1541be1b1aba805051a8b5f4",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -12208,7 +12743,8 @@
       },
       "freq": 5,
       "rank": 245,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERSTOPPEN1",
@@ -12239,7 +12775,8 @@
       },
       "example": {
         "lb": "eisen Hond huet e Lach gewullt, fir seng Schank ze verstoppen",
-        "audioId": "8ce8ec33e74240e3bf0580ed3f9ff140"
+        "audioId": "8ce8ec33e74240e3bf0580ed3f9ff140",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -12254,7 +12791,8 @@
       },
       "freq": 5,
       "rank": 246,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERZICHTEN1",
@@ -12285,7 +12823,8 @@
       },
       "example": {
         "lb": "d'Museker, déi um Concert fir e gudden Zweck opgetruede sinn, hunn op hir Gage verzicht",
-        "audioId": "83df36f49eb0741975132dc43c1f9059"
+        "audioId": "83df36f49eb0741975132dc43c1f9059",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -12298,7 +12837,8 @@
       },
       "freq": 5,
       "rank": 247,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ZERECKGOEN1",
@@ -12329,7 +12869,8 @@
       },
       "example": {
         "lb": "ech hunn eppes am Auto vergiess, ech muss nach eng Kéier zeréckgoen",
-        "audioId": "82fee9343fec49c1bd0fffe85eeee1a1"
+        "audioId": "82fee9343fec49c1bd0fffe85eeee1a1",
+        "a1": false
       },
       "topics": [
         "gesondheet",
@@ -12346,7 +12887,8 @@
       },
       "freq": 5,
       "rank": 249,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "AUSFELLEN1",
@@ -12377,7 +12919,8 @@
       },
       "example": {
         "lb": "et brauch ee just fënnef Minutten, fir de Questionnaire auszefëllen",
-        "audioId": "31108f7631a606c8fdd707faf6d1d071"
+        "audioId": "31108f7631a606c8fdd707faf6d1d071",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -12392,7 +12935,8 @@
       },
       "freq": 4,
       "rank": 250,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "AUSPAKEN1",
@@ -12423,7 +12967,8 @@
       },
       "example": {
         "lb": "d'Kanner paken d'Kaddoen aus",
-        "audioId": "01adfdc57a45a8f60bb827311200c595"
+        "audioId": "01adfdc57a45a8f60bb827311200c595",
+        "a1": false
       },
       "topics": [
         "liesen"
@@ -12433,7 +12978,8 @@
       "cloze": null,
       "freq": 4,
       "rank": 251,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "BECKEN2",
@@ -12464,7 +13010,8 @@
       },
       "example": {
         "lb": "du muss de Kapp bécken, fir duerch d'Dier ze kommen",
-        "audioId": "832428342cb99cb2445860657f495d53"
+        "audioId": "832428342cb99cb2445860657f495d53",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -12480,7 +13027,8 @@
       },
       "freq": 4,
       "rank": 252,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "BUCHEN1",
@@ -12511,7 +13059,8 @@
       },
       "example": {
         "lb": "mir hunn eis Rees dräi Méint am Viraus gebucht",
-        "audioId": "4d909da09ce29ae45433908922307783"
+        "audioId": "4d909da09ce29ae45433908922307783",
+        "a1": false
       },
       "topics": [
         "vakanz"
@@ -12526,7 +13075,8 @@
       },
       "freq": 4,
       "rank": 253,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ERKLAREN1",
@@ -12557,7 +13107,8 @@
       },
       "example": {
         "lb": "erklär eis dat emol an aller Rou!",
-        "audioId": "8c85a5959c67f453d7713c6fec611bc1"
+        "audioId": "8c85a5959c67f453d7713c6fec611bc1",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -12570,7 +13121,8 @@
       },
       "freq": 4,
       "rank": 254,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "FAVORISEIEREN1",
@@ -12601,7 +13153,8 @@
       },
       "example": {
         "lb": "dëse Steiersystem favoriséiert déi Leit, déi net vill verdéngen",
-        "audioId": "86edc831c39acd90f69546ad52dc1883"
+        "audioId": "86edc831c39acd90f69546ad52dc1883",
+        "a1": false
       },
       "topics": [
         "feierdeeg"
@@ -12616,7 +13169,8 @@
       },
       "freq": 4,
       "rank": 255,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "IMPROVISEIEREN1",
@@ -12647,7 +13201,8 @@
       },
       "example": {
         "lb": "well ech keng Zäit hat, mech virzebereeden, hunn ech meng Ried missen improviséieren",
-        "audioId": null
+        "audioId": null,
+        "a1": false
       },
       "topics": [
         "kreativitéit"
@@ -12662,7 +13217,8 @@
       },
       "freq": 4,
       "rank": 256,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MATKOMMEN1",
@@ -12693,7 +13249,8 @@
       },
       "example": {
         "lb": "mäi Frënd ass net matkomm, well en huet misse schaffen",
-        "audioId": "1b428fe0bbaa32a3ede8d6bd230ee1c0"
+        "audioId": "1b428fe0bbaa32a3ede8d6bd230ee1c0",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -12709,7 +13266,8 @@
       },
       "freq": 4,
       "rank": 257,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "NATZEN1",
@@ -12740,7 +13298,8 @@
       },
       "example": {
         "lb": "ech hunn d'Blumme mat der Strenz genat",
-        "audioId": "4d33425d298ce3f40850fabb437896be"
+        "audioId": "4d33425d298ce3f40850fabb437896be",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -12753,7 +13312,8 @@
       },
       "freq": 4,
       "rank": 259,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OPSPAREN1",
@@ -12784,7 +13344,8 @@
       },
       "example": {
         "lb": "de Gardien huet eis d'Dier opgespaart",
-        "audioId": "4285f8f9a9b5b6c56b4280649a086eec"
+        "audioId": "4285f8f9a9b5b6c56b4280649a086eec",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -12797,7 +13358,8 @@
       },
       "freq": 4,
       "rank": 261,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "RASEIEREN1",
@@ -12828,7 +13390,8 @@
       },
       "example": {
         "lb": "d'Prisonéier kruten de Kapp raséiert",
-        "audioId": "b70078d7ec8b4f06640d988a53566cb2"
+        "audioId": "b70078d7ec8b4f06640d988a53566cb2",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -12841,7 +13404,8 @@
       },
       "freq": 4,
       "rank": 263,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "REALISEIEREN1",
@@ -12872,7 +13436,8 @@
       },
       "example": {
         "lb": "ech hunn nach ëmmer net realiséiert, datt ech pensionéiert sinn",
-        "audioId": "7771192ec06fc4cb2e8a93379799421f"
+        "audioId": "7771192ec06fc4cb2e8a93379799421f",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -12885,7 +13450,8 @@
       },
       "freq": 4,
       "rank": 264,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "REESEN1",
@@ -12916,7 +13482,8 @@
       },
       "example": {
         "lb": "mäi Papp reest d'nächst Woch an Amerika",
-        "audioId": "35aaa6aa288543fcc437bd0a5feb9708"
+        "audioId": "35aaa6aa288543fcc437bd0a5feb9708",
+        "a1": false
       },
       "topics": [
         "vakanz"
@@ -12931,7 +13498,8 @@
       },
       "freq": 4,
       "rank": 265,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "RESERVEIEREN1",
@@ -12962,7 +13530,8 @@
       },
       "example": {
         "lb": "mir hu fir eng Woch en Zëmmer mat Hallefpensioun reservéiert",
-        "audioId": "e5d222571b3041a2a4893b9aa3d03e65"
+        "audioId": "e5d222571b3041a2a4893b9aa3d03e65",
+        "a1": false
       },
       "topics": [
         "iessen",
@@ -12973,7 +13542,8 @@
       "cloze": null,
       "freq": 4,
       "rank": 266,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SCHNAIZEN1",
@@ -13004,7 +13574,8 @@
       },
       "example": {
         "lb": "de Papp huet de Kanner d'Nues geschnäizt, wéi se aus dem Waasser koumen",
-        "audioId": "c8b24fe524414c20976f809f727f235a"
+        "audioId": "c8b24fe524414c20976f809f727f235a",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -13021,7 +13592,8 @@
       },
       "freq": 4,
       "rank": 267,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SPAICHEREN1",
@@ -13052,7 +13624,8 @@
       },
       "example": {
         "lb": "e Kacheluewe späichert d'Hëtzt besser ewéi eng Schminni",
-        "audioId": "88a65e2fd0755c15e66fad59cde9cb86"
+        "audioId": "88a65e2fd0755c15e66fad59cde9cb86",
+        "a1": false
       },
       "topics": [
         "medien"
@@ -13067,7 +13640,8 @@
       },
       "freq": 4,
       "rank": 268,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "UFROEN1",
@@ -13098,7 +13672,8 @@
       },
       "example": {
         "lb": "de Journalist huet eng Entrevue bei der Ministesch ugefrot",
-        "audioId": "d2817cc6f52464568be03d3c305af6ed"
+        "audioId": "d2817cc6f52464568be03d3c305af6ed",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -13111,7 +13686,8 @@
       },
       "freq": 4,
       "rank": 270,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "UMOOSSEN1",
@@ -13142,7 +13718,8 @@
       },
       "example": {
         "lb": "esoubal eng Kabinn fräi ass, kënnt Der d'Box umoossen",
-        "audioId": "a089ce3d43c088daedf8bcf2fa2b0114"
+        "audioId": "a089ce3d43c088daedf8bcf2fa2b0114",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -13155,7 +13732,8 @@
       },
       "freq": 4,
       "rank": 271,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "UNHUNN1",
@@ -13183,7 +13761,8 @@
       "imperative": null,
       "example": {
         "lb": "fréier haten d'Schoulkanner all Schiertecher un",
-        "audioId": "ff3a7a16c6e4e8d0852d426ab8ce913e"
+        "audioId": "ff3a7a16c6e4e8d0852d426ab8ce913e",
+        "a1": false
       },
       "topics": [
         "kleeder"
@@ -13193,7 +13772,8 @@
       "cloze": null,
       "freq": 4,
       "rank": 272,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ZERECKKOMMEN1",
@@ -13224,7 +13804,8 @@
       },
       "example": {
         "lb": "am Fréijoer kommen d'Schmuebelen zeréck",
-        "audioId": "907c44a8ee98535d91fe5112b35206b9"
+        "audioId": "907c44a8ee98535d91fe5112b35206b9",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -13234,7 +13815,8 @@
       "cloze": null,
       "freq": 4,
       "rank": 273,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ZERECKRUFFEN1",
@@ -13265,7 +13847,8 @@
       },
       "example": {
         "lb": "wéinst dem Attentat huet de Premier d'Ministeren aus der Vakanz zeréckgeruff",
-        "audioId": "eabb65bb551dd9fc2e8aee5a66d0b7e0"
+        "audioId": "eabb65bb551dd9fc2e8aee5a66d0b7e0",
+        "a1": false
       },
       "topics": [
         "vakanz"
@@ -13280,7 +13863,8 @@
       },
       "freq": 4,
       "rank": 274,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ANHANKEN1",
@@ -13311,7 +13895,8 @@
       },
       "example": {
         "lb": "hëllefs de mer wannechgelift, déi zwou Fënsteren anzehänken?",
-        "audioId": "d1d70aaf5deeeb0d06074631409b7925"
+        "audioId": "d1d70aaf5deeeb0d06074631409b7925",
+        "a1": false
       },
       "topics": [
         "medien"
@@ -13326,7 +13911,8 @@
       },
       "freq": 3,
       "rank": 275,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ASCHLOFEN1",
@@ -13357,7 +13943,8 @@
       },
       "example": {
         "lb": "no deem ganzen Dag an der frëscher Loft sinn d'Kanner owes direkt ageschlof",
-        "audioId": "4dc4940ad79bf036a628393c6dbc36c8"
+        "audioId": "4dc4940ad79bf036a628393c6dbc36c8",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -13370,7 +13957,8 @@
       },
       "freq": 3,
       "rank": 276,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "AUSLEINEN1",
@@ -13401,7 +13989,8 @@
       },
       "example": {
         "lb": "de Sportsclub kann eis déi néideg Ausrüstung ausléinen",
-        "audioId": "de61a9ad756af1fec0810873aaaf75ba"
+        "audioId": "de61a9ad756af1fec0810873aaaf75ba",
+        "a1": false
       },
       "topics": [
         "liesen"
@@ -13416,7 +14005,8 @@
       },
       "freq": 3,
       "rank": 277,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "BAIKOMMEN1",
@@ -13444,7 +14034,8 @@
       "imperative": null,
       "example": {
         "lb": "an dësem Schouljoer kënnt fir eist Jéngst Englesch als Fach bäi",
-        "audioId": "1e4f081199c8a5795df4985aabce4cbd"
+        "audioId": "1e4f081199c8a5795df4985aabce4cbd",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -13454,7 +14045,8 @@
       "cloze": null,
       "freq": 3,
       "rank": 278,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "BESCHREIWEN1",
@@ -13485,7 +14077,8 @@
       },
       "example": {
         "lb": "ech kann der net beschreiwen, wéi ech mech opgereegt hunn!",
-        "audioId": "b731c0d6051f4ece60b2763b1f2d2557"
+        "audioId": "b731c0d6051f4ece60b2763b1f2d2557",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -13498,7 +14091,8 @@
       },
       "freq": 3,
       "rank": 279,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "BLETZEN1",
@@ -13529,7 +14123,8 @@
       },
       "example": {
         "lb": "et blëtzt an donnert, mee nach reent et net!",
-        "audioId": "6204c83f12eb845fd54f7eb18ae43695"
+        "audioId": "6204c83f12eb845fd54f7eb18ae43695",
+        "a1": false
       },
       "topics": [
         "joreszäiten"
@@ -13544,7 +14139,8 @@
       },
       "freq": 3,
       "rank": 280,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "DESINFIZEIEREN1",
@@ -13575,7 +14171,8 @@
       },
       "example": {
         "lb": "de Chirurg desinfizéiert seng Hänn, ier en operéiert",
-        "audioId": "fed2dcd770c1d9940caf1db1291292f9"
+        "audioId": "fed2dcd770c1d9940caf1db1291292f9",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -13590,7 +14187,8 @@
       },
       "freq": 3,
       "rank": 281,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ERAFUEREN1",
@@ -13621,7 +14219,8 @@
       },
       "example": {
         "lb": "du muss méi wäit mam Auto erafueren, soss geet d'Paart net ganz zou",
-        "audioId": "d7c169d2900bba9c997d25a05c4b77e5"
+        "audioId": "d7c169d2900bba9c997d25a05c4b77e5",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -13636,7 +14235,8 @@
       },
       "freq": 3,
       "rank": 282,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "EWECHGEHEIEN1",
@@ -13667,7 +14267,8 @@
       },
       "example": {
         "lb": "bei eis doheem gëtt näischt ewechgehäit",
-        "audioId": "2adda0e0f1e62ffc659d69fa2d93bd56"
+        "audioId": "2adda0e0f1e62ffc659d69fa2d93bd56",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -13682,7 +14283,8 @@
       },
       "freq": 3,
       "rank": 283,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "EWECHHUELEN1",
@@ -13713,7 +14315,8 @@
       },
       "example": {
         "lb": "d'Mamm huet hirem klenge Bouf d'Täschemesser ewechgeholl",
-        "audioId": "679a41d5f66309fae6eb418415c50b30"
+        "audioId": "679a41d5f66309fae6eb418415c50b30",
+        "a1": false
       },
       "topics": [
         "famill",
@@ -13729,7 +14332,8 @@
       },
       "freq": 3,
       "rank": 284,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "HOUSCHTEN1",
@@ -13760,7 +14364,8 @@
       },
       "example": {
         "lb": "wann ech muer nach ëmmer esou vill muss houschten, da ginn ech bei den Dokter",
-        "audioId": "91736e7768c46f290c6c860df64adc75"
+        "audioId": "91736e7768c46f290c6c860df64adc75",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -13775,7 +14380,8 @@
       },
       "freq": 3,
       "rank": 285,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MATLAFEN1",
@@ -13806,7 +14412,8 @@
       },
       "example": {
         "lb": "well ech mäi Knéi wéi hunn, weess ech net, ob ech de Marathon ka matlafen",
-        "audioId": "ba4e3b4b4955ebba25d83ee5c6d0dcea"
+        "audioId": "ba4e3b4b4955ebba25d83ee5c6d0dcea",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -13821,7 +14428,8 @@
       },
       "freq": 3,
       "rank": 286,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MECKEREN1",
@@ -13852,7 +14460,8 @@
       },
       "example": {
         "lb": "et héiert een d'Geessen am Stall meckeren",
-        "audioId": "9ab84305ed3795beda942acaafac8c5e"
+        "audioId": "9ab84305ed3795beda942acaafac8c5e",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -13865,7 +14474,8 @@
       },
       "freq": 3,
       "rank": 287,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MONTEIEREN1",
@@ -13896,7 +14506,8 @@
       },
       "example": {
         "lb": "ech hu mäi Schaf selwer montéiert",
-        "audioId": "8b8b094635b410308cc656fd4ba0e551"
+        "audioId": "8b8b094635b410308cc656fd4ba0e551",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -13909,7 +14520,8 @@
       },
       "freq": 3,
       "rank": 288,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OFLAUSCHTEREN1",
@@ -13940,7 +14552,8 @@
       },
       "example": {
         "lb": "d'Doktesch huet mech ofgelauschtert",
-        "audioId": "96426c72f487d80b84f42fc89a36cef7"
+        "audioId": "96426c72f487d80b84f42fc89a36cef7",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -13955,7 +14568,8 @@
       },
       "freq": 3,
       "rank": 289,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OPPECHEN1",
@@ -13986,7 +14600,8 @@
       },
       "example": {
         "lb": "déi Logoen hei si geduecht fir opzepechen",
-        "audioId": "69d919d2b9e6498a07c70bcde427772b"
+        "audioId": "69d919d2b9e6498a07c70bcde427772b",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -13999,7 +14614,8 @@
       },
       "freq": 3,
       "rank": 290,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "PARKEN1",
@@ -14037,7 +14653,8 @@
       "cloze": null,
       "freq": 3,
       "rank": 292,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "RECOMMANDEIEREN1",
@@ -14068,7 +14685,8 @@
       },
       "example": {
         "lb": "ech kann Iech deen Dokter nëmme recommandéieren!",
-        "audioId": "db6438905ef3f456f62b8b5fafc6c082"
+        "audioId": "db6438905ef3f456f62b8b5fafc6c082",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -14083,7 +14701,8 @@
       },
       "freq": 3,
       "rank": 293,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "REIDEN1",
@@ -14114,7 +14733,8 @@
       },
       "example": {
         "lb": "meng kleng Schwëster léiert zënter enger Woch reiden",
-        "audioId": "b4b02a5325f24468f0a01ecbb96f9e76"
+        "audioId": "b4b02a5325f24468f0a01ecbb96f9e76",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -14129,7 +14749,8 @@
       },
       "freq": 3,
       "rank": 294,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SABBELEN1",
@@ -14160,7 +14781,8 @@
       },
       "example": {
         "lb": "sabbel kee Roude Wäin op den Teppech, déi Flecke ginn net méi eraus!",
-        "audioId": "073a6aab700c7ec8a103ecf1125ec85f"
+        "audioId": "073a6aab700c7ec8a103ecf1125ec85f",
+        "a1": false
       },
       "topics": [
         "iessen"
@@ -14170,7 +14792,8 @@
       "cloze": null,
       "freq": 3,
       "rank": 295,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SCHMINKEN1",
@@ -14201,7 +14824,8 @@
       },
       "example": {
         "lb": "ech schminke mech all Mueren, fir méi e frëschen Teint ze hunn",
-        "audioId": "676fad5a2220b0d16152119b666f8856"
+        "audioId": "676fad5a2220b0d16152119b666f8856",
+        "a1": false
       },
       "topics": [
         "kreativitéit"
@@ -14216,7 +14840,8 @@
       },
       "freq": 3,
       "rank": 296,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "STENKEN1",
@@ -14247,7 +14872,8 @@
       },
       "example": {
         "lb": "wat sténkt hei esou?",
-        "audioId": "e275c96d620d5fde914709d4fa31a20c"
+        "audioId": "e275c96d620d5fde914709d4fa31a20c",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -14260,7 +14886,8 @@
       },
       "freq": 3,
       "rank": 297,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "STRECKEN1",
@@ -14291,7 +14918,8 @@
       },
       "example": {
         "lb": "mäi Brudder wäscht a streckt seng Kleeder selwer",
-        "audioId": "dbeeb82a35f7acc9fea212c273fac041"
+        "audioId": "dbeeb82a35f7acc9fea212c273fac041",
+        "a1": false
       },
       "topics": [
         "stot"
@@ -14306,7 +14934,8 @@
       },
       "freq": 3,
       "rank": 298,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERGLAICHEN1",
@@ -14337,7 +14966,8 @@
       },
       "example": {
         "lb": "um Internet kann ee kamoud d'Präisser (mateneen) vergläichen",
-        "audioId": "727dc771d2e124d6ae8a145951d6c42a"
+        "audioId": "727dc771d2e124d6ae8a145951d6c42a",
+        "a1": false
       },
       "topics": [
         "medien"
@@ -14352,7 +14982,8 @@
       },
       "freq": 3,
       "rank": 299,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "WEIDERHELLEFEN1",
@@ -14383,7 +15014,8 @@
       },
       "example": {
         "lb": "déi zoustänneg Verwaltung huet eis vill weidergehollef",
-        "audioId": "c236922957ef0a5dcdb64bbba3206b9f"
+        "audioId": "c236922957ef0a5dcdb64bbba3206b9f",
+        "a1": false
       },
       "topics": [
         "famill"
@@ -14398,7 +15030,8 @@
       },
       "freq": 3,
       "rank": 300,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "WEIDERMAACHEN1",
@@ -14429,7 +15062,8 @@
       },
       "example": {
         "lb": "wéi et opgehalen hat mat reenen, konnten d'Leit mat hirer Aarbecht weidermaachen",
-        "audioId": "7feffb0bcbb593df7eb807f90bbb86c8"
+        "audioId": "7feffb0bcbb593df7eb807f90bbb86c8",
+        "a1": false
       },
       "topics": [
         "aarbecht"
@@ -14444,7 +15078,8 @@
       },
       "freq": 3,
       "rank": 301,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ARAUMEN1",
@@ -14475,7 +15110,8 @@
       },
       "example": {
         "lb": "dëse Weekend raumen ech mäin Handwierksgeschier propper an",
-        "audioId": "aba8980e3bf11c7c623eccd06e326c82"
+        "audioId": "aba8980e3bf11c7c623eccd06e326c82",
+        "a1": false
       },
       "topics": [
         "stot"
@@ -14485,7 +15121,8 @@
       "cloze": null,
       "freq": 2,
       "rank": 302,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "AUSDOEN1",
@@ -14516,7 +15153,8 @@
       },
       "example": {
         "lb": "ditt är knaschteg Schong aus, wannechgelift!",
-        "audioId": "a86ed207ea64e1c9784ee8ae61711eec"
+        "audioId": "a86ed207ea64e1c9784ee8ae61711eec",
+        "a1": false
       },
       "topics": [
         "gesondheet",
@@ -14528,7 +15166,8 @@
       "cloze": null,
       "freq": 2,
       "rank": 303,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "CHECKEN1",
@@ -14559,7 +15198,8 @@
       },
       "example": {
         "lb": "mer mussen nach checken, ob mer näischt vun eiser Lëscht vergiess hunn",
-        "audioId": "593b1de02c32da8a0f61410199a863b5"
+        "audioId": "593b1de02c32da8a0f61410199a863b5",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -14572,7 +15212,8 @@
       },
       "freq": 2,
       "rank": 304,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "CHILLEN1",
@@ -14603,7 +15244,8 @@
       },
       "example": {
         "lb": "ech hu mer virgeholl, iwwer d'Feierdeeg weider näischt ze maachen, ewéi ze chillen",
-        "audioId": null
+        "audioId": null,
+        "a1": false
       },
       "topics": [
         "vakanz"
@@ -14618,7 +15260,8 @@
       },
       "freq": 2,
       "rank": 305,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "DROPMAACHEN1",
@@ -14649,7 +15292,8 @@
       },
       "example": {
         "lb": "hatt huet an der Vakanz seng ganz Pai dropgemaach",
-        "audioId": "30244821499deb01306fd1818dd53cc0"
+        "audioId": "30244821499deb01306fd1818dd53cc0",
+        "a1": false
       },
       "topics": [
         "gesondheet",
@@ -14665,7 +15309,8 @@
       },
       "freq": 2,
       "rank": 306,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "EMKLAMMEN1",
@@ -14696,7 +15341,8 @@
       },
       "example": {
         "lb": "wann ech mam Bus op d'Aarbecht fueren, muss ech zweemol ëmklammen",
-        "audioId": "48738a9689eb7c670b0a3cb3bf5c66a9"
+        "audioId": "48738a9689eb7c670b0a3cb3bf5c66a9",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -14712,7 +15358,8 @@
       },
       "freq": 2,
       "rank": 307,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ENGAGEIEREN1",
@@ -14743,7 +15390,8 @@
       },
       "example": {
         "lb": "d'Koppel huet en Detektiv engagéiert",
-        "audioId": "a92fe68d0e8ec8a539537e4dda20ec9a"
+        "audioId": "a92fe68d0e8ec8a539537e4dda20ec9a",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -14751,7 +15399,8 @@
       "cloze": null,
       "freq": 2,
       "rank": 308,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ERAGOEN1",
@@ -14782,7 +15431,8 @@
       },
       "example": {
         "lb": "gitt schonn eran, mir kommen no!",
-        "audioId": "0987cda4a008a51d45a97d299689a9f6"
+        "audioId": "0987cda4a008a51d45a97d299689a9f6",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -14790,7 +15440,8 @@
       "cloze": null,
       "freq": 2,
       "rank": 309,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "EWECHGINN1",
@@ -14821,7 +15472,8 @@
       },
       "example": {
         "lb": "mäi Brudder huet säin ale Vëlo ewechginn",
-        "audioId": "01af57594853c76a7654e3148920f27f"
+        "audioId": "01af57594853c76a7654e3148920f27f",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -14836,7 +15488,8 @@
       },
       "freq": 2,
       "rank": 310,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "IWWERWEISEN1",
@@ -14867,7 +15520,8 @@
       },
       "example": {
         "lb": "mäi Monni huet mir fir mäi Gebuertsdag e schéint Stéck Geld iwwerwisen",
-        "audioId": "bce1a9e87e384d2ee8ed126dd3e6116b"
+        "audioId": "bce1a9e87e384d2ee8ed126dd3e6116b",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -14882,7 +15536,8 @@
       },
       "freq": 2,
       "rank": 312,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "KONTAKTEIEREN1",
@@ -14913,7 +15568,8 @@
       },
       "example": {
         "lb": "fir eppes gewuer ze ginn, muss de déi richteg Leit kontaktéieren!",
-        "audioId": "a2979c78ee9741b71c4ba9bf14413da8"
+        "audioId": "a2979c78ee9741b71c4ba9bf14413da8",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -14926,7 +15582,8 @@
       },
       "freq": 2,
       "rank": 314,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "LOUNEN1",
@@ -14957,7 +15614,8 @@
       },
       "example": {
         "lb": "déi jonk Koppel iwwerleet, ob si en Appartement soll kafen oder lounen",
-        "audioId": "13422ee5b25bf38df3560a8289de04a9"
+        "audioId": "13422ee5b25bf38df3560a8289de04a9",
+        "a1": false
       },
       "topics": [
         "wunnen"
@@ -14972,7 +15630,8 @@
       },
       "freq": 2,
       "rank": 315,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MIWWELEIEREN1",
@@ -15003,7 +15662,8 @@
       },
       "example": {
         "lb": "d'Kummeren um zweete Stack mussen nach miwweléiert ginn",
-        "audioId": "cf98d0cec9851307a5be9fb103b2a65a"
+        "audioId": "cf98d0cec9851307a5be9fb103b2a65a",
+        "a1": false
       },
       "topics": [
         "wunnen"
@@ -15018,7 +15678,8 @@
       },
       "freq": 2,
       "rank": 316,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MOTIVEIEREN1",
@@ -15049,7 +15710,8 @@
       },
       "example": {
         "lb": "vun der Cheffin geet eng Energie aus, déi de ganze Betrib motivéiert",
-        "audioId": "11c933f32124e21b2ed8bdd5b5862cbe"
+        "audioId": "11c933f32124e21b2ed8bdd5b5862cbe",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -15062,7 +15724,8 @@
       },
       "freq": 2,
       "rank": 317,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "NUMMEREIEREN1",
@@ -15093,7 +15756,8 @@
       },
       "example": {
         "lb": "du muss d'Këschten nummeréieren",
-        "audioId": "bad5d39c8ce15e5bd63bf18c38b6fef8"
+        "audioId": "bad5d39c8ce15e5bd63bf18c38b6fef8",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -15106,7 +15770,8 @@
       },
       "freq": 2,
       "rank": 318,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "OPBOTZEN1",
@@ -15137,7 +15802,8 @@
       },
       "example": {
         "lb": "kanns de dat Waasser vum Buedem opbotzen?",
-        "audioId": "020b79eba1a59b8fcb0b8665ae9d3ea9"
+        "audioId": "020b79eba1a59b8fcb0b8665ae9d3ea9",
+        "a1": false
       },
       "topics": [
         "iessen"
@@ -15152,7 +15818,8 @@
       },
       "freq": 2,
       "rank": 319,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "RELAXEN1",
@@ -15183,7 +15850,8 @@
       },
       "example": {
         "lb": "an der Vakanz kann een esou richteg relaxen",
-        "audioId": "73cf87d2b392c5c52f62d18cd58ee3b7"
+        "audioId": "73cf87d2b392c5c52f62d18cd58ee3b7",
+        "a1": false
       },
       "topics": [
         "vakanz"
@@ -15198,7 +15866,8 @@
       },
       "freq": 2,
       "rank": 320,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SCHMIDDEN1",
@@ -15229,7 +15898,8 @@
       },
       "example": {
         "lb": "de Gesell huet d'Eise geschmitt, esoulaang et nach gliddeg war",
-        "audioId": "1760824a1d93908b8b627be4919dcaee"
+        "audioId": "1760824a1d93908b8b627be4919dcaee",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -15242,7 +15912,8 @@
       },
       "freq": 2,
       "rank": 322,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "STREIKEN1",
@@ -15273,7 +15944,8 @@
       },
       "example": {
         "lb": "d'Aarbechter streiken, well se dëse Mount nach keng Pai kruten",
-        "audioId": "78798f50f7d0028dff91a0f4d7b100f9"
+        "audioId": "78798f50f7d0028dff91a0f4d7b100f9",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -15288,7 +15960,8 @@
       },
       "freq": 2,
       "rank": 323,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SURFEN1",
@@ -15319,7 +15992,8 @@
       },
       "example": {
         "lb": "ouni Wellen ass net gutt surfen",
-        "audioId": "596b8436bed387a8be99f48ecbf2c623"
+        "audioId": "596b8436bed387a8be99f48ecbf2c623",
+        "a1": false
       },
       "topics": [
         "sport"
@@ -15334,7 +16008,8 @@
       },
       "freq": 2,
       "rank": 324,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "TOMMELEN1",
@@ -15365,7 +16040,8 @@
       },
       "example": {
         "lb": "maach gemälleg, et gëtt kee Grond, fir sech ze tommelen!",
-        "audioId": "ada6a4fbf142c0aa3b48a965201ac305"
+        "audioId": "ada6a4fbf142c0aa3b48a965201ac305",
+        "a1": false
       },
       "topics": [
         "transport"
@@ -15380,7 +16056,8 @@
       },
       "freq": 2,
       "rank": 326,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "UKLICKEN1",
@@ -15411,7 +16088,8 @@
       },
       "example": {
         "lb": "wann dir dee Link uklickt, kommt der op eis Homepage",
-        "audioId": "e6f828d9fc36cd13146327e2502e9d96"
+        "audioId": "e6f828d9fc36cd13146327e2502e9d96",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -15424,7 +16102,8 @@
       },
       "freq": 2,
       "rank": 327,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERRECKELEN1",
@@ -15455,7 +16134,8 @@
       },
       "example": {
         "lb": "ech muss eise Rendez-vous verréckelen, well ech d'nächst Woch am Ausland sinn",
-        "audioId": "3b6610c579a9c08e243290b2f3ecc72a"
+        "audioId": "3b6610c579a9c08e243290b2f3ecc72a",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -15468,7 +16148,8 @@
       },
       "freq": 2,
       "rank": 328,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERSTAUCHEN1",
@@ -15499,7 +16180,8 @@
       },
       "example": {
         "lb": "eng vun eise beschte Spillerinnen huet sech beim Training den Enkel verstaucht",
-        "audioId": "eba1a2aa29f0c90a5062602e54d3241d"
+        "audioId": "eba1a2aa29f0c90a5062602e54d3241d",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -15514,7 +16196,8 @@
       },
       "freq": 2,
       "rank": 329,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "AUSKENNEN1",
@@ -15542,7 +16225,8 @@
       "imperative": null,
       "example": {
         "lb": "hie kennt sech a ville Groussstied aus",
-        "audioId": "658bcde5cd53c3b785bf3643fba2f0d5"
+        "audioId": "658bcde5cd53c3b785bf3643fba2f0d5",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -15550,7 +16234,8 @@
       "cloze": null,
       "freq": 1,
       "rank": 330,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "COIFFEIEREN1",
@@ -15581,7 +16266,8 @@
       },
       "example": {
         "lb": "si huet vill Zäit gebraucht, fir sech ze coifféieren",
-        "audioId": "0360ccec72262d6e9b3b5e339c215625"
+        "audioId": "0360ccec72262d6e9b3b5e339c215625",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -15594,7 +16280,8 @@
       },
       "freq": 1,
       "rank": 332,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "EWECHLEEEN1",
@@ -15625,7 +16312,8 @@
       },
       "example": {
         "lb": "d'Sekretärin huet d'Zeitung ewechgeluecht, wéi hire Chef erakoum",
-        "audioId": "5ee3ebb2d8c875c730bf493395ee8ac9"
+        "audioId": "5ee3ebb2d8c875c730bf493395ee8ac9",
+        "a1": false
       },
       "topics": [
         "aarbecht",
@@ -15642,7 +16330,8 @@
       },
       "freq": 1,
       "rank": 334,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "FIDDEREN1",
@@ -15673,7 +16362,8 @@
       },
       "example": {
         "lb": "ech hu mer meng Liederjackett nei fiddere gelooss",
-        "audioId": "0ca6ad5369c2ddecca2511bd008e11a5"
+        "audioId": "0ca6ad5369c2ddecca2511bd008e11a5",
+        "a1": false
       },
       "topics": [
         "famill"
@@ -15683,7 +16373,8 @@
       "cloze": null,
       "freq": 1,
       "rank": 335,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "JOGGEN1",
@@ -15714,7 +16405,8 @@
       },
       "example": {
         "lb": "solle mer an de Bësch fuere fir ze joggen?",
-        "audioId": "345f5792b93663b6b2512a850d0159d6"
+        "audioId": "345f5792b93663b6b2512a850d0159d6",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -15727,7 +16419,8 @@
       },
       "freq": 1,
       "rank": 338,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "KRANKSCHREIWEN1",
@@ -15758,7 +16451,8 @@
       },
       "example": {
         "lb": "no menger Operatioun huet d'Doktesch mech sechs Woche krankgeschriwwen",
-        "audioId": "89faefbaaa9857020689cb6582befafb"
+        "audioId": "89faefbaaa9857020689cb6582befafb",
+        "a1": false
       },
       "topics": [
         "gesondheet"
@@ -15773,7 +16467,8 @@
       },
       "freq": 1,
       "rank": 339,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MATSCHECKEN1",
@@ -15804,7 +16499,8 @@
       },
       "example": {
         "lb": "mir hunn Iech d'Dokumentatioun matgeschéckt",
-        "audioId": "a596f079efd56f5b558be9cbf2927fb5"
+        "audioId": "a596f079efd56f5b558be9cbf2927fb5",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -15817,7 +16513,8 @@
       },
       "freq": 1,
       "rank": 340,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "MEDITEIEREN1",
@@ -15848,7 +16545,8 @@
       },
       "example": {
         "lb": "ech huele mer all Dag zéng Minutten Zäit fir ze meditéieren",
-        "audioId": "c9bb91a6d651b2fe5ef4edcb6d677301"
+        "audioId": "c9bb91a6d651b2fe5ef4edcb6d677301",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -15861,7 +16559,8 @@
       },
       "freq": 1,
       "rank": 341,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SPULLEN1",
@@ -15892,7 +16591,8 @@
       },
       "example": {
         "lb": "huel frëscht Waasser, fir d'Glieser ze spullen!",
-        "audioId": "1c2e83a9482b907b754133ad4bd3826a"
+        "audioId": "1c2e83a9482b907b754133ad4bd3826a",
+        "a1": false
       },
       "topics": [
         "iessen"
@@ -15907,7 +16607,8 @@
       },
       "freq": 1,
       "rank": 343,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "WEIDINN1",
@@ -15943,7 +16644,8 @@
       "cloze": null,
       "freq": 1,
       "rank": 344,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ZERECKFUEREN1",
@@ -15974,7 +16676,8 @@
       },
       "example": {
         "lb": "wéi ech gemierkt hunn, datt ech mäi Prabbeli am Restaurant leie gelooss hat, sinn ech direkt zeréckgefuer",
-        "audioId": "c4ea950c91f6843659c3cb66b9f051fd"
+        "audioId": "c4ea950c91f6843659c3cb66b9f051fd",
+        "a1": false
       },
       "topics": [
         "iessen",
@@ -15990,7 +16693,8 @@
       },
       "freq": 1,
       "rank": 345,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ZOUSPAREN1",
@@ -16021,7 +16725,8 @@
       },
       "example": {
         "lb": "spär d'Viischt Dier zou, wann s de schlofe gees!",
-        "audioId": "ecf04dc55d910b5ba44c06c5a4d97b04"
+        "audioId": "ecf04dc55d910b5ba44c06c5a4d97b04",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -16029,7 +16734,8 @@
       "cloze": null,
       "freq": 1,
       "rank": 346,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ASCHREIWEN1",
@@ -16060,7 +16766,8 @@
       },
       "example": {
         "lb": "de Personalchef schreift all Dag d'Absencen an",
-        "audioId": "fdc128f1d3ef1a470270a67e44082f7a"
+        "audioId": "fdc128f1d3ef1a470270a67e44082f7a",
+        "a1": false
       },
       "topics": [
         "sproochen"
@@ -16070,7 +16777,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 347,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "DREINEN1",
@@ -16106,7 +16814,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 349,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "DUERCHSTRAICHEN1",
@@ -16137,7 +16846,8 @@
       },
       "example": {
         "lb": "sträich dee Saz duerch a schreif en nei!",
-        "audioId": "f32a127344f16d2fd9398b90de59a842"
+        "audioId": "f32a127344f16d2fd9398b90de59a842",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -16145,7 +16855,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 350,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "EIDELMAACHEN1",
@@ -16176,7 +16887,8 @@
       },
       "example": {
         "lb": "meng Fra huet gëschter mat enger Frëndin zesummen eng ganz Fläsch Porto eidel gemaach",
-        "audioId": "7cd188bd9b7d6a4fa13f16374092a1a2"
+        "audioId": "7cd188bd9b7d6a4fa13f16374092a1a2",
+        "a1": false
       },
       "topics": [
         "famill"
@@ -16186,7 +16898,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 351,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "EMDREINEN1",
@@ -16222,7 +16935,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 352,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "INTRESSEIEREN1",
@@ -16258,7 +16972,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 354,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "LEEDDOEN1",
@@ -16286,7 +17001,8 @@
       "imperative": null,
       "example": {
         "lb": "dee Mënsch deet mer wierklech leed!",
-        "audioId": "45f3c33fc06b91a3925a6e039ae638a9"
+        "audioId": "45f3c33fc06b91a3925a6e039ae638a9",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -16294,7 +17010,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 356,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "RASCHTEN2",
@@ -16325,7 +17042,8 @@
       },
       "example": {
         "lb": "nom Mëttegiesse rascht de Bopi gewéinlech eng Stonn",
-        "audioId": "8fb6d8ade5a897cfe62a3b8e4addf544"
+        "audioId": "8fb6d8ade5a897cfe62a3b8e4addf544",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -16333,7 +17051,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 360,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "SPUEREN1",
@@ -16364,7 +17083,8 @@
       },
       "example": {
         "lb": "duerch dës Moossnam wäerte mer vill Sue spueren",
-        "audioId": "73be578e5dc31feedfd0a2cfe6229be4"
+        "audioId": "73be578e5dc31feedfd0a2cfe6229be4",
+        "a1": false
       },
       "topics": [
         "kreativitéit",
@@ -16380,7 +17100,8 @@
       },
       "freq": 0,
       "rank": 362,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "STRECKEN2",
@@ -16411,7 +17132,8 @@
       },
       "example": {
         "lb": "ech bräicht chinéiert Woll, fir mer e Pullover ze strécken",
-        "audioId": "0edfed55ec09ef2da76285dc6358768f"
+        "audioId": "0edfed55ec09ef2da76285dc6358768f",
+        "a1": false
       },
       "topics": [
         "joreszäiten",
@@ -16427,7 +17149,8 @@
       },
       "freq": 0,
       "rank": 363,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "VERSPILLEN1",
@@ -16458,7 +17181,8 @@
       },
       "example": {
         "lb": "well ech nom 31. August gebuer sinn, hunn ech e Joer an der Schoul verspillt",
-        "audioId": "8ca605f76ce45ee1e835944fa7539304"
+        "audioId": "8ca605f76ce45ee1e835944fa7539304",
+        "a1": false
       },
       "topics": [
         "hobbyen"
@@ -16468,7 +17192,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 364,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     },
     {
       "id": "ZOUKREIEN1",
@@ -16496,7 +17221,8 @@
       "imperative": null,
       "example": {
         "lb": "ech muss de Bauch anzéien, soss kréien ech meng Box net zou",
-        "audioId": "5822e8c6116d3d558082f187c10b9d9a"
+        "audioId": "5822e8c6116d3d558082f187c10b9d9a",
+        "a1": false
       },
       "topics": [],
       "topicVia": null,
@@ -16504,7 +17230,8 @@
       "cloze": null,
       "freq": 0,
       "rank": 365,
-      "stage": 5
+      "stage": 5,
+      "a1": false
     }
   ]
 }

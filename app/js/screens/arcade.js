@@ -68,21 +68,41 @@ function shuffle(list, random = Math.random) {
  *   `word`    a single word gapped out of its own LOD example, for the four
  *             patterns that *are* a small closed set of words — question
  *             words, connectors, the here/there of location, negation.
+ *
+ * ## The A1 filter
+ *
+ * On by default, and the reason `a1Only` is a parameter rather than a constant
+ * is that it is a Settings switch: "for now" was the ask, so lifting it later
+ * is a tap rather than a deploy.
+ *
+ * What it filters is every sentence a card *shows*, because "build the
+ * sentence" is only a structure exercise if you already know the words — one
+ * unknown noun and it becomes "guess the noun". The `a1` flag it reads is
+ * computed at build time by `pipeline/build-a1.js`, which is where the lexicon
+ * and corpus needed to answer the question live.
+ *
+ * One deliberate exception: a `frame` card's answer and options are always
+ * shown, because a frame *is* an A1 opener — it is the thing being taught in
+ * that very round. Only its illustrating sentence is filtered, and the card
+ * drops the sentence rather than itself when that sentence is above A1.
  */
-export function questionsFor(pattern, decks, random = Math.random) {
+export function questionsFor(pattern, decks, random = Math.random, { a1Only = true } = {}) {
   const { frames, items, words } = materialFor(pattern, decks);
   const questions = [];
+  const readable = (row) => !a1Only || row?.a1 !== false;
 
   // Decoy tiles for the build questions. wordBank draws them from this pool
   // and nowhere else, so it has to be real Luxembourgish: the other example
   // sentences of this same pattern, which keeps the wrong tiles plausible
   // (same register, same kind of sentence) without a word being invented.
-  const pool = frames.flatMap((frame) => (frame.examples ?? []).map((example) => example.lb).filter(Boolean));
+  // Filtered too — a decoy tile is a word you have to read and reject.
+  const pool = frames.flatMap((frame) =>
+    (frame.examples ?? []).filter(readable).map((example) => example.lb).filter(Boolean),
+  );
 
   const others = frames.length >= OPTION_COUNT ? frames : [...frames, ...(decks.phrases ?? [])];
   for (const frame of frames) {
     const examples = (frame.examples ?? [frame.example]).filter((example) => example?.lb);
-    if (examples.length === 0) continue;
 
     // One choice card per frame, not per example: the answer is the frame, so
     // three examples of it would be the same question asked three times.
@@ -93,9 +113,29 @@ export function questionsFor(pattern, decks, random = Math.random) {
       questions.push({
         kind: 'frame',
         prompt: frame.en,
-        sentence: examples[0].lb,
+        // Illustration only, so it is dropped rather than allowed to drag the
+        // card above A1. The question still stands without it.
+        sentence: examples.find(readable)?.lb ?? '',
         answer: frame.lb,
         options: shuffle([{ value: frame.lb, correct: true }, ...distractors], random),
+      });
+
+      // The same frame the other way round: read the opener, choose what it
+      // does. Free under the A1 filter — the options are English, and the one
+      // Luxembourgish string on the card is the frame itself — and it is what
+      // keeps `existence` and `connectors` playable once their above-A1
+      // examples are filtered out.
+      questions.push({
+        kind: 'meaning',
+        prompt: frame.lb,
+        answer: frame.en,
+        options: shuffle(
+          [{ value: frame.en, correct: true }, ...distractors.map((option) => ({
+            value: others.find((other) => other.lb === option.value)?.en ?? option.value,
+            correct: false,
+          }))],
+          random,
+        ),
       });
     }
 
@@ -104,6 +144,7 @@ export function questionsFor(pattern, decks, random = Math.random) {
     // thin patterns playable: `existence` has only two attested frames, and
     // without their other examples a round would be four cards long.
     for (const example of examples) {
+      if (!readable(example)) continue;
       // Short sentences only: a fourteen-word sentence rebuilt from tiles is a
       // memory test, not a structure one.
       const words = example.lb.split(/\s+/).filter(Boolean);
@@ -119,6 +160,7 @@ export function questionsFor(pattern, decks, random = Math.random) {
 
   for (const item of items) {
     if (!Array.isArray(item.options_lb) || !Number.isInteger(item.correct)) continue;
+    if (!readable(item)) continue;
     questions.push({
       kind: 'item',
       prompt: pattern.ask,
@@ -132,7 +174,7 @@ export function questionsFor(pattern, decks, random = Math.random) {
     });
   }
 
-  for (const question of wordQuestions(pattern, words, random)) questions.push(question);
+  for (const question of wordQuestions(pattern, words, random, readable)) questions.push(question);
 
   return shuffle(questions, random).slice(0, ROUND_SIZE);
 }
@@ -159,7 +201,7 @@ export function gapExample(word, sentence) {
  * other words of the same pattern are the wrong answers, which is what makes
  * the card discriminating: choosing between wien/wat/wou is the exercise.
  */
-function wordQuestions(pattern, words, random) {
+function wordQuestions(pattern, words, random, readable) {
   // A gloss shared by two words makes an unanswerable card — keen and keng are
   // both "no". Only ask about words this pattern glosses uniquely; the ones
   // dropped are still taught by the pattern's grammar items.
@@ -170,6 +212,9 @@ function wordQuestions(pattern, words, random) {
 
   const questions = [];
   for (const word of askable) {
+    // The sentence is shown whole with one word missing, so it is filtered
+    // like a build card rather than like a frame's illustration.
+    if (!readable(word.example)) continue;
     const gap = gapExample(word.lb, word.example?.lb);
     if (!gap) continue;
     const distractors = shuffle(askable.filter((other) => other.lb !== word.lb), random)
@@ -192,12 +237,17 @@ export async function render(root, { params, settings, navigate }) {
   const [phrases, grammar, vocab] = await Promise.all([loadPhrases(), loadGrammar(), loadVocab()]);
   const decks = { phrases, grammar, vocab };
   const pattern = params?.[0] ? patternById(params[0]) : null;
-  return pattern ? renderRound(root, pattern, decks, { settings, navigate }) : renderIndex(root, decks, { navigate });
+  // Unset means on: the filter was asked for, so absence is not a refusal —
+  // the same reading `sound` gets in Settings.
+  const a1Only = settings?.arcadeA1 !== false;
+  return pattern
+    ? renderRound(root, pattern, decks, { settings, navigate, a1Only })
+    : renderIndex(root, decks, { navigate, a1Only });
 }
 
 /* ------------------------------------------------------------------ index */
 
-function renderIndex(root, decks, { navigate }) {
+function renderIndex(root, decks, { navigate, a1Only }) {
   void navigate;
   const playable = PATTERNS.filter((pattern) => isPlayable(pattern, decks));
 
@@ -209,6 +259,14 @@ function renderIndex(root, decks, { navigate }) {
       'Fifteen things you actually need a sentence to do. Play as much as you like — these do not count towards the daily goal, ' +
         'do not move your review schedule, and are never capped by the new-word budget.',
     ),
+    a1Only
+      ? el(
+          'p',
+          { class: 'card__note' },
+          'Showing A1 words only, so every sentence you are asked to build is one you can already read. ' +
+            'Settings turns this off when you want the harder examples.',
+        )
+      : null,
     el(
       'div',
       { class: 'stack', style: { marginBlockStart: 'var(--s4)' } },
@@ -244,8 +302,8 @@ function renderIndex(root, decks, { navigate }) {
 
 /* ------------------------------------------------------------------ round */
 
-function renderRound(root, pattern, decks, { settings, navigate }) {
-  const questions = questionsFor(pattern, decks);
+function renderRound(root, pattern, decks, { settings, navigate, a1Only }) {
+  const questions = questionsFor(pattern, decks, Math.random, { a1Only });
 
   root.append(screenHead({ title: pattern.title, sub: pattern.ask, back: '#/arcade' }));
   const body = el('div', { class: 'stack stack--lg' });
@@ -265,16 +323,25 @@ function renderRound(root, pattern, decks, { settings, navigate }) {
     return { destroy() {} };
   }
 
-  playRound({ body, pattern, questions, settings, navigate });
+  // A short round is a real outcome of the filter, not a fault: `existence`
+  // has two attested frames and LOD's examples for them are above A1. Say so,
+  // rather than padding the round with sentences the filter just rejected.
+  const short = a1Only && questions.length < ROUND_SIZE;
+  playRound({ body, pattern, questions, settings, navigate, short });
   return { destroy() {} };
 }
 
-function playRound({ body, pattern, questions, settings, navigate }) {
+function playRound({ body, pattern, questions, settings, navigate, short }) {
   let index = 0;
   let correct = 0;
 
   const amelie = new Amelie({ size: 'sm', bubble: true });
-  amelie.say(pattern.gap ?? `How Luxembourgish says: ${pattern.ask}`, 'idle');
+  amelie.say(
+    short
+      ? `A short round — only ${questions.length} of these stay inside A1 words.`
+      : pattern.gap ?? `How Luxembourgish says: ${pattern.ask}`,
+    'idle',
+  );
 
   const scoreLabel = el('span', { class: 'chip' }, `0 of ${questions.length}`);
   const instruction = el('p', { class: 'drill__instruction' });
@@ -306,7 +373,10 @@ function playRound({ body, pattern, questions, settings, navigate }) {
       return;
     }
 
-    if (question.kind === 'item' || question.kind === 'word') {
+    if (question.kind === 'meaning') {
+      instruction.textContent = 'What does this opener do?';
+      fill(promptCard, el('p', { class: 'card__title', style: { textAlign: 'center' } }, question.prompt));
+    } else if (question.kind === 'item' || question.kind === 'word') {
       instruction.textContent = question.kind === 'word' ? `Which word means “${question.gloss}”?` : 'Which one fits?';
       fill(
         promptCard,

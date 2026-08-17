@@ -765,6 +765,78 @@ async function main() {
     process.stdout.write(`  ${answered} Arcade questions, daily count unchanged at ${before}\n`);
   });
 
+  await step('the Arcade only builds sentences out of A1 words', async () => {
+    // The complaint this answers: "I'm supposed to build a sentence but there
+    // are many words I still don't know." Every sentence a build card asks for
+    // now has to carry the a1 stamp that pipeline/build-a1.js writes, so the
+    // check here is that what reaches the screen is one of those.
+    const phrases = JSON.parse(await fsp.readFile(path.join(APP_DIR, 'data', 'phrases.json'), 'utf8'));
+    const readable = new Set(
+      phrases.items.flatMap((item) => (item.examples ?? []).filter((example) => example.a1).map((example) => example.lb)),
+    );
+    if (readable.size === 0) throw new Error('no phrase example carries the a1 stamp — run npm run build:a1');
+
+    await openFresh('#/arcade');
+    await page.waitForSelector('.plan', { timeout: 5000 });
+    const intro = await page.locator('#screen .card__note').allTextContents();
+    if (!intro.some((text) => /A1 words only/i.test(text))) {
+      throw new Error(`the index does not say the A1 filter is on: ${intro.join(' | ')}`);
+    }
+
+    // Play the pattern with the most build cards and check every sentence the
+    // word bank is built from is a stamped one.
+    await openFresh('#/arcade/location');
+    let built = 0;
+    for (let guard = 0; guard < 12; guard += 1) {
+      const instruction = (await page.locator('.drill__instruction').textContent().catch(() => null)) ?? '';
+      if (!instruction) break;
+      if ((await page.locator('.bank__tile').count()) > 0) {
+        const tiles = (await page.locator('.bank__tile').allTextContents()).map((tile) => tile.trim());
+        // The bank is the answer's words plus decoys, and both come from
+        // stamped sentences — so every tile must appear in one of them.
+        const vocabulary = new Set([...readable].flatMap((sentence) => sentence.split(/\s+/)));
+        const stray = tiles.filter((tile) => !vocabulary.has(tile));
+        if (stray.length > 0) throw new Error(`build card offers words from no A1 sentence: ${stray.join(', ')}`);
+        built += 1;
+        await page.locator('.bank__tile').first().click();
+        await page.getByRole('button', { name: 'Check' }).click();
+      } else if ((await page.locator('.options .option').count()) > 0) {
+        await page.locator('.options .option').first().click();
+      } else {
+        break;
+      }
+      await page.waitForTimeout(1900);
+    }
+    if (built === 0) throw new Error('the location round served no build card to check');
+    process.stdout.write(`  ${built} build cards, all words from A1 sentences (${readable.size} stamped)\n`);
+    await shot('16q-arcade-a1');
+  });
+
+  await step('the A1 filter can be switched off, and it sticks', async () => {
+    await openFresh('#/settings');
+    const toggle = page.locator('#arcade-a1');
+    await toggle.waitFor({ timeout: 5000 });
+    if (!(await toggle.isChecked())) throw new Error('the A1 filter should default to on');
+    await toggle.uncheck();
+    await page.getByRole('button', { name: /^Save/ }).first().click();
+    await page.waitForTimeout(300);
+
+    await openFresh('#/settings');
+    if (await page.locator('#arcade-a1').isChecked()) throw new Error('the A1 filter switched back on after a reload');
+
+    // With it off the index stops claiming the filter is applied.
+    await openFresh('#/arcade');
+    await page.waitForSelector('.plan', { timeout: 5000 });
+    const intro = await page.locator('#screen .card__note').allTextContents();
+    if (intro.some((text) => /A1 words only/i.test(text))) throw new Error('the index still advertises a filter that is off');
+
+    // Put it back, so later steps see the shipped default.
+    await openFresh('#/settings');
+    await page.locator('#arcade-a1').check();
+    await page.getByRole('button', { name: /^Save/ }).first().click();
+    await page.waitForTimeout(300);
+  });
+
   await step('seven tabs still fit, down to the narrowest Android width', async () => {
     // Adding Arcade made it seven, and `grid-auto-columns: 1fr` refuses to
     // shrink a column below its label — so the bar overflowed at 360px while

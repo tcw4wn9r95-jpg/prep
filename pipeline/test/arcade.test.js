@@ -23,6 +23,7 @@ const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 
 const ROOT = path.join(__dirname, '..', '..');
+const { buildA1Forms, isA1Sentence } = require(path.join(ROOT, 'pipeline', 'lib', 'a1.js'));
 const phrases = require(path.join(ROOT, 'app', 'data', 'phrases.json')).items;
 const grammar = require(path.join(ROOT, 'app', 'data', 'grammar.json')).items;
 const vocab = require(path.join(ROOT, 'app', 'data', 'vocab.json')).items;
@@ -145,14 +146,80 @@ test('arcade: questions are built only from real deck rows', async () => {
 
 test('arcade: every round is long enough to be a game', async () => {
   // Not just "produces questions": a pattern that resolves to two cards is a
-  // tile on the index that disappoints. Six is the floor — `wanting` sits
-  // there because its three frames all carry long examples that a word bank
-  // would turn into a memory test; everything else fills the round.
+  // tile on the index that disappoints.
+  //
+  // Two floors, because the A1 filter costs material. `existence` has two
+  // attested frames and LOD's examples for both are above A1, and `quantity`
+  // has one — those two land at four cards, which the round announces. Every
+  // other pattern still fills six.
+  const THIN = new Set(['existence', 'quantity']);
   const arcade = await import(pathToFileURL(path.join(ROOT, 'app', 'js', 'screens', 'arcade.js')).href);
   for (const pattern of patterns.PATTERNS) {
     const questions = arcade.questionsFor(pattern, decks, () => 0.5);
-    assert.ok(questions.length >= 6, `${pattern.id} only fills ${questions.length} cards`);
+    const floor = THIN.has(pattern.id) ? 4 : 6;
+    assert.ok(questions.length >= floor, `${pattern.id} only fills ${questions.length} cards at A1`);
   }
+});
+
+test('arcade: with the A1 filter on, no card shows a word above A1', async () => {
+  // The point of the filter, asserted where it can actually fail. "Build the
+  // sentence" is only a structure exercise if the words are already known —
+  // one unknown noun turns it into "guess the noun", which is the complaint
+  // this filter answers. Checked over many shuffles because which cards a
+  // round draws is random, and a leak in a rare draw is still a leak.
+  const arcade = await import(pathToFileURL(path.join(ROOT, 'app', 'js', 'screens', 'arcade.js')).href);
+  const known = buildA1Forms();
+
+  let checked = 0;
+  for (const pattern of patterns.PATTERNS) {
+    for (let seed = 0; seed < 20; seed += 1) {
+      for (const question of arcade.questionsFor(pattern, decks, () => (seed * 0.05) % 1, { a1Only: true })) {
+        const shown = [];
+        // Everything the learner reads, including the wrong answers: a
+        // distractor full of unknown words is as discouraging as a bad card.
+        if (question.kind === 'build') shown.push(question.answer, ...(question.pool ?? []));
+        if (question.kind === 'item' || question.kind === 'word') {
+          shown.push(question.before, question.after, ...question.options.map((option) => option.value));
+        }
+        // A `meaning` card shows one frame and four English glosses; a `frame`
+        // card's own options are frames, which are A1 by construction.
+        if (question.kind === 'frame') shown.push(question.sentence, ...question.options.map((option) => option.value));
+        if (question.kind === 'meaning') shown.push(question.prompt);
+
+        for (const sentence of shown.filter(Boolean)) {
+          checked += 1;
+          assert.ok(isA1Sentence(sentence, known), `${pattern.id}/${question.kind} shows above-A1 text: "${sentence}"`);
+        }
+      }
+    }
+  }
+  assert.ok(checked > 2000, `only ${checked} strings checked — the sweep is not covering the rounds`);
+});
+
+test('arcade: turning the filter off opens up the harder examples', async () => {
+  // The switch has to actually do something, or it is a lie in Settings.
+  const arcade = await import(pathToFileURL(path.join(ROOT, 'app', 'js', 'screens', 'arcade.js')).href);
+  const count = (id, a1Only) =>
+    arcade.questionsFor(patterns.patternById(id), decks, () => 0.5, { a1Only }).length;
+  assert.ok(count('existence', false) > count('existence', true), 'the A1 filter is not filtering anything');
+});
+
+test('arcade: the shipped decks carry the A1 stamp', () => {
+  // build-a1.js writes it, and it is the last step of `npm run content`. If a
+  // rebuild ever skips it the flag goes missing, every row reads as readable,
+  // and the filter silently stops filtering — so fail here instead.
+  assert.ok(
+    phrases.every((phrase) => typeof phrase.a1 === 'boolean'),
+    'phrases.json has no a1 flag — run npm run build:a1',
+  );
+  const examples = phrases.flatMap((phrase) => phrase.examples ?? []);
+  assert.ok(examples.every((example) => typeof example.a1 === 'boolean'), 'phrase examples have no a1 flag');
+  assert.ok(grammar.every((item) => typeof item.a1 === 'boolean'), 'grammar.json has no a1 flag');
+  assert.ok(vocab.every((item) => typeof item.a1 === 'boolean'), 'vocab.json has no a1 flag');
+  // A stamp that marked everything readable would pass the checks above while
+  // meaning nothing.
+  const readable = examples.filter((example) => example.a1).length;
+  assert.ok(readable > 0 && readable < examples.length, `the stamp is degenerate: ${readable}/${examples.length} readable`);
 });
 
 test('arcade: a word is gapped on whole words, never inside a longer one', async () => {

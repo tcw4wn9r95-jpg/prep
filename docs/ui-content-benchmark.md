@@ -2208,3 +2208,113 @@ here.
 
 `npm test` 248 (10 new in `arcade.test.js`) · `validate` PASS · `npm run
 walkthrough` 52/52 steps, run twice for flakiness · `sw.js` → `v37`.
+
+---
+
+# Follow-up 18 — the Arcade at A1, and why the obvious filter does not work
+
+> "The problem with the arcade games is that I'm supposed to build a sentence
+> but there are many words I still don't know. Can we make it A1 only for now?"
+
+Fair, and the build card is the specific offender. "Which opener says this?"
+shows a sentence; "build the sentence" makes you *produce* every word in it. A
+structure exercise only teaches structure when the words are already known —
+one unknown noun and it silently becomes "guess the noun".
+
+## The obvious implementation is backwards, and measurably wrong
+
+The natural approach is to take each word of a sentence, resolve it through
+`lexicon.forms` to a LOD id, and ask whether that id is banded A1. It does not
+work, and the way it fails is instructive.
+
+`lexicon.forms` is single-valued — one id per spelling, with verified spellings
+winning the slot — so a homograph resolves to whichever record won the index
+rather than to the sense actually used in the sentence. Measured against the
+phrase deck it sends `vu` to `FEDEREIERTSTAATEVUMIKRONESIEN1` and `ass` to
+`ASS1`, and rejects **125 of 126** example sentences, almost entirely on words
+a beginner reads on day one: `ass`, `huet`, `et`, `de`, `eng`, `am`. It is the
+same mis-attribution documented in Follow-up 16, in a new place.
+
+So `pipeline/lib/a1.js` goes the other way — **forward expansion**. Start from
+the lemmas that *are* A1 and expand each into every surface form LOD publishes
+for it, by inverting the lexicon (id → all spellings). Under-inclusive when a
+form's index entry points at a homograph — that form is simply not added — but
+never wrong in the direction that matters, which is calling an A2 word A1.
+
+| step | forms known |
+| --- | --- |
+| A1 vocabulary lemmas | 872 |
+| \+ every lexicon form resolving to an A1 id (this is what supplies the inflection tables) | 3,594 |
+| \+ A1 verb conjugations from the verb deck | 3,622 |
+| \+ plurals and participles LOD records on A1 entries, the shipped frames, the pronoun/dative/possessive tables | **3,667** |
+
+Two smaller things mattered more than expected. The clitic article had to be
+split off — `d'Post` is the A1 noun `Post` behind `d'`, and one token made it
+unknown. And the shipped phrase frames count as known by construction: `ech
+hätt` is not an unknown word on a card whose entire subject is `ech hätt`.
+
+What survives the filter is genuinely A2+ content vocabulary — `Schnéi`,
+`Conservatoire`, `Tomatenzooss`, `däischter`, `fitness-zenter`. That is the
+right boundary, and it is the evidence the filter is calibrated rather than
+merely strict.
+
+## Decided at build time, shipped as a boolean
+
+The lexicon and corpus are 22 MB and will never reach a phone, so the question
+is answered once in `pipeline/build-a1.js` — a new last step of `npm run
+content` — and the answer travels as `a1` on the row and on each example.
+
+| deck | rows readable at A1 |
+| --- | --- |
+| phrases (frames) | 42 / 42 |
+| phrase example sentences | 26 / 126 |
+| grammar | 453 / 3,371 |
+| vocab | 889 / 2,049 |
+| verbs | 111 / 365 |
+
+One correction found while writing it: the row flag first folded a frame's
+three examples into the frame, which marked `ech hunn` unreadable because one
+of its examples mentions a Conservatoire. A frame and each of its examples are
+*separate cards*, so they get separate flags. A second: the spelling test alone
+promoted A2 words whose form collides with an A1 one — 945 vocabulary rows
+"readable" against 889 actually banded — so for decks that carry LOD's own CEFR
+tag, the tag now has the last word.
+
+## What the filter costs, and the card that pays for it
+
+Filtering examples takes real material away, and two patterns cannot fill a
+full round without it: `existence` has two attested frames whose LOD examples
+are both above A1, and `quantity` has one. Rather than pad those rounds with
+the sentences just rejected, the round is short and says so —
+"a short round — only 4 of these stay inside A1 words."
+
+The rest stay playable because of one new card shape. A **`meaning`** card runs
+the frame backwards: read the Luxembourgish opener, choose what it does. It is
+free under the filter — the options are English and the single Luxembourgish
+string is the frame itself — and it is genuine recognition practice rather than
+filler.
+
+| | A1 filter on | off |
+| --- | --- | --- |
+| patterns filling 6+ cards | 13 / 15 | 15 / 15 |
+| patterns filling 4+ cards | 15 / 15 | 15 / 15 |
+
+## "For now" is a switch, not a deploy
+
+The ask said *for now*, so Settings carries **Arcade → A1 words only**,
+defaulting on and read the same way `sound` is (unset means on, because the
+thing was asked for). Turning it off restores LOD's harder examples and every
+pattern goes back to a full round.
+
+## Verification
+
+`npm test` 257 (6 new in `a1.test.js`, 4 new in `arcade.test.js`) · `validate`
+PASS · `npm run walkthrough` 54/54 · `sw.js` → `v38`.
+
+The load-bearing test sweeps 20 shuffles of all fifteen patterns and asserts
+that **every** string a card shows — answers, gapped sentences, decoy tiles and
+wrong options alike — passes `isA1Sentence`. It checks ~10,000 strings and
+finds zero leaks; a distractor full of unknown words is as discouraging as a
+bad card, so the wrong answers are in scope too. A second test asserts the
+stamp is present and non-degenerate, so a rebuild that skips `build:a1` fails
+loudly instead of silently un-filtering the tab.

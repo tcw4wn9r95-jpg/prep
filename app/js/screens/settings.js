@@ -44,6 +44,9 @@ export async function render(root, { navigate }) {
 
   // Default on: the sound was asked for, so an unset value means "yes".
   const sound = el('input', { type: 'checkbox', id: 'sound', class: 'switch', checked: settings.sound !== false });
+
+  // Same reading, same reason: the A1 filter was asked for, so unset means on.
+  const arcadeA1 = el('input', { type: 'checkbox', id: 'arcade-a1', class: 'switch', checked: settings.arcadeA1 !== false });
   // Applied on tap rather than on save, so the preview below tells the truth.
   sound.addEventListener('change', () => {
     setChimeEnabled(sound.checked);
@@ -127,6 +130,7 @@ export async function render(root, { navigate }) {
         secret: secret.value.trim(),
         workerUrl: workerUrl.value.trim().replace(/\/$/, ''),
         sound: sound.checked,
+        arcadeA1: arcadeA1.checked,
         dailyGoal: goal,
         newWordGoal: newWords,
       });
@@ -203,6 +207,28 @@ export async function render(root, { navigate }) {
         'p',
         { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } },
         'It stays silent while a recording is playing, so it never covers the listening exercise.',
+      ),
+    ),
+
+    sectionLabel('Arcade'),
+    el(
+      'div',
+      { class: 'card' },
+      el(
+        'label',
+        { class: 'row row--between', for: 'arcade-a1' },
+        el(
+          'span',
+          { class: 'spacer' },
+          el('span', { class: 'card__title' }, 'A1 words only'),
+          el('span', { class: 'card__note' }, 'Every sentence the Arcade asks you to build uses only words from the A1 list.'),
+        ),
+        arcadeA1,
+      ),
+      el(
+        'p',
+        { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } },
+        'Turning it off opens up LOD’s harder examples. Some patterns then have more to play — but a build card can ask for words you have not met.',
       ),
     ),
 
