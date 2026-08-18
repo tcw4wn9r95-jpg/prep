@@ -96,6 +96,30 @@ function tableCard(table) {
 }
 
 /**
+ * The words this round will actually put in front of you.
+ *
+ * Generated from the same deck lookup the round uses, so it cannot advertise
+ * material the round does not have — and when the A1 filter takes something
+ * out, it disappears from here too. Seeing the openers before meeting them as
+ * questions is most of what "I didn't know what was expected" was asking for.
+ */
+function vocabularyCard(vocabulary) {
+  return el(
+    'div',
+    { class: 'card' },
+    el('p', { class: 'meter__label' }, 'What comes up'),
+    el(
+      'div',
+      { class: 'brief__table' },
+      ...vocabulary.flatMap((entry) => [
+        el('span', { class: 'brief__form' }, entry.lb),
+        el('span', { class: 'brief__gloss' }, entry.en ?? ''),
+      ]),
+    ),
+  );
+}
+
+/**
  * Renders the brief into `root`, calling `onStart` when the player is ready.
  *
  * `game` needs `title`, `ask` and `how`; `rule` and `points` are shown when
@@ -124,6 +148,7 @@ export function renderBrief(root, game, { verbs, onStart, startLabel = 'Start' }
       ),
 
       table ? tableCard(table) : null,
+      game.vocabulary?.length ? vocabularyCard(game.vocabulary) : null,
 
       game.points?.length
         ? el(
@@ -131,6 +156,16 @@ export function renderBrief(root, game, { verbs, onStart, startLabel = 'Start' }
             { class: 'card' },
             el('p', { class: 'meter__label' }, 'Worth knowing'),
             el('ul', { class: 'brief__points' }, ...game.points.map((point) => el('li', {}, point))),
+            // The long version lives in the cheat sheet's notecards, so the
+            // brief points at it instead of growing a second copy that would
+            // have to be kept true separately.
+            game.guide
+              ? el(
+                  'a',
+                  { class: 'brief__more', href: `#/notecards/${game.guide}` },
+                  'The full rule, with examples →',
+                )
+              : null,
           )
         : null,
 

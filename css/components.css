@@ -1532,3 +1532,13 @@
   font-size: var(--size-sm);
   line-height: 1.5;
 }
+
+/* Link from a brief to the notecard carrying the full rule. */
+.brief__more {
+  display: inline-block;
+  margin-block-start: var(--s3);
+  font-size: var(--size-sm);
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
