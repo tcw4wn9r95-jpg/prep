@@ -40,8 +40,9 @@ import { touchStreak } from '../store.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
 import { choiceInput, bankInput } from '../drill/inputs.js';
 import { wordBank } from '../drill/match.js';
-import { PATTERNS, patternById, materialFor, isPlayable } from '../arcade/patterns.js';
+import { PATTERNS, patternById, materialFor, isPlayable, briefFor } from '../arcade/patterns.js';
 import { VERB_GAMES, verbGameById, verbPool, isVerbGamePlayable } from '../arcade/verbs.js';
+import { renderBrief, hasSeenBrief, briefButton } from '../arcade/brief.js';
 import { renderVerbRound } from './verb-arcade.js';
 
 const ROUND_SIZE = 8;
@@ -364,11 +365,25 @@ function renderRound(root, pattern, decks, { settings, navigate, a1Only }) {
   // has two attested frames and LOD's examples for them are above A1. Say so,
   // rather than padding the round with sentences the filter just rejected.
   const short = a1Only && questions.length < ROUND_SIZE;
-  playRound({ body, pattern, questions, settings, navigate, short });
+
+  // The explanation goes in front of the first card, not underneath the answer
+  // buttons where it was — same fix, same reason, as the verb games.
+  const brief = briefFor(pattern);
+  const openBrief = () => {
+    fill(body);
+    renderBrief(body, brief, { onStart: start, startLabel: hasSeenBrief(pattern.id) ? 'Back to the round' : 'Start' });
+  };
+  const start = () => {
+    fill(body);
+    playRound({ body, pattern, questions, settings, navigate, short, onBrief: openBrief });
+  };
+
+  if (hasSeenBrief(pattern.id)) start();
+  else openBrief();
   return { destroy() {} };
 }
 
-function playRound({ body, pattern, questions, settings, navigate, short }) {
+function playRound({ body, pattern, questions, settings, navigate, short, onBrief }) {
   let index = 0;
   let correct = 0;
 
@@ -376,7 +391,7 @@ function playRound({ body, pattern, questions, settings, navigate, short }) {
   amelie.say(
     short
       ? `A short round — only ${questions.length} of these stay inside A1 words.`
-      : pattern.gap ?? `How Luxembourgish says: ${pattern.ask}`,
+      : pattern.gap ?? `This round is about saying: ${pattern.ask}`,
     'idle',
   );
 
@@ -387,9 +402,13 @@ function playRound({ body, pattern, questions, settings, navigate, short }) {
 
   fill(
     body,
-    el('div', { class: 'row row--between' }, el('span', { class: 'meter__label' }, pattern.title), scoreLabel),
-    promptCard,
+    // The pattern's name is already the screen heading; printing it again here
+    // was one of three copies of the same words on one screen. The way back to
+    // the explanation goes here instead, and the instruction moves above the
+    // card it describes.
+    el('div', { class: 'row row--between' }, briefButton(onBrief), scoreLabel),
     instruction,
+    promptCard,
     inputHolder,
     el('div', { class: 'card' }, amelie.el),
   );
@@ -400,8 +419,15 @@ function playRound({ body, pattern, questions, settings, navigate, short }) {
     const question = questions[index];
 
     if (question.kind === 'build') {
-      instruction.textContent = 'Build the sentence';
-      fill(promptCard, el('p', { class: 'card__title', style: { textAlign: 'center' } }, question.prompt));
+      // The prompt is the opener's English, so the card has to say that it is
+      // context rather than the thing to translate — "Build the sentence" over
+      // the words "he has" read as an instruction to translate those two.
+      instruction.textContent = 'Tap the words in order to rebuild the sentence.';
+      fill(
+        promptCard,
+        el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'It uses the opener meaning'),
+        el('p', { class: 'card__title', style: { textAlign: 'center' } }, question.prompt),
+      );
       const input = bankInput(
         { bank: wordBank(question.answer, question.pool ?? []), bankKind: 'word', answer: question.answer },
         (result) => answered(question, result),
@@ -411,16 +437,19 @@ function playRound({ body, pattern, questions, settings, navigate, short }) {
     }
 
     if (question.kind === 'meaning') {
-      instruction.textContent = 'What does this opener do?';
+      instruction.textContent = 'What does this opener mean? Tap the English.';
       fill(promptCard, el('p', { class: 'card__title', style: { textAlign: 'center' } }, question.prompt));
     } else if (question.kind === 'item' || question.kind === 'word') {
-      instruction.textContent = question.kind === 'word' ? `Which word means “${question.gloss}”?` : 'Which one fits?';
+      instruction.textContent =
+        question.kind === 'word'
+          ? `Which word means “${question.gloss}”? Tap it to fill the gap.`
+          : 'Tap the option that fills the gap correctly.';
       fill(
         promptCard,
         el('p', { style: { textAlign: 'center' } }, question.before ?? '', el('strong', {}, ' ___ '), question.after ?? ''),
       );
     } else {
-      instruction.textContent = 'Which opener says this?';
+      instruction.textContent = 'Which Luxembourgish opener says this? Tap it.';
       fill(
         promptCard,
         el('p', { class: 'card__title', style: { textAlign: 'center' } }, question.prompt),

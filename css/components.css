@@ -1472,3 +1472,63 @@
   font-size: var(--size-xs);
   color: var(--text-faint);
 }
+
+/* ---------------------------------------------------------------- the brief
+
+   The card that explains an Arcade game before it starts. Added after a
+   report that the games gave no idea what was expected — see arcade/brief.js
+   for what was wrong and why the explanation now comes first. */
+
+/* "How it works" on a running round: a chip that is a control, so it needs a
+   thumb-sized target like .chip--pick rather than label-sized padding. */
+.chip--action {
+  min-height: var(--tap);
+  padding-inline: var(--s4);
+  font-size: var(--size-sm);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  background: var(--accent-wash);
+  cursor: pointer;
+}
+
+/* A conjugation table pulled from the deck. Two columns so the pronoun and
+   its form read as a pair, and the form is the thing being looked at. */
+.brief__table {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s2) var(--s4);
+  align-items: baseline;
+  margin-block-start: var(--s3);
+}
+
+.brief__person {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.brief__gloss {
+  font-weight: 500;
+  color: var(--text-muted);
+  font-size: var(--size-xs);
+}
+
+.brief__form {
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* The forms that are the infinitive unchanged — the shortcut "One or many?"
+   turns on. Marked where it happens rather than only described in prose. */
+.brief__form--same {
+  color: var(--accent);
+}
+
+.brief__points {
+  margin: var(--s3) 0 0;
+  padding-inline-start: var(--s4);
+  display: grid;
+  gap: var(--s2);
+  color: var(--text-muted);
+  font-size: var(--size-sm);
+  line-height: 1.5;
+}
