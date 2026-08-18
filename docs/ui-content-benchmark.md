@@ -2447,3 +2447,124 @@ unrelated tests, because `freq`/`rank`/`stage` are assigned by `build:learn`,
 which runs *after* `build:verbs`. The deck came out alphabetical. Re-running
 the rest of the chain restored it, and a diff against the pre-change deck
 confirms the only fields that moved are the three glosses above.
+
+---
+
+# Follow-up 20 — the games did not say what they wanted
+
+> "I tried the new decks but I don't know what is expected of me, there are no
+> explanations and whatever there is is written without logic."
+
+Both halves of that were accurate, and reproducing it took one look at the
+running screens rather than any guesswork. Here is a card exactly as it
+shipped:
+
+```
+One or many?          ← screen heading
+Singular or plural    ← subtitle
+One or many?          ← meter label
+        sollt
+     from sollen
+One person, or more than one?   ← instruction
+   [ One ]  [ More than one ]
+For every A1 verb the singular and plural forms differ — and the mir/si form
+is usually just the infinitive again, which is the shortcut worth noticing.
+```
+
+Four separate faults on one card.
+
+## 1. The explanation was in the wrong place
+
+The only text explaining anything sat in Amelie's bubble **below the answer
+buttons**. On a phone that is under the fold — you answer first and read the
+explanation afterwards, if ever. The instruction was below the card it
+described too.
+
+Both moved up. The explanation is now a full card *before* the first question,
+with a Start button, and the instruction sits above the prompt rather than
+under it.
+
+## 2. It was written in the wrong voice
+
+This is the part that deserved the phrase "without logic". The copy was
+rationale aimed at whoever reviewed the build:
+
+| game | what it said |
+| --- | --- |
+| What does it mean? | "Every other verb game assumes you know this one, so it comes first." |
+| Who is doing it? | "Backwards from a normal conjugation drill: you are given the form and have to find the person…" |
+| Finish the table | "Typing it out, not picking it." |
+
+Every one of those explains a *design decision*. None of them teaches any
+Luxembourgish, and none says what to do. The app already had the right shape
+for this and it was not used: `grammar-guide.js` teaches with a one-line rule,
+a few points, then the exercise. Each game now carries `rule`, `points[]` and
+`how`, and a test rejects a `rule` that mentions cards, decks, rounds,
+paradigms or the corpus — the vocabulary that gave the old copy away.
+
+The brief also shows a **real conjugation table**, looked up from `verbs.json`
+rather than written into the copy, because writing one out would be authoring
+Luxembourgish. `schaffen` is the demo: regular, A1, and it shows the -s and -t
+endings and the mir/si shortcut in one table, with the forms that are the
+infinitive again highlighted.
+
+## 3. The card contradicted itself
+
+The question read "One person, or more than one?" and the buttons read "One" /
+"More than one". *One* what? Every instruction was rewritten to name the
+action and match its own controls, and a test now fails any card whose
+instruction does not contain a verb telling the player what to do. It caught
+two immediately — the hunn/sinn card and the singular/plural card both asked a
+question without ever saying to tap.
+
+`notéieren · du` became `notéieren + du → ?`, reusing the `X + Y → ?` idiom the
+dative game already established, with "Build the du form of notéieren" above
+it.
+
+## 4. Pronoun options were unanswerable
+
+The person game offered `hien` / `si` / `ech` / `mir` with no English. `si` is
+both "she" and "they"; `mir` is both "we" and "to me". **This exact bug was
+found and fixed in the dative game months ago** — that screen shows the gloss
+for precisely this reason, and the walkthrough there even asserts it. The verb
+games shipped without it anyway.
+
+Options now carry the English (`si · they`), via a new optional `label` on
+`choiceInput` that leaves the reported answer unchanged. Both a unit test and
+a walkthrough step assert no pronoun is ever shown bare.
+
+## What the same treatment did to the sentence functions
+
+They had the same disease, so they got the same brief — shorter, because the
+frames are the lesson and the theory already lives in the cheat sheet, so
+duplicating it would mean two places to keep true. Their brief says what the
+four card shapes are, which was the missing part.
+
+"Build the sentence" over the words "he has" was the worst of those: it reads
+as an instruction to translate two English words. It is now "Tap the words in
+order to rebuild the sentence", with "It uses the opener meaning" labelling
+the gloss as context.
+
+## The name was on screen three times
+
+Screen heading, meter label, and instruction all said "One or many?". The
+meter label is gone and the row now carries **How it works**, which reopens
+the brief mid-round — an explanation you cannot get back to is only slightly
+better than none.
+
+One small accessibility bug fell out of building that: the button had both
+visible text and an `aria-label` saying something different. An `aria-label`
+*replaces* the accessible name rather than adding to it, so a screen reader
+would have announced words that were not on screen. Caught because the
+walkthrough looks controls up by their accessible name and could not find it.
+
+## Verification
+
+`npm test` 271 (4 new) · `validate` PASS · `npm run walkthrough` 60/60 ·
+`sw.js` → `v40`.
+
+The tests worth naming are the ones that would have caught this the first
+time: every game's `how` must begin with an imperative; every card's
+instruction must contain an action verb; no `rule` may use implementation
+vocabulary; no pronoun option may appear without its gloss; and the brief's
+demo table must resolve to real published forms.

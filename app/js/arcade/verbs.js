@@ -53,47 +53,103 @@ export const PERSONS = [
   { key: 'p6', pronoun: 'si', en: 'they', number: 'plur' },
 ];
 
-/** @typedef {{id:string,title:string,ask:string,kind:string,teaches:string}} VerbGame */
+/**
+ * @typedef {{
+ *   id:string, title:string, ask:string, kind:string,
+ *   rule:string, points:string[], how:string, demo?:string
+ * }} VerbGame
+ */
+
+/**
+ * The five games, each with the thing it teaches written for the person
+ * playing it.
+ *
+ * The first version of this file had one `teaches` line per game and it was
+ * written in the wrong voice entirely — "backwards from a normal conjugation
+ * drill" explains the *design* to a reviewer and tells a learner nothing about
+ * Luxembourgish. It also sat below the answer buttons, so it was read after
+ * answering if at all. The shape below is the one the rest of the app already
+ * uses for teaching (`grammar-guide.js`): a one-line rule, a few points, and
+ * what you actually do on a card.
+ *
+ * `demo` names a verb whose real table is shown alongside the rule. It is a
+ * lookup rather than a written-out example, because writing one would mean
+ * authoring Luxembourgish — `schaffen` is regular, A1, and shows both the -s
+ * and -t endings and the mir/si shortcut in one table.
+ */
 
 /** @type {VerbGame[]} */
 export const VERB_GAMES = [
   {
     id: 'verb-meaning',
-    title: 'What does it do?',
-    ask: 'Read the verb, know the verb',
+    title: 'What does it mean?',
+    ask: 'Match a verb to its meaning, both ways round',
     kind: 'meaning',
-    teaches: 'Every other verb game assumes you know this one, so it comes first.',
+    rule: 'The form you look a verb up under ends in -en or -n. That is the infinitive: “to work”, “to go”, “to be”.',
+    points: [
+      'Every other verb game starts from the infinitive, so this is the one to play first.',
+      'Half the cards give you the Luxembourgish and ask for the English. The other half go the other way, which is the direction speaking actually needs.',
+      'When you get one right, the sentence LOD publishes for that verb appears underneath — that is the verb doing its job in a real sentence.',
+    ],
+    how: 'Tap the meaning that matches the word on the card.',
   },
   {
     id: 'verb-person',
     title: 'Who is doing it?',
-    ask: 'ech · du · hien · mir · dir · si',
+    ask: 'Read the ending, name the person',
     kind: 'person',
-    teaches:
-      'Backwards from a normal conjugation drill: you are given the form and have to find the person, so the ending is the only thing that can answer the card.',
+    rule: 'Luxembourgish puts the person on the end of the verb. The stem stays put and the ending changes.',
+    points: [
+      'The ending is the whole answer here. You are given a form on its own and have to say who it belongs to, so there is nothing else on the card to go on — that is deliberate, because an ending is easy to stop noticing.',
+      'An -s ending nearly always means du. A -t ending means hien, si or hatt — or dir.',
+      'The mir and si forms are usually just the infinitive again, unchanged.',
+      'Some forms fit more than one person. Those are never asked, so the card you see always has exactly one right answer.',
+    ],
+    how: 'Tap the pronoun that goes with the form shown.',
+    demo: 'schaffen',
   },
   {
     id: 'verb-form',
     title: 'Finish the table',
-    ask: 'Build the form yourself',
+    ask: 'Build the form yourself, letter by letter',
     kind: 'form',
-    teaches: 'Typing it out, not picking it. Producing a form is what makes it available when you speak.',
+    rule: 'Same endings as “Who is doing it?”, but you produce the form instead of recognising it.',
+    points: [
+      'Recognising a form and being able to say it are different skills, and only the second one helps when you are speaking.',
+      'The card names a verb and a person. You build the form that goes with them.',
+      'Some tiles are decoys, so the bank is always longer than the answer.',
+    ],
+    how: 'Tap the letters in order, then tap Check.',
+    demo: 'schaffen',
   },
   {
     id: 'verb-past',
     title: 'hunn or sinn?',
-    ask: 'Which one makes the past',
+    ask: 'Pick the helper verb that makes the past',
     kind: 'aux',
-    teaches:
-      'Luxembourgish builds the past with hunn for most verbs and sinn for the rest. Picking wrong is the single most audible beginner mistake.',
+    rule: 'To say something already happened you use a helper verb plus the participle — the equivalent of “I have worked”.',
+    points: [
+      'The helper is hunn for most verbs.',
+      'It is sinn for verbs of going and becoming — goen, kommen, bleiwen and their relatives.',
+      'Getting this wrong is one of the most audible beginner mistakes, because the helper is the second word out of your mouth.',
+      'The card shows the participle. Pick the helper that belongs with it.',
+    ],
+    how: 'Tap hunn or sinn.',
   },
   {
     id: 'verb-number',
     title: 'One or many?',
-    ask: 'Singular or plural',
+    ask: 'Is one person doing it, or several?',
     kind: 'number',
-    teaches:
-      'For every A1 verb the singular and plural forms differ — and the mir/si form is usually just the infinitive again, which is the shortcut worth noticing.',
+    rule: 'The ending also tells you how many people are doing it, without any pronoun in front of it.',
+    points: [
+      'Singular is ech, du and hien/si/hatt. Plural is mir, dir and si.',
+      'For every A1 verb the he/she form and the we/they form are different, so the form on its own always answers the question.',
+      'The quickest tell: if the form is the infinitive unchanged, it is mir or si — plural.',
+      'A -t ending is the tricky one, because it can be hien or dir. Where a form really is ambiguous the card is not asked at all.',
+    ],
+    how: 'Tap One person or More than one.',
+    demo: 'schaffen',
   },
 ];
 

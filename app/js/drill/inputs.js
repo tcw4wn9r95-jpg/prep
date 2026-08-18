@@ -21,7 +21,11 @@ export function choiceInput(card, onAnswer) {
       'button',
       { type: 'button', class: 'option', onclick: () => answer(option) },
       el('span', { class: 'option__key', 'aria-hidden': 'true' }, KEYS[index] ?? ''),
-      el('span', {}, option.value),
+      // `label` lets a caller show more than the answer itself — the verb
+      // games use it to put the English beside a pronoun, because `si` alone
+      // is both "she" and "they" and so cannot be chosen between. The answer
+      // reported back is still `value`.
+      el('span', {}, option.label ?? option.value),
     ),
   );
   const wrap = el('div', { class: 'options' }, ...buttons);

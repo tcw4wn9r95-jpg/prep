@@ -416,6 +416,21 @@ async function main() {
   // goto() with a hash that already matches is a same-document navigation, so
   // the app never re-renders and the previous card stays on screen. Every
   // drill step below starts a genuinely fresh session, so force a reload.
+  /**
+   * Opens an Arcade game and gets past its brief to the first card.
+   *
+   * Every game explains itself before the first round and remembers that it
+   * has, so a step that wants the round has to say so rather than assume.
+   */
+  const openArcadeRound = async (id) => {
+    await page.goto(`${base}#/arcade/${id}`, { waitUntil: 'networkidle' });
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForSelector('.splash.is-hidden', { timeout: 5000 }).catch(() => {});
+    const start = page.getByRole('button', { name: /^(Start|Back to the round)$/ });
+    if ((await start.count()) > 0) await start.first().click();
+    await page.waitForSelector('.options .option, .bank__tile, .empty', { timeout: 5000 });
+  };
+
   const openFresh = async (hash) => {
     await page.goto(`${base}${hash}`, { waitUntil: 'networkidle' });
     await page.reload({ waitUntil: 'networkidle' });
@@ -672,8 +687,7 @@ async function main() {
     if (asks.length !== hrefs.length || asks.some((ask) => !ask.trim())) throw new Error('a row does not say what it is for');
     await shot('16m-arcade-index');
 
-    await page.locator('#screen .plan').first().click();
-    await page.waitForSelector('.options .option, .bank__tile', { timeout: 5000 });
+    await openArcadeRound('naming');
     await shot('16n-arcade-round');
 
     // Answering right or wrong does not matter here — only that every question
@@ -696,8 +710,7 @@ async function main() {
     // The word patterns — question words, connectors, here/there — are a
     // closed set of words rather than a frame, so their card is the word
     // gapped out of its own LOD example, with the gloss as the question.
-    await openFresh('#/arcade/questions');
-    await page.waitForSelector('.drill__instruction', { timeout: 5000 });
+    await openArcadeRound('questions');
 
     // Play the whole round, collecting what each card asked. A round is a
     // shuffled mix of card shapes, so the word card is not necessarily first —
@@ -745,8 +758,7 @@ async function main() {
     };
 
     const before = await readCards();
-    await openFresh('#/arcade/having');
-    await page.waitForSelector('.options .option, .bank__tile', { timeout: 5000 });
+    await openArcadeRound('having');
     let answered = 0;
     for (let guard = 0; guard < 20; guard += 1) {
       if ((await page.locator('.options .option').count()) > 0) {
@@ -782,6 +794,68 @@ async function main() {
     await shot('16r-arcade-index-verbs');
   });
 
+  await step('a game explains itself before the first card, not after it', async () => {
+    // The report this guards: "I don't know what is expected of me, there are
+    // no explanations." The only explanation used to sit below the answer
+    // buttons, so it was read after answering if at all.
+    await page.evaluate(() => localStorage.removeItem('arcade.briefed'));
+    await openFresh('#/arcade/verb-person');
+    await page.waitForSelector('text=What you do', { timeout: 5000 });
+
+    // No card is reachable until the brief has been dismissed.
+    if ((await page.locator('.options .option').count()) > 0) throw new Error('the round started before explaining itself');
+
+    const brief = await page.locator('#screen').innerText();
+    if (!/Tap the pronoun/.test(brief)) throw new Error('the brief never says what to do');
+    if (!/Worth knowing/.test(brief)) throw new Error('the brief has no teaching points');
+    // The conjugation table is looked up from the deck, not written into the
+    // copy — so a real form has to be on screen.
+    if (!/schaffs/.test(brief)) throw new Error('the brief shows no real table');
+    await shot('16u-arcade-brief');
+
+    await page.getByRole('button', { name: 'Start' }).click();
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+
+    // And it stays reachable, because an explanation you cannot get back to is
+    // only slightly better than none.
+    await page.getByRole('button', { name: 'How it works' }).click();
+    await page.waitForSelector('text=What you do', { timeout: 5000 });
+    await page.getByRole('button', { name: /^(Start|Back to the round)$/ }).click();
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+
+    // Second visit goes straight to the round — the brief interrupts once.
+    await openFresh('#/arcade/verb-person');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+  });
+
+  await step('a pronoun option is never shown without its English', async () => {
+    // `si` is both "she" and "they", so the pronoun alone is unanswerable.
+    await openArcadeRound('verb-person');
+    const options = await page.locator('.options .option').allTextContents();
+    for (const option of options) {
+      if (!/·/.test(option)) throw new Error(`option "${option.trim()}" has no English gloss`);
+    }
+  });
+
+  await step('every verb card says what to do with it', async () => {
+    for (const id of ['verb-meaning', 'verb-person', 'verb-form', 'verb-past', 'verb-number']) {
+      await openArcadeRound(id);
+      const instruction = (await page.locator('.drill__instruction').textContent()) ?? '';
+      if (!/\b(tap|build|pick|choose|type)\b/i.test(instruction)) {
+        throw new Error(`${id} says "${instruction}", which does not direct the player`);
+      }
+      // The instruction has to be above the card it describes, or it is read
+      // after the thing it was meant to introduce.
+      const order = await page.evaluate(() => {
+        const nodes = [...document.querySelectorAll('#screen .drill__instruction, #screen .card')];
+        return nodes.map((node) => (node.classList.contains('drill__instruction') ? 'instruction' : 'card'));
+      });
+      if (order.indexOf('instruction') > order.indexOf('card')) {
+        throw new Error(`${id} puts its instruction below the card`);
+      }
+    }
+  });
+
   await step('each verb game has its own mechanic, not five of the same card', async () => {
     // The ask was for games that are actually different from one another, so
     // the check is that each one renders the interaction it was designed for
@@ -789,13 +863,15 @@ async function main() {
     const expected = [
       { id: 'verb-meaning', instruction: /What does this verb mean|Which verb is this/, control: '.options .option' },
       { id: 'verb-person', instruction: /Who is doing it/, control: '.options .option' },
-      { id: 'verb-form', instruction: /Build the form/, control: '.bank__tile' },
-      { id: 'verb-past', instruction: /Which one makes its past/, control: '.options .option' },
-      { id: 'verb-number', instruction: /One person, or more than one/, control: '.options .option' },
+      // The instruction names the person and the verb now, rather than saying
+      // "Build the form" and leaving the player to guess which one.
+      { id: 'verb-form', instruction: /Build the \w+ form of \w+/, control: '.bank__tile' },
+      { id: 'verb-past', instruction: /Tap the helper verb/, control: '.options .option' },
+      { id: 'verb-number', instruction: /one person doing this, or more than one/, control: '.options .option' },
     ];
 
     for (const game of expected) {
-      await openFresh(`#/arcade/${game.id}`);
+      await openArcadeRound(game.id);
       await page.waitForSelector(game.control, { timeout: 5000 });
       const instruction = (await page.locator('.drill__instruction').textContent()) ?? '';
       if (!game.instruction.test(instruction)) throw new Error(`${game.id} asked "${instruction}"`);
@@ -812,7 +888,7 @@ async function main() {
   });
 
   await step('a verb round plays to the end and shows the best run', async () => {
-    await openFresh('#/arcade/verb-number');
+    await openArcadeRound('verb-number');
     let answers = 0;
     for (let guard = 0; guard < 16; guard += 1) {
       const options = page.locator('.options .option');
@@ -855,7 +931,7 @@ async function main() {
 
     // Play the pattern with the most build cards and check every sentence the
     // word bank is built from is a stamped one.
-    await openFresh('#/arcade/location');
+    await openArcadeRound('location');
     let built = 0;
     for (let guard = 0; guard < 12; guard += 1) {
       const instruction = (await page.locator('.drill__instruction').textContent().catch(() => null)) ?? '';

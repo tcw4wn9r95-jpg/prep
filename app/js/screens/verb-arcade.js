@@ -19,6 +19,7 @@ import { chimeCorrect, resetChimeStreak } from '../chime.js';
 import { choiceInput, bankInput } from '../drill/inputs.js';
 import { letterBank } from '../drill/match.js';
 import { PERSONS, verbPool, unambiguousForms, participleOf } from '../arcade/verbs.js';
+import { renderBrief, hasSeenBrief, briefButton } from '../arcade/brief.js';
 
 const ROUND_SIZE = 8;
 const SORT_ROUND_SIZE = 10;
@@ -32,6 +33,15 @@ function shuffle(list, random = Math.random) {
   }
   return copy;
 }
+
+/**
+ * A pronoun with its English, because `si` on its own is unanswerable.
+ *
+ * `si` is both "she" and "they" and `mir` is both "we" and "to me". The dative
+ * game learned this the hard way and shows the gloss for exactly this reason;
+ * the verb games shipped without it and had the same defect.
+ */
+const label = (person) => `${person.pronoun} · ${person.en}`;
 
 /**
  * A round's worth of cards for one verb game.
@@ -70,7 +80,9 @@ function meaningCards(pool, random) {
 
     cards.push({
       kind: 'meaning',
-      instruction: toEnglish ? 'What does this verb mean?' : 'Which verb is this?',
+      instruction: toEnglish
+        ? 'What does this verb mean? Tap the English.'
+        : 'Which verb means this? Tap the Luxembourgish.',
       prompt: toEnglish ? verb.infinitive : verb.en,
       answer: toEnglish ? verb.en : verb.infinitive,
       // Shown after answering, and only when it is readable — the same rule
@@ -109,7 +121,7 @@ function personCards(pool, random) {
       const others = shuffle(PERSONS.filter((other) => other.key !== person.key), random).slice(0, OPTION_COUNT - 1);
       return {
         kind: 'person',
-        instruction: 'Who is doing it?',
+        instruction: 'Who is doing it? Tap the pronoun that goes with this form.',
         prompt: form,
         // The infinitive is on the card on purpose: this is a question about a
         // paradigm, not a guess about a word in isolation.
@@ -117,8 +129,8 @@ function personCards(pool, random) {
         answer: person.pronoun,
         options: shuffle(
           [
-            { value: person.pronoun, correct: true },
-            ...others.map((other) => ({ value: other.pronoun, correct: false })),
+            { value: person.pronoun, correct: true, label: label(person) },
+            ...others.map((other) => ({ value: other.pronoun, correct: false, label: label(other) })),
           ],
           random,
         ),
@@ -151,9 +163,11 @@ function formCards(pool, random) {
     const person = usable[0];
     cards.push({
       kind: 'form',
-      instruction: 'Build the form',
-      prompt: `${verb.infinitive} · ${person.pronoun}`,
-      hint: verb.en ?? '',
+      // The same "X + Y → ?" shape the dative game uses, rather than two
+      // words joined by a dot that never explained what it meant.
+      instruction: `Build the ${person.pronoun} form of ${verb.infinitive}.`,
+      prompt: `${verb.infinitive} + ${person.pronoun} → ?`,
+      hint: verb.en ? `${verb.infinitive} means “${verb.en}”` : '',
       answer: verb.present[person.key],
     });
   }
@@ -179,7 +193,7 @@ function auxCards(pool, random) {
 
   return chosen.map((verb) => ({
     kind: 'aux',
-    instruction: 'Which one makes its past?',
+    instruction: 'Tap the helper verb that makes this one’s past.',
     prompt: participleOf(verb),
     hint: `${verb.infinitive}${verb.en ? ` · ${verb.en}` : ''}`,
     answer: verb.auxiliaryVerb,
@@ -205,7 +219,7 @@ function numberCards(pool, random) {
   return shuffle([...sing.slice(0, half), ...plur.slice(0, SORT_ROUND_SIZE - half)], random).map(
     ({ verb, form, number, persons }) => ({
       kind: 'number',
-      instruction: 'One person, or more than one?',
+      instruction: 'Is one person doing this, or more than one? Tap your answer.',
       prompt: form,
       hint: `from ${verb.infinitive}`,
       answer: number,
@@ -221,7 +235,14 @@ function numberCards(pool, random) {
 
 /* --------------------------------------------------------------- the round */
 
-const SORT_LABELS = { hunn: 'hunn', sinn: 'sinn', sing: 'One', plur: 'More than one' };
+// Spelled out, so the button answers the question as it was asked. "One" on
+// its own read as a quantity of something rather than a number of people.
+const SORT_LABELS = {
+  hunn: 'hunn',
+  sinn: 'sinn',
+  sing: 'One person',
+  plur: 'More than one',
+};
 
 export function renderVerbRound(root, game, verbs, { settings, navigate, a1Only }) {
   const questions = verbQuestions(game, verbs, Math.random, { a1Only });
@@ -229,6 +250,25 @@ export function renderVerbRound(root, game, verbs, { settings, navigate, a1Only 
   root.append(screenHead({ title: game.title, sub: game.ask, back: '#/arcade' }));
   const body = el('div', { class: 'stack stack--lg' });
   root.append(body);
+
+  if (questions.length > 0) {
+    // The explanation comes first, not after the answer buttons. Once you have
+    // seen it the game opens straight into the round, and "How it works" on
+    // the round brings it back.
+    const openBrief = () => {
+      fill(body);
+      renderBrief(body, game, { verbs, onStart: start, startLabel: hasSeenBrief(game.id) ? 'Back to the round' : 'Start' });
+      body.scrollIntoView?.({ block: 'start' });
+    };
+    const start = () => {
+      fill(body);
+      playVerbRound({ body, game, questions, settings, navigate, onBrief: openBrief });
+    };
+
+    if (hasSeenBrief(game.id)) start();
+    else openBrief();
+    return { destroy() {} };
+  }
 
   if (questions.length === 0) {
     fill(
@@ -244,11 +284,10 @@ export function renderVerbRound(root, game, verbs, { settings, navigate, a1Only 
     return { destroy() {} };
   }
 
-  playVerbRound({ body, game, questions, settings, navigate });
   return { destroy() {} };
 }
 
-function playVerbRound({ body, game, questions, settings, navigate }) {
+function playVerbRound({ body, game, questions, settings, navigate, onBrief }) {
   let index = 0;
   let correct = 0;
   let streak = 0;
@@ -256,7 +295,7 @@ function playVerbRound({ body, game, questions, settings, navigate }) {
   let locked = false;
 
   const amelie = new Amelie({ size: 'sm', bubble: true });
-  amelie.say(game.teaches, 'idle');
+  amelie.say(game.rule, 'idle');
 
   const scoreLabel = el('span', { class: 'chip' }, `0 of ${questions.length}`);
   // The combo is the one piece of pure game here, and it earns its place on
@@ -269,9 +308,19 @@ function playVerbRound({ body, game, questions, settings, navigate }) {
 
   fill(
     body,
-    el('div', { class: 'row row--between' }, el('span', { class: 'meter__label' }, game.title), el('span', { class: 'row' }, comboLabel, scoreLabel)),
-    promptCard,
+    // The game's name is already in the screen heading — repeating it here and
+    // again as the instruction was three copies of the same words on one
+    // screen. This row carries the way back to the explanation instead.
+    el(
+      'div',
+      { class: 'row row--between' },
+      briefButton(onBrief),
+      el('span', { class: 'row' }, comboLabel, scoreLabel),
+    ),
+    // The instruction goes *above* the card it applies to, so it is read
+    // before the thing it is describing rather than after it.
     instruction,
+    promptCard,
     inputHolder,
     el('div', { class: 'card' }, amelie.el),
   );

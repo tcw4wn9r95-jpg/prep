@@ -35,17 +35,86 @@ test.before(async () => {
   round = await load('screens/verb-arcade.js');
 });
 
-test('verbs: five games, distinct ids, each saying what it teaches', () => {
+test('verbs: five games, distinct ids, each with a brief a learner can use', () => {
   assert.equal(games.VERB_GAMES.length, 5);
   assert.equal(new Set(games.VERB_GAMES.map((game) => game.id)).size, 5);
   for (const game of games.VERB_GAMES) {
     assert.ok(game.title && game.ask, `${game.id} is missing its labels`);
-    // Shown on the round's opening line and again on the end card, so it is
-    // content rather than a comment.
-    assert.ok(game.teaches && game.teaches.length > 30, `${game.id} does not say what it teaches`);
     // The route dispatches on this prefix to tell a verb game from a sentence
     // function, so a bare id would silently 404 into the index.
     assert.ok(game.id.startsWith('verb-'), `${game.id} must be namespaced`);
+
+    // The three fields the brief is built from. This shipped once with a
+    // single `teaches` line written as design rationale — "backwards from a
+    // normal conjugation drill" — which explained the build to a reviewer and
+    // told a learner nothing about Luxembourgish.
+    assert.ok(game.rule && game.rule.length > 30, `${game.id} has no rule to teach`);
+    assert.ok(game.how, `${game.id} never says what you physically do`);
+    assert.ok(game.points?.length >= 2, `${game.id} needs at least two points`);
+
+    // `how` is an instruction, so it has to name an action. The failure it
+    // guards is a "how" that describes the game instead of directing the
+    // player, which is what the old copy did throughout.
+    assert.match(game.how, /^(Tap|Build|Type|Pick|Choose|Answer)\b/, `${game.id}'s "how" is not an instruction: "${game.how}"`);
+  }
+});
+
+test('verbs: the brief never talks about the implementation', () => {
+  // The words that gave the game away last time. Copy shown to a learner is
+  // about Luxembourgish; copy about cards, drills and decks is about us.
+  const JARGON = /\b(card|drill|deck|round|corpus|LOD|A1|paradigm|syncretism|generator)\b/i;
+  for (const game of games.VERB_GAMES) {
+    assert.ok(!JARGON.test(game.rule), `${game.id}'s rule talks about the app, not the language: "${game.rule}"`);
+  }
+});
+
+test('verbs: the brief shows a real table rather than a written-out example', async () => {
+  // Writing "ech schaffen, du schaffs" into the copy would be authoring
+  // Luxembourgish, which this project does nowhere. The table is looked up.
+  const brief = await load('arcade/brief.js');
+  for (const game of games.VERB_GAMES.filter((row) => row.demo)) {
+    const table = brief.demoTable(verbs, game.demo);
+    assert.ok(table, `${game.id} names the demo verb "${game.demo}", which is not in the deck`);
+    assert.equal(table.rows.length, 6, `${game.demo} does not have a full present tense`);
+    const source = verbs.find((verb) => verb.infinitive === game.demo);
+    for (const row of table.rows) {
+      assert.ok(Object.values(source.present).includes(row.form), `"${row.form}" is not a published form of ${game.demo}`);
+    }
+    // The demo has to actually demonstrate the thing: at least one form that
+    // is the infinitive again, which is the shortcut the copy points at.
+    assert.ok(table.rows.some((row) => row.isInfinitive), `${game.demo} does not show the infinitive shortcut`);
+  }
+});
+
+test('verbs: every card tells you what to do with it', () => {
+  // The report that prompted this: "I don't know what is expected of me."
+  // Every card carries its own instruction, and an instruction has to direct
+  // the player rather than name the topic — "Build the form" did not say which
+  // form, and "One person, or more than one?" did not match its own buttons.
+  for (const game of games.VERB_GAMES) {
+    for (const card of round.verbQuestions(game, verbs, () => 0.5, { a1Only: true })) {
+      assert.ok(card.instruction, `${game.id} has a card with no instruction`);
+      assert.match(
+        card.instruction,
+        /\b(tap|build|pick|choose|type)\b/i,
+        `${game.id}: "${card.instruction}" does not tell the player what to do`,
+      );
+    }
+  }
+});
+
+test('verbs: a pronoun option always carries its English', () => {
+  // `si` is both "she" and "they", so the pronoun alone cannot be chosen
+  // between. The dative game already shows the gloss for this exact reason;
+  // the verb games shipped without it.
+  for (let seed = 0; seed < 10; seed += 1) {
+    for (const card of round.verbQuestions(games.verbGameById('verb-person'), verbs, () => (seed * 0.1) % 1, { a1Only: true })) {
+      for (const option of card.options) {
+        assert.ok(option.label, `a pronoun option "${option.value}" is shown without its English`);
+        assert.ok(option.label.includes(option.value), 'the label should still show the pronoun itself');
+        assert.notEqual(option.label, option.value, `"${option.value}" needs a gloss to be answerable`);
+      }
+    }
   }
 });
 

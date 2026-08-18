@@ -158,6 +158,37 @@ export const PATTERNS = [
 export const patternById = (id) => PATTERNS.find((pattern) => pattern.id === id) ?? null;
 
 /**
+ * What a sentence-function round asks of you, as a brief.
+ *
+ * These rounds mix card shapes — pick the opener, read one back, rebuild a
+ * sentence, fill a gap — so unlike the verb games there is no single action to
+ * name. The points below say what the four shapes are, which is the thing that
+ * was missing: the first version explained nothing before the first card and
+ * put a line of design rationale underneath the answer buttons.
+ *
+ * The grammar itself is not repeated here. The frames *are* the lesson, and
+ * the cheat sheet and notecards already carry the theory; duplicating it would
+ * mean two places to keep true.
+ */
+export function briefFor(pattern) {
+  if (!pattern) return null;
+  return {
+    id: pattern.id,
+    title: pattern.title,
+    ask: pattern.ask,
+    rule: `This round is about one thing a sentence has to do: ${pattern.ask}`,
+    how: 'Answer each card, then the next one appears. Nothing here is timed.',
+    points: [
+      'Some cards give you the English and ask which Luxembourgish opener performs it. Others show you the opener and ask what it does.',
+      'Some ask you to rebuild a whole sentence by tapping its words in order.',
+      'Some gap out one word from a real sentence for you to fill.',
+      'Every sentence is one LOD published, so a wrong answer is still real Luxembourgish rather than something invented to fool you.',
+      ...(pattern.gap ? [pattern.gap] : []),
+    ],
+  };
+}
+
+/**
  * Everything a pattern can actually ask about, resolved against the decks.
  *
  * Returns real deck rows, never the strings above — so a frame that stopped
