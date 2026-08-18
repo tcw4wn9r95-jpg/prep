@@ -2318,3 +2318,132 @@ finds zero leaks; a distractor full of unknown words is as discouraging as a
 bad card, so the wrong answers are in scope too. A second test asserts the
 stamp is present and non-degenerate, so a rebuild that skips `build:a1` fails
 loudly instead of silently un-filtering the tab.
+
+---
+
+# Follow-up 19 — five verb games, and one mis-glossed verb in a hundred
+
+> "Let's add into the arcade a set of games to learn all about verbs: what do
+> they mean, conjugation, past tense and the plural. Make the games interesting
+> and engaging so try different things based on benchmarks."
+
+## The benchmark finding that decided the design
+
+The useful result is not "gamification raises engagement" — it is about
+**salience**. Morphological cues (an ending, a stem vowel) are the least
+noticeable material in a sentence and are routinely not processed at all unless
+instruction forces attention onto them; form-focused instruction works
+specifically because it makes the low-salience cue the thing the task depends
+on ([Salience in Second Language Acquisition](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5002427/)).
+The companion result is the testing effect: retrieval beats recognition for
+retention, so at least one game has to make you produce a form rather than
+pick one.
+
+That is a design constraint, not a slogan, and it rules out the obvious
+implementation. A card asking "how do you say *we go*?" with four options can
+be answered from the verb's meaning alone — the learner never has to look at
+the ending. So each game is built so the cue is the *only* thing that can
+answer it.
+
+| game | mechanic | why this shape |
+| --- | --- | --- |
+| What does it do? | 4-way choice, both directions | The entry point; every other game assumes it |
+| Who is doing it? | form given, pick the person | Backwards from a normal drill: the ending is the only information on the card |
+| Finish the table | letter tiles | Retrieval, not recognition |
+| hunn or sinn? | two-way sort, balanced | The most audible beginner mistake in the perfect |
+| One or many? | two-way sort, balanced | Rests on a measured fact — see below |
+
+Five mechanics, not five sets of questions. A combo counter appears on the
+sorts only, where a run of fast taps is the actual feel of the game.
+
+## Syncretism is the hard constraint
+
+Luxembourgish paradigms collapse a lot of persons together: `hunn` is ech, mir
+*and* si. A card asking "who says `hunn`?" has three right answers and accepts
+one — it teaches the learner they were wrong when they were not, which is worse
+than no card. So the two games that ask about person or number only ever draw
+on forms that are unique within their own verb's paradigm.
+
+Measured across the 111 A1 verbs, out of 371 distinct present-tense forms:
+
+| | usable |
+| --- | --- |
+| identify exactly one person | 182 |
+| identify a number unambiguously | 196 |
+
+Enough for both games several times over, and the constraint is asserted by a
+test that re-derives it from the table rather than trusting the generator.
+
+Two regularities were worth building on rather than merely noting. For **all
+111** A1 verbs the third-person singular and the plural differ, so "one or
+many?" always has an answer inside the form itself. And for **95 of 111** the
+mir/si form is simply the infinitive again — the shortcut the game points out
+on its end card.
+
+## Balancing, because an unbalanced sort is not a sort
+
+The auxiliary split is honest and lopsided: 95 `hunn` to 15 `sinn` at A1 (322
+to 42 across the whole deck). A round drawn at random would let a player who
+always taps `hunn` finish on 86%, a score that says nothing. Both sorts draw
+half from each side, and the walkthrough proves it end-to-end by tapping the
+same button ten times and asserting the result is not full marks — it scores
+exactly 5/10.
+
+## The bug underneath: one verb in a hundred was labelled with another's meaning
+
+Building the meaning game meant reading 111 glosses, which surfaced this:
+
+| verb | shipped gloss | LOD's gloss for that entry |
+| --- | --- | --- |
+| `kënnen` | "to be responsible for" | **can** |
+| `ginn` | "there is" | **to give** |
+| `brauchen` | *(none)* | **to need** |
+
+`build-verbs.js` took the inflection table from the Flexiounstabellen and the
+gloss from the dictionary, but looked the dictionary entry up **by lemma
+string**. `kënnen` is both `KENNEN1` ("can") and `KENNEN3` ("to be responsible
+for"); `ginn` is `GINN1` ("to give") and `GINN4` ("there is"). Whichever entry
+the corpus listed last overwrote the other, so a row correctly identified as
+`KENNEN1` shipped `KENNEN3`'s meaning.
+
+This is the same family of failure as Follow-up 16's Pairs glosses, but with a
+better fix available: the inflection table's id and the dictionary entry's id
+are **the same LOD identifier**, so matching on it is exact rather than a
+heuristic. Lemma remains the fallback for tables whose id is not itself a
+corpus entry. Three rows changed, and a test now asserts that every verb's
+gloss is one LOD publishes *for that verb's own entry* — which would have
+caught it the day it appeared.
+
+Worth being plain about the scale: 3 of 365 rows, but `ginn` and `kënnen` are
+two of the most common verbs in the language, and both were being taught with
+the wrong meaning on the cheat sheet and in every drill that shows a gloss.
+
+## Two things the games deliberately refuse
+
+**Separable verbs in the letter-bank game.** `doheembleiwen` conjugates to
+`bleift doheem`, and a letter bank has nowhere to put the space — the card
+would be unanswerable from its own tiles. Where the split goes is a word-order
+lesson and the sentence-function games are where it belongs. Caught by a test
+after it had already generated cards.
+
+**Asking anyone to reproduce LOD's alternatives.** Nineteen A1 participles are
+published as "either of these" (`missen / mussen`). Those are recognised in the
+sort, never typed.
+
+## Still costs nothing to play
+
+Same promise as the rest of the Arcade, enforced the same way: a source-level
+test fails if `verb-arcade.js` mentions the session or scheduling helpers, and
+`touchStreak` is the only number a round moves. The A1 filter governs both
+halves of the tab — the Settings switch was already there.
+
+## Verification
+
+`npm test` 267 (10 new in `verb-arcade.test.js`) · `validate` PASS ·
+`npm run walkthrough` 57/57 · `sw.js` → `v39`.
+
+One process note worth recording: rebuilding only `verbs.json` broke two
+unrelated tests, because `freq`/`rank`/`stage` are assigned by `build:learn`,
+which runs *after* `build:verbs`. The deck came out alphabetical. Re-running
+the rest of the chain restored it, and a diff against the pre-change deck
+confirms the only fields that moved are the three glosses above.

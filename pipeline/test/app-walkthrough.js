@@ -661,12 +661,15 @@ async function main() {
     await openFresh('#/arcade');
     await page.waitForSelector('.plan', { timeout: 5000 });
 
-    const games = await page.locator('#screen .plan').count();
-    if (games !== 15) throw new Error(`expected fifteen sentence functions, found ${games}`);
+    // The index carries the verb games too, so count only the sentence
+    // functions — they are the rows whose id is not namespaced `verb-`.
+    const hrefs = await page.locator('#screen .plan').evaluateAll((nodes) => nodes.map((node) => node.getAttribute('href')));
+    const games = hrefs.filter((href) => !href.includes('/arcade/verb-')).length;
+    if (games !== 15) throw new Error(`expected fifteen sentence functions, found ${games} of ${hrefs.length} rows`);
     // Each row has to say what the sentence is *for* — "Having" alone does not
     // tell a beginner they are about to learn "I have / do you have".
     const asks = await page.locator('#screen .plan__for').allTextContents();
-    if (asks.length !== 15 || asks.some((ask) => !ask.trim())) throw new Error('a pattern does not say what it is for');
+    if (asks.length !== hrefs.length || asks.some((ask) => !ask.trim())) throw new Error('a row does not say what it is for');
     await shot('16m-arcade-index');
 
     await page.locator('#screen .plan').first().click();
@@ -763,6 +766,73 @@ async function main() {
     const after = await readCards();
     if (after !== before) throw new Error(`${answered} Arcade questions moved the daily count ${before} → ${after}`);
     process.stdout.write(`  ${answered} Arcade questions, daily count unchanged at ${before}\n`);
+  });
+
+  await step('the Arcade has a Verbs section with five games', async () => {
+    await openFresh('#/arcade');
+    await page.waitForSelector('.plan', { timeout: 5000 });
+
+    const headings = (await page.locator('#screen .meter__label').allTextContents()).map((text) => text.trim());
+    for (const heading of ['Sentence functions', 'Verbs']) {
+      if (!headings.includes(heading)) throw new Error(`no "${heading}" section; found ${headings.join(', ')}`);
+    }
+    // Fifteen sentence functions plus five verb games, all on one index.
+    const rows = await page.locator('#screen .plan').count();
+    if (rows !== 20) throw new Error(`expected 15 patterns + 5 verb games = 20 rows, found ${rows}`);
+    await shot('16r-arcade-index-verbs');
+  });
+
+  await step('each verb game has its own mechanic, not five of the same card', async () => {
+    // The ask was for games that are actually different from one another, so
+    // the check is that each one renders the interaction it was designed for
+    // rather than defaulting to a row of multiple-choice buttons.
+    const expected = [
+      { id: 'verb-meaning', instruction: /What does this verb mean|Which verb is this/, control: '.options .option' },
+      { id: 'verb-person', instruction: /Who is doing it/, control: '.options .option' },
+      { id: 'verb-form', instruction: /Build the form/, control: '.bank__tile' },
+      { id: 'verb-past', instruction: /Which one makes its past/, control: '.options .option' },
+      { id: 'verb-number', instruction: /One person, or more than one/, control: '.options .option' },
+    ];
+
+    for (const game of expected) {
+      await openFresh(`#/arcade/${game.id}`);
+      await page.waitForSelector(game.control, { timeout: 5000 });
+      const instruction = (await page.locator('.drill__instruction').textContent()) ?? '';
+      if (!game.instruction.test(instruction)) throw new Error(`${game.id} asked "${instruction}"`);
+      const controls = await page.locator(game.control).count();
+      if (controls === 0) throw new Error(`${game.id} rendered no ${game.control}`);
+
+      // The two sorts are binary by design — two big targets, answered by
+      // reflex. Anything else there means the sort turned into a quiz.
+      if (game.id === 'verb-past' || game.id === 'verb-number') {
+        if (controls !== 2) throw new Error(`${game.id} is a two-way sort but offered ${controls} choices`);
+      }
+    }
+    await shot('16s-arcade-verb-sort');
+  });
+
+  await step('a verb round plays to the end and shows the best run', async () => {
+    await openFresh('#/arcade/verb-number');
+    let answers = 0;
+    for (let guard = 0; guard < 16; guard += 1) {
+      const options = page.locator('.options .option');
+      if ((await options.count()) === 0) break;
+      // Always tap the first button. The round is balanced half singular and
+      // half plural, so this cannot score better than about half — which is
+      // the property the balancing exists to guarantee.
+      await options.first().click();
+      answers += 1;
+      await page.waitForTimeout(1900);
+    }
+    if (answers < 10) throw new Error(`the sort round ended after ${answers} cards`);
+    await page.waitForSelector('text=This round', { timeout: 5000 });
+
+    const score = (await page.locator('#screen .meter__value').textContent())?.trim() ?? '';
+    const [got, total] = score.split('/').map((part) => Number(part.trim()));
+    if (total !== 10) throw new Error(`expected a ten-card sort, got ${score}`);
+    if (got === total) throw new Error('tapping one side scored full marks — the round is not balanced');
+    process.stdout.write(`  one-sided tapping scored ${score} on the balanced sort\n`);
+    await shot('16t-arcade-verb-done');
   });
 
   await step('the Arcade only builds sentences out of A1 words', async () => {

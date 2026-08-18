@@ -35,12 +35,14 @@
 
 import { el, fill, screenHead, button, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
-import { loadPhrases, loadGrammar, loadVocab } from '../content.js';
+import { loadPhrases, loadGrammar, loadVocab, loadVerbs } from '../content.js';
 import { touchStreak } from '../store.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
 import { choiceInput, bankInput } from '../drill/inputs.js';
 import { wordBank } from '../drill/match.js';
 import { PATTERNS, patternById, materialFor, isPlayable } from '../arcade/patterns.js';
+import { VERB_GAMES, verbGameById, verbPool, isVerbGamePlayable } from '../arcade/verbs.js';
+import { renderVerbRound } from './verb-arcade.js';
 
 const ROUND_SIZE = 8;
 const OPTION_COUNT = 4;
@@ -234,30 +236,60 @@ function wordQuestions(pattern, words, random, readable) {
 }
 
 export async function render(root, { params, settings, navigate }) {
-  const [phrases, grammar, vocab] = await Promise.all([loadPhrases(), loadGrammar(), loadVocab()]);
+  const [phrases, grammar, vocab, verbs] = await Promise.all([loadPhrases(), loadGrammar(), loadVocab(), loadVerbs()]);
   const decks = { phrases, grammar, vocab };
-  const pattern = params?.[0] ? patternById(params[0]) : null;
   // Unset means on: the filter was asked for, so absence is not a refusal —
   // the same reading `sound` gets in Settings.
   const a1Only = settings?.arcadeA1 !== false;
-  return pattern
-    ? renderRound(root, pattern, decks, { settings, navigate, a1Only })
-    : renderIndex(root, decks, { navigate, a1Only });
+
+  // The Arcade has two halves and one route. A sentence function and a verb
+  // game are both `#/arcade/<id>`, and the ids cannot collide because the verb
+  // ones are all prefixed `verb-`.
+  const id = params?.[0];
+  const pattern = id ? patternById(id) : null;
+  if (pattern) return renderRound(root, pattern, decks, { settings, navigate, a1Only });
+
+  const game = id ? verbGameById(id) : null;
+  if (game) return renderVerbRound(root, game, verbs, { settings, navigate, a1Only });
+
+  return renderIndex(root, decks, verbs, { navigate, a1Only });
 }
 
 /* ------------------------------------------------------------------ index */
 
-function renderIndex(root, decks, { navigate, a1Only }) {
+/** Matches the heading style Today, Learn and Settings already use. */
+function sectionLabel(text) {
+  return el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)', marginBlockEnd: 'var(--s2)' } }, text);
+}
+
+/** One row of the index. Sentence functions and verb games look the same. */
+function gameRow(id, number, title, sub) {
+  return el(
+    'a',
+    { class: 'plan', href: `#/arcade/${id}` },
+    el('span', { class: 'plan__n', 'aria-hidden': 'true' }, String(number)),
+    el('span', { class: 'spacer' }, el('span', { class: 'card__title' }, title), el('span', { class: 'plan__for' }, sub)),
+    el(
+      'svg',
+      { class: 'plan__chevron', viewBox: '0 0 24 24', width: '20', height: '20', 'aria-hidden': 'true' },
+      el('path', { d: 'M9 6 L15 12 L9 18', fill: 'none', stroke: 'currentColor', 'stroke-width': '2.5', 'stroke-linecap': 'round' }),
+    ),
+  );
+}
+
+function renderIndex(root, decks, verbs, { navigate, a1Only }) {
   void navigate;
   const playable = PATTERNS.filter((pattern) => isPlayable(pattern, decks));
+  const pool = verbPool(verbs, { a1Only });
+  const verbGames = VERB_GAMES.filter((game) => isVerbGamePlayable(game, pool));
 
   root.append(
     screenHead({ title: 'Arcade', sub: 'The sentences that carry a conversation' }),
     el(
       'p',
       { class: 'card__note' },
-      'Fifteen things you actually need a sentence to do. Play as much as you like — these do not count towards the daily goal, ' +
-        'do not move your review schedule, and are never capped by the new-word budget.',
+      'Play as much as you like — nothing here counts towards the daily goal, moves your review schedule, ' +
+        'or is capped by the new-word budget.',
     ),
     a1Only
       ? el(
@@ -267,33 +299,38 @@ function renderIndex(root, decks, { navigate, a1Only }) {
             'Settings turns this off when you want the harder examples.',
         )
       : null,
+
+    sectionLabel('Sentence functions'),
+    el(
+      'p',
+      { class: 'card__note' },
+      'Fifteen things you actually need a sentence to do.',
+    ),
     el(
       'div',
-      { class: 'stack', style: { marginBlockStart: 'var(--s4)' } },
-      ...playable.map((pattern, index) =>
-        el(
-          'a',
-          { class: 'plan', href: `#/arcade/${pattern.id}` },
-          el('span', { class: 'plan__n', 'aria-hidden': 'true' }, String(index + 1)),
-          el(
-            'span',
-            { class: 'spacer' },
-            el('span', { class: 'card__title' }, pattern.title),
-            el('span', { class: 'plan__for' }, pattern.ask),
-          ),
-          el(
-            'svg',
-            { class: 'plan__chevron', viewBox: '0 0 24 24', width: '20', height: '20', 'aria-hidden': 'true' },
-            el('path', { d: 'M9 6 L15 12 L9 18', fill: 'none', stroke: 'currentColor', 'stroke-width': '2.5', 'stroke-linecap': 'round' }),
-          ),
-        ),
-      ),
+      { class: 'stack', style: { marginBlockStart: 'var(--s3)' } },
+      ...playable.map((pattern, index) => gameRow(pattern.id, index + 1, pattern.title, pattern.ask)),
     ),
+
+    sectionLabel('Verbs'),
+    el(
+      'p',
+      { class: 'card__note' },
+      `Five ways at the same ${pool.length} verbs — what they mean, who is doing it, how the form is built, ` +
+        'the past, and the singular against the plural.',
+    ),
+    el(
+      'div',
+      { class: 'stack', style: { marginBlockStart: 'var(--s3)' } },
+      ...verbGames.map((game, index) => gameRow(game.id, index + 1, game.title, game.ask)),
+    ),
+
     el(
       'p',
       { class: 'source-note', style: { marginBlockStart: 'var(--s5)' } },
-      'Every sentence here is one LOD published — the openers are attested at least eight times in the dictionary’s own examples. ' +
-        'Where the corpus does not write a pattern, the game says so rather than inventing one.',
+      'Every sentence here is one LOD published — the openers are attested at least eight times in the dictionary’s own examples, ' +
+        'and every verb form comes from LOD’s published inflection tables. Where the corpus does not write a pattern, the game says so ' +
+        'rather than inventing one.',
     ),
   );
 

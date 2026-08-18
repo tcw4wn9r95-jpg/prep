@@ -145,9 +145,24 @@ async function main() {
   const corpus = require(paths.CORPUS_PATH);
   const lexicon = JSON.parse(await fsp.readFile(paths.LEXICON_PATH, 'utf8'));
   const isClean = makeGate(lexicon);
+  // Two indexes, and the id one has to win.
+  //
+  // Keying only by lemma loses homographs: `kënnen` is both KENNEN1 ("can")
+  // and KENNEN3 ("to be responsible for"), `ginn` is GINN1 ("to give") and
+  // GINN4 ("there is"), and whichever entry the corpus happened to list last
+  // overwrote the other. The inflection table then took its forms from
+  // KENNEN1 and its gloss from KENNEN3 — a row correctly identified as the
+  // modal verb, labelled with an unrelated meaning.
+  //
+  // The table id and the dictionary entry id are the same LOD identifier, so
+  // matching on it is exact rather than a guess. Lemma stays as the fallback
+  // for the tables whose id is not itself a corpus entry.
+  const corpusVerbsById = new Map();
   const corpusVerbs = new Map();
   for (const entry of corpus.entries) {
-    if (entry.partOfSpeech === 'VRB') corpusVerbs.set(entry.lemma.toLowerCase(), entry);
+    if (entry.partOfSpeech !== 'VRB') continue;
+    corpusVerbsById.set(entry.id, entry);
+    if (!corpusVerbs.has(entry.lemma.toLowerCase())) corpusVerbs.set(entry.lemma.toLowerCase(), entry);
   }
 
   console.log('Reading Flexiounstabellen verb tables …');
@@ -160,7 +175,7 @@ async function main() {
   let droppedPast = 0;
   let droppedImperative = 0;
   for (const [infinitive, table] of tables) {
-    const corpusEntry = corpusVerbs.get(infinitive.toLowerCase());
+    const corpusEntry = corpusVerbsById.get(table.id) ?? corpusVerbs.get(infinitive.toLowerCase());
     if (!corpusEntry) continue; // outside the A1/A2 Grondwuertschatz, out of scope for a beginner drill
     // The present tense is this item's reason to exist — every other screen
     // that reads verbs.json assumes it — so an unclean present drops the

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-09T09:03:47.596Z",
+    "generatedAt": "2026-08-18T10:31:50.691Z",
     "generator": "pipeline/build-verbs.js",
     "license": "CC0-1.0",
     "corpus": {
@@ -39,8 +39,12 @@
       "past": 364,
       "imperative": 343
     },
+    "a1": {
+      "rows": 365,
+      "readable": 111
+    },
     "learn": {
-      "enrichedAt": "2026-08-09T09:04:14.043Z",
+      "enrichedAt": "2026-08-18T10:38:38.504Z",
       "enricher": "pipeline/build-learn.js",
       "starters": {
         "promoted": 0,
@@ -97,14 +101,10 @@
       },
       "cues": 8,
       "cloze": {
-        "lexicon": 277,
-        "surface": 22,
+        "lexicon": 276,
+        "surface": 23,
         "none": 66
       }
-    },
-    "a1": {
-      "rows": 365,
-      "readable": 111
     }
   },
   "items": [
@@ -136,10 +136,11 @@
         "p5": "hieft!"
       },
       "example": {
-        "lb": "de Schrëftsteller huet de Verlag gewiesselt",
-        "audioId": "a2eed5d4d441b5572aac95187722cc08",
+        "lb": "mäi Schwoer huet dräi Autoen, e fiert awer nëmme mat engem",
+        "audioId": "30f18116d876eb272a4ac854d559e38e",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht",
         "famill",
@@ -154,15 +155,14 @@
       "topicVia": "seed",
       "cue": null,
       "cloze": {
-        "before": "de Schrëftsteller ",
+        "before": "mäi Schwoer ",
         "form": "huet",
-        "after": " de Verlag gewiesselt",
+        "after": " dräi Autoen, e fiert awer nëmme mat engem",
         "via": "lexicon"
       },
       "freq": 1655,
       "rank": 1,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "GINN1",
@@ -170,7 +170,7 @@
       "pastParticiple": "ginn",
       "auxiliaryVerb": "hunn",
       "level": "A1",
-      "en": "there is",
+      "en": "to give",
       "present": {
         "p1": "ginn",
         "p2": "gëss",
@@ -192,10 +192,11 @@
         "p5": "gitt!"
       },
       "example": {
-        "lb": "et gëtt ëmmer méi Leit, déi un Allergië leiden",
-        "audioId": "9b68905f0b6363db54494f25234069a4",
+        "lb": "kanns de mer wannechgelift de Läffel ginn?",
+        "audioId": "b94a5dc3b42e62f92cb323bf6b288393",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht",
         "famill",
@@ -204,15 +205,14 @@
       "topicVia": "seed",
       "cue": null,
       "cloze": {
-        "before": "et ",
-        "form": "gëtt",
-        "after": " ëmmer méi Leit, déi un Allergië leiden",
-        "via": "lexicon"
+        "before": "kanns de mer wannechgelift de Läffel ",
+        "form": "ginn",
+        "after": "?",
+        "via": "surface"
       },
       "freq": 666,
       "rank": 2,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "KENNEN1",
@@ -220,7 +220,7 @@
       "pastParticiple": "kënnen",
       "auxiliaryVerb": "hunn",
       "level": "A1",
-      "en": "to be responsible for",
+      "en": "can",
       "present": {
         "p1": "kann",
         "p2": "kanns",
@@ -239,10 +239,11 @@
       },
       "imperative": null,
       "example": {
-        "lb": "ech kann net dofir!",
-        "audioId": "56b116b5babd2e8ca667a34cff16cec5",
+        "lb": "Äre Bouf ka gutt zeechnen",
+        "audioId": "aad915fcb07f84553b1f49c692fc178c",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "famill",
         "iessen",
@@ -251,15 +252,14 @@
       "topicVia": "seed",
       "cue": null,
       "cloze": {
-        "before": "ech ",
-        "form": "kann",
-        "after": " net dofir!",
+        "before": "Äre Bouf ",
+        "form": "ka",
+        "after": " gutt zeechnen",
         "via": "lexicon"
       },
       "freq": 536,
       "rank": 3,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "SINN1",
@@ -289,10 +289,11 @@
         "p5": "sidd!"
       },
       "example": {
-        "lb": "d'Vëloskette war mer erofgesprongen",
-        "audioId": "c845b15c9a740cbe62b39519eee1c6d0",
+        "lb": "villes, wat war, ass net méi",
+        "audioId": "37206b07a3004cad73dc5d93823dcff9",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "joreszäiten",
         "kreativitéit",
@@ -302,15 +303,14 @@
       "topicVia": "seed",
       "cue": null,
       "cloze": {
-        "before": "d'Vëloskette ",
+        "before": "villes, wat ",
         "form": "war",
-        "after": " mer erofgesprongen",
+        "after": ", ass net méi",
         "via": "lexicon"
       },
       "freq": 483,
       "rank": 4,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "MUSSEN1",
@@ -341,6 +341,7 @@
         "audioId": "d8ef652277c9024816702029b75efacc",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht",
         "famill",
@@ -358,8 +359,7 @@
       },
       "freq": 408,
       "rank": 5,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "GOEN1",
@@ -393,6 +393,7 @@
         "audioId": "8190ef4a1f594b8ddf2f698ec1f55543",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "sport"
       ],
@@ -401,8 +402,7 @@
       "cloze": null,
       "freq": 328,
       "rank": 6,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "MAACHEN1",
@@ -436,6 +436,7 @@
         "audioId": "054d8836b1f67d8500ce82dad3d2fab1",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "aarbecht",
         "famill",
@@ -456,8 +457,7 @@
       },
       "freq": 304,
       "rank": 7,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "KOMMEN1",
@@ -491,6 +491,7 @@
         "audioId": "3b91a88196c6697376f2dee572489987",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht",
         "medien",
@@ -501,8 +502,7 @@
       "cloze": null,
       "freq": 282,
       "rank": 8,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "IESSEN3",
@@ -536,6 +536,7 @@
         "audioId": "5e9519e356633c585228f11ac2ada6c6",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "iessen"
       ],
@@ -549,8 +550,7 @@
       },
       "freq": 154,
       "rank": 9,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "LEIEN2",
@@ -584,6 +584,7 @@
         "audioId": "59c8b1899ae7d98796e8073bd99d6fa6",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "gesondheet"
       ],
@@ -597,8 +598,7 @@
       },
       "freq": 137,
       "rank": 10,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "HUELEN1",
@@ -632,6 +632,7 @@
         "audioId": "08c307a9ed816b77a81923758ad2d7a6",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "gesondheet"
       ],
@@ -640,8 +641,7 @@
       "cloze": null,
       "freq": 135,
       "rank": 11,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "LOOSSEN1",
@@ -675,6 +675,7 @@
         "audioId": "0a5287e7adb232b8d9e402ee9b8e0fc1",
         "a1": true
       },
+      "a1": false,
       "topics": [
         "iessen",
         "liesen",
@@ -692,8 +693,7 @@
       },
       "freq": 122,
       "rank": 12,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "SOLLEN1",
@@ -724,6 +724,7 @@
         "audioId": "2e95aa85637a3558536c4cf6df34159c",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "gesondheet",
         "iessen",
@@ -742,8 +743,7 @@
       },
       "freq": 118,
       "rank": 13,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "GESINN1",
@@ -777,6 +777,7 @@
         "audioId": "d5118ae56baba0e2014ad54e5c85abd3",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "medien"
       ],
@@ -790,8 +791,7 @@
       },
       "freq": 110,
       "rank": 14,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "SCHWATZEN1",
@@ -825,6 +825,7 @@
         "audioId": "59444f1440aa975ceca1079a26e7ed3b",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "sproochen"
       ],
@@ -838,8 +839,7 @@
       },
       "freq": 103,
       "rank": 15,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "SPILLEN1",
@@ -873,6 +873,7 @@
         "audioId": "a5e7b9abacf2c150e58940b217b42a98",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "kreativitéit",
         "medien",
@@ -888,8 +889,7 @@
       },
       "freq": 97,
       "rank": 16,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "STOEN1",
@@ -923,6 +923,7 @@
         "audioId": "51daeb980d8091f2f8353aa98cd1accd",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "famill",
         "gesondheet",
@@ -943,8 +944,7 @@
       },
       "freq": 96,
       "rank": 17,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "KAFEN1",
@@ -978,6 +978,7 @@
         "audioId": "159b2f3bc7e5931b96528aaf9cf947bf",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "wunnen"
       ],
@@ -991,8 +992,7 @@
       },
       "freq": 83,
       "rank": 18,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "SETZEN2",
@@ -1026,6 +1026,7 @@
         "audioId": "02ec7802b08ff4846a41efa44f974d7d",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "feierdeeg"
       ],
@@ -1039,8 +1040,7 @@
       },
       "freq": 83,
       "rank": 19,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "FALEN1",
@@ -1074,6 +1074,7 @@
         "audioId": "98054ed24ea6003364e5117c6c77d5d8",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "famill",
@@ -1091,8 +1092,7 @@
       },
       "freq": 81,
       "rank": 20,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "BLEIWEN1",
@@ -1126,6 +1126,7 @@
         "audioId": "22be5faf3350cb4add29d0b92b09ff75",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "famill",
         "feierdeeg",
@@ -1141,8 +1142,7 @@
       },
       "freq": 77,
       "rank": 21,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "WELLEN1",
@@ -1169,10 +1169,11 @@
       },
       "imperative": null,
       "example": {
-        "lb": "trotz staarke Protester wëllt d'Regierung un der Reform festhalen",
-        "audioId": "079adf149c1fc25ff1ba6898964a61da",
+        "lb": "de Chef wëllt, datt mir haut méi laang schaffen",
+        "audioId": "2a7084c0e8dc25c9e01aa1b8b1c95cf2",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht",
         "transport",
@@ -1183,8 +1184,7 @@
       "cloze": null,
       "freq": 76,
       "rank": 22,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "FUEREN1",
@@ -1218,6 +1218,7 @@
         "audioId": "fb796442cdb0a87946c592af55abc89c",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "transport"
       ],
@@ -1231,8 +1232,7 @@
       },
       "freq": 73,
       "rank": 23,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "HALEN1",
@@ -1266,6 +1266,7 @@
         "audioId": "38f31a00f6504d7909895ee58cf09c13",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "famill",
@@ -1280,8 +1281,7 @@
       "cloze": null,
       "freq": 71,
       "rank": 24,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "KUCKEN1",
@@ -1315,6 +1315,7 @@
         "audioId": "37674f1846b21b43bd187db7040b8ec1",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "famill",
         "gesondheet",
@@ -1325,8 +1326,7 @@
       "cloze": null,
       "freq": 69,
       "rank": 25,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "DRENKEN1",
@@ -1360,6 +1360,7 @@
         "audioId": "8ef1572e3a9716211d5a00aa4d1eca5f",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "famill",
         "gesondheet",
@@ -1376,8 +1377,7 @@
       },
       "freq": 66,
       "rank": 26,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "SCHREIWEN1",
@@ -1411,6 +1411,7 @@
         "audioId": "3f78d4da1da3a60d92eb8714ba4ba988",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "liesen"
       ],
@@ -1424,8 +1425,7 @@
       },
       "freq": 61,
       "rank": 27,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "SCHAFFEN3",
@@ -1459,6 +1459,7 @@
         "audioId": "cdb190c1cb670f8aa5050814a6c186bd",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht"
       ],
@@ -1472,8 +1473,7 @@
       },
       "freq": 60,
       "rank": 28,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "SETZEN1",
@@ -1507,6 +1507,7 @@
         "audioId": "f520258ee403079d11b714f81de868e0",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "gesondheet"
@@ -1521,8 +1522,7 @@
       },
       "freq": 57,
       "rank": 29,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "SOEN1",
@@ -1556,6 +1556,7 @@
         "audioId": "f2469768c8c9982341d52ce46a3b3492",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "feierdeeg",
@@ -1575,8 +1576,7 @@
       },
       "freq": 57,
       "rank": 30,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "BRENGEN1",
@@ -1610,6 +1610,7 @@
         "audioId": "b8cc05655ac37a3366d9b070245e5396",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "feierdeeg"
       ],
@@ -1623,8 +1624,7 @@
       },
       "freq": 56,
       "rank": 31,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "FANNEN1",
@@ -1658,6 +1658,7 @@
         "audioId": "a30c14d3c55cd2dc4b5589f9fbe017fb",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "aarbecht",
         "medien",
@@ -1673,8 +1674,7 @@
       },
       "freq": 56,
       "rank": 32,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "WUNNEN1",
@@ -1705,6 +1705,7 @@
         "audioId": "7901a74ac5b46d5b2c0ec4562b8b88d1",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "wunnen"
       ],
@@ -1718,8 +1719,7 @@
       },
       "freq": 56,
       "rank": 33,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "DENKEN1",
@@ -1753,6 +1753,7 @@
         "audioId": "c457e876713f1d375386b2b84e6d8564",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "gesondheet",
@@ -1769,8 +1770,7 @@
       },
       "freq": 52,
       "rank": 34,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "LAFEN1",
@@ -1804,6 +1804,7 @@
         "audioId": "c7af9f0278417e0d2f2e06f76b445e96",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "sport"
       ],
@@ -1817,8 +1818,7 @@
       },
       "freq": 52,
       "rank": 35,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "DAERFEN1",
@@ -1849,6 +1849,7 @@
         "audioId": "6dad4644aa33441ad1b87bb9948b7429",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -1860,8 +1861,7 @@
       },
       "freq": 48,
       "rank": 36,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "BRAUCHEN1",
@@ -1869,7 +1869,7 @@
       "pastParticiple": "gebraucht",
       "auxiliaryVerb": "hunn",
       "level": "A1",
-      "en": null,
+      "en": "to need",
       "present": {
         "p1": "brauch",
         "p2": "brauchs",
@@ -1891,10 +1891,11 @@
         "p5": "braucht!"
       },
       "example": {
-        "lb": "bei dësem Dokter brauch een net laang ze waarden, fir e Rendez-vous ze kréien",
-        "audioId": "7e01e818396f83e68e8cc8096e815198",
+        "lb": "ech brauch den Hummer net méi, du kanns en zeréck an d'Këscht leeën",
+        "audioId": "bb4af37df563e019c170867e14f84f6f",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "hobbyen"
       ],
@@ -1903,8 +1904,7 @@
       "cloze": null,
       "freq": 45,
       "rank": 37,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "BRIECHEN1",
@@ -1938,6 +1938,7 @@
         "audioId": "7a4d07a58f9df3e0b0cef3d995fae357",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -1951,8 +1952,7 @@
       },
       "freq": 41,
       "rank": 38,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "KENNEN2",
@@ -1983,6 +1983,7 @@
         "audioId": "04b1b2a7bdd9e7a9019944be941b7dd0",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill"
       ],
@@ -1996,8 +1997,7 @@
       },
       "freq": 41,
       "rank": 39,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "STELLEN1",
@@ -2031,6 +2031,7 @@
         "audioId": "7aeadf45728b81092d4bcc5020a35c30",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "feierdeeg"
       ],
@@ -2044,8 +2045,7 @@
       },
       "freq": 41,
       "rank": 40,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "WEISEN1",
@@ -2079,6 +2079,7 @@
         "audioId": "edfcfac7ccaefa5950bbb4a073559890",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht",
         "famill",
@@ -2096,8 +2097,7 @@
       },
       "freq": 41,
       "rank": 41,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "RUFFEN1",
@@ -2131,6 +2131,7 @@
         "audioId": "8faf4d6f32d706eece1b3d64a40df4ad",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "famill",
@@ -2141,8 +2142,7 @@
       "cloze": null,
       "freq": 40,
       "rank": 42,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "UFANKEN1",
@@ -2176,6 +2176,7 @@
         "audioId": "d5db3ceed5d91e433f8b5d69bcccc60c",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht",
         "feierdeeg",
@@ -2194,8 +2195,7 @@
       },
       "freq": 40,
       "rank": 43,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "VERSTOEN1",
@@ -2229,6 +2229,7 @@
         "audioId": "76845ac778757e02ff20dd67f858e771",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sproochen"
       ],
@@ -2242,8 +2243,7 @@
       },
       "freq": 40,
       "rank": 44,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "BEZUELEN1",
@@ -2277,6 +2277,7 @@
         "audioId": "b4106f74ed76cd8508de17a6bbfc6935",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "wunnen"
       ],
@@ -2290,8 +2291,7 @@
       },
       "freq": 38,
       "rank": 45,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "SENGEN2",
@@ -2325,6 +2325,7 @@
         "audioId": "8aac4f926407dcb165343890692cfa53",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -2336,8 +2337,7 @@
       },
       "freq": 38,
       "rank": 46,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "ANTWEREN1",
@@ -2371,6 +2371,7 @@
         "audioId": "87d26d534ea75fcb54228db7231a7f80",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -2382,8 +2383,7 @@
       },
       "freq": 37,
       "rank": 47,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "SCHLOFEN1",
@@ -2417,6 +2417,7 @@
         "audioId": "3c78dc5384f52f01dacad72006d5aacd",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "feierdeeg"
       ],
@@ -2430,8 +2431,7 @@
       },
       "freq": 35,
       "rank": 48,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "LEIEREN2",
@@ -2465,6 +2465,7 @@
         "audioId": "d9bdb5dab947d1ebae3ba6167867c58a",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "sproochen"
       ],
@@ -2478,8 +2479,7 @@
       },
       "freq": 31,
       "rank": 49,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "FLEIEN1",
@@ -2513,6 +2513,7 @@
         "audioId": "3eb7328da6921ab94585b6a73d3e4bcc",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "vakanz"
@@ -2527,8 +2528,7 @@
       },
       "freq": 30,
       "rank": 50,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "OPMAACHEN1",
@@ -2562,6 +2562,7 @@
         "audioId": "4792739ee70116080ab10a73599c58d5",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten",
         "kleeder",
@@ -2578,8 +2579,7 @@
       },
       "freq": 30,
       "rank": 51,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "PACKEN1",
@@ -2613,6 +2613,7 @@
         "audioId": "f11d137ffe2e6e787e94fc6f2c462a94",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "famill",
@@ -2628,8 +2629,7 @@
       },
       "freq": 29,
       "rank": 52,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "FAERTEN1",
@@ -2663,6 +2663,7 @@
         "audioId": "062a94ae1cb38c621e485e0399b92f98",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "feierdeeg"
       ],
@@ -2676,8 +2677,7 @@
       },
       "freq": 28,
       "rank": 53,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "SCHNEIDEN1",
@@ -2711,6 +2711,7 @@
         "audioId": "610a2bb4680edfb6d667c4a1b7c9f9eb",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "transport",
         "wunnen"
@@ -2725,8 +2726,7 @@
       },
       "freq": 28,
       "rank": 54,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "WAARDEN1",
@@ -2760,6 +2760,7 @@
         "audioId": "5422904ca656361822715f881b1d9188",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "iessen"
       ],
@@ -2768,8 +2769,7 @@
       "cloze": null,
       "freq": 28,
       "rank": 55,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "FANKEN1",
@@ -2803,6 +2803,7 @@
         "audioId": "b2cfcbd78390ffe9ee0f2257129e3e51",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -2814,8 +2815,7 @@
       },
       "freq": 26,
       "rank": 56,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "KLAMMEN1",
@@ -2849,6 +2849,7 @@
         "audioId": "294c093e4000d2b63dd8757add93c372",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sport"
       ],
@@ -2862,8 +2863,7 @@
       },
       "freq": 26,
       "rank": 57,
-      "stage": 2,
-      "a1": false
+      "stage": 2
     },
     {
       "id": "SCHMAACHEN1",
@@ -2897,6 +2897,7 @@
         "audioId": "0501746efdfad220aea7bdf52c87b4d1",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht",
         "iessen"
@@ -2911,8 +2912,7 @@
       },
       "freq": 26,
       "rank": 58,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "SCHWAMMEN1",
@@ -2946,6 +2946,7 @@
         "audioId": "ccf3f795ea2040424f1c23c53bd7e4c0",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "sport"
       ],
@@ -2959,8 +2960,7 @@
       },
       "freq": 26,
       "rank": 59,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "BESTELLEN1",
@@ -2994,6 +2994,7 @@
         "audioId": "8b9aaad288e4ebbf30b90db1226fbc71",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "feierdeeg"
       ],
@@ -3007,8 +3008,7 @@
       },
       "freq": 25,
       "rank": 60,
-      "stage": 2,
-      "a1": true
+      "stage": 2
     },
     {
       "id": "VERKAFEN1",
@@ -3042,6 +3042,7 @@
         "audioId": "8d8469197700ede9bf652b0bd8b6ee07",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "liesen"
       ],
@@ -3055,8 +3056,7 @@
       },
       "freq": 24,
       "rank": 66,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "HELLEFEN1",
@@ -3090,6 +3090,7 @@
         "audioId": "6929fa5a42fe706a167a9453c0ccc821",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "gesondheet",
         "sproochen"
@@ -3104,8 +3105,7 @@
       },
       "freq": 23,
       "rank": 68,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "HEESCHEN1",
@@ -3136,6 +3136,7 @@
         "audioId": "1b3d09cd6408058d530540cd16c578a6",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "sproochen",
         "transport"
@@ -3150,8 +3151,7 @@
       },
       "freq": 21,
       "rank": 75,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "LAUSCHTEREN1",
@@ -3185,6 +3185,7 @@
         "audioId": "4baecf86c904acb21ed87df1a3d2986e",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "kreativitéit",
         "medien"
@@ -3199,8 +3200,7 @@
       },
       "freq": 21,
       "rank": 76,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "BESTOEN1",
@@ -3234,6 +3234,7 @@
         "audioId": "c47f0ca9c2aee76d2c51278e5c045d9d",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht"
       ],
@@ -3247,8 +3248,7 @@
       },
       "freq": 20,
       "rank": 79,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "MENGEN1",
@@ -3282,6 +3282,7 @@
         "audioId": "d4a77362dfdf3ce60f4f84a0fec4b53b",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "sproochen",
         "transport"
@@ -3291,8 +3292,7 @@
       "cloze": null,
       "freq": 20,
       "rank": 83,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "OPSTOEN2",
@@ -3326,6 +3326,7 @@
         "audioId": "542bdd14508d32346b30f1ce021e9b23",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "gesondheet",
         "transport"
@@ -3340,8 +3341,7 @@
       },
       "freq": 20,
       "rank": 84,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "OPHALEN1",
@@ -3375,6 +3375,7 @@
         "audioId": "e55f34cf1c4dda1f845875a7e7c77378",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "wunnen"
       ],
@@ -3388,8 +3389,7 @@
       },
       "freq": 19,
       "rank": 87,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "SPRANGEN1",
@@ -3423,6 +3423,7 @@
         "audioId": "7b09927d28bcde38c65d080bc969fbb2",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "iessen"
       ],
@@ -3436,8 +3437,7 @@
       },
       "freq": 19,
       "rank": 91,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "SICHEN1",
@@ -3471,6 +3471,7 @@
         "audioId": "fc69c112a55b36e9d710bbd30832682c",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "vakanz"
       ],
@@ -3484,8 +3485,7 @@
       },
       "freq": 17,
       "rank": 100,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "SANGEN1",
@@ -3519,6 +3519,7 @@
         "audioId": "5805a84d6e0e2577b7f1ad587e5f72e4",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "feierdeeg"
       ],
@@ -3532,8 +3533,7 @@
       },
       "freq": 16,
       "rank": 107,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "BAKEN1",
@@ -3567,6 +3567,7 @@
         "audioId": "18aed6852f23359cd45f78e7b0faba5f",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "feierdeeg"
       ],
@@ -3580,8 +3581,7 @@
       },
       "freq": 15,
       "rank": 108,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "KONTROLLEIEREN1",
@@ -3615,6 +3615,7 @@
         "audioId": "a9cfc3d7744eb2d7f4119178d020e419",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "transport"
       ],
@@ -3628,8 +3629,7 @@
       },
       "freq": 15,
       "rank": 111,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "PRESENTEIEREN1",
@@ -3663,6 +3663,7 @@
         "audioId": "fb6338e20110a8c37c615ad92816939b",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht"
       ],
@@ -3676,8 +3677,7 @@
       },
       "freq": 15,
       "rank": 114,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "UMELLEN1",
@@ -3711,6 +3711,7 @@
         "audioId": "0d09f2d6908ac6213cc6b12dfb456cd8",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "famill",
         "kaddoen",
@@ -3726,8 +3727,7 @@
       },
       "freq": 15,
       "rank": 116,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "FROEN1",
@@ -3761,6 +3761,7 @@
         "audioId": "975b057d120842ac1da5a1a4d582908b",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "aarbecht",
         "vakanz"
@@ -3775,8 +3776,7 @@
       },
       "freq": 14,
       "rank": 121,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "SAMMELEN1",
@@ -3810,6 +3810,7 @@
         "audioId": "51835657953e65ca41ce2fdfccf4540a",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht"
       ],
@@ -3823,8 +3824,7 @@
       },
       "freq": 14,
       "rank": 122,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "WAERTEN1",
@@ -3848,6 +3848,7 @@
         "audioId": "7c9d6b6b1bf60b8959fa26686c15889f",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "iessen",
         "joreszäiten",
@@ -3865,8 +3866,7 @@
       },
       "freq": 14,
       "rank": 123,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "DANZEN1",
@@ -3900,6 +3900,7 @@
         "audioId": "5bdd1d3c05e47e7b0f0e11a06b649d4e",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "hobbyen"
       ],
@@ -3913,8 +3914,7 @@
       },
       "freq": 13,
       "rank": 126,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "KACHEN2",
@@ -3948,6 +3948,7 @@
         "audioId": "af46df71d62338f1eff54f9585d652a1",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "iessen"
       ],
@@ -3961,8 +3962,7 @@
       },
       "freq": 13,
       "rank": 129,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "DECKEN2",
@@ -3996,6 +3996,7 @@
         "audioId": "c236889e29b39a35b7c0774dcaa95601",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "sport"
       ],
@@ -4009,8 +4010,7 @@
       },
       "freq": 12,
       "rank": 136,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "ERWACHEN1",
@@ -4044,6 +4044,7 @@
         "audioId": "9bd1640635f4d3031bc70763e5aa8694",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "medien"
       ],
@@ -4057,8 +4058,7 @@
       },
       "freq": 12,
       "rank": 139,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "MOLEN1",
@@ -4092,6 +4092,7 @@
         "audioId": "b189c9e17511362d939e9ec86c79cd39",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "kreativitéit"
       ],
@@ -4105,8 +4106,7 @@
       },
       "freq": 12,
       "rank": 143,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "TELEFONEIEREN1",
@@ -4140,6 +4140,7 @@
         "audioId": "b106e28b6f2f5b49d5b1bd66d5bb9134",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht"
       ],
@@ -4153,8 +4154,7 @@
       },
       "freq": 12,
       "rank": 146,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "WIDDERHUELEN1",
@@ -4188,6 +4188,7 @@
         "audioId": "43967de58a6d09d4d3c4046b235836e4",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -4199,8 +4200,7 @@
       },
       "freq": 11,
       "rank": 155,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "AMESEIEREN1",
@@ -4234,6 +4234,7 @@
         "audioId": "a734944030829cc2dc98827a881809c7",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -4245,8 +4246,7 @@
       },
       "freq": 10,
       "rank": 157,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "BASTELEN1",
@@ -4280,6 +4280,7 @@
         "audioId": "b15ba43fd19adf8cc480ea76669f1554",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "kaddoen",
         "liesen"
@@ -4294,8 +4295,7 @@
       },
       "freq": 10,
       "rank": 159,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "FEIEREN1",
@@ -4329,6 +4329,7 @@
         "audioId": "2f5d63b5d9c3185d82947c1da1408c34",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "kaddoen"
       ],
@@ -4342,8 +4343,7 @@
       },
       "freq": 10,
       "rank": 161,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "HEIEREN1",
@@ -4377,6 +4377,7 @@
         "audioId": "46e16a36352c1a27b618b96766cc97e9",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "sproochen"
       ],
@@ -4390,8 +4391,7 @@
       },
       "freq": 10,
       "rank": 162,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "LIESEN1",
@@ -4425,6 +4425,7 @@
         "audioId": "755618236ed389a5c7293b44a41a3c68",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "hobbyen"
       ],
@@ -4433,8 +4434,7 @@
       "cloze": null,
       "freq": 10,
       "rank": 163,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "BRODEN1",
@@ -4468,14 +4468,14 @@
         "audioId": "75e7d985f843781b8cfc6d2be1a5d23f",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 9,
       "rank": 170,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "MATHUELEN1",
@@ -4509,6 +4509,7 @@
         "audioId": "0512952a2607b6057faec213e5799653",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "iessen",
         "transport"
@@ -4523,8 +4524,7 @@
       },
       "freq": 9,
       "rank": 172,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "WASCHEN1",
@@ -4558,6 +4558,7 @@
         "audioId": "28cfe814bb5b3c7a821b0d98e2b10394",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "stot"
       ],
@@ -4566,8 +4567,7 @@
       "cloze": null,
       "freq": 9,
       "rank": 180,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "BESICHEN1",
@@ -4601,6 +4601,7 @@
         "audioId": "5a64ac7759757a0cde7ebe05a4dc2837",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -4612,8 +4613,7 @@
       },
       "freq": 8,
       "rank": 183,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "FIERWEN1",
@@ -4647,6 +4647,7 @@
         "audioId": "d8ccfaa44e41599a05224f570aaa916d",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "kreativitéit",
         "sport"
@@ -4661,8 +4662,7 @@
       },
       "freq": 8,
       "rank": 185,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "SPADSEIEREN1",
@@ -4696,6 +4696,7 @@
         "audioId": "675bcdc0762e2cac17f765c8de8797de",
         "a1": true
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -4707,8 +4708,7 @@
       },
       "freq": 8,
       "rank": 191,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "STEMMEN1",
@@ -4742,6 +4742,7 @@
         "audioId": "a644a61e57238ae4829ca21cf8c67337",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -4753,8 +4754,7 @@
       },
       "freq": 8,
       "rank": 193,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "STIERWEN2",
@@ -4788,6 +4788,7 @@
         "audioId": null,
         "a1": false
       },
+      "a1": true,
       "topics": [
         "gesondheet"
       ],
@@ -4801,8 +4802,7 @@
       },
       "freq": 8,
       "rank": 194,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "STUDEIEREN1",
@@ -4836,6 +4836,7 @@
         "audioId": "1981e5ee743b2efdd22d263f2c8db0dd",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "liesen"
       ],
@@ -4849,8 +4850,7 @@
       },
       "freq": 8,
       "rank": 195,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "TRAINEIEREN1",
@@ -4884,6 +4884,7 @@
         "audioId": "985d9f80b654f124532990b8d595b96e",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "sport"
       ],
@@ -4897,8 +4898,7 @@
       },
       "freq": 8,
       "rank": 196,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "PLENNEREN2",
@@ -4932,6 +4932,7 @@
         "audioId": "456f271b18a9c8e0ca918e69923e7ed2",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "wunnen"
       ],
@@ -4945,8 +4946,7 @@
       },
       "freq": 7,
       "rank": 211,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "SCHIELEN1",
@@ -4980,6 +4980,7 @@
         "audioId": "e3f8fc6db146320ba0b3808245cdb6df",
         "a1": true
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -4991,8 +4992,7 @@
       },
       "freq": 7,
       "rank": 212,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "VERGIESSEN1",
@@ -5026,6 +5026,7 @@
         "audioId": "381b5f26b0ef4c1ee962093c69d740d8",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "gesondheet",
         "vakanz"
@@ -5035,8 +5036,7 @@
       "cloze": null,
       "freq": 7,
       "rank": 215,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "AKAFEN1",
@@ -5070,6 +5070,7 @@
         "audioId": "63bf40942e85933735acdbe500374d84",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "stot"
       ],
@@ -5083,8 +5084,7 @@
       },
       "freq": 6,
       "rank": 219,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "FORTFUEREN1",
@@ -5118,6 +5118,7 @@
         "audioId": "f840b983d3b94f5e5f7dcf5885190401",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "aarbecht"
       ],
@@ -5131,8 +5132,7 @@
       },
       "freq": 6,
       "rank": 222,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "LIICHTEN1",
@@ -5166,14 +5166,14 @@
         "audioId": "76306f68da4ec82fd87028b4cb5339f1",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 5,
       "rank": 239,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "MATGOEN1",
@@ -5207,6 +5207,7 @@
         "audioId": "940829d74f5d9c5c89332d00c5a16396",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "vakanz"
       ],
@@ -5220,8 +5221,7 @@
       },
       "freq": 5,
       "rank": 240,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "WESSEN2",
@@ -5252,6 +5252,7 @@
         "audioId": "9e6ae23bdfe895924e9541d969345e02",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "hobbyen",
         "transport",
@@ -5262,8 +5263,7 @@
       "cloze": null,
       "freq": 5,
       "rank": 248,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "MESCHEN1",
@@ -5297,6 +5297,7 @@
         "audioId": "c1db0fbb6f75a2a3e62f4c68c5f6e8e9",
         "a1": true
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -5308,8 +5309,7 @@
       },
       "freq": 4,
       "rank": 258,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "NOTEIEREN1",
@@ -5343,6 +5343,7 @@
         "audioId": "28cd9f540626262ec689fa27967e980d",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -5354,8 +5355,7 @@
       },
       "freq": 4,
       "rank": 260,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "PREPAREIEREN1",
@@ -5389,6 +5389,7 @@
         "audioId": "5ad6e0f4965d4b27a9553e38ea1f3cf1",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -5400,8 +5401,7 @@
       },
       "freq": 4,
       "rank": 262,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "STAUBSAUGEN1",
@@ -5435,6 +5435,7 @@
         "audioId": "1f7f7b22853d5c62f1ee4f9ab7f77d09",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -5446,8 +5447,7 @@
       },
       "freq": 4,
       "rank": 269,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "PACSEN1",
@@ -5481,6 +5481,7 @@
         "audioId": "db0f01835e9e06980d117ac4346c1c54",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -5492,8 +5493,7 @@
       },
       "freq": 3,
       "rank": 291,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "HEEMFUEREN1",
@@ -5527,6 +5527,7 @@
         "audioId": "ae4c659826e0c87e63563cc93010823f",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "joreszäiten",
         "vakanz"
@@ -5541,8 +5542,7 @@
       },
       "freq": 2,
       "rank": 311,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "KASCHTEN2",
@@ -5573,6 +5573,7 @@
         "audioId": "7e1ff90a83e77de8cd00d8b29e529d21",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "sproochen"
       ],
@@ -5586,8 +5587,7 @@
       },
       "freq": 2,
       "rank": 313,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "REPAREIEREN1",
@@ -5621,6 +5621,7 @@
         "audioId": "e035530dbb5dcff461dc47ebc4ee8a73",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "medien",
         "transport"
@@ -5635,8 +5636,7 @@
       },
       "freq": 2,
       "rank": 321,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "TANKEN1",
@@ -5670,6 +5670,7 @@
         "audioId": "f2d406c0f34ef392712391f97ed19801",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "transport"
       ],
@@ -5678,8 +5679,7 @@
       "cloze": null,
       "freq": 2,
       "rank": 325,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "BUSCHTAWEIEREN1",
@@ -5713,6 +5713,7 @@
         "audioId": "39d848bb4f08d4bf9d6a10247d1e3be7",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -5724,8 +5725,7 @@
       },
       "freq": 1,
       "rank": 331,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "DUSCHEN1",
@@ -5759,6 +5759,7 @@
         "audioId": "68a7dcd05d6890a56c78aeeb31f80ea0",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "famill"
       ],
@@ -5772,8 +5773,7 @@
       },
       "freq": 1,
       "rank": 333,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "GRILLEN1",
@@ -5807,6 +5807,7 @@
         "audioId": "7eeff11e70ae496b4b7800e79c470291",
         "a1": true
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -5818,8 +5819,7 @@
       },
       "freq": 1,
       "rank": 336,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "IWWERSETZEN1",
@@ -5853,6 +5853,7 @@
         "audioId": "b27574edb287cac178d0b439bd043aec",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "liesen",
         "sproochen"
@@ -5867,8 +5868,7 @@
       },
       "freq": 1,
       "rank": 337,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "RAPPEN1",
@@ -5902,6 +5902,7 @@
         "audioId": "e3de8adb65f8624aa6df69124baca265",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -5913,8 +5914,7 @@
       },
       "freq": 1,
       "rank": 342,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "DOHEEMBLEIWEN1",
@@ -5948,6 +5948,7 @@
         "audioId": "162aefafe18860bb16b3bb48b3241ccf",
         "a1": false
       },
+      "a1": true,
       "topics": [
         "gesondheet"
       ],
@@ -5956,8 +5957,7 @@
       "cloze": null,
       "freq": 0,
       "rank": 348,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "FRAIHUNN1",
@@ -5988,14 +5988,14 @@
         "audioId": "6020bef9f6518dd819f09917b855eb1e",
         "a1": true
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 0,
       "rank": 353,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "KREIEN1",
@@ -6029,6 +6029,7 @@
         "audioId": "8969e16f13a19de0abafa23509036b12",
         "a1": true
       },
+      "a1": true,
       "topics": [
         "aarbecht",
         "famill",
@@ -6044,8 +6045,7 @@
       "cloze": null,
       "freq": 0,
       "rank": 355,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "OFSCHMAACHEN1",
@@ -6075,14 +6075,14 @@
         "p5": "schmaacht of!"
       },
       "example": null,
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 0,
       "rank": 357,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "PICKNICKEN1",
@@ -6113,6 +6113,7 @@
         "audioId": "ab8dd12e5d3da9fb7f1ee32411b49bb7",
         "a1": true
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -6124,8 +6125,7 @@
       },
       "freq": 0,
       "rank": 358,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "PLATTDRECKEN1",
@@ -6159,14 +6159,14 @@
         "audioId": "0277ba19ea9d271b7ebf4280d3b2c226",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 0,
       "rank": 359,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "SHOPPEN1",
@@ -6200,6 +6200,7 @@
         "audioId": "1bf4f537bfcfd089f9b9e62830f7abc4",
         "a1": false
       },
+      "a1": true,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -6211,8 +6212,7 @@
       },
       "freq": 0,
       "rank": 361,
-      "stage": 4,
-      "a1": true
+      "stage": 4
     },
     {
       "id": "PASSEN2",
@@ -6246,6 +6246,7 @@
         "audioId": "903c868a931992847894bdfac741784e",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sport"
       ],
@@ -6254,8 +6255,7 @@
       "cloze": null,
       "freq": 25,
       "rank": 61,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "RECHNEN1",
@@ -6289,6 +6289,7 @@
         "audioId": "5c44496ff83768baf7a6e9a33fed3633",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "joreszäiten",
@@ -6307,8 +6308,7 @@
       },
       "freq": 25,
       "rank": 62,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ENTSCHELLEGEN1",
@@ -6342,6 +6342,7 @@
         "audioId": "34d48ca19399d071f1b58f3a6eaeb492",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -6353,8 +6354,7 @@
       },
       "freq": 24,
       "rank": 63,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "TREFFEN1",
@@ -6388,6 +6388,7 @@
         "audioId": "2b2a4364876dbb47d71a41ba6cfd1c7a",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sport"
       ],
@@ -6401,8 +6402,7 @@
       },
       "freq": 24,
       "rank": 64,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "UKOMMEN1",
@@ -6436,6 +6436,7 @@
         "audioId": "82efda5fdfa45a0f06dc8e7369c8fa2a",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "gesondheet",
@@ -6453,8 +6454,7 @@
       },
       "freq": 24,
       "rank": 65,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "FREEEN1",
@@ -6488,6 +6488,7 @@
         "audioId": "6cd0eb96511188b4423298d8c7f0d154",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "feierdeeg"
       ],
@@ -6501,8 +6502,7 @@
       },
       "freq": 23,
       "rank": 67,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SCHENKEN1",
@@ -6536,6 +6536,7 @@
         "audioId": "4eb9678ab321f83f7567e3d5f8dbacaf",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "kaddoen"
       ],
@@ -6549,8 +6550,7 @@
       },
       "freq": 23,
       "rank": 69,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "HANKEN1",
@@ -6584,6 +6584,7 @@
         "audioId": "1721481b6c52b02ec90919abb3128683",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten",
         "medien",
@@ -6600,8 +6601,7 @@
       },
       "freq": 22,
       "rank": 70,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "LEEEN1",
@@ -6635,6 +6635,7 @@
         "audioId": "7991401eb96bd8b451eb6b39620dc92c",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -6648,8 +6649,7 @@
       },
       "freq": 22,
       "rank": 71,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SCHECKEN1",
@@ -6683,6 +6683,7 @@
         "audioId": "39514f52b3e78cb81e55db3a446cc2de",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "vakanz"
       ],
@@ -6696,8 +6697,7 @@
       },
       "freq": 22,
       "rank": 72,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "FEELEN1",
@@ -6731,6 +6731,7 @@
         "audioId": "6a20362e75cbb5198a836949be1cc8d1",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten"
       ],
@@ -6744,8 +6745,7 @@
       },
       "freq": 21,
       "rank": 73,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "FEMMEN1",
@@ -6779,6 +6779,7 @@
         "audioId": "6a202251b07c1b96dcf20175a53de65a",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -6792,8 +6793,7 @@
       },
       "freq": 21,
       "rank": 74,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "PROBEIEREN1",
@@ -6827,6 +6827,7 @@
         "audioId": "13d2f82508a808b563cf9d6cc4922cbd",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "kleeder"
       ],
@@ -6840,8 +6841,7 @@
       },
       "freq": 21,
       "rank": 77,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ANNEREN1",
@@ -6875,6 +6875,7 @@
         "audioId": "4165b987d34fb0ba95c4584d5515735f",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten"
       ],
@@ -6888,8 +6889,7 @@
       },
       "freq": 20,
       "rank": 78,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "DRECKEN1",
@@ -6923,6 +6923,7 @@
         "audioId": "effeab39832204c195e6ed5a81b9306b",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "famill",
@@ -6941,8 +6942,7 @@
       },
       "freq": 20,
       "rank": 80,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "GEWANNEN1",
@@ -6976,6 +6976,7 @@
         "audioId": "b0ca5a20b96a2bf60a5830859a48f6d3",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sport"
       ],
@@ -6989,8 +6990,7 @@
       },
       "freq": 20,
       "rank": 81,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MELLEN1",
@@ -7024,6 +7024,7 @@
         "audioId": "5749c6ad698eada5d7c953b7d87c70db",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "medien",
@@ -7039,8 +7040,7 @@
       },
       "freq": 20,
       "rank": 82,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "BOTZEN1",
@@ -7074,6 +7074,7 @@
         "audioId": "e576bdf315205394209c18dfbbb5bd96",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "stot"
       ],
@@ -7087,8 +7088,7 @@
       },
       "freq": 19,
       "rank": 85,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "GEFALEN1",
@@ -7119,6 +7119,7 @@
         "audioId": "f61ca645daa3a1b58007cefe61936320",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "medien"
       ],
@@ -7132,8 +7133,7 @@
       },
       "freq": 19,
       "rank": 86,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ORGANISEIEREN1",
@@ -7167,6 +7167,7 @@
         "audioId": "c0e2b95189f57bcc129f0320a49cbd1e",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -7178,8 +7179,7 @@
       },
       "freq": 19,
       "rank": 88,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "RODEN1",
@@ -7213,6 +7213,7 @@
         "audioId": "c1eb517e91628ed23c38e6e772172dcf",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "vakanz",
         "wunnen"
@@ -7227,8 +7228,7 @@
       },
       "freq": 19,
       "rank": 89,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SCHENGEN1",
@@ -7259,6 +7259,7 @@
         "audioId": "c6364cff147c6aaec7503f7540fa687d",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "joreszäiten"
@@ -7273,8 +7274,7 @@
       },
       "freq": 19,
       "rank": 90,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "LAACHEN1",
@@ -7308,6 +7308,7 @@
         "audioId": "44061fb85b6ec4c7b101db5235213b87",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "feierdeeg"
       ],
@@ -7321,8 +7322,7 @@
       },
       "freq": 18,
       "rank": 92,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "LIEWEN2",
@@ -7356,6 +7356,7 @@
         "audioId": "26df6680160ae140374d4e0520384dd0",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "feierdeeg"
       ],
@@ -7369,8 +7370,7 @@
       },
       "freq": 18,
       "rank": 93,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SPAREN1",
@@ -7404,6 +7404,7 @@
         "audioId": "b4f2981f7dfb23e732e9a5f1c3820a36",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sport"
       ],
@@ -7417,8 +7418,7 @@
       },
       "freq": 18,
       "rank": 94,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "USTRAICHEN1",
@@ -7452,6 +7452,7 @@
         "audioId": "b00a876b0e374764cd1e93d79d3ff7ea",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "kreativitéit"
       ],
@@ -7465,8 +7466,7 @@
       },
       "freq": 18,
       "rank": 95,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ZIELEN1",
@@ -7496,6 +7496,7 @@
         "p5": "zielt!"
       },
       "example": null,
+      "a1": false,
       "topics": [
         "famill"
       ],
@@ -7504,8 +7505,7 @@
       "cloze": null,
       "freq": 18,
       "rank": 96,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "DEELEN1",
@@ -7539,6 +7539,7 @@
         "audioId": "ba6f20a5030f139d5a3b6c2c88f98888",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "famill",
@@ -7555,8 +7556,7 @@
       },
       "freq": 17,
       "rank": 97,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "FILLEN1",
@@ -7590,6 +7590,7 @@
         "audioId": "108a73d00997d5337ab1daa8f8a9bd31",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet",
         "iessen",
@@ -7605,8 +7606,7 @@
       },
       "freq": 17,
       "rank": 98,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "RICHEN1",
@@ -7640,6 +7640,7 @@
         "audioId": "ce5729bedc7fcc9b125365ee44e128c2",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "kaddoen",
@@ -7655,8 +7656,7 @@
       },
       "freq": 17,
       "rank": 99,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERDROEN1",
@@ -7690,6 +7690,7 @@
         "audioId": "4a81875f1751d247e978e3d075a5d7bb",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "iessen"
       ],
@@ -7703,8 +7704,7 @@
       },
       "freq": 17,
       "rank": 101,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERPASSEN1",
@@ -7738,6 +7738,7 @@
         "audioId": "dba0cd09f36eab1750a5d72809ad8537",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -7749,8 +7750,7 @@
       },
       "freq": 17,
       "rank": 102,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "INVITEIEREN1",
@@ -7784,6 +7784,7 @@
         "audioId": "d7745ca99cbc03a00bed698fd632fbba",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "kaddoen"
       ],
@@ -7797,8 +7798,7 @@
       },
       "freq": 16,
       "rank": 103,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "LEINEN1",
@@ -7832,6 +7832,7 @@
         "audioId": "2f0cc2d92a188cf6e7e5271ac79c9943",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "liesen"
       ],
@@ -7845,8 +7846,7 @@
       },
       "freq": 16,
       "rank": 104,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OPEREIEREN1",
@@ -7880,6 +7880,7 @@
         "audioId": "8ca16054fcc6c35f945b4727372835c5",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -7893,8 +7894,7 @@
       },
       "freq": 16,
       "rank": 105,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OPPASSEN1",
@@ -7928,6 +7928,7 @@
         "audioId": "72ba758e6ea7ab0a70b376ad9d881a65",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -7936,8 +7937,7 @@
       "cloze": null,
       "freq": 16,
       "rank": 106,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ENNERSCHREIWEN1",
@@ -7971,6 +7971,7 @@
         "audioId": "b2aafa59270c6b026d01ad8bbf3af61a",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -7982,8 +7983,7 @@
       },
       "freq": 15,
       "rank": 109,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ERLABEN1",
@@ -8017,6 +8017,7 @@
         "audioId": "0609860027a950a8801c4f159ab0de5e",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -8028,8 +8029,7 @@
       },
       "freq": 15,
       "rank": 110,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OFGINN1",
@@ -8063,6 +8063,7 @@
         "audioId": "822e647d6a307f859957f845f275d52a",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sport"
       ],
@@ -8076,8 +8077,7 @@
       },
       "freq": 15,
       "rank": 112,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OFHUELEN1",
@@ -8111,6 +8111,7 @@
         "audioId": "c56b1df8fabe5aa6de05d8578cd6fb8a",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "iessen",
@@ -8127,8 +8128,7 @@
       },
       "freq": 15,
       "rank": 113,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "TREPPELEN2",
@@ -8162,6 +8162,7 @@
         "audioId": "74c37f48efe066dc80720498d14f4adf",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "transport"
@@ -8176,8 +8177,7 @@
       },
       "freq": 15,
       "rank": 115,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERBRENNEN1",
@@ -8211,6 +8211,7 @@
         "audioId": "7785a203b7a839201ca914145da47c25",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -8224,8 +8225,7 @@
       },
       "freq": 15,
       "rank": 117,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ZEECHNEN1",
@@ -8259,6 +8259,7 @@
         "audioId": "5b22e3ca08e3888158c1685325855961",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "hobbyen",
         "liesen",
@@ -8274,8 +8275,7 @@
       },
       "freq": 15,
       "rank": 118,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "AUSMAACHEN1",
@@ -8309,6 +8309,7 @@
         "audioId": "50a3fcfcdc0286c6f235ff6a094ca61b",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "medien",
         "vakanz"
@@ -8323,8 +8324,7 @@
       },
       "freq": 14,
       "rank": 119,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "BLOSEN1",
@@ -8358,6 +8358,7 @@
         "audioId": "fd787b000cc9e89746df79aaa0d81b47",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten"
       ],
@@ -8371,8 +8372,7 @@
       },
       "freq": 14,
       "rank": 120,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "WIELEN1",
@@ -8406,6 +8406,7 @@
         "audioId": "f475a8726d7a352d4b97ffb00f06e3cf",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sproochen"
       ],
@@ -8419,8 +8420,7 @@
       },
       "freq": 14,
       "rank": 124,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "WIESSELEN1",
@@ -8454,6 +8454,7 @@
         "audioId": "a2eed5d4d441b5572aac95187722cc08",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "famill",
@@ -8470,8 +8471,7 @@
       },
       "freq": 14,
       "rank": 125,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "GENEISSEN1",
@@ -8505,6 +8505,7 @@
         "audioId": "a8e3ae35d6337a7fbbb732eea88f2361",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "medien"
@@ -8519,8 +8520,7 @@
       },
       "freq": 13,
       "rank": 127,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "HEEMKOMMEN1",
@@ -8554,6 +8554,7 @@
         "audioId": "de1083318f4c366a03d811a494142345",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht"
       ],
@@ -8567,8 +8568,7 @@
       },
       "freq": 13,
       "rank": 128,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "KRAISCHEN1",
@@ -8602,6 +8602,7 @@
         "audioId": "94d499706683623ccca890d109c5cadf",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -8613,8 +8614,7 @@
       },
       "freq": 13,
       "rank": 130,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OPGOEN1",
@@ -8648,6 +8648,7 @@
         "audioId": "2671b4b700440329d799e7f698e31455",
         "a1": true
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "joreszäiten"
@@ -8657,8 +8658,7 @@
       "cloze": null,
       "freq": 13,
       "rank": 131,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OPHANKEN1",
@@ -8692,6 +8692,7 @@
         "audioId": "3e83a7ca6643f1ed4cba327d6f935bfa",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "kreativitéit",
@@ -8707,8 +8708,7 @@
       },
       "freq": 13,
       "rank": 132,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "PLANGEN1",
@@ -8742,6 +8742,7 @@
         "audioId": "926bc376360d671ee31b68733d4e6782",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport",
         "vakanz"
@@ -8756,8 +8757,7 @@
       },
       "freq": 13,
       "rank": 133,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "WENSCHEN1",
@@ -8791,6 +8791,7 @@
         "audioId": "415d9c19cc9937bee1099a0b0655058e",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "feierdeeg"
       ],
@@ -8804,8 +8805,7 @@
       },
       "freq": 13,
       "rank": 134,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "BENOTZEN1",
@@ -8839,6 +8839,7 @@
         "audioId": "ba475ecade153bef72bb6f29f623fb48",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sproochen"
       ],
@@ -8852,8 +8853,7 @@
       },
       "freq": 12,
       "rank": 135,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "DISKUTEIEREN1",
@@ -8887,6 +8887,7 @@
         "audioId": "6ecf9348d1d5a68a1b5f49573f024708",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht"
       ],
@@ -8900,8 +8901,7 @@
       },
       "freq": 12,
       "rank": 137,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ERREECHEN1",
@@ -8935,6 +8935,7 @@
         "audioId": "12909fa006fabf591d73a9af7668b29a",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "vakanz"
       ],
@@ -8948,8 +8949,7 @@
       },
       "freq": 12,
       "rank": 138,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "KEMMEREN1",
@@ -8983,6 +8983,7 @@
         "audioId": "245b495fbad3424507374d5c4ae3cfb3",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "iessen"
       ],
@@ -8996,8 +8997,7 @@
       },
       "freq": 12,
       "rank": 140,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "KENNELEIEREN1",
@@ -9031,6 +9031,7 @@
         "audioId": "bee06b8b8f32a0f891d74147d36bdba4",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "sproochen"
@@ -9040,8 +9041,7 @@
       "cloze": null,
       "freq": 12,
       "rank": 141,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "KLAKEN1",
@@ -9075,6 +9075,7 @@
         "audioId": "cc36790f85403584b88dc9be7f4aba92",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill"
       ],
@@ -9088,8 +9089,7 @@
       },
       "freq": 12,
       "rank": 142,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "PROFITEIEREN1",
@@ -9123,6 +9123,7 @@
         "audioId": "8c62d3a29719a852a93351418f942b2f",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "hobbyen",
         "liesen"
@@ -9137,8 +9138,7 @@
       },
       "freq": 12,
       "rank": 144,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SUERGEN1",
@@ -9172,6 +9172,7 @@
         "audioId": "113457c31d0e793afd53cb698a8e1619",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "iessen",
         "kaddoen"
@@ -9186,8 +9187,7 @@
       },
       "freq": 12,
       "rank": 145,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "UNDOEN1",
@@ -9221,6 +9221,7 @@
         "audioId": "82d4fc832a62345611dc09f53c3be036",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "kleeder"
       ],
@@ -9229,8 +9230,7 @@
       "cloze": null,
       "freq": 12,
       "rank": 147,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERBIDDEN1",
@@ -9264,6 +9264,7 @@
         "audioId": "bf64d96afd5ae3ec8afc75195c98f24c",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -9277,8 +9278,7 @@
       },
       "freq": 12,
       "rank": 148,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERHALEN1",
@@ -9312,6 +9312,7 @@
         "audioId": "e1ff902306ae92d0d798a76ba0ed6649",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -9323,8 +9324,7 @@
       },
       "freq": 12,
       "rank": 149,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERSCHREIWEN1",
@@ -9358,6 +9358,7 @@
         "audioId": "0581b7603bfc421b911b7c028023feed",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -9371,8 +9372,7 @@
       },
       "freq": 12,
       "rank": 150,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ERKALEN1",
@@ -9406,6 +9406,7 @@
         "audioId": "49a4a21e9bedf37272d768451ed60a07",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet",
         "joreszäiten"
@@ -9420,8 +9421,7 @@
       },
       "freq": 11,
       "rank": 151,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ERZIELEN1",
@@ -9455,6 +9455,7 @@
         "audioId": "92732d29e8b5ca3977023d1bc6fb6af9",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -9466,8 +9467,7 @@
       },
       "freq": 11,
       "rank": 152,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "INTERESSEIEREN1",
@@ -9501,6 +9501,7 @@
         "audioId": "bb036b159ad5d2d1fd2ce956794ebcff",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "medien"
       ],
@@ -9514,8 +9515,7 @@
       },
       "freq": 11,
       "rank": 153,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "UNHALEN1",
@@ -9549,6 +9549,7 @@
         "audioId": "2fe2bee960756e9f8adb36fe8458f15c",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "joreszäiten",
@@ -9564,8 +9565,7 @@
       },
       "freq": 11,
       "rank": 154,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "WIERKEN1",
@@ -9596,6 +9596,7 @@
         "audioId": "6b5d7b182d1d0a4133d4b2780c18be8d",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht"
       ],
@@ -9609,8 +9610,7 @@
       },
       "freq": 11,
       "rank": 156,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ASTELLEN1",
@@ -9644,6 +9644,7 @@
         "audioId": "7d80f203236b0ef58a86bde0fb0eed9c",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten"
       ],
@@ -9652,8 +9653,7 @@
       "cloze": null,
       "freq": 10,
       "rank": 158,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ERENNEREN1",
@@ -9687,6 +9687,7 @@
         "audioId": "97198e7787e59742cfba42def3924c81",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "vakanz"
@@ -9701,8 +9702,7 @@
       },
       "freq": 10,
       "rank": 160,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MIERKEN1",
@@ -9736,6 +9736,7 @@
         "audioId": "5c6d72ac68182bf096e7f69ddfaff988",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -9747,8 +9748,7 @@
       },
       "freq": 10,
       "rank": 164,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "RAUMEN1",
@@ -9782,6 +9782,7 @@
         "audioId": "4b90c10f95d029c54eb4ff26ba144832",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "stot"
       ],
@@ -9795,8 +9796,7 @@
       },
       "freq": 10,
       "rank": 165,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SCHELLEN1",
@@ -9830,6 +9830,7 @@
         "audioId": "b9a6727cd46ecf7965f5fd1046c0280e",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "feierdeeg"
       ],
@@ -9843,8 +9844,7 @@
       },
       "freq": 10,
       "rank": 166,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "UMAACHEN1",
@@ -9878,6 +9878,7 @@
         "audioId": "c2aa5a0894423fe9ef358d129db0f502",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "joreszäiten",
@@ -9894,8 +9895,7 @@
       },
       "freq": 10,
       "rank": 167,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "AUSGESINN1",
@@ -9926,14 +9926,14 @@
         "audioId": "6628a967bf1d7aaa906c31a687b54b40",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 9,
       "rank": 168,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "BESTUEDEN1",
@@ -9967,6 +9967,7 @@
         "audioId": "c2a0199999b0444b84081d39d4465569",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht"
       ],
@@ -9975,8 +9976,7 @@
       "cloze": null,
       "freq": 9,
       "rank": 169,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ERAUSGOEN1",
@@ -10010,6 +10010,7 @@
         "audioId": "568f02c4c1c694a75103ba72bf37766c",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten",
         "sport",
@@ -10025,8 +10026,7 @@
       },
       "freq": 9,
       "rank": 171,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MATSPILLEN1",
@@ -10060,6 +10060,7 @@
         "audioId": "337ea86b0c575b9e228f5d5a8e06efdb",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sport"
       ],
@@ -10068,8 +10069,7 @@
       "cloze": null,
       "freq": 9,
       "rank": 173,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "NOKUCKEN1",
@@ -10103,6 +10103,7 @@
         "audioId": "e214edbe311813b2a5043da4466c1cf0",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sport",
         "sproochen"
@@ -10117,8 +10118,7 @@
       },
       "freq": 9,
       "rank": 174,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "NOLAUSCHTEREN1",
@@ -10152,14 +10152,14 @@
         "audioId": "101b3405d901ab9890c452ee2aec4245",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 9,
       "rank": 175,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "PRODUZEIEREN1",
@@ -10193,6 +10193,7 @@
         "audioId": "13c5aa01947880ecd685f63e42e19e46",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -10204,8 +10205,7 @@
       },
       "freq": 9,
       "rank": 176,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "REAGEIEREN1",
@@ -10239,6 +10239,7 @@
         "audioId": "94fe69f6dca03978eec0d9c076a5ce7e",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -10250,8 +10251,7 @@
       },
       "freq": 9,
       "rank": 177,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "RECKELEN1",
@@ -10285,6 +10285,7 @@
         "audioId": "7455925659b624c2e63dcd572c55b662",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -10298,8 +10299,7 @@
       },
       "freq": 9,
       "rank": 178,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "RESPEKTEIEREN1",
@@ -10333,6 +10333,7 @@
         "audioId": "878aab3186da9dbd3ca8ea6dd243d76d",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -10344,8 +10345,7 @@
       },
       "freq": 9,
       "rank": 179,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ZOUMAACHEN1",
@@ -10379,6 +10379,7 @@
         "audioId": "b6b48e083978fdc7f2c4d7d3f179808c",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "joreszäiten",
@@ -10390,8 +10391,7 @@
       "cloze": null,
       "freq": 9,
       "rank": 181,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "AUSSCHWATZEN1",
@@ -10425,6 +10425,7 @@
         "audioId": "6eb24ed99d5b5a2c2184fee0359d9be8",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sproochen"
       ],
@@ -10438,8 +10439,7 @@
       },
       "freq": 8,
       "rank": 182,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "BEWEEGEN1",
@@ -10473,6 +10473,7 @@
         "audioId": "539a24af9f991004371a9f9ff383c9d9",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "gesondheet"
@@ -10487,8 +10488,7 @@
       },
       "freq": 8,
       "rank": 184,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "HOFFEN1",
@@ -10522,6 +10522,7 @@
         "audioId": "a768c83cbee70a3fd7aabc86f4ac936e",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -10535,8 +10536,7 @@
       },
       "freq": 8,
       "rank": 186,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "IEREN2",
@@ -10570,6 +10570,7 @@
         "audioId": "a2037f9c989cf18c3feee4bf4f5fc0f8",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -10581,8 +10582,7 @@
       },
       "freq": 8,
       "rank": 187,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "LAANSCHTKOMMEN1",
@@ -10616,6 +10616,7 @@
         "audioId": "a2bfe8b41ff30623979b2d39bd467f67",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -10624,8 +10625,7 @@
       "cloze": null,
       "freq": 8,
       "rank": 188,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MATMAACHEN1",
@@ -10659,6 +10659,7 @@
         "audioId": "7fea93afe88a7f69728dccb82f96967a",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "gesondheet"
@@ -10673,8 +10674,7 @@
       },
       "freq": 8,
       "rank": 189,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OPSCHREIWEN1",
@@ -10708,6 +10708,7 @@
         "audioId": "0ab869b69f3c2112c58867a4eff93bfe",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -10721,8 +10722,7 @@
       },
       "freq": 8,
       "rank": 190,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "STEBSEN1",
@@ -10756,6 +10756,7 @@
         "audioId": "12eef5338b8e1fee642e0b9e3678278c",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht"
       ],
@@ -10769,8 +10770,7 @@
       },
       "freq": 8,
       "rank": 192,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "URUFFEN1",
@@ -10804,6 +10804,7 @@
         "audioId": "0ff890a918d49bce758286e6d98e1e04",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "medien"
       ],
@@ -10812,8 +10813,7 @@
       "cloze": null,
       "freq": 8,
       "rank": 197,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "USTIECHEN1",
@@ -10847,6 +10847,7 @@
         "audioId": "dd5a11e10a060fe66bf2dad084019cd9",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -10860,8 +10861,7 @@
       },
       "freq": 8,
       "rank": 198,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "AGINN1",
@@ -10895,6 +10895,7 @@
         "audioId": "52b2dd39b58242245b8222b26682e66b",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "medien"
@@ -10909,8 +10910,7 @@
       },
       "freq": 7,
       "rank": 199,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "APAKEN1",
@@ -10944,6 +10944,7 @@
         "audioId": "801228e0fd7ed210ce2a146520bbca79",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "joreszäiten",
@@ -10959,8 +10960,7 @@
       },
       "freq": 7,
       "rank": 200,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "DREEMEN1",
@@ -10994,6 +10994,7 @@
         "audioId": "8a706396080fe501e5bcec1e7cd658d7",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -11007,8 +11008,7 @@
       },
       "freq": 7,
       "rank": 201,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ENTSPANEN1",
@@ -11042,6 +11042,7 @@
         "audioId": "5b20105d05bce24625b399d62cbccbf1",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -11053,8 +11054,7 @@
       },
       "freq": 7,
       "rank": 202,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "FREIEREN1",
@@ -11088,6 +11088,7 @@
         "audioId": "74666a87c4d8a7d84984d10f5b1566c5",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten"
       ],
@@ -11101,8 +11102,7 @@
       },
       "freq": 7,
       "rank": 203,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "INFORMEIEREN1",
@@ -11136,6 +11136,7 @@
         "audioId": "0fd9e96abbdd68360c7505240776459b",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -11149,8 +11150,7 @@
       },
       "freq": 7,
       "rank": 204,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MATBRENGEN1",
@@ -11184,6 +11184,7 @@
         "audioId": "1fffbefd373a90407ff99b2dcd39201f",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "vakanz"
       ],
@@ -11192,8 +11193,7 @@
       "cloze": null,
       "freq": 7,
       "rank": 205,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MOOSSEN1",
@@ -11227,6 +11227,7 @@
         "audioId": "af3e6bd5f363172b85bb8e4fc65b2846",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet",
         "joreszäiten",
@@ -11242,8 +11243,7 @@
       },
       "freq": 7,
       "rank": 206,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "NOMAACHEN1",
@@ -11277,6 +11277,7 @@
         "audioId": "011376bfb441c87f643cecbce0a36b29",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill"
       ],
@@ -11290,8 +11291,7 @@
       },
       "freq": 7,
       "rank": 207,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OFSOEN1",
@@ -11325,6 +11325,7 @@
         "audioId": "d6b316d0d759b525836f322a8e2c3be8",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten"
       ],
@@ -11338,8 +11339,7 @@
       },
       "freq": 7,
       "rank": 208,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OPHIEWEN1",
@@ -11373,6 +11373,7 @@
         "audioId": "1e472ff6699939ca80c9811ff66f28a9",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -11381,8 +11382,7 @@
       "cloze": null,
       "freq": 7,
       "rank": 209,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "PAKEN1",
@@ -11416,6 +11416,7 @@
         "audioId": "20a63aa3a8536ab96a9ae01b58931329",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "famill"
@@ -11425,8 +11426,7 @@
       "cloze": null,
       "freq": 7,
       "rank": 210,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERBANNEN1",
@@ -11460,6 +11460,7 @@
         "audioId": "ba24abb0d373901bc96b24c21997bc89",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "feierdeeg",
         "vakanz"
@@ -11469,8 +11470,7 @@
       "cloze": null,
       "freq": 7,
       "rank": 213,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERDENGEN1",
@@ -11504,6 +11504,7 @@
         "audioId": "e633f4f313968505865f7b91021a4901",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "vakanz"
       ],
@@ -11517,8 +11518,7 @@
       },
       "freq": 7,
       "rank": 214,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERLEIEREN1",
@@ -11552,6 +11552,7 @@
         "audioId": "4b151084f4fd07dec8321e3715d80c6e",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sport"
       ],
@@ -11565,8 +11566,7 @@
       },
       "freq": 7,
       "rank": 216,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "WANDEREN1",
@@ -11600,6 +11600,7 @@
         "audioId": "f9ae9e6972406564bc13b28218099e97",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten"
       ],
@@ -11613,8 +11614,7 @@
       },
       "freq": 7,
       "rank": 217,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "WEIDERGOEN1",
@@ -11648,6 +11648,7 @@
         "audioId": "20d039a9c61060813fc93f556b09cafd",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill"
       ],
@@ -11661,8 +11662,7 @@
       },
       "freq": 7,
       "rank": 218,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ERAUSKLAMMEN1",
@@ -11696,6 +11696,7 @@
         "audioId": "c6e947649b1c08bd4aed1c0e5c4a5a2a",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -11707,8 +11708,7 @@
       },
       "freq": 6,
       "rank": 220,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "FLEEGEN1",
@@ -11742,6 +11742,7 @@
         "audioId": "ec21ff1b9e778ce85be700184ac94362",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -11755,8 +11756,7 @@
       },
       "freq": 6,
       "rank": 221,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "KAMMEN1",
@@ -11790,6 +11790,7 @@
         "audioId": "6f53ea25da3c851d862816f3af6b69c0",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -11801,8 +11802,7 @@
       },
       "freq": 6,
       "rank": 223,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "STREIDEN1",
@@ -11836,6 +11836,7 @@
         "audioId": "80dc68a6633949bc4d7d9a43cf6b9613",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -11847,8 +11848,7 @@
       },
       "freq": 6,
       "rank": 224,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERLOUNEN1",
@@ -11882,6 +11882,7 @@
         "audioId": "7d8d61fc93ef2981d2e42452eda5bb36",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "wunnen"
       ],
@@ -11895,8 +11896,7 @@
       },
       "freq": 6,
       "rank": 225,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ZOUHUELEN1",
@@ -11930,6 +11930,7 @@
         "audioId": "6c919458a82f8e15ef096358fe9b94b8",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "vakanz"
       ],
@@ -11943,8 +11944,7 @@
       },
       "freq": 6,
       "rank": 226,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ANNULEIEREN1",
@@ -11978,6 +11978,7 @@
         "audioId": "8281af9312999fc9ec614095749efb6c",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten"
       ],
@@ -11991,8 +11992,7 @@
       },
       "freq": 5,
       "rank": 227,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "AUSGINN1",
@@ -12026,6 +12026,7 @@
         "audioId": "45ffb99d33bdf97603bf6655dc3c88f3",
         "a1": true
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -12034,8 +12035,7 @@
       "cloze": null,
       "freq": 5,
       "rank": 228,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "BESETZEN1",
@@ -12069,6 +12069,7 @@
         "audioId": "a3c7a8a57115428fc712b7322f6498ba",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -12080,8 +12081,7 @@
       },
       "freq": 5,
       "rank": 229,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "DEPRIMEIEREN1",
@@ -12115,6 +12115,7 @@
         "audioId": "761e6fbd758fd40870979eb27a0fae33",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -12126,8 +12127,7 @@
       },
       "freq": 5,
       "rank": 230,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ENNERSICHEN1",
@@ -12161,6 +12161,7 @@
         "audioId": "55fa4932187020b39ba0b288235ca5d4",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -12174,8 +12175,7 @@
       },
       "freq": 5,
       "rank": 231,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ENTDECKEN1",
@@ -12209,6 +12209,7 @@
         "audioId": "457e2e69d067bb229c60e91d87ff5975",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "iessen",
         "liesen"
@@ -12223,8 +12224,7 @@
       },
       "freq": 5,
       "rank": 232,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ERAKLAMMEN1",
@@ -12258,6 +12258,7 @@
         "audioId": "86db5323defea9b37904d519533da9b9",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -12271,8 +12272,7 @@
       },
       "freq": 5,
       "rank": 233,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "FOTOGRAFEIEREN1",
@@ -12306,6 +12306,7 @@
         "audioId": "3db501990246bb32b8a529c9e03ee682",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "kreativitéit"
       ],
@@ -12319,8 +12320,7 @@
       },
       "freq": 5,
       "rank": 234,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "GRATULEIEREN1",
@@ -12354,6 +12354,7 @@
         "audioId": "b382dd751d3c5bfadc8099c614862270",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -12365,8 +12366,7 @@
       },
       "freq": 5,
       "rank": 235,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "HANNERLOOSSEN1",
@@ -12400,6 +12400,7 @@
         "audioId": "d9db7db0c5db4a5a2e6fd33055a91ceb",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -12411,8 +12412,7 @@
       },
       "freq": 5,
       "rank": 236,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "IWWERRASCHEN1",
@@ -12446,6 +12446,7 @@
         "audioId": "06b0c3e30282542f7e092a4185556e1b",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten"
       ],
@@ -12459,8 +12460,7 @@
       },
       "freq": 5,
       "rank": 237,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "KOMBINEIEREN1",
@@ -12494,6 +12494,7 @@
         "audioId": "3ce162bc3274162bd0c42201aac8f501",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -12505,8 +12506,7 @@
       },
       "freq": 5,
       "rank": 238,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "REKLAMEIEREN1",
@@ -12540,6 +12540,7 @@
         "audioId": "83d9cfec3710fbecdd65ee12cf21c67c",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -12551,8 +12552,7 @@
       },
       "freq": 5,
       "rank": 241,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "STEIEREN1",
@@ -12586,6 +12586,7 @@
         "audioId": "ab649a2c20b34d08ed476df841f8678c",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "iessen",
@@ -12602,8 +12603,7 @@
       },
       "freq": 5,
       "rank": 242,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "TAASCHTEN1",
@@ -12637,6 +12637,7 @@
         "audioId": "d2badc012bb1cf77fddb55a474089a71",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -12648,8 +12649,7 @@
       },
       "freq": 5,
       "rank": 243,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "TATOWEIEREN1",
@@ -12683,6 +12683,7 @@
         "audioId": "e7b350ee4d5c9debc4836e6e2178c6ed",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -12694,8 +12695,7 @@
       },
       "freq": 5,
       "rank": 244,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERBRENGEN1",
@@ -12729,6 +12729,7 @@
         "audioId": "8752400b1541be1b1aba805051a8b5f4",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "medien"
@@ -12743,8 +12744,7 @@
       },
       "freq": 5,
       "rank": 245,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERSTOPPEN1",
@@ -12778,6 +12778,7 @@
         "audioId": "8ce8ec33e74240e3bf0580ed3f9ff140",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -12791,8 +12792,7 @@
       },
       "freq": 5,
       "rank": 246,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERZICHTEN1",
@@ -12826,6 +12826,7 @@
         "audioId": "83df36f49eb0741975132dc43c1f9059",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -12837,8 +12838,7 @@
       },
       "freq": 5,
       "rank": 247,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ZERECKGOEN1",
@@ -12872,6 +12872,7 @@
         "audioId": "82fee9343fec49c1bd0fffe85eeee1a1",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet",
         "iessen",
@@ -12887,8 +12888,7 @@
       },
       "freq": 5,
       "rank": 249,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "AUSFELLEN1",
@@ -12922,6 +12922,7 @@
         "audioId": "31108f7631a606c8fdd707faf6d1d071",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht"
       ],
@@ -12935,8 +12936,7 @@
       },
       "freq": 4,
       "rank": 250,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "AUSPAKEN1",
@@ -12970,6 +12970,7 @@
         "audioId": "01adfdc57a45a8f60bb827311200c595",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "liesen"
       ],
@@ -12978,8 +12979,7 @@
       "cloze": null,
       "freq": 4,
       "rank": 251,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "BECKEN2",
@@ -13013,6 +13013,7 @@
         "audioId": "832428342cb99cb2445860657f495d53",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "kreativitéit"
@@ -13027,8 +13028,7 @@
       },
       "freq": 4,
       "rank": 252,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "BUCHEN1",
@@ -13062,6 +13062,7 @@
         "audioId": "4d909da09ce29ae45433908922307783",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "vakanz"
       ],
@@ -13075,8 +13076,7 @@
       },
       "freq": 4,
       "rank": 253,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ERKLAREN1",
@@ -13110,6 +13110,7 @@
         "audioId": "8c85a5959c67f453d7713c6fec611bc1",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -13121,8 +13122,7 @@
       },
       "freq": 4,
       "rank": 254,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "FAVORISEIEREN1",
@@ -13156,6 +13156,7 @@
         "audioId": "86edc831c39acd90f69546ad52dc1883",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "feierdeeg"
       ],
@@ -13169,8 +13170,7 @@
       },
       "freq": 4,
       "rank": 255,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "IMPROVISEIEREN1",
@@ -13204,6 +13204,7 @@
         "audioId": null,
         "a1": false
       },
+      "a1": false,
       "topics": [
         "kreativitéit"
       ],
@@ -13217,8 +13218,7 @@
       },
       "freq": 4,
       "rank": 256,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MATKOMMEN1",
@@ -13252,6 +13252,7 @@
         "audioId": "1b428fe0bbaa32a3ede8d6bd230ee1c0",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "famill"
@@ -13266,8 +13267,7 @@
       },
       "freq": 4,
       "rank": 257,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "NATZEN1",
@@ -13301,6 +13301,7 @@
         "audioId": "4d33425d298ce3f40850fabb437896be",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -13312,8 +13313,7 @@
       },
       "freq": 4,
       "rank": 259,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OPSPAREN1",
@@ -13347,6 +13347,7 @@
         "audioId": "4285f8f9a9b5b6c56b4280649a086eec",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -13358,8 +13359,7 @@
       },
       "freq": 4,
       "rank": 261,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "RASEIEREN1",
@@ -13393,6 +13393,7 @@
         "audioId": "b70078d7ec8b4f06640d988a53566cb2",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -13404,8 +13405,7 @@
       },
       "freq": 4,
       "rank": 263,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "REALISEIEREN1",
@@ -13439,6 +13439,7 @@
         "audioId": "7771192ec06fc4cb2e8a93379799421f",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -13450,8 +13451,7 @@
       },
       "freq": 4,
       "rank": 264,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "REESEN1",
@@ -13485,6 +13485,7 @@
         "audioId": "35aaa6aa288543fcc437bd0a5feb9708",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "vakanz"
       ],
@@ -13498,8 +13499,7 @@
       },
       "freq": 4,
       "rank": 265,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "RESERVEIEREN1",
@@ -13533,6 +13533,7 @@
         "audioId": "e5d222571b3041a2a4893b9aa3d03e65",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "iessen",
         "wunnen"
@@ -13542,8 +13543,7 @@
       "cloze": null,
       "freq": 4,
       "rank": 266,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SCHNAIZEN1",
@@ -13577,6 +13577,7 @@
         "audioId": "c8b24fe524414c20976f809f727f235a",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "iessen",
@@ -13592,8 +13593,7 @@
       },
       "freq": 4,
       "rank": 267,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SPAICHEREN1",
@@ -13627,6 +13627,7 @@
         "audioId": "88a65e2fd0755c15e66fad59cde9cb86",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "medien"
       ],
@@ -13640,8 +13641,7 @@
       },
       "freq": 4,
       "rank": 268,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "UFROEN1",
@@ -13675,6 +13675,7 @@
         "audioId": "d2817cc6f52464568be03d3c305af6ed",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -13686,8 +13687,7 @@
       },
       "freq": 4,
       "rank": 270,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "UMOOSSEN1",
@@ -13721,6 +13721,7 @@
         "audioId": "a089ce3d43c088daedf8bcf2fa2b0114",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -13732,8 +13733,7 @@
       },
       "freq": 4,
       "rank": 271,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "UNHUNN1",
@@ -13764,6 +13764,7 @@
         "audioId": "ff3a7a16c6e4e8d0852d426ab8ce913e",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "kleeder"
       ],
@@ -13772,8 +13773,7 @@
       "cloze": null,
       "freq": 4,
       "rank": 272,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ZERECKKOMMEN1",
@@ -13807,6 +13807,7 @@
         "audioId": "907c44a8ee98535d91fe5112b35206b9",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -13815,8 +13816,7 @@
       "cloze": null,
       "freq": 4,
       "rank": 273,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ZERECKRUFFEN1",
@@ -13850,6 +13850,7 @@
         "audioId": "eabb65bb551dd9fc2e8aee5a66d0b7e0",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "vakanz"
       ],
@@ -13863,8 +13864,7 @@
       },
       "freq": 4,
       "rank": 274,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ANHANKEN1",
@@ -13898,6 +13898,7 @@
         "audioId": "d1d70aaf5deeeb0d06074631409b7925",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "medien"
       ],
@@ -13911,8 +13912,7 @@
       },
       "freq": 3,
       "rank": 275,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ASCHLOFEN1",
@@ -13946,6 +13946,7 @@
         "audioId": "4dc4940ad79bf036a628393c6dbc36c8",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -13957,8 +13958,7 @@
       },
       "freq": 3,
       "rank": 276,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "AUSLEINEN1",
@@ -13992,6 +13992,7 @@
         "audioId": "de61a9ad756af1fec0810873aaaf75ba",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "liesen"
       ],
@@ -14005,8 +14006,7 @@
       },
       "freq": 3,
       "rank": 277,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "BAIKOMMEN1",
@@ -14037,6 +14037,7 @@
         "audioId": "1e4f081199c8a5795df4985aabce4cbd",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht"
       ],
@@ -14045,8 +14046,7 @@
       "cloze": null,
       "freq": 3,
       "rank": 278,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "BESCHREIWEN1",
@@ -14080,6 +14080,7 @@
         "audioId": "b731c0d6051f4ece60b2763b1f2d2557",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -14091,8 +14092,7 @@
       },
       "freq": 3,
       "rank": 279,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "BLETZEN1",
@@ -14126,6 +14126,7 @@
         "audioId": "6204c83f12eb845fd54f7eb18ae43695",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten"
       ],
@@ -14139,8 +14140,7 @@
       },
       "freq": 3,
       "rank": 280,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "DESINFIZEIEREN1",
@@ -14174,6 +14174,7 @@
         "audioId": "fed2dcd770c1d9940caf1db1291292f9",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -14187,8 +14188,7 @@
       },
       "freq": 3,
       "rank": 281,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ERAFUEREN1",
@@ -14222,6 +14222,7 @@
         "audioId": "d7c169d2900bba9c997d25a05c4b77e5",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -14235,8 +14236,7 @@
       },
       "freq": 3,
       "rank": 282,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "EWECHGEHEIEN1",
@@ -14270,6 +14270,7 @@
         "audioId": "2adda0e0f1e62ffc659d69fa2d93bd56",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht"
       ],
@@ -14283,8 +14284,7 @@
       },
       "freq": 3,
       "rank": 283,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "EWECHHUELEN1",
@@ -14318,6 +14318,7 @@
         "audioId": "679a41d5f66309fae6eb418415c50b30",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill",
         "transport"
@@ -14332,8 +14333,7 @@
       },
       "freq": 3,
       "rank": 284,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "HOUSCHTEN1",
@@ -14367,6 +14367,7 @@
         "audioId": "91736e7768c46f290c6c860df64adc75",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -14380,8 +14381,7 @@
       },
       "freq": 3,
       "rank": 285,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MATLAFEN1",
@@ -14415,6 +14415,7 @@
         "audioId": "ba4e3b4b4955ebba25d83ee5c6d0dcea",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sport"
       ],
@@ -14428,8 +14429,7 @@
       },
       "freq": 3,
       "rank": 286,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MECKEREN1",
@@ -14463,6 +14463,7 @@
         "audioId": "9ab84305ed3795beda942acaafac8c5e",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -14474,8 +14475,7 @@
       },
       "freq": 3,
       "rank": 287,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MONTEIEREN1",
@@ -14509,6 +14509,7 @@
         "audioId": "8b8b094635b410308cc656fd4ba0e551",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -14520,8 +14521,7 @@
       },
       "freq": 3,
       "rank": 288,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OFLAUSCHTEREN1",
@@ -14555,6 +14555,7 @@
         "audioId": "96426c72f487d80b84f42fc89a36cef7",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -14568,8 +14569,7 @@
       },
       "freq": 3,
       "rank": 289,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OPPECHEN1",
@@ -14603,6 +14603,7 @@
         "audioId": "69d919d2b9e6498a07c70bcde427772b",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -14614,8 +14615,7 @@
       },
       "freq": 3,
       "rank": 290,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "PARKEN1",
@@ -14645,6 +14645,7 @@
         "p5": "parkt!"
       },
       "example": null,
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -14653,8 +14654,7 @@
       "cloze": null,
       "freq": 3,
       "rank": 292,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "RECOMMANDEIEREN1",
@@ -14688,6 +14688,7 @@
         "audioId": "db6438905ef3f456f62b8b5fafc6c082",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -14701,8 +14702,7 @@
       },
       "freq": 3,
       "rank": 293,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "REIDEN1",
@@ -14736,6 +14736,7 @@
         "audioId": "b4b02a5325f24468f0a01ecbb96f9e76",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sport"
       ],
@@ -14749,8 +14750,7 @@
       },
       "freq": 3,
       "rank": 294,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SABBELEN1",
@@ -14784,6 +14784,7 @@
         "audioId": "073a6aab700c7ec8a103ecf1125ec85f",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "iessen"
       ],
@@ -14792,8 +14793,7 @@
       "cloze": null,
       "freq": 3,
       "rank": 295,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SCHMINKEN1",
@@ -14827,6 +14827,7 @@
         "audioId": "676fad5a2220b0d16152119b666f8856",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "kreativitéit"
       ],
@@ -14840,8 +14841,7 @@
       },
       "freq": 3,
       "rank": 296,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "STENKEN1",
@@ -14875,6 +14875,7 @@
         "audioId": "e275c96d620d5fde914709d4fa31a20c",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -14886,8 +14887,7 @@
       },
       "freq": 3,
       "rank": 297,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "STRECKEN1",
@@ -14921,6 +14921,7 @@
         "audioId": "dbeeb82a35f7acc9fea212c273fac041",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "stot"
       ],
@@ -14934,8 +14935,7 @@
       },
       "freq": 3,
       "rank": 298,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERGLAICHEN1",
@@ -14969,6 +14969,7 @@
         "audioId": "727dc771d2e124d6ae8a145951d6c42a",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "medien"
       ],
@@ -14982,8 +14983,7 @@
       },
       "freq": 3,
       "rank": 299,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "WEIDERHELLEFEN1",
@@ -15017,6 +15017,7 @@
         "audioId": "c236922957ef0a5dcdb64bbba3206b9f",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill"
       ],
@@ -15030,8 +15031,7 @@
       },
       "freq": 3,
       "rank": 300,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "WEIDERMAACHEN1",
@@ -15065,6 +15065,7 @@
         "audioId": "7feffb0bcbb593df7eb807f90bbb86c8",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht"
       ],
@@ -15078,8 +15079,7 @@
       },
       "freq": 3,
       "rank": 301,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ARAUMEN1",
@@ -15113,6 +15113,7 @@
         "audioId": "aba8980e3bf11c7c623eccd06e326c82",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "stot"
       ],
@@ -15121,8 +15122,7 @@
       "cloze": null,
       "freq": 2,
       "rank": 302,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "AUSDOEN1",
@@ -15156,6 +15156,7 @@
         "audioId": "a86ed207ea64e1c9784ee8ae61711eec",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet",
         "kleeder",
@@ -15166,8 +15167,7 @@
       "cloze": null,
       "freq": 2,
       "rank": 303,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "CHECKEN1",
@@ -15201,6 +15201,7 @@
         "audioId": "593b1de02c32da8a0f61410199a863b5",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -15212,8 +15213,7 @@
       },
       "freq": 2,
       "rank": 304,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "CHILLEN1",
@@ -15247,6 +15247,7 @@
         "audioId": null,
         "a1": false
       },
+      "a1": false,
       "topics": [
         "vakanz"
       ],
@@ -15260,8 +15261,7 @@
       },
       "freq": 2,
       "rank": 305,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "DROPMAACHEN1",
@@ -15295,6 +15295,7 @@
         "audioId": "30244821499deb01306fd1818dd53cc0",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet",
         "vakanz"
@@ -15309,8 +15310,7 @@
       },
       "freq": 2,
       "rank": 306,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "EMKLAMMEN1",
@@ -15344,6 +15344,7 @@
         "audioId": "48738a9689eb7c670b0a3cb3bf5c66a9",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "transport"
@@ -15358,8 +15359,7 @@
       },
       "freq": 2,
       "rank": 307,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ENGAGEIEREN1",
@@ -15393,14 +15393,14 @@
         "audioId": "a92fe68d0e8ec8a539537e4dda20ec9a",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 2,
       "rank": 308,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ERAGOEN1",
@@ -15434,14 +15434,14 @@
         "audioId": "0987cda4a008a51d45a97d299689a9f6",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 2,
       "rank": 309,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "EWECHGINN1",
@@ -15475,6 +15475,7 @@
         "audioId": "01af57594853c76a7654e3148920f27f",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -15488,8 +15489,7 @@
       },
       "freq": 2,
       "rank": 310,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "IWWERWEISEN1",
@@ -15523,6 +15523,7 @@
         "audioId": "bce1a9e87e384d2ee8ed126dd3e6116b",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -15536,8 +15537,7 @@
       },
       "freq": 2,
       "rank": 312,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "KONTAKTEIEREN1",
@@ -15571,6 +15571,7 @@
         "audioId": "a2979c78ee9741b71c4ba9bf14413da8",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -15582,8 +15583,7 @@
       },
       "freq": 2,
       "rank": 314,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "LOUNEN1",
@@ -15617,6 +15617,7 @@
         "audioId": "13422ee5b25bf38df3560a8289de04a9",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "wunnen"
       ],
@@ -15630,8 +15631,7 @@
       },
       "freq": 2,
       "rank": 315,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MIWWELEIEREN1",
@@ -15665,6 +15665,7 @@
         "audioId": "cf98d0cec9851307a5be9fb103b2a65a",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "wunnen"
       ],
@@ -15678,8 +15679,7 @@
       },
       "freq": 2,
       "rank": 316,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MOTIVEIEREN1",
@@ -15713,6 +15713,7 @@
         "audioId": "11c933f32124e21b2ed8bdd5b5862cbe",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -15724,8 +15725,7 @@
       },
       "freq": 2,
       "rank": 317,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "NUMMEREIEREN1",
@@ -15759,6 +15759,7 @@
         "audioId": "bad5d39c8ce15e5bd63bf18c38b6fef8",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -15770,8 +15771,7 @@
       },
       "freq": 2,
       "rank": 318,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "OPBOTZEN1",
@@ -15805,6 +15805,7 @@
         "audioId": "020b79eba1a59b8fcb0b8665ae9d3ea9",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "iessen"
       ],
@@ -15818,8 +15819,7 @@
       },
       "freq": 2,
       "rank": 319,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "RELAXEN1",
@@ -15853,6 +15853,7 @@
         "audioId": "73cf87d2b392c5c52f62d18cd58ee3b7",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "vakanz"
       ],
@@ -15866,8 +15867,7 @@
       },
       "freq": 2,
       "rank": 320,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SCHMIDDEN1",
@@ -15901,6 +15901,7 @@
         "audioId": "1760824a1d93908b8b627be4919dcaee",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -15912,8 +15913,7 @@
       },
       "freq": 2,
       "rank": 322,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "STREIKEN1",
@@ -15947,6 +15947,7 @@
         "audioId": "78798f50f7d0028dff91a0f4d7b100f9",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -15960,8 +15961,7 @@
       },
       "freq": 2,
       "rank": 323,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SURFEN1",
@@ -15995,6 +15995,7 @@
         "audioId": "596b8436bed387a8be99f48ecbf2c623",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sport"
       ],
@@ -16008,8 +16009,7 @@
       },
       "freq": 2,
       "rank": 324,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "TOMMELEN1",
@@ -16043,6 +16043,7 @@
         "audioId": "ada6a4fbf142c0aa3b48a965201ac305",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "transport"
       ],
@@ -16056,8 +16057,7 @@
       },
       "freq": 2,
       "rank": 326,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "UKLICKEN1",
@@ -16091,6 +16091,7 @@
         "audioId": "e6f828d9fc36cd13146327e2502e9d96",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -16102,8 +16103,7 @@
       },
       "freq": 2,
       "rank": 327,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERRECKELEN1",
@@ -16137,6 +16137,7 @@
         "audioId": "3b6610c579a9c08e243290b2f3ecc72a",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -16148,8 +16149,7 @@
       },
       "freq": 2,
       "rank": 328,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERSTAUCHEN1",
@@ -16183,6 +16183,7 @@
         "audioId": "eba1a2aa29f0c90a5062602e54d3241d",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -16196,8 +16197,7 @@
       },
       "freq": 2,
       "rank": 329,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "AUSKENNEN1",
@@ -16228,14 +16228,14 @@
         "audioId": "658bcde5cd53c3b785bf3643fba2f0d5",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 1,
       "rank": 330,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "COIFFEIEREN1",
@@ -16269,6 +16269,7 @@
         "audioId": "0360ccec72262d6e9b3b5e339c215625",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -16280,8 +16281,7 @@
       },
       "freq": 1,
       "rank": 332,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "EWECHLEEEN1",
@@ -16315,6 +16315,7 @@
         "audioId": "5ee3ebb2d8c875c730bf493395ee8ac9",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "aarbecht",
         "liesen",
@@ -16330,8 +16331,7 @@
       },
       "freq": 1,
       "rank": 334,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "FIDDEREN1",
@@ -16365,6 +16365,7 @@
         "audioId": "0ca6ad5369c2ddecca2511bd008e11a5",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill"
       ],
@@ -16373,8 +16374,7 @@
       "cloze": null,
       "freq": 1,
       "rank": 335,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "JOGGEN1",
@@ -16408,6 +16408,7 @@
         "audioId": "345f5792b93663b6b2512a850d0159d6",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -16419,8 +16420,7 @@
       },
       "freq": 1,
       "rank": 338,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "KRANKSCHREIWEN1",
@@ -16454,6 +16454,7 @@
         "audioId": "89faefbaaa9857020689cb6582befafb",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "gesondheet"
       ],
@@ -16467,8 +16468,7 @@
       },
       "freq": 1,
       "rank": 339,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MATSCHECKEN1",
@@ -16502,6 +16502,7 @@
         "audioId": "a596f079efd56f5b558be9cbf2927fb5",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -16513,8 +16514,7 @@
       },
       "freq": 1,
       "rank": 340,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "MEDITEIEREN1",
@@ -16548,6 +16548,7 @@
         "audioId": "c9bb91a6d651b2fe5ef4edcb6d677301",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
@@ -16559,8 +16560,7 @@
       },
       "freq": 1,
       "rank": 341,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SPULLEN1",
@@ -16594,6 +16594,7 @@
         "audioId": "1c2e83a9482b907b754133ad4bd3826a",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "iessen"
       ],
@@ -16607,8 +16608,7 @@
       },
       "freq": 1,
       "rank": 343,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "WEIDINN1",
@@ -16638,14 +16638,14 @@
         "p5": "ditt!"
       },
       "example": null,
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 1,
       "rank": 344,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ZERECKFUEREN1",
@@ -16679,6 +16679,7 @@
         "audioId": "c4ea950c91f6843659c3cb66b9f051fd",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "iessen",
         "transport"
@@ -16693,8 +16694,7 @@
       },
       "freq": 1,
       "rank": 345,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ZOUSPAREN1",
@@ -16728,14 +16728,14 @@
         "audioId": "ecf04dc55d910b5ba44c06c5a4d97b04",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 1,
       "rank": 346,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ASCHREIWEN1",
@@ -16769,6 +16769,7 @@
         "audioId": "fdc128f1d3ef1a470270a67e44082f7a",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "sproochen"
       ],
@@ -16777,8 +16778,7 @@
       "cloze": null,
       "freq": 0,
       "rank": 347,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "DREINEN1",
@@ -16808,14 +16808,14 @@
         "p5": "dréint!"
       },
       "example": null,
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 0,
       "rank": 349,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "DUERCHSTRAICHEN1",
@@ -16849,14 +16849,14 @@
         "audioId": "f32a127344f16d2fd9398b90de59a842",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 0,
       "rank": 350,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "EIDELMAACHEN1",
@@ -16890,6 +16890,7 @@
         "audioId": "7cd188bd9b7d6a4fa13f16374092a1a2",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "famill"
       ],
@@ -16898,8 +16899,7 @@
       "cloze": null,
       "freq": 0,
       "rank": 351,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "EMDREINEN1",
@@ -16929,14 +16929,14 @@
         "p5": "dréint ëm!"
       },
       "example": null,
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 0,
       "rank": 352,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "INTRESSEIEREN1",
@@ -16966,14 +16966,14 @@
         "p5": "intresséiert!"
       },
       "example": null,
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 0,
       "rank": 354,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "LEEDDOEN1",
@@ -17004,14 +17004,14 @@
         "audioId": "45f3c33fc06b91a3925a6e039ae638a9",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 0,
       "rank": 356,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "RASCHTEN2",
@@ -17045,14 +17045,14 @@
         "audioId": "8fb6d8ade5a897cfe62a3b8e4addf544",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 0,
       "rank": 360,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "SPUEREN1",
@@ -17086,6 +17086,7 @@
         "audioId": "73be578e5dc31feedfd0a2cfe6229be4",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "kreativitéit",
         "transport"
@@ -17100,8 +17101,7 @@
       },
       "freq": 0,
       "rank": 362,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "STRECKEN2",
@@ -17135,6 +17135,7 @@
         "audioId": "0edfed55ec09ef2da76285dc6358768f",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "joreszäiten",
         "kleeder"
@@ -17149,8 +17150,7 @@
       },
       "freq": 0,
       "rank": 363,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "VERSPILLEN1",
@@ -17184,6 +17184,7 @@
         "audioId": "8ca605f76ce45ee1e835944fa7539304",
         "a1": false
       },
+      "a1": false,
       "topics": [
         "hobbyen"
       ],
@@ -17192,8 +17193,7 @@
       "cloze": null,
       "freq": 0,
       "rank": 364,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     },
     {
       "id": "ZOUKREIEN1",
@@ -17224,14 +17224,14 @@
         "audioId": "5822e8c6116d3d558082f187c10b9d9a",
         "a1": false
       },
+      "a1": false,
       "topics": [],
       "topicVia": null,
       "cue": null,
       "cloze": null,
       "freq": 0,
       "rank": 365,
-      "stage": 5,
-      "a1": false
+      "stage": 5
     }
   ]
 }
