@@ -794,6 +794,44 @@ async function main() {
     await shot('16r-arcade-index-verbs');
   });
 
+  await step('a sentence-function brief teaches that function, not the app', async () => {
+    // Fifteen patterns shared one generic brief once: the rule restated the
+    // title and every "worth knowing" listed card formats. Two rounds far
+    // apart must now say visibly different things.
+    const read = async (id) => {
+      await page.evaluate(() => localStorage.removeItem('arcade.briefed'));
+      await openFresh(`#/arcade/${id}`);
+      await page.waitForSelector('text=What you do', { timeout: 5000 });
+      return page.locator('#screen').innerText();
+    };
+
+    const negation = await read('negation');
+    if (!/net negates a sentence/.test(negation)) throw new Error('the negation brief does not teach negation');
+    // The words the round will use, listed before they arrive as questions.
+    if (!/What comes up/.test(negation)) throw new Error('the brief does not show what the round will use');
+    if (!/keng/.test(negation)) throw new Error('the negation brief lists no real vocabulary');
+    // And the way through to the long version.
+    const more = page.locator('a[href="#/notecards/negation"]');
+    if ((await more.count()) === 0) throw new Error('no link to the full rule');
+    await shot('16v-arcade-pattern-brief');
+
+    const having = await read('having');
+    if (!/hunn is the other verb/.test(having)) throw new Error('the having brief does not teach hunn');
+    // The old boilerplate was word-for-word identical across patterns.
+    const shared = /Some cards give you the English/;
+    if (shared.test(negation) || shared.test(having)) throw new Error('the generic boilerplate is still being shown');
+  });
+
+  await step('the link from a brief to the full rule actually lands', async () => {
+    await page.evaluate(() => localStorage.removeItem('arcade.briefed'));
+    await openFresh('#/arcade/liking');
+    await page.waitForSelector('text=What you do', { timeout: 5000 });
+    await page.locator('a[href="#/notecards/likes"]').first().click();
+    await page.waitForSelector('#screen', { timeout: 5000 });
+    const text = await page.locator('#screen').innerText();
+    if (!/gär/.test(text)) throw new Error(`the notecard for likes did not open: ${text.slice(0, 120)}`);
+  });
+
   await step('a game explains itself before the first card, not after it', async () => {
     // The report this guards: "I don't know what is expected of me, there are
     // no explanations." The only explanation used to sit below the answer

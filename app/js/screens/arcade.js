@@ -368,7 +368,7 @@ function renderRound(root, pattern, decks, { settings, navigate, a1Only }) {
 
   // The explanation goes in front of the first card, not underneath the answer
   // buttons where it was — same fix, same reason, as the verb games.
-  const brief = briefFor(pattern);
+  const brief = briefFor(pattern, decks);
   const openBrief = () => {
     fill(body);
     renderBrief(body, brief, { onStart: start, startLabel: hasSeenBrief(pattern.id) ? 'Back to the round' : 'Start' });

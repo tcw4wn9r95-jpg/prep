@@ -234,6 +234,79 @@ test('arcade: a word is gapped on whole words, never inside a longer one', async
   assert.equal(gapExample('wat', 'wien huet gewonnen?'), null);
 });
 
+test('arcade: every pattern teaches its own thing, not a shared boilerplate', async () => {
+  // The failure this guards, which shipped: one generic brief for all fifteen.
+  // The rule restated the title ("This round is about one thing a sentence has
+  // to do: not ___") and every "worth knowing" listed the card formats rather
+  // than any Luxembourgish, so the round about negation taught no negation.
+  const rules = new Set();
+  for (const pattern of patterns.PATTERNS) {
+    const teaching = patterns.TEACHING[pattern.id];
+    assert.ok(teaching, `${pattern.id} has no teaching`);
+    assert.ok(teaching.rule?.length > 40, `${pattern.id}'s rule is too thin to teach anything`);
+    assert.ok(teaching.points?.length >= 2, `${pattern.id} needs at least two points`);
+
+    // Boilerplate would show up as two patterns sharing a line.
+    assert.ok(!rules.has(teaching.rule), `${pattern.id} reuses another pattern's rule`);
+    rules.add(teaching.rule);
+
+    // A rule that only restates the title teaches nothing. The old one did
+    // exactly that, by interpolating `ask` into a sentence.
+    assert.ok(!teaching.rule.includes(pattern.ask), `${pattern.id}'s rule just restates its own title`);
+  }
+  // And the two lists have to stay in step.
+  assert.deepEqual(
+    Object.keys(patterns.TEACHING).sort(),
+    patterns.PATTERNS.map((pattern) => pattern.id).sort(),
+    'TEACHING and PATTERNS cover different ids',
+  );
+});
+
+test('arcade: a brief never explains the app instead of the language', () => {
+  const JARGON = /\b(card|deck|round|corpus|paradigm|generator|filter)\b/i;
+  for (const pattern of patterns.PATTERNS) {
+    const { rule } = patterns.TEACHING[pattern.id];
+    assert.ok(!JARGON.test(rule), `${pattern.id}'s rule talks about the app: "${rule}"`);
+  }
+});
+
+test('arcade: a brief that points at the full rule points somewhere real', async () => {
+  // The long explanation lives in the notecards, and the brief links rather
+  // than growing a second copy. A dead link would send a confused player to an
+  // empty screen, which is worse than no link.
+  const guide = await import(pathToFileURL(path.join(ROOT, 'app', 'js', 'grammar-guide.js')).href);
+  const topics = new Set(guide.GRAMMAR_GUIDE.map((topic) => topic.id));
+  let linked = 0;
+  for (const pattern of patterns.PATTERNS) {
+    const { guide: id } = patterns.TEACHING[pattern.id];
+    if (!id) continue;
+    linked += 1;
+    assert.ok(topics.has(id), `${pattern.id} links to the topic "${id}", which does not exist`);
+  }
+  assert.ok(linked >= 10, `only ${linked} of fifteen patterns point at the full rule`);
+});
+
+test('arcade: the brief lists the material the round will actually use', async () => {
+  // Generated from the same lookup the round uses, so it cannot advertise
+  // openers the round does not have — and the A1 filter is reflected in it.
+  for (const pattern of patterns.PATTERNS) {
+    const brief = patterns.briefFor(pattern, decks);
+    assert.ok(brief.how, `${pattern.id}'s brief never says what to do`);
+    assert.match(brief.how, /^(Tap|Build|Type|Pick|Choose)\b/, `${pattern.id}'s "how" is not an instruction`);
+
+    if (!(pattern.frames?.length || pattern.words?.length)) continue;
+    assert.ok(brief.vocabulary.length > 0, `${pattern.id} lists no vocabulary despite naming some`);
+    const shipped = new Set([
+      ...phrases.map((phrase) => String(phrase.lb).toLowerCase()),
+      ...vocab.map((item) => String(item.lb ?? '').toLowerCase()),
+    ]);
+    for (const entry of brief.vocabulary) {
+      assert.ok(shipped.has(String(entry.lb).toLowerCase()), `${pattern.id} promises "${entry.lb}", which is not in a deck`);
+      assert.ok(entry.en, `${pattern.id} lists "${entry.lb}" with no English`);
+    }
+  }
+});
+
 test('arcade: the round costs nothing — no Leitner, no daily goal, no cap', () => {
   // The screen's header promises this, and it is the reason the tab exists.
   // Asserted against the source because it is about what is *not* called.

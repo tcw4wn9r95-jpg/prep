@@ -2568,3 +2568,98 @@ time: every game's `how` must begin with an imperative; every card's
 instruction must contain an action verb; no `rule` may use implementation
 vocabulary; no pronoun option may appear without its gloss; and the brief's
 demo table must resolve to real published forms.
+
+---
+
+# Follow-up 21 — the same audit, applied to the other fifteen
+
+> "Do the same exercise with the other activities in the arcade"
+
+The verb games got a proper brief last round; the fifteen sentence functions
+got a placeholder one. Reading four of them side by side showed it was the same
+failure in a milder form — and the milder form is arguably worse, because it
+looks like an explanation.
+
+## What a brief actually said
+
+```
+Negation
+not ___
+
+This round is about one thing a sentence has to do: not ___    ← the "rule"
+
+What you do
+Answer each card, then the next one appears. Nothing here is timed.
+
+Worth knowing
+Some cards give you the English and ask which Luxembourgish opener performs it…
+Some ask you to rebuild a whole sentence by tapping its words in order.
+Some gap out one word from a real sentence for you to fill.
+Every sentence is one LOD published…
+```
+
+Three faults, all of them mine:
+
+**The rule was a tautology.** It interpolated the title into a sentence, so
+Negation's rule was "This round is about one thing a sentence has to do:
+not ___". For Question words it came out ungrammatical: "…one thing a sentence
+has to do: who · what · where · when · why · how".
+
+**"Worth knowing" was identical across all fifteen** and described the *card
+formats* rather than any Luxembourgish. The section meant to teach the language
+taught the interface. A round about negation said nothing about negation.
+
+**"What you do" described the software** — "Answer each card, then the next one
+appears. Nothing here is timed." That is not an instruction.
+
+## What replaced it
+
+Each pattern now carries its own `rule` and `points`, in `TEACHING` beside the
+material definitions. A sample:
+
+| pattern | rule |
+| --- | --- |
+| Negation | net negates a sentence and sits after the verb and its object — not in front of the verb the way English puts "not". |
+| Having | hunn is the other verb you cannot avoid, and it is irregular too: ech hunn, du hues, hien huet. |
+| Existence | et gëtt covers both "there is" and "there are" — it does not change when the thing is plural. |
+| Connectors | Some joining words change nothing, and some send the verb to the end of the clause. That split is the whole lesson. |
+
+Two structural decisions worth recording.
+
+**It links to the grammar guide rather than competing with it.** Twelve of the
+fifteen map onto an existing notecard topic — negation, likes, subclause,
+numbers, perfect, sinn, hunn, present, formal, opbei. The brief gives the short
+version and a link to the long one, so the full rule lives in exactly one place
+and there is no second copy to keep true. A test fails if a link points at a
+topic that does not exist, because a dead link sends a confused player to an
+empty screen, which is worse than no link.
+
+**"What comes up" is generated, not written.** The brief lists the openers and
+words the round will actually use, from the same deck lookup the round itself
+uses. So it cannot advertise material the round does not have, and when the A1
+filter removes something it disappears from the brief too. Seeing the openers
+before meeting them as questions is most of what the original complaint was
+asking for.
+
+## Tests that make the boilerplate impossible to reintroduce
+
+The useful ones here are not "does it render" but "is it actually different":
+
+- no two patterns may share a `rule` — boilerplate shows up as a duplicate;
+- a `rule` may not contain its own pattern's `ask`, which is precisely how the
+  old tautology was generated;
+- a `rule` may not use implementation vocabulary (card, deck, round, corpus,
+  paradigm, filter);
+- `how` must begin with an imperative;
+- `TEACHING` and `PATTERNS` must cover exactly the same ids, so the two cannot
+  drift;
+- every word the brief promises must exist in a shipped deck, with a gloss.
+
+The walkthrough reads two briefs far apart in the list and fails if either
+still contains the old shared sentence, then follows the link from Liking
+through to the notecard and checks `gär` is on the page it lands on.
+
+## Verification
+
+`npm test` 275 (4 new) · `validate` PASS · `npm run walkthrough` 62/62 ·
+`sw.js` → `v41`.
