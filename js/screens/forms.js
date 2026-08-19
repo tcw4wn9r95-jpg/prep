@@ -37,7 +37,8 @@
 import { el, fill, screenHead, button } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { loadGrammar } from '../content.js';
-import { touchStreak } from '../store.js';
+import { touchStreak, suppressedFor } from '../store.js';
+import { flagSlot } from '../flag.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
 
 const ROUND_SIZE = 10;
@@ -138,7 +139,8 @@ export function optionsFor(card, random = Math.random) {
 
 export async function render(root, { settings, navigate }) {
   const grammar = await loadGrammar();
-  const pool = formsPool(grammar);
+  const flagged = await suppressedFor('forms', settings.playerId);
+  const pool = formsPool(grammar).filter((item) => !flagged.has(item.id));
 
   if (pool.length < OPTION_COUNT) {
     root.append(
@@ -181,6 +183,7 @@ function playRound({ body, cards, settings, navigate }) {
   // The real sentence, revealed only after answering — shown up front it would
   // contain the answer.
   const evidence = el('div', { style: { display: 'none' } });
+  const flag = flagSlot();
 
   fill(
     body,
@@ -188,6 +191,7 @@ function playRound({ body, cards, settings, navigate }) {
     el('div', { class: 'card' }, prompt, gloss, options),
     evidence,
     el('div', { class: 'card' }, amelie.el),
+    flag.el,
   );
 
   showCard();
@@ -195,6 +199,7 @@ function playRound({ body, cards, settings, navigate }) {
   function showCard() {
     locked = false;
     const card = cards[index];
+    flag.set({ playerId: settings.playerId, source: 'forms', id: card.id, label: `${card.preposition} + ${card.nom}` });
     prompt.textContent = `${card.preposition} + ${card.nom} → ?`;
     gloss.textContent = `${card.nom} means “${card.en}” here`;
     evidence.style.display = 'none';

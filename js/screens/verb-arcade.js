@@ -15,6 +15,7 @@
 import { el, fill, screenHead, button, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { touchStreak } from '../store.js';
+import { flagSlot } from '../flag.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
 import { choiceInput, bankInput } from '../drill/inputs.js';
 import { letterBank } from '../drill/match.js';
@@ -244,8 +245,18 @@ const SORT_LABELS = {
   plur: 'More than one',
 };
 
-export function renderVerbRound(root, game, verbs, { settings, navigate, a1Only }) {
-  const questions = verbQuestions(game, verbs, Math.random, { a1Only });
+/**
+ * A stable name for one verb card, for the same reason the sentence-function
+ * rounds need one: the card is assembled from a table rather than read from a
+ * row, so the game, the shape and the answer together are its identity.
+ */
+export const verbCardId = (game, question) => `${game.id}:${question.kind}:${question.prompt}`;
+
+export function renderVerbRound(root, game, verbs, { settings, navigate, a1Only, flagged }) {
+  const suppressed = flagged ?? new Set();
+  const questions = verbQuestions(game, verbs, Math.random, { a1Only }).filter(
+    (question) => !suppressed.has(verbCardId(game, question)),
+  );
 
   root.append(screenHead({ title: game.title, sub: game.ask, back: '#/arcade' }));
   const body = el('div', { class: 'stack stack--lg' });
@@ -305,6 +316,7 @@ function playVerbRound({ body, game, questions, settings, navigate, onBrief }) {
   const instruction = el('p', { class: 'drill__instruction' });
   const promptCard = el('div', { class: 'card' });
   const inputHolder = el('div', {});
+  const flag = flagSlot();
 
   fill(
     body,
@@ -323,6 +335,7 @@ function playVerbRound({ body, game, questions, settings, navigate, onBrief }) {
     promptCard,
     inputHolder,
     el('div', { class: 'card' }, amelie.el),
+    flag.el,
   );
 
   show();
@@ -331,6 +344,12 @@ function playVerbRound({ body, game, questions, settings, navigate, onBrief }) {
     locked = false;
     const question = questions[index];
     instruction.textContent = question.instruction;
+    flag.set({
+      playerId: settings.playerId,
+      source: 'verb-arcade',
+      id: verbCardId(game, question),
+      label: `${game.title}: ${question.prompt}`,
+    });
 
     fill(
       promptCard,

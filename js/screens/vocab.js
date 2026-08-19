@@ -8,7 +8,7 @@
  */
 
 import { loadVocab, loadTopics } from '../content.js';
-import { getLearnDeckStates, buildSession, newWordsLeftToday, newWordGoal, listMistakes, mistakeEntryKeys } from '../store.js';
+import { getLearnDeckStates, buildSession, newWordsLeftToday, newWordGoal, listMistakes, mistakeEntryKeys , flaggedCards } from '../store.js';
 import { DECKS, isDrillable, boxIndex } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
@@ -16,12 +16,13 @@ const SESSION_SIZE = 12;
 
 export async function render(root, { params, settings, navigate }) {
   const topicId = params?.[0] ?? null;
-  const [everything, states, topics, newLeft, mistakeRows] = await Promise.all([
+  const [everything, states, topics, newLeft, mistakeRows, flagged] = await Promise.all([
     loadVocab(),
     getLearnDeckStates(settings.playerId, 'vocab'),
     topicId ? loadTopics() : Promise.resolve([]),
     newWordsLeftToday(settings.playerId, { target: newWordGoal(settings) }),
     listMistakes(settings.playerId),
+    flaggedCards(settings.playerId),
   ]);
 
   // A few LOD entries carry no English gloss, so there is nothing to ask about
@@ -32,7 +33,7 @@ export async function render(root, { params, settings, navigate }) {
   const title = topic ? topic.title_en ?? topic.en ?? 'Vocabulary' : 'Vocabulary';
   const again = topicId ? `#/vocab/${encodeURIComponent(topicId)}` : '#/vocab';
 
-  const plan = buildSession(pool, states, { limit: SESSION_SIZE, newTarget: newLeft, deckId: 'vocab', mistakes: mistakeEntryKeys(mistakeRows) });
+  const plan = buildSession(pool, states, { limit: SESSION_SIZE, newTarget: newLeft, deckId: 'vocab', mistakes: mistakeEntryKeys(mistakeRows), flagged });
   if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total: pool.length, capped: newLeft === 0 });
 
   // Distractors come from the whole deck even in a topic session: four options

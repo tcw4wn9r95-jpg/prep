@@ -25,6 +25,7 @@ import { hintFor } from './hint.js';
 import { topicFor } from '../grammar-guide.js';
 import { INPUTS } from './inputs.js';
 import { referenceSheet } from './reference-sheet.js';
+import { flagButton } from '../flag.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
 
 /** How many cards later a missed card comes back. Far enough that it is a
@@ -174,7 +175,24 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     const inputFactory = INPUTS[card.mode];
     const input = inputFactory(card, (result) => grade(card, entry, result, { revealed, feedback, rule, explain }));
 
-    fill(body, prompt, el('p', { class: 'drill__instruction' }, card.instruction), input.el, hint, amelie.el, nextHolder);
+    fill(
+      body,
+      prompt,
+      el('p', { class: 'drill__instruction' }, card.instruction),
+      input.el,
+      hint,
+      amelie.el,
+      nextHolder,
+      // Last on the card, because it is a footnote about the exercise rather
+      // than part of doing it. `deck.id` and `item.id` together are the key
+      // the deck's own pool filter looks the flag up by.
+      flagButton({
+        playerId: settings.playerId,
+        source: deck.id,
+        id: card.item.id,
+        label: flagLabel(card),
+      }),
+    );
     nextHolder.hidden = true;
     fill(nextHolder, nextButton(entry));
 
@@ -277,6 +295,19 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
    * a foothold rather than the answer, and the option list is what it is being
    * hidden from.
    */
+  /**
+   * A short human-readable name for a flagged card.
+   *
+   * Stored with the flag so Settings can list what was reported without
+   * reloading every deck and re-deriving it — the decks are megabytes and the
+   * list is a handful of rows.
+   */
+  function flagLabel(card) {
+    const gloss = card.deck.gloss?.(card.item) ?? null;
+    const word = card.item.lb ?? card.item.infinitive ?? sentenceOf(card, { filled: true }) ?? card.item.id;
+    return gloss ? `${word} — ${gloss}` : String(word);
+  }
+
   function sentenceOf(card, { filled = false } = {}) {
     if (card.prompt.cloze) {
       const { before, after } = card.prompt.cloze;

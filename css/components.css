@@ -1542,3 +1542,71 @@
   color: var(--accent);
   text-decoration: none;
 }
+
+/* ------------------------------------------------------------------ flag
+
+   "Something wrong with this card?" — the report control at the foot of every
+   exercise. Deliberately quiet: it has to be findable the moment a card is
+   wrong and invisible the rest of the time, so it reads as a footnote rather
+   than as one of the answers. */
+
+.flag {
+  margin-block-start: var(--s4);
+  text-align: center;
+}
+
+.flag__open {
+  background: none;
+  border: 0;
+  padding: var(--s2) var(--s3);
+  font: inherit;
+  font-size: var(--size-xs);
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  /* Small type, but still a real tap target. */
+  min-height: var(--tap);
+}
+
+.flag__ask {
+  font-size: var(--size-sm);
+  font-weight: 700;
+  color: var(--text);
+  margin-block-end: var(--s2);
+}
+
+.flag__choices {
+  display: grid;
+  gap: var(--s2);
+}
+
+.flag__choice {
+  min-height: var(--tap);
+  padding: var(--s2) var(--s4);
+  border-radius: var(--r-md);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  font: inherit;
+  font-size: var(--size-sm);
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.flag__cancel {
+  min-height: var(--tap);
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: var(--size-xs);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.flag__done {
+  font-size: var(--size-sm);
+  color: var(--ok);
+  font-weight: 600;
+  padding-block: var(--s2);
+}

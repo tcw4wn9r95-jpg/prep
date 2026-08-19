@@ -36,7 +36,8 @@
 import { el, fill, screenHead, button, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { loadPhrases, loadGrammar, loadVocab, loadVerbs } from '../content.js';
-import { touchStreak } from '../store.js';
+import { touchStreak, suppressedFor } from '../store.js';
+import { flagSlot } from '../flag.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
 import { choiceInput, bankInput } from '../drill/inputs.js';
 import { wordBank } from '../drill/match.js';
@@ -236,22 +237,35 @@ function wordQuestions(pattern, words, random, readable) {
   return questions;
 }
 
+/**
+ * A stable name for one Arcade card.
+ *
+ * These cards are assembled rather than looked up — a frame plus one of its
+ * examples, or a grammar row rendered four different ways — so there is no
+ * single deck id to flag. The pattern, the card shape and the answer together
+ * identify what the player is actually looking at, and they are the same on
+ * every future round, which is what a flag needs in order to still match.
+ */
+export const arcadeCardId = (pattern, question) => `${pattern.id}:${question.kind}:${question.answer}`;
+
 export async function render(root, { params, settings, navigate }) {
   const [phrases, grammar, vocab, verbs] = await Promise.all([loadPhrases(), loadGrammar(), loadVocab(), loadVerbs()]);
   const decks = { phrases, grammar, vocab };
   // Unset means on: the filter was asked for, so absence is not a refusal —
   // the same reading `sound` gets in Settings.
   const a1Only = settings?.arcadeA1 !== false;
+  const flagged = await suppressedFor('arcade', settings?.playerId);
 
   // The Arcade has two halves and one route. A sentence function and a verb
   // game are both `#/arcade/<id>`, and the ids cannot collide because the verb
   // ones are all prefixed `verb-`.
   const id = params?.[0];
   const pattern = id ? patternById(id) : null;
-  if (pattern) return renderRound(root, pattern, decks, { settings, navigate, a1Only });
+  if (pattern) return renderRound(root, pattern, decks, { settings, navigate, a1Only, flagged });
 
   const game = id ? verbGameById(id) : null;
-  if (game) return renderVerbRound(root, game, verbs, { settings, navigate, a1Only });
+  const verbFlagged = game ? await suppressedFor('verb-arcade', settings?.playerId) : null;
+  if (game) return renderVerbRound(root, game, verbs, { settings, navigate, a1Only, flagged: verbFlagged });
 
   return renderIndex(root, decks, verbs, { navigate, a1Only });
 }
@@ -340,8 +354,13 @@ function renderIndex(root, decks, verbs, { navigate, a1Only }) {
 
 /* ------------------------------------------------------------------ round */
 
-function renderRound(root, pattern, decks, { settings, navigate, a1Only }) {
-  const questions = questionsFor(pattern, decks, Math.random, { a1Only });
+function renderRound(root, pattern, decks, { settings, navigate, a1Only, flagged }) {
+  // A sentence-function card has no deck row behind it — it is assembled from
+  // a frame and one of its examples — so a flag is keyed by what the card
+  // actually asks. `arcadeCardId` is that key, and it is stable across rounds.
+  const questions = questionsFor(pattern, decks, Math.random, { a1Only }).filter(
+    (question) => !flagged.has(arcadeCardId(pattern, question)),
+  );
 
   root.append(screenHead({ title: pattern.title, sub: pattern.ask, back: '#/arcade' }));
   const body = el('div', { class: 'stack stack--lg' });
@@ -399,6 +418,7 @@ function playRound({ body, pattern, questions, settings, navigate, short, onBrie
   const instruction = el('p', { class: 'drill__instruction' });
   const promptCard = el('div', { class: 'card' });
   const inputHolder = el('div', {});
+  const flag = flagSlot();
 
   fill(
     body,
@@ -411,12 +431,19 @@ function playRound({ body, pattern, questions, settings, navigate, short, onBrie
     promptCard,
     inputHolder,
     el('div', { class: 'card' }, amelie.el),
+    flag.el,
   );
 
   show();
 
   function show() {
     const question = questions[index];
+    flag.set({
+      playerId: settings.playerId,
+      source: 'arcade',
+      id: arcadeCardId(pattern, question),
+      label: `${pattern.title}: ${question.answer}`,
+    });
 
     if (question.kind === 'build') {
       // The prompt is the opener's English, so the card has to say that it is

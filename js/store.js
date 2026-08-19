@@ -12,7 +12,7 @@
  */
 
 const DB_NAME = 'sproochentest';
-const DB_VERSION = 5;
+const DB_VERSION = 6;
 
 /** @type {Promise<IDBDatabase>|null} */
 let dbPromise = null;
@@ -53,6 +53,13 @@ function openDb() {
         // One row per card got wrong, surviving the session it happened in.
         // See `recordMistake`.
         const store = db.createObjectStore('mistakes', { keyPath: 'key' });
+        store.createIndex('byPlayer', 'playerId');
+      }
+      if (!db.objectStoreNames.contains('flags')) {
+        // One row per card the player has called out as not making sense, or
+        // as coming round far too often. See `flagCard` for what each reason
+        // then does to the card's chances of appearing again.
+        const store = db.createObjectStore('flags', { keyPath: 'key' });
         store.createIndex('byPlayer', 'playerId');
       }
       if (!db.objectStoreNames.contains('learnSessions')) {
@@ -691,6 +698,9 @@ export function pickDue(items, stateByItemId, limit) {
  * @param {{recv: Map, prod: Map}} states
  */
 export function buildSession(items, states, { deckId, ...options } = {}) {
+  // Deliberately no `deck` here: `mistakeDeck` names the deck for the mistake
+  // and flag lookups without becoming `card.deck`, which the engine fills from
+  // its own `sessionDeck` — a stub with only an id would lose `gloss()`.
   return buildMixedSession([{ items, states, mistakeDeck: deckId }], options);
 }
 
@@ -720,7 +730,18 @@ export function buildSession(items, states, { deckId, ...options } = {}) {
  */
 export function buildMixedSession(
   groups,
-  { limit = 12, newTarget = DAILY_NEW_TARGET, now = Date.now(), reserve = {}, mistakes = EMPTY_SET, random = Math.random } = {},
+  {
+    limit = 12,
+    newTarget = DAILY_NEW_TARGET,
+    now = Date.now(),
+    reserve = {},
+    mistakes = EMPTY_SET,
+    // Cards the player has reported, as `deckId:itemId`. Filtered here rather
+    // than in each of the five screens that build a session, so one rule
+    // governs all of them and a new screen cannot forget to apply it.
+    flagged = EMPTY_SET,
+    random = Math.random,
+  } = {},
 ) {
   const mistakeReviews = [];
   const staleReviews = [];
@@ -741,6 +762,10 @@ export function buildMixedSession(
     const bucket = (entry) => (mistakes.has(mistakeEntryKey(deckId, entry.strand, entry.item.id)) ? mistakeReviews : staleReviews).push(entry);
 
     for (const item of items) {
+      // A flag removes the card from the draw and touches nothing else — the
+      // Leitner row stays exactly as it was, so taking the flag off brings the
+      // card back on its real schedule rather than as a new word.
+      if (flagged.size > 0 && flagged.has(`${deckId}:${item.id}`)) continue;
       const recv = states.recv.get(item.id);
       const prod = states.prod.get(item.id);
 
@@ -975,6 +1000,137 @@ export async function recordLearnSession(playerId, { correct, answered, byDeck =
 }
 
 export const listLearnSessions = () => all('learnSessions');
+
+/* ----------------------------------------------------------------- flags
+ * Cards the player has called out, and what that does next time.
+ *
+ * The two complaints an exercise actually provokes are different problems and
+ * deserve different answers, so the button asks which one it is:
+ *
+ *   `confusing`   the question or its answer does not make sense. There is
+ *                 nothing to be gained from seeing it again, so it is
+ *                 suppressed until the player takes the flag off.
+ *   `repetitive`  the card is fine but it keeps coming round. Suppressing it
+ *                 forever would be wrong — repetition is how the scheduler
+ *                 works and the word may genuinely not be learned yet — so it
+ *                 is rested for a fortnight and then allowed back.
+ *
+ * Deliberately *not* a second scheduler, for the same reason the mistakes list
+ * is not one: the Leitner box still decides when a word is due. A flag only
+ * removes a card from the pool an exercise draws on, which means unflagging
+ * restores it with its real schedule intact rather than a reset one.
+ *
+ * Local only. There is no Worker route for it and no reason to have one — this
+ * is one person's judgement about what is worth their time, and the other
+ * player's opinion of the same card is their own.
+ */
+
+/** How long a "seen too often" flag rests a card before it can return. */
+export const FLAG_REST_DAYS = 14;
+
+export const FLAG_REASONS = {
+  confusing: 'This does not make sense',
+  repetitive: 'I have seen this far too often',
+};
+
+/**
+ * A card's identity, across exercises that have nothing else in common.
+ *
+ * `source` is the exercise or deck, `id` whatever that exercise already uses
+ * to name an item. Both are needed: the vocabulary deck and the picture game
+ * can hold the same lemma id and are not the same card.
+ */
+export const flagKey = (playerId, source, id) => `${playerId}:${source}:${id}`;
+
+/**
+ * Records a flag. `label` is a short human-readable version of the card, kept
+ * so Settings can list what was flagged without having to reload every deck
+ * and re-derive it.
+ */
+export async function flagCard(playerId, { source, id, label, reason }) {
+  if (!playerId || !source || !id) return null;
+  const key = flagKey(playerId, source, id);
+  const previous = await get('flags', key);
+  const record = {
+    key,
+    playerId,
+    source,
+    itemId: String(id),
+    label: label ?? previous?.label ?? String(id),
+    reason: reason ?? 'confusing',
+    // Kept across re-flags: a card flagged twice for coming round too often is
+    // a stronger signal than one flagged once, and the count is what makes
+    // that visible in Settings.
+    count: (previous?.count ?? 0) + 1,
+    at: new Date().toISOString(),
+  };
+  await put('flags', record);
+  return record;
+}
+
+export async function unflagCard(playerId, source, id) {
+  const db = await openDb();
+  return promisify(tx(db, 'flags', 'readwrite').delete(flagKey(playerId, source, id)));
+}
+
+export const listFlags = () => all('flags');
+
+/**
+ * Whether a flag is still holding a card back, at a given moment.
+ *
+ * Pure and exported so the rest-period rule can be tested without a browser
+ * and without waiting a fortnight.
+ */
+export function flagActive(flag, now = Date.now()) {
+  if (!flag) return false;
+  if (flag.reason !== 'repetitive') return true;
+  const rested = now - new Date(flag.at).getTime();
+  return rested < FLAG_REST_DAYS * 24 * 60 * 60 * 1000;
+}
+
+/**
+ * The ids an exercise should leave out of its round.
+ *
+ * Takes the whole flag list rather than querying per card, because every
+ * caller is about to filter a pool and one read is cheaper than hundreds.
+ */
+export function suppressedIds(flags, source, playerId, now = Date.now()) {
+  const out = new Set();
+  for (const flag of flags ?? []) {
+    if (flag.source !== source) continue;
+    if (playerId && flag.playerId !== playerId) continue;
+    if (flagActive(flag, now)) out.add(flag.itemId);
+  }
+  return out;
+}
+
+/** Convenience for a screen that only wants the set. */
+export async function suppressedFor(source, playerId, now = Date.now()) {
+  return suppressedIds(await listFlags(), source, playerId, now);
+}
+
+/**
+ * Every active flag as `deckId:itemId`, which is the shape the session
+ * builders filter on.
+ *
+ * The drill decks all go through `buildMixedSession`, which sees several decks
+ * at once, so one flat set spanning them is simpler than a set per deck — and
+ * it is what lets the filter live in the builder rather than being repeated in
+ * the five screens that call it.
+ */
+export function flaggedCardKeys(flags, playerId, now = Date.now()) {
+  const out = new Set();
+  for (const flag of flags ?? []) {
+    if (playerId && flag.playerId !== playerId) continue;
+    if (flagActive(flag, now)) out.add(`${flag.source}:${flag.itemId}`);
+  }
+  return out;
+}
+
+/** The same, read straight from the store. */
+export async function flaggedCards(playerId, now = Date.now()) {
+  return flaggedCardKeys(await listFlags(), playerId, now);
+}
 
 /* -------------------------------------------------------------- mistakes
  * The cards you have got wrong, kept until you get them right.

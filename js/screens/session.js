@@ -16,7 +16,7 @@
  */
 
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadStages } from '../content.js';
-import { getLearnDeckStates, buildMixedSession, newWordsLeftToday, newWordGoal, listMistakes, mistakeEntryKeys } from '../store.js';
+import { getLearnDeckStates, buildMixedSession, newWordsLeftToday, newWordGoal, listMistakes, mistakeEntryKeys , flaggedCards } from '../store.js';
 import { DECKS, isDrillable, boxIndex, isStructure } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
@@ -44,7 +44,7 @@ const STRUCTURE_RESERVE = 3;
 
 export async function render(root, { params, settings, navigate }) {
   const stage = params?.[0] ? Number(params[0]) : null;
-  const [vocab, verbs, phrases, grammar, stages, vocabStates, verbStates, phraseStates, grammarStates, newLeft, mistakeRows] = await Promise.all([
+  const [vocab, verbs, phrases, grammar, stages, vocabStates, verbStates, phraseStates, grammarStates, newLeft, mistakeRows, flagged] = await Promise.all([
     loadVocab(),
     loadVerbs(),
     loadPhrases(),
@@ -56,6 +56,7 @@ export async function render(root, { params, settings, navigate }) {
     getLearnDeckStates(settings.playerId, 'grammar'),
     newWordsLeftToday(settings.playerId, { target: newWordGoal(settings) }),
     listMistakes(settings.playerId),
+    flaggedCards(settings.playerId),
   ]);
   const mistakes = mistakeEntryKeys(mistakeRows);
 
@@ -105,6 +106,7 @@ export async function render(root, { params, settings, navigate }) {
     newTarget: newLeft,
     reserve: { grammar: GRAMMAR_RESERVE, structure: STRUCTURE_RESERVE },
     mistakes,
+    flagged,
   });
   if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total, capped: newLeft === 0 });
 
