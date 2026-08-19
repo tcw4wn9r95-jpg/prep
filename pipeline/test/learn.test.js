@@ -188,7 +188,7 @@ test('cues: the source table has no duplicate keys', () => {
 /* --------------------------------------------------------------- starters */
 
 const { STARTERS, applyStarters } = require('../lib/starters');
-const { rankDeck, STAGES } = require('../lib/frequency');
+const { rankDeck, grammarUnits, STAGES } = require('../lib/frequency');
 
 const alwaysClean = () => true;
 
@@ -266,18 +266,66 @@ test('frequency: ranking is deterministic when counts tie', () => {
   assert.equal(rankDeck(items, counts).find((item) => item.id === 'A').rank, 1, 'ties break on the lemma');
 });
 
-test('frequency: a word with no occurrences still gets a rank and a stage', () => {
+test('frequency: a word with no theme still lands somewhere on the path', () => {
   const ranked = rankDeck([{ id: 'X', lb: 'zzz', pos: 'SUBST', level: 'A2' }], new Map());
   assert.equal(ranked[0].freq, 0);
   assert.equal(ranked[0].rank, 1);
-  assert.equal(ranked[0].stage, 5, 'unseen A2 words fall to the last stage');
+  // Units past the sentence engine are themed, so a word carrying no theme has
+  // no unit that wants it and waits for the last one — which is where the
+  // leftover A2 vocabulary genuinely belongs.
+  assert.equal(ranked[0].stage, STAGES[STAGES.length - 1].n);
 });
 
-test('frequency: the stage list is contiguous and labelled', () => {
-  assert.deepEqual(STAGES.map((stage) => stage.n), [1, 2, 3, 4, 5]);
+test('frequency: a themed word goes to the earliest unit that wants its theme', () => {
+  // The ordering rule that replaced "everything not in the first 238 words is
+  // one of two enormous buckets". A word in several themes belongs to the unit
+  // that needs it soonest, so nothing is taught twice.
+  const famill = STAGES.find((stage) => (stage.topics ?? []).includes('famill'));
+  const gesond = STAGES.find((stage) => (stage.topics ?? []).includes('gesondheet'));
+  assert.ok(famill && gesond && famill.n < gesond.n);
+
+  const ranked = rankDeck(
+    [{ id: 'X', lb: 'zzz', pos: 'SUBST', level: 'A2', topics: ['gesondheet', 'famill'] }],
+    new Map(),
+  );
+  assert.equal(ranked[0].stage, famill.n, 'should land in the earlier of its two themes');
+});
+
+test('frequency: the unit list is contiguous, labelled, and says what you can do', () => {
+  assert.deepEqual(
+    STAGES.map((stage) => stage.n),
+    Array.from({ length: STAGES.length }, (_, index) => index + 1),
+  );
   for (const stage of STAGES) {
-    assert.ok(stage.title && stage.blurb, `stage ${stage.n} needs a title and a blurb`);
+    assert.ok(stage.title && stage.blurb, `unit ${stage.n} needs a title and a blurb`);
+    // The can-do is the unit's point and what the path screen leads with. A
+    // unit without one is a bucket of words again, which is what this replaced.
+    assert.ok(stage.canDo?.startsWith('I can '), `unit ${stage.n} needs a can-do statement`);
+    assert.ok(stage.level, `unit ${stage.n} needs the CEFR sub-level it maps to`);
   }
+});
+
+test('frequency: every theme the app ships is taught by some unit', () => {
+  // A topic with no unit is vocabulary the path can never reach, which is how
+  // 1,095 words ended up in a single terminal bucket before.
+  const topics = require('../../app/data/topics.json').items.map((topic) => topic.id);
+  const taught = new Set(STAGES.flatMap((stage) => stage.topics ?? []));
+  const orphans = topics.filter((topic) => !taught.has(topic));
+  assert.deepEqual(orphans, [], `themes no unit teaches: ${orphans.join(', ')}`);
+});
+
+test('frequency: every grammar kind is placed, and in the guide\'s teaching order', () => {
+  const units = grammarUnits();
+  const kinds = new Set(require('../../app/data/grammar.json').items.map((item) => item.kind));
+  for (const kind of kinds) assert.ok(units.has(kind), `grammar kind "${kind}" has no unit`);
+
+  // The whole point of placing them: the definite article must not arrive on
+  // the same day as adjective endings, which the guide teaches fourteen topics
+  // later. Before this every kind was stamped stage 4 or 5 and interleaved
+  // from the first session.
+  assert.ok(units.get('gender') < units.get('adjective'));
+  assert.ok(units.get('numbers') < units.get('subclause'));
+  assert.ok(units.get('wordorder') < units.get('bracket'));
 });
 
 /* ------------------------------------------------- the shipped deck order */

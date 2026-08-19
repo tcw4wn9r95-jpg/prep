@@ -1021,17 +1021,21 @@ async function main() {
     await page.waitForTimeout(300);
   });
 
-  await step('seven tabs still fit, down to the narrowest Android width', async () => {
-    // Adding Arcade made it seven, and `grid-auto-columns: 1fr` refuses to
-    // shrink a column below its label — so the bar overflowed at 360px while
-    // looking fine on the iPhone viewport everything else is measured at.
+  await step('the tab bar still fits, down to the narrowest Android width', async () => {
+    // Arcade briefly made this seven and it overflowed at 360px, because
+    // `grid-auto-columns: 1fr` refuses to shrink a column below its label. The
+    // tab is gone again — its games belong to the units now — but the
+    // measurement stays: six is still enough to overflow a narrow phone if a
+    // label grows.
     const sizes = [VIEWPORT, { width: 360, height: 780 }, { width: 320, height: 568 }];
     for (const size of sizes) {
       await page.setViewportSize(size);
       await openFresh('#/today');
       await page.waitForSelector('.tabbar__item', { timeout: 5000 });
       const tabs = await page.locator('.tabbar__item').count();
-      if (tabs !== 7) throw new Error(`expected seven tabs, found ${tabs}`);
+      if (tabs !== 6) throw new Error(`expected six tabs, found ${tabs}`);
+      const labels = (await page.locator('.tabbar__item').allTextContents()).map((text) => text.trim());
+      if (labels.includes('Arcade')) throw new Error('the Arcade tab is still there');
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
       if (overflow > 1) throw new Error(`the tab bar overflows by ${overflow}px at ${size.width}px`);
     }
@@ -1237,10 +1241,29 @@ async function main() {
   await step('the learn hub shows the path and where you are on it', async () => {
     await openFresh('#/learn');
     await page.waitForSelector('.stage', { timeout: 5000 });
-    const stages = await page.locator('.stage').count();
-    if (stages !== 5) throw new Error(`expected 5 stages, found ${stages}`);
+
+    // Twelve units, not five bands. The old path put everything past the first
+    // 238 words into "the rest of A1" (716) and "A2" (1,095) — ninety days
+    // inside one bucket with no milestone. The units are themed on the topics
+    // the exam actually interviews on.
+    const units = await page.locator('.stage').count();
+    if (units !== 12) throw new Error(`expected twelve units, found ${units}`);
+
     const current = await page.locator('.stage.is-current .card__title').textContent();
-    if (current?.trim() !== 'First words') throw new Error(`a fresh learner should be on First words, not "${current}"`);
+    if (!current?.trim().startsWith('First words')) throw new Error(`a fresh learner should be on First words, not "${current}"`);
+
+    // Each unit names the CEFR sub-level the official course would call it,
+    // and leads with what you can do at the end of it rather than with what
+    // material is inside it.
+    const levels = await page.locator('.stage .stage__level').count();
+    if (levels !== 12) throw new Error(`only ${levels} of twelve units name their level`);
+    const canDo = (await page.locator('.stage .card__note').first().textContent()) ?? '';
+    if (!/^I can /.test(canDo.trim())) throw new Error(`a unit should lead with its can-do, got "${canDo}"`);
+
+    // And the games that check the current unit are on this screen, because
+    // the tab they used to live in is gone.
+    const games = await page.locator('#screen a[href^="#/arcade/"]').count();
+    if (games === 0) throw new Error('the unit offers no can-do check');
     await shot('16b-learn-path');
   });
 
@@ -1462,6 +1485,11 @@ async function main() {
   });
 
   await step('a topic-scoped session only draws from that topic', async () => {
+    // Cleared first: by this point in the walkthrough the day's new-word
+    // budget has usually been spent by earlier steps, and a topic session with
+    // nothing new to introduce renders the "nothing due" screen instead of a
+    // drill. That is correct behaviour and made this step flaky.
+    await clearLearn();
     await openFresh('#/vocab/stot');
     await page.waitForSelector('.screen__sub', { timeout: 5000 });
     const sub = await page.locator('.screen__sub').first().textContent();

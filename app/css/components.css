@@ -1610,3 +1610,13 @@
   font-weight: 600;
   padding-block: var(--s2);
 }
+
+/* The CEFR sub-level beside a unit's title on the path. Quiet — it is a
+   cross-reference to the official course, not the headline. */
+.stage__level {
+  margin-inline-start: var(--s2);
+  font-size: var(--size-xs);
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+}

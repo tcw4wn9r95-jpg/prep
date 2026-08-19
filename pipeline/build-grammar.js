@@ -48,6 +48,7 @@ const { tokenise, sentences } = require('./lib/lux-text');
 const { createChecker, startsTrigger, hasOpaqueOnset } = require('./lib/nrule');
 const { locateTarget, spanOf } = require('./lib/cloze');
 const { makeGate } = require('./lib/gate');
+const { grammarUnits } = require('./lib/frequency');
 
 const OUT_CONTENT = path.join(paths.ITEMS_DIR, 'grammar.json');
 const OUT_APP = path.join(paths.ROOT, 'app', 'data', 'grammar.json');
@@ -1002,6 +1003,17 @@ async function main() {
       `${wordorder.length} word-order, ${bracket.length} verb-bracket, ${subclause.length} verb-final, ` +
       `${negation.length} negation, ${numbers.length} numbers, ${dative.length} dative, ${likes.length} likes (${items.length} total)`,
   );
+
+  // Which unit of the learning path each rule belongs to. Sequencing lives in
+  // one place — the unit list in lib/frequency.js — rather than being a
+  // separate opinion here that could disagree with it.
+  const units = grammarUnits();
+  for (const item of items) item.unit = units.get(item.kind) ?? null;
+  const unplaced = items.filter((item) => item.unit === null);
+  if (unplaced.length > 0) {
+    const kinds = [...new Set(unplaced.map((item) => item.kind))].join(', ');
+    throw new Error(`grammar kinds with no unit on the path: ${kinds} - add them to STAGES in lib/frequency.js`);
+  }
 
   const payload = {
     meta: {

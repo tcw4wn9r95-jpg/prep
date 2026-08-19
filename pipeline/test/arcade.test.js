@@ -318,3 +318,33 @@ test('arcade: the round costs nothing — no Leitner, no daily goal, no cap', ()
   // touchStreak is the one number it may move, and it is genuinely practice.
   assert.ok(code.includes('touchStreak'), 'the Arcade should still count for the streak');
 });
+
+test('arcade: every game a unit names exists, and every game belongs to a unit', async () => {
+  // The Arcade tab is gone and each game is now the can-do check of the unit
+  // that needs it. Two ways that can rot: a unit naming a game that was
+  // renamed, which puts a dead link on the learning path; and a game no unit
+  // claims, which makes it unreachable except by typing the URL.
+  const { STAGES } = require(path.join(ROOT, 'pipeline', 'lib', 'frequency.js'));
+  const verbs = await import(pathToFileURL(path.join(ROOT, 'app', 'js', 'arcade', 'verbs.js')).href);
+  const learn = await import(pathToFileURL(path.join(ROOT, 'app', 'js', 'screens', 'learn.js')).href);
+
+  const real = new Set([
+    ...patterns.PATTERNS.map((pattern) => pattern.id),
+    ...verbs.VERB_GAMES.map((game) => game.id),
+  ]);
+  const claimed = new Set();
+
+  for (const unit of STAGES) {
+    for (const id of unit.games ?? []) {
+      assert.ok(real.has(id), `unit ${unit.n} (${unit.id}) names the game "${id}", which does not exist`);
+      assert.ok(!claimed.has(id), `"${id}" is claimed by two units`);
+      claimed.add(id);
+      // The path shows the game's name, so a missing title would render the
+      // raw id on screen.
+      assert.notEqual(learn.gameTitle(id), id, `no title for the game "${id}"`);
+    }
+  }
+
+  const orphans = [...real].filter((id) => !claimed.has(id));
+  assert.deepEqual(orphans, [], `games no unit claims, so nothing links to them: ${orphans.join(', ')}`);
+});

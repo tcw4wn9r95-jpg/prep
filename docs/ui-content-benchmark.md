@@ -2748,3 +2748,129 @@ having: it reports a Gender Sort card, then plays **ten fresh rounds of ten**
 and fails if the word ever reappears. Drawn from a pool of hundreds, seeing it
 once more would be luck — never seeing it across a hundred cards is the filter
 working. It then finds the card in Settings and undoes it.
+
+---
+
+# Follow-up 23 — the path was a frequency backlog, not a syllabus
+
+> "Do a full evaluation of the learning content we have so far. Do a benchmark
+> vs existing Luxembourgish learning tools or official documents. Then apply
+> those learnings to our app, challenge everything and build the learning path
+> into a logical order. Also figure out how to integrate what is in the arcade
+> with the rest and then remove that tab"
+
+## What we were shipping
+
+| deck | items | ordered by |
+| --- | ---: | --- |
+| vocabulary | 2,049 | frequency, banded into 5 stages |
+| verbs | 365 | frequency |
+| phrases | 42 | all stage 1 |
+| grammar | 3,372 | **nothing** |
+| topics | 18 | a filter, not a path |
+
+The five stages were 28 starter words, 60 verbs, 150 core words, **716 "rest of
+A1"** and **1,095 "A2"**.
+
+Three findings, in order of severity.
+
+**The path stopped being a path after word 238.** At eight new words a day,
+"the rest of A1" is ninety days inside a single bucket with no milestone, no
+theme, and no way to say what you can now do. The first three stages are right
+and are kept — you need a sentence engine before a wide vocabulary, and every
+published course starts that way. The last two were a backlog with a label.
+
+**Grammar was not sequenced at all.** Every one of the 3,372 items was stamped
+stage 4 or 5 at *load* time by `orderGrammar`, then interleaved by a
+round-robin across all twelve kinds. That round-robin was itself a fix — ranking
+by sentence length had put all 290 auxiliary cards first — but it
+over-corrected: the definite article and adjective endings are fourteen topics
+apart in our own grammar guide and arrived on the same day.
+
+**The eighteen topics were already the right skeleton and did nothing.** They
+are the Sproochentest's own interview themes, and they tag 74% of the
+vocabulary. They were a filter on a deck, not a sequence.
+
+## The benchmark
+
+| source | how it organises | what we did |
+| --- | --- | --- |
+| [INLL course structure](https://www.inll.lu/en/languages/luxembourgish/) | five taught blocks: A1.1, A1.2, A2.1–A2.3 (46h each) | two buckets |
+| [LLO.LU](https://llo.lu/en) — INL's own free platform | level → **theme** (personal identification, daily life, food and drink, house and home, free time, shopping) | frequency rank |
+| [CEFR A2 descriptors](https://www.coe.int/en/web/common-european-framework-reference-languages/cefr-descriptors-search) | **can-do statements** — greet, ask a price, order a meal, make an arrangement | word counts |
+| [The Sproochentest itself](https://www.inll.lu/en/sproochentest-en/) | pick 1 of 2 published topics, interview, then describe a photo | no topic guarantee at any point |
+
+The decisive one is CEFR. A2 is not defined by how many words you have met; it
+is defined by what you can do. A learner who finished our stage 3 had 238 words
+and no guarantee of a single word for "family" — the most common interview
+topic there is.
+
+One correction to our own assumptions while checking: the exam is **A2 speaking
+and B1 listening**. Our top stage was labelled "A2 — the level the speaking exam
+is set at", which is half the exam.
+
+## The new path: twelve units
+
+Engine first (unchanged), then the exam's own themes in the order a beginner
+needs them — which is close to LLO.LU's order.
+
+| # | unit | level | can do |
+| --- | --- | --- | --- |
+| 1 | First words | A1.1 | say who is doing what, answer yes/no, ask a question |
+| 2 | Everyday verbs | A1.1 | say what I have and do, change a verb for its person |
+| 3 | Everyday words | A1.1 | name things with the right article, say something exists |
+| 4 | People and family | A1.2 | introduce myself and others, join two ideas |
+| 5 | Food and drink | A1.2 | ask for what I want, say what I do not want |
+| 6 | Where you live | A1.2 | say where something is, and what I like |
+| 7 | Work and languages | A2.1 | say what I do, what I must do, what I did |
+| 8 | Getting around | A2.1 | say how I travel, when, what I can and cannot do |
+| 9 | Health and sport | A2.2 | say how I feel, what hurts, say no properly |
+| 10 | Free time | A2.2 | give an opinion and say why |
+| 11 | The year and celebrations | A2.3 | describe people and things — the second exam task |
+| 12 | Exam ready | A2.3 · B1 listening | hold the interview, follow a B1 conversation |
+
+Unit sizes went from `28/60/150/716/1095` to `28/60/150/155/185/84/220/182/182/125/182/496`.
+The 496 in the last unit is the vocabulary carrying no theme at all — that is
+honest rather than hidden, and it is where leftover A2 words belong.
+
+**Grammar now has a unit**, from a single list that the pipeline reads: numbers
+→ 2, gender → 3, n-rule and word order → 4, negation → 5, likes → 6, the perfect
+→ 7, the verb bracket → 8, dative → 9, subclause → 10, adjective endings → 11.
+The round-robin still runs *within* a unit, which is what it was for.
+
+## The Arcade is gone, and its games are the checkpoints
+
+This is the part the redesign made obvious. The fifteen sentence functions are
+CEFR can-do statements, and the five verb games drill exactly what the exam's
+Morphosyntax criterion marks — the most competence-shaped content in the app,
+sitting in its own tab with its own progress and no relationship to the path.
+
+Each game is now the can-do check of the unit whose can-do it checks: Having in
+unit 2, Wanting and Requesting in Food and drink, Obligation and hunn-or-sinn in
+Work, Opinion in Free time. Learn shows the current unit's games under
+*"Check yourself"*; `#/arcade` survives as the full list, reached from Learn,
+so nothing became unreachable and every deep link and brief still resolves.
+
+The tab bar is back to six.
+
+Two tests keep the wiring honest: every game a unit names must exist and have a
+title (a renamed game would otherwise put a dead link on the path), and every
+game must be claimed by exactly one unit (an unclaimed one would be reachable
+only by typing the URL).
+
+## Verification
+
+`npm test` 286 (5 new) · `validate` PASS · `npm run walkthrough` 64/64 ·
+`sw.js` → `v43`.
+
+The walkthrough now asserts twelve units, that each names its CEFR sub-level,
+that a unit leads with "I can …" rather than with its material, and that the
+current unit offers its can-do checks on the same screen.
+
+## Still open
+
+The 496-word twelfth unit deserves splitting once the untagged vocabulary is
+topic-tagged — 26% of the deck carries no theme, and that is the ceiling on how
+well any themed path can work. And nothing in the path yet targets **B1
+listening** specifically; the podcast screen exists and is the obvious home for
+it, but it is not a unit step.

@@ -110,7 +110,14 @@ export function orderGrammar(items) {
     for (const queue of queues) if (round < queue.length) ordered.push(queue[round]);
   }
 
-  return ordered.map((item, index) => ({ ...item, stage: item.level === 'A1' ? 4 : 5, rank: index }));
+  // The unit comes from the data now (pipeline/build-grammar.js stamps it from
+  // the single unit list), so a rule arrives when the path teaches it rather
+  // than in one undifferentiated A1/A2 lump. The round-robin above still holds
+  // *within* a unit, which is what it was for: it stopped 290 auxiliary cards
+  // monopolising the first sessions. Interleaving twelve rules from day one was
+  // the over-correction — the definite article and adjective endings are twelve
+  // guide topics apart and should not arrive together.
+  return ordered.map((item, index) => ({ ...item, stage: item.unit ?? (item.level === 'A1' ? 4 : 5), rank: index }));
 }
 
 /** Simplest first, within a kind. Each kind keeps its sentence somewhere

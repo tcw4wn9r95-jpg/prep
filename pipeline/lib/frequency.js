@@ -50,22 +50,178 @@ function countEntries(corpus, lexicon) {
 }
 
 /**
- * The stages a learner walks, in order.
+ * The units a learner walks, in order.
  *
- * Bands rather than a bare 1..2400 ranking, because "word 812 of 2,413" tells
- * you nothing and "you are on Everyday words" tells you where you are. The
- * sizes are deliberately small at the start: the first two stages are about a
- * fortnight at eight new words a day, and they are the two that decide whether
- * you can say anything at all.
+ * ## Why this is not a frequency list
+ *
+ * It was one, and that was the flaw. The old path had five bands — 28 starter
+ * words, 60 verbs, 150 core words, then "the rest of A1" (716) and "A2"
+ * (1,095). The first three are right and are kept: you need a sentence engine
+ * before a wide vocabulary, and every published course starts the same way.
+ * The last two were not a path at all. At eight new words a day, "the rest of
+ * A1" is ninety days inside one undifferentiated bucket with no milestone, no
+ * theme and no way to tell what you can now *do*.
+ *
+ * The official course does not work that way and neither does the framework it
+ * is built on. INLL splits the same ground into five taught blocks (A1.1, A1.2,
+ * A2.1–A2.3), and LLO.LU — INL's own free platform — organises every level by
+ * theme: personal identification, daily life, food and drink, house and home,
+ * free time, shopping. CEFR itself is a functional syllabus: A2 is defined by
+ * what you can do — greet someone, ask a price, order a meal, make an
+ * arrangement — not by how many words you have met.
+ *
+ * ## So the units are themed, and the themes are the exam's own
+ *
+ * The Sproochentest interview offers two topics and you take one. The eighteen
+ * topics already in `topics.json` are those topics. Ordering the path by them
+ * means finishing a unit is the same event as being able to sit that interview,
+ * which is the only milestone that matters here.
+ *
+ * Order within the themes is by how early a beginner needs them, which lines up
+ * with LLO.LU's own sequence: people first, then food, then where you live,
+ * then work, then getting around.
+ *
+ * ## Every unit says what you can do at the end of it
+ *
+ * `canDo` is the unit's point, written as the framework writes them. It is what
+ * the screen shows, and it is what decides which of the games belongs to the
+ * unit: `games` names the sentence functions and verb games that check exactly
+ * that ability. Those used to be a separate tab with its own progress; they are
+ * the checkpoint of a unit now, which is where a can-do check belongs.
+ *
+ * `topics` are the vocabulary themes the unit draws on, `grammar` the exercise
+ * kinds that become due in it — sequenced by `grammar-guide.js`'s own teaching
+ * order rather than arriving at random, which is what happened before: the
+ * whole grammar deck carried no stage at all, so adjective endings could turn
+ * up on day three next to the definite article.
  */
 const STAGES = [
-  // Step 1 spans two decks: the skeleton words and the sentence frames they
-  // slot into, which are stage 1 in build-phrases.js for the same reason.
-  { n: 1, id: 'starters', title: 'First words', blurb: 'Who is doing what, yes, no, the question words — and the frames they slot into.' },
-  { n: 2, id: 'verbs', title: 'Everyday verbs', blurb: 'The verbs that carry most sentences.', size: 60 },
-  { n: 3, id: 'core', title: 'Everyday words', blurb: 'The nouns and adjectives you will reach for constantly.', size: 150 },
-  { n: 4, id: 'a1', title: 'The rest of A1', blurb: 'Filling out the basic vocabulary.' },
-  { n: 5, id: 'a2', title: 'A2', blurb: 'The level the speaking exam is set at.' },
+  {
+    n: 1,
+    id: 'starters',
+    title: 'First words',
+    level: 'A1.1',
+    canDo: 'I can say who is doing what, answer yes and no, and ask a question.',
+    blurb: 'Who is doing what, yes, no, the question words — and the frames they slot into.',
+    games: ['naming', 'questions'],
+  },
+  {
+    n: 2,
+    id: 'verbs',
+    title: 'Everyday verbs',
+    level: 'A1.1',
+    size: 60,
+    canDo: 'I can say what I have and what I do, and change a verb for the person doing it.',
+    blurb: 'The verbs that carry most sentences.',
+    games: ['having', 'verb-meaning', 'verb-person', 'verb-number'],
+    grammar: ['numbers'],
+  },
+  {
+    n: 3,
+    id: 'core',
+    title: 'Everyday words',
+    level: 'A1.1',
+    size: 150,
+    canDo: 'I can name the things around me with the right article, and say that something exists.',
+    blurb: 'The nouns and adjectives you will reach for constantly.',
+    games: ['existence', 'quantity'],
+    grammar: ['gender'],
+  },
+  {
+    n: 4,
+    id: 'famill',
+    title: 'People and family',
+    level: 'A1.2',
+    canDo: 'I can introduce myself and the people around me, and join two ideas together.',
+    blurb: 'The first thing any interview asks about, and the words for the people in your life.',
+    topics: ['famill'],
+    games: ['connectors', 'verb-form'],
+    grammar: ['nrule', 'wordorder'],
+  },
+  {
+    n: 5,
+    id: 'iessen',
+    title: 'Food and drink',
+    level: 'A1.2',
+    canDo: 'I can ask for what I want in a shop or a café, and say what I do not want.',
+    blurb: 'Ordering, shopping, and saying no politely.',
+    topics: ['iessen'],
+    games: ['wanting', 'requesting'],
+    grammar: ['negation'],
+  },
+  {
+    n: 6,
+    id: 'wunnen',
+    title: 'Where you live',
+    level: 'A1.2',
+    canDo: 'I can say where something is, and say what I like and do not like.',
+    blurb: 'Your home, the household, and where things are.',
+    topics: ['wunnen', 'stot'],
+    games: ['location', 'liking'],
+    grammar: ['likes'],
+  },
+  {
+    n: 7,
+    id: 'aarbecht',
+    title: 'Work and languages',
+    level: 'A2.1',
+    canDo: 'I can say what I do for a living, what I have to do, and what I did.',
+    blurb: 'The most common interview topic of all, and the past tense it needs.',
+    topics: ['aarbecht', 'sproochen'],
+    games: ['obligation', 'verb-past'],
+    grammar: ['perfect-aux', 'perfect-form'],
+  },
+  {
+    n: 8,
+    id: 'transport',
+    title: 'Getting around',
+    level: 'A2.1',
+    canDo: 'I can say how I travel, when, and what I can and cannot do.',
+    blurb: 'Transport, journeys and holidays — and the verb bracket they pull apart.',
+    topics: ['transport', 'vakanz'],
+    games: ['ability', 'time'],
+    grammar: ['bracket'],
+  },
+  {
+    n: 9,
+    id: 'gesondheet',
+    title: 'Health and sport',
+    level: 'A2.2',
+    canDo: 'I can say how I feel, what hurts, and say no to things properly.',
+    blurb: 'The body, staying well, and sport — plus the dative these lean on.',
+    topics: ['gesondheet', 'sport'],
+    games: ['negation'],
+    grammar: ['dative'],
+  },
+  {
+    n: 10,
+    id: 'fräizäit',
+    title: 'Free time',
+    level: 'A2.2',
+    canDo: 'I can give an opinion and say why, in a sentence with two halves.',
+    blurb: 'Hobbies, reading, media and making things — and the clause that carries an opinion.',
+    topics: ['hobbyen', 'liesen', 'medien', 'kreativitéit'],
+    games: ['opinion'],
+    grammar: ['subclause'],
+  },
+  {
+    n: 11,
+    id: 'feierdeeg',
+    title: 'The year and celebrations',
+    level: 'A2.3',
+    canDo: 'I can describe people and things in detail — which is the second exam task.',
+    blurb: 'Seasons, holidays, presents and clothes, with the adjective endings a description needs.',
+    topics: ['joreszäiten', 'feierdeeg', 'kaddoen', 'kleeder'],
+    grammar: ['adjective'],
+  },
+  {
+    n: 12,
+    id: 'exam',
+    title: 'Exam ready',
+    level: 'A2.3 · B1 listening',
+    canDo: 'I can hold the interview on any of the published topics, and follow a conversation at B1.',
+    blurb: 'What is left of the A2 vocabulary, and the listening the exam sets a whole level higher.',
+  },
 ];
 
 /**
@@ -93,6 +249,24 @@ function rankDeck(items, counts) {
   const stage = new Map();
   const verbBand = [];
   const coreBand = [];
+
+  // Which unit first wants a given theme. A word carrying several themes lands
+  // in the earliest one that wants it, so nothing is taught twice and the unit
+  // that needs it soonest gets it.
+  const unitOfTopic = new Map();
+  for (const unit of STAGES) {
+    for (const topic of unit.topics ?? []) if (!unitOfTopic.has(topic)) unitOfTopic.set(topic, unit.n);
+  }
+  const themed = (item) => {
+    let earliest = null;
+    for (const topic of item.topics ?? []) {
+      const n = unitOfTopic.get(topic);
+      if (n && (earliest === null || n < earliest)) earliest = n;
+    }
+    return earliest;
+  };
+  const LAST = STAGES[STAGES.length - 1].n;
+
   for (const item of ordered) {
     if (item.starter) {
       stage.set(item.id, 1);
@@ -106,7 +280,11 @@ function rankDeck(items, counts) {
       coreBand.push(item.id);
       stage.set(item.id, 3);
     } else {
-      stage.set(item.id, item.level === 'A2' ? 5 : 4);
+      // Everything past the engine is placed by theme, because that is how the
+      // exam asks about it and how the official course teaches it. A word with
+      // no theme has no unit to belong to, so it waits for the last one — which
+      // is where the leftover A2 vocabulary genuinely belongs.
+      stage.set(item.id, themed(item) ?? LAST);
     }
   }
 
@@ -115,8 +293,24 @@ function rankDeck(items, counts) {
     ...item,
     freq: freqOf(item),
     rank: rankById.get(item.id),
-    stage: stage.get(item.id) ?? 4,
+    stage: stage.get(item.id) ?? STAGES[STAGES.length - 1].n,
   }));
 }
 
-module.exports = { countEntries, rankDeck, STAGES };
+/**
+ * The unit a grammar exercise belongs to, by its kind.
+ *
+ * Built from the units themselves so there is one list rather than two that can
+ * disagree. Before this the grammar deck carried no unit at all and was mixed
+ * in by a round-robin, which meant adjective endings — an A2 topic the guide
+ * teaches seventeenth — could appear on day three beside the definite article.
+ */
+function grammarUnits() {
+  const byKind = new Map();
+  for (const unit of STAGES) {
+    for (const kind of unit.grammar ?? []) byKind.set(kind, unit.n);
+  }
+  return byKind;
+}
+
+module.exports = { countEntries, rankDeck, grammarUnits, STAGES };
