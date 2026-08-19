@@ -192,9 +192,37 @@ export async function render(root, { settings, navigate }) {
       { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
       newLeft === 0
         ? "Today's new words are done, so these counts stop here until tomorrow. Tapping a step still reviews what you have already met."
-        : `Words come in this order — the ones that build sentences first, then whatever turns up most often. ${plural(newLeft, 'new word')} left today.`,
+        : `Twelve units, in the order the official course teaches them: the sentence engine first, then the topics the exam interviews on. ${plural(newLeft, 'new word')} left today.`,
     ),
     stageList(path, current, newLeft),
+
+    // The games that check the current unit's can-do. They used to be a tab of
+    // their own, disconnected from the path; a can-do check belongs to the unit
+    // whose can-do it checks.
+    current?.games?.length
+      ? el(
+          'div',
+          { style: { marginBlockStart: 'var(--s4)' } },
+          el('p', { class: 'meter__label' }, `Check yourself — ${current.title}`),
+          el(
+            'p',
+            { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
+            `${current.canDo} These do not count towards the daily goal and never move your review schedule.`,
+          ),
+          el(
+            'div',
+            { class: 'chiprow' },
+            ...current.games.map((id) =>
+              el('a', { class: 'chip chip--pick', href: `#/arcade/${id}` }, gameTitle(id)),
+            ),
+            el('a', { class: 'chip', href: '#/arcade' }, 'All games'),
+          ),
+        )
+      : el(
+          'div',
+          { style: { marginBlockStart: 'var(--s4)' } },
+          el('a', { class: 'chip chip--pick', href: '#/arcade' }, 'All games'),
+        ),
 
     sectionLabel('Vocabulary decks'),
     // The one place the two bars are explained, rather than a gloss repeated
@@ -381,6 +409,39 @@ function nextAction(due, today, current, mistakeCount) {
  * "Word 812 of 2,449" tells you nothing. "You are on Everyday verbs, 14 of 120"
  * tells you where you are and what it is for.
  */
+/**
+ * A game's name, without loading the whole Arcade module into Learn.
+ *
+ * The ids come from the unit list in the content, which is built by the
+ * pipeline and cannot import an app module — so the titles are looked up here.
+ * A test asserts this map covers every id any unit names, which is what stops
+ * a renamed game showing as a raw id on the path.
+ */
+const GAME_TITLES = {
+  naming: 'Naming',
+  existence: 'Existence',
+  having: 'Having',
+  wanting: 'Wanting',
+  requesting: 'Requesting',
+  ability: 'Ability & permission',
+  obligation: 'Need & obligation',
+  liking: 'Liking',
+  opinion: 'Opinion',
+  location: 'Location',
+  questions: 'Question words',
+  quantity: 'Quantity & price',
+  negation: 'Negation',
+  time: 'Time reference',
+  connectors: 'Connectors',
+  'verb-meaning': 'What does it mean?',
+  'verb-person': 'Who is doing it?',
+  'verb-form': 'Finish the table',
+  'verb-past': 'hunn or sinn?',
+  'verb-number': 'One or many?',
+};
+
+export const gameTitle = (id) => GAME_TITLES[id] ?? id;
+
 function stagePath(stages, items, seen) {
   return stages
     .map((stage) => {
@@ -416,8 +477,20 @@ function stageList(path, current, newLeft = 0) {
           el(
             'div',
             { class: 'spacer' },
-            el('p', { class: 'card__title' }, stage.title),
-            el('p', { class: 'card__note' }, stage.blurb),
+            el(
+              'p',
+              { class: 'card__title' },
+              stage.title,
+              // The CEFR sub-level the official course would call this. It is
+              // what makes the path legible against anything else the learner
+              // reads about the exam.
+              stage.level ? el('span', { class: 'stage__level' }, stage.level) : null,
+            ),
+            // The can-do is the unit's point, so it leads. The blurb explains
+            // the material; this says what you will be able to do with it,
+            // which is how the framework and the official course describe a
+            // level and how a learner actually judges progress.
+            el('p', { class: 'card__note' }, stage.canDo ?? stage.blurb),
           ),
           el(
             'div',

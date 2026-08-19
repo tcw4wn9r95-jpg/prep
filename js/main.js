@@ -75,10 +75,15 @@ const ROUTES = {
 // was to already be mid-way through Today's dynamic checklist or to have
 // found the readiness card. Listen and Speak now sit next to each other,
 // naming the two halves the whole app is built around.
+// The Arcade is no longer among them. Its games were a parallel progression
+// with their own tab and no relationship to the path — which meant the most
+// competence-shaped content in the app counted for nothing. Each game is now
+// the can-do check of the unit that needs it, reached from Learn and from the
+// unit itself. `screens/arcade.js` stays registered so `#/arcade/<id>` keeps
+// resolving: the briefs, the deep links and anything bookmarked still work.
 const TABS = [
   { route: 'today', label: 'Today', icon: 'M12 3 L20 9 v11 H4 V9 Z M9 20 v-6 h6 v6' },
   { route: 'learn', label: 'Learn', icon: 'M4 6 L12 3 L20 6 L12 9 Z M4 6 v9 L12 18 L20 15 v-9 M12 9 v9' },
-  { route: 'arcade', label: 'Arcade', icon: 'M4 9 h16 a2 2 0 0 1 2 2 v5 a2 2 0 0 1 -2 2 H4 a2 2 0 0 1 -2 -2 v-5 a2 2 0 0 1 2 -2 Z M7 12 v3 M5.5 13.5 h3 M16 13 h.01 M18 15 h.01' },
   { route: 'journey', label: 'Listen', icon: 'M4 13 a8 8 0 0 1 16 0 M4 13 v5 a2 2 0 0 0 2 2 h1 v-9 h-1 a2 2 0 0 0 -2 2 M20 13 v5 a2 2 0 0 1 -2 2 h-1 v-9 h1 a2 2 0 0 1 2 2' },
   { route: 'speaking', label: 'Speak', icon: 'M12 3 v10 M12 3 a3 3 0 0 1 3 3 v4 a3 3 0 0 1 -6 0 v-4 a3 3 0 0 1 3 -3 Z M5 11 a7 7 0 0 0 14 0 M12 18 v3' },
   // The cheat sheet earns a permanent slot: it is looked at *while* doing

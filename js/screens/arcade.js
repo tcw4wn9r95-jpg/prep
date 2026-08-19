@@ -299,7 +299,9 @@ function renderIndex(root, decks, verbs, { navigate, a1Only }) {
   const verbGames = VERB_GAMES.filter((game) => isVerbGamePlayable(game, pool));
 
   root.append(
-    screenHead({ title: 'Arcade', sub: 'The sentences that carry a conversation' }),
+    // `back` because this is no longer a tab: the games belong to the units
+    // now and this page is the full list, reached from Learn.
+    screenHead({ title: 'All games', sub: 'Every can-do check, in one place', back: '#/learn' }),
     el(
       'p',
       { class: 'card__note' },
