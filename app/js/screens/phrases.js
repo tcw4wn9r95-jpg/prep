@@ -12,22 +12,23 @@
  */
 
 import { loadPhrases } from '../content.js';
-import { getLearnDeckStates, buildSession, newWordsLeftToday, newWordGoal, listMistakes, mistakeEntryKeys } from '../store.js';
+import { getLearnDeckStates, buildSession, newWordsLeftToday, newWordGoal, listMistakes, mistakeEntryKeys , flaggedCards } from '../store.js';
 import { DECKS, isDrillable, boxIndex } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
 const SESSION_SIZE = 10;
 
 export async function render(root, { settings, navigate }) {
-  const [everything, states, newLeft, mistakeRows] = await Promise.all([
+  const [everything, states, newLeft, mistakeRows, flagged] = await Promise.all([
     loadPhrases(),
     getLearnDeckStates(settings.playerId, 'phrase'),
     newWordsLeftToday(settings.playerId, { target: newWordGoal(settings) }),
     listMistakes(settings.playerId),
+    flaggedCards(settings.playerId),
   ]);
 
   const all = everything.filter((item) => isDrillable(item, 'phrase'));
-  const plan = buildSession(all, states, { limit: SESSION_SIZE, newTarget: newLeft, deckId: 'phrase', mistakes: mistakeEntryKeys(mistakeRows) });
+  const plan = buildSession(all, states, { limit: SESSION_SIZE, newTarget: newLeft, deckId: 'phrase', mistakes: mistakeEntryKeys(mistakeRows), flagged });
   if (plan.length === 0) return nothingDue({ root, title: 'Phrases', back: '#/learn', navigate, total: all.length, capped: newLeft === 0 });
 
   return runSession({

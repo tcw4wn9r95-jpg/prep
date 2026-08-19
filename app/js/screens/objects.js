@@ -26,7 +26,8 @@
 import { el, fill, screenHead, button, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { loadWordImages } from '../content.js';
-import { touchStreak } from '../store.js';
+import { touchStreak, suppressedFor } from '../store.js';
+import { flagSlot } from '../flag.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
 import { choiceInput } from '../drill/inputs.js';
 
@@ -68,7 +69,8 @@ export function choiceOptionsFor(item, pool, random = Math.random) {
 }
 
 export async function render(root, { settings, navigate }) {
-  const images = await loadWordImages();
+  const flagged = await suppressedFor('objects', settings.playerId);
+  const images = (await loadWordImages()).filter((item) => !flagged.has(item.id));
 
   if (images.length < ROUND_SIZE) {
     root.append(
@@ -111,6 +113,7 @@ function playRound({ body, pool, words, settings, navigate }) {
   const credit = el('p', { class: 'source-note', style: { textAlign: 'center' } });
   const instruction = el('p', { class: 'drill__instruction' }, 'What is this?');
   const inputHolder = el('div', {});
+  const flag = flagSlot();
 
   fill(
     body,
@@ -119,6 +122,7 @@ function playRound({ body, pool, words, settings, navigate }) {
     instruction,
     inputHolder,
     el('div', { class: 'card' }, amelie.el),
+    flag.el,
   );
 
   amelie.say('What is this? Tap the Lëtzebuergesch word.', 'idle');
@@ -127,6 +131,7 @@ function playRound({ body, pool, words, settings, navigate }) {
 
   function showCard() {
     const item = words[index];
+    flag.set({ playerId: settings.playerId, source: 'objects', id: item.id, label: item.lb ?? item.id });
     photo.src = item.imageUrl;
     photo.alt = 'Guess the word';
     credit.textContent = `${item.imageCredit ?? 'Unknown'} · ${item.imageLicence ?? ''}`;

@@ -17,8 +17,9 @@ import { el, fill, screenHead, button, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { GENDER_LABELS, joinArticle } from '../drill/cards.js';
 import { loadVocab } from '../content.js';
-import { touchStreak } from '../store.js';
+import { touchStreak, suppressedFor } from '../store.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
+import { flagSlot } from '../flag.js';
 
 const ROUND_SIZE = 10;
 // The most frequent nouns only — sorting `Wunngemeinschaft`'s gender on sight
@@ -48,7 +49,10 @@ export function roundFrom(pool, random = Math.random) {
 
 export async function render(root, { settings, navigate }) {
   const vocab = await loadVocab();
-  const pool = genderPool(vocab);
+  // Words called out as not making sense, or as coming round too often, are
+  // left out of the draw — see `flagCard` in store.js.
+  const flagged = await suppressedFor('gender-sort', settings.playerId);
+  const pool = genderPool(vocab).filter((word) => !flagged.has(word.id));
 
   if (pool.length < ROUND_SIZE) {
     root.append(
@@ -77,11 +81,14 @@ function playRound({ body, words, settings, navigate }) {
   const wordEl = el('p', { class: 'screen__title', style: { textAlign: 'center', marginBlockStart: 'var(--s4)' } });
   const buttons = el('div', { class: 'options' });
 
+  const flag = flagSlot();
+
   fill(
     body,
     el('div', { class: 'row row--between' }, el('span', { class: 'meter__label' }, 'Gender Sort'), scoreLabel),
     el('div', { class: 'card' }, wordEl, buttons),
     el('div', { class: 'card' }, amelie.el),
+    flag.el,
   );
 
   showWord();
@@ -90,6 +97,7 @@ function playRound({ body, words, settings, navigate }) {
     locked = false;
     const word = words[index];
     wordEl.textContent = word.lb;
+    flag.set({ playerId: settings.playerId, source: 'gender-sort', id: word.id, label: word.lb });
     fill(
       buttons,
       ...GENDERS.map((code) =>

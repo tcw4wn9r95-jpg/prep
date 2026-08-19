@@ -1039,6 +1039,77 @@ async function main() {
     process.stdout.write(`  no overflow at ${sizes.map((size) => `${size.width}px`).join(', ')}\n`);
   });
 
+  await step('every exercise offers a way to report the card', async () => {
+    // The decks are generated, and generated content fails in ways no test
+    // predicts — several wrong glosses have been found by using the app and
+    // noticing. This is that path, so it has to be on every exercise rather
+    // than on the ones that were easy to reach.
+    const routes = ['#/vocab', '#/verbs', '#/phrases', '#/grammar', '#/gender-sort', '#/forms'];
+    for (const route of routes) {
+      await openFresh(route);
+      await page.waitForSelector('.options .option, .field, .bank__tile, .empty', { timeout: 5000 });
+      if ((await page.locator('.empty').count()) > 0) continue; // nothing due is a legitimate state
+      const report = page.getByRole('button', { name: 'Something wrong with this card?' });
+      if ((await report.count()) === 0) throw new Error(`${route} has no way to report a card`);
+    }
+
+    // Both Arcade halves too.
+    for (const id of ['having', 'verb-person']) {
+      await openArcadeRound(id);
+      if ((await page.getByRole('button', { name: 'Something wrong with this card?' }).count()) === 0) {
+        throw new Error(`#/arcade/${id} has no way to report a card`);
+      }
+    }
+    await shot('16w-flag-button');
+  });
+
+  await step('a reported card does not come back, and can be un-reported', async () => {
+    // The failure this guards is the one that matters: a button that says
+    // "noted" and then serves the same card tomorrow is worse than no button.
+    await clearLearn();
+    await openFresh('#/gender-sort');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+
+    const wordOf = async () => (await page.locator('#screen .screen__title').last().textContent())?.trim();
+    const flagged = await wordOf();
+    if (!flagged) throw new Error('no word on the first card');
+
+    await page.getByRole('button', { name: 'Something wrong with this card?' }).click();
+    await page.getByRole('button', { name: 'This does not make sense' }).click();
+    await page.waitForSelector('.flag__done', { timeout: 5000 });
+    await shot('16x-flag-sent');
+
+    // Ten fresh rounds: the word was drawn from a pool of hundreds, so seeing
+    // it once more would be luck, but never seeing it across ten rounds of ten
+    // is the filter working.
+    for (let round = 0; round < 10; round += 1) {
+      await openFresh('#/gender-sort');
+      await page.waitForSelector('.options .option', { timeout: 5000 });
+      for (let card = 0; card < 10; card += 1) {
+        const shown = await wordOf();
+        if (shown === flagged) throw new Error(`"${flagged}" was reported but came back`);
+        if ((await page.locator('.options .option').count()) === 0) break;
+        await page.locator('.options .option').first().click();
+        await page.waitForTimeout(750);
+      }
+    }
+    process.stdout.write(`  "${flagged}" stayed out of ten rounds after being reported\n`);
+
+    // And Settings can list it and take it back — a report you cannot undo is
+    // a trap, because these are snap judgements made mid-exercise.
+    await openFresh('#/settings');
+    await page.waitForSelector('text=Cards you reported', { timeout: 5000 });
+    const listed = await page.locator('#screen').innerText();
+    if (!listed.includes(flagged)) throw new Error(`Settings does not list the reported card: ${flagged}`);
+    await shot('16y-flag-settings');
+
+    await page.getByRole('button', { name: 'Undo' }).first().click();
+    await page.waitForTimeout(300);
+    await openFresh('#/settings');
+    const after = await page.locator('#screen').innerText();
+    if (after.includes(flagged)) throw new Error('undo did not remove the report');
+  });
+
   await step('the cheat sheet shows pronouns, verb tables and sentence patterns', async () => {
     await openFresh('#/reference');
     await page.waitForSelector('.ref-pronoun', { timeout: 5000 });

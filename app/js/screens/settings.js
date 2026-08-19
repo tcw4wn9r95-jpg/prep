@@ -11,8 +11,8 @@
  *               device and each device pays for its own explanations.
  */
 
-import { el, screenHead, button } from '../dom.js';
-import { getSettings, saveSettings, DAILY_GOALS, goalCards, NEW_WORD_GOALS, newWordGoal } from '../store.js';
+import { el, fill, screenHead, button } from '../dom.js';
+import { listFlags, unflagCard, flagActive, FLAG_REASONS, getSettings, saveSettings, DAILY_GOALS, goalCards, NEW_WORD_GOALS, newWordGoal } from '../store.js';
 import { keyWarning, looksLikeApiKey } from '../anthropic.js';
 import { setChimeEnabled, chimePreview } from '../chime.js';
 import { loadDeployInfo } from '../content.js';
@@ -20,6 +20,7 @@ import { loadDeployInfo } from '../content.js';
 export async function render(root, { navigate }) {
   const settings = await getSettings();
   const deployInfo = await loadDeployInfo();
+  const flags = (await listFlags()).filter((flag) => flag.playerId === settings.playerId);
 
   const apiKey = field({
     id: 'apikey',
@@ -210,6 +211,9 @@ export async function render(root, { navigate }) {
       ),
     ),
 
+    sectionLabel('Cards you reported'),
+    flagsCard(flags, settings.playerId),
+
     sectionLabel('Arcade'),
     el(
       'div',
@@ -288,6 +292,80 @@ function aboutRows(deployInfo) {
       'If this looks old, the app is a cache-first PWA — fully close and reopen it (or hard-refresh a browser tab) to pick up a newer deploy.',
     ),
   ];
+}
+
+/**
+ * What has been reported, and the way to undo it.
+ *
+ * A report that cannot be taken back is a trap: the whole point is that these
+ * are snap judgements made mid-exercise, and some of them will be wrong — a
+ * card flagged in irritation on a bad day should not be gone for good with no
+ * way to find out what was lost.
+ */
+function flagsCard(flags, playerId) {
+  if (flags.length === 0) {
+    return el(
+      'div',
+      { class: 'card' },
+      el(
+        'p',
+        { class: 'card__note' },
+        'Nothing reported yet. Every exercise has a “Something wrong with this card?” link at the bottom — use it when a question does not make sense, or when you have seen it far too often.',
+      ),
+    );
+  }
+
+  const rows = el('div', { class: 'stack' });
+  const render = (list) => {
+    fill(
+      rows,
+      ...list.map((flag) => {
+        const resting = flag.reason === 'repetitive';
+        const active = flagActive(flag);
+        return el(
+          'div',
+          { class: 'row row--between', style: { gap: 'var(--s3)', alignItems: 'flex-start' } },
+          el(
+            'span',
+            { class: 'spacer' },
+            el('span', { class: 'card__title' }, flag.label),
+            el(
+              'span',
+              { class: 'card__note' },
+              `${FLAG_REASONS[flag.reason] ?? flag.reason}` +
+                (resting ? (active ? ' · resting' : ' · back in the deck') : '') +
+                (flag.count > 1 ? ` · reported ${flag.count} times` : ''),
+            ),
+          ),
+          el(
+            'button',
+            {
+              type: 'button',
+              class: 'chip chip--action',
+              onclick: async () => {
+                await unflagCard(playerId, flag.source, flag.itemId);
+                const remaining = list.filter((row) => row.key !== flag.key);
+                render(remaining);
+              },
+            },
+            'Undo',
+          ),
+        );
+      }),
+    );
+  };
+  render(flags);
+
+  return el(
+    'div',
+    { class: 'card' },
+    rows,
+    el(
+      'p',
+      { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } },
+      'A card that does not make sense stays out until you undo it. One you have simply seen too often rests for a fortnight and then comes back — its place in the review schedule is untouched either way.',
+    ),
+  );
 }
 
 function sectionLabel(text) {

@@ -2663,3 +2663,88 @@ through to the notecard and checks `gär` is on the page it lands on.
 
 `npm test` 275 (4 new) · `validate` PASS · `npm run walkthrough` 62/62 ·
 `sw.js` → `v41`.
+
+---
+
+# Follow-up 22 — a way to say "this card is wrong"
+
+> "Add a feedback mechanism on all exercises (a small button on the bottom)
+> that allows me to call out a question/answer that does not make sense or that
+> is repeated far too many times. This then is used as a feedback on the
+> questions for next time."
+
+The decks are generated — mined out of LOD by the pipeline — and generated
+content fails in ways no test predicts. This document is largely a record of
+that: a gloss that was the wrong sense of a homograph (Follow-up 16), a verb
+labelled with a different verb's meaning (Follow-up 19), a picture game showing
+identifiable people (earlier still). Every one was found by someone using the
+app and saying so, and every one took a conversation to get from noticing to
+fixed. This is that path, made one tap long.
+
+## Two complaints, deliberately not one
+
+The button asks which problem it is, because a single suppression rule would
+get one of them wrong:
+
+| what you tap | what happens | why |
+| --- | --- | --- |
+| This does not make sense | out of the deck until undone | nothing is gained by showing a broken card again, however long ago it was reported |
+| I have seen this far too often | rests a fortnight, then returns | the card is fine — the *frequency* is the complaint, and suppressing it forever would fight the scheduler for a word that may genuinely not be learned yet |
+
+Treating them the same in either direction is wrong: resting a broken card for
+two weeks just delays showing something broken, and permanently hiding a card
+you were merely bored of quietly removes a word you still need.
+
+## What a flag does not do
+
+It does not touch the Leitner box. A flagged card keeps its real schedule and
+simply stops being drawn, so undoing the flag restores the card as it was
+rather than as a new word — and flagging cannot be used, deliberately or
+otherwise, to make the progress numbers look better. There is a test asserting
+the scheduler state is unchanged after a flagged build, because that property
+is invisible from the screen.
+
+## One filter, five screens
+
+The drill decks all reach the round through `buildSession` /
+`buildMixedSession`, so the filter went *there* rather than into each of the
+five screens that call them. That is the difference between a rule and a
+convention: a sixth screen added later cannot forget to apply it.
+
+The games outside the drill engine — the picture game, the dative game, Gender
+Sort, and both halves of the Arcade — filter their own pools, because each
+builds its round its own way.
+
+Two of those needed an identity first. An Arcade card is assembled rather than
+looked up — a frame plus one of its examples, or a grammar row rendered four
+different ways — so there is no deck id to flag. `arcadeCardId` and
+`verbCardId` name a card by its pattern, its shape and its answer, which is
+what stays the same on a future round and is therefore what a flag can still
+match against.
+
+## Reporting is reversible
+
+A report you cannot take back is a trap: these are snap judgements made
+mid-exercise and some will be wrong. Settings gains a **Cards you reported**
+list — what it was, which complaint, whether a rested card is back yet, and how
+many times it has been reported — with Undo on each row.
+
+## Verification
+
+`npm test` 282 (7 new in `flags.test.js`) · `validate` PASS ·
+`npm run walkthrough` 64/64 · IndexedDB → v6 for the new `flags` store ·
+`sw.js` → `v42`.
+
+The unit tests are about the *consequence*, not the record — a button that says
+"noted" and then serves the same card tomorrow is worse than no button, because
+it spends the goodwill and teaches that reports are ignored. So: the rest
+period is asserted at day 1, day 13 and day 15; suppression is checked to be
+per-player and per-exercise (the picture game and the vocabulary deck can hold
+the same lemma id and are not the same card); and both builders are checked to
+drop only the reported card and only in its own deck.
+
+The walkthrough proves the same thing end-to-end and is the assertion worth
+having: it reports a Gender Sort card, then plays **ten fresh rounds of ten**
+and fails if the word ever reappears. Drawn from a pool of hundreds, seeing it
+once more would be luck — never seeing it across a hundred cards is the filter
+working. It then finds the card in Settings and undoes it.
