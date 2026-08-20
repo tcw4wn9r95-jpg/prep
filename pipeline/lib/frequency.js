@@ -114,7 +114,7 @@ const STAGES = [
     canDo: 'I can say what I have and what I do, and change a verb for the person doing it.',
     blurb: 'The verbs that carry most sentences.',
     games: ['having', 'verb-meaning', 'verb-person', 'verb-number'],
-    grammar: ['numbers'],
+    grammar: ['numbers', 'heard'],
   },
   {
     n: 3,

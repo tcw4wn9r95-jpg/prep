@@ -629,3 +629,28 @@ test('cards: the number card asks for a value, and never gaps a sentence', () =>
     assert.match(card.instruction, /how is this number said/i);
   }
 });
+
+test('cards: a listening card is the recording, and shows nothing that answers it', () => {
+  // Two ways this card can give itself away, both found in a browser rather
+  // than in theory: rendering the sentence as the prompt, and — the subtler
+  // one — the audio-failure fallback printing the transcript, which every
+  // other card wants and this one must not have.
+  for (const { item, card } of grammarCards()) {
+    if (item.kind !== 'heard') continue;
+    assert.equal(card.type, 'listen');
+    assert.ok(card.prompt.audioId, 'a listening card with no recording is four options and no question');
+    assert.ok(card.prompt.hideBody, 'the sentence must not be rendered — reading it answers the card');
+    assert.ok(!card.prompt.sentence, 'nothing that contains the answer may be on the card before it is answered');
+    assert.match(card.instruction, /^Listen\./);
+  }
+
+  const source = require('node:fs').readFileSync(
+    require('node:path').join(__dirname, '..', '..', 'app', 'js', 'drill', 'engine.js'),
+    'utf8',
+  );
+  assert.match(
+    source,
+    /kind === 'heard'[\s\S]{0,200}needs sound/,
+    'the audio-failure fallback must not print the transcript of a listening card',
+  );
+});

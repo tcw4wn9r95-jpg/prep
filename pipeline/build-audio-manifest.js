@@ -22,12 +22,13 @@ async function readJson(name) {
 }
 
 async function main() {
-  const [listening, interviews, vocab, verbs, phrases] = await Promise.all([
+  const [listening, interviews, vocab, verbs, phrases, grammar] = await Promise.all([
     readJson('listening.json'),
     readJson('interviews.json'),
     readJson('vocab.json'),
     readJson('verbs.json'),
     readJson('phrases.json'),
+    readJson('grammar.json'),
   ]);
 
   const audioIds = new Set();
@@ -42,6 +43,10 @@ async function main() {
   // mirroring and precaching or the deck is silent offline.
   for (const item of phrases.items ?? []) for (const example of item.examples ?? []) audioIds.add(example.audioId);
   for (const item of verbs.items) if (item.example?.audioId) audioIds.add(item.example.audioId);
+  // The `heard` cards are nothing *but* their recording — the sentence is not
+  // shown until the card is answered — so an unmirrored one is a blank card
+  // rather than a card without sound.
+  for (const item of grammar.items ?? []) if (item.kind === 'heard' && item.example?.audioId) audioIds.add(item.example.audioId);
 
   await writeJson(path.join(paths.CONTENT_DIR, 'audio-manifest.json'), {
     meta: {
@@ -54,7 +59,7 @@ async function main() {
     audioIds: [...audioIds].sort(),
   });
 
-  console.log(`audio manifest: ${audioIds.size} distinct recordings across listening, interviews, vocab, verbs and phrases`);
+  console.log(`audio manifest: ${audioIds.size} distinct recordings across listening, interviews, vocab, verbs, phrases and the heard-in-audio cards`);
 }
 
 main().catch((error) => {

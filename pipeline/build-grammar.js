@@ -47,7 +47,7 @@ const { writeJson } = require('./lib/write-json');
 const { tokenise, sentences } = require('./lib/lux-text');
 const { createChecker, startsTrigger, hasOpaqueOnset } = require('./lib/nrule');
 const { locateTarget, spanOf } = require('./lib/cloze');
-const { makeGate } = require('./lib/gate');
+const { makeGate, audioIdOf } = require('./lib/gate');
 const { grammarUnits } = require('./lib/frequency');
 
 const OUT_CONTENT = path.join(paths.ITEMS_DIR, 'grammar.json');
@@ -883,6 +883,156 @@ function numberItems(corpus, lexicon) {
   return items;
 }
 
+
+/* ------------------------------------------------------- heard: the audio */
+
+/**
+ * Months, weekdays and clock words, spelled as LOD spells them.
+ *
+ * Capitalisation is load-bearing rather than cosmetic. `Mee` is May (MEE1,
+ * SUBST) and `mee` is "but" (MEE2, CONJ) — the commonest conjunction in the
+ * language. Matching case-insensitively would have put "but" on a card asking
+ * which month you heard, several hundred times.
+ */
+const MONTHS = [
+  'Januar', 'Februar', 'Mäerz', 'Abrëll', 'Mee', 'Juni',
+  'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember',
+];
+const WEEKDAYS = ['Méindeg', 'Dënschdeg', 'Mëttwoch', 'Donneschdeg', 'Freideg', 'Samschdeg', 'Sonndeg'];
+const TIME_WORDS = ['Auer', 'Stonn', 'Minutt', 'Véierel', 'Mëtteg', 'Nuecht', 'hallef', 'moies', 'mëttes', 'owes'];
+
+/** A sentence long enough to carry the number and short enough to hold. */
+const HEARD_MAX_WORDS = 16;
+/** Per distinct answer, so one value cannot fill the deck. */
+const MAX_PER_HEARD_ANSWER = 3;
+
+/**
+ * Near misses for a number, by ear.
+ *
+ * 6, 16 and 60 are the confusion worth drilling — the same syllable with
+ * -zéng or -zeg after it. Falls back to neighbours when the decades do not
+ * apply, so every card still gets three options.
+ */
+function heardNumberDistractors(value) {
+  const candidates = [];
+  if (value >= 1 && value <= 9) candidates.push(value + 10, value * 10, value + 1, value - 1);
+  else if (value >= 13 && value <= 19) candidates.push((value - 10) * 10, value - 10, value + 1, value - 1);
+  else if (value >= 20 && value <= 90 && value % 10 === 0) candidates.push(value / 10 + 10, value / 10, value + 10, value - 10);
+  else candidates.push(value + 1, value - 1, value + 10, value * 10, Math.floor(value / 10));
+  return [...new Set(candidates)].filter((other) => other !== value && other >= 0);
+}
+
+/**
+ * Listening cards: a recording, and what was said in it.
+ *
+ * Asked for as "cut audio snippets where numbers are said, with a few seconds
+ * context". No cutting is involved, and that is a feature rather than a
+ * shortcut: LOD publishes one recording per example sentence and those run two
+ * to eight seconds, so the clip already *is* the snippet with its context.
+ * Cutting a longer recording at the right word would need forced alignment —
+ * word-level timestamps we do not have and cannot derive offline — and would
+ * risk clipping the very word the card is about.
+ *
+ * Numbers are answered with digits rather than with the written word, on
+ * purpose: this is a test of what you heard, and offering the spelling would
+ * turn it back into a reading exercise. Months, weekdays and clock words are
+ * answered with the word, because there the word *is* the vocabulary.
+ */
+function heardItems(corpus, lexicon) {
+  const isClean = makeGate(lexicon);
+  const perAnswer = new Map();
+  // LOD reuses the same example — and therefore the same recording — across
+  // several dictionary entries, so the outer walk reaches one clip more than
+  // once. Without this the deck ships the same card twice under one id.
+  const seen = new Set();
+  const items = [];
+
+  const subjects = [
+    { subject: 'month', words: MONTHS, caseSensitive: true },
+    { subject: 'weekday', words: WEEKDAYS, caseSensitive: true },
+    { subject: 'time', words: TIME_WORDS, caseSensitive: true },
+  ];
+
+  for (const entry of corpus.entries) {
+    for (const meaning of entry.meanings ?? []) {
+      for (const example of meaning.examples ?? []) {
+        const text = example.text;
+        const audioId = example.audio ? audioIdOf(example.audio) : null;
+        if (!text || !audioId) continue;
+        if (text.split(/\s+/).filter(Boolean).length > HEARD_MAX_WORDS) continue;
+        if (!isClean(text)) continue;
+
+        const raw = text.split(/[^\p{L}\p{N}'’-]+/u).filter(Boolean);
+        let found = null;
+
+        // A number, written either as a word or as digits.
+        for (const token of raw) {
+          const lower = token.toLowerCase();
+          if (NUMBER_VALUES[lower] !== undefined) {
+            found = { subject: 'number', answer: String(NUMBER_VALUES[lower]), spoken: token };
+            break;
+          }
+          if (/^\d{1,4}$/.test(token)) {
+            found = { subject: 'number', answer: String(Number(token)), spoken: token };
+            break;
+          }
+        }
+
+        // Otherwise a month, a weekday or a clock word — case-sensitively, so
+        // "but" is never offered as a month.
+        if (!found) {
+          for (const { subject, words } of subjects) {
+            const hit = words.find((word) => raw.includes(word));
+            if (hit) {
+              found = { subject, answer: hit, spoken: hit };
+              break;
+            }
+          }
+        }
+        if (!found) continue;
+
+        const key = `${found.subject}|${found.answer}`;
+        if ((perAnswer.get(key) ?? 0) >= MAX_PER_HEARD_ANSWER) continue;
+
+        const id = `gr-heard-${shortHash(`${audioId}|${found.answer}`)}`;
+        if (seen.has(id)) continue;
+        let pool;
+        if (found.subject === 'number') pool = heardNumberDistractors(Number(found.answer)).map(String);
+        else if (found.subject === 'month') pool = MONTHS.filter((word) => word !== found.answer);
+        else if (found.subject === 'weekday') pool = WEEKDAYS.filter((word) => word !== found.answer);
+        else pool = TIME_WORDS.filter((word) => word !== found.answer);
+
+        const picked = [];
+        const rest = [...pool];
+        for (let n = 0; n < 3 && rest.length; n += 1) {
+          const at = parseInt(shortHash(`${id}:${n}`).slice(0, 6), 16) % rest.length;
+          picked.push(rest.splice(at, 1)[0]);
+        }
+        if (picked.length < 3) continue;
+
+        const options = [found.answer, ...picked];
+        const at = rotate(id, options.length);
+        const rotated = [...options.slice(at), ...options.slice(0, at)];
+
+        items.push({
+          id,
+          kind: 'heard',
+          subject: found.subject,
+          // Never rendered before the answer — the whole card is the sound.
+          example: { lb: text, audioId },
+          options_lb: rotated,
+          correct: rotated.indexOf(found.answer),
+          spoken: found.spoken,
+          entryId: entry.id,
+        });
+        perAnswer.set(key, (perAnswer.get(key) ?? 0) + 1);
+        seen.add(id);
+      }
+    }
+  }
+  return items;
+}
+
 /* ------------------------------------------------------------------ dative */
 
 /**
@@ -1005,6 +1155,7 @@ async function main() {
   const perfectAux = perfectAuxItems(verbs);
   const perfectForm = perfectFormItems(corpus, lexicon, verbs);
   const numbers = numberItems(corpus, lexicon);
+  const heard = heardItems(corpus, lexicon);
   const dative = dativeItems(corpus, lexicon);
   const likes = likesItems(corpus, lexicon);
   const wordorder = orderItems(corpus, lexicon, {
@@ -1035,14 +1186,14 @@ async function main() {
 
   const items = [
     ...gender, ...nrule, ...adjective, ...perfectAux, ...perfectForm, ...wordorder, ...bracket, ...subclause,
-    ...negation, ...numbers, ...dative, ...likes,
+    ...negation, ...numbers, ...heard, ...dative, ...likes,
   ];
 
   console.log(
     `grammar: ${gender.length} gender, ${nrule.length} n-rule, ${adjective.length} adjective-agreement, ` +
       `${perfectAux.length} perfect-auxiliary, ${perfectForm.length} perfect-participle, ` +
       `${wordorder.length} word-order, ${bracket.length} verb-bracket, ${subclause.length} verb-final, ` +
-      `${negation.length} negation, ${numbers.length} numbers, ${dative.length} dative, ${likes.length} likes (${items.length} total)`,
+      `${negation.length} negation, ${numbers.length} numbers, ${heard.length} heard-in-audio, ${dative.length} dative, ${likes.length} likes (${items.length} total)`,
   );
 
   // Which unit of the learning path each rule belongs to. Sequencing lives in
@@ -1075,6 +1226,7 @@ async function main() {
         subclause: subclause.length,
         negation: negation.length,
         numbers: numbers.length,
+        heard: heard.length,
         dative: dative.length,
         likes: likes.length,
         total: items.length,
@@ -1096,6 +1248,7 @@ if (require.main === module) {
 }
 
 module.exports = {
+  heardItems,
   genderItems, nRuleItems, adjectiveItems, numberItems, dativeItems, likesItems,
   NUMBER_WORDS, DATIVE_PRONOUNS, DATIVE_PREPOSITIONS, LIKES_WORDS,
 };

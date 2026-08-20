@@ -326,7 +326,7 @@ test('grammar: the shipped deck carries only declared kinds, each internally con
     assert.ok(
       [
         'gender', 'nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'bracket', 'subclause', 'negation',
-        'numbers', 'dative', 'likes',
+        'numbers', 'heard', 'dative', 'likes',
       ].includes(item.kind),
       `${item.id}: unknown kind "${item.kind}"`,
     );
@@ -538,5 +538,59 @@ test('grammar: the sentence-structure decks move only the word they name', (t) =
   // makes it a subordinate-clause exercise rather than a shuffle.
   for (const item of items.filter((i) => i.kind === 'subclause')) {
     assert.ok(['datt', 'ob'].includes(item.conjunction?.toLowerCase()), `${item.id}: unexpected conjunction`);
+  }
+});
+
+test('grammar/heard: every listening card has a recording, because that is the whole card', (t) => {
+  if (!fs.existsSync(SHIPPED)) return t.skip('no grammar.json yet');
+  const items = shipped().filter((item) => item.kind === 'heard');
+  assert.ok(items.length > 100, `expected a real listening deck, got ${items.length}`);
+
+  const mirrored = new Set(
+    fs.readdirSync(path.join(ROOT, 'app', 'assets', 'audio')).map((file) => file.replace(/\.[a-z0-9]+$/i, '')),
+  );
+
+  const subjects = new Map();
+  for (const item of items) {
+    subjects.set(item.subject, (subjects.get(item.subject) ?? 0) + 1);
+    // The sentence is never rendered before the answer, so an item without
+    // audio is not a quiet card — it is a blank one with four options.
+    assert.ok(item.example?.audioId, `${item.id}: no recording`);
+    assert.ok(mirrored.has(item.example.audioId), `${item.id}: recording is not mirrored, so the card is silent offline`);
+    assert.ok(item.example.lb, `${item.id}: no transcript to reveal after answering`);
+    assert.equal(item.options_lb.length, 4);
+    assert.equal(new Set(item.options_lb).size, 4, `${item.id}: duplicate options`);
+
+    // What was said has to actually be in the sentence, or the card is asking
+    // about something the recording does not contain.
+    assert.ok(item.spoken, `${item.id}: does not record what was said`);
+    assert.ok(item.example.lb.includes(item.spoken), `${item.id}: "${item.spoken}" is not in its own sentence`);
+  }
+
+  // All four asked for, and none of them a rounding error.
+  for (const subject of ['number', 'month', 'weekday', 'time']) {
+    assert.ok((subjects.get(subject) ?? 0) >= 15, `only ${subjects.get(subject) ?? 0} ${subject} cards`);
+  }
+});
+
+test('grammar/heard: "but" is never offered as a month', (t) => {
+  if (!fs.existsSync(SHIPPED)) return t.skip('no grammar.json yet');
+  // `Mee` is May and `mee` is "but", the commonest conjunction in the
+  // language. Matching case-insensitively would have put "but" on a card
+  // asking which month was said, several hundred times over.
+  for (const item of shipped().filter((item) => item.kind === 'heard' && item.subject === 'month')) {
+    assert.notEqual(item.spoken, 'mee', `${item.id}: matched the conjunction, not the month`);
+    assert.ok(/^[A-ZÄËÉÖÜ]/.test(item.spoken), `${item.id}: "${item.spoken}" is not capitalised, so it is not a month`);
+  }
+});
+
+test('grammar/heard: a number card is answered with the value, not the spelling', (t) => {
+  if (!fs.existsSync(SHIPPED)) return t.skip('no grammar.json yet');
+  // Offering the written word would turn a listening test back into a reading
+  // one. Digits keep it about what reached the ear.
+  for (const item of shipped().filter((item) => item.kind === 'heard' && item.subject === 'number')) {
+    for (const option of item.options_lb) {
+      assert.match(option, /^\d+$/, `${item.id}: "${option}" is not a value`);
+    }
   }
 });

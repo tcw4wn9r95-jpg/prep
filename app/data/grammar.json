@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-20T05:59:09.363Z",
+    "generatedAt": "2026-08-20T07:29:14.448Z",
     "generator": "pipeline/build-grammar.js",
     "note": "Every option is either a value LOD itself assigned (noun gender/article) or a span copied verbatim from a real LOD example sentence. Nothing here is generated, inflected or corrected by this script - see the file header.",
     "counts": {
@@ -14,13 +14,14 @@
       "subclause": 98,
       "negation": 180,
       "numbers": 22,
+      "heard": 205,
       "dative": 96,
       "likes": 38,
-      "total": 3244
+      "total": 3449
     },
     "a1": {
-      "rows": 3244,
-      "readable": 454
+      "rows": 3449,
+      "readable": 534
     }
   },
   "items": [
@@ -56799,6 +56800,4311 @@
         "a1": false
       },
       "entryId": "FUEREN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-ab164a8bf1",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "dës Nuecht war Vollmound, ech hu keen A zougemaach",
+        "audioId": "b3de65a52bb5ef20b334228c855c807d",
+        "a1": false
+      },
+      "options_lb": [
+        "Véierel",
+        "mëttes",
+        "Nuecht",
+        "hallef"
+      ],
+      "correct": 2,
+      "spoken": "Nuecht",
+      "entryId": "A1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-27aeb136a1",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "ech konnt mengen Aen net trauen, wéi et ufangs Juni geschneit huet",
+        "audioId": "fe5514e7de553868034146381374e7b6",
+        "a1": false
+      },
+      "options_lb": [
+        "Januar",
+        "Oktober",
+        "Februar",
+        "Juni"
+      ],
+      "correct": 3,
+      "spoken": "Juni",
+      "entryId": "A1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-feccdaade1",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "wat genee geschitt ass, soen ech der eng Kéier ënner véier Aen",
+        "audioId": "a9e7730cdf75963e378ab114ce644a00",
+        "a1": false
+      },
+      "options_lb": [
+        "40",
+        "5",
+        "3",
+        "4"
+      ],
+      "correct": 3,
+      "spoken": "véier",
+      "entryId": "A1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-12566aa936",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "e Wierfel huet sechs Säiten an 21 Aen",
+        "audioId": "854e6e1e7e1dc641995e5da38921daae",
+        "a1": false
+      },
+      "options_lb": [
+        "6",
+        "60",
+        "5",
+        "16"
+      ],
+      "correct": 0,
+      "spoken": "sechs",
+      "entryId": "A1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-127b3e8bef",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "am Musée sinn am Moment d'Aarbechte vu sechs bekannte Kënschtler ausgestallt",
+        "audioId": "98735f7479ea1fd911ee3b8bda9fc74a",
+        "a1": false
+      },
+      "options_lb": [
+        "5",
+        "7",
+        "16",
+        "6"
+      ],
+      "correct": 3,
+      "spoken": "sechs",
+      "entryId": "AARBECHT1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-1a5851bb37",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Kran, deen ëmgefall ass, huet zwee Aarbechter blesséiert",
+        "audioId": "d2a43649df55cd24268493f8657776c5",
+        "a1": false
+      },
+      "options_lb": [
+        "3",
+        "20",
+        "2",
+        "1"
+      ],
+      "correct": 2,
+      "spoken": "zwee",
+      "entryId": "AARBECHTER1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-4cbbc54811",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "en Oktopus erkennt een u sengen aacht Äerm",
+        "audioId": "eb6ebcc6abdd94435c2bde7d3168b000",
+        "a1": false
+      },
+      "options_lb": [
+        "9",
+        "7",
+        "8",
+        "18"
+      ],
+      "correct": 2,
+      "spoken": "aacht",
+      "entryId": "AARM2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-a06693d969",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Floss spléckt sech an zwee Äerm",
+        "audioId": "57c0534ff2cacb0d32ff6489a2162d30",
+        "a1": false
+      },
+      "options_lb": [
+        "3",
+        "1",
+        "2",
+        "12"
+      ],
+      "correct": 2,
+      "spoken": "zwee",
+      "entryId": "AARM2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-d3183dacda",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "d'Äispist ass vun Oktober bis Abrëll op",
+        "audioId": "0453cb478fb774c156eb2faf700f88ab",
+        "a1": false
+      },
+      "options_lb": [
+        "Mäerz",
+        "Dezember",
+        "Februar",
+        "Abrëll"
+      ],
+      "correct": 3,
+      "spoken": "Abrëll",
+      "entryId": "ABRELL1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-737a9b55c9",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "looss dech net uschmieren, haut ass den éischten Abrëll!",
+        "audioId": "50fdfb8d380265c83bef31e4ac8846b6",
+        "a1": false
+      },
+      "options_lb": [
+        "Januar",
+        "Juni",
+        "Abrëll",
+        "Mee"
+      ],
+      "correct": 2,
+      "spoken": "Abrëll",
+      "entryId": "ABRELL1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-bb98bba32c",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "mäi Papp kritt et all Joer ronn, mech an den Abrëll ze schécken!",
+        "audioId": "d4e0982fd897b30db2595c25fcccdecb",
+        "a1": false
+      },
+      "options_lb": [
+        "November",
+        "Abrëll",
+        "Dezember",
+        "Oktober"
+      ],
+      "correct": 1,
+      "spoken": "Abrëll",
+      "entryId": "ABRELL1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-208ec3bd47",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "no zéng Joer an Däitschland hat e säi lëtzebuergeschen Accent verluer",
+        "audioId": "088412b047813d815b573162714ceef3",
+        "a1": false
+      },
+      "options_lb": [
+        "10",
+        "11",
+        "20",
+        "100"
+      ],
+      "correct": 0,
+      "spoken": "zéng",
+      "entryId": "ACCENT1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-451b17f43e",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "een Af mécht der honnert",
+        "audioId": "2bb91e17a2ae43210cf7087927eaa798",
+        "a1": false
+      },
+      "options_lb": [
+        "101",
+        "110",
+        "99",
+        "100"
+      ],
+      "correct": 3,
+      "spoken": "honnert",
+      "entryId": "AF1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-93e5cbaa64",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "a menger elektronescher Agenda si 50 Adresse gespäichert",
+        "audioId": "057b06cac0943da60af74f2f129db008",
+        "a1": false
+      },
+      "options_lb": [
+        "5",
+        "60",
+        "50",
+        "15"
+      ],
+      "correct": 2,
+      "spoken": "50",
+      "entryId": "AGENDA1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-685d03a915",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "mir gi gewéinlech samschdes moies akafen",
+        "audioId": "be73d2ba95ccabb5bd874d68daa0224c",
+        "a1": false
+      },
+      "options_lb": [
+        "Véierel",
+        "moies",
+        "Mëtteg",
+        "mëttes"
+      ],
+      "correct": 1,
+      "spoken": "moies",
+      "entryId": "AKAFEN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-c50c24002b",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "samschdes mëttes ass an der Stad ëmmer vill Aktivitéit",
+        "audioId": "277ef829ba9e7b01ec4e90d9294ca7a9",
+        "a1": false
+      },
+      "options_lb": [
+        "owes",
+        "Mëtteg",
+        "Véierel",
+        "mëttes"
+      ],
+      "correct": 3,
+      "spoken": "mëttes",
+      "entryId": "AKTIVITEIT1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-760f62d44c",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "deen honnert Joer ale Bam huet missen ëmgeluecht ginn",
+        "audioId": "3315f9b42b9eb956c59a30d0972171cb",
+        "a1": false
+      },
+      "options_lb": [
+        "100",
+        "1000",
+        "99",
+        "10"
+      ],
+      "correct": 0,
+      "spoken": "honnert",
+      "entryId": "AL1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-6793410258",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "hatt ass drësseg Joer al",
+        "audioId": "05d730015f1b75b520369738114c093d",
+        "a1": false
+      },
+      "options_lb": [
+        "3",
+        "40",
+        "30",
+        "20"
+      ],
+      "correct": 2,
+      "spoken": "drësseg",
+      "entryId": "AL1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-a43cd940bf",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "bei dësem Gedicht huet all Stroph aacht Versen",
+        "audioId": "bb3aaf948b96a3528777b5f47368de06",
+        "a1": false
+      },
+      "options_lb": [
+        "80",
+        "7",
+        "8",
+        "9"
+      ],
+      "correct": 2,
+      "spoken": "aacht",
+      "entryId": "ALL2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-93f656e7c2",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "an deem Geschäft leien d'Präisser vun de Schong alleguer ëm honnert Euro",
+        "audioId": "c75c24d18d1cfbb48f011de7c3097a16",
+        "a1": false
+      },
+      "options_lb": [
+        "100",
+        "1000",
+        "99",
+        "101"
+      ],
+      "correct": 0,
+      "spoken": "honnert",
+      "entryId": "ALLEGUER1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-0a7c313340",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "eis Kanner kruten alle véier de Bloen Houscht",
+        "audioId": "ebc947cc4dc8411511f03a61c2083a79",
+        "a1": false
+      },
+      "options_lb": [
+        "40",
+        "3",
+        "4",
+        "14"
+      ],
+      "correct": 2,
+      "spoken": "véier",
+      "entryId": "ALLEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-a426f490c4",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Täter sinn allen zwee ongeféier 30 Joer al",
+        "audioId": "287b755a3544c175687045c4e8849b3b",
+        "a1": false
+      },
+      "options_lb": [
+        "2",
+        "1",
+        "12",
+        "20"
+      ],
+      "correct": 0,
+      "spoken": "zwee",
+      "entryId": "ALLEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-8bc3465870",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mir hunn der Nopesch hir Bouwen allen dräi am Park gesinn",
+        "audioId": "71d325953a3490c1ba7682924591d924",
+        "a1": false
+      },
+      "options_lb": [
+        "30",
+        "13",
+        "2",
+        "3"
+      ],
+      "correct": 3,
+      "spoken": "dräi",
+      "entryId": "ALLEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-37af52ba59",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Schrëftstellerin huet am Alter vun 38 Joer hiren éischte Roman geschriwwen",
+        "audioId": "85ce48d66fbaa1a8aed1ce663bdf4877",
+        "a1": false
+      },
+      "options_lb": [
+        "38",
+        "48",
+        "39",
+        "3"
+      ],
+      "correct": 0,
+      "spoken": "38",
+      "entryId": "ALTER1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-e2639c8d75",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "60 Joer ass dach keen Alter!",
+        "audioId": "a808cdef109604281fd590035df4b840",
+        "a1": false
+      },
+      "options_lb": [
+        "6",
+        "16",
+        "60",
+        "70"
+      ],
+      "correct": 2,
+      "spoken": "60",
+      "entryId": "ALTER1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-ab999a69f0",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "et waren direkt dräi Ambulanzen op der Plaz vum Accident",
+        "audioId": "c734a22fa794ff631f61905af45d6993",
+        "a1": false
+      },
+      "options_lb": [
+        "3",
+        "2",
+        "30",
+        "13"
+      ],
+      "correct": 0,
+      "spoken": "dräi",
+      "entryId": "AMBULANZ1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-012dcd3048",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "mir treffen eis an enger Stonn",
+        "audioId": "6a6aa1098499f46b184b84b2a68e4b2c",
+        "a1": false
+      },
+      "options_lb": [
+        "Nuecht",
+        "Stonn",
+        "Mëtteg",
+        "Véierel"
+      ],
+      "correct": 1,
+      "spoken": "Stonn",
+      "entryId": "AN3",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-b134f58b0e",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "an der Nuecht hate mer en déckt Donnerwieder",
+        "audioId": "6781333230c8c693e6036c9165e228a2",
+        "a1": false
+      },
+      "options_lb": [
+        "hallef",
+        "Nuecht",
+        "moies",
+        "mëttes"
+      ],
+      "correct": 1,
+      "spoken": "Nuecht",
+      "entryId": "AN3",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-d5110d6445",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "meng Schwëster huet sech am Joer 2000 bestuet",
+        "audioId": "4873a4c38b35ba9ab1856e5afc877b8a",
+        "a1": true
+      },
+      "options_lb": [
+        "20000",
+        "2001",
+        "2000",
+        "1999"
+      ],
+      "correct": 2,
+      "spoken": "2000",
+      "entryId": "AN3",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-34f885cd0f",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "dës Aarbecht kann an dräi Stonne gemaach ginn",
+        "audioId": "2dfa1de29ff40775151e5bc640d39751",
+        "a1": false
+      },
+      "options_lb": [
+        "3",
+        "4",
+        "2",
+        "30"
+      ],
+      "correct": 0,
+      "spoken": "dräi",
+      "entryId": "AN3",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-4f6cdda819",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "dat eent ergëtt sech aus deem aneren",
+        "audioId": "6f3198b0373612e12a0bfcae3f2e9542",
+        "a1": false
+      },
+      "options_lb": [
+        "2",
+        "0",
+        "1",
+        "11"
+      ],
+      "correct": 2,
+      "spoken": "eent",
+      "entryId": "ANEREN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-8793c4ce18",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Kanner hu sech eent dat anert ageseeft",
+        "audioId": "587432b80062d6e278e794cbfb7ed561",
+        "a1": false
+      },
+      "options_lb": [
+        "0",
+        "2",
+        "11",
+        "1"
+      ],
+      "correct": 3,
+      "spoken": "eent",
+      "entryId": "ANERT1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-b73a68482a",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "de Film dauert annerhallef Stonn",
+        "audioId": "526d620c6d4a760692d6771f46477a4d",
+        "a1": true
+      },
+      "options_lb": [
+        "Véierel",
+        "Auer",
+        "mëttes",
+        "Stonn"
+      ],
+      "correct": 3,
+      "spoken": "Stonn",
+      "entryId": "ANNERHALLEF1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-d681420c5b",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "äntwer iergendeppes, hien ass souwisou hallef daf!",
+        "audioId": "87d26d534ea75fcb54228db7231a7f80",
+        "a1": false
+      },
+      "options_lb": [
+        "moies",
+        "owes",
+        "mëttes",
+        "hallef"
+      ],
+      "correct": 3,
+      "spoken": "hallef",
+      "entryId": "ANTWEREN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-51a4321023",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "den Artikel 5 vum Gesetzesprojet gouf vun der Kommissioun amendéiert",
+        "audioId": "2fb66368f0296c48c5e1b1c3a14211ba",
+        "a1": false
+      },
+      "options_lb": [
+        "50",
+        "6",
+        "5",
+        "15"
+      ],
+      "correct": 2,
+      "spoken": "5",
+      "entryId": "ARTIKEL1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-fc2cf192cd",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "no deem ganzen Dag an der frëscher Loft sinn d'Kanner owes direkt ageschlof",
+        "audioId": "4dc4940ad79bf036a628393c6dbc36c8",
+        "a1": false
+      },
+      "options_lb": [
+        "owes",
+        "hallef",
+        "Stonn",
+        "mëttes"
+      ],
+      "correct": 0,
+      "spoken": "owes",
+      "entryId": "ASCHLOFEN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-340cb37c06",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Firma stellt 20 nei Aarbechter an",
+        "audioId": "7d80f203236b0ef58a86bde0fb0eed9c",
+        "a1": false
+      },
+      "options_lb": [
+        "2",
+        "30",
+        "12",
+        "20"
+      ],
+      "correct": 3,
+      "spoken": "20",
+      "entryId": "ASTELLEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-9354d12bcf",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "wéi vill Auer ass et?",
+        "audioId": "fb5fed5032d1288bbf9bb816f0cbd1b6",
+        "a1": true
+      },
+      "options_lb": [
+        "owes",
+        "Auer",
+        "Minutt",
+        "moies"
+      ],
+      "correct": 1,
+      "spoken": "Auer",
+      "entryId": "AUER1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-e5476ddc4d",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mir treffen eis ëm aacht Auer owes",
+        "audioId": "0c4663f7fe87134048246df08a5aaba8",
+        "a1": false
+      },
+      "options_lb": [
+        "7",
+        "80",
+        "8",
+        "9"
+      ],
+      "correct": 2,
+      "spoken": "aacht",
+      "entryId": "AUER1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-4bd7c1db7e",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Geschäfter maachen haut schonn ëm véier Auer zou",
+        "audioId": "3f2ae02e2795f55b5f4f6b0372fe33df",
+        "a1": false
+      },
+      "options_lb": [
+        "40",
+        "4",
+        "14",
+        "5"
+      ],
+      "correct": 1,
+      "spoken": "véier",
+      "entryId": "AUER1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-01c27550da",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "ëm wéi vill Auer gëtt bei iech zu Nuecht giess?",
+        "audioId": "2ff5fe81d16fe2da9467d8d85f9cae9e",
+        "a1": true
+      },
+      "options_lb": [
+        "moies",
+        "mëttes",
+        "Auer",
+        "hallef"
+      ],
+      "correct": 2,
+      "spoken": "Auer",
+      "entryId": "AUER1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-01dc8a895a",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "wéi vill Auer hu mer?",
+        "audioId": "a75979cf3898f29237d80fa7d7045c97",
+        "a1": true
+      },
+      "options_lb": [
+        "hallef",
+        "Minutt",
+        "Auer",
+        "owes"
+      ],
+      "correct": 2,
+      "spoken": "Auer",
+      "entryId": "AUER1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-0698b57052",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "meng Mamm ass nervös, se kuckt all zéng Minutten op d'Auer",
+        "audioId": "d2873656d9cd63df9c76bb57ebd29cb3",
+        "a1": false
+      },
+      "options_lb": [
+        "11",
+        "100",
+        "1",
+        "10"
+      ],
+      "correct": 3,
+      "spoken": "zéng",
+      "entryId": "AUER1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-995ffea32f",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "den August war dee wäermste Mount vum leschte Joer",
+        "audioId": "9b3e60a812965344f6598075626a4469",
+        "a1": false
+      },
+      "options_lb": [
+        "August",
+        "Januar",
+        "September",
+        "Juli"
+      ],
+      "correct": 0,
+      "spoken": "August",
+      "entryId": "AUGUST1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-cfcabfa64d",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "et brauch ee just fënnef Minutten, fir de Questionnaire auszefëllen",
+        "audioId": "31108f7631a606c8fdd707faf6d1d071",
+        "a1": false
+      },
+      "options_lb": [
+        "50",
+        "6",
+        "15",
+        "5"
+      ],
+      "correct": 3,
+      "spoken": "fënnef",
+      "entryId": "AUSFELLEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-51a8194d8f",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mir huele muer um 10 Auer de Bus, averstanen?",
+        "audioId": "50200c807676164316c734574e6f6fee",
+        "a1": false
+      },
+      "options_lb": [
+        "1",
+        "11",
+        "10",
+        "9"
+      ],
+      "correct": 2,
+      "spoken": "10",
+      "entryId": "AVERSTANEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-db3f4f5a05",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mer hu mam Auto sechs Stonne gebraucht, awer mer haten och vill Stau ënnerwee",
+        "audioId": "0014c47c0e141da02309b7ea09f7aaff",
+        "a1": false
+      },
+      "options_lb": [
+        "7",
+        "60",
+        "5",
+        "6"
+      ],
+      "correct": 3,
+      "spoken": "sechs",
+      "entryId": "AWER2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-3ad1ef4411",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Bäcker huet fir e Client fofzeg Baguettë gebak",
+        "audioId": "18aed6852f23359cd45f78e7b0faba5f",
+        "a1": false
+      },
+      "options_lb": [
+        "15",
+        "50",
+        "40",
+        "60"
+      ],
+      "correct": 1,
+      "spoken": "fofzeg",
+      "entryId": "BAKEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-5eb1b5f682",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "seng Mamm baakt all Samschdeg e Kuch",
+        "audioId": "1fb9acc3b1da84e9b58f8a070482efa3",
+        "a1": true
+      },
+      "options_lb": [
+        "Freideg",
+        "Samschdeg",
+        "Donneschdeg",
+        "Méindeg"
+      ],
+      "correct": 1,
+      "spoken": "Samschdeg",
+      "entryId": "BAKEN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-9de11ab787",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "dee Kärel do ass nëmmen hallef gebak",
+        "audioId": "a01732ea1ca41a1e9483918e03308f4c",
+        "a1": false
+      },
+      "options_lb": [
+        "Mëtteg",
+        "hallef",
+        "Stonn",
+        "Véierel"
+      ],
+      "correct": 1,
+      "spoken": "hallef",
+      "entryId": "BAKEN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-027d0b220f",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "meng Mamm baakt all Sonndeg",
+        "audioId": "b9f3b32ce4e218c957fde78ed344c2ed",
+        "a1": true
+      },
+      "options_lb": [
+        "Donneschdeg",
+        "Mëttwoch",
+        "Sonndeg",
+        "Dënschdeg"
+      ],
+      "correct": 2,
+      "spoken": "Sonndeg",
+      "entryId": "BAKEN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-133c5ad73a",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "mir ginn all sonndes mëttes op de Basket",
+        "audioId": "49c2b7f0da6d940f2723d9835c88d37e",
+        "a1": true
+      },
+      "options_lb": [
+        "Mëtteg",
+        "hallef",
+        "Stonn",
+        "mëttes"
+      ],
+      "correct": 3,
+      "spoken": "mëttes",
+      "entryId": "BASKET1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-b58d677738",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "wéinst där ugekënnegter Keelt hëlt d'Bauerefra d'Béischten iwwer Nuecht an de Stall",
+        "audioId": "c5fe9fd12f0d307bc130667016cc55bf",
+        "a1": false
+      },
+      "options_lb": [
+        "Nuecht",
+        "moies",
+        "hallef",
+        "Auer"
+      ],
+      "correct": 0,
+      "spoken": "Nuecht",
+      "entryId": "BAUEREFRA1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-b9500507e5",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "owes no der Lies hu mir Äerm a Been ewechgestreckt",
+        "audioId": "aab77212c4ebf4ddec7413f4074ae939",
+        "a1": false
+      },
+      "options_lb": [
+        "owes",
+        "Véierel",
+        "hallef",
+        "Minutt"
+      ],
+      "correct": 0,
+      "spoken": "owes",
+      "entryId": "BEEN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-af9570bb63",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "mir ginn all Sonndeg an de Bësch spadséieren",
+        "audioId": "675bcdc0762e2cac17f765c8de8797de",
+        "a1": true
+      },
+      "options_lb": [
+        "Méindeg",
+        "Sonndeg",
+        "Donneschdeg",
+        "Dënschdeg"
+      ],
+      "correct": 1,
+      "spoken": "Sonndeg",
+      "entryId": "BESCH1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-8bf8234bfe",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "de Chef huet mech fir de Mëtteg op de Büro bestallt",
+        "audioId": "ec0c9cd24f3b674c22a8eac6508dd956",
+        "a1": false
+      },
+      "options_lb": [
+        "Stonn",
+        "Auer",
+        "Mëtteg",
+        "Nuecht"
+      ],
+      "correct": 2,
+      "spoken": "Mëtteg",
+      "entryId": "BESTELLEN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-75b3eb0b32",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "dës Maschinn besteet aus 1253 Eenzelstécker",
+        "audioId": "6f5f536ddb992178054f305673953bdc",
+        "a1": false
+      },
+      "options_lb": [
+        "1253",
+        "12530",
+        "1254",
+        "1263"
+      ],
+      "correct": 0,
+      "spoken": "1253",
+      "entryId": "BESTOEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-1c49fbd9cb",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "meng Eltere sinn zënter 40 Joer (mateneen) bestuet",
+        "audioId": "6bd7907d16f76f449c41307b42b42c91",
+        "a1": false
+      },
+      "options_lb": [
+        "40",
+        "14",
+        "30",
+        "4"
+      ],
+      "correct": 0,
+      "spoken": "40",
+      "entryId": "BESTUET1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-32f45d50df",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "an deem neie Spidol si ronn 600 Better",
+        "audioId": "d2fa78087fc47641e20a163eacf95276",
+        "a1": false
+      },
+      "options_lb": [
+        "600",
+        "601",
+        "6000",
+        "599"
+      ],
+      "correct": 0,
+      "spoken": "600",
+      "entryId": "BETT1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-db173bee55",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "hien huet bal eng hallef Millioun fir d'Haus bezuelt",
+        "audioId": "b96766685049b1e12dd08c5e58194833",
+        "a1": false
+      },
+      "options_lb": [
+        "owes",
+        "Mëtteg",
+        "hallef",
+        "mëttes"
+      ],
+      "correct": 2,
+      "spoken": "hallef",
+      "entryId": "BEZUELEN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-94afba453b",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "eise Veräin huet eng Bibliothéik mat ronn 800 Bicher an Zäitschrëften",
+        "audioId": "bd0da46818811414bde8d1ace44ae7be",
+        "a1": false
+      },
+      "options_lb": [
+        "800",
+        "80",
+        "801",
+        "799"
+      ],
+      "correct": 0,
+      "spoken": "800",
+      "entryId": "BIBLIOTHEIK1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-530f9373f4",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "bis e Sonndeg sinn ech nach zu Land",
+        "audioId": "3e645b9a6f27e487211e35a992d66398",
+        "a1": true
+      },
+      "options_lb": [
+        "Donneschdeg",
+        "Sonndeg",
+        "Freideg",
+        "Mëttwoch"
+      ],
+      "correct": 1,
+      "spoken": "Sonndeg",
+      "entryId": "BIS1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-9bd6055385",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "d'Äispist ass bis Mëtt September zou",
+        "audioId": "d3c9c5c9c418b52b51233116a1e0e320",
+        "a1": false
+      },
+      "options_lb": [
+        "Mee",
+        "Januar",
+        "Oktober",
+        "September"
+      ],
+      "correct": 3,
+      "spoken": "September",
+      "entryId": "BIS1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-28189b452e",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "et ass Véierel bis néng",
+        "audioId": "09d816ff738169722e27b1c18cc76035",
+        "a1": false
+      },
+      "options_lb": [
+        "19",
+        "9",
+        "10",
+        "8"
+      ],
+      "correct": 1,
+      "spoken": "néng",
+      "entryId": "BIS1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-803967138b",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "et ass fënnef bis hallwer",
+        "audioId": "658d8eefd8e7214245c55c62c4a9a49a",
+        "a1": false
+      },
+      "options_lb": [
+        "15",
+        "5",
+        "6",
+        "4"
+      ],
+      "correct": 1,
+      "spoken": "fënnef",
+      "entryId": "BIS1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-3be19fd830",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "neierdéngs kommen d'Studente bis 30 Joer fir näischt an de Musée eran",
+        "audioId": "0440ef65cf74db39a5c5045b5b3873d5",
+        "a1": false
+      },
+      "options_lb": [
+        "40",
+        "3",
+        "13",
+        "30"
+      ],
+      "correct": 3,
+      "spoken": "30",
+      "entryId": "BIS1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-d9f044c1ce",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "Kanéngercher kënne bis zu zwielef Joer al ginn",
+        "audioId": "8b38008ca5a0cc171d0829bfc2ded413",
+        "a1": false
+      },
+      "options_lb": [
+        "11",
+        "12",
+        "120",
+        "13"
+      ],
+      "correct": 1,
+      "spoken": "zwielef",
+      "entryId": "BIS1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-73ca8f8f78",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "fir de Weekend hunn se bis zu 15 Zentimeter Schnéi gemellt",
+        "audioId": "c23b9560d27a1db9745c06ec09eefb8a",
+        "a1": false
+      },
+      "options_lb": [
+        "14",
+        "15",
+        "50",
+        "5"
+      ],
+      "correct": 1,
+      "spoken": "15",
+      "entryId": "BIS1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-998f6aa5f1",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "dat kascht dech 30 bis 40 Euro",
+        "audioId": "3d0749c1c7f56c6d67113546ec3f46e3",
+        "a1": true
+      },
+      "options_lb": [
+        "30",
+        "3",
+        "13",
+        "20"
+      ],
+      "correct": 0,
+      "spoken": "30",
+      "entryId": "BIS2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-0f7774499f",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "eis Kolleegen hu samschdes owes an enger Boîte gefeiert a vill Suen ewechginn",
+        "audioId": "c398c2aa455bd3a2dbcd40f6d171748e",
+        "a1": false
+      },
+      "options_lb": [
+        "Véierel",
+        "owes",
+        "mëttes",
+        "Minutt"
+      ],
+      "correct": 1,
+      "spoken": "owes",
+      "entryId": "BOITE1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-51d31c48da",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "dat Buch huet bal 500 Säiten",
+        "audioId": "58b91f189e68c833b7a7aa5a6a1a77a7",
+        "a1": false
+      },
+      "options_lb": [
+        "499",
+        "500",
+        "510",
+        "501"
+      ],
+      "correct": 1,
+      "spoken": "500",
+      "entryId": "BUCH1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-259018395b",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "eleng fir de Kaf vu Material hu mir e Budget vun 32.000 Euro",
+        "audioId": "fecefa3bf0b86228bdddbe6e45ece16b",
+        "a1": false
+      },
+      "options_lb": [
+        "3",
+        "31",
+        "32",
+        "320"
+      ],
+      "correct": 2,
+      "spoken": "32",
+      "entryId": "BUDGET1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-120a59de90",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "eist Alphabet huet 26 Buschtawen",
+        "audioId": "025525da31877c3f95c322eb65c277c2",
+        "a1": false
+      },
+      "options_lb": [
+        "27",
+        "2",
+        "25",
+        "26"
+      ],
+      "correct": 3,
+      "spoken": "26",
+      "entryId": "BUSCHTAF1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-351ab00202",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Camion ass fir eng maximal Charge vu véierzeg Tonnen zougelooss",
+        "audioId": "24bdc67b1a7093deec79a71242700f48",
+        "a1": false
+      },
+      "options_lb": [
+        "14",
+        "40",
+        "50",
+        "30"
+      ],
+      "correct": 1,
+      "spoken": "véierzeg",
+      "entryId": "CHARGE2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-79b45572c7",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Appartement gëtt fir 700 Euro ouni Chargë verlount",
+        "audioId": "7d8d61fc93ef2981d2e42452eda5bb36",
+        "a1": false
+      },
+      "options_lb": [
+        "700",
+        "7000",
+        "710",
+        "701"
+      ],
+      "correct": 0,
+      "spoken": "700",
+      "entryId": "CHARGE2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-dc5ba60927",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Festival dauert 14 Deeg",
+        "audioId": "b7d423ee3edd8f6394d2a5b983b3d82e",
+        "a1": false
+      },
+      "options_lb": [
+        "14",
+        "15",
+        "13",
+        "40"
+      ],
+      "correct": 0,
+      "spoken": "14",
+      "entryId": "DAG1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-ee4b015f6a",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "eist Geschäft ass siwen Deeg op siwen op",
+        "audioId": "73b941eb77801471480299e05b3ef5a5",
+        "a1": false
+      },
+      "options_lb": [
+        "17",
+        "70",
+        "7",
+        "8"
+      ],
+      "correct": 2,
+      "spoken": "siwen",
+      "entryId": "DAG1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-0761fada63",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "15 gedeelt duerch 3 ass 5",
+        "audioId": "eccc032a3d48daa80f521557510fd142",
+        "a1": false
+      },
+      "options_lb": [
+        "50",
+        "14",
+        "5",
+        "15"
+      ],
+      "correct": 3,
+      "spoken": "15",
+      "entryId": "DEELEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-765786d811",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "de Mëtteg stellt de Verwaltungsrot deen neien Investitiounsprogramm vir",
+        "audioId": "9b9674898373a3727950d987d98a8403",
+        "a1": false
+      },
+      "options_lb": [
+        "Stonn",
+        "hallef",
+        "owes",
+        "Mëtteg"
+      ],
+      "correct": 3,
+      "spoken": "Mëtteg",
+      "entryId": "DEEN3",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-78f6221710",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "de Laboratoire huet mech leschten Dënschdeg ugeruff",
+        "audioId": "68bd5c4fc7a18a0a644a3c49da61cb2e",
+        "a1": false
+      },
+      "options_lb": [
+        "Mëttwoch",
+        "Donneschdeg",
+        "Méindeg",
+        "Dënschdeg"
+      ],
+      "correct": 3,
+      "spoken": "Dënschdeg",
+      "entryId": "DENSCHDEG1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-d0e9be507c",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "mir gesinn eis en Dënschdeg",
+        "audioId": "853af3d0ce965719b12d924a871a7b89",
+        "a1": false
+      },
+      "options_lb": [
+        "Méindeg",
+        "Dënschdeg",
+        "Freideg",
+        "Sonndeg"
+      ],
+      "correct": 1,
+      "spoken": "Dënschdeg",
+      "entryId": "DENSCHDEG1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-51b2bd16cd",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "mir hunn eis en Dënschdeg gesinn",
+        "audioId": "ecf68dd8e2e1ec950c649af93874637c",
+        "a1": false
+      },
+      "options_lb": [
+        "Dënschdeg",
+        "Donneschdeg",
+        "Sonndeg",
+        "Mëttwoch"
+      ],
+      "correct": 0,
+      "spoken": "Dënschdeg",
+      "entryId": "DENSCHDEG1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-2c0e5eafa8",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "dënschdes hunn ech ëmmer vill ze dinn, komm léiwer e Mëttwoch laanscht!",
+        "audioId": "a3b087d4f86a328f182b5a20356cad68",
+        "a1": false
+      },
+      "options_lb": [
+        "Méindeg",
+        "Samschdeg",
+        "Sonndeg",
+        "Mëttwoch"
+      ],
+      "correct": 3,
+      "spoken": "Mëttwoch",
+      "entryId": "DENSCHDES1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-0bf4380f0a",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Musée mécht dënschdes, de 25. September, op",
+        "audioId": "fbf8e40339355eefe31a8b46bb87a1ba",
+        "a1": true
+      },
+      "options_lb": [
+        "25",
+        "35",
+        "2",
+        "250"
+      ],
+      "correct": 0,
+      "spoken": "25",
+      "entryId": "DENSCHDES1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-5cf6ec2405",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "d'Nopere fueren am Dezember an de Wantersport",
+        "audioId": "d0e8efde24e4caa42e200c391c6dcd33",
+        "a1": true
+      },
+      "options_lb": [
+        "Mee",
+        "Januar",
+        "Februar",
+        "Dezember"
+      ],
+      "correct": 3,
+      "spoken": "Dezember",
+      "entryId": "DEZEMBER1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-38810858f5",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "hien huet 25 Liter Diesel getankt",
+        "audioId": "90675d671120791c6873ff5151601f3d",
+        "a1": false
+      },
+      "options_lb": [
+        "25",
+        "35",
+        "250",
+        "2"
+      ],
+      "correct": 0,
+      "spoken": "25",
+      "entryId": "DIESEL1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-b6c0354811",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Film geet eréischt ëm néng Auer un, bis dohi musst Der Iech nach gedëllegen",
+        "audioId": "61908833dea5aaac0062414e49fcbcbd",
+        "a1": false
+      },
+      "options_lb": [
+        "19",
+        "9",
+        "8",
+        "90"
+      ],
+      "correct": 1,
+      "spoken": "néng",
+      "entryId": "DOHIN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-5c3e12769f",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "d'Strooss ass bis nächsten Donneschdeg gespaart",
+        "audioId": "949c51a56a65eafaf1adffcd72820a20",
+        "a1": false
+      },
+      "options_lb": [
+        "Dënschdeg",
+        "Freideg",
+        "Mëttwoch",
+        "Donneschdeg"
+      ],
+      "correct": 3,
+      "spoken": "Donneschdeg",
+      "entryId": "DONNESCHDEG1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-c16ad2c34a",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "mir gesinn eis en Donneschdeg",
+        "audioId": "436e06c9a64afff3e2751c312560e30b",
+        "a1": false
+      },
+      "options_lb": [
+        "Mëttwoch",
+        "Freideg",
+        "Méindeg",
+        "Donneschdeg"
+      ],
+      "correct": 3,
+      "spoken": "Donneschdeg",
+      "entryId": "DONNESCHDEG1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-c6d5aff549",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "mir hunn eis en Donneschdeg gesinn",
+        "audioId": "a1d089b116df9fe0c0903244d1f89605",
+        "a1": false
+      },
+      "options_lb": [
+        "Mëttwoch",
+        "Donneschdeg",
+        "Méindeg",
+        "Samschdeg"
+      ],
+      "correct": 1,
+      "spoken": "Donneschdeg",
+      "entryId": "DONNESCHDEG1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-60d76f4fc4",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "2021 ass Gréngen Donneschdeg op den 1. Abrëll gefall",
+        "audioId": "3db5f9c5aec623e0853119b82adb7c55",
+        "a1": false
+      },
+      "options_lb": [
+        "2020",
+        "202",
+        "2031",
+        "2021"
+      ],
+      "correct": 3,
+      "spoken": "2021",
+      "entryId": "DONNESCHDEG1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-16fec01f81",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "donneschdes mëttes ass keng Schoul",
+        "audioId": "e1832275c4ba7b740e78a11216b819a1",
+        "a1": true
+      },
+      "options_lb": [
+        "Auer",
+        "Stonn",
+        "moies",
+        "mëttes"
+      ],
+      "correct": 3,
+      "spoken": "mëttes",
+      "entryId": "DONNESCHDES1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-dabec9c3df",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "ech hunn donneschdes, de 17. Abrëll, Rendez-vous beim Zänndokter",
+        "audioId": "cfd856da84a6fd6c23f3052e9cd8ba99",
+        "a1": false
+      },
+      "options_lb": [
+        "17",
+        "16",
+        "70",
+        "18"
+      ],
+      "correct": 0,
+      "spoken": "17",
+      "entryId": "DONNESCHDES1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-22e74d999b",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "ech hunn de Mëtteg just eng dréche Schmier giess",
+        "audioId": "1d38b3732a061b0bc9bc922ff9c35aac",
+        "a1": true
+      },
+      "options_lb": [
+        "mëttes",
+        "Auer",
+        "owes",
+        "Mëtteg"
+      ],
+      "correct": 3,
+      "spoken": "Mëtteg",
+      "entryId": "DRECHEN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-41985cdcd4",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mir sinn ëm siwen Ecke Famill mateneen",
+        "audioId": "607adb0f3b16636595637c9de7f5a2ce",
+        "a1": false
+      },
+      "options_lb": [
+        "6",
+        "7",
+        "17",
+        "70"
+      ],
+      "correct": 1,
+      "spoken": "siwen",
+      "entryId": "ECK1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-f85bdc2081",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mat 18 Joer ass ee groussjäreg",
+        "audioId": "4d1f9977b56430c6233ce8b5b4065998",
+        "a1": false
+      },
+      "options_lb": [
+        "80",
+        "18",
+        "8",
+        "19"
+      ],
+      "correct": 1,
+      "spoken": "18",
+      "entryId": "EEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-bc8d5f0218",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "ech ka fir siwen Auer do sinn, net éischter!",
+        "audioId": "c82262865abc6333334690c764335f44",
+        "a1": false
+      },
+      "options_lb": [
+        "7",
+        "8",
+        "70",
+        "6"
+      ],
+      "correct": 0,
+      "spoken": "siwen",
+      "entryId": "EISCHTER1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-d4dbb68087",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "datt et Enn Juli nach räift, ass éischter rar",
+        "audioId": "f69d9d91e5d51e15ad960841c530ee67",
+        "a1": false
+      },
+      "options_lb": [
+        "Oktober",
+        "August",
+        "Juli",
+        "September"
+      ],
+      "correct": 2,
+      "spoken": "Juli",
+      "entryId": "EISCHTER1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-897e34f69e",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Film geet ëm néng Auer un",
+        "audioId": "3f78c9f0b608d3b30f7adc1742832304",
+        "a1": false
+      },
+      "options_lb": [
+        "19",
+        "9",
+        "90",
+        "8"
+      ],
+      "correct": 1,
+      "spoken": "néng",
+      "entryId": "EM2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-872f3620f9",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "eist Haus gouf ëm 1930 gebaut",
+        "audioId": "29d57911b24e32bf9c892a190dff40b5",
+        "a1": false
+      },
+      "options_lb": [
+        "1940",
+        "19300",
+        "1930",
+        "1929"
+      ],
+      "correct": 2,
+      "spoken": "1930",
+      "entryId": "EM2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-bfd5df4f6b",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mir sinn ëm den 20. erëm zu Land",
+        "audioId": "dfeefa37f2ff5b7f9c2989188bc00441",
+        "a1": false
+      },
+      "options_lb": [
+        "20",
+        "12",
+        "30",
+        "10"
+      ],
+      "correct": 0,
+      "spoken": "20",
+      "entryId": "EM2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-58760f6e63",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "et waren ëmmer 300 Leit um Patt",
+        "audioId": "57a27904bd491a8465d7f1f26901b1c3",
+        "a1": true
+      },
+      "options_lb": [
+        "310",
+        "3000",
+        "300",
+        "301"
+      ],
+      "correct": 2,
+      "spoken": "300",
+      "entryId": "EMMER1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-43dffdd26f",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Enkele gratuléieren der Bomi fir hiren 80. Gebuertsdag",
+        "audioId": "0617601ef9f9d85626ef1759eb1363a4",
+        "a1": false
+      },
+      "options_lb": [
+        "70",
+        "8",
+        "80",
+        "90"
+      ],
+      "correct": 2,
+      "spoken": "80",
+      "entryId": "ENKEL1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-5a7e676389",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Solist huet eréischt 19 Joer",
+        "audioId": "f65f86a8e0dcc97d51f5ff29233716e6",
+        "a1": false
+      },
+      "options_lb": [
+        "90",
+        "19",
+        "18",
+        "9"
+      ],
+      "correct": 1,
+      "spoken": "19",
+      "entryId": "EREISCHT1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-b68ea807a0",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mir sinn eréischt 60 Kilometer gefuer",
+        "audioId": "7a97a8870249675ecdabaf0e29ed35e3",
+        "a1": false
+      },
+      "options_lb": [
+        "16",
+        "70",
+        "60",
+        "6"
+      ],
+      "correct": 2,
+      "spoken": "60",
+      "entryId": "EREISCHT1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-b3f7f3b9b7",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Autoritéiten hunn de Vermëssten no 25 Joer fir dout erkläert",
+        "audioId": "a6dba2ffd6b432a75367a1ac66ff908c",
+        "a1": false
+      },
+      "options_lb": [
+        "250",
+        "35",
+        "2",
+        "25"
+      ],
+      "correct": 3,
+      "spoken": "25",
+      "entryId": "ERKLAREN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-ab80e59fc2",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "de Februar ass dee kierzte Mount am Joer",
+        "audioId": "968f85e51432c2b52cc6776c132938cf",
+        "a1": false
+      },
+      "options_lb": [
+        "September",
+        "Mäerz",
+        "Februar",
+        "Juli"
+      ],
+      "correct": 2,
+      "spoken": "Februar",
+      "entryId": "FEBRUAR1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-6e5e38c727",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "e Samschdeg feieren ech mäi Gebuertsdag",
+        "audioId": "2f5d63b5d9c3185d82947c1da1408c34",
+        "a1": true
+      },
+      "options_lb": [
+        "Samschdeg",
+        "Dënschdeg",
+        "Freideg",
+        "Méindeg"
+      ],
+      "correct": 0,
+      "spoken": "Samschdeg",
+      "entryId": "FEIEREN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-012ef09846",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Fësch ass eent vun den zwielef Stärenzeechen",
+        "audioId": "6205c8150c72ff72df5e3d71c5b6de61",
+        "a1": false
+      },
+      "options_lb": [
+        "11",
+        "1",
+        "2",
+        "10"
+      ],
+      "correct": 1,
+      "spoken": "eent",
+      "entryId": "FESCH1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-b8a697e707",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "ech hunn nach 1000 Euro fir mäin alen Auto kritt",
+        "audioId": "64bfc700942447ec8a4e4ddd471c9421",
+        "a1": true
+      },
+      "options_lb": [
+        "1010",
+        "1001",
+        "100",
+        "1000"
+      ],
+      "correct": 3,
+      "spoken": "1000",
+      "entryId": "FIR2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-dadd0f175c",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "fir de 15. September soll de Schoulhaff en neie Belag kréien",
+        "audioId": "aa881e409c9cb4bbbbb2cc122236019b",
+        "a1": false
+      },
+      "options_lb": [
+        "5",
+        "14",
+        "16",
+        "15"
+      ],
+      "correct": 3,
+      "spoken": "15",
+      "entryId": "FIR2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-0be85390a0",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "well d'Firma bankrott ass, ginn 300 Leit entlooss",
+        "audioId": "c9ec8ea45ff0de91fbfcfc79209fa8be",
+        "a1": false
+      },
+      "options_lb": [
+        "301",
+        "300",
+        "3000",
+        "310"
+      ],
+      "correct": 1,
+      "spoken": "300",
+      "entryId": "FIRMA1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-49dd85b093",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "ech kréien 2000 Euro fix",
+        "audioId": "3aed7251dbff368410c24080a688b14a",
+        "a1": true
+      },
+      "options_lb": [
+        "2000",
+        "20000",
+        "2001",
+        "200"
+      ],
+      "correct": 0,
+      "spoken": "2000",
+      "entryId": "FIX1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-0d7a7dba51",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "ech hu keng fräi Minutt méi!",
+        "audioId": "6168285dedda9557be0b45f595e1bb8d",
+        "a1": true
+      },
+      "options_lb": [
+        "Stonn",
+        "Minutt",
+        "owes",
+        "moies"
+      ],
+      "correct": 1,
+      "spoken": "Minutt",
+      "entryId": "FRAI1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-90bb1e00f3",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "e Méindeg ass fräi",
+        "audioId": "0275b9f6789292af8a12f206bf74ccb9",
+        "a1": true
+      },
+      "options_lb": [
+        "Sonndeg",
+        "Samschdeg",
+        "Méindeg",
+        "Mëttwoch"
+      ],
+      "correct": 2,
+      "spoken": "Méindeg",
+      "entryId": "FRAI1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-3b99b40803",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "no véierzeg Déngschtjore freeën ech mech elo op meng Pensioun",
+        "audioId": "36a2340fe00ebb290e6236a8c6aee7ea",
+        "a1": false
+      },
+      "options_lb": [
+        "30",
+        "14",
+        "40",
+        "4"
+      ],
+      "correct": 2,
+      "spoken": "véierzeg",
+      "entryId": "FREEEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-f3f85e5b0a",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "mir fléien dëse Freideg an d'Vakanz",
+        "audioId": "119c4c4eb78fdf998dfac0ef3fd37ccc",
+        "a1": false
+      },
+      "options_lb": [
+        "Mëttwoch",
+        "Sonndeg",
+        "Freideg",
+        "Donneschdeg"
+      ],
+      "correct": 2,
+      "spoken": "Freideg",
+      "entryId": "FREIDEG1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-9ebcd01ce4",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "mir gesinn eis e Freideg",
+        "audioId": "fbf33903664ec80c4f95ac53848201c5",
+        "a1": false
+      },
+      "options_lb": [
+        "Dënschdeg",
+        "Donneschdeg",
+        "Freideg",
+        "Samschdeg"
+      ],
+      "correct": 2,
+      "spoken": "Freideg",
+      "entryId": "FREIDEG1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-76379c2d07",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "mir hunn eis e Freideg gesinn",
+        "audioId": "92c18e6e24918388939d88c0657c9dfc",
+        "a1": false
+      },
+      "options_lb": [
+        "Mëttwoch",
+        "Freideg",
+        "Donneschdeg",
+        "Dënschdeg"
+      ],
+      "correct": 1,
+      "spoken": "Freideg",
+      "entryId": "FREIDEG1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-31ef9cef79",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "ech hu freides, den 13. Juli, e Rendez-vous beim Coiffer",
+        "audioId": "3eeefbd671c7e13eaad6cb43d82f08a4",
+        "a1": false
+      },
+      "options_lb": [
+        "13",
+        "30",
+        "14",
+        "12"
+      ],
+      "correct": 0,
+      "spoken": "13",
+      "entryId": "FREIDES1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-217aaeea4e",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Vas ass mer gefall an an (dausend) Stécker gefuer",
+        "audioId": "8e33e8caada2278409f11e282556b308",
+        "a1": false
+      },
+      "options_lb": [
+        "1000",
+        "1010",
+        "100",
+        "1001"
+      ],
+      "correct": 0,
+      "spoken": "dausend",
+      "entryId": "FUEREN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-1ded5494fe",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "ech brauch moies mäi Kaffi, fir an d'Gäng ze kommen",
+        "audioId": "535cfaf9d4e82ddca426aaa73768ba4f",
+        "a1": false
+      },
+      "options_lb": [
+        "Stonn",
+        "moies",
+        "Véierel",
+        "owes"
+      ],
+      "correct": 1,
+      "spoken": "moies",
+      "entryId": "GANK1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-50e2b190ea",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "am Ganzen investéiere mer 43 Milliounen Euro an dëse Projet",
+        "audioId": "6006e98065cdd3ea52b59039411de298",
+        "a1": false
+      },
+      "options_lb": [
+        "4",
+        "44",
+        "430",
+        "43"
+      ],
+      "correct": 3,
+      "spoken": "43",
+      "entryId": "GANZ1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-8eae37715d",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "dee Mann schafft schonn zwanzeg Joer als Mecanicien am selwechte Garage",
+        "audioId": "b3a60c916666488c4cee7ab59f9bcccb",
+        "a1": false
+      },
+      "options_lb": [
+        "10",
+        "20",
+        "12",
+        "30"
+      ],
+      "correct": 1,
+      "spoken": "zwanzeg",
+      "entryId": "GARAGE1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-13b31e4fa8",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "fir säin 18. Gebuertsdag hunn seng Elteren him en Auto geschenkt",
+        "audioId": "25c1e31bd3296ebeb2c87494e4815a91",
+        "a1": false
+      },
+      "options_lb": [
+        "17",
+        "18",
+        "19",
+        "80"
+      ],
+      "correct": 1,
+      "spoken": "18",
+      "entryId": "GEBUERTSDAG1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-f5881c1e99",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "vun Ufank Februar bis Mëtt September däerf keng Geess geschoss ginn",
+        "audioId": "b489cc200aabc3fff7e01a7233026bc1",
+        "a1": false
+      },
+      "options_lb": [
+        "Januar",
+        "Juni",
+        "November",
+        "Februar"
+      ],
+      "correct": 3,
+      "spoken": "Februar",
+      "entryId": "GEESS1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-1ce0e8196a",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Präis louch an der Géigend vun 200 Euro",
+        "audioId": "2336204d00d62595a47aa8a740055f69",
+        "a1": false
+      },
+      "options_lb": [
+        "199",
+        "200",
+        "20",
+        "2000"
+      ],
+      "correct": 1,
+      "spoken": "200",
+      "entryId": "GEIGEND1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-4b6ab96731",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "den Employé ass genee 26 Minutten ze spéit op d'Aarbecht komm",
+        "audioId": "5301770598c14e3355a1ff75ad0122d4",
+        "a1": false
+      },
+      "options_lb": [
+        "26",
+        "25",
+        "27",
+        "36"
+      ],
+      "correct": 0,
+      "spoken": "26",
+      "entryId": "GENEE1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-311a0bfb9a",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "hien hat e Samschdeg eng Ferm am Gesiicht",
+        "audioId": "1cc291039d9b94c609199dc7e09ebae9",
+        "a1": false
+      },
+      "options_lb": [
+        "Sonndeg",
+        "Samschdeg",
+        "Mëttwoch",
+        "Freideg"
+      ],
+      "correct": 1,
+      "spoken": "Samschdeg",
+      "entryId": "GESIICHT1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-169c843276",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mat mengen 80 Joer sinn ech nach gesond a monter",
+        "audioId": "367c0a745e9537663ac188d726d2cef7",
+        "a1": false
+      },
+      "options_lb": [
+        "70",
+        "80",
+        "8",
+        "18"
+      ],
+      "correct": 1,
+      "spoken": "80",
+      "entryId": "GESOND1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-8f313f9152",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "no 90 Minutten ass de Match an d'Verlängerung gaangen",
+        "audioId": "29288fe63873bcd4e487e85570039d44",
+        "a1": false
+      },
+      "options_lb": [
+        "100",
+        "90",
+        "19",
+        "80"
+      ],
+      "correct": 1,
+      "spoken": "90",
+      "entryId": "GOEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-dbd1e1bef2",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "dëst Joer si mer schonn Enn August an d'Rommele gaangen",
+        "audioId": "33f4c9881822b693124f36b4acf1c797",
+        "a1": false
+      },
+      "options_lb": [
+        "August",
+        "Januar",
+        "Juli",
+        "Dezember"
+      ],
+      "correct": 0,
+      "spoken": "August",
+      "entryId": "GOEN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-2a6e1ea903",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "den Auto huet sech um Glatäis ëm 180 Grad gedréit",
+        "audioId": "a8b934079043cc2038841d901a400397",
+        "a1": false
+      },
+      "options_lb": [
+        "180",
+        "179",
+        "18",
+        "190"
+      ],
+      "correct": 0,
+      "spoken": "180",
+      "entryId": "GRAD1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-5a029ff451",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "eise Grupp plangt fir d'nächst Joer Investitiounen an der Héicht vun 250 Milliounen Euro",
+        "audioId": "6314130ca3fd4faa119d822fada83630",
+        "a1": false
+      },
+      "options_lb": [
+        "249",
+        "250",
+        "260",
+        "251"
+      ],
+      "correct": 1,
+      "spoken": "250",
+      "entryId": "GRUPP1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-4d1f923fc6",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Zaldoten hunn et fäerdegbruecht, fir 14 Deeg laang hir Stellung ze halen",
+        "audioId": "5fb7c8df54829868657444167f617247",
+        "a1": false
+      },
+      "options_lb": [
+        "40",
+        "4",
+        "15",
+        "14"
+      ],
+      "correct": 3,
+      "spoken": "14",
+      "entryId": "HALEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-77bf5ecd2c",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "hei däerf ee just eng hallef Stonn halen",
+        "audioId": "74a49406bb39b2fba7b46d59db16ada5",
+        "a1": true
+      },
+      "options_lb": [
+        "hallef",
+        "Stonn",
+        "owes",
+        "moies"
+      ],
+      "correct": 1,
+      "spoken": "Stonn",
+      "entryId": "HALEN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-50c733097c",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "déi Kéier kanns de net mat 80 huelen!",
+        "audioId": "4b0b0ffddb1c3c2eac877b8010144aa0",
+        "a1": true
+      },
+      "options_lb": [
+        "18",
+        "80",
+        "90",
+        "70"
+      ],
+      "correct": 1,
+      "spoken": "80",
+      "entryId": "HUELEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-740de901b9",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "hien huet 36 Joer",
+        "audioId": "170945b42cbcfd53ac6c9df41e23df4a",
+        "a1": true
+      },
+      "options_lb": [
+        "36",
+        "37",
+        "3",
+        "35"
+      ],
+      "correct": 0,
+      "spoken": "36",
+      "entryId": "HUNN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-5b52a07cd0",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "hei am Land huet e Riichter iwwer 200 Affären am Joer",
+        "audioId": "4699bc81ee1f5e66a66a4e857c3723ec",
+        "a1": false
+      },
+      "options_lb": [
+        "20",
+        "201",
+        "199",
+        "200"
+      ],
+      "correct": 3,
+      "spoken": "200",
+      "entryId": "HUNN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-898da373e1",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mir haten am Restaurant fir ëm déi 50 Euro",
+        "audioId": "cdb3a1c06e9105bc7bc4cf10b0d78a04",
+        "a1": true
+      },
+      "options_lb": [
+        "5",
+        "60",
+        "50",
+        "15"
+      ],
+      "correct": 2,
+      "spoken": "50",
+      "entryId": "HUNN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-f86ecc5bff",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "mir hate scho laang keen esou e kale Januar méi",
+        "audioId": "d5babfaaa420413163124245ee0ce5fa",
+        "a1": true
+      },
+      "options_lb": [
+        "November",
+        "Januar",
+        "August",
+        "Dezember"
+      ],
+      "correct": 1,
+      "spoken": "Januar",
+      "entryId": "JANUAR1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-fe4caf82f6",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "mir fuere meeschtens am Juli an d'Vakanz",
+        "audioId": "2bbcfcac216ed44fa09ce88c392e34a9",
+        "a1": false
+      },
+      "options_lb": [
+        "Februar",
+        "Juli",
+        "Mee",
+        "Juni"
+      ],
+      "correct": 1,
+      "spoken": "Juli",
+      "entryId": "JULI1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-0ba2cd606b",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "de Summer fänkt Enn Juni un",
+        "audioId": "e8129f3b7cd15f8ea3bfe78896ff963d",
+        "a1": true
+      },
+      "options_lb": [
+        "Abrëll",
+        "Januar",
+        "Juni",
+        "September"
+      ],
+      "correct": 2,
+      "spoken": "Juni",
+      "entryId": "JUNI1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-a9588054df",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "all Mëttwoch ginn déi zwou Frëndinnen zesumme shoppen an dono Kaffi drénken",
+        "audioId": "bf42e0058862d4468b5d0c3e034e0950",
+        "a1": false
+      },
+      "options_lb": [
+        "Mëttwoch",
+        "Dënschdeg",
+        "Samschdeg",
+        "Méindeg"
+      ],
+      "correct": 0,
+      "spoken": "Mëttwoch",
+      "entryId": "KAFFI1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-ca954e2b29",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "moies beim Kaffidrénke lauschteren ech ëmmer d'Neiegkeeten",
+        "audioId": "41ee94eebc85feed57e7ae2151b480cc",
+        "a1": false
+      },
+      "options_lb": [
+        "mëttes",
+        "Minutt",
+        "moies",
+        "Nuecht"
+      ],
+      "correct": 2,
+      "spoken": "moies",
+      "entryId": "KAFFIDRENKEN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-c0a1bc53f2",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "ufangs September ginn déi nei Kalennere gedréckt",
+        "audioId": "a66099dda3954fe6f9bcb2905985a602",
+        "a1": false
+      },
+      "options_lb": [
+        "Oktober",
+        "Dezember",
+        "Januar",
+        "September"
+      ],
+      "correct": 3,
+      "spoken": "September",
+      "entryId": "KALENNER1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-eafedc3b97",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "1582 gouf de gregorianesche Kalenner ageféiert",
+        "audioId": "2d51779b03ed9704153f3cea76d968f0",
+        "a1": false
+      },
+      "options_lb": [
+        "1582",
+        "15820",
+        "158",
+        "1583"
+      ],
+      "correct": 0,
+      "spoken": "1582",
+      "entryId": "KALENNER1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-70ce5fdd1a",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "nom honnertjärege Kalenner misste mer e waarmen August kréien",
+        "audioId": "63b70a0ec1eeb5cd3c284312a7d3a8c4",
+        "a1": false
+      },
+      "options_lb": [
+        "Juni",
+        "Juli",
+        "August",
+        "Mäerz"
+      ],
+      "correct": 2,
+      "spoken": "August",
+      "entryId": "KALENNER1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-e2c9c1e428",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "et däerfe keng Zigaretten u Jugendlecher ënner 16 Joer verkaaft ginn",
+        "audioId": "f7e9f9e664d8b935ba530a1775163938",
+        "a1": false
+      },
+      "options_lb": [
+        "60",
+        "17",
+        "16",
+        "6"
+      ],
+      "correct": 2,
+      "spoken": "16",
+      "entryId": "KENG3",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-0a3596ccf0",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "den zweete Sonndeg am November ass bei eis am Duerf Kiermes",
+        "audioId": "5d09932cd04b1c5f832e471730fa5a66",
+        "a1": false
+      },
+      "options_lb": [
+        "Juni",
+        "November",
+        "Januar",
+        "Mäerz"
+      ],
+      "correct": 1,
+      "spoken": "November",
+      "entryId": "KIERMES1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-72d77698c5",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "op dësem Stéck vun der Autobunn ass d'Vitess op 90 Kilometer an der Stonn begrenzt",
+        "audioId": "a7e01b78e79ca9c5a2bf7a3e9fd81278",
+        "a1": false
+      },
+      "options_lb": [
+        "90",
+        "9",
+        "80",
+        "100"
+      ],
+      "correct": 0,
+      "spoken": "90",
+      "entryId": "KILOMETERANDERSTONN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-249343180a",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "ufangs Dezember sti beim Pâtissier Dosende vu Kleesercher",
+        "audioId": "a4553d2609cd9befcdbaab6305526e96",
+        "a1": false
+      },
+      "options_lb": [
+        "Februar",
+        "Dezember",
+        "Abrëll",
+        "November"
+      ],
+      "correct": 1,
+      "spoken": "Dezember",
+      "entryId": "KLEESCHEN2",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-b73f6bc421",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "wa mer alles zesummerechnen, da komme mer op 1200 Euro",
+        "audioId": "46eed5f738278d9ac4861319e52032a5",
+        "a1": false
+      },
+      "options_lb": [
+        "120",
+        "1200",
+        "12000",
+        "1210"
+      ],
+      "correct": 1,
+      "spoken": "1200",
+      "entryId": "KOMMEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-32f7483674",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "ech loossen d'Aarbecht bis e Méindeg leien",
+        "audioId": "e9b5c97b982a658a31f8be5f4ac8dcd6",
+        "a1": true
+      },
+      "options_lb": [
+        "Samschdeg",
+        "Méindeg",
+        "Sonndeg",
+        "Donneschdeg"
+      ],
+      "correct": 1,
+      "spoken": "Méindeg",
+      "entryId": "LEIEN2",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-1525a01756",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "meng Fra louch dräizéng Stonnen an de Wéien",
+        "audioId": "457876cacd949f515f15cb0833b0454d",
+        "a1": false
+      },
+      "options_lb": [
+        "14",
+        "12",
+        "13",
+        "3"
+      ],
+      "correct": 2,
+      "spoken": "dräizéng",
+      "entryId": "LEIEN2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-65e1571361",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "no der Vergréisserung vum Lycée ass Plaz fir iwwer 1000 Schüler",
+        "audioId": "d9c67c3c7a6a1ea70b9788f1460f8923",
+        "a1": false
+      },
+      "options_lb": [
+        "999",
+        "1010",
+        "1000",
+        "100"
+      ],
+      "correct": 2,
+      "spoken": "1000",
+      "entryId": "LYCEE1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-48a5f7b413",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "ech sinn am Mäerz op d'Welt komm",
+        "audioId": "753acce09d6c9061fae6dbba0e3861a1",
+        "a1": false
+      },
+      "options_lb": [
+        "Juni",
+        "Mäerz",
+        "Januar",
+        "Abrëll"
+      ],
+      "correct": 1,
+      "spoken": "Mäerz",
+      "entryId": "MAERZ1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-607ccbd8b4",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "zu Lëtzebuerg gëtt de Mammendag traditionell den zweete Sonndeg am Juni gefeiert",
+        "audioId": "c7533ffed35fa36344bbc1a8205bc740",
+        "a1": false
+      },
+      "options_lb": [
+        "Abrëll",
+        "Juni",
+        "Dezember",
+        "Mäerz"
+      ],
+      "correct": 1,
+      "spoken": "Juni",
+      "entryId": "MAMMENDAG1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-132903a15e",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "hie gouf mat 55 Joer pensionéiert",
+        "audioId": "8fc957c7f2b3fb35a7d3682c02f3da26",
+        "a1": false
+      },
+      "options_lb": [
+        "54",
+        "55",
+        "56",
+        "65"
+      ],
+      "correct": 1,
+      "spoken": "55",
+      "entryId": "MAT1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-49efad5bdb",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "am Mee feiere mer mengem Papp seng 60 Joer",
+        "audioId": "5da4aa6eee760749efd1fce3b623551a",
+        "a1": false
+      },
+      "options_lb": [
+        "60",
+        "6",
+        "50",
+        "16"
+      ],
+      "correct": 0,
+      "spoken": "60",
+      "entryId": "MEE1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-6de7a4cb79",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "kënns de deen nächste Méindeg bei eis iessen?",
+        "audioId": "856427628d9d35e1a31357ec3ecbf0b0",
+        "a1": false
+      },
+      "options_lb": [
+        "Mëttwoch",
+        "Donneschdeg",
+        "Samschdeg",
+        "Méindeg"
+      ],
+      "correct": 3,
+      "spoken": "Méindeg",
+      "entryId": "MEINDEG1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-b5843d2f3e",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Vernissage ass méindes, de 17. Oktober",
+        "audioId": "271cc6514dd57ac50df6148fe42da587",
+        "a1": false
+      },
+      "options_lb": [
+        "18",
+        "70",
+        "16",
+        "17"
+      ],
+      "correct": 3,
+      "spoken": "17",
+      "entryId": "MEINDES1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-d4a597782f",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "bis bei d'Haltestell sinn et nach 200 Meter",
+        "audioId": "14f116429bcee53e8f783ec8ec9f2d22",
+        "a1": false
+      },
+      "options_lb": [
+        "20",
+        "199",
+        "200",
+        "2000"
+      ],
+      "correct": 2,
+      "spoken": "200",
+      "entryId": "METER1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-4ab19b833d",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "ech hu Mëtt Januar Gebuertsdag",
+        "audioId": "21d10573602600f297b9be0281b95091",
+        "a1": true
+      },
+      "options_lb": [
+        "Oktober",
+        "November",
+        "Januar",
+        "Februar"
+      ],
+      "correct": 2,
+      "spoken": "Januar",
+      "entryId": "METT1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-77b70a1444",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "déi Schong hale vun 12 Auer bis Mëtteg",
+        "audioId": "52f86b26e112feac969f5320d94ce8fa",
+        "a1": false
+      },
+      "options_lb": [
+        "22",
+        "13",
+        "120",
+        "12"
+      ],
+      "correct": 3,
+      "spoken": "12",
+      "entryId": "METTEG1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-d1a0b04a69",
+      "kind": "heard",
+      "subject": "weekday",
+      "example": {
+        "lb": "d'Datume vun de mëndlechen Exame leien zënter dem leschte Mëttwoch fest",
+        "audioId": "12156ff6d65d99e2aa968ee97d5e2cc3",
+        "a1": false
+      },
+      "options_lb": [
+        "Méindeg",
+        "Samschdeg",
+        "Donneschdeg",
+        "Mëttwoch"
+      ],
+      "correct": 3,
+      "spoken": "Mëttwoch",
+      "entryId": "METTWOCH1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-4a12e34e26",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mir gesinn eis mëttwochs, de 27. August",
+        "audioId": "f514e739917db849858135acec53e60e",
+        "a1": false
+      },
+      "options_lb": [
+        "27",
+        "28",
+        "37",
+        "26"
+      ],
+      "correct": 0,
+      "spoken": "27",
+      "entryId": "METTWOCHS1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-4a456e4c9c",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "hie profitéiert vu jidder fräier Minutt",
+        "audioId": "d5595f9303155f459424ca7022bd73fa",
+        "a1": false
+      },
+      "options_lb": [
+        "mëttes",
+        "Mëtteg",
+        "Minutt",
+        "Auer"
+      ],
+      "correct": 2,
+      "spoken": "Minutt",
+      "entryId": "MINUTT1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-ba1ce25b8a",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "komm, mer setzen eis eng Minutt hier op d'Bänk!",
+        "audioId": "5fa2d98ac1ce6bf9e60d5715ab5800c5",
+        "a1": false
+      },
+      "options_lb": [
+        "hallef",
+        "mëttes",
+        "Minutt",
+        "moies"
+      ],
+      "correct": 2,
+      "spoken": "Minutt",
+      "entryId": "MINUTT1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-9695755ea1",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Joer huet zwielef Méint",
+        "audioId": "73b8c1e2062fd687c81267acc5cad61c",
+        "a1": false
+      },
+      "options_lb": [
+        "12",
+        "120",
+        "22",
+        "11"
+      ],
+      "correct": 0,
+      "spoken": "zwielef",
+      "entryId": "MOUNT1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-eba093e7a2",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "dee leschte Mount huet eis Bom nonzeg Joer kritt",
+        "audioId": "6f5bc5762a964fd92087df52efdc34cd",
+        "a1": false
+      },
+      "options_lb": [
+        "19",
+        "9",
+        "80",
+        "90"
+      ],
+      "correct": 3,
+      "spoken": "nonzeg",
+      "entryId": "MOUNT1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-620bbfbaf1",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "de Lëtzebuerger Nationalfeierdag gëtt den 23. Juni gefeiert",
+        "audioId": "47e1f76239f75e4a2ddfaa2bdb6dc1d5",
+        "a1": false
+      },
+      "options_lb": [
+        "2",
+        "23",
+        "33",
+        "22"
+      ],
+      "correct": 1,
+      "spoken": "23",
+      "entryId": "NATIONALFEIERDAG1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-6c949069d2",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "et ass net normal, datt am Oktober Schnéi fält",
+        "audioId": "f46de741d0c094113bc97543f12c8dc6",
+        "a1": false
+      },
+      "options_lb": [
+        "Januar",
+        "Oktober",
+        "Februar",
+        "Mee"
+      ],
+      "correct": 1,
+      "spoken": "Oktober",
+      "entryId": "NORMAL1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-36036fc253",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "am November falen d'Temperaturen dacks ënner de Gefréierpunkt",
+        "audioId": "e6d7355a5adfdc56c08d8175a630876c",
+        "a1": false
+      },
+      "options_lb": [
+        "Abrëll",
+        "November",
+        "Mäerz",
+        "Juni"
+      ],
+      "correct": 1,
+      "spoken": "November",
+      "entryId": "NOVEMBER1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-44076cb53b",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "mir haten dëst Joer e kalen a verreenten Oktober",
+        "audioId": "56b71362c9164fa23116732ef082caee",
+        "a1": false
+      },
+      "options_lb": [
+        "Februar",
+        "September",
+        "Mee",
+        "Oktober"
+      ],
+      "correct": 3,
+      "spoken": "Oktober",
+      "entryId": "OKTOBER1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-d798336d68",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "et héiert een dech op 500 Meter laachen",
+        "audioId": "85864b76c08d9eab7b6082c44c1a59e8",
+        "a1": false
+      },
+      "options_lb": [
+        "501",
+        "500",
+        "5000",
+        "50"
+      ],
+      "correct": 1,
+      "spoken": "500",
+      "entryId": "OP2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-ffd879926f",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "wann s de wëlls kandidéieren, muss de op d'mannst 21 Joer hunn",
+        "audioId": "f3dd758db1cd3e1c492e690596357bc5",
+        "a1": false
+      },
+      "options_lb": [
+        "2",
+        "31",
+        "22",
+        "21"
+      ],
+      "correct": 3,
+      "spoken": "21",
+      "entryId": "OPDMANNST1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-eefee7542b",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "31 gedeelt duerch 15 geet net op",
+        "audioId": "0a9656f45d8a24e2cb4c92401bb516cb",
+        "a1": false
+      },
+      "options_lb": [
+        "3",
+        "31",
+        "310",
+        "30"
+      ],
+      "correct": 1,
+      "spoken": "31",
+      "entryId": "OPGOEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-da269a7c19",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "2021 ass Ouschteren op den éischte Sonndeg am Abrëll gefall",
+        "audioId": "f681dd674472ec8a11602983895f77fd",
+        "a1": false
+      },
+      "options_lb": [
+        "2022",
+        "202",
+        "2031",
+        "2021"
+      ],
+      "correct": 3,
+      "spoken": "2021",
+      "entryId": "OUSCHTEREN2",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-9f2b79d589",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "2019 ass Mammendag op Päischtsonndeg gefall",
+        "audioId": "b256f124aa810cf6be4f3fffda863fe4",
+        "a1": false
+      },
+      "options_lb": [
+        "2018",
+        "2019",
+        "2020",
+        "20190"
+      ],
+      "correct": 1,
+      "spoken": "2019",
+      "entryId": "PAISCHTSONNDEG1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-a8b108c8ad",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "zu Lëtzebuerg gëtt de Pappendag traditionell den éischte Sonndeg am Oktober gefeiert",
+        "audioId": "f6bd7f52d1f0757de2507cd1fa35c582",
+        "a1": false
+      },
+      "options_lb": [
+        "Oktober",
+        "Dezember",
+        "Januar",
+        "Juli"
+      ],
+      "correct": 0,
+      "spoken": "Oktober",
+      "entryId": "PAPPENDAG1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-66d26be059",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "atheistesch Iddie spillen eng grouss Roll an de Philosophië vum 19. an 20. Joerhonnert",
+        "audioId": "f61496cb7a53524aa692063053c93bb4",
+        "a1": false
+      },
+      "options_lb": [
+        "20",
+        "19",
+        "90",
+        "18"
+      ],
+      "correct": 1,
+      "spoken": "19",
+      "entryId": "PHILOSOPHIE1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-c07be0c97c",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "den neie Parking huet eng Capacitéit vun 800 Plazen",
+        "audioId": "503678084230c7bc0e9da4deaeb9aa39",
+        "a1": false
+      },
+      "options_lb": [
+        "801",
+        "800",
+        "799",
+        "810"
+      ],
+      "correct": 1,
+      "spoken": "800",
+      "entryId": "PLAZ1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-ef40c7bd79",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "kaf nach e Véierel gerappte Kéis!",
+        "audioId": "42ba87832b06c198b61e2c0f0b45f86b",
+        "a1": false
+      },
+      "options_lb": [
+        "Nuecht",
+        "Véierel",
+        "mëttes",
+        "Stonn"
+      ],
+      "correct": 1,
+      "spoken": "Véierel",
+      "entryId": "RAPPEN4",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-dbc93fb4bf",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "däin Don vu 500 Euro war e schéine Gest",
+        "audioId": "17a2ef4d17d082d5ba5bc21fe63ed7e2",
+        "a1": false
+      },
+      "options_lb": [
+        "501",
+        "50",
+        "5000",
+        "500"
+      ],
+      "correct": 3,
+      "spoken": "500",
+      "entryId": "SCHEIN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-c786e61678",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "am August war d'Wieder d'selwecht ewéi am Juli",
+        "audioId": "04348cd64414aa30640c77a53ada0fea",
+        "a1": false
+      },
+      "options_lb": [
+        "Abrëll",
+        "August",
+        "Juli",
+        "Mäerz"
+      ],
+      "correct": 2,
+      "spoken": "Juli",
+      "entryId": "SELWECHT1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-ceb30d2042",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "ech schaffen zënter dem September an enger neier Boîte",
+        "audioId": "4f2398c383a3de207741e711cca2ae42",
+        "a1": false
+      },
+      "options_lb": [
+        "September",
+        "Juni",
+        "Februar",
+        "August"
+      ],
+      "correct": 0,
+      "spoken": "September",
+      "entryId": "SEPTEMBER1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-1b0b7bb8cc",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "déi Musek ass aus dem 18. Joerhonnert",
+        "audioId": "ed477c53497d4cbe721a54557329c230",
+        "a1": false
+      },
+      "options_lb": [
+        "18",
+        "19",
+        "8",
+        "80"
+      ],
+      "correct": 0,
+      "spoken": "18",
+      "entryId": "SINN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-8fb47c5174",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Quadratwuerzel vun 144 ass 12",
+        "audioId": "82d28805fb4d1c6feae109d383a8c11d",
+        "a1": false
+      },
+      "options_lb": [
+        "143",
+        "1440",
+        "154",
+        "144"
+      ],
+      "correct": 3,
+      "spoken": "144",
+      "entryId": "SINN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-ddd99dc5ba",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "mir si scho Mëtt Januar",
+        "audioId": "9d666291ce517fab880f5f7ea9a420d4",
+        "a1": true
+      },
+      "options_lb": [
+        "Februar",
+        "Oktober",
+        "August",
+        "Januar"
+      ],
+      "correct": 3,
+      "spoken": "Januar",
+      "entryId": "SINN1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-ee4eac0f3d",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "et waren, looss(e) mer soen, 150 Leit um Fest",
+        "audioId": "c64e9e16e973faf2e9509498b48ee34a",
+        "a1": false
+      },
+      "options_lb": [
+        "151",
+        "149",
+        "160",
+        "150"
+      ],
+      "correct": 3,
+      "spoken": "150",
+      "entryId": "SOEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-2e3c296e18",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mir komme sonndes, den 13. November, aus der Vakanz erëm",
+        "audioId": "77557c771b815be08c69b18276a46aab",
+        "a1": false
+      },
+      "options_lb": [
+        "30",
+        "3",
+        "12",
+        "13"
+      ],
+      "correct": 3,
+      "spoken": "13",
+      "entryId": "SONNDES1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-5c216e3011",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Sortie 43 vun der Autobunn ass wéinst engem Chantier gespaart",
+        "audioId": "c09ccd5fb98e77b965d6c5e32aebc744",
+        "a1": false
+      },
+      "options_lb": [
+        "430",
+        "53",
+        "43",
+        "42"
+      ],
+      "correct": 2,
+      "spoken": "43",
+      "entryId": "SORTIE1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-bf8cb88f12",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "mat deem Stee kascht de Rank ronn 8000 Euro",
+        "audioId": "037ecf0c682eac624c339c57c43620f9",
+        "a1": false
+      },
+      "options_lb": [
+        "800",
+        "7999",
+        "8000",
+        "8001"
+      ],
+      "correct": 2,
+      "spoken": "8000",
+      "entryId": "STEEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-58c0eac546",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "d'Automobilindustrie hat hir Ufäng um Enn vum 19. Joerhonnert",
+        "audioId": "73568af4b11c1bb95cef6a482d46e12c",
+        "a1": false
+      },
+      "options_lb": [
+        "90",
+        "9",
+        "20",
+        "19"
+      ],
+      "correct": 3,
+      "spoken": "19",
+      "entryId": "UFANK1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-7732b0dee3",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "fir eist Fest kënnt Dir Iech nach bis den 31. Januar umellen",
+        "audioId": "1103b5fe66c78fbb62fda14132b2dd6d",
+        "a1": false
+      },
+      "options_lb": [
+        "3",
+        "41",
+        "31",
+        "32"
+      ],
+      "correct": 2,
+      "spoken": "31",
+      "entryId": "UMELLEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-45a35c0fca",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "an der Schivakanz 2020 hat mäi Moniteur mech wuel mam Coronavirus ugestach",
+        "audioId": "3309bf606e005b6a084da68c628d9d6f",
+        "a1": false
+      },
+      "options_lb": [
+        "2020",
+        "2030",
+        "202",
+        "2019"
+      ],
+      "correct": 0,
+      "spoken": "2020",
+      "entryId": "USTIECHEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-536ebe1150",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "wéi gedeelt ginn ass, krut ech e Véierel vun der Ierfschaft",
+        "audioId": "3f228cdb61b3220d97ecff9971f85295",
+        "a1": false
+      },
+      "options_lb": [
+        "Véierel",
+        "Mëtteg",
+        "Minutt",
+        "owes"
+      ],
+      "correct": 0,
+      "spoken": "Véierel",
+      "entryId": "VEIEREL1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-6af206db93",
+      "kind": "heard",
+      "subject": "time",
+      "example": {
+        "lb": "an deem Véierel wunne vill räich Leit",
+        "audioId": "eb28a523542eccaecb0f85353c8a7b20",
+        "a1": false
+      },
+      "options_lb": [
+        "Véierel",
+        "Stonn",
+        "mëttes",
+        "moies"
+      ],
+      "correct": 0,
+      "spoken": "Véierel",
+      "entryId": "VEIEREL1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-a49f21110b",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "well ech nom 31. August gebuer sinn, hunn ech e Joer an der Schoul verspillt",
+        "audioId": "8ca605f76ce45ee1e835944fa7539304",
+        "a1": false
+      },
+      "options_lb": [
+        "3",
+        "310",
+        "31",
+        "41"
+      ],
+      "correct": 2,
+      "spoken": "31",
+      "entryId": "VERSPILLEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-196beb1cd2",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "an eiser Vitrinn leien Dokumenter aus dem 17. Joerhonnert",
+        "audioId": "cc7d93d8aa8eaecc246ddeba7d06a2c8",
+        "a1": false
+      },
+      "options_lb": [
+        "17",
+        "7",
+        "16",
+        "70"
+      ],
+      "correct": 0,
+      "spoken": "17",
+      "entryId": "VITRINN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-3a03160758",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "meng Schwëster huet en Akommes vun 2500 Euro",
+        "audioId": "f34c3f26e50ebe8fe45b5e769c5531f8",
+        "a1": false
+      },
+      "options_lb": [
+        "25000",
+        "2501",
+        "2510",
+        "2500"
+      ],
+      "correct": 3,
+      "spoken": "2500",
+      "entryId": "VUN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-04c63159eb",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "den Thermometer weist 35 Grad",
+        "audioId": "45e81cf50481fbc727c1270690342470",
+        "a1": true
+      },
+      "options_lb": [
+        "35",
+        "3",
+        "36",
+        "350"
+      ],
+      "correct": 0,
+      "spoken": "35",
+      "entryId": "WEISEN1",
+      "unit": 2,
+      "a1": false
+    },
+    {
+      "id": "gr-heard-6e1ac4d553",
+      "kind": "heard",
+      "subject": "month",
+      "example": {
+        "lb": "zënter dem Mee huet et net méi gereent",
+        "audioId": "a1f626528a6c652093e37eafb3f17171",
+        "a1": false
+      },
+      "options_lb": [
+        "Dezember",
+        "Mäerz",
+        "Mee",
+        "Februar"
+      ],
+      "correct": 2,
+      "spoken": "Mee",
+      "entryId": "ZENTER1",
+      "unit": 2,
+      "a1": true
+    },
+    {
+      "id": "gr-heard-1c8858969f",
+      "kind": "heard",
+      "subject": "number",
+      "example": {
+        "lb": "den 23. Juni ass zu Lëtzebuerg Nationalfeierdag",
+        "audioId": "1c31ed353ac332a132a3982d9d3d6aae",
+        "a1": false
+      },
+      "options_lb": [
+        "24",
+        "23",
+        "230",
+        "22"
+      ],
+      "correct": 1,
+      "spoken": "23",
+      "entryId": "ZU1",
       "unit": 2,
       "a1": false
     },

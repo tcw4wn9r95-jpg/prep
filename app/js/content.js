@@ -127,6 +127,9 @@ function sentenceLength(item) {
   let sentence = '';
   if (item.kind === 'gender') sentence = item.example?.lb ?? '';
   else if (['wordorder', 'bracket', 'subclause', 'negation', 'likes'].includes(item.kind)) sentence = item.options_lb?.[item.correct] ?? '';
+  // `heard` and `numbers` have no gap to measure — one is a recording and the
+  // other a value — so they sort by their own sentence where there is one.
+  else if (item.kind === 'heard' || item.kind === 'numbers') sentence = item.example?.lb ?? '';
   else if (item.kind !== 'perfect-aux') sentence = `${item.before ?? ''} ${item.after ?? ''}`;
   return sentence.trim().split(/\s+/).filter(Boolean).length;
 }
@@ -143,7 +146,7 @@ function sentenceLength(item) {
  */
 const KIND_ORDER = [
   'gender', 'perfect-aux', 'wordorder', 'nrule', 'bracket', 'negation', 'likes', 'adjective', 'subclause',
-  'perfect-form', 'numbers', 'dative',
+  'perfect-form', 'numbers', 'heard', 'dative',
 ];
 
 /**

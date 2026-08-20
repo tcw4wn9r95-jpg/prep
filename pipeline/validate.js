@@ -37,6 +37,9 @@ const { createChecker } = require('./lib/nrule');
  */
 const LUXEMBOURGISH_FIELDS = new Set([
   'lb', // any field literally named for the language
+  // The word actually said in a `heard` card's recording — a real token copied
+  // out of the sentence, so it is checked like any other Luxembourgish.
+  'spoken',
   'transcript',
   'prompt_lb',
   'question_lb',
@@ -78,6 +81,9 @@ const LUXEMBOURGISH_FIELDS = new Set([
 const FREE_TEXT_FIELDS = new Set([
   'id',
   'type',
+  // What a `heard` card is asking about: number, month, weekday or time. A
+  // machine tag, never shown to anyone.
+  'subject',
   'module',
   'level',
   'topic',

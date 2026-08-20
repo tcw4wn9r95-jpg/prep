@@ -2958,3 +2958,69 @@ The first would have failed the day any of the three shipped.
 
 `npm test` 289 (4 new, 3 rewritten) · `validate` PASS ·
 `npm run walkthrough` 64/64 · `sw.js` → `v44`.
+
+---
+
+# Follow-up 25 — hearing a number, not reading one
+
+> "For learning numbers, cut audio snippets where numbers are said (with a few
+> seconds context) and put the options. Include numbers dates and time"
+
+## No cutting, and that is the right answer
+
+LOD publishes one recording per example sentence, and those sentences run two
+to eight seconds. The clip already *is* the snippet with its few seconds of
+context, so nothing needs cutting — and cutting would be worse than useless
+here: locating the word inside a longer recording needs forced alignment, which
+means word-level timestamps we do not have and cannot derive offline. A
+mis-aligned cut would clip the very word the card is about.
+
+So the snippets are LOD's own recordings, chosen because they contain a number,
+a month, a weekday or a clock word, and capped at sixteen words so the clip
+stays holdable.
+
+| what is said | cards |
+| --- | ---: |
+| a number | 125 |
+| a month | 29 |
+| a weekday | 21 |
+| a clock word | 30 |
+
+All 205 recordings are mirrored, because a `heard` card is *nothing but* its
+recording — an unmirrored one is not a quiet card, it is a blank one with four
+options.
+
+## Numbers are answered with digits
+
+Deliberately. Offering the written word would turn a listening test back into a
+reading test; digits keep the question about what reached the ear. The
+distractors are the ones the ear actually confuses — 6, 16 and 60 — the same
+syllable with `-zéng` or `-zeg` after it.
+
+Months, weekdays and clock words are answered with the word, because there the
+word *is* the vocabulary being learned.
+
+## The trap that would have shipped
+
+`Mee` is May. `mee` is "but", and it is one of the commonest words in the
+language. Matching month names case-insensitively would have put "but" on a
+card asking which month was said, several hundred times over. Months and
+weekdays are matched case-sensitively, and a test asserts no month card's
+answer is lowercase.
+
+## The bug the browser found and the tests would not have
+
+Every other card in the app falls back to printing its sentence when the audio
+will not play — that was a deliberate fix, because on a listening card the
+sentence is *the question arriving late*.
+
+On these cards the sentence is the **answer**. Watching a card in a browser
+with no audio device showed it helpfully printing `"e Méindeg ass fräi"` above
+four weekday options. The fallback now says the card needs sound instead, and
+a test pins both halves: the card must never carry its sentence in the prompt,
+and the engine's failure path must special-case this kind.
+
+## Verification
+
+`npm test` 293 (5 new) · `validate` PASS · `npm run walkthrough` 64/64 ·
+`sw.js` → `v45` · 2,481 recordings mirrored (+2 this run).
