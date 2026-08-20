@@ -213,6 +213,12 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     if (card.prompt.cloze) {
       const { before, after } = card.prompt.cloze;
       return [
+        // What the gap wants, when the sentence alone does not say. Without it
+        // a participle card is "guess which of four verbs" and a dative card
+        // is "guess which of four people" — see `clozeSubject` in cards.js.
+        card.prompt.subject
+          ? el('p', { class: 'card__title', style: { textAlign: 'center' } }, card.prompt.subject)
+          : null,
         el(
           'p',
           { class: 'screen__title', style: { marginBlockStart: 'var(--s2)', fontSize: 'var(--size-md)', lineHeight: 'var(--lh-base)' } },

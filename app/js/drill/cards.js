@@ -235,17 +235,26 @@ export function factsFor(card) {
     return `LOD attests both "${right}" and "${others.join('", "')}" as real forms of the same adjective${meaning}. In this sentence the correct form is "${right}".`;
   }
 
+  if (item.kind === 'numbers' && right) {
+    const rule =
+      item.value >= 13 && item.value <= 19
+        ? ' The teens end in -zéng; the tens that sound like them end in -zeg.'
+        : item.value >= 20 && item.value % 10 === 0 && item.value < 100
+          ? ' The tens end in -zeg; the teen that sounds like it ends in -zéng.'
+          : '';
+    const sentence = item.example?.lb ? ` LOD writes it: "${item.example.lb}".` : '';
+    return `${item.value} is "${right}".${rule}${sentence}`;
+  }
+
   if (item.kind === 'perfect-form' && right) {
     const meaning = item.en ? ` (${item.en})` : '';
     return `LOD records "${right}" as the past participle of ${item.infinitive}${meaning}. The other options are genuine past participles, but of other verbs.`;
   }
 
-  if (item.kind === 'numbers' && right) {
-    return `"${right}" is the number LOD actually wrote in this sentence. "${others.join('", "')}" are real Luxembourgish number words too, just not the ones in this sentence.`;
-  }
-
   if (item.kind === 'dative' && right) {
-    return `After "${item.preposition}", the pronoun goes into the dative — "${right}" is the one LOD wrote here. "${others.join('", "')}" are the other dative pronouns, real but naming a different person.`;
+    const row = DATIVE_BY_FORM.get(right.toLowerCase());
+    const person = row ? ` — the dative of ${row.nom} (${row.en})` : '';
+    return `After "${item.preposition}" the pronoun goes into the dative, so it is "${right}"${person}.`;
   }
 
   if (card.deck?.id === 'vocab' && item.pos === 'SUBST' && item.article) {
@@ -284,6 +293,12 @@ export function explainTarget(card, sentence) {
   }
   if (item.kind === 'perfect-aux') {
     return { lb: null, word: item.lb, label: 'Why this one?' };
+  }
+  // Like perfect-aux, a number card has no gapped sentence for the engine to
+  // find — the prompt is the value. Its LOD sentence is attached rather than
+  // rendered, so hand that over explicitly.
+  if (item.kind === 'numbers') {
+    return { lb: item.example?.lb ?? null, word: item.options_lb?.[item.correct] ?? null, label: 'How is this number built?' };
   }
   if (item.kind === 'gender') {
     return sentence
@@ -712,15 +727,81 @@ function grammarChoiceCard(base, item, random, box = 0) {
     };
   }
 
+  // "How is this number said?" — the value is the whole prompt. There is no
+  // sentence to gap, on purpose: see `numberItems` in build-grammar.js for why
+  // gapping a numeral out of a sentence cannot be answered.
+  if (item.kind === 'numbers') {
+    return {
+      ...base,
+      mode: 'choice',
+      instruction: 'How is this number said?',
+      prompt: { word: String(item.value), audioId: null },
+      options,
+      answer,
+    };
+  }
+
   return {
     ...base,
     mode: 'choice',
     instruction: GRAMMAR_INSTRUCTIONS[item.kind] ?? 'Which form fits this sentence?',
-    prompt: { cloze: { before: item.before, after: item.after }, audioId: null },
+    prompt: { subject: clozeSubject(item), cloze: { before: item.before, after: item.after }, audioId: null },
     options,
     answer,
   };
 }
+
+/**
+ * What the gap is actually asking for, named above the sentence.
+ *
+ * A gapped sentence is only answerable when the card determines the answer.
+ * Two kinds were failing that and were pure guesses:
+ *
+ *   `perfect-form` offered four participles *of four different verbs* and
+ *     never said which verb was meant — even though the item has carried
+ *     `infinitive` and `en` all along. Naming the verb turns "guess the idiom"
+ *     into "form this verb's participle", which is the exercise it was for.
+ *
+ *   `dative` offered four dative pronouns naming four different people, with
+ *     nothing on the card to say whose. The person is recoverable from the
+ *     answer through the same table the dative game uses, so the card can ask
+ *     it the way that game does: preposition plus person.
+ *
+ * The remaining kinds do not need this: their options are forms of one word
+ * (`nrule`, `adjective`), so only the grammar tells them apart, and that is
+ * exactly the thing being taught.
+ */
+function clozeSubject(item) {
+  if (item.kind === 'perfect-form' && item.infinitive) {
+    return item.en ? `${item.infinitive} · ${item.en}` : item.infinitive;
+  }
+  if (item.kind === 'dative' && item.preposition) {
+    const answer = item.options_lb?.[item.correct]?.toLowerCase();
+    const row = DATIVE_BY_FORM.get(answer);
+    if (row) return `${item.preposition} + ${row.nom} · ${row.en}`;
+  }
+  return null;
+}
+
+/**
+ * Dative pronoun back to the person it belongs to.
+ *
+ * The same eight rows the "Change the word" game teaches from, kept here so a
+ * grammar card can name the person the gap wants. Listed by dative form, first
+ * row wins — `him` is the dative of both hien and hatt, and either reading
+ * answers the card.
+ */
+const DATIVE_BY_FORM = new Map(
+  [
+    { nom: 'ech', en: 'I', dat: 'mir' },
+    { nom: 'du', en: 'you', dat: 'dir' },
+    { nom: 'hien', en: 'he', dat: 'him' },
+    { nom: 'si', en: 'she', dat: 'hir' },
+    { nom: 'mir', en: 'we', dat: 'eis' },
+    { nom: 'dir', en: 'you (plural)', dat: 'iech' },
+    { nom: 'si', en: 'they', dat: 'hinnen' },
+  ].map((row) => [row.dat, row]),
+);
 
 /** What each whole-sentence card asks. Naming the actual question beats
  * "which order is right?" three different ways. */
@@ -736,9 +817,8 @@ const SENTENCE_INSTRUCTIONS = {
 const GRAMMAR_INSTRUCTIONS = {
   nrule: 'Which spelling is correct here (the Eifeler Regel)?',
   adjective: 'Which form of the word fits this sentence?',
-  'perfect-form': 'Which past participle fills the gap?',
-  numbers: 'Which number fits this sentence?',
-  dative: 'Which word fits after the preposition?',
+  'perfect-form': 'Which past participle belongs to the verb named above?',
+  dative: 'Which form of that person goes after the preposition?',
 };
 
 /** The recording to offer, or null when it is not mirrored yet. */

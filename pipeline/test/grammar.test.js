@@ -189,23 +189,67 @@ function withForms(lexicon, words) {
   return lexicon;
 }
 
-test('grammar/numbers: gaps a real number word, offering only other real number words as distractors', () => {
+test('grammar/numbers: asks how a value is said, which is answerable', () => {
+  // The card this replaced could not be answered. It gapped the numeral out of
+  // a real sentence — "the crane injured ___ workers" — and offered four
+  // number words, none of which the sentence ruled out. A numeral is not
+  // determined by its context the way a grammatical form is, so there was no
+  // rule to apply and every card was a one-in-four guess.
   const lexicon = withForms(withForms(fixtureLexicon(), NUMBER_WORDS), ['e', 'wierfel', 'huet', 'säiten']);
   const corpus = {
-    entries: [{ id: 'A1', partOfSpeech: 'SUBST', meanings: [{ examples: [{ text: 'e Wierfel huet sechs Säiten.' }] }] }],
+    entries: [
+      {
+        id: 'A1',
+        partOfSpeech: 'SUBST',
+        meanings: [
+          {
+            examples: [
+              { text: 'e Wierfel huet sechs Säiten.' },
+              { text: 'e Wierfel huet dräi Säiten.' },
+              { text: 'e Wierfel huet zéng Säiten.' },
+              { text: 'e Wierfel huet zwielef Säiten.' },
+            ],
+          },
+        ],
+      },
+    ],
   };
   const items = numberItems(corpus, lexicon);
-  assert.ok(items.length >= 1, 'a real sentence with a number word should be mined');
+  assert.ok(items.length >= 1, 'a number word attested in a real sentence should produce a card');
+
   for (const item of items) {
     assert.equal(item.kind, 'numbers');
+    // The value is the question, so it has to be there and be a number.
+    assert.equal(typeof item.value, 'number');
     assert.equal(item.options_lb.length, 4);
-    assert.equal(new Set(item.options_lb.map((o) => o.toLowerCase())).size, 4, 'options must be distinct');
+    assert.equal(new Set(item.options_lb.map((option) => option.toLowerCase())).size, 4, 'options must be distinct');
     for (const option of item.options_lb) {
-      assert.ok(NUMBER_WORDS.includes(option.toLowerCase()), `"${option}" is not one of the 30 real number words`);
+      assert.ok(NUMBER_WORDS.includes(option.toLowerCase()), `"${option}" is not one of the real number words`);
     }
-    assert.equal(item.options_lb[item.correct].toLowerCase(), 'sechs');
-    assert.equal(`${item.before}${item.options_lb[item.correct]}${item.after}`, 'e Wierfel huet sechs Säiten.');
+    // No gapped sentence any more — the LOD sentence is evidence shown after
+    // answering, not the question.
+    assert.equal(item.before, undefined);
+    assert.ok(item.example?.lb, 'the card should still carry the sentence LOD wrote');
+    assert.ok(item.example.lb.toLowerCase().includes(item.options_lb[item.correct].toLowerCase()));
   }
+});
+
+test('grammar/numbers: the near-miss is offered, because it is the whole rule', () => {
+  // 17 is siwwenzéng and 70 is siwwenzeg. A distractor set that offers 17
+  // against 0, 4 and 40 tests nothing; the teen against its ten is the
+  // contrast worth drilling, so it is offered first when it is available.
+  const items = require('../../app/data/grammar.json').items.filter((item) => item.kind === 'numbers');
+  const byValue = new Map(items.map((item) => [item.value, item]));
+
+  const thirteen = byValue.get(13);
+  assert.ok(thirteen, '13 should be asked about');
+  assert.ok(
+    thirteen.options_lb.some((option) => option.toLowerCase() === 'drësseg'),
+    `13 should be offered against 30, got ${thirteen.options_lb.join(', ')}`,
+  );
+
+  const thirty = byValue.get(30);
+  assert.ok(thirty.options_lb.some((option) => option.toLowerCase() === 'dräizéng'), '30 should be offered against 13');
 });
 
 test('grammar/numbers: never gaps a number word that opens the sentence', () => {
@@ -391,16 +435,27 @@ test('grammar: a perfect-participle gap is answerable and really a perfect', (t)
 test('grammar: a numbers gap only ever offers real number words, and the sentence really contains the answer', (t) => {
   if (!fs.existsSync(SHIPPED)) return t.skip('no grammar.json yet');
   const items = shipped().filter((item) => item.kind === 'numbers');
-  assert.ok(items.length > 50, `expected a real numbers deck, got ${items.length}`);
+  // One card per number word, not per sentence the word turns up in. Thirty
+  // words, minus the handful with no attested sentence to vouch for the
+  // spelling — twenty-odd answerable cards, where there used to be 150 guesses.
+  assert.ok(items.length >= 20, `expected a card for most number words, got ${items.length}`);
+  const values = new Set();
   for (const item of items) {
+    assert.equal(typeof item.value, 'number', `${item.id}: no value to ask about`);
+    assert.ok(!values.has(item.value), `${item.id}: ${item.value} is asked about twice`);
+    values.add(item.value);
     assert.equal(item.options_lb.length, 4, `${item.id}: four options`);
     assert.equal(new Set(item.options_lb.map((o) => o.toLowerCase())).size, 4, `${item.id}: options must be distinct`);
     for (const option of item.options_lb) {
       assert.ok(NUMBER_WORDS.includes(option.toLowerCase()), `${item.id}: "${option}" is not one of the 30 real number words`);
     }
-    const answer = item.options_lb[item.correct];
-    assert.equal(`${item.before}${answer}${item.after}`.length > 0, true);
-    assert.notEqual(item.before.length + item.after.length, 0, `${item.id}: no surrounding sentence`);
+    // The sentence is evidence, not the question — but it still has to be a
+    // real one that actually contains the answer.
+    assert.ok(item.example?.lb, `${item.id}: no sentence to show as evidence`);
+    assert.ok(
+      item.example.lb.toLowerCase().includes(item.options_lb[item.correct].toLowerCase()),
+      `${item.id}: the evidence sentence does not contain the answer`,
+    );
   }
 });
 

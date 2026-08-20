@@ -2874,3 +2874,87 @@ topic-tagged — 26% of the deck carries no theme, and that is the ceiling on ho
 well any themed path can work. And nothing in the path yet targets **B1
 listening** specifically; the podcast screen exists and is the obvious home for
 it, but it is not a unit step.
+
+---
+
+# Follow-up 24 — three kinds of card that could not be answered
+
+> "There are some questions impossible to answer such as the numbers ones"
+
+Correct, and it was not only the numbers. Reproduced by reading one card from
+each grammar kind:
+
+```
+numbers       "de Kran, deen ëmgefall ass, huet ___ Aarbechter blesséiert"
+              néng · zwee · véier · siwwenzéng
+perfect-form  "de Surveillant huet de Kandidat net een Ament aus den Ae ___"
+              gespaart · gelooss · geschlof · getaascht
+dative        "dës Decisioun gouf vun ___ alleguer guttgeheescht"
+              mir · hir · dir · eis
+```
+
+The crane injured *how many* workers? Which of four unrelated verbs? Whose
+decision? Nothing on any of those cards decides it. All three were one-in-four
+guesses.
+
+## The rule underneath
+
+A gap is answerable when **either** the options are forms of one word — so only
+the grammar tells them apart, which is the thing being taught — **or** the card
+names the target that the options vary over. `nrule` (`misse` / `missen`) and
+`adjective` (`aggressiv` / `aggressiivt` / `aggressive`) satisfy the first and
+were always fine. The three above satisfied neither: their options were
+different words, and the card never said which one it wanted.
+
+Their own feedback lines had been admitting it all along —
+*"the number LOD actually wrote in this sentence"*, *"the other dative
+pronouns, real but naming a different person"*. That is a description of a
+guess, not of a rule.
+
+## Two were presentation bugs
+
+`perfect-form` has carried `infinitive` and `en` since it was built and simply
+never showed them. Naming the verb turns "guess which of four idioms" into
+"form this verb's participle", which is the exercise it was always for.
+
+`dative` needed the person. It is recoverable from the answer through the same
+eight-row table the "Change the word" game already uses, so the card can now ask
+it the way that game does — `vun + mir · we` — with the sentence underneath.
+
+Both are a new `subject` line above the gapped sentence.
+
+## One was the wrong kind of card
+
+Numbers cannot be fixed this way. A numeral is not determined by its context
+the way a grammatical form is, so no amount of extra labelling makes "the crane
+injured ___ workers" answerable — there is no rule to apply.
+
+What the deck was *for* is how a number is said: 0–12 are their own words,
+13–19 take **-zéng**, and the tens take **-zeg**. So the card now gives the
+value and asks for the word, which is answerable from that rule and drills the
+contrast that actually catches people out — 17 `siwwenzéng` against 70
+`siwwenzeg`, one letter apart. Distractors are chosen for that near miss:
+13 is offered against 30, 30 against 13, 40 against `véier` and `fofzeg`.
+
+The sentence LOD wrote is kept as evidence shown *after* answering, so the
+corpus link survives without being the question.
+
+The deck goes from **150 unanswerable cards to 22 answerable ones** — one per
+number word, minus the handful with no attested sentence to vouch for the
+spelling. Twenty-two cards that teach a rule beat 150 that teach a coin flip.
+
+## Guarding the class, not the instance
+
+Two tests, both about the rule rather than these three kinds:
+
+- every gapped card must either carry a `subject` naming what it wants, or have
+  options that are forms of a single word;
+- a number card must never be a gapped sentence, must ask for a value, and its
+  evidence sentence must really contain the answer.
+
+The first would have failed the day any of the three shipped.
+
+## Verification
+
+`npm test` 289 (4 new, 3 rewritten) · `validate` PASS ·
+`npm run walkthrough` 64/64 · `sw.js` → `v44`.

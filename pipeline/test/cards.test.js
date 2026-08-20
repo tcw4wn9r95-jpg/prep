@@ -593,3 +593,39 @@ test('cards: a blind listening card never plays a sentence a beginner cannot hol
   const share = listens / drillable.length;
   assert.ok(share < 0.9, `box 1 is still ${Math.round(share * 100)}% listening cards`);
 });
+
+test('cards: a gap card names what it is asking for, or its options are one word', () => {
+  // The rule this enforces, learned from three kinds that shipped unanswerable:
+  //
+  //   numbers      gapped a numeral out of a sentence and offered four number
+  //                words. "The crane injured ___ workers" is nine or two or
+  //                four depending on nothing the learner can see.
+  //   perfect-form offered four participles of four *different* verbs without
+  //                ever saying which verb was meant.
+  //   dative       offered four dative pronouns naming four different people
+  //                with nothing on the card to say whose.
+  //
+  // A gap is answerable when either the options are forms of one word — so
+  // only the grammar tells them apart, which is the thing being taught — or
+  // the card names the target the options vary over. Anything else is a guess
+  // dressed as an exercise.
+  const ONE_WORD = new Set(['nrule', 'adjective']);
+
+  for (const { item, card } of grammarCards()) {
+    if (!card.prompt?.cloze) continue;
+    if (ONE_WORD.has(item.kind)) continue;
+    assert.ok(
+      card.prompt.subject,
+      `${item.kind}: a gapped sentence whose options are different words must name what it wants`,
+    );
+  }
+});
+
+test('cards: the number card asks for a value, and never gaps a sentence', () => {
+  for (const { item, card } of grammarCards()) {
+    if (item.kind !== 'numbers') continue;
+    assert.ok(!card.prompt.cloze, 'a number card must not be a gapped sentence — the numeral is not recoverable from context');
+    assert.equal(card.prompt.word, String(item.value), 'the value is the question');
+    assert.match(card.instruction, /how is this number said/i);
+  }
+});

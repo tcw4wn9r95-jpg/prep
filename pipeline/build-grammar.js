@@ -116,12 +116,43 @@ const MAX_NEGATION_ITEMS = 180;
  * way German's mostly are; the corpus's own spelling is the tie-breaker, not
  * a guess extrapolated from the pattern.
  */
-const NUMBER_WORDS = [
-  'null', 'eent', 'zwee', 'dräi', 'véier', 'fënnef', 'sechs', 'siwen', 'aacht', 'néng', 'zéng',
-  'eelef', 'zwielef', 'dräizéng', 'véierzéng', 'fofzéng', 'siechzéng', 'siwwenzéng', 'uechtzéng', 'nonzéng',
-  'zwanzeg', 'drësseg', 'véierzeg', 'fofzeg', 'sechzeg', 'siwwenzeg', 'achtzeg', 'nonzeg',
-  'honnert', 'dausend',
-];
+/**
+ * The number words, with the value each one names.
+ *
+ * The words are LOD's; the values are arithmetic, in the same way the English
+ * glosses elsewhere are English. Pairing them is what lets a card ask
+ * something answerable — see `numberItems`.
+ */
+const NUMBER_VALUES = {
+  null: 0, eent: 1, zwee: 2, dräi: 3, véier: 4, fënnef: 5, sechs: 6, siwen: 7, aacht: 8, néng: 9,
+  zéng: 10, eelef: 11, zwielef: 12, dräizéng: 13, véierzéng: 14, fofzéng: 15, siechzéng: 16,
+  siwwenzéng: 17, uechtzéng: 18, nonzéng: 19, zwanzeg: 20, drësseg: 30, véierzeg: 40, fofzeg: 50,
+  sechzeg: 60, siwwenzeg: 70, achtzeg: 80, nonzeg: 90, honnert: 100, dausend: 1000,
+};
+
+const NUMBER_WORDS = Object.keys(NUMBER_VALUES);
+
+/**
+ * The words most easily confused with a given one, hardest first.
+ *
+ * The teen/ten contrast is the whole rule and the whole difficulty: 17 is
+ * `siwwenzéng` and 70 is `siwwenzeg`, one letter apart. A distractor set that
+ * offers 17 against 0, 4 and 40 tests nothing, so the near-miss is always
+ * offered first when one exists.
+ */
+function numberDistractors(word) {
+  const value = NUMBER_VALUES[word];
+  const score = (other) => {
+    const otherValue = NUMBER_VALUES[other];
+    // The -zéng / -zeg pair for the same digit: 17 against 70, 13 against 30.
+    if (value >= 13 && value <= 19 && otherValue === (value - 10) * 10) return 0;
+    if (value >= 20 && value <= 90 && value % 10 === 0 && otherValue === value / 10 + 10) return 0;
+    // Then anything sharing a first syllable, then anything close in value.
+    if (other.slice(0, 3) === word.slice(0, 3)) return 1;
+    return 2 + Math.min(Math.abs(otherValue - value) / 1000, 0.9);
+  };
+  return NUMBER_WORDS.filter((other) => other !== word).sort((a, b) => score(a) - score(b) || a.localeCompare(b));
+}
 const MAX_NUMBER_ITEMS = 150;
 const MAX_PER_NUMBER_WORD = 15;
 
@@ -785,59 +816,69 @@ function subclauseItems(corpus, lexicon, verbs) {
 function numberItems(corpus, lexicon) {
   const isClean = makeGate(lexicon);
   const wordSet = new Set(NUMBER_WORDS);
-  const items = [];
-  const seen = new Set();
-  const perWord = new Map();
 
+  // One card per number word, not per sentence it appears in.
+  //
+  // The first version of this gapped the numeral out of a real sentence and
+  // offered four number words. That card cannot be answered: "the crane
+  // injured ___ workers" is nine or two or four depending on nothing the
+  // learner can see. A numeral is not determined by its context the way a
+  // grammatical form is, so there was no rule to apply and the round was a
+  // sequence of one-in-four guesses. Its own feedback line admitted it — "the
+  // number LOD actually wrote in this sentence".
+  //
+  // What the deck was for is how a number is *said*: 0-12 are their own words,
+  // 13-19 add -zéng, and the tens take -zeg. So the card gives the value and
+  // asks for the word, which is answerable from the rule and drills exactly
+  // the contrast that matters. The sentence LOD wrote is kept as evidence
+  // shown after answering, so the corpus link survives.
+  const evidence = new Map();
   outer: for (const entry of corpus.entries) {
     for (const meaning of entry.meanings ?? []) {
       for (const example of meaning.examples ?? []) {
         if (!example.text) continue;
         for (const sentence of sentences(example.text)) {
           const tokens = tokenise(sentence);
-          for (let i = 0; i < tokens.length; i += 1) {
-            if (i === 0) continue;
-            const token = tokens[i];
-            const key = token.value.toLowerCase();
-            if (!wordSet.has(key)) continue;
-            if ((perWord.get(key) ?? 0) >= MAX_PER_NUMBER_WORD) continue;
-
-            const sentenceKey = `${key}|${sentence}`;
-            if (seen.has(sentenceKey)) continue;
+          for (let i = 1; i < tokens.length; i += 1) {
+            const key = tokens[i].value.toLowerCase();
+            if (!wordSet.has(key) || evidence.has(key)) continue;
             if (!isClean(sentence)) continue;
-
-            const span = spanOf(sentence, token.raw);
+            const span = spanOf(sentence, tokens[i].raw);
             if (!span) continue;
-
-            const id = `gr-number-${shortHash(sentenceKey)}`;
-            const pool = NUMBER_WORDS.filter((word) => word !== key);
-            const picked = [];
-            for (let n = 0; n < 3 && pool.length; n += 1) {
-              const at = parseInt(shortHash(`${id}:${n}`).slice(0, 6), 16) % pool.length;
-              picked.push(pool.splice(at, 1)[0]);
-            }
-            if (picked.length < 3) continue;
-
-            const options = [token.raw, ...picked];
-            const at = rotate(id, options.length);
-            const rotated = [...options.slice(at), ...options.slice(0, at)];
-
-            items.push({
-              id,
-              kind: 'numbers',
-              before: sentence.slice(0, span.start),
-              after: sentence.slice(span.end),
-              options_lb: rotated,
-              correct: rotated.indexOf(token.raw),
-              entryId: entry.id,
-            });
-            seen.add(sentenceKey);
-            perWord.set(key, (perWord.get(key) ?? 0) + 1);
-            if (items.length >= MAX_NUMBER_ITEMS) break outer;
+            evidence.set(key, { sentence, entryId: entry.id, form: tokens[i].raw });
+            if (evidence.size >= wordSet.size) break outer;
           }
         }
       }
     }
+  }
+
+  const items = [];
+  for (const word of NUMBER_WORDS) {
+    const found = evidence.get(word);
+    // Every option has to be a word LOD attests, so a number with no attested
+    // sentence is simply not asked about rather than being asked about with an
+    // unverifiable spelling.
+    if (!found) continue;
+
+    const id = `gr-number-${shortHash(word)}`;
+    const picked = numberDistractors(word).filter((other) => evidence.has(other)).slice(0, 3);
+    if (picked.length < 3) continue;
+
+    const options = [found.form, ...picked];
+    const at = rotate(id, options.length);
+    const rotated = [...options.slice(at), ...options.slice(0, at)];
+
+    items.push({
+      id,
+      kind: 'numbers',
+      value: NUMBER_VALUES[word],
+      options_lb: rotated,
+      correct: rotated.indexOf(found.form),
+      // Shown once the card is answered, not before — it contains the answer.
+      example: { lb: found.sentence },
+      entryId: found.entryId,
+    });
   }
   return items;
 }
