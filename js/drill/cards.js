@@ -73,6 +73,9 @@ export const DECKS = {
     title: 'Grammar',
     lemma: (item) => {
       if (item.kind === 'gender' || item.kind === 'perfect-aux') return item.lb;
+      // A listening card's identity is the word that was said in it.
+      if (item.kind === 'heard') return item.spoken ?? item.options_lb?.[item.correct] ?? '';
+      if (item.kind === 'numbers') return item.options_lb?.[item.correct] ?? '';
       // A whole-sentence item has no gap to name, so the answer stands for it.
       if (SENTENCE_KINDS.has(item.kind)) return item.options_lb?.[item.correct] ?? '';
       return `${item.before}…${item.after}`.trim();
@@ -94,6 +97,7 @@ const GRAMMAR_KIND_LABELS = {
   subclause: 'verb at the end',
   negation: 'negation',
   numbers: 'numbers',
+  heard: 'listening',
   dative: 'dative case',
   likes: 'likes and dislikes',
 };
@@ -127,6 +131,7 @@ export const GRAMMAR_TASKS = {
   adjective: 'They were asked which form of the adjective agrees with the noun in this sentence.',
   'perfect-aux': 'They were asked whether this verb forms its perfect with hunn or with sinn.',
   'perfect-form': 'They were asked which past participle belongs in the gap in this sentence.',
+  heard: 'They heard this sentence read aloud and were asked which number, month, weekday or clock word was said in it.',
   wordorder: 'They were asked which of three orderings of this sentence is the correct one — the question is where the conjugated verb goes.',
   bracket: 'They were asked which of three orderings is correct — the question is where the second half of the verb goes, the participle or infinitive that closes the sentence.',
   subclause: 'They were asked which of three orderings is correct — the question is where the conjugated verb goes inside a subordinate clause introduced by datt or ob.',
@@ -177,6 +182,7 @@ export const GRAMMAR_KINDS = [
   'subclause',
   'negation',
   'numbers',
+  'heard',
   'dative',
   'likes',
 ];
@@ -233,6 +239,11 @@ export function factsFor(card) {
   if (item.kind === 'adjective' && right) {
     const meaning = item.en ? ` (meaning "${item.en}")` : '';
     return `LOD attests both "${right}" and "${others.join('", "')}" as real forms of the same adjective${meaning}. In this sentence the correct form is "${right}".`;
+  }
+
+  if (item.kind === 'heard' && right) {
+    const said = item.spoken && item.spoken !== right ? ` LOD says it as "${item.spoken}".` : '';
+    return `The recording says "${item.example?.lb ?? ''}".${said}`;
   }
 
   if (item.kind === 'numbers' && right) {
@@ -297,6 +308,9 @@ export function explainTarget(card, sentence) {
   // Like perfect-aux, a number card has no gapped sentence for the engine to
   // find — the prompt is the value. Its LOD sentence is attached rather than
   // rendered, so hand that over explicitly.
+  if (item.kind === 'heard') {
+    return { lb: item.example?.lb ?? null, word: item.spoken ?? null, label: 'Explain this sentence' };
+  }
   if (item.kind === 'numbers') {
     return { lb: item.example?.lb ?? null, word: item.options_lb?.[item.correct] ?? null, label: 'How is this number built?' };
   }
@@ -384,6 +398,12 @@ const has = {
   present: (item) => Boolean(item.present),
   grammarChoice: (item) =>
     (item.kind === 'gender' && Array.isArray(item.options) && Number.isInteger(item.correct)) ||
+    // A `heard` card is nothing but its recording, so it needs one — without
+    // the audio there is no question left, only four options.
+    (item.kind === 'heard' &&
+      Boolean(item.example?.audioId) &&
+      Array.isArray(item.options_lb) &&
+      Number.isInteger(item.correct)) ||
     (['nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'bracket', 'subclause', 'negation', 'numbers', 'dative', 'likes'].includes(
       item.kind,
     ) &&
@@ -727,6 +747,21 @@ function grammarChoiceCard(base, item, random, box = 0) {
     };
   }
 
+  // Listening: the recording is the entire question. The sentence is attached
+  // but deliberately not rendered — reading it would answer the card — and the
+  // engine reveals it once an answer is in.
+  if (item.kind === 'heard') {
+    return {
+      ...base,
+      type: 'listen',
+      mode: 'choice',
+      instruction: HEARD_INSTRUCTIONS[item.subject] ?? 'Listen. What did you hear?',
+      prompt: { hideBody: true, audioId: item.example?.audioId ?? null },
+      options,
+      answer,
+    };
+  }
+
   // "How is this number said?" — the value is the whole prompt. There is no
   // sentence to gap, on purpose: see `numberItems` in build-grammar.js for why
   // gapping a numeral out of a sentence cannot be answered.
@@ -811,6 +846,20 @@ const SENTENCE_INSTRUCTIONS = {
   subclause: 'Where does the verb go after datt / ob?',
   negation: 'Where does net go?',
   likes: 'Where does gär (or gären) go?',
+};
+
+/**
+ * What a listening card asks, by what is in the recording.
+ *
+ * Named rather than generic: "what did you hear?" over four month names is a
+ * different task from the same question over four numbers, and saying which
+ * is a fair hint rather than a giveaway — the options already show the class.
+ */
+const HEARD_INSTRUCTIONS = {
+  number: 'Listen. Which number is said?',
+  month: 'Listen. Which month is said?',
+  weekday: 'Listen. Which day is said?',
+  time: 'Listen. Which time word is said?',
 };
 
 /** What the gapped-sentence grammar cards ask. */

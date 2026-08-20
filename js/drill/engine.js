@@ -264,6 +264,15 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     const note = el('p', { class: 'card__note', hidden: true });
     const failed = () => {
       play.classList.remove('is-playing');
+      // On a listening card the transcript *is* the answer, so falling back to
+      // it would hand the card over rather than rescue it. Everywhere else the
+      // sentence is the question arriving late and showing it is the fix; see
+      // the note above `fallback`.
+      if (card.item?.kind === 'heard') {
+        note.textContent = 'This one needs sound — try tapping again, or come back with the volume up.';
+        note.hidden = false;
+        return;
+      }
       const text = card.prompt.revealAfter ?? card.prompt.sentence ?? card.item.example?.lb ?? null;
       if (text && transcript) {
         transcript.replaceChildren(el('strong', {}, 'Audio would not play. '), document.createTextNode(`“${text}”`));

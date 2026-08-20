@@ -903,6 +903,10 @@ export const GRAMMAR_GUIDE = [...TOPICS].sort((a, b) => a.level - b.level);
 const TOPIC_BY_KIND = {
   'perfect-aux': 'perfect',
   'perfect-form': 'perfect',
+  // The listening cards are the numbers topic heard rather than read — plus
+  // the months, weekdays and clock words, which are the same skill in the same
+  // place: catching a quantity or a date as it goes past.
+  heard: 'numbers',
 };
 
 /** Find the theory for a grammar card, by its `kind`. */
