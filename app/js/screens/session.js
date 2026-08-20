@@ -16,7 +16,7 @@
  */
 
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadStages } from '../content.js';
-import { getLearnDeckStates, buildMixedSession, newWordsLeftToday, newWordGoal, listMistakes, mistakeEntryKeys , flaggedCards } from '../store.js';
+import { getLearnDeckStates, buildMixedSession, listMistakes, mistakeEntryKeys , flaggedCards } from '../store.js';
 import { DECKS, isDrillable, boxIndex, isStructure } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
@@ -44,7 +44,7 @@ const STRUCTURE_RESERVE = 3;
 
 export async function render(root, { params, settings, navigate }) {
   const stage = params?.[0] ? Number(params[0]) : null;
-  const [vocab, verbs, phrases, grammar, stages, vocabStates, verbStates, phraseStates, grammarStates, newLeft, mistakeRows, flagged] = await Promise.all([
+  const [vocab, verbs, phrases, grammar, stages, vocabStates, verbStates, phraseStates, grammarStates, mistakeRows, flagged] = await Promise.all([
     loadVocab(),
     loadVerbs(),
     loadPhrases(),
@@ -54,7 +54,6 @@ export async function render(root, { params, settings, navigate }) {
     getLearnDeckStates(settings.playerId, 'verb'),
     getLearnDeckStates(settings.playerId, 'phrase'),
     getLearnDeckStates(settings.playerId, 'grammar'),
-    newWordsLeftToday(settings.playerId, { target: newWordGoal(settings) }),
     listMistakes(settings.playerId),
     flaggedCards(settings.playerId),
   ]);
@@ -88,9 +87,6 @@ export async function render(root, { params, settings, navigate }) {
   // level rather than excluding it for want of the field, and stages 1–3, the
   // sentence skeleton, stay pure vocabulary. The reserve still guarantees
   // grammar a share of the general session.
-  // `newTarget` is what is left of today's budget, not a fresh allowance —
-  // otherwise quitting a session and starting another buys eight more new
-  // words, as many times as you care to do it.
   // Sentence structure is its own reserved group so it cannot be crowded out
   // by the other six grammar kinds sharing one deck id.
   const structureGroup = {
@@ -103,12 +99,11 @@ export async function render(root, { params, settings, navigate }) {
 
   const plan = buildMixedSession([...groups, structureGroup], {
     limit: SESSION_SIZE,
-    newTarget: newLeft,
     reserve: { grammar: GRAMMAR_RESERVE, structure: STRUCTURE_RESERVE },
     mistakes,
     flagged,
   });
-  if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total, capped: newLeft === 0 });
+  if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total });
 
   const boxes = new Map();
   for (const group of groups) boxIndex(group.deck.id, group.states, boxes);

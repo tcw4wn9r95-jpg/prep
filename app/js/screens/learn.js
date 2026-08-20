@@ -30,7 +30,7 @@
 import { el, screenHead, button, plural, settingsButton } from '../dom.js';
 import { Amelie } from '../amelie.js';
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadTopics, loadStages, topicIcon } from '../content.js';
-import { learnProgress, dueCounts, todayProgress, getLearnDeckState, goalCards, newWordGoal, listMistakes, newWordsLeftToday, throughput, STRANDS } from '../store.js';
+import { learnProgress, dueCounts, todayProgress, getLearnDeckState, goalCards, listMistakes, newWordsToday, throughput, STRANDS } from '../store.js';
 
 export async function render(root, { settings, navigate }) {
   const [vocabItems, verbItems, phraseItems, grammarItems, topics, stages] = await Promise.all([
@@ -41,7 +41,7 @@ export async function render(root, { settings, navigate }) {
     loadTopics(),
     loadStages(),
   ]);
-  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, grammarRecv, grammarProd, due, today, seenVocab, seenVerb, seenPhrase, mistakes, newLeft, flow] =
+  const [vocabRecv, vocabProd, verbRecv, verbProd, phraseRecv, phraseProd, grammarRecv, grammarProd, due, today, seenVocab, seenVerb, seenPhrase, mistakes, newToday, flow] =
     await Promise.all([
       learnProgress(settings.playerId, 'vocab', STRANDS.recv, vocabItems.length),
       learnProgress(settings.playerId, 'vocab', STRANDS.prod, vocabItems.length),
@@ -51,13 +51,13 @@ export async function render(root, { settings, navigate }) {
       learnProgress(settings.playerId, 'phrase', STRANDS.prod, phraseItems.length),
       learnProgress(settings.playerId, 'grammar', STRANDS.recv, grammarItems.length),
       learnProgress(settings.playerId, 'grammar', STRANDS.prod, grammarItems.length),
-      dueCounts(settings.playerId, { target: newWordGoal(settings) }),
+      dueCounts(settings.playerId),
       todayProgress(settings.playerId, { goal: goalCards(settings) }),
       getLearnDeckState(settings.playerId, 'vocab', STRANDS.recv),
       getLearnDeckState(settings.playerId, 'verb', STRANDS.recv),
       getLearnDeckState(settings.playerId, 'phrase', STRANDS.recv),
       listMistakes(settings.playerId),
-      newWordsLeftToday(settings.playerId, { target: newWordGoal(settings) }),
+      newWordsToday(settings.playerId),
       throughput(settings.playerId),
     ]);
 
@@ -104,7 +104,7 @@ export async function render(root, { settings, navigate }) {
       today.met ? `Goal met — ${plural(today.cards, 'card')} today.` : `${today.cards} of ${today.goal} cards today.`,
     ),
 
-    progressPanel(flow, today, due.target),
+    progressPanel(flow, today),
     mistakeRow(mistakes.length),
 
     sectionLabel('Grammar'),
@@ -190,11 +190,10 @@ export async function render(root, { settings, navigate }) {
     el(
       'p',
       { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
-      newLeft === 0
-        ? "Today's new words are done, so these counts stop here until tomorrow. Tapping a step still reviews what you have already met."
-        : `Twelve units, in the order the official course teaches them: the sentence engine first, then the topics the exam interviews on. ${plural(newLeft, 'new word')} left today.`,
+      `Twelve units, in the order the official course teaches them: the sentence engine first, then the topics the exam interviews on.` +
+        (newToday > 0 ? ` ${plural(newToday, 'new word')} met today.` : ''),
     ),
-    stageList(path, current, newLeft),
+    stageList(path, current),
 
     // The games that check the current unit's can-do. They used to be a tab of
     // their own, disconnected from the path; a can-do check belongs to the unit
@@ -284,21 +283,22 @@ export async function render(root, { settings, navigate }) {
  * how many words were met *this week*, and how many keep coming back.
  *
  * The note at the bottom is the honest mechanism. New words go into every
- * session first, up to the daily cap — a review backlog no longer stands
- * between a learner and the next new word, the way it used to. So the
- * ceiling on intake is now just the daily cap itself: practise on fewer
- * days, or stop a session early most days, and `perDay` falls below it
- * without anything holding new words back on purpose.
+ * session first — a review backlog does not stand between a learner and the
+ * next new word — and nothing caps how many a day can hold. So the only thing
+ * setting the pace is how often and how long you practise, which is what
+ * `perDay` measures.
  *
- * `target` is the cap actually in force — `newWordGoal(settings)`, not the
- * shipped default — so raising it in Settings for a busy week also raises
- * the bar this panel measures against, rather than quietly flagging normal
- * progress as stalling.
+ * `STALLING_PER_DAY` is a reference point rather than a limit — the line below
+ * which this panel says the run is slowing. Nothing withholds anything for
+ * being on either side of it.
  */
-function progressPanel(flow, today, target) {
+function progressPanel(flow, today) {
   if (flow.met === 0) return null;
   const perDay = flow.perDay;
-  const stalling = perDay < target / 4;
+  // Two a day is the line below which a run has effectively stopped. It used
+  // to be a quarter of the daily cap; with no cap it is stated directly rather
+  // than derived from a number that no longer exists.
+  const stalling = perDay < STALLING_PER_DAY;
 
   return el(
     'div',
@@ -322,7 +322,7 @@ function progressPanel(flow, today, target) {
       ? el(
           'p',
           { class: 'card__note' },
-          `About ${perDay.toFixed(1)} new words a day lately, against a cap of ${target} a day. New words are the first thing in every session now — start one on the days you skip to close the gap.`,
+          `About ${perDay.toFixed(1)} new words a day lately. Nothing is capping that — new words are the first thing in every session, and there is no daily ceiling — so the gap is days not practised. Start a session on the days you skip.`,
         )
       : el('p', { class: 'card__note' }, `About ${perDay.toFixed(1)} new words a day lately. ${today.met ? "Today's goal is met." : ''}`),
     flow.undated > 0
@@ -379,12 +379,14 @@ function mistakeRow(count) {
  * else already known resurfaces only occasionally, a few at a time.
  */
 function nextAction(due, today, current, mistakeCount) {
-  const left = Math.max(0, due.target - due.newToday);
-  if (left > 0) {
+  // Always the next step of the path. There used to be a branch here for
+  // "the budget is spent, do something else instead" — there is no budget, so
+  // carrying on is always available and is always the first offer.
+  if (current) {
     return {
-      label: current ? `${current.started > 0 ? 'Carry on' : 'Start'}: ${current.title}` : 'Learn new words',
+      label: `${current.started > 0 ? 'Carry on' : 'Start'}: ${current.title}`,
       href: '#/session',
-      note: `${left} new ${left === 1 ? 'word' : 'words'} left today · ${due.newToday} met so far`,
+      note: due.newToday > 0 ? `${due.newToday} new ${due.newToday === 1 ? 'word' : 'words'} met today` : current.canDo,
     };
   }
 
@@ -396,12 +398,17 @@ function nextAction(due, today, current, mistakeCount) {
     };
   }
 
+  // Reached only when the path itself is finished — there is no budget left to
+  // be out of.
   return {
     label: 'Practise anyway',
     href: '#/session',
-    note: `Today's ${due.target} new words are done. Anything more is a bonus.`,
+    note: 'Every unit is started. This round is mistakes plus a slice of what is due.',
   };
 }
+
+/** Below this many new words a day, a run has effectively stalled. */
+const STALLING_PER_DAY = 2;
 
 /**
  * How far through each stage the learner is.
@@ -459,7 +466,7 @@ function stagePath(stages, items, seen) {
  * worse failure than not offering it at all: the row looks like the way in, so
  * an inert one reads as an app that is broken rather than as a label.
  */
-function stageList(path, current, newLeft = 0) {
+function stageList(path, current) {
   return el(
     'div',
     { class: 'stack' },
@@ -496,13 +503,10 @@ function stageList(path, current, newLeft = 0) {
             'div',
             { style: { textAlign: 'end' } },
             el('span', { class: 'meter__value' }, `${stage.started}/${stage.total}`),
-            // Without this, a step reading "116/120" links to a session that
-            // introduces nothing and shows an empty screen — the counter looks
-            // stuck and the app looks broken. It is the daily cap doing its
-            // job; it just has to say so.
-            isCurrent && !isDone && newLeft === 0
-              ? el('p', { class: 'card__note', style: { marginBlockStart: '0' } }, 'more tomorrow')
-              : null,
+            // There used to be a "more tomorrow" line here, for when the daily
+            // new-word budget was spent and a step reading "116/120" linked to
+            // a session that introduced nothing. There is no budget now, so a
+            // step that is not finished always has something behind it.
           ),
         ),
         // Every step gets a bar, not just the current one: the whole point is

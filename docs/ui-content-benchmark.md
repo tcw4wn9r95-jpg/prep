@@ -3024,3 +3024,79 @@ and the engine's failure path must special-case this kind.
 
 `npm test` 293 (5 new) · `validate` PASS · `npm run walkthrough` 64/64 ·
 `sw.js` → `v45` · 2,481 recordings mirrored (+2 this run).
+
+---
+
+# Follow-up 26 — the daily cap is gone
+
+> "Remove the daily card limit"
+
+## Which of the two numbers this was
+
+There were two daily numbers and only one of them limited anything:
+
+| | what it did |
+| --- | --- |
+| **daily goal** (15/30/50/80 cards) | a *target*. Drove a progress bar and a celebration line. Gated nothing — checked before touching it. |
+| **new-word budget** (8/day, raisable to 25) | the only thing that stopped a day. Spent it and sessions introduced nothing new, the empty state said "more tomorrow", and the step counter sat at "116 / 120". |
+
+So the budget went and the goal stayed. Nothing is withheld for missing a
+target; that is not a limit and removing it would only remove a progress bar.
+
+The reasoning the budget was built on is still true — above roughly ten new
+words a day retention falls faster than the extra intake gains — but that is an
+argument for pacing yourself, not for the app refusing to continue. Someone who
+has time now can see their own review queue climbing and decide.
+
+## The mistake I made on the way, and why it mattered
+
+The obvious implementation is to set the session builder's `newTarget` to
+`Infinity`. That looks like "no limit" and is something considerably worse.
+
+`newSlots` is `min(newTarget, generalLimit - mistakes)`, and `staleSlots` is
+whatever the general limit has left afterwards. With an unbounded target, fresh
+words take *every* general slot, `staleSlots` computes to zero, and reviews stop
+appearing at all. Uncapped intake with no review is not fast learning — it is
+meeting two thousand words once each and retaining none of them.
+
+The walkthrough caught it, in a way a unit test would not have: two steps that
+seed one strong word and expect to reach its production card stopped reaching
+it, because the session had filled with twelve brand-new words.
+
+So the **daily** cap is gone and the **per-session mix** stays. Two thirds of a
+session is new words and the rest is mistakes plus a throttled slice of what is
+due. A twelve-card session still runs about eight new — the number the old cap
+allowed in a whole *day* — and the difference is that the next session brings
+eight more, as many times as you care to start one.
+
+## What came out
+
+- `DAILY_NEW_TARGET`, `NEW_WORD_GOALS`, `newWordGoal`, `newWordsLeftToday`
+- the "New words per day" picker in Settings
+- `dueCounts`'s `target` and `newLeft`
+- the `capped` branch of the nothing-due screen — "you are caught up" is now
+  simply true, because an empty session can only mean an empty queue
+- "more tomorrow" on the path, and the two-branch next action on Today
+
+What replaced them is `newWordsToday`, which reports rather than restricts. The
+number is still worth seeing — it is the honest measure of how much you have
+taken on, and therefore of how big tomorrow's review queue will be — but
+nothing is held back once it is high.
+
+## One more bug, found the same way
+
+Removing `progressPanel`'s `target` parameter left one use of it in the
+function body. It threw `ReferenceError: target is not defined` and blanked the
+Learn screen — but only for a learner who has already met some words, because
+the panel returns early at zero. Opening the page fresh showed twelve units and
+no errors; it took the walkthrough, mid-run with real progress behind it, to
+reach the line at all.
+
+## Verification
+
+`npm test` 294 (3 rewritten) · `validate` PASS · `npm run walkthrough` 64/64 ·
+`sw.js` → `v46`.
+
+The test worth naming is the one that pins the near-miss: a session must
+contain both new words *and* reviews, and new words must not take the whole of
+it. That is the property the Infinity version quietly broke.

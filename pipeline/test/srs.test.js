@@ -386,21 +386,46 @@ test('srs: newTarget caps new words, including the reserved deck', async () => {
   }
 });
 
-test('srs: newWordGoal resolves the Settings picker to the right daily cap', async () => {
-  // The picker in settings.js stores an id ('steady' / 'brisk' / 'push') on
-  // settings.newWordGoal, not a card count — newWordGoal(settings) is the one
-  // place that turns it back into the number every call site actually needs.
-  // A typo in either the id here or in NEW_WORD_GOALS would silently fall
-  // back to the default, which is the bug this guards.
-  assert.equal(store.newWordGoal({}), store.DAILY_NEW_TARGET, 'no choice made yet should be the shipped default');
-  assert.equal(store.newWordGoal({ newWordGoal: 'nonsense' }), store.DAILY_NEW_TARGET, 'an unknown id should not silently zero the budget');
-  for (const option of store.NEW_WORD_GOALS) {
-    assert.equal(store.newWordGoal({ newWordGoal: option.id }), option.words, `${option.id} should resolve to ${option.words} words`);
-  }
-  // 'steady' is the id the picker defaults to on a fresh install, so it has
-  // to actually match DAILY_NEW_TARGET or the picker and the unset case would
-  // show two different numbers for what is meant to be the same default.
-  assert.equal(store.NEW_WORD_GOALS.find((option) => option.id === 'steady')?.words, store.DAILY_NEW_TARGET);
+test('srs: removing the cap did not switch spaced repetition off', async () => {
+  // The first attempt at this set `newTarget` to Infinity, which reads as "no
+  // limit" and is something much worse: fresh words then take every general
+  // slot, `staleSlots` computes to zero, and reviews stop appearing at all.
+  // Uncapped intake with no review is not fast learning — it is meeting two
+  // thousand words once each. The per-session mix has to survive.
+  const NOW_ = 1_700_000_000_000;
+  const deck = Array.from({ length: 200 }, (_, index) => ({ id: `W${index}`, stage: 1, rank: index }));
+  const recv = new Map(deck.slice(0, 40).map((item) => [item.id, { box: 1, dueAt: NOW_ - 1, seen: 2, correct: 1, lapses: 0 }]));
+
+  const plan = store.buildSession(deck, { recv, prod: new Map() }, { deckId: 'vocab', limit: 12, now: NOW_ });
+  const fresh = plan.filter((entry) => entry.isNew).length;
+  const reviews = plan.length - fresh;
+  assert.ok(fresh > 0, 'a session must still bring new words');
+  assert.ok(reviews > 0, 'a session must still contain reviews — otherwise nothing is ever revised');
+  assert.ok(fresh < plan.length, 'new words must not take the whole session');
+});
+
+test('srs: nothing caps how many new words a day can hold', async () => {
+  // There was a budget — eight a day, raisable to twenty-five in Settings —
+  // and it was the only thing in the app that actually stopped a day. Reviews
+  // were always uncapped and the daily goal always was a target with nothing
+  // withheld for missing it, so this was the whole of the limit. It was
+  // removed on request.
+  assert.equal(store.DAILY_NEW_TARGET, undefined, 'the daily budget constant should be gone');
+  assert.equal(store.NEW_WORD_GOALS, undefined, 'the Settings picker for the budget should be gone');
+  assert.equal(store.newWordGoal, undefined, 'nothing should still be resolving a budget');
+
+  // Nothing carries across sessions: two sessions in a row each bring their
+  // full share of new words, which is the whole of what "no daily limit"
+  // means here.
+  const deck = Array.from({ length: 200 }, (_, index) => ({ id: `W${index}`, stage: 1, rank: index }));
+  const first = store.buildSession(deck, { recv: new Map(), prod: new Map() }, { deckId: 'vocab', limit: 12 });
+  const firstNew = first.filter((entry) => entry.isNew).length;
+  assert.ok(firstNew >= 8, `a twelve-card session should still bring about eight new words, got ${firstNew}`);
+
+  // A bigger session brings proportionally more, rather than stopping at the
+  // old cap of eight.
+  const big = store.buildSession(deck, { recv: new Map(), prod: new Map() }, { deckId: 'vocab', limit: 40 });
+  assert.ok(big.filter((entry) => entry.isNew).length > firstNew, 'a longer session should introduce more');
 });
 
 test('srs: a spent budget yields no new words, however many sessions are started', async () => {
@@ -479,32 +504,30 @@ test('srs: the deck bar reports something a single session can change', async ()
   assert.notDeepEqual(before, after, 'a correct answer must change the distribution the same day');
 });
 
-test('srs: a spent budget is distinguishable from an empty queue', async () => {
-  // These are different situations and the screens say different things about
-  // them: "you are caught up" is only true when there is nothing left, and
-  // saying it when the cap is holding words back is what made a "116 / 120"
-  // step counter look stuck.
+test('srs: an empty queue is the only way to get an empty session now', async () => {
+  // There used to be two ways for a session to come back empty, and the
+  // screens said different things about them: nothing due, or the daily
+  // new-word budget spent. The budget is gone, so "you are caught up" is now
+  // simply true whenever the session is empty — there is no second reason
+  // hiding behind it.
   const items = Array.from({ length: 50 }, (_, i) => ({ id: `x${i}`, stage: 1, rank: i }));
-  const recv = new Map();
   const now = Date.now();
-  // Everything met, nothing due: a genuinely empty queue.
+  const recv = new Map();
   for (const item of items) recv.set(item.id, { box: 1, dueAt: now + 86400000, seen: 1, strand: 'recv' });
+
   const caughtUp = store.buildMixedSession([{ deck: { id: 'vocab' }, items, states: { recv, prod: new Map() } }], {
     limit: 12,
-    newTarget: 8,
     now,
   });
-  assert.equal(caughtUp.length, 0, 'nothing met and nothing due is an empty session');
+  assert.equal(caughtUp.length, 0, 'everything met and nothing due is an empty session');
 
-  // Unmet words remain, but the budget is spent: also an empty session, for a
-  // completely different reason.
-  const fresh = Array.from({ length: 50 }, (_, i) => ({ id: `y${i}`, stage: 1, rank: i }));
-  const capped = store.buildMixedSession([{ deck: { id: 'vocab' }, items: fresh, states: { recv: new Map(), prod: new Map() } }], {
-    limit: 12,
-    newTarget: 0,
-    now,
-  });
-  assert.equal(capped.length, 0);
-  // The caller can tell them apart, which is the whole point.
-  assert.equal(store.DAILY_NEW_TARGET > 0, true);
+  // Unmet words remaining can no longer produce an empty session, because
+  // nothing is holding them back.
+  const unmet = Array.from({ length: 50 }, (_, i) => ({ id: `y${i}`, stage: 1, rank: i }));
+  const plan = store.buildMixedSession(
+    [{ deck: { id: 'vocab' }, items: unmet, states: { recv: new Map(), prod: new Map() } }],
+    { limit: 12, now },
+  );
+  assert.ok(plan.length > 0, 'unmet words must always be reachable — that is what removing the cap means');
+  assert.ok(plan.some((entry) => entry.isNew));
 });

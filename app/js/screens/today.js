@@ -39,7 +39,6 @@ import {
   weekSeed,
   otherPlayer,
   goalCards,
-  newWordGoal,
   listMistakes,
   PLAYERS,
 } from '../store.js';
@@ -75,7 +74,7 @@ export async function render(root, { settings, navigate }) {
     listRecordings(),
     listReviews(),
     getStreak(settings.playerId),
-    dueCounts(settings.playerId, { target: newWordGoal(settings) }),
+    dueCounts(settings.playerId),
     todayProgress(settings.playerId, { goal: goalCards(settings) }),
     loadTopics(),
   ]);
@@ -229,7 +228,6 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics })
   const lastSpoke = myRecordings.reduce((latest, record) => Math.max(latest, Date.parse(record.at) || 0), 0);
   const daysSinceSpoke = lastSpoke === 0 ? Infinity : (Date.now() - lastSpoke) / 86400000;
 
-  const newLeft = Math.max(0, due.target - due.newToday);
   const grammarToday = today.byDeck?.grammar ?? 0;
   // Counted separately by drill/engine.js, because "six grammar cards" can be
   // six gender cards — and gender is not the thing the interview marks an
@@ -299,7 +297,7 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics })
     },
   ];
 
-  return { newLeft, today, waitingOnMe, listenedThisWeek, daysSinceSpoke, plan };
+  return { newToday: due.newToday, today, waitingOnMe, listenedThisWeek, daysSinceSpoke, plan };
 }
 
 /**
@@ -343,17 +341,17 @@ function nextAction(state, partner) {
         why: `${state.today.cards} cards done today, ${left} to reach the goal. The count of what is due moves around as you work; this one only goes up.`,
       };
     }
-    return state.newLeft > 0
-      ? {
-          label: `Learn ${state.newLeft} new words`,
-          href: '#/session',
-          why: `New words come first. Today's goal is ${state.today.goal} cards — a card you get wrong comes straight back, and older words you already know return only now and then.`,
-        }
-      : {
-          label: 'Practise today\'s words',
-          href: '#/session',
-          why: `Today's new words are done. This round is mistakes plus a handful of older words — today's goal is ${state.today.goal} cards.`,
-        };
+    // One offer, always available. There used to be two branches — one for
+    // "you still have new words left today" and one for "the budget is spent,
+    // here is something else". There is no budget now, so a session always has
+    // new words in it if there are new words left in the deck.
+    return {
+      label: 'Learn new words',
+      href: '#/session',
+      why:
+        `New words come first — a card you get wrong comes straight back, and older words you already know return only now and then.` +
+        (state.newToday > 0 ? ` ${state.newToday} met so far today.` : ''),
+    };
   }
   if (step.id === 'grammar') {
     return {

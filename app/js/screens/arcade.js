@@ -17,9 +17,9 @@
  *     evidence supports.
  *   - **no daily-goal counting.** These rounds never reach `runSession`, so
  *     they do not add to today's card count and the goal is unaffected.
- *   - **no new-word cap.** Nothing here consults `newWordsLeftToday`, so the
- *     Arcade keeps working when the day's intake is spent. That is the point:
- *     it is the thing to play *after* the budget is gone.
+ *   - **no daily counting of any kind.** There is no new-word budget any more
+ *     — it was removed — but these rounds never counted towards it even when
+ *     there was one, and they still do not count towards the daily goal.
  *
  * It counts for the streak, like Pairs and Gender Sort, because it is
  * genuinely practice — but that is the only number it touches.
@@ -305,8 +305,7 @@ function renderIndex(root, decks, verbs, { navigate, a1Only }) {
     el(
       'p',
       { class: 'card__note' },
-      'Play as much as you like — nothing here counts towards the daily goal, moves your review schedule, ' +
-        'or is capped by the new-word budget.',
+      'Play as much as you like — nothing here counts towards the daily goal or moves your review schedule.',
     ),
     a1Only
       ? el(
