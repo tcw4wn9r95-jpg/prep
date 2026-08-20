@@ -23,7 +23,7 @@ npm run walkthrough  # drives the real app in Chromium at iPhone size, screensho
 | --- | --- |
 | corpus | 2,204 GWS A1/A2 entries · 258,946 accepted forms · 10,577 native recordings |
 | items | 287 listening questions · 169 interview prompts · 18 topics |
-| learn decks | 34 sentence frames · 2,049 words · 365 verbs · frequency-ranked into 5 stages · 1,791 topic-tagged · 2,240 cloze targets · 358 visual cues |
+| learn decks | 42 sentence frames · 2,049 words · 365 verbs · ordered into 12 themed units · 1,791 topic-tagged · 2,240 cloze targets · 358 visual cues |
 | shipped assets | 2,263 recordings (68 MB, AAC) · 16 CC images (5.5 MB) |
 | verification | `npm test` 125/125 · `validate` PASS · walkthrough 40/40, no console errors |
 
@@ -36,7 +36,11 @@ Learn items carry no topic tag and 174 no cloze target, because the dictionary g
 reliable evidence for one — they stay in the all-words deck rather than being given a
 guessed tag. Word ordering is driven by frequency across LOD's own example sentences,
 which are dictionary examples rather than a spoken corpus — good enough to order a
-beginner deck, not a citable frequency list.
+beginner deck, not a citable frequency list. Each occurrence is attributed with LOD's
+own `inflectedHeadword` markup, so a homograph is credited to the entry the dictionary
+marked rather than to whichever record won the spelling index; where LOD marks a
+spelling for several entries the count is split in proportion to how often it marks
+each, which is a measured share and not a resolved sense.
 
 See `pipeline/README.md` for the content pipeline and `worker/README.md` for the scoreboard.
 

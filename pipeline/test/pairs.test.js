@@ -145,6 +145,15 @@ test('pairs: choosing a sense does not move the word', () => {
   // player's next board is not the one they were expecting.
   const positions = pool.map((word) => word.lb.toLowerCase());
   assert.equal(new Set(positions).size, positions.length, 'a lemma appears twice');
+
   // The opening levels are the sentence skeleton, whatever the sense fix did.
-  assert.deepEqual(positions.slice(0, 5), ['ech', 'net', 'mir', 'hien', 'du']);
+  //
+  // Stated as "unit 1", not as five named words. The five *are* free to
+  // change: `rank` comes from a frequency count over LOD's examples, and
+  // fixing that count is exactly how "no = after" stopped scoring zero. What
+  // must not change is that level 1 is drawn from the 28 hand-listed starter
+  // words rather than from wherever the ranking happens to point.
+  for (const word of pool.slice(0, pairs.pairsForLevel(1))) {
+    assert.equal(word.stage, 1, `${word.lb} reached level 1 from unit ${word.stage}`);
+  }
 });

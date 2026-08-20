@@ -106,8 +106,51 @@ function collectLeafText(node, visit) {
  */
 async function readDictionary(file) {
   const entries = new Map();
+  /**
+   * form (as written) -> entry id -> how many times LOD marks that form as the
+   * headword of that entry.
+   *
+   * The one part of the export the pipeline used to discard, and the answer to
+   * the frequency mis-attribution that has been open for weeks: `lexicon.forms`
+   * holds a single id per spelling, so a homograph credited every occurrence to
+   * whichever record won the index — `wat` "the more…, the more" scored 249 and
+   * `wat` "what" scored 0. Each example marks which token *is* the entry, so
+   * LOD itself says which record an occurrence belongs to.
+   *
+   * The counts matter as much as the ids. A spelling that two entries both
+   * claim is not a coin flip between them: `hunn` is marked hundreds of times
+   * for the auxiliary and a handful for HUNN2 "cockerel", and splitting it
+   * evenly is how a rooster lands in unit 3. The weights are what make the
+   * split honest.
+   *
+   * Case is kept for the same reason. Luxembourgish capitalises its nouns, so
+   * `Hunn` and `hunn` are already two different words on the page; lowercasing
+   * throws away a distinction LOD wrote down.
+   *
+   * Only examples with exactly one marked token count. A separable verb marks
+   * both of its parts (`ubaken` marks "béckt" and "un"), so its particle would
+   * otherwise look like evidence for sixty verbs and bury the preposition `un`
+   * that genuinely is common. One mark means one whole headword.
+   *
+   * Note this lives here rather than beside the other example walk: only
+   * art.xml carries the markup. search.xml has none of it.
+   */
+  const headwordForms = new Map();
+
   for await (const record of xml.records(file, 'entry')) {
     const id = record.attrs.id;
+
+    for (const example of xml.findAll(record, 'example')) {
+      const text = xml.find(example, 'text');
+      if (!text) continue;
+      const heads = (text.children ?? []).filter((node) => node.name === 'inflectedHeadword');
+      if (heads.length !== 1) continue;
+      const form = String(heads[0].text ?? '').trim();
+      if (!form || /\s/.test(form)) continue;
+      if (!headwordForms.has(form)) headwordForms.set(form, new Map());
+      const byId = headwordForms.get(form);
+      byId.set(id, (byId.get(id) ?? 0) + 1);
+    }
     const lemma = xml.find(record, 'lemma')?.text ?? '';
     const ipa = xml.find(record, 'ipa')?.text ?? null;
 
@@ -139,7 +182,7 @@ async function readDictionary(file) {
       inflected,
     });
   }
-  return entries;
+  return { entries, headwordForms };
 }
 
 /* --------------------------------------------------------------- search.xml */
@@ -192,7 +235,8 @@ async function readSearchIndex(file) {
     const allCategories = new Set(xml.findAll(record, 'category').map((node) => node.text));
 
     for (const example of xml.findAll(record, 'example')) {
-      const text = xml.find(example, 'text')?.text;
+      const textNode = xml.find(example, 'text');
+      const text = textNode?.text;
       if (text) sentences.push(text);
     }
 
@@ -309,8 +353,12 @@ async function main() {
   log(`  ${tables.tables.toLocaleString()} tables, ${tables.forms.size.toLocaleString()} distinct forms`);
 
   log('Reading Linguistesch Daten …');
-  const dictionary = await readDictionary(paths.datasetXmlPath('art'));
-  log(`  ${dictionary.size.toLocaleString()} entries`);
+  const { entries: dictionary, headwordForms } = await readDictionary(paths.datasetXmlPath('art'));
+  log(
+    `  ${dictionary.size.toLocaleString()} entries, ` +
+      `${headwordForms.size.toLocaleString()} marked headword forms ` +
+      `(${[...headwordForms.values()].filter((ids) => ids.size > 1).length.toLocaleString()} ambiguous)`,
+  );
 
   log('Reading Sich-Index …');
   const index = await readSearchIndex(paths.datasetXmlPath('search'));
@@ -367,6 +415,8 @@ async function main() {
       ),
       counts: {
         forms: forms.size,
+        headwordForms: headwordForms.size,
+        ambiguousHeadwordForms: [...headwordForms.values()].filter((byId) => byId.size > 1).length,
         multiWordForms: multiWord,
         nRuleForms: nRuleFormList.length,
         erroneousSpellings: index.erroneous.size,
@@ -378,6 +428,21 @@ async function main() {
         note: 'Derived from LOD example sentences; see docs/n-rule-evidence.md',
       },
     },
+    // form (as written, case kept) -> { entry id: times LOD marks that form as
+    // the headword of that entry }, counted over examples where exactly one
+    // token is marked.
+    //
+    // `forms` below holds *one* id per spelling and is the orthographic
+    // authority — "is this a real word?" — which is all it was ever built for.
+    // Asking it "which record is this occurrence?" is what mis-credited every
+    // homograph. This map answers that question with LOD's own annotation, and
+    // says honestly when the answer is more than one — with the weights that
+    // make sharing a count between them a measurement rather than a guess.
+    headwordForms: Object.fromEntries(
+      [...headwordForms.entries()]
+        .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+        .map(([key, byId]) => [key, Object.fromEntries([...byId.entries()].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)))]),
+    ),
     // form (lowercased) -> "<source>:<LOD record id>", so every accepted token
     // traces to a record. Sources: spelling | n-rule | lemma | inflection | table
     forms: Object.fromEntries(
@@ -402,7 +467,7 @@ async function main() {
   };
 
   await fsp.mkdir(paths.CONTENT_DIR, { recursive: true });
-  await writeJsonWithLineDelimitedMap(paths.LEXICON_PATH, lexicon, ['forms', 'erroneousSpellings']);
+  await writeJsonWithLineDelimitedMap(paths.LEXICON_PATH, lexicon, ['forms', 'headwordForms', 'erroneousSpellings']);
   log(`Wrote ${path.relative(paths.ROOT, paths.LEXICON_PATH)} (${forms.size.toLocaleString()} forms)`);
 
   // ---- corpus.json: the exam-scoped authoring vocabulary

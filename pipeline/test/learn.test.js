@@ -188,7 +188,7 @@ test('cues: the source table has no duplicate keys', () => {
 /* --------------------------------------------------------------- starters */
 
 const { STARTERS, applyStarters } = require('../lib/starters');
-const { rankDeck, grammarUnits, STAGES } = require('../lib/frequency');
+const { countEntries, rankDeck, grammarUnits, STAGES } = require('../lib/frequency');
 
 const alwaysClean = () => true;
 
@@ -252,6 +252,56 @@ test('frequency: ranks by count, and the sentence skeleton takes stage 1', () =>
   assert.ok(byId.get('RARE').stage >= 3, 'a rare noun waits');
   assert.ok(byId.get('ECH').rank < byId.get('RARE').rank);
   assert.equal(byId.get('RARE').freq, 2);
+});
+
+test('frequency: an occurrence goes to the entry LOD marks, not the one the index picked', () => {
+  // The mis-attribution this replaced: `lexicon.forms` holds one id per
+  // spelling, so every "wat" in the corpus was credited to WAT3, the
+  // "je … desto" conjunction, and WAT1 "what" scored zero and was taught last.
+  const corpus = {
+    entries: [{ meanings: [{ examples: [{ text: 'wat méchs du' }, { text: 'wat ass dat' }] }] }],
+  };
+  const counts = countEntries(corpus, {
+    forms: { wat: 'spelling:WAT3', 'méchs': 'inflection:MAACHEN1', du: 'spelling:DU1', ass: 'inflection:SINN1', dat: 'spelling:DAT1' },
+    headwordForms: { wat: { WAT1: 40 } },
+  });
+  assert.equal(counts.get('WAT1'), 2, 'both occurrences belong to the entry LOD marked');
+  assert.equal(counts.get('WAT3'), undefined, 'and none to the one the form index happened to hold');
+});
+
+test('frequency: a spelling two entries claim is split by how often LOD marks each', () => {
+  // Splitting is the honest answer — nothing here knows which sense a sentence
+  // used — but an *even* split is not. `hunn` is marked hundreds of times for
+  // the auxiliary and three times for HUNN2 "cockerel"; half of "have" is
+  // enough to teach a rooster in unit 3.
+  const corpus = { entries: [{ meanings: [{ examples: [{ text: 'ech hunn en Auto' }] }] }] };
+  const counts = countEntries(corpus, {
+    forms: {},
+    headwordForms: { hunn: { HUNN1: 300, HUNN2: 3 } },
+  });
+  assert.ok(counts.get('HUNN1') > 0.98, `the auxiliary got ${counts.get('HUNN1')}`);
+  assert.ok(counts.get('HUNN2') < 0.02, `the cockerel got ${counts.get('HUNN2')}`);
+  assert.equal(Math.round(counts.get('HUNN1') + counts.get('HUNN2')), 1, 'one occurrence, one unit of credit');
+});
+
+test('frequency: case is evidence, because Luxembourgish capitalises its nouns', () => {
+  // `Hunn` and `hunn` are already two different words on the page. Lowercasing
+  // before the lookup throws away a distinction LOD wrote down.
+  const corpus = { entries: [{ meanings: [{ examples: [{ text: 'den Hunn kréit' }] }] }] };
+  const counts = countEntries(corpus, {
+    forms: {},
+    headwordForms: { hunn: { HUNN1: 300 }, Hunn: { HUNN2: 3 } },
+  });
+  assert.equal(counts.get('HUNN2'), 1);
+  assert.equal(counts.get('HUNN1'), undefined);
+});
+
+test('frequency: a form LOD never marks falls back to the form index', () => {
+  // 96.5% of spellings are unmarked and unambiguous. They must still count, or
+  // the fix for the homographs would silently zero most of the vocabulary.
+  const corpus = { entries: [{ meanings: [{ examples: [{ text: 'en Auto' }] }] }] };
+  const counts = countEntries(corpus, { forms: { auto: 'spelling:AUTO1' }, headwordForms: {} });
+  assert.equal(counts.get('AUTO1'), 1);
 });
 
 test('frequency: ranking is deterministic when counts tie', () => {

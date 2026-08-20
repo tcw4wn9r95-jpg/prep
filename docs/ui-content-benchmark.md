@@ -2051,6 +2051,10 @@ Correcting it means either POS-tagging the corpus or splitting an ambiguous
 count across its candidates, and either way it reorders the path. Worth doing,
 worth doing on purpose, and not folded into a translation fix.
 
+> **Closed in Follow-up 27.** Neither of the two options turned out to be
+> necessary: LOD tags the attribution itself and the pipeline was throwing it
+> away. `fir` = "for" is now rank 6.
+
 ## Verification
 
 `npm test` 238 (3 new in `pairs.test.js`: every override is a real LOD gloss,
@@ -2732,7 +2736,7 @@ many times it has been reported — with Undo on each row.
 ## Verification
 
 `npm test` 282 (7 new in `flags.test.js`) · `validate` PASS ·
-`npm run walkthrough` 64/64 · IndexedDB → v6 for the new `flags` store ·
+`npm run walkthrough` 64/64 · `sw.js` → `v47`.· IndexedDB → v6 for the new `flags` store ·
 `sw.js` → `v42`.
 
 The unit tests are about the *consequence*, not the record — a button that says
@@ -2860,7 +2864,7 @@ only by typing the URL).
 
 ## Verification
 
-`npm test` 286 (5 new) · `validate` PASS · `npm run walkthrough` 64/64 ·
+`npm test` 286 (5 new) · `validate` PASS · `npm run walkthrough` 64/64 · `sw.js` → `v47`.·
 `sw.js` → `v43`.
 
 The walkthrough now asserts twelve units, that each names its CEFR sub-level,
@@ -2957,7 +2961,7 @@ The first would have failed the day any of the three shipped.
 ## Verification
 
 `npm test` 289 (4 new, 3 rewritten) · `validate` PASS ·
-`npm run walkthrough` 64/64 · `sw.js` → `v44`.
+`npm run walkthrough` 64/64 · `sw.js` → `v47`.· `sw.js` → `v44`.
 
 ---
 
@@ -3022,7 +3026,7 @@ and the engine's failure path must special-case this kind.
 
 ## Verification
 
-`npm test` 293 (5 new) · `validate` PASS · `npm run walkthrough` 64/64 ·
+`npm test` 293 (5 new) · `validate` PASS · `npm run walkthrough` 64/64 · `sw.js` → `v47`.·
 `sw.js` → `v45` · 2,481 recordings mirrored (+2 this run).
 
 ---
@@ -3094,9 +3098,118 @@ reach the line at all.
 
 ## Verification
 
-`npm test` 294 (3 rewritten) · `validate` PASS · `npm run walkthrough` 64/64 ·
+`npm test` 294 (3 rewritten) · `validate` PASS · `npm run walkthrough` 64/64 · `sw.js` → `v47`.·
 `sw.js` → `v46`.
 
 The test worth naming is the one that pins the near-miss: a session must
 contain both new words *and* reviews, and new words must not take the whole of
 it. That is the property the Infinity version quietly broke.
+
+# Follow-up 27 — the dictionary knew which word it was all along
+
+> "Let's reorder"
+
+Follow-up 16 found that `pipeline/lib/frequency.js` counts surface forms
+against `lexicon.forms`, an index that maps a spelling to exactly **one**
+entry. Every occurrence of a homograph therefore landed on whichever record
+won that index and its sibling stayed on zero — and since `freq` sets `rank`
+and `rank` sets `stage`, this did not merely mislabel a Pairs tile. It decided
+when each word is taught. `fir` meaning "for" was rank 1,972.
+
+That note left two ways out, both bad: POS-tag the corpus (which this pipeline
+cannot do honestly) or split an ambiguous count evenly across its candidates
+(a guess). Reviewing the LOD API for Follow-up 26 turned up a third, and it was
+already sitting in the bulk export we ship from.
+
+## What the export was carrying
+
+Every example sentence in `art.xml` marks the token that *is* the entry:
+
+```xml
+<example><text>Ech <inflectedHeadword>hunn</inflectedHeadword> en Auto</text></example>
+```
+
+65,735 occurrences, in 100% of examples. The pipeline read the text and
+dropped the markup. So the attribution problem had a published answer the
+whole time — LOD's own, per occurrence, no inference involved.
+
+One filter is needed. A separable verb marks **both** its parts, so `ubaken`
+marks "béckt" *and* "un", and taking every mark would make the particle look
+like evidence for sixty verbs and bury the preposition `un` that genuinely is
+common. An example with exactly one mark is one whole headword; those are the
+ones counted.
+
+| | |
+| --- | --- |
+| marked forms | 30,380 |
+| claimed by more than one entry | 666 (2.2%) |
+| unmarked forms, still resolved the old way | the remaining 97.8% |
+
+## Two things a first pass got wrong
+
+**An even split is not an honest split.** Where two entries both claim a
+spelling, no one here knows which sense a given sentence used, so sharing the
+count is the right shape. Sharing it *equally* is not: `hunn` is marked
+hundreds of times for the auxiliary and three times for HUNN2 "cockerel", and
+half of "have" was enough to put a rooster at rank 14, in unit 3, between
+"people" and "city". Weighting each share by how often LOD marks that entry
+turns the split from a guess into a measurement — the cockerel now scores 5.
+
+**Case is evidence.** Luxembourgish capitalises its nouns, so `Hunn` and
+`hunn` are already two different words on the page. Lowercasing the form
+before the lookup throws away a distinction the dictionary wrote down. Keeping
+it is also what cuts the ambiguous forms from 1,032 to 666.
+
+## What moved
+
+Every homograph named in Follow-up 16, in the right direction:
+
+| | old freq | new freq |
+| --- | --- | --- |
+| `fir` "for" (PREP) | 0 | **938** |
+| `fir` "to" (CONJ) | 1035 | 97 |
+| `wat` "what" (PRON) | 0 | **195** |
+| `wat` "the more …, the more" (CONJ) | 249 | 0 |
+| `un` "on" (PREP) | 0 | **157** |
+| `no` "after" (PREP) | 0 | **104** |
+| `hunn` "to have" (VRB) | 1655 | **3031** |
+| `hunn` "cockerel" (SUBST) | 0 | 5 |
+
+Words with a frequency of zero — the ones that were being taught last because
+a sibling entry had eaten their count — fall from 115 to 16.
+
+The path itself moves less than that suggests: **1,955 of 2,049 words stay in
+their unit**, and 94 move, 47 earlier and 47 later. Four words come out of the
+terminal unit, and they are the ones that make the case: `Leit` "people"
+(rank 1,991 → 39), `der` "yourself" (1,955 → 54), `Stad` "city" (1,901 → 169),
+`bal` "nearly" (1,944 → 187). A beginner course that taught "people" last was
+wrong, and now does not.
+
+Going the other way: `wat` "the more …, the more" to rank 2,048, `sengen`
+"to singe" out of the top 250, `de` "you" to zero. That last one is the fix
+working rather than failing — LOD marks `de` as the article DEN1, never as
+the reduced pronoun, so the pronoun's count was always the article's. `du` is
+still in unit 1, which is where the second person is actually taught.
+
+## What this does not fix
+
+`Fro` "question" scores 39 and lands in unit 12. Not because of the count —
+it has no topic tag, so once it misses the 150-word core band there is no
+themed unit that wants it, and it falls to the end. That is the 534-untagged-
+words ceiling already on the open list, not a new problem: the number of
+top-400 words stranded that way went from 21 to 19.
+
+## Verification
+
+`npm test` 298 (4 new in `learn.test.js`: an occurrence goes to the marked
+entry, an ambiguous one is split by the marks and not evenly, case is
+respected, and an unmarked form still falls back to the form index) ·
+`validate` PASS, 251 warnings, unchanged against the pre-change tree ·
+`npm run walkthrough` 64/64 · `sw.js` → `v47`.
+
+One existing test had to change rather than pass. `pairs: choosing a sense
+does not move the word` pinned the first five tiles by name, which was right
+for Follow-up 16 — that change deliberately moved nothing — and is the wrong
+assertion for a change whose entire point is to re-rank. It now asserts what
+it was protecting: level 1 is drawn from the 28 hand-listed starter words,
+whatever the ranking says.

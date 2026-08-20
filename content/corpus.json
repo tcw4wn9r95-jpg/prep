@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-07-27T14:33:36.377Z",
+    "generatedAt": "2026-08-20T20:16:01.727Z",
     "generator": "pipeline/build-corpus.js",
     "license": "CC0-1.0",
     "attribution": "Lëtzebuerger Online Dictionnaire (LOD), Zenter fir d'Lëtzebuerger Sprooch, via data.public.lu",
@@ -38,7 +38,7 @@
     },
     "description": "Exam-scoped authoring vocabulary: LOD entries tagged with the Grondwuertschatz A1/A2 categories. Every Luxembourgish string here is LOD verbatim - nothing in this file was written by a model.",
     "audio": {
-      "resolved": "2026-07-27T13:42:27.309Z",
+      "resolved": "2026-08-20T20:08:50.545Z",
       "note": "Audio URLs are not in the bulk export; pipeline/fetch-audio.js resolves them per entry from the LOD public API and caches them in .cache/lod/audio.json. Unresolved examples carry audio: null."
     }
   },

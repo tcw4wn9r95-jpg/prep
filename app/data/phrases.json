@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-17T19:10:49.084Z",
+    "generatedAt": "2026-08-20T20:16:41.184Z",
     "generator": "pipeline/build-phrases.js",
     "license": "CC0-1.0",
     "corpus": {
@@ -134,12 +134,18 @@
         "attestations": 51
       },
       "example": {
-        "lb": "ech sinn am Mäerz op d'Welt komm",
-        "audioId": "753acce09d6c9061fae6dbba0e3861a1",
+        "lb": "ech sinn am falsche Film!",
+        "audioId": "bed961867a6e0867238497ea8bd546fc",
         "local": true,
-        "a1": false
+        "a1": true
       },
       "examples": [
+        {
+          "lb": "ech sinn am falsche Film!",
+          "audioId": "bed961867a6e0867238497ea8bd546fc",
+          "local": true,
+          "a1": true
+        },
         {
           "lb": "ech sinn am Mäerz op d'Welt komm",
           "audioId": "753acce09d6c9061fae6dbba0e3861a1",
@@ -151,18 +157,12 @@
           "audioId": "7dda1995e76523e382a8ea307de22735",
           "local": true,
           "a1": false
-        },
-        {
-          "lb": "ech sinn där selwechter Meenung wéi hien",
-          "audioId": "3c2367ab0aada24332397c68dacae17e",
-          "local": true,
-          "a1": false
         }
       ],
       "cloze": {
         "before": "",
         "form": "ech sinn",
-        "after": " am Mäerz op d'Welt komm",
+        "after": " am falsche Film!",
         "via": "frame"
       },
       "rank": 2,
@@ -224,35 +224,35 @@
       "attestations": 25,
       "variant": null,
       "example": {
-        "lb": "ech weess net, wéi ech mat deem Gëft a Kontakt komm sinn",
-        "audioId": "ca075981d137bde9a769212017737486",
+        "lb": "ech weess, vu wat ech schwätzen",
+        "audioId": "46c617518c9503bb88dd8c7e5a5865a8",
         "local": true,
-        "a1": false
+        "a1": true
       },
       "examples": [
         {
-          "lb": "ech weess net, wéi ech mat deem Gëft a Kontakt komm sinn",
-          "audioId": "ca075981d137bde9a769212017737486",
-          "local": true,
-          "a1": false
-        },
-        {
           "lb": "ech weess, vu wat ech schwätzen",
           "audioId": "46c617518c9503bb88dd8c7e5a5865a8",
-          "local": false,
+          "local": true,
           "a1": true
         },
         {
           "lb": "ech weess e Lidd dovun ze sangen",
           "audioId": "971b0e3df09f6b8adedf106876a34630",
-          "local": false,
+          "local": true,
+          "a1": false
+        },
+        {
+          "lb": "ech weess, wou s du krank bass!",
+          "audioId": "d98148cf1f9ba8050f0bb3140aba92c1",
+          "local": true,
           "a1": false
         }
       ],
       "cloze": {
         "before": "",
         "form": "ech weess",
-        "after": " net, wéi ech mat deem Gëft a Kontakt komm sinn",
+        "after": ", vu wat ech schwätzen",
         "via": "frame"
       },
       "rank": 4,
@@ -271,26 +271,26 @@
       "example": {
         "lb": "ech wunnen am Pafendall",
         "audioId": "66964e70b8bf8def740a5f4e0fd01ba5",
-        "local": false,
+        "local": true,
         "a1": false
       },
       "examples": [
         {
           "lb": "ech wunnen am Pafendall",
           "audioId": "66964e70b8bf8def740a5f4e0fd01ba5",
-          "local": false,
+          "local": true,
           "a1": false
         },
         {
           "lb": "ech wunnen zu Bartreng",
           "audioId": "7173e19bbe85e54a7a18aff5ea1dea58",
-          "local": false,
+          "local": true,
           "a1": false
         },
         {
           "lb": "ech wunnen zu Beefort",
           "audioId": "43f491d12eff558032f0ae286f77c4ce",
-          "local": false,
+          "local": true,
           "a1": false
         }
       ],
@@ -327,14 +327,14 @@
           "a1": false
         },
         {
-          "lb": "ech maachen eis de Mëtteg Nuddele mat Tomatenzooss",
-          "audioId": "04424f484af03dcdd0ffb4718f362e4e",
+          "lb": "ech maachen all Dag no der Aarbecht Sport",
+          "audioId": "13de89caafec442213caf9dfeef11f25",
           "local": true,
-          "a1": false
+          "a1": true
         },
         {
-          "lb": "dat Gemauls geet mer op de Su, ech maachen dee ganzen Theater do net méi laang mat",
-          "audioId": "89665bf77ebdb1333b6cefedb8e57d72",
+          "lb": "ech maachen eis de Mëtteg Nuddele mat Tomatenzooss",
+          "audioId": "04424f484af03dcdd0ffb4718f362e4e",
           "local": true,
           "a1": false
         }
@@ -361,26 +361,26 @@
       "example": {
         "lb": "ech fannen d'Haltestell net um Plang",
         "audioId": "78d1a6c006c478114ede3f44f2696b82",
-        "local": false,
+        "local": true,
         "a1": false
       },
       "examples": [
         {
           "lb": "ech fannen d'Haltestell net um Plang",
           "audioId": "78d1a6c006c478114ede3f44f2696b82",
-          "local": false,
+          "local": true,
           "a1": false
         },
         {
           "lb": "ech fannen déi hëlze Biedem wonnerschéin",
           "audioId": "8db6f7d46ff9b3b940d3f3adffae3697",
-          "local": false,
+          "local": true,
           "a1": false
         },
         {
           "lb": "ech fannen et schued, datt d'Party ofgesot ass",
           "audioId": "f5dbce29e63135b40b8170f20bc7c2e6",
-          "local": false,
+          "local": true,
           "a1": false
         }
       ],
@@ -404,12 +404,18 @@
       "attestations": 190,
       "variant": null,
       "example": {
-        "lb": "hien huet ëmmer gutt Iddien",
-        "audioId": "5264d62116d7da94c6379c0a2f941143",
+        "lb": "hien huet 36 Joer",
+        "audioId": "170945b42cbcfd53ac6c9df41e23df4a",
         "local": true,
         "a1": true
       },
       "examples": [
+        {
+          "lb": "hien huet 36 Joer",
+          "audioId": "170945b42cbcfd53ac6c9df41e23df4a",
+          "local": true,
+          "a1": true
+        },
         {
           "lb": "hien huet ëmmer gutt Iddien",
           "audioId": "5264d62116d7da94c6379c0a2f941143",
@@ -421,18 +427,12 @@
           "audioId": "ef18463f2dcf9523a14039b37b249760",
           "local": true,
           "a1": false
-        },
-        {
-          "lb": "hien huet en interessanten Hobby",
-          "audioId": "74e7abf756bc458ea67b4ec4a57a6b93",
-          "local": true,
-          "a1": true
         }
       ],
       "cloze": {
         "before": "",
         "form": "hien huet",
-        "after": " ëmmer gutt Iddien",
+        "after": " 36 Joer",
         "via": "frame"
       },
       "rank": 8,
@@ -452,17 +452,17 @@
         "attestations": 28
       },
       "example": {
-        "lb": "mir hunn doheem haart Waasser",
-        "audioId": "5312957b0615dd3031e6024543587e29",
+        "lb": "mir hunn d'Usträicher am Haus",
+        "audioId": "b78125f62962a199bb4543da5cb601e1",
         "local": true,
-        "a1": false
+        "a1": true
       },
       "examples": [
         {
-          "lb": "mir hunn doheem haart Waasser",
-          "audioId": "5312957b0615dd3031e6024543587e29",
+          "lb": "mir hunn d'Usträicher am Haus",
+          "audioId": "b78125f62962a199bb4543da5cb601e1",
           "local": true,
-          "a1": false
+          "a1": true
         },
         {
           "lb": "mir hunn doheem haart Waasser",
@@ -471,8 +471,8 @@
           "a1": false
         },
         {
-          "lb": "mir hunn Iech d'Dokumentatioun matgeschéckt",
-          "audioId": "a596f079efd56f5b558be9cbf2927fb5",
+          "lb": "mir hunn doheem haart Waasser",
+          "audioId": "5312957b0615dd3031e6024543587e29",
           "local": true,
           "a1": false
         }
@@ -480,7 +480,7 @@
       "cloze": {
         "before": "",
         "form": "mir hunn",
-        "after": " doheem haart Waasser",
+        "after": " d'Usträicher am Haus",
         "via": "frame"
       },
       "rank": 9,
@@ -516,8 +516,8 @@
           "a1": false
         },
         {
-          "lb": "hien ass Papp vu véier Kanner",
-          "audioId": "3de76845e556a93ae5ce8196055062de",
+          "lb": "hien ass ëmmer op der Rees",
+          "audioId": "c649d34840d386bbde6838649e09cdac",
           "local": true,
           "a1": false
         }
@@ -590,12 +590,18 @@
         "attestations": 15
       },
       "example": {
-        "lb": "mir sinn op zwou Zeitungen abonéiert",
-        "audioId": "7422270e7c2d44931b7229999f6bc90d",
+        "lb": "mir sinn eréischt 60 Kilometer gefuer",
+        "audioId": "7a97a8870249675ecdabaf0e29ed35e3",
         "local": true,
         "a1": false
       },
       "examples": [
+        {
+          "lb": "mir sinn eréischt 60 Kilometer gefuer",
+          "audioId": "7a97a8870249675ecdabaf0e29ed35e3",
+          "local": true,
+          "a1": false
+        },
         {
           "lb": "mir sinn op zwou Zeitungen abonéiert",
           "audioId": "7422270e7c2d44931b7229999f6bc90d",
@@ -603,14 +609,8 @@
           "a1": false
         },
         {
-          "lb": "mir sinn nomëttes an eisem Hotel ukomm",
-          "audioId": "c24b8c70f35132d135adb65b336bdfe1",
-          "local": true,
-          "a1": false
-        },
-        {
-          "lb": "mir sinn nomëttes an eisem Hotel ukomm",
-          "audioId": "c24b8c70f35132d135adb65b336bdfe1",
+          "lb": "mir sinn ëm siwen Ecke Famill mateneen",
+          "audioId": "607adb0f3b16636595637c9de7f5a2ce",
           "local": true,
           "a1": false
         }
@@ -618,7 +618,7 @@
       "cloze": {
         "before": "",
         "form": "mir sinn",
-        "after": " op zwou Zeitungen abonéiert",
+        "after": " eréischt 60 Kilometer gefuer",
         "via": "frame"
       },
       "rank": 12,
@@ -635,35 +635,35 @@
       "attestations": 31,
       "variant": null,
       "example": {
-        "lb": "du bass e klengen, dommen, arrogante Knëff!",
-        "audioId": "8441590f7730a515c614e195eed5c090",
+        "lb": "du bass de Chef!",
+        "audioId": "8e5e2e528b07918441be72825359ef9e",
         "local": true,
         "a1": false
       },
       "examples": [
         {
-          "lb": "du bass e klengen, dommen, arrogante Knëff!",
-          "audioId": "8441590f7730a515c614e195eed5c090",
-          "local": true,
-          "a1": false
-        },
-        {
           "lb": "du bass de Chef!",
           "audioId": "8e5e2e528b07918441be72825359ef9e",
-          "local": false,
+          "local": true,
           "a1": false
         },
         {
           "lb": "du bass mir egal!",
           "audioId": "240ddb953a3aab1f52e661545a9dd8f1",
-          "local": false,
+          "local": true,
+          "a1": false
+        },
+        {
+          "lb": "du bass e klengen, dommen, arrogante Knëff!",
+          "audioId": "8441590f7730a515c614e195eed5c090",
+          "local": true,
           "a1": false
         }
       ],
       "cloze": {
         "before": "",
         "form": "du bass",
-        "after": " e klengen, dommen, arrogante Knëff!",
+        "after": " de Chef!",
         "via": "frame"
       },
       "rank": 13,
@@ -683,35 +683,35 @@
         "attestations": 8
       },
       "example": {
-        "lb": "si hunn an deem klengen Haus eng daierlech Existenz geféiert",
-        "audioId": "c4f089f99d44c15da811404b09c6c4cb",
+        "lb": "si hunn de Mëssel gedeelt",
+        "audioId": "0ffe3e5e3486faab40682012437cb5e1",
         "local": true,
         "a1": false
       },
       "examples": [
         {
-          "lb": "si hunn an deem klengen Haus eng daierlech Existenz geféiert",
-          "audioId": "c4f089f99d44c15da811404b09c6c4cb",
-          "local": true,
-          "a1": false
-        },
-        {
           "lb": "si hunn de Mëssel gedeelt",
           "audioId": "0ffe3e5e3486faab40682012437cb5e1",
-          "local": false,
+          "local": true,
           "a1": false
         },
         {
           "lb": "si hunn eng aggressiv Verkafspolitik",
           "audioId": "77a3764d9bc08a305b26a62a1abc3f5c",
-          "local": false,
+          "local": true,
+          "a1": false
+        },
+        {
+          "lb": "si hunn en ausgedoe bis op d'Hiem",
+          "audioId": "db20e80f1357bb1002c775ac962868a3",
+          "local": true,
           "a1": false
         }
       ],
       "cloze": {
         "before": "",
         "form": "si hunn",
-        "after": " an deem klengen Haus eng daierlech Existenz geféiert",
+        "after": " de Mëssel gedeelt",
         "via": "frame"
       },
       "rank": 14,
@@ -741,14 +741,14 @@
           "a1": true
         },
         {
-          "lb": "et ass Véierel vir néng",
-          "audioId": "fea44740b6cb437c0f3e083bf1675459",
+          "lb": "et ass fënnef bis hallwer",
+          "audioId": "658d8eefd8e7214245c55c62c4a9a49a",
           "local": true,
           "a1": false
         },
         {
-          "lb": "et ass alles an der Rei",
-          "audioId": "c651641c4e0424c54293495decb70b18",
+          "lb": "et ass Véierel bis néng",
+          "audioId": "09d816ff738169722e27b1c18cc76035",
           "local": true,
           "a1": false
         }
@@ -910,26 +910,26 @@
       "example": {
         "lb": "hei ass (sech) näischt ze mussen!",
         "audioId": "30033ae71d079e4c03836d991bcd480b",
-        "local": false,
+        "local": true,
         "a1": true
       },
       "examples": [
         {
           "lb": "hei ass (sech) näischt ze mussen!",
           "audioId": "30033ae71d079e4c03836d991bcd480b",
-          "local": false,
+          "local": true,
           "a1": true
         },
         {
           "lb": "dat hei ass e Buch fir Kanner",
           "audioId": "f3f5753f6706ac5acf64ecbb4245d53d",
-          "local": false,
+          "local": true,
           "a1": true
         },
         {
           "lb": "gëff mer eng aner Schrauf, déi hei ass geckeg!",
           "audioId": "9545ae7ad369821fdd8fea9eee7b64a2",
-          "local": false,
+          "local": true,
           "a1": false
         }
       ],
@@ -1110,8 +1110,8 @@
           "a1": false
         },
         {
-          "lb": "ech kann Iech deen Dokter nëmme recommandéieren!",
-          "audioId": "db6438905ef3f456f62b8b5fafc6c082",
+          "lb": "ech kann e Liddchen dovu sangen!",
+          "audioId": "43b74622876ec005ff23bb2d29d09405",
           "local": true,
           "a1": false
         }
@@ -1136,12 +1136,18 @@
       "attestations": 23,
       "variant": null,
       "example": {
-        "lb": "ech wëll de Moien um Büro net gestéiert ginn",
-        "audioId": "ab649a2c20b34d08ed476df841f8678c",
+        "lb": "ech wëll!",
+        "audioId": "429ac4e5085224565fdc02c3a43de0a4",
         "local": true,
-        "a1": false
+        "a1": true
       },
       "examples": [
+        {
+          "lb": "ech wëll!",
+          "audioId": "429ac4e5085224565fdc02c3a43de0a4",
+          "local": true,
+          "a1": true
+        },
         {
           "lb": "ech wëll de Moien um Büro net gestéiert ginn",
           "audioId": "ab649a2c20b34d08ed476df841f8678c",
@@ -1153,18 +1159,12 @@
           "audioId": "05a915f59dd0340c00345b299cfea434",
           "local": true,
           "a1": true
-        },
-        {
-          "lb": "ech wëll!",
-          "audioId": "429ac4e5085224565fdc02c3a43de0a4",
-          "local": false,
-          "a1": true
         }
       ],
       "cloze": {
         "before": "",
         "form": "ech wëll",
-        "after": " de Moien um Büro net gestéiert ginn",
+        "after": "!",
         "via": "frame"
       },
       "rank": 24,
@@ -1361,35 +1361,35 @@
       "attestations": 18,
       "variant": null,
       "example": {
-        "lb": "hien hat mer gesot, e géing mer gär hëllefen, mee e war paff, wéi ech en du beim Wuert geholl hunn",
-        "audioId": "324a0db05f91fa1ad47f10f1e8811d57",
+        "lb": "hien hat kee schéinen Doud",
+        "audioId": "8d3101fddae2e295d7896a4a11f3c01f",
         "local": true,
         "a1": false
       },
       "examples": [
         {
-          "lb": "hien hat mer gesot, e géing mer gär hëllefen, mee e war paff, wéi ech en du beim Wuert geholl hunn",
-          "audioId": "324a0db05f91fa1ad47f10f1e8811d57",
-          "local": true,
-          "a1": false
-        },
-        {
           "lb": "hien hat kee schéinen Doud",
           "audioId": "8d3101fddae2e295d7896a4a11f3c01f",
-          "local": false,
+          "local": true,
           "a1": false
         },
         {
           "lb": "hien hat d'Dier vu banne gespaart",
           "audioId": "ca0bb89369a3108fcaf6b4d2a00b96ae",
-          "local": false,
+          "local": true,
+          "a1": false
+        },
+        {
+          "lb": "hien hat e Samschdeg eng Ferm am Gesiicht",
+          "audioId": "1cc291039d9b94c609199dc7e09ebae9",
+          "local": true,
           "a1": false
         }
       ],
       "cloze": {
         "before": "",
         "form": "hien hat",
-        "after": " mer gesot, e géing mer gär hëllefen, mee e war paff, wéi ech en du beim Wuert geholl hunn",
+        "after": " kee schéinen Doud",
         "via": "frame"
       },
       "rank": 29,
@@ -1419,15 +1419,15 @@
           "a1": true
         },
         {
-          "lb": "ech wäert haut net virun aacht Auer doheem sinn",
-          "audioId": "bb10bb2d469b545200ef52cf7a1ef116",
+          "lb": "ech wäert deem Gedeessems en Enn maachen!",
+          "audioId": "8c7a0c487596f72c0227818a5384d768",
           "local": true,
           "a1": false
         },
         {
-          "lb": "ech wäert deem Gedeessems en Enn maachen!",
-          "audioId": "8c7a0c487596f72c0227818a5384d768",
-          "local": false,
+          "lb": "ech wäert haut net virun aacht Auer doheem sinn",
+          "audioId": "bb10bb2d469b545200ef52cf7a1ef116",
+          "local": true,
           "a1": false
         }
       ],
@@ -1541,15 +1541,15 @@
       "attestations": 66,
       "variant": null,
       "example": {
-        "lb": "am Wanter gëtt et fréi däischter",
-        "audioId": "457408e30c1a90216919ceb9f55e2922",
+        "lb": "am Kaartespill gëtt et véier Faarwen",
+        "audioId": "a517e95b1485624161e42efa209df5c0",
         "local": true,
         "a1": false
       },
       "examples": [
         {
-          "lb": "am Wanter gëtt et fréi däischter",
-          "audioId": "457408e30c1a90216919ceb9f55e2922",
+          "lb": "am Kaartespill gëtt et véier Faarwen",
+          "audioId": "a517e95b1485624161e42efa209df5c0",
           "local": true,
           "a1": false
         },
@@ -1560,16 +1560,16 @@
           "a1": false
         },
         {
-          "lb": "géint der Owend gëtt et kill",
-          "audioId": "48a978c60c2d3dbd2c6259f2f8c0d6f0",
+          "lb": "am Wanter gëtt et fréi däischter",
+          "audioId": "457408e30c1a90216919ceb9f55e2922",
           "local": true,
           "a1": false
         }
       ],
       "cloze": {
-        "before": "am Wanter ",
+        "before": "am Kaartespill ",
         "form": "gëtt et",
-        "after": " fréi däischter",
+        "after": " véier Faarwen",
         "via": "frame"
       },
       "rank": 33,
@@ -1650,10 +1650,10 @@
           "a1": true
         },
         {
-          "lb": "wéi vill Meterkaree huet däin neit Appartement?",
-          "audioId": "ba3f5b048153e77ac2738fc398fdd94e",
+          "lb": "wéi vill Auer hu mer?",
+          "audioId": "a75979cf3898f29237d80fa7d7045c97",
           "local": true,
-          "a1": false
+          "a1": true
         }
       ],
       "cloze": {
@@ -1721,12 +1721,18 @@
       "attestations": 25,
       "variant": null,
       "example": {
-        "lb": "kann ech nach e Stéck Meloun kréien, wannechgelift?",
-        "audioId": "2aad15742448d6a2d1c82a752d5d7027",
+        "lb": "ënner deene Konditioune kann ech net schaffen!",
+        "audioId": "0bff026f07c73ec6f6cfabe2c499bce3",
         "local": true,
         "a1": false
       },
       "examples": [
+        {
+          "lb": "ënner deene Konditioune kann ech net schaffen!",
+          "audioId": "0bff026f07c73ec6f6cfabe2c499bce3",
+          "local": true,
+          "a1": false
+        },
         {
           "lb": "kann ech nach e Stéck Meloun kréien, wannechgelift?",
           "audioId": "2aad15742448d6a2d1c82a752d5d7027",
@@ -1738,18 +1744,12 @@
           "audioId": "5b767af88efdeb6b9c086f69594666e2",
           "local": true,
           "a1": false
-        },
-        {
-          "lb": "esou e Feeler kann ech eemol verzeien, awer net zweemol",
-          "audioId": "d69c87a580ba0e855bbdc71ceaa57278",
-          "local": true,
-          "a1": false
         }
       ],
       "cloze": {
-        "before": "",
+        "before": "ënner deene Konditioune ",
         "form": "kann ech",
-        "after": " nach e Stéck Meloun kréien, wannechgelift?",
+        "after": " net schaffen!",
         "via": "frame"
       },
       "rank": 37,
@@ -1901,12 +1901,18 @@
       "attestations": 44,
       "variant": null,
       "example": {
-        "lb": "ech krut Antibiotiquë verschriwwen, well ech Bazillen am Waasser hat",
-        "audioId": "f91ae01ad31d0fe1c47d96028562d03a",
+        "lb": "ech krut Antibiotiquë verschriwwen, well ech Bakteerien am Waasser hat",
+        "audioId": "835c81addee2cc599e4d97e836205e0d",
         "local": true,
         "a1": false
       },
       "examples": [
+        {
+          "lb": "ech krut Antibiotiquë verschriwwen, well ech Bakteerien am Waasser hat",
+          "audioId": "835c81addee2cc599e4d97e836205e0d",
+          "local": true,
+          "a1": false
+        },
         {
           "lb": "ech krut Antibiotiquë verschriwwen, well ech Bazillen am Waasser hat",
           "audioId": "f91ae01ad31d0fe1c47d96028562d03a",
@@ -1918,18 +1924,12 @@
           "audioId": "b4f7000bf43d076575771bbe38e5f441",
           "local": true,
           "a1": false
-        },
-        {
-          "lb": "ech kann net mat an d'Schwämm goen, well ech den Houscht hunn",
-          "audioId": "cd404ee2163e0179a13ef7c2c4ad8fd4",
-          "local": true,
-          "a1": true
         }
       ],
       "cloze": {
         "before": "ech krut Antibiotiquë verschriwwen, ",
         "form": "well ech",
-        "after": " Bazillen am Waasser hat",
+        "after": " Bakteerien am Waasser hat",
         "via": "frame"
       },
       "rank": 41,

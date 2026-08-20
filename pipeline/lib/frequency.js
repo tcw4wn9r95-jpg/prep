@@ -27,21 +27,80 @@ const { tokenise } = require('./lux-text');
 /**
  * Counts every corpus entry across every example sentence in the corpus.
  *
+ * ## Which record an occurrence belongs to
+ *
+ * This used to resolve each token through `lexicon.forms`, which holds exactly
+ * one id per spelling. That map is the orthographic authority — "is this a real
+ * word?" — and it was never able to answer "which record is this occurrence?".
+ * Asking it anyway credited every occurrence of a homograph to whichever record
+ * won the index, and the results were badly wrong on some of the commonest
+ * words in the language:
+ *
+ *   fir  "to" (CONJ) 1035 · "for" (PREP) 0
+ *   un   "to be on"   315 · "on"          0
+ *   no   "nearby"     209 · "after"       0
+ *
+ * Those numbers set `rank` and `stage`, so they did not merely mislabel a
+ * gloss — they decided when each word is taught. `fir` meaning "for" sat at
+ * rank 1972 and was introduced near the end of the deck.
+ *
+ * `lexicon.headwordForms` fixes it with LOD's own annotation: every example
+ * marks which token *is* the entry, and build-corpus.js keeps that as
+ * form → { entry: times LOD marks it }. Where a form is unambiguous the
+ * occurrence goes to that entry; where LOD itself attributes the form to
+ * several entries the count is **split in proportion to those marks** rather
+ * than guessed. Nothing here knows which sense a given sentence used, so a
+ * share is the honest answer — but an *even* share is not, and the difference
+ * is not academic: `hunn` is marked hundreds of times for the auxiliary and
+ * three times for HUNN2 "cockerel", and half of "have" is enough to teach a
+ * rooster in unit 3.
+ *
+ * The exact spelling is tried before the lowercased one, because Luxembourgish
+ * capitalises its nouns: `Hunn` and `hunn` are two words on the page, and the
+ * case in the sentence is evidence about which one is meant.
+ *
+ * Forms never marked as a headword anywhere fall back to the old single
+ * resolution, which is still right for the 96.5% that are unambiguous.
+ *
  * @param {{entries: Array}} corpus
- * @param {{forms: Record<string,string>}} lexicon
- * @returns {Map<string, number>} LOD record id → occurrences
+ * @param {{forms: Record<string,string>, headwordForms?: Record<string,Record<string,number>>}} lexicon
+ * @returns {Map<string, number>} LOD record id → occurrences (may be fractional)
  */
 function countEntries(corpus, lexicon) {
   const counts = new Map();
+  const headwords = lexicon.headwordForms ?? {};
+
+  // form → [[id, share], …] with the shares summing to 1. Built once per
+  // spelling rather than per occurrence: the inner loop runs ~700k times.
+  const shares = new Map();
+  const sharesFor = (form) => {
+    if (shares.has(form)) return shares.get(form);
+    const marks = headwords[form];
+    let split = null;
+    if (marks) {
+      const total = Object.values(marks).reduce((sum, n) => sum + n, 0);
+      if (total > 0) split = Object.entries(marks).map(([id, n]) => [id, n / total]);
+    }
+    shares.set(form, split);
+    return split;
+  };
+
+  const credit = (id, amount) => counts.set(id, (counts.get(id) ?? 0) + amount);
+
   for (const entry of corpus.entries) {
     for (const meaning of entry.meanings ?? []) {
       for (const example of meaning.examples ?? []) {
         if (!example.text) continue;
         for (const token of tokenise(example.text)) {
-          const hit = lexicon.forms[token.value] ?? lexicon.forms[token.value.toLowerCase()];
+          const key = token.value.toLowerCase();
+          const split = sharesFor(token.value) ?? sharesFor(key);
+          if (split) {
+            for (const [id, share] of split) credit(id, share);
+            continue;
+          }
+          const hit = lexicon.forms[token.value] ?? lexicon.forms[key];
           if (!hit) continue;
-          const id = hit.slice(hit.indexOf(':') + 1);
-          counts.set(id, (counts.get(id) ?? 0) + 1);
+          credit(hit.slice(hit.indexOf(':') + 1), 1);
         }
       }
     }
