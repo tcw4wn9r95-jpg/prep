@@ -17,7 +17,7 @@
  */
 
 import { loadGrammar } from '../content.js';
-import { getLearnDeckStates, buildSession, newWordsLeftToday, newWordGoal, listMistakes, mistakeEntryKeys , flaggedCards } from '../store.js';
+import { getLearnDeckStates, buildSession, listMistakes, mistakeEntryKeys , flaggedCards } from '../store.js';
 import { DECKS, isDrillable, boxIndex, isStructure, GRAMMAR_KINDS } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 import { topicFor } from '../grammar-guide.js';
@@ -53,10 +53,9 @@ function backFor(name, filter) {
 
 export async function render(root, { params, settings, navigate }) {
   const filter = FILTERS[params?.[0]] ?? null;
-  const [everything, states, newLeft, mistakeRows, flagged] = await Promise.all([
+  const [everything, states, mistakeRows, flagged] = await Promise.all([
     loadGrammar(),
     getLearnDeckStates(settings.playerId, 'grammar'),
-    newWordsLeftToday(settings.playerId, { target: newWordGoal(settings) }),
     listMistakes(settings.playerId),
     flaggedCards(settings.playerId),
   ]);
@@ -74,9 +73,9 @@ export async function render(root, { params, settings, navigate }) {
   // builds its options from the sentence itself, but the gapped kinds look for
   // plausible wrong answers, and 98 subclause items is a thin pool to draw
   // from before they start repeating.
-  const plan = buildSession(all, states, { limit: SESSION_SIZE, newTarget: newLeft, deckId: 'grammar', mistakes: mistakeEntryKeys(mistakeRows), flagged });
+  const plan = buildSession(all, states, { limit: SESSION_SIZE, deckId: 'grammar', mistakes: mistakeEntryKeys(mistakeRows), flagged });
   if (plan.length === 0) {
-    return nothingDue({ root, title, back, navigate, total: all.length, capped: newLeft === 0 });
+    return nothingDue({ root, title, back, navigate, total: all.length });
   }
 
   return runSession({

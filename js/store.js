@@ -523,42 +523,41 @@ export const PROD_UNLOCK_BOX = 2;
  */
 export const STRONG_BOX = 3;
 
-/** New words introduced per day. Above roughly ten, retention falls faster
- * than the extra intake gains. Reviews are on top of this and uncapped.
- *
- * This is a **daily** budget and has to be spent as one. It used to be passed
- * to `buildMixedSession` as the default `newTarget`, which applies per
- * *session* — so a 30-card day of 12-card sessions took up to 24 new words,
- * and abandoning a session halfway and starting another handed out a fresh 8
- * every time. Starting and quitting after two cards introduced 27 new words on
- * day one against a stated cap of 8. Every one of them then came back as two
- * strands of recurring reviews, which is why the review queue climbed and
- * never came down. Call sites now pass `newWordsLeftToday()`. */
-export const DAILY_NEW_TARGET = 8;
-
 /**
- * The new-word budget, as something the learner picks rather than something
- * the app imposes — the same reasoning as `DAILY_GOALS` below, applied to
- * intake instead of card count.
+ * New words per day: no longer capped.
  *
- * `DAILY_NEW_TARGET` stays the shipped default and the number the retention
- * comment above is written about. This is the override for a day that
- * actually has the time for it: a deliberate choice made once in Settings,
- * not a permanently raised ceiling that quietly outlives the day it was set
- * for. Nothing here changes what "above roughly ten" costs in retention —
- * picking Brisk or Push is choosing to pay that, not being told it stopped
- * applying.
+ * There was a budget — eight a day by default, raisable to twenty-five in
+ * Settings — and it was the only thing in the app that actually stopped a day.
+ * Reviews were always uncapped; the daily goal was always a target with nothing
+ * withheld for missing it. When the budget was spent, sessions introduced
+ * nothing new, the empty state said "more tomorrow", and that was that.
+ *
+ * It was removed on request. The reasoning it was built on is still true —
+ * above roughly ten new words a day retention falls faster than the extra
+ * intake gains — but that is an argument for pacing yourself, not for the app
+ * refusing to continue. Someone who has time now can see their own review
+ * queue climbing and decide.
+ *
+ * ## What did *not* go with it
+ *
+ * A session is still a mix, and that is not a leftover — it is the app. The
+ * first attempt at this removal set `newTarget` to Infinity, which looks like
+ * "no limit" and is actually something much worse: `newSlots` then takes every
+ * general slot, `staleSlots` computes to zero, and reviews stop appearing
+ * altogether. Uncapped intake with no review is not fast learning, it is
+ * meeting two thousand words once each.
+ *
+ * So the per-session share stays. Two thirds of a session is new words, the
+ * rest is mistakes and a throttled slice of what is due. Twelve-card sessions
+ * therefore still run about eight new — the number the old daily cap used to
+ * allow in a *day* — and the difference is simply that the next session brings
+ * eight more, as many times as you care to start one.
  */
-export const NEW_WORD_GOALS = [
-  { id: 'steady', words: 8, label: 'Steady', note: 'the default' },
-  { id: 'brisk', words: 15, label: 'Brisk', note: 'a day with real time to spend' },
-  { id: 'push', words: 25, label: 'Push', note: 'expect more of these to need repeats' },
-];
+const SESSION_NEW_SHARE = 2 / 3;
 
-/** The chosen new-word budget, defaulting to `DAILY_NEW_TARGET`. */
-export function newWordGoal(settings) {
-  return NEW_WORD_GOALS.find((goal) => goal.id === settings?.newWordGoal)?.words ?? DAILY_NEW_TARGET;
-}
+/** How many new words a session of `limit` cards introduces, absent a caller
+ * saying otherwise. Never the whole session: see the note above. */
+export const newSessionTarget = (limit) => Math.max(1, Math.ceil(limit * SESSION_NEW_SHARE));
 
 /**
  * Cards to answer in a day — the goal the learner is actually shown.
@@ -732,7 +731,7 @@ export function buildMixedSession(
   groups,
   {
     limit = 12,
-    newTarget = DAILY_NEW_TARGET,
+    newTarget = newSessionTarget(limit),
     now = Date.now(),
     reserve = {},
     mistakes = EMPTY_SET,
@@ -840,10 +839,10 @@ export function buildMixedSession(
   // priority as everywhere else in this function: mistakes, then fresh, then
   // a throttled slice of the rest.
   const reserved = [];
-  // The reserve draws from the same daily new-word budget as everything else.
+  // The reserve draws from the same new-word allowance as everything else.
   // Without this it topped every session up with fresh grammar items whatever
-  // `newTarget` said, which is a hole straight through the daily cap — three
-  // per session, and a session can be started as often as you like.
+  // `newTarget` said, which would put the session over its own share and
+  // squeeze the reviews back out.
   let freshBudget = Math.max(0, newTarget - general.filter((entry) => entry.isNew).length);
   for (const [deckId, min] of Object.entries(reserve)) {
     const candidates = [...mistakeReviews, ...fresh, ...throttledStale].filter(
@@ -1300,7 +1299,7 @@ export async function throughput(playerId, { days = 7, now = Date.now() } = {}) 
  * What is waiting right now, across both decks and both strands, plus how many
  * new words have been started today. Drives the Learn hub.
  */
-export async function dueCounts(playerId, { now = Date.now(), target = DAILY_NEW_TARGET } = {}) {
+export async function dueCounts(playerId, { now = Date.now() } = {}) {
   const decks = Object.values(LEARN_DECKS);
   const strands = Object.values(STRANDS);
   const rowSets = await Promise.all(
@@ -1312,7 +1311,7 @@ export async function dueCounts(playerId, { now = Date.now(), target = DAILY_NEW
   startOfDay.setHours(0, 0, 0, 0);
   const dayStart = startOfDay.getTime();
 
-  const counts = { recv: 0, prod: 0, newToday: 0, target };
+  const counts = { recv: 0, prod: 0, newToday: 0 };
   for (const row of rows) {
     if (row.dueAt <= now) counts[row.strand] += 1;
     // seen === 1 on a recv row means the word was met for the first time; the
@@ -1321,25 +1320,21 @@ export async function dueCounts(playerId, { now = Date.now(), target = DAILY_NEW
       counts.newToday += 1;
     }
   }
-  counts.newLeft = Math.max(0, target - counts.newToday);
+  // No `newLeft`: there is no budget to have any left of. `newToday` is the
+  // honest number and it only reports.
   return counts;
 }
 
 /**
- * How much of today's new-word budget is still unspent.
+ * How many new words have been met today.
  *
- * The number every session builder must be given as its `newTarget`, so that
- * the cap holds across sessions rather than resetting with each one. Derived
- * from the same `seen === 1` evidence the Learn hub already reports as "N new
- * words left today" — the hub was computing it for display while the builder
- * ignored it, which is exactly how the two came to disagree.
- *
- * `target` defaults to `DAILY_NEW_TARGET` but every call site should pass
- * `newWordGoal(settings)` instead, so a raised Settings picker actually
- * reaches the session it is meant to widen rather than being read back on the
- * Learn hub and ignored everywhere new words are actually handed out.
+ * This used to be "how much of the budget is left", and every session builder
+ * had to be handed it as `newTarget` or the cap leaked. There is no cap now, so
+ * it reports rather than restricts: the number is worth seeing — it is the
+ * honest measure of how much you have taken on and therefore of how big
+ * tomorrow's review queue will be — but nothing is withheld once it is high.
  */
-export async function newWordsLeftToday(playerId, { now = Date.now(), target = DAILY_NEW_TARGET } = {}) {
-  const counts = await dueCounts(playerId, { now, target });
-  return counts.newLeft;
+export async function newWordsToday(playerId, { now = Date.now() } = {}) {
+  const counts = await dueCounts(playerId, { now });
+  return counts.newToday ?? 0;
 }

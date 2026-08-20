@@ -12,7 +12,7 @@
  */
 
 import { el, fill, screenHead, button } from '../dom.js';
-import { listFlags, unflagCard, flagActive, FLAG_REASONS, getSettings, saveSettings, DAILY_GOALS, goalCards, NEW_WORD_GOALS, newWordGoal } from '../store.js';
+import { listFlags, unflagCard, flagActive, FLAG_REASONS, getSettings, saveSettings, DAILY_GOALS, goalCards } from '../store.js';
 import { keyWarning, looksLikeApiKey } from '../anthropic.js';
 import { setChimeEnabled, chimePreview } from '../chime.js';
 import { loadDeployInfo } from '../content.js';
@@ -83,36 +83,6 @@ export async function render(root, { navigate }) {
     `${DAILY_GOALS.find((option) => option.id === goal)?.cards ?? 30} cards a day — ${DAILY_GOALS.find((option) => option.id === goal)?.note ?? ''}.`,
   );
 
-  // The new-word budget, picked the same way as the daily goal above — not
-  // permanently raised, just overridable for a day that actually has the
-  // time to spend on it.
-  let newWords = NEW_WORD_GOALS.find((option) => option.words === newWordGoal(settings))?.id ?? 'steady';
-  const newWordButtons = NEW_WORD_GOALS.map((option) =>
-    el(
-      'button',
-      {
-        type: 'button',
-        class: `chip chip--pick${newWords === option.id ? ' is-picked' : ''}`,
-        'aria-pressed': newWords === option.id ? 'true' : 'false',
-        onclick: () => {
-          newWords = option.id;
-          for (const [index, node] of newWordButtons.entries()) {
-            const isMe = NEW_WORD_GOALS[index].id === newWords;
-            node.classList.toggle('is-picked', isMe);
-            node.setAttribute('aria-pressed', isMe ? 'true' : 'false');
-          }
-          newWordNote.textContent = `${option.words} new words a day — ${option.note}.`;
-        },
-      },
-      option.label,
-    ),
-  );
-  const newWordNote = el(
-    'p',
-    { class: 'card__note' },
-    `${NEW_WORD_GOALS.find((option) => option.id === newWords)?.words ?? 8} new words a day — ${NEW_WORD_GOALS.find((option) => option.id === newWords)?.note ?? ''}.`,
-  );
-
   const status = el('p', { class: 'source-note', style: { marginBlockStart: 'var(--s3)' }, role: 'status' });
 
   const save = button('Save', {
@@ -133,7 +103,6 @@ export async function render(root, { navigate }) {
         sound: sound.checked,
         arcadeA1: arcadeA1.checked,
         dailyGoal: goal,
-        newWordGoal: newWords,
       });
       status.textContent = 'Saved.';
     },
@@ -173,19 +142,6 @@ export async function render(root, { navigate }) {
         'p',
         { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } },
         'This is the bar on Today. It counts cards you have actually answered, so it only ever goes up — and nothing is withheld if you pass it or miss it.',
-      ),
-    ),
-
-    sectionLabel('New words per day'),
-    el(
-      'div',
-      { class: 'card' },
-      el('div', { class: 'chiprow' }, ...newWordButtons),
-      newWordNote,
-      el(
-        'p',
-        { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } },
-        'Reviews are on top of this and uncapped — this only limits how many brand-new words get introduced in a day. Above roughly ten, retention tends to fall faster than the extra intake gains, so treat Brisk and Push as a choice for a day with real time to spend, not a new normal.',
       ),
     ),
 
