@@ -3213,3 +3213,140 @@ for Follow-up 16 — that change deliberately moved nothing — and is the wrong
 assertion for a change whose entire point is to re-rank. It now asserts what
 it was protecting: level 1 is drawn from the 28 hand-listed starter words,
 whatever the ranking says.
+
+# Follow-up 28 — the half of the word-order rule nothing tested
+
+> "Add an exercise to practice answering questions where time or frequency is
+> involved and modal verbs. This is when the inversion is needed (research the
+> rule first then implement)"
+
+## The rule, from the sources
+
+Luxembourgish fixes the **verb's** position, not the subject's. In a statement
+the finite verb is the second *element*, whatever occupies the first. So the
+moment anything other than the subject leads, the subject has nowhere to go but
+behind the verb:
+
+```
+ech ginn haut an d'Stad      →   haut ginn ech an d'Stad
+```
+
+Three sources agree and none of them conflict:
+
+| source | what it gives |
+| --- | --- |
+| *Grammaire de la langue luxembourgeoise*, ZLS (ISBN 978-99959-1-206-2) | the official statement of the verb-second rule the inversion follows from. Print-only, already cited by the guide's level 20. |
+| [Luxembourgish With Anne](https://luxembourgishwithanne.lu/2018/03/25/important-rules-word-order-luxembourgish/) — a Luxembourg-based teacher | the same rule as three teaching rules, with worked pairs (*Ech léieren haut Lëtzebuergesch* / *Haut léieren ech Lëtzebuergesch*), the time–manner–place order, and the modal case: "the conjugated verb still stays in POSITION 2" while the infinitive closes. |
+| [Wikipedia, *Luxembourgish*](https://en.wikipedia.org/wiki/Luxembourgish) | confirms V2 in main clauses, and that a partial question puts the subject after the verb. |
+
+The pedagogical hook is the user's, and it is the right one: **an answer
+naturally leads with the thing that was asked.** Someone asks *wéini* or *wéi
+dacks*, the time phrase goes to the front, and the answer inverts. Almost every
+answer to those two questions does.
+
+## Why the existing decks did not cover it
+
+`wordorder` (level 20) moves the finite verb and asks where *it* goes. That
+teaches V2 in the abstract, and it draws overwhelmingly from subject-first
+sentences where nothing is inverted at all. It never asks where the **subject**
+goes, which is the half that actually costs marks — because English and French
+both front a time phrase and leave the subject in place ("today I go",
+"aujourd'hui je vais"), and carrying that habit over produces *haut ech ginn*.
+
+## What the corpus would and would not support
+
+The correct option on these cards is always a sentence LOD wrote; only the
+distractors are assembled. That is a hard limit, and here it is also the
+binding one. Dictionary examples lead with their subject almost every time:
+
+| | |
+| --- | --- |
+| sentences in the corpus | 10,812 |
+| with a finite verb in second position | 2,558 |
+| opening with an identified time, frequency or prepositional phrase, subject after the verb | 75 |
+| shipped after gating | **44** — 29 time, 3 frequency, 12 modal |
+
+Deliberately not closed by writing sentences. A larger deck was available at
+the cost of the one rule this pipeline does not break.
+
+## Two things the measurement changed
+
+**A preposition does not make a phrase temporal.** The first detector accepted
+any leading prepositional phrase and pulled in `an dëser Famill` and `an där
+Basilika` alongside `an der Vakanz`. What separates them is the noun, so the
+phrase now has to close on one from a named list — and that list, like the
+number words and the auxiliaries, is checked by `assertAttested` against the
+lexicon before the build is allowed to proceed.
+
+**Capitalisation cannot find the subject.** Luxembourgish capitalises every
+noun, so "the next word starts with a capital" cannot tell a noun subject from
+a noun object. `elo muss de Faarf bekennen` was read as subject *de Faarf* when
+the subject is *de* and *Faarf bekennen* is the idiom — and the distractor
+built from that reading would have been wrong in a way that teaches nothing.
+Only one-word pronoun subjects are accepted now. It costs seven items.
+
+## The Eifeler Regel ate a third of the deck
+
+Rearranging a sentence changes which word follows which, and the n-rule keys
+off exactly that. Of 75 candidates, 38 produced a distractor that was
+misspelled as well as misordered — `am Fliger een muss …`, where `een` has to
+drop its n before `muss`. Shipping those would teach two wrong things at once,
+so the gate rejects them, exactly as it does for `wordorder`.
+
+Recovered by offering a *choice* of second distractor rather than a fixed one.
+Both are real learner errors: the verb driven to the end of the clause (the
+subordinate-clause order in a main clause) and the subject in front of the time
+phrase (two elements before the verb, where the rule allows one). Taking
+whichever gates cleanly took the deck from 31 to 44. The first distractor —
+the subject back in front of the verb — is never optional, because it is the
+mistake the card exists for.
+
+## The card
+
+Its question cannot be a fixed string. All three options keep the fronted
+phrase where LOD put it, so "which order is right?" would be asking the learner
+to guess what is being tested. It names the cue and quotes it back:
+
+> Asked **when**, the answer starts with "elo". Where does the subject go?
+>
+> A · elo geet et fir dech!  B · elo et geet fir dech!  C · elo et fir dech geet!
+
+and for a modal, where the finite verb is the modal and the infinitive is still
+sitting at the end:
+
+> This answer starts with "an dësem Musée", so **däerf** has to come next.
+> Where does the subject go?
+
+Filed as level 22 of the guide (*Sentence structure 3 — when and how often*)
+and as unit 8 of the path, *Getting around* — the unit whose theme is times and
+journeys and which already teaches the verb bracket the modal cards need.
+
+## A rendering bug found by looking at it
+
+The guide's teaching copy uses `*italic*` and `**bold**` for emphasis — "second
+**element**, not second word" is a different sentence without it — and all four
+renderers printed the asterisks literally. Two existing topics were already
+affected; the new one made three. Fixed with a twenty-line `emphasise()` in
+`dom.js` that handles exactly those two markers, builds nodes rather than
+setting `innerHTML`, and leaves anything else as written. It is not a Markdown
+renderer and should not become one.
+
+## And one caught by the validator
+
+The items carry two new fields — `front`, the phrase that took first position,
+and `verb`, the finite verb that follows it. Both are Luxembourgish, both are
+quoted back on the card, and `validate` refused the build with 88 errors until
+they were declared: *"unclassified text is not validated, so it is not
+allowed."* Exactly the failure mode that rule exists for — a field that renders
+to the screen without ever passing the lexicon or the n-rule.
+
+## Verification
+
+`npm test` 306 (8 new in `grammar.test.js`: the miner takes the marked
+sentence, the required distractor is always the uninverted order, a rate word
+asks *how often* rather than *when*, a subject-first sentence is left alone, a
+non-temporal phrase only counts when a modal makes it one, every option is the
+same words reordered, the cue stays in front, and no adverb is filed as both) ·
+`validate` PASS · `npm run walkthrough` 65/65, one new step that opens the deck
+in a browser and checks the question names its cue and the three options really
+are one sentence three ways · `sw.js` → `v48`.

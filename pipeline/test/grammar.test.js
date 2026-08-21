@@ -19,8 +19,8 @@ const { pathToFileURL } = require('node:url');
 
 const ROOT = path.join(__dirname, '..', '..');
 const {
-  genderItems, nRuleItems, adjectiveItems, numberItems, dativeItems, likesItems,
-  NUMBER_WORDS, DATIVE_PRONOUNS, DATIVE_PREPOSITIONS,
+  genderItems, nRuleItems, adjectiveItems, numberItems, dativeItems, likesItems, inversionItems,
+  NUMBER_WORDS, DATIVE_PRONOUNS, DATIVE_PREPOSITIONS, TIME_ADVERBS, FREQUENCY_ADVERBS,
 } = require('../build-grammar.js');
 
 /* --------------------------------------------------------------- fixtures */
@@ -306,6 +306,118 @@ test('grammar/likes: mines gär placement the same way negation mines net', () =
   }
 });
 
+/* -------------------------------------------------------------- inversion */
+
+/** The verb deck shape `inversionItems` reads: present-tense forms per person,
+ * plus the infinitive it belongs to. */
+const INVERSION_VERBS = [
+  { infinitive: 'goen', present: { p1: 'ginn', p2: 'gees', p3: 'geet', p4: 'ginn', p5: 'gitt', p6: 'ginn' }, pastParticiple: 'gaangen' },
+  { infinitive: 'kënnen', present: { p1: 'kann', p2: 'kanns', p3: 'kann', p4: 'kënnen', p5: 'kënnt', p6: 'kënnen' } },
+  { infinitive: 'schaffen', present: { p1: 'schaffen', p2: 'schaffs', p3: 'schafft', p4: 'schaffen', p5: 'schafft', p6: 'schaffen' } },
+];
+
+const inversionLexicon = () =>
+  withForms(fixtureLexicon(), ['ech', 'du', 'hien', 'haut', 'ëmmer', 'muer', 'ginn', 'geet', 'gees', 'kann', 'schaffen', 'schafft', 'stad', 'vakanz', 'der', 'an', 'net']);
+
+test('grammar/inversion: mines a sentence that fronts a time word and puts the subject after the verb', () => {
+  const corpus = {
+    entries: [{ id: 'A1', partOfSpeech: 'ADV', meanings: [{ examples: [{ text: 'haut ginn ech an d Stad' }] }] }],
+  };
+  const items = inversionItems(corpus, withForms(inversionLexicon(), ['d', 'stad']), INVERSION_VERBS);
+  assert.equal(items.length, 1);
+  const [item] = items;
+  assert.equal(item.kind, 'inversion');
+  assert.equal(item.subject, 'time');
+  assert.equal(item.front, 'haut');
+  assert.equal(item.verb, 'ginn');
+  // The sentence LOD wrote is the answer; the other two are this file's work.
+  assert.equal(item.options_lb[item.correct], 'haut ginn ech an d Stad');
+  assert.equal(item.options_lb.length, 3);
+});
+
+test('grammar/inversion: the required distractor is the subject back in front of the verb', () => {
+  // The English and French order, and the whole reason the card exists. An
+  // item that cannot offer it is not worth keeping, so it is never optional.
+  const corpus = {
+    entries: [{ id: 'A1', partOfSpeech: 'ADV', meanings: [{ examples: [{ text: 'haut ginn ech an d Stad' }] }] }],
+  };
+  const [item] = inversionItems(corpus, withForms(inversionLexicon(), ['d', 'stad']), INVERSION_VERBS);
+  assert.ok(item.options_lb.includes('haut ech ginn an d Stad'), `options were ${JSON.stringify(item.options_lb)}`);
+});
+
+test('grammar/inversion: a rate word asks how often, not when', () => {
+  const corpus = {
+    entries: [{ id: 'A1', partOfSpeech: 'ADV', meanings: [{ examples: [{ text: 'ëmmer schafft hien net doheem' }] }] }],
+  };
+  const items = inversionItems(corpus, withForms(inversionLexicon(), ['doheem', 'schafft']), INVERSION_VERBS);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].subject, 'frequency');
+});
+
+test('grammar/inversion: a subject-first sentence is not an inversion and is left alone', () => {
+  // Nothing has been pushed anywhere — this is the ordinary order, and offering
+  // it as a card would mean marking the correct instinct down.
+  const corpus = {
+    entries: [{ id: 'A1', partOfSpeech: 'ADV', meanings: [{ examples: [{ text: 'ech ginn haut an d Stad' }] }] }],
+  };
+  assert.equal(inversionItems(corpus, withForms(inversionLexicon(), ['d', 'stad']), INVERSION_VERBS).length, 0);
+});
+
+test('grammar/inversion: a fronted phrase that is not temporal only counts when a modal makes it one', () => {
+  // `an der Stad` is a place. On its own it is not what this exercise teaches,
+  // so it is skipped; with a modal it is the same inversion and it is kept.
+  const lexicon = withForms(inversionLexicon(), ['stad', 'relaxen', 'richteg']);
+  const plain = {
+    entries: [{ id: 'A1', partOfSpeech: 'SUBST', meanings: [{ examples: [{ text: 'an der Stad schafft hien net' }] }] }],
+  };
+  assert.equal(inversionItems(plain, lexicon, INVERSION_VERBS).length, 0);
+
+  const modal = {
+    entries: [{ id: 'A2', partOfSpeech: 'SUBST', meanings: [{ examples: [{ text: 'an der Stad kann hien richteg schaffen' }] }] }],
+  };
+  const items = inversionItems(modal, lexicon, INVERSION_VERBS);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].subject, 'modal');
+  // The modal is the finite verb the card is about, not the closing infinitive.
+  assert.equal(items[0].verb, 'kann');
+});
+
+test('grammar/inversion: every distractor differs from the answer in word order and nothing else', () => {
+  // The same bar `orderItems` holds: rearranging changes which word follows
+  // which, and the Eifeler Regel keys off exactly that, so a distractor can
+  // come out misspelled as well as misordered. Checked against the real deck.
+  const items = shipped().filter((item) => item.kind === 'inversion');
+  assert.ok(items.length > 20, `expected a real inversion deck, got ${items.length}`);
+  for (const item of items) {
+    // Closing punctuation is stripped first: it stays at the end of the
+    // sentence while the words move around it, so it lands on a different word
+    // in each ordering and would look like a difference in vocabulary.
+    const words = item.options_lb.map((option) =>
+      option.toLowerCase().replace(/[.!?…]+$/, '').trim().split(/\s+/).sort().join(' '),
+    );
+    assert.equal(new Set(words).size, 1, `${item.id}: options use different words, not just a different order`);
+  }
+});
+
+test('grammar/inversion: the fronted phrase stays in front in every option', () => {
+  // All three orderings keep the cue exactly where LOD put it — the card names
+  // that phrase in its question, so an option that moved it would be asking
+  // about something the learner cannot see.
+  for (const item of shipped().filter((entry) => entry.kind === 'inversion')) {
+    if (!item.front) continue;
+    const cue = item.front.toLowerCase();
+    const fronted = item.options_lb.filter((option) => option.toLowerCase().startsWith(cue));
+    assert.ok(fronted.length >= 2, `${item.id}: only ${fronted.length} option(s) still open with "${item.front}"`);
+  }
+});
+
+test('grammar/inversion: no adverb is filed as both a time and a rate', () => {
+  // They drive two different questions — "asked when" and "asked how often" —
+  // so a word in both lists would make the card's wording a coin flip.
+  const both = TIME_ADVERBS.filter((word) => FREQUENCY_ADVERBS.includes(word));
+  assert.deepEqual(both, [], `in both lists: ${both.join(', ')}`);
+});
+
 /* ------------------------------------------------------- the shipped-file guard */
 
 const SHIPPED = path.join(ROOT, 'app', 'data', 'grammar.json');
@@ -326,7 +438,7 @@ test('grammar: the shipped deck carries only declared kinds, each internally con
     assert.ok(
       [
         'gender', 'nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'bracket', 'subclause', 'negation',
-        'numbers', 'heard', 'dative', 'likes',
+        'numbers', 'heard', 'dative', 'likes', 'inversion',
       ].includes(item.kind),
       `${item.id}: unknown kind "${item.kind}"`,
     );

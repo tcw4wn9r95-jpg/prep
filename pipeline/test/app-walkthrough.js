@@ -1674,6 +1674,38 @@ async function main() {
     await page.evaluate(async () => { await (await import('./js/store.js')).saveSettings({ apiKey: '' }); });
   });
 
+  await step('answering when or how often puts the subject after the verb', async () => {
+    // The inversion deck. Two things are checked that a unit test cannot see:
+    // that the question names the cue it is about rather than saying "which
+    // order is right?", and that the three options really are the same
+    // sentence three ways — a learner who cannot see what differs between them
+    // is guessing, which is how the numbers cards failed.
+    await clearLearn();
+    await openFresh('#/grammar/inversion');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+
+    const asked = (await page.locator('.drill__instruction, .drill__prompt').first().textContent())?.trim() ?? '';
+    if (!/Where does the subject go\?/.test(asked)) {
+      throw new Error(`the card does not ask about the subject: ${asked}`);
+    }
+    // The cue is quoted back, so the learner knows which word put them here.
+    if (!/[“"].+[”"]/.test(asked)) throw new Error(`the card does not name the fronted phrase: ${asked}`);
+
+    // The span after `.option__key`, not the button: the button's text starts
+    // with the A/B/C key, which would read as a word the other options lack.
+    const options = await page.locator('.options .option > span:not(.option__key)').allTextContents();
+    if (options.length !== 3) throw new Error(`expected three orderings, got ${options.length}`);
+    const words = options.map((option) =>
+      option.toLowerCase().replace(/[.!?…]+$/, '').trim().split(/\s+/).sort().join(' '),
+    );
+    if (new Set(words).size !== 1) throw new Error(`the options are not the same words reordered:\n${options.join('\n')}`);
+    await shot('00e-inversion');
+
+    // And it can be answered: picking the right one is accepted.
+    await page.locator('.options .option').first().click();
+    await page.waitForSelector('.drill__feedback, .option.is-correct', { timeout: 5000 });
+  });
+
   await step('the podcast index lists real INLL episodes by level', async () => {
     await openFresh('#/podcasts');
     await page.waitForSelector('a[href^="#/podcasts/"]', { timeout: 5000 });

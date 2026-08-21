@@ -13,7 +13,7 @@
  * actually gets laid down.
  */
 
-import { el, fill, screenHead, button, plural } from '../dom.js';
+import { el, fill, screenHead, button, plural, emphasise } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
 import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, recordMistake, clearMistake, goalCards, POINTS, touchStreak } from '../store.js';
@@ -397,7 +397,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
       { class: 'drill__teach', open: first ? true : null },
       el('summary', {}, first ? `The rule — ${topic.title}` : 'Remind me of the rule'),
       el('p', { class: 'drill__teach-rule' }, topic.rule),
-      ...topic.points.slice(0, 2).map((point) => el('p', { class: 'drill__teach-point' }, point)),
+      ...topic.points.slice(0, 2).map((point) => el('p', { class: 'drill__teach-point' }, ...emphasise(point))),
       // Straight to this rule's own notecard rather than to the cheat sheet.
       // The sheet is one long page with every topic collapsed on it, so
       // "full explanation" used to mean "find your own way back to the thing

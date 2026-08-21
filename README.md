@@ -121,7 +121,7 @@ Match the existing personal stack: cheap, mostly static, no ops burden.
   js/screens/        onboarding · today · journey · learn · session · reference · pairs ·
                      podcasts · vocab · verbs · phrases · listening · speaking · review ·
                      readiness · duel · settings · notecards · structure
-  js/grammar-guide.js   the grammar course: 24 numbered levels of theory
+  js/grammar-guide.js   the grammar course: 25 numbered levels of theory
   js/grammar-examples.js   renders whichever shape of example a level produced
   js/chime.js        the right-answer sound, synthesised (no asset to ship)
   js/anthropic.js    direct Claude calls, for when there is no Worker
@@ -374,7 +374,7 @@ Two smaller rules that matter more than they look:
 > had none at all. A drill you can only pass by having already learned the rule somewhere else
 > is a test, not teaching — so the theory now comes first, and it is ordered as a course.
 
-**Notecards** (`#/notecards`) is the grammar as 24 numbered levels. Each level is one card:
+**Notecards** (`#/notecards`) is the grammar as 25 numbered levels. Each level is one card:
 the rule in a sentence, a few paragraphs of teaching, real sentences that show it, and a
 button through to the drill where a deck exists.
 
@@ -390,9 +390,9 @@ alongside the app can line the two up.
 | 7–11 | Verbs and tenses | the present · sinn · hunn · the perfect · the future |
 | 12–17 | Agreement | possessives · comparatives · cases · pronouns · prepositions · adjectives |
 | 18–19 | The character of the language | diminutives and the lost genitive · where the vocabulary comes from |
-| 20–24 | What the Sproochentest also marks | verb second · the verb bracket · subordinate clauses · negation · gär |
+| 20–25 | What the Sproochentest also marks | verb second · the verb bracket · inversion after a time phrase · subordinate clauses · negation · gär |
 
-Levels 20–24 are this app's own. The series never covers word order, and Morphosyntax is a
+Levels 20–25 are this app's own. The series never covers word order, and Morphosyntax is a
 scored criterion in the interview, so they are taught rather than left out — grouped after the
 series so it stays clear which is which.
 

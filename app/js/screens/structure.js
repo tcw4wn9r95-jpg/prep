@@ -24,7 +24,7 @@
  * grammar deck, which pipeline/build-grammar.js mined from LOD.
  */
 
-import { el, screenHead, button, plural } from '../dom.js';
+import { el, screenHead, button, plural, emphasise } from '../dom.js';
 import { loadGrammar } from '../content.js';
 import { getLearnDeckState, STRANDS } from '../store.js';
 import { STRUCTURE_KINDS } from '../drill/cards.js';
@@ -110,7 +110,7 @@ function stepCard(step) {
       ),
     ),
 
-    ...topic.points.map((point) => el('p', { class: 'ref-topic__point' }, point)),
+    ...topic.points.map((point) => el('p', { class: 'ref-topic__point' }, ...emphasise(point))),
 
     step.examples.length
       ? el(

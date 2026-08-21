@@ -239,7 +239,11 @@ const STAGES = [
     blurb: 'Transport, journeys and holidays — and the verb bracket they pull apart.',
     topics: ['transport', 'vakanz'],
     games: ['ability', 'time'],
-    grammar: ['bracket'],
+    // `inversion` sits here rather than beside `wordorder` in unit 4 on
+    // purpose. It is the same V2 rule seen from the subject's side, and half
+    // its cards are modals — so it needs the bracket taught first, and it needs
+    // the unit whose vocabulary is times and journeys to have something to say.
+    grammar: ['bracket', 'inversion'],
   },
   {
     n: 9,

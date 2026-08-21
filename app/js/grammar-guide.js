@@ -17,11 +17,12 @@
  * exactly this audience — adults learning the language from English, in the
  * order a Luxembourgish teacher actually introduces it.
  *
- * Levels 1–19 track that series topic for topic. Levels 20–24 are this app's
- * own addition: word order, the verb bracket, subordinate clauses, negation
- * and gär. The series never covers those, and Morphosyntax is a scored
- * criterion in the Sproochentest interview, so they are taught here rather
- * than left out — grouped after the series so it stays clear which is which.
+ * Levels 1–19 track that series topic for topic. Levels 20–25 are this app's
+ * own addition: word order, the verb bracket, inversion after a fronted time
+ * phrase, subordinate clauses, negation and gär. The series never covers
+ * those, and Morphosyntax is a scored criterion in the Sproochentest
+ * interview, so they are taught here rather than left out — grouped after the
+ * series so it stays clear which is which.
  *
  * ## What may be written here, and what may not
  *
@@ -67,7 +68,7 @@
 
 /**
  * The blocks the course is grouped into, in order. The notecards screen reads
- * these to break a 24-card list into something you can navigate.
+ * these to break a 25-card list into something you can navigate.
  */
 export const UNITS = [
   'Getting started',
@@ -434,11 +435,33 @@ const TOPICS = [
   },
 
   {
-    id: 'subclause',
+    id: 'inversion',
     level: 22,
     unit: 'What the Sproochentest also marks',
+    drill: '#/grammar/inversion',
+    title: 'Sentence structure 3 — when and how often',
+    rule: 'Start an answer with a time or frequency phrase and the subject moves behind the verb.',
+    points: [
+      'This is level 20 seen from the other side. The verb holds second position no matter what, so the moment you put something else first, the subject has nowhere to go but after it. *Ech ginn haut an d’Stad* becomes *haut ginn ech an d’Stad*.',
+      'It matters most when answering, because an answer naturally leads with the thing that was asked. Someone asks **wéini** or **wéi dacks** and the time phrase goes to the front — which means almost every answer you give to those two questions inverts.',
+      'English and French do not do this. "Today I go", "aujourd’hui je vais" — both keep the subject in front of the verb, and carrying that habit over produces *haut ech ginn*, which is the single most common word-order mistake for speakers of either.',
+      'The subject has not moved for emphasis and nothing is being stressed. The verb simply held its slot and the subject was pushed off it.',
+      'Only one element may go in front of the verb. *Ech haut ginn* is wrong for the opposite reason — two things before the verb rather than none.',
+      'With a modal, it is the **modal** that takes second place and inverts, while the infinitive still closes the sentence: *an der Vakanz kann ee richteg relaxen*. Two things have to be right at once, which is why these come after the verb bracket rather than before it.',
+    ],
+    sources: [
+      'Grammaire de la langue luxembourgeoise, Zenter fir d’Lëtzebuerger Sprooch (ISBN 978-99959-1-206-2), the official reference, which states the verb-second rule the inversion follows from.',
+      'Checked against LOD: of 10,812 example sentences, 2,558 put a finite verb in second position, and 75 of those open with a time, frequency or prepositional phrase and place the subject after the verb. Dictionary examples overwhelmingly lead with their subject, which is why this deck is the smallest of the structure decks.',
+    ],
+    examples: ({ grammar }) => orderExamples(grammar, 'inversion', 'The first element is not the subject, so the subject follows the verb'),
+  },
+
+  {
+    id: 'subclause',
+    level: 23,
+    unit: 'What the Sproochentest also marks',
     drill: '#/grammar/subclause',
-    title: 'Sentence structure 3 — the verb goes last',
+    title: 'Sentence structure 4 — the verb goes last',
     rule: 'After datt, ob, well, wann and the other subordinators, the conjugated verb moves to the end of its clause.',
     points: [
       'This is the hardest one and the last to become automatic. A subordinate clause is introduced by a conjunction, and inside that clause the conjugated verb leaves second position entirely and goes to the end.',
@@ -454,7 +477,7 @@ const TOPICS = [
 
   {
     id: 'negation',
-    level: 23,
+    level: 24,
     unit: 'What the Sproochentest also marks',
     drill: '#/grammar/negation',
     title: 'Saying no',
@@ -523,7 +546,7 @@ const TOPICS = [
 
   {
     id: 'likes',
-    level: 24,
+    level: 25,
     unit: 'What the Sproochentest also marks',
     drill: '#/grammar/likes',
     title: 'Saying what you like — and don’t',

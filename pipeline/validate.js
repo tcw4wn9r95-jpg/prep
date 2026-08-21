@@ -61,6 +61,12 @@ const LUXEMBOURGISH_FIELDS = new Set([
   // pipeline/build-grammar.js — dativeItems() records the preposition that
   // governs the gapped pronoun; it is a real corpus token, not free text.
   'preposition',
+  // pipeline/build-grammar.js — inversionItems() records the phrase that took
+  // first position and the finite verb that follows it. Both are spans lifted
+  // out of the sentence, and the card quotes `front` back at the learner, so
+  // they get the same checking as anything else shown on screen.
+  'front',
+  'verb',
   'p1',
   'p2',
   'p3',

@@ -101,8 +101,94 @@ const MAX_SUBCLAUSE_ITEMS = 160;
 const SUBORDINATORS = ['datt', 'ob'];
 
 /** Short, stable id prefixes per kind. */
-const ID_PREFIX = { wordorder: 'order', bracket: 'brkt', negation: 'neg', likes: 'likes' };
+const ID_PREFIX = { wordorder: 'order', bracket: 'brkt', negation: 'neg', likes: 'likes', inversion: 'inv' };
 const MAX_NEGATION_ITEMS = 180;
+
+/* ------------------------------------------------------------- inversion */
+
+/**
+ * The time and frequency vocabulary that fronts a sentence.
+ *
+ * Every word here is checked by `assertAttested` in main(), so this is a
+ * *selection* from LOD rather than a list of Luxembourgish written here — the
+ * same standing rule as the number words and the auxiliaries above.
+ *
+ * The lists are split by how the phrase is built, because that is what decides
+ * how far the fronted element reaches. `haut` is one word; `all Dag` is two;
+ * `an der Vakanz` is three. Getting that span right is the whole job: the card
+ * asks where the subject goes *relative to the first element*, so a span that
+ * stops one word early would ask about the wrong slot.
+ */
+/** *When* — a point on the calendar or the clock. */
+const TIME_ADVERBS = [
+  'haut', 'muer', 'iwwermuer', 'gëschter', 'virgëschter', 'elo', 'geschwënn', 'fréier', 'spéider',
+  'hautdesdaags', 'deemools', 'zejoert', 'dann', 'duerno', 'virdrun', 'zënterhier',
+];
+
+/**
+ * *How often* — a rate rather than a point.
+ *
+ * The weekday adverbs belong here rather than above: `samschdes` is "on
+ * Saturdays", the habit, not "on Saturday", the date. Same for `owes` and
+ * `moies`, which are "in the evenings" and "in the mornings". Keeping them
+ * apart is what lets the card ask the right question, since "you were asked
+ * *when*" and "you were asked *how often*" are different questions with the
+ * same answer shape.
+ */
+const FREQUENCY_ADVERBS = [
+  'ëmmer', 'dacks', 'heiansdo', 'ni', 'nimools', 'meeschtens', 'selten', 'normalerweis',
+  'deeglech', 'alldeeglech', 'moies', 'mueres', 'mëttes', 'owes', 'nuets', 'nomëttes',
+  'méindes', 'dënschdes', 'mëttwochs', 'donneschdes', 'freides', 'samschdes', 'sonndes',
+];
+
+/** Nouns that make a phrase temporal. A preposition alone does not: `an der
+ * Vakanz` is a time phrase and `an der Basilika` is a place, and the only thing
+ * separating them is this list. */
+const TIME_NOUNS = [
+  'Dag', 'Deeg', 'Woch', 'Wochen', 'Mount', 'Méint', 'Joer', 'Joren', 'Owend', 'Owender', 'Moien',
+  'Mëtteg', 'Nuecht', 'Nuechten', 'Stonn', 'Stonnen', 'Minutt', 'Minutten', 'Auer', 'Zäit',
+  'Summer', 'Wanter', 'Fréijoer', 'Hierscht', 'Vakanz', 'Weekend', 'Kéier', 'Mol', 'Ouschteren',
+  'Chrëschtdag', 'Semester',
+];
+
+/** Prepositions that can open a time phrase, and the determiners that can sit
+ * between them and the noun. Neither is sufficient alone — a TIME_NOUN has to
+ * close the phrase for it to count. */
+const TIME_PREPOSITIONS = [
+  'um', 'un', 'am', 'an', 'nom', 'no', 'virum', 'virun', 'viru', 'zënter', 'bis', 'géint',
+  'tëschent', 'ëm', 'vun', 'vum', 'während', 'wärend', 'op', 'fir', 'bei', 'mat', 'ënner', 'iwwer',
+];
+const PHRASE_DETERMINERS = [
+  'all', 'dëse', 'dësem', 'dëser', 'dës', 'deem', 'där', 'der', 'den', 'de', 'd', 'engem', 'enger',
+  'en', 'e', 'zwee', 'dräi', 'véier', 'fënnef', 'sechs', 'siwen', 'aacht', 'néng', 'zéng', 'puer',
+  'véierzéng', 'mengem', 'menger', 'senger', 'sengem', 'eiser', 'eisem', 'dengem', 'denger',
+];
+
+/** The question words that ask for a time or a frequency. Their answer is the
+ * fronted phrase, which is why they belong in the same exercise. */
+const TIME_QUESTIONS = ['wéini'];
+const FREQUENCY_QUESTIONS = ['dacks', 'laang', 'oft'];
+
+/** The modals, whose finite form takes second position while the infinitive
+ * they govern closes the sentence. `wäerten` is here because it behaves the
+ * same way even though it is a future auxiliary rather than a modal proper. */
+const MODAL_VERBS = new Set(['kënnen', 'mussen', 'sollen', 'däerfen', 'wëllen', 'wäerten']);
+
+/** Pronouns that can be the subject. Only these are accepted, and the reason is
+ * a bug this caught: Luxembourgish capitalises every noun, so "the next word
+ * starts with a capital" cannot tell a noun subject from a noun object, and
+ * `elo muss de Faarf bekennen` was read as subject "de Faarf" when the subject
+ * is `de` and `Faarf bekennen` is the idiom. A one-word pronoun subject is the
+ * only span this can move without guessing. */
+const SUBJECT_PRONOUNS = new Set([
+  'ech', 'du', 'hien', 'hie', 'hatt', 'si', 'se', 'mir', 'mer', 'dir', 'et', 'een', 'ee',
+  'jidderee', 'jiddereen',
+]);
+
+const MAX_INVERSION_ITEMS = 120;
+/** Per LOD entry, so three near-identical sauna sentences cannot become three
+ * near-identical cards. */
+const MAX_INVERSION_PER_ENTRY = 2;
 
 /**
  * Cardinal numbers 0-19, the tens, and honnert/dausend — a closed class, like
@@ -794,6 +880,236 @@ function subclauseItems(corpus, lexicon, verbs) {
   return items;
 }
 
+/* ---------------------------------------------------------------- inversion */
+
+/**
+ * Where the subject goes once something else has taken first position.
+ *
+ * ## The rule
+ *
+ * Luxembourgish fixes the *verb's* position, not the subject's: in a statement
+ * the finite verb is the second element, whatever comes first. So the moment a
+ * time or frequency phrase leads, the subject has nowhere to go but behind the
+ * verb — `ech ginn haut an d'Stad` becomes `haut ginn ech an d'Stad`. The
+ * subject has not moved for emphasis; the verb simply held its slot.
+ *
+ * This is the case an English or French speaker gets wrong, because both those
+ * languages front a time phrase and leave the subject where it was ("today I
+ * go", "aujourd'hui je vais"). Doing that here produces `haut ech ginn`, which
+ * is the first distractor on every card.
+ *
+ * With a modal the same rule applies to the *modal* — it is the finite verb —
+ * and the infinitive it governs still closes the sentence. Two things have to
+ * be right at once, which is why the modal shape is marked and asked about
+ * separately.
+ *
+ * ## Why this is its own kind rather than more `wordorder` items
+ *
+ * `orderItems` moves the finite verb and asks where it goes. That teaches V2
+ * in the abstract. It never asks where the *subject* goes, which is the half
+ * of the rule that actually costs marks — and it draws from subject-first
+ * sentences, where nothing is inverted at all.
+ *
+ * ## Where the sentences come from
+ *
+ * All of them from LOD, none of them constructed. That is a hard limit rather
+ * than a preference: the correct option is always the sentence LOD wrote, and
+ * only the two distractors are assembled here. It is also what caps the deck.
+ * Dictionary examples overwhelmingly lead with their subject — of 10,812
+ * sentences only 2,558 even have a finite verb in second position, and most of
+ * those open with `ech` or `hien` — so the honest yield is double figures, not
+ * hundreds. A bigger deck would mean writing Luxembourgish, which this pipeline
+ * does not do.
+ *
+ * Sentences containing a comma are skipped, as in `orderItems`: they carry a
+ * second clause, and moving a word inside one of them silently changes which
+ * clause it belongs to. That filter is also what removes the false positives —
+ * `den Telefon schellt, kanns du ophiewen?` is a yes/no question in a second
+ * clause, not an inversion, and `mee wie soll et bezuelen?` has `wie` as its
+ * subject, already in front of the verb.
+ */
+function inversionItems(corpus, lexicon, verbs) {
+  const isClean = makeGate(lexicon);
+  const checker = createChecker({
+    nRuleForms: new Set(lexicon.nRuleForms),
+    retentionExceptions: new Set(Object.keys(lexicon.nRuleRetentionExceptions ?? {})),
+  });
+  // Same stricter bar as `orderItems`, for the same reason: this rearranges a
+  // sentence, and a distractor that is also misspelled teaches two wrong things.
+  const nRuleSilent = (text) => checker.checkTokens(tokenise(text)).length === 0;
+
+  const finite = new Set();
+  const modalFinite = new Set();
+  for (const verb of verbs) {
+    for (const form of Object.values(verb.present ?? {})) {
+      if (!form) continue;
+      for (const one of String(form).split('/')) {
+        const key = one.trim().toLowerCase();
+        if (!key || /\s/.test(key)) continue;
+        finite.add(key);
+        if (MODAL_VERBS.has(verb.infinitive)) modalFinite.add(key);
+      }
+    }
+  }
+  const infinitives = new Set(verbs.map((verb) => verb.infinitive.toLowerCase()));
+
+  const adverbs = new Set([...TIME_ADVERBS, ...FREQUENCY_ADVERBS]);
+  const rateAdverbs = new Set(FREQUENCY_ADVERBS);
+  const nouns = new Set([...TIME_NOUNS, ...MONTHS, ...WEEKDAYS].map((word) => word.toLowerCase()));
+  const preps = new Set(TIME_PREPOSITIONS);
+  const dets = new Set(PHRASE_DETERMINERS);
+
+  /**
+   * How many words the leading time or frequency phrase covers, and whether it
+   * reads as a point in time or as a rate. 0 means the sentence does not open
+   * with one.
+   */
+  const timeSpan = (w) => {
+    if (TIME_QUESTIONS.includes(w[0])) return { span: 1, subject: 'time' };
+    if (w[0] === 'wéi' && FREQUENCY_QUESTIONS.includes(w[1])) return { span: 2, subject: 'frequency' };
+    if (adverbs.has(w[0])) {
+      // The head of the phrase decides the question: `samschdes mëttes` is a
+      // rate because `samschdes` is, whatever follows it.
+      const subject = rateAdverbs.has(w[0]) ? 'frequency' : 'time';
+      // "samschdes mëttes", "muer de Moien" — a second time word extends it.
+      if (adverbs.has(w[1])) return { span: 2, subject };
+      if (dets.has(w[1]) && nouns.has(w[2])) return { span: 3, subject };
+      return { span: 1, subject };
+    }
+    // `all` + a time noun is the frequency phrase: all Dag, all Joer, all Méindeg.
+    if (w[0] === 'all') {
+      if (nouns.has(w[1])) return { span: 2, subject: 'frequency' };
+      if (dets.has(w[1]) && nouns.has(w[2])) return { span: 3, subject: 'frequency' };
+      return null;
+    }
+    if (preps.has(w[0])) {
+      if (nouns.has(w[1])) return { span: 2, subject: 'time' };
+      if (dets.has(w[1]) && nouns.has(w[2])) return { span: 3, subject: 'time' };
+      if (dets.has(w[1]) && dets.has(w[2]) && nouns.has(w[3])) return { span: 4, subject: 'time' };
+    }
+    return null;
+  };
+
+  /**
+   * Any leading prepositional phrase, ending on its first capitalised word.
+   *
+   * Only consulted for modal sentences, and only after `timeSpan` has declined.
+   * The modal half of this exercise would otherwise be four cards: LOD has
+   * plenty of `am Fliger muss een den Handy ausmaachen` and almost no
+   * `donneschdes mëttes muss ech …`. The rule being drilled is the same one —
+   * a non-subject took first position, so the subject follows the modal — and
+   * the phrase is identified positively rather than by "not a pronoun".
+   */
+  const phraseSpan = (w, raw) => {
+    if (!preps.has(w[0])) return 0;
+    for (let i = 1; i < Math.min(w.length, 5); i += 1) {
+      if (/^[A-ZÄËÉÈÖÜ]/.test(raw[i] ?? '')) return i + 1;
+    }
+    return 0;
+  };
+
+  const items = [];
+  const seen = new Set();
+  const perEntry = new Map();
+
+  outer: for (const entry of corpus.entries) {
+    for (const meaning of entry.meanings ?? []) {
+      for (const example of meaning.examples ?? []) {
+        if (!example.text) continue;
+        for (const sentence of sentences(example.text)) {
+          const tokens = tokenise(sentence);
+          if (tokens.length < 4 || tokens.length > 12) continue;
+          if (tokens.some((token) => token.isClitic || token.clitic)) continue;
+
+          const tail = sentence.match(/[.!?…]+$/)?.[0] ?? '';
+          const body = sentence.slice(0, sentence.length - tail.length).trim();
+          const words = tokens.map((token) => token.raw);
+          if (words.join(' ') !== body) continue;
+
+          const w = tokens.map((token) => token.value.toLowerCase());
+          const time = timeSpan(w);
+          const modalFront = time ? 0 : phraseSpan(w, words);
+          const span = time?.span ?? modalFront;
+          if (!span) continue;
+
+          // Second element must be the finite verb, third the subject.
+          if (!finite.has(w[span])) continue;
+          if (!SUBJECT_PRONOUNS.has(w[span + 1])) continue;
+          // Something has to follow the subject, or there is no sentence left
+          // to reorder and the three options differ only in their last word.
+          if (span + 2 > w.length - 1) continue;
+
+          const isModal = modalFinite.has(w[span]) && infinitives.has(w[w.length - 1]);
+          // A non-time phrase only earns a card when a modal makes it one.
+          if (!time && !isModal) continue;
+
+          const key = sentence.toLowerCase();
+          if (seen.has(key)) continue;
+          if ((perEntry.get(entry.id) ?? 0) >= MAX_INVERSION_PER_ENTRY) continue;
+          if (!isClean(sentence) || !nRuleSilent(sentence)) continue;
+
+          // The required distractor: the subject back in front of the verb.
+          // This is the English and French order and the mistake the card
+          // exists for, so an item without it is not worth keeping.
+          const uninverted = [...words];
+          const [verb] = uninverted.splice(span, 1);
+          uninverted.splice(span + 1, 0, verb);
+
+          // The second distractor, whichever of these survives the gate. Both
+          // are real learner errors rather than shuffles: the verb driven to
+          // the end is the subordinate-clause order used in a main clause, and
+          // the subject in front of the time phrase is two elements before the
+          // verb, which the rule allows exactly one of.
+          const verbLast = [...words];
+          const [moved] = verbLast.splice(span, 1);
+          verbLast.push(moved);
+
+          const subjectFirst = [...words];
+          const [subject] = subjectFirst.splice(span + 1, 1);
+          subjectFirst.unshift(subject);
+
+          const usable = (option) => isClean(option) && nRuleSilent(option) && option.toLowerCase() !== body.toLowerCase();
+          const first = uninverted.join(' ');
+          if (!usable(first)) continue;
+          // Rearranging changes which word follows which, and the Eifeler Regel
+          // keys off exactly that — so a reordering can come out misspelled as
+          // well as misordered. Offering the second candidate only when it is
+          // clean is what keeps a distractor wrong in word order and nothing
+          // else.
+          const second = [verbLast.join(' '), subjectFirst.join(' ')].find((option) => usable(option) && option !== first);
+          if (!second) continue;
+          const alternatives = [first, second];
+
+          const attested = body + tail;
+          const id = `gr-${ID_PREFIX.inversion}-${shortHash(sentence)}`;
+          const options = [attested, ...alternatives.map((option) => option + tail)];
+          const at = rotate(id, options.length);
+          const rotated = [...options.slice(at), ...options.slice(0, at)];
+
+          items.push({
+            id,
+            kind: 'inversion',
+            // What put the subject behind the verb, so the card can say so.
+            subject: isModal ? 'modal' : time.subject,
+            // The fronted element itself, quoted back in the question.
+            front: words.slice(0, span).join(' '),
+            // The finite verb the learner has to keep in second place. For a
+            // modal card this is the modal, not the infinitive at the end.
+            verb: words[span],
+            options_lb: rotated,
+            correct: rotated.indexOf(attested),
+            entryId: entry.id,
+          });
+          seen.add(key);
+          perEntry.set(entry.id, (perEntry.get(entry.id) ?? 0) + 1);
+          if (items.length >= MAX_INVERSION_ITEMS) break outer;
+        }
+      }
+    }
+  }
+  return items;
+}
+
 /* ------------------------------------------------------------------ numbers */
 
 /**
@@ -1147,7 +1463,13 @@ async function main() {
   // exercises is recognised at all, so a typo here would silently mine the
   // wrong sentences or, for numbers/dative, ship a spelling the lexicon
   // itself never attests.
-  assertAttested(lexicon, [...AUXILIARIES, ...FINITE_AUX_FORMS, NEGATOR, ...NUMBER_WORDS, ...DATIVE_PRONOUNS, ...LIKES_WORDS]);
+  assertAttested(lexicon, [
+    ...AUXILIARIES, ...FINITE_AUX_FORMS, NEGATOR, ...NUMBER_WORDS, ...DATIVE_PRONOUNS, ...LIKES_WORDS,
+    // The inversion vocabulary. Determiners and prepositions are excluded on
+    // purpose: they are structural, and several are clitic-like forms the
+    // lexicon indexes only as part of a longer spelling.
+    ...TIME_ADVERBS, ...FREQUENCY_ADVERBS, ...TIME_NOUNS, ...TIME_QUESTIONS, ...MODAL_VERBS, ...SUBJECT_PRONOUNS,
+  ]);
 
   const gender = genderItems(vocab.items);
   const nrule = nRuleItems(corpus, lexicon);
@@ -1183,17 +1505,19 @@ async function main() {
 
   const bracket = bracketItems(corpus, lexicon, verbs);
   const subclause = subclauseItems(corpus, lexicon, verbs);
+  const inversion = inversionItems(corpus, lexicon, verbs);
 
   const items = [
     ...gender, ...nrule, ...adjective, ...perfectAux, ...perfectForm, ...wordorder, ...bracket, ...subclause,
-    ...negation, ...numbers, ...heard, ...dative, ...likes,
+    ...negation, ...numbers, ...heard, ...dative, ...likes, ...inversion,
   ];
 
   console.log(
     `grammar: ${gender.length} gender, ${nrule.length} n-rule, ${adjective.length} adjective-agreement, ` +
       `${perfectAux.length} perfect-auxiliary, ${perfectForm.length} perfect-participle, ` +
       `${wordorder.length} word-order, ${bracket.length} verb-bracket, ${subclause.length} verb-final, ` +
-      `${negation.length} negation, ${numbers.length} numbers, ${heard.length} heard-in-audio, ${dative.length} dative, ${likes.length} likes (${items.length} total)`,
+      `${negation.length} negation, ${numbers.length} numbers, ${heard.length} heard-in-audio, ${dative.length} dative, ${likes.length} likes, ` +
+      `${inversion.length} inversion (${items.length} total)`,
   );
 
   // Which unit of the learning path each rule belongs to. Sequencing lives in
@@ -1249,6 +1573,7 @@ if (require.main === module) {
 
 module.exports = {
   heardItems,
-  genderItems, nRuleItems, adjectiveItems, numberItems, dativeItems, likesItems,
+  genderItems, nRuleItems, adjectiveItems, numberItems, dativeItems, likesItems, inversionItems,
   NUMBER_WORDS, DATIVE_PRONOUNS, DATIVE_PREPOSITIONS, LIKES_WORDS,
+  TIME_ADVERBS, FREQUENCY_ADVERBS, TIME_NOUNS,
 };

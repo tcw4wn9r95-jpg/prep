@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-20T20:16:42.523Z",
+    "generatedAt": "2026-08-21T15:25:06.282Z",
     "generator": "pipeline/build-grammar.js",
     "note": "Every option is either a value LOD itself assigned (noun gender/article) or a span copied verbatim from a real LOD example sentence. Nothing here is generated, inflected or corrected by this script - see the file header.",
     "counts": {
@@ -17,11 +17,11 @@
       "heard": 205,
       "dative": 96,
       "likes": 38,
-      "total": 3449
+      "total": 3493
     },
     "a1": {
-      "rows": 3449,
-      "readable": 535
+      "rows": 3493,
+      "readable": 545
     }
   },
   "items": [
@@ -63271,6 +63271,710 @@
       "entryId": "WEI3",
       "unit": 6,
       "a1": true
+    },
+    {
+      "id": "gr-inv-ec0178b430",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "an zwee Deeg",
+      "verb": "hunn",
+      "options_lb": [
+        "an zwee Deeg hunn ech e Rendez-vous beim Dokter",
+        "an zwee Deeg ech hunn e Rendez-vous beim Dokter",
+        "an zwee Deeg ech e Rendez-vous beim Dokter hunn"
+      ],
+      "correct": 0,
+      "entryId": "AN3",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-3513898338",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "elo",
+      "verb": "sinn",
+      "options_lb": [
+        "elo ech sinn endlech bäi mat der Aarbecht!",
+        "elo ech endlech bäi mat der Aarbecht sinn!",
+        "elo sinn ech endlech bäi mat der Aarbecht!"
+      ],
+      "correct": 2,
+      "entryId": "BAI1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-91687707a8",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "am Wanter",
+      "verb": "kommen",
+      "options_lb": [
+        "am Wanter ech kommen net aus dem Bett",
+        "am Wanter ech net aus dem Bett kommen",
+        "am Wanter kommen ech net aus dem Bett"
+      ],
+      "correct": 2,
+      "entryId": "BETT1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-013b8e472a",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "bis e Sonndeg",
+      "verb": "sinn",
+      "options_lb": [
+        "bis e Sonndeg ech sinn nach zu Land",
+        "bis e Sonndeg ech nach zu Land sinn",
+        "bis e Sonndeg sinn ech nach zu Land"
+      ],
+      "correct": 2,
+      "entryId": "BIS1",
+      "unit": 8,
+      "a1": true
+    },
+    {
+      "id": "gr-inv-257c1e8b32",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "fir de Weekend",
+      "verb": "hunn",
+      "options_lb": [
+        "fir de Weekend se bis zu 15 Zentimeter Schnéi gemellt hunn",
+        "fir de Weekend hunn se bis zu 15 Zentimeter Schnéi gemellt",
+        "fir de Weekend se hunn bis zu 15 Zentimeter Schnéi gemellt"
+      ],
+      "correct": 1,
+      "entryId": "BIS1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-1e75ef3239",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "am Summer",
+      "verb": "dinn",
+      "options_lb": [
+        "am Summer ech praktesch nëmme kuerz Boxen un dinn",
+        "am Summer dinn ech praktesch nëmme kuerz Boxen un",
+        "am Summer ech dinn praktesch nëmme kuerz Boxen un"
+      ],
+      "correct": 1,
+      "entryId": "BOX1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-76aad920b9",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "fir de Weekend",
+      "verb": "hunn",
+      "options_lb": [
+        "fir de Weekend hunn ech meng Zännbiischt an zwou ënnescht Boxen agestach",
+        "fir de Weekend ech hunn meng Zännbiischt an zwou ënnescht Boxen agestach",
+        "fir de Weekend ech meng Zännbiischt an zwou ënnescht Boxen agestach hunn"
+      ],
+      "correct": 0,
+      "entryId": "BOX1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-7a1938fd2f",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "am Wanter",
+      "verb": "gëtt",
+      "options_lb": [
+        "am Wanter gëtt et fréi däischter",
+        "am Wanter et gëtt fréi däischter",
+        "am Wanter et fréi däischter gëtt"
+      ],
+      "correct": 0,
+      "entryId": "DAISCHTER1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-561fa1b0a8",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "elo",
+      "verb": "sinn",
+      "options_lb": [
+        "elo sinn ech domm drun!",
+        "elo ech sinn domm drun!",
+        "ech elo sinn domm drun!"
+      ],
+      "correct": 0,
+      "entryId": "DOMM1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-f7dd2335bb",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "elo",
+      "verb": "gëtt",
+      "options_lb": [
+        "elo et gëtt enk!",
+        "elo et enk gëtt!",
+        "elo gëtt et enk!"
+      ],
+      "correct": 2,
+      "entryId": "ENK1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-8ef1c59dd2",
+      "kind": "inversion",
+      "subject": "modal",
+      "front": "hautdesdaags",
+      "verb": "muss",
+      "options_lb": [
+        "hautdesdaags ee muss flexibel sinn",
+        "hautdesdaags ee flexibel sinn muss",
+        "hautdesdaags muss ee flexibel sinn"
+      ],
+      "correct": 2,
+      "entryId": "FLEXIBEL1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-b17c8d1f30",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "haut",
+      "verb": "hues",
+      "options_lb": [
+        "haut hues du awer e flotte Paltong un!",
+        "haut du hues awer e flotte Paltong un!",
+        "haut du awer e flotte Paltong un hues!"
+      ],
+      "correct": 0,
+      "entryId": "FLOTT2",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-3c661ad737",
+      "kind": "inversion",
+      "subject": "modal",
+      "front": "an dësem Musée",
+      "verb": "däerf",
+      "options_lb": [
+        "an dësem Musée däerf een net fotograféieren",
+        "an dësem Musée een däerf net fotograféieren",
+        "an dësem Musée een net fotograféieren däerf"
+      ],
+      "correct": 0,
+      "entryId": "FOTOGRAFEIEREN1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-0affcc00e7",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "haut",
+      "verb": "gëtt",
+      "options_lb": [
+        "haut et gëtt frëndlecht Wieder",
+        "haut et frëndlecht Wieder gëtt",
+        "haut gëtt et frëndlecht Wieder"
+      ],
+      "correct": 2,
+      "entryId": "FRENDLECH1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-e650a6f2ee",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "géint der Owend",
+      "verb": "huet",
+      "options_lb": [
+        "géint der Owend huet et ugefaang mat schneien",
+        "géint der Owend et huet ugefaang mat schneien",
+        "géint der Owend et ugefaang mat schneien huet"
+      ],
+      "correct": 0,
+      "entryId": "GEINT1",
+      "unit": 8,
+      "a1": true
+    },
+    {
+      "id": "gr-inv-a3febede60",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "elo",
+      "verb": "ass",
+      "options_lb": [
+        "elo ass et däers genuch!",
+        "elo et ass däers genuch!",
+        "elo et däers genuch ass!"
+      ],
+      "correct": 0,
+      "entryId": "GENUCH1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-958da91619",
+      "kind": "inversion",
+      "subject": "modal",
+      "front": "zënter mengem schwéieren Accident",
+      "verb": "kann",
+      "options_lb": [
+        "ech zënter mengem schwéieren Accident kann net méi goen",
+        "zënter mengem schwéieren Accident kann ech net méi goen",
+        "zënter mengem schwéieren Accident ech kann net méi goen"
+      ],
+      "correct": 1,
+      "entryId": "GOEN1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-8609425561",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "elo",
+      "verb": "geet",
+      "options_lb": [
+        "elo et fir dech geet!",
+        "elo geet et fir dech!",
+        "elo et geet fir dech!"
+      ],
+      "correct": 1,
+      "entryId": "GOEN1",
+      "unit": 8,
+      "a1": true
+    },
+    {
+      "id": "gr-inv-aabbb62cde",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "muer",
+      "verb": "gëtt",
+      "options_lb": [
+        "muer et gëtt bis zwee Grad ënner null",
+        "muer et bis zwee Grad ënner null gëtt",
+        "muer gëtt et bis zwee Grad ënner null"
+      ],
+      "correct": 2,
+      "entryId": "GRAD1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-c0a3d75509",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "am Summer",
+      "verb": "gëtt",
+      "options_lb": [
+        "et am Summer gëtt scho fréi hell dobaussen",
+        "am Summer gëtt et scho fréi hell dobaussen",
+        "am Summer et gëtt scho fréi hell dobaussen"
+      ],
+      "correct": 1,
+      "entryId": "HELL1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-9e9cd9270a",
+      "kind": "inversion",
+      "subject": "modal",
+      "front": "vun dengem gudde Rot",
+      "verb": "kann",
+      "options_lb": [
+        "vun dengem gudde Rot ech kann mer näischt kafen",
+        "ech vun dengem gudde Rot kann mer näischt kafen",
+        "vun dengem gudde Rot kann ech mer näischt kafen"
+      ],
+      "correct": 2,
+      "entryId": "KAFEN1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-7f3e88b772",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "fir den Owend",
+      "verb": "hunn",
+      "options_lb": [
+        "fir den Owend ech hunn Kéis matbruecht",
+        "fir den Owend ech Kéis matbruecht hunn",
+        "fir den Owend hunn ech Kéis matbruecht"
+      ],
+      "correct": 2,
+      "entryId": "KEIS1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-ba42d0aa5f",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "géint der Owend",
+      "verb": "gëtt",
+      "options_lb": [
+        "géint der Owend et kill gëtt",
+        "géint der Owend gëtt et kill",
+        "géint der Owend et gëtt kill"
+      ],
+      "correct": 1,
+      "entryId": "KILL1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-bf84b2273a",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "am Summer",
+      "verb": "gëtt",
+      "options_lb": [
+        "am Summer et gëtt scho fréi kloer dobaussen",
+        "et am Summer gëtt scho fréi kloer dobaussen",
+        "am Summer gëtt et scho fréi kloer dobaussen"
+      ],
+      "correct": 2,
+      "entryId": "KLOER1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-bdce09ca74",
+      "kind": "inversion",
+      "subject": "modal",
+      "front": "an dëser Affär",
+      "verb": "wäert",
+      "options_lb": [
+        "ech an dëser Affär wäert et net derbäi loossen!",
+        "an dëser Affär wäert ech et net derbäi loossen!",
+        "an dëser Affär ech wäert et net derbäi loossen!"
+      ],
+      "correct": 1,
+      "entryId": "LOOSSEN1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-aa61a0cb16",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "haut",
+      "verb": "ginn",
+      "options_lb": [
+        "haut et maximal 30 Grad ginn",
+        "haut ginn et maximal 30 Grad",
+        "haut et ginn maximal 30 Grad"
+      ],
+      "correct": 1,
+      "entryId": "MAXIMAL1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-5db119e5e3",
+      "kind": "inversion",
+      "subject": "frequency",
+      "front": "méindes",
+      "verb": "kommen",
+      "options_lb": [
+        "méindes ech ni gutt aus dem Bett kommen",
+        "méindes kommen ech ni gutt aus dem Bett",
+        "méindes ech kommen ni gutt aus dem Bett"
+      ],
+      "correct": 1,
+      "entryId": "MEINDES1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-1a757ae311",
+      "kind": "inversion",
+      "subject": "modal",
+      "front": "donneschdes mëttes",
+      "verb": "muss",
+      "options_lb": [
+        "donneschdes mëttes ech muss ëmmer op mäi klenge Brudder oppassen",
+        "ech donneschdes mëttes muss ëmmer op mäi klenge Brudder oppassen",
+        "donneschdes mëttes muss ech ëmmer op mäi klenge Brudder oppassen"
+      ],
+      "correct": 2,
+      "entryId": "OPPASSEN1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-5b158fd5a8",
+      "kind": "inversion",
+      "subject": "modal",
+      "front": "un éischter Plaz",
+      "verb": "wëll",
+      "options_lb": [
+        "un éischter Plaz ech wëll Iech Merci soen",
+        "ech un éischter Plaz wëll Iech Merci soen",
+        "un éischter Plaz wëll ech Iech Merci soen"
+      ],
+      "correct": 2,
+      "entryId": "PLAZ1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-2cd1f8c2a0",
+      "kind": "inversion",
+      "subject": "modal",
+      "front": "mat wéi vill Rand",
+      "verb": "muss",
+      "options_lb": [
+        "mat wéi vill Rand muss ee fir eng Nuecht am Hotel rechnen?",
+        "mat wéi vill Rand ee muss fir eng Nuecht am Hotel rechnen?",
+        "ee mat wéi vill Rand muss fir eng Nuecht am Hotel rechnen?"
+      ],
+      "correct": 0,
+      "entryId": "RAND3",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-ac47ebaa6e",
+      "kind": "inversion",
+      "subject": "frequency",
+      "front": "samschdes",
+      "verb": "ginn",
+      "options_lb": [
+        "samschdes ginn ech ëmmer mat enger Frëndin an de Kino",
+        "samschdes ech ginn ëmmer mat enger Frëndin an de Kino",
+        "samschdes ech ëmmer mat enger Frëndin an de Kino ginn"
+      ],
+      "correct": 0,
+      "entryId": "SAMSCHDES1",
+      "unit": 8,
+      "a1": true
+    },
+    {
+      "id": "gr-inv-59fc080a3a",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "fréier",
+      "verb": "hunn",
+      "options_lb": [
+        "fréier ech an der Paus ëmmer Schockelasmëllech gedronk hunn",
+        "fréier hunn ech an der Paus ëmmer Schockelasmëllech gedronk",
+        "fréier ech hunn an der Paus ëmmer Schockelasmëllech gedronk"
+      ],
+      "correct": 1,
+      "entryId": "SCHOCKELASMELLECH1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-9102879b21",
+      "kind": "inversion",
+      "subject": "modal",
+      "front": "bei esou engem Héichwaasser",
+      "verb": "kann",
+      "options_lb": [
+        "bei esou engem Héichwaasser ee kann scho bal vun enger Katastroph schwätzen",
+        "ee bei esou engem Héichwaasser kann scho bal vun enger Katastroph schwätzen",
+        "bei esou engem Héichwaasser kann ee scho bal vun enger Katastroph schwätzen"
+      ],
+      "correct": 2,
+      "entryId": "SCHWATZEN1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-8a67b6e47f",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "am Summer",
+      "verb": "dinn",
+      "options_lb": [
+        "am Summer dinn ech praktesch nëmme Shorten un",
+        "am Summer ech dinn praktesch nëmme Shorten un",
+        "am Summer ech praktesch nëmme Shorten un dinn"
+      ],
+      "correct": 0,
+      "entryId": "SHORT1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-bc58bb9c9b",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "muer",
+      "verb": "gëtt",
+      "options_lb": [
+        "muer et e schéine sonnegen Dag gëtt",
+        "muer gëtt et e schéine sonnegen Dag",
+        "muer et gëtt e schéine sonnegen Dag"
+      ],
+      "correct": 1,
+      "entryId": "SONNEG1",
+      "unit": 8,
+      "a1": true
+    },
+    {
+      "id": "gr-inv-f2686a4596",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "no enger Stonn",
+      "verb": "ass",
+      "options_lb": [
+        "no enger Stonn hien och spadséiert komm ass",
+        "no enger Stonn ass hien och spadséiert komm",
+        "no enger Stonn hien ass och spadséiert komm"
+      ],
+      "correct": 1,
+      "entryId": "SPADSEIEREN1",
+      "unit": 8,
+      "a1": true
+    },
+    {
+      "id": "gr-inv-63c2f2687a",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "an der Vakanz",
+      "verb": "huet",
+      "options_lb": [
+        "an der Vakanz et an engem Stéck gereent huet",
+        "an der Vakanz huet et an engem Stéck gereent",
+        "an der Vakanz et huet an engem Stéck gereent"
+      ],
+      "correct": 1,
+      "entryId": "STECK1",
+      "unit": 8,
+      "a1": true
+    },
+    {
+      "id": "gr-inv-90b687e4a1",
+      "kind": "inversion",
+      "subject": "modal",
+      "front": "fir dës Aarbecht",
+      "verb": "muss",
+      "options_lb": [
+        "fir dës Aarbecht ee muss kënnen am Team schaffen",
+        "ee fir dës Aarbecht muss kënnen am Team schaffen",
+        "fir dës Aarbecht muss ee kënnen am Team schaffen"
+      ],
+      "correct": 2,
+      "entryId": "TEAM1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-a8e8183ea3",
+      "kind": "inversion",
+      "subject": "modal",
+      "front": "fir eis Rees",
+      "verb": "muss",
+      "options_lb": [
+        "ech fir eis Rees muss nach e Visa beim Konsulat ufroen",
+        "fir eis Rees muss ech nach e Visa beim Konsulat ufroen",
+        "fir eis Rees ech muss nach e Visa beim Konsulat ufroen"
+      ],
+      "correct": 1,
+      "entryId": "VISA1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-50844cdffb",
+      "kind": "inversion",
+      "subject": "frequency",
+      "front": "wéi dacks",
+      "verb": "gees",
+      "options_lb": [
+        "wéi dacks du bei den Zänndokter gees?",
+        "wéi dacks gees du bei den Zänndokter?",
+        "wéi dacks du gees bei den Zänndokter?"
+      ],
+      "correct": 1,
+      "entryId": "WEI3",
+      "unit": 8,
+      "a1": true
+    },
+    {
+      "id": "gr-inv-d3ca8616ce",
+      "kind": "inversion",
+      "subject": "modal",
+      "front": "bei der Reservatioun",
+      "verb": "kann",
+      "options_lb": [
+        "bei der Reservatioun kann ee seng Plaz online wielen",
+        "bei der Reservatioun ee kann seng Plaz online wielen",
+        "ee bei der Reservatioun kann seng Plaz online wielen"
+      ],
+      "correct": 0,
+      "entryId": "WIELEN1",
+      "unit": 8,
+      "a1": false
+    },
+    {
+      "id": "gr-inv-c8ed6308fa",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "elo",
+      "verb": "gëtt",
+      "options_lb": [
+        "elo gëtt et awer Zäit!",
+        "elo et gëtt awer Zäit!",
+        "elo et awer Zäit gëtt!"
+      ],
+      "correct": 0,
+      "entryId": "ZAIT1",
+      "unit": 8,
+      "a1": true
+    },
+    {
+      "id": "gr-inv-2546990a8c",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "an eiser Vakanz",
+      "verb": "huet",
+      "options_lb": [
+        "an eiser Vakanz huet et déi ganzen Zäit gereent",
+        "an eiser Vakanz et huet déi ganzen Zäit gereent",
+        "an eiser Vakanz et déi ganzen Zäit gereent huet"
+      ],
+      "correct": 0,
+      "entryId": "ZAIT1",
+      "unit": 8,
+      "a1": true
+    },
+    {
+      "id": "gr-inv-d7df2eaac1",
+      "kind": "inversion",
+      "subject": "time",
+      "front": "fir de Weekend",
+      "verb": "hunn",
+      "options_lb": [
+        "fir de Weekend ech just eng Zännbiischt a frësch Ënnerwäsch agepaakt hunn",
+        "fir de Weekend hunn ech just eng Zännbiischt a frësch Ënnerwäsch agepaakt",
+        "fir de Weekend ech hunn just eng Zännbiischt a frësch Ënnerwäsch agepaakt"
+      ],
+      "correct": 1,
+      "entryId": "ZANNBIISCHT1",
+      "unit": 8,
+      "a1": false
     }
   ]
 }

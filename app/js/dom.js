@@ -132,3 +132,29 @@ export function formatClock(ms) {
   const total = Math.max(0, Math.round(ms / 1000));
   return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;
 }
+
+/**
+ * Inline emphasis in teaching copy — `*italic*` and `**bold**`.
+ *
+ * The grammar guide's `points` are English prose written by hand, and several
+ * of them lean on emphasis to make the rule land: "second **element**, not
+ * second word" is a different sentence without it. They were being rendered as
+ * plain text, so the asterisks reached the screen literally.
+ *
+ * Deliberately two markers and nothing else. This is not a Markdown renderer
+ * and should not become one — it takes a trusted string from our own source,
+ * builds nodes rather than setting innerHTML, and leaves anything it does not
+ * recognise exactly as written.
+ */
+export function emphasise(text) {
+  const nodes = [];
+  const pattern = /\*\*([^*]+)\*\*|\*([^*]+)\*/g;
+  let at = 0;
+  for (let match = pattern.exec(text); match; match = pattern.exec(text)) {
+    if (match.index > at) nodes.push(text.slice(at, match.index));
+    nodes.push(match[1] ? el('strong', {}, match[1]) : el('em', {}, match[2]));
+    at = match.index + match[0].length;
+  }
+  if (at < text.length) nodes.push(text.slice(at));
+  return nodes;
+}

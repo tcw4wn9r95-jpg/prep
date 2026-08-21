@@ -126,7 +126,7 @@ export function orderGrammar(items) {
 function sentenceLength(item) {
   let sentence = '';
   if (item.kind === 'gender') sentence = item.example?.lb ?? '';
-  else if (['wordorder', 'bracket', 'subclause', 'negation', 'likes'].includes(item.kind)) sentence = item.options_lb?.[item.correct] ?? '';
+  else if (['wordorder', 'bracket', 'subclause', 'negation', 'likes', 'inversion'].includes(item.kind)) sentence = item.options_lb?.[item.correct] ?? '';
   // `heard` and `numbers` have no gap to measure — one is a recording and the
   // other a value — so they sort by their own sentence where there is one.
   else if (item.kind === 'heard' || item.kind === 'numbers') sentence = item.example?.lb ?? '';
@@ -145,7 +145,7 @@ function sentenceLength(item) {
  * `numbers`/`dative` are added at the end as the newer kinds.
  */
 const KIND_ORDER = [
-  'gender', 'perfect-aux', 'wordorder', 'nrule', 'bracket', 'negation', 'likes', 'adjective', 'subclause',
+  'gender', 'perfect-aux', 'wordorder', 'nrule', 'bracket', 'inversion', 'negation', 'likes', 'adjective', 'subclause',
   'perfect-form', 'numbers', 'heard', 'dative',
 ];
 

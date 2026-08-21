@@ -24,7 +24,7 @@
  * out of the shipped decks by that topic's own `examples()` function.
  */
 
-import { el, screenHead, button } from '../dom.js';
+import { el, screenHead, button, emphasise } from '../dom.js';
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar } from '../content.js';
 import { GRAMMAR_GUIDE, UNITS } from '../grammar-guide.js';
 import { exampleGroup, safeExamples } from '../grammar-examples.js';
@@ -128,7 +128,7 @@ function renderCard(root, topic, data, navigate) {
     // how it stops being noticed.
     el('div', { class: 'card' }, el('p', { class: 'ref-topic__rule', style: { margin: '0' } }, topic.rule)),
 
-    el('div', { class: 'card' }, ...topic.points.map((point) => el('p', { class: 'ref-topic__point' }, point))),
+    el('div', { class: 'card' }, ...topic.points.map((point) => el('p', { class: 'ref-topic__point' }, ...emphasise(point)))),
 
     groups.length
       ? el(
