@@ -29,7 +29,7 @@
  * items — never a new one written for this screen.
  */
 
-import { el, screenHead } from '../dom.js';
+import { el, screenHead, emphasise } from '../dom.js';
 import { loadVocab, loadVerbs, loadPhrases, loadPhraseGroups, loadGrammar } from '../content.js';
 import { GENDER_LABELS, joinArticle } from '../drill/cards.js';
 import { GRAMMAR_GUIDE } from '../grammar-guide.js';
@@ -322,7 +322,7 @@ function topicCard(topic, data) {
     { class: 'ref-verb ref-topic' },
     el('summary', {}, el('span', { class: 'card__title' }, topic.title)),
     el('p', { class: 'ref-topic__rule' }, topic.rule),
-    ...topic.points.map((point) => el('p', { class: 'ref-topic__point' }, point)),
+    ...topic.points.map((point) => el('p', { class: 'ref-topic__point' }, ...emphasise(point))),
     ...groups.map(exampleGroup),
     topic.sources?.length
       ? el('p', { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } }, `Forms from LOD — ${topic.sources.join('; ')}.`)

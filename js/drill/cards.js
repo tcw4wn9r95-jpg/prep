@@ -100,6 +100,7 @@ const GRAMMAR_KIND_LABELS = {
   heard: 'listening',
   dative: 'dative case',
   likes: 'likes and dislikes',
+  inversion: 'answering when and how often',
 };
 
 /**
@@ -139,10 +140,12 @@ export const GRAMMAR_TASKS = {
   numbers: 'They were asked which number word fills the gap in this sentence.',
   dative: 'They were asked which dative pronoun fills the gap after the preposition in this sentence.',
   likes: 'They were asked which of three orderings of this sentence is the correct one — the question is where gär (or gären) goes.',
+  inversion:
+    'They were asked which of three orderings is correct. The sentence opens with something other than its subject — a time or frequency phrase — so the finite verb holds second position and the subject follows it. The question is where the subject goes.',
 };
 
 /** The kinds whose options are whole sentences rather than a gapped one. */
-const SENTENCE_KINDS = new Set(['wordorder', 'bracket', 'subclause', 'negation', 'likes']);
+const SENTENCE_KINDS = new Set(['wordorder', 'bracket', 'subclause', 'negation', 'likes', 'inversion']);
 
 /**
  * Sentence structure: the three kinds that ask where the verb goes.
@@ -185,6 +188,7 @@ export const GRAMMAR_KINDS = [
   'heard',
   'dative',
   'likes',
+  'inversion',
 ];
 
 /**
@@ -404,7 +408,7 @@ const has = {
       Boolean(item.example?.audioId) &&
       Array.isArray(item.options_lb) &&
       Number.isInteger(item.correct)) ||
-    (['nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'bracket', 'subclause', 'negation', 'numbers', 'dative', 'likes'].includes(
+    (['nrule', 'adjective', 'perfect-aux', 'perfect-form', 'wordorder', 'bracket', 'subclause', 'negation', 'numbers', 'dative', 'likes', 'inversion'].includes(
       item.kind,
     ) &&
       Array.isArray(item.options_lb) &&
@@ -718,6 +722,22 @@ function grammarChoiceCard(base, item, random, box = 0) {
   );
   const answer = item.options_lb[item.correct];
 
+  // Inversion is a whole-sentence item too, but its question cannot be a fixed
+  // string: the whole point is that *this* sentence opens with something other
+  // than its subject, and which thing that is decides the question. So the cue
+  // is quoted back — "It starts with haut" — and the card asks the one thing
+  // the three orderings actually differ on.
+  if (item.kind === 'inversion') {
+    return {
+      ...base,
+      mode: 'choice',
+      instruction: inversionQuestion(item),
+      prompt: { hideBody: true, audioId: null },
+      options,
+      answer,
+    };
+  }
+
   // Whole-sentence items: the options *are* sentences, so there is no gap to
   // draw and the prompt carries the instruction alone. The gloss, where the
   // deck has one, is the only thing worth showing above them.
@@ -837,6 +857,31 @@ const DATIVE_BY_FORM = new Map(
     { nom: 'si', en: 'they', dat: 'hinnen' },
   ].map((row) => [row.dat, row]),
 );
+
+/**
+ * What an inversion card asks, given what pushed the subject out of first
+ * place.
+ *
+ * Two halves, both load-bearing. The first names the cue and quotes it, so the
+ * learner is looking at the right word rather than hunting for the difference
+ * between three near-identical sentences. The second names the decision — the
+ * subject's position — because all three options keep the fronted phrase
+ * exactly where it is, and a card that just said "which order is right?" would
+ * be asking the learner to guess what it is testing.
+ *
+ * The modal wording is different on purpose. There the finite verb is the
+ * modal and the infinitive is still sitting at the end of the sentence, so
+ * "the verb" is ambiguous in a way it is not on the other cards; naming the
+ * modal itself is what makes the question answerable.
+ */
+function inversionQuestion(item) {
+  const cue = item.front ? `“${item.front}”` : 'something other than the subject';
+  if (item.subject === 'modal') {
+    return `This answer starts with ${cue}, so ${item.verb ?? 'the modal'} has to come next. Where does the subject go?`;
+  }
+  const asked = item.subject === 'frequency' ? 'how often' : 'when';
+  return `Asked ${asked}, the answer starts with ${cue}. Where does the subject go?`;
+}
 
 /** What each whole-sentence card asks. Naming the actual question beats
  * "which order is right?" three different ways. */
