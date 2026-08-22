@@ -1545,6 +1545,70 @@ async function main() {
     await openFresh('#/today');
   });
 
+  await step('a break is offered a third of the way through the day, and is optional', async () => {
+    // Seeded rather than earned: the checkpoint is a third of the 30-card daily
+    // goal, so reaching it honestly would mean answering ten cards here. What
+    // is being checked is the crossing, the menu, and that carrying on is a
+    // single tap — not the arithmetic, which `breaks.test.js` covers.
+    await clearLearn();
+    await page.evaluate(async () => {
+      // The day has to be emptied first: earlier steps have already answered
+      // thirty-odd cards, which is legitimately past both checkpoints.
+      const db = await new Promise((resolve) => {
+        const request = indexedDB.open('sproochentest');
+        request.onsuccess = () => resolve(request.result);
+      });
+      await new Promise((resolve) => {
+        const clear = db.transaction('learnSessions', 'readwrite').objectStore('learnSessions').clear();
+        clear.onsuccess = () => resolve();
+      });
+      db.close();
+
+      const store = await import('./js/store.js');
+      const settings = await store.getSettings();
+      // Nine answered today: the next card crosses ten.
+      await store.recordLearnSession(settings.playerId, { correct: 9, answered: 9, byDeck: { vocab: 9 } });
+      await store.saveSettings({ breaks: null, breaksOff: false, dailyGoal: 'steady' });
+    });
+
+    await openFresh('#/vocab');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+    await page.locator('.options .option').first().click();
+    await page.getByRole('button', { name: /^(Next|Finish)$/ }).click();
+
+    await page.waitForFunction(() => /take a minute/i.test(document.querySelector('#screen')?.textContent ?? ''), {
+      timeout: 5000,
+    });
+    const menu = (await page.locator('#screen').textContent()) ?? '';
+    for (const title of ['Look far away', 'Breathe square', 'Stand and stretch', 'Trace the dots']) {
+      if (!menu.includes(title)) throw new Error(`the break menu is missing "${title}"`);
+    }
+    // Nothing in a break may be Luxembourgish — it is a break *from* that.
+    await shot('00g-break-offer');
+
+    // The trace game is the one with a board; check it renders and is playable.
+    await page.getByRole('button', { name: /Trace the dots/ }).click();
+    await page.waitForSelector('.brk__cell', { timeout: 5000 });
+    const cells = await page.locator('.brk__cell').count();
+    if (cells !== 25) throw new Error(`expected a 5x5 board, got ${cells} cells`);
+    // Laid out as a square, not as one tall column. The grid is sized by a CSS
+    // custom property, and a custom property that fails to apply does not error
+    // — it silently stacks all 25 cells vertically.
+    const box = await page.locator('.brk__grid').boundingBox();
+    if (!box || box.height > box.width * 1.3) throw new Error(`the board is not square: ${box?.width}x${box?.height}`);
+    await shot('00h-break-trace');
+
+    // Leaving is always one tap, from inside the activity as well as the menu.
+    await page.getByRole('button', { name: /Skip it/ }).click();
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+
+    // And it is not offered twice for the same checkpoint.
+    await page.locator('.options .option').first().click();
+    await page.getByRole('button', { name: /^(Next|Finish)$/ }).click();
+    const after = (await page.locator('#screen').textContent()) ?? '';
+    if (/take a minute/i.test(after)) throw new Error('the same checkpoint offered a break twice');
+  });
+
   await step('the right-answer chime makes sound, and never over a recording', async () => {
     const measured = await page.evaluate(async () => {
       const fresh = () => import(`./js/chime.js?probe=${Math.random()}`);

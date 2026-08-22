@@ -123,6 +123,7 @@ Match the existing personal stack: cheap, mostly static, no ops burden.
                      readiness · duel · settings · notecards · structure
   js/grammar-guide.js   the grammar course: 25 numbered levels of theory
   js/grammar-examples.js   renders whichever shape of example a level produced
+  js/breaks.js       the optional mid-session breaks (not language, by design)
   js/chime.js        the right-answer sound, synthesised (no asset to ship)
   js/anthropic.js    direct Claude calls, for when there is no Worker
   js/drill/          the Learn engine: one session runner, seven card types,

@@ -16,7 +16,7 @@
 import { el, fill, screenHead, button, plural, emphasise } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
-import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, recordMistake, clearMistake, goalCards, POINTS, touchStreak } from '../store.js';
+import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, recordMistake, clearMistake, goalCards, POINTS, touchStreak, breaksTakenToday, markBreakTaken, breaksEnabled } from '../store.js';
 import { requestExplanation } from '../sync.js';
 import { EXPLAIN_PROMPT_VERSION } from '../anthropic.js';
 import { buildCard, GRAMMAR_RULES, joinArticle, taskFor, factsFor, isStructure, explainTarget } from './cards.js';
@@ -27,6 +27,7 @@ import { INPUTS } from './inputs.js';
 import { referenceSheet } from './reference-sheet.js';
 import { flagButton } from '../flag.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
+import { BREAKS, dueCheckpoint, renderBreak } from '../breaks.js';
 
 /** How many cards later a missed card comes back. Far enough that it is a
  * retrieval rather than an echo, near enough to still be in the session. */
@@ -73,6 +74,32 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
    * draws from four decks and the home screen needs to know which. */
   const answeredByDeck = {};
 
+  /**
+   * The day's card count when this session opened, and which break checkpoints
+   * the day has already offered.
+   *
+   * The checkpoints are thirds of the *daily* goal, so a session that opens at
+   * 9 answered has to know that — measuring within the session would offer both
+   * breaks again every time.
+   *
+   * Awaited before the first card renders rather than raced against it. Read in
+   * the background, a fast first answer beat the IndexedDB round trip and the
+   * count was still 0 when the crossing was tested, so the break never fired.
+   * The wait is one indexed read and happens while the screen is already up.
+   */
+  let dayBefore = 0;
+  let breaksTaken = [];
+  let breakPending = null;
+  const wantsBreaks = breaksEnabled(settings);
+  const breaksReady = wantsBreaks
+    ? Promise.all([todayProgress(settings.playerId, { goal: goalCards(settings) }), breaksTakenToday()])
+        .then(([progress, taken]) => {
+          dayBefore = progress.cards ?? 0;
+          breaksTaken = taken;
+        })
+        .catch(() => {})
+    : Promise.resolve();
+
   // Started once for the whole session. It is built from vocab.json and
   // verbs.json, which content.js has already cached by the time any drill
   // opens, so this resolves in the same tick in practice.
@@ -98,6 +125,16 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
 
   function renderCard() {
     destroyClip();
+    // A break waiting to be offered takes this slot. It is consumed whether it
+    // is played or waved away, so a decline is not re-asked two cards later.
+    if (breakPending !== null) {
+      const mark = breakPending;
+      breakPending = null;
+      breaksTaken = [...breaksTaken, mark];
+      markBreakTaken(mark).catch(() => {});
+      renderBreakOffer(mark);
+      return;
+    }
     if (index >= queue.length) {
       finish();
       return;
@@ -563,9 +600,110 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
 
     if (!result.correct) scheduleRetest(entry);
 
+    // A third and two thirds of the way through the day's goal, the *next* tap
+    // offers a break instead of the next card. Decided here rather than in
+    // `renderCard` so the crossing is detected on the answer that caused it,
+    // and consumed there — the learner still gets to read this card's feedback.
+    if (wantsBreaks && breakPending === null) {
+      const mark = dueCheckpoint({
+        before: dayBefore + answeredCount - 1,
+        after: dayBefore + answeredCount,
+        goal: goalCards(settings),
+        taken: breaksTaken,
+      });
+      if (mark !== null) breakPending = mark;
+    }
+
     fill(nextHolder, nextButton(entry));
     nextHolder.hidden = false;
     nextHolder.firstChild?.focus();
+  }
+
+  /**
+   * The break offer, and then the break.
+   *
+   * Two screens rather than one. The first is a menu, because which break is
+   * right depends on where you are — "stand and stretch" is not an option on a
+   * bus — and because being handed a choice is itself a small release from a
+   * screen that has been telling you what to do for ten minutes.
+   *
+   * Nothing here is compulsory and nothing is scored. Carrying on is a
+   * first-class button, not a grudging link, and it is the one that keeps
+   * focus: a break you have to dismiss twice is an interruption, whatever it
+   * is called.
+   */
+  function renderBreakOffer(mark) {
+    let activity = null;
+    const goal = goalCards(settings);
+    const heading = mark >= Math.ceil(goal * (2 / 3)) ? 'Two thirds of the way through' : 'A third of the way through';
+    const carryOn = () => {
+      activity?.destroy();
+      activity = null;
+      renderCard();
+    };
+
+    const choices = el(
+      'div',
+      { class: 'stack' },
+      ...BREAKS.map((entry) =>
+        el(
+          'button',
+          {
+            type: 'button',
+            class: 'card brk__choice',
+            onclick: () => runBreak(entry),
+          },
+          el('span', { class: 'card__title' }, entry.title),
+          el('span', { class: 'card__note' }, entry.blurb),
+          el('span', { class: 'chip' }, entry.load),
+        ),
+      ),
+    );
+
+    const menu = el(
+      'div',
+      { class: 'stack stack--lg' },
+      el(
+        'div',
+        { class: 'card', style: { textAlign: 'center' } },
+        el('p', { class: 'meter__label' }, 'Breathing space'),
+        el('p', { class: 'card__title' }, `${heading} — take a minute?`),
+        el(
+          'p',
+          { class: 'card__note' },
+          'Short pauses beat none, and what you do in them matters: the ones that ask least of your attention are the ones the next block benefits from.',
+        ),
+      ),
+      choices,
+      button('Keep going', { variant: 'secondary', class: 'btn btn--secondary btn--block', onclick: carryOn }),
+    );
+
+    function runBreak(entry) {
+      // Declared before the break is built: `trace` can call back synchronously
+      // when it fails to generate a puzzle, and reaching `done` from inside
+      // that call would hit the temporal dead zone.
+      const done = el('div', { hidden: true }, button('Back to it', { variant: 'primary', class: 'btn btn--primary btn--block', onclick: carryOn }));
+      activity = renderBreak(entry.id, () => {
+        done.hidden = false;
+        done.firstChild?.focus();
+      });
+      fill(
+        body,
+        el(
+          'div',
+          { class: 'card', style: { textAlign: 'center' } },
+          el('p', { class: 'meter__label' }, entry.title),
+          el('p', { class: 'card__note' }, entry.blurb),
+          activity?.el ?? null,
+        ),
+        el('p', { class: 'source-note', style: { textAlign: 'center' } }, entry.why),
+        done,
+        // Always available, because a break you cannot leave is not a break.
+        button('Skip it', { variant: 'secondary', class: 'btn btn--secondary btn--block', onclick: carryOn }),
+      );
+    }
+
+    fill(body, menu);
   }
 
   /** Push a missed card back into the queue, a few cards further on. */
@@ -643,7 +781,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     if (justMetGoal) done.flyAround();
   }
 
-  renderCard();
+  breaksReady.then(renderCard);
 
   return {
     destroy() {

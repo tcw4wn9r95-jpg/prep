@@ -3350,3 +3350,140 @@ same words reordered, the cue stays in front, and no adverb is filed as both) ·
 `validate` PASS · `npm run walkthrough` 65/65, one new step that opens the deck
 in a browser and checks the question names its cue and the three options really
 are one sentence three ways · `sw.js` → `v48`.
+
+# Follow-up 29 — audio you cannot hear, a pronoun that was its own distractor, and a minute off
+
+> "Check that the audios are working correctly, I got several questions where
+> audio did not play and I couldn't answer. Also check that the grammar rules
+> are correct, I may have received a wrong set of answers. (Mir when it should
+> be ech). I want to add optional mini games at the mid 33% and 66% of the
+> daily goals."
+
+## The audio, which had two separate causes
+
+Every reference resolved. All 2,480 ids in the manifest are mirrored, and each
+of the seven decks was checked against what is on disk: no missing files, no
+broken paths. So the fault was not the content.
+
+**The cache was being thrown away on every deploy.** `AUDIO_CACHE` was
+`` `audio-${VERSION}` ``, and the service worker's activate step deletes every
+cache not in the keep set — so bumping the shell version discarded 68 MB of
+recordings and re-downloaded all 2,480 files. Until that finished there was
+nothing local to play. Online it degrades to a slow card; on a phone that has
+just picked up a new deploy on a weak connection, it is silence. A LOD audio
+id is a content hash, so a file cached under its id can never be the wrong
+file, and the cache is now named for the scheme (`audio-lod-1`) rather than the
+release. Install was compounding it: `cache.add` always goes to the network, so
+even a full cache was re-fetched in its entirety every time. It now checks
+first.
+
+**And an audio-only card had no way out.** This one is mine, from Follow-up 25.
+A `heard` card withholds its transcript when playback fails, because the
+transcript is the answer — which protected the exercise and left the learner
+with four options and no question. Worse, the commonest real cause never
+reaches that path at all: a muted iPhone plays the clip *successfully* and
+inaudibly, so nothing errors and no fallback appears.
+
+So the escape does not wait for an error. Every audio-only card carries it from
+the start, and the first tap names the likeliest cause rather than skipping —
+the silent switch fixes the whole session, skipping fixes one card. A skip is
+not an answer: no grade, no Leitner movement, no mistake filed, because nothing
+was got wrong. The card returns to the back of the queue and is dropped on a
+second skip.
+
+## The pronoun card that showed its own wrong answer
+
+Reported as "Mir when it should be ech", and exactly right.
+
+The dative card named the person with its Luxembourgish **nominative**,
+directly above four Luxembourgish **dative** pronouns. Those two sets overlap:
+
+| spelling | as a nominative | as a dative |
+| --- | --- | --- |
+| `mir` | we | of `ech` — me |
+| `dir` | you (plural) | of `du` — you |
+
+So a card headed `vun + mir · we` offered `mir` among its options and marked it
+wrong, the answer being `eis`. **On 19 of the 96 dative cards the prompt
+printed a pronoun that was itself a wrong option.** The report is the same
+collision from the other side: the card said `no + ech`, `ech` was not among
+the options, and `mir` was — which reads as the app having swapped them.
+
+The person is now named in English, in the object form: `no + me`, `vun + us`.
+English cannot collide with Luxembourgish options, and "me" rather than "I"
+carries the grammar as well as the identity — it is already a nudge that the
+gap does not want a subject pronoun. The nominative moves to the line *after*
+the answer, where it explains the change instead of competing with it.
+
+## The breaks, and why they are not Zip
+
+The brief named LinkedIn's Zip and Patches and then asked for "science backed
+small games". Those pull in opposite directions, and the research is unusually
+clear about which way to lean.
+
+Break activities **high in executive control, producing tension rather than
+relaxation, measurably harm the task that follows** — that is Rieger & Kämpfe's
+n-back comparison of wakeful rest, music and video gaming. Attention
+Restoration Theory says the same from the other end: directed attention
+recovers when the break asks little of directed attention. A timed
+constraint-satisfaction puzzle is the opposite; it spends exactly the resource
+the drill just spent.
+
+The one thing casual games clearly do give is **affect**. Rupp et al. (2017)
+found casual play beat a passive break on mood and engagement while the passive
+break "prevented cognitive restoration". A break nobody takes restores nothing,
+so that is not a soft concern — it is the adherence mechanism.
+
+So: **Zip's format, not Zip's load.** Small, one screen, under a minute, visual
+rather than verbal, and deliberately low-arousal with nothing to fail.
+
+| | asks | why it is there |
+| --- | --- | --- |
+| Look far away | nothing | 20 s; the shortest micro-break with a measured effect on sustained attention is about this long (Lee et al. 2015) |
+| Breathe square | nothing | 4-4-4-4 × 3; slow paced breathing lowers arousal |
+| Stand and stretch | nothing | movement without anything to work out |
+| Trace the dots | a little thinking | the one actual game — no clock, no fail state, always solvable |
+
+None is about Luxembourgish, which was asked for and is right anyway: a word
+game runs through the same verbal system as the drill, so it is not a break
+from the task, it is the task in a hat.
+
+Offered at a third and two thirds of the **daily** goal, not the session's, so
+two short sessions do not each offer both. Consumed whether played or waved
+away. "Keep going" is a first-class button, and there is a switch in Settings.
+
+## Three bugs found by looking rather than by testing
+
+**The trace board shipped invisible.** `--brk-cols` was set through
+`Object.assign(node.style, …)`, which silently drops custom properties — no
+error, no warning. The grid fell back to one column of 25 cells, 300 px each,
+and rendered as a 7,500 px blank. Fixed in `el()` for every future caller, not
+just this one.
+
+**Four token names were wrong.** `--line`, `--ink` and `--r2` do not exist; the
+real ones are `--border`, `--text` and `--r-md`. An undefined `var()` does not
+error either — the declaration falls back to its initial value, so
+`border: 1px solid var(--line)` becomes no border. There is now a test that
+every custom property used in the CSS is defined somewhere, counting the ones
+set from script.
+
+**A break left a clip playing**, and the chime is designed to stay silent over
+a recording, so the next walkthrough step measured a correctly-muted chime and
+failed. The step now leaves the page.
+
+## What the first attempt got wrong
+
+The day's card count was read in the background while the first card rendered,
+and a fast first answer beat the IndexedDB round trip — the count was still 0
+when the crossing was tested, so no break ever fired. The first render now
+waits for it. That was a real race, not just a test artefact: it would have
+misfired for anyone answering quickly.
+
+## Verification
+
+`npm test` 320 (14 new in `breaks.test.js`: the checkpoint maths including the
+resume case, every generated puzzle solvable from 200 seeds, the path rules,
+and the CSS-token guard) · `validate` PASS, 251 warnings, unchanged ·
+`npm run walkthrough` 67/67 (2 new: the audio escape files no mistake; the
+break is offered once, lists four options, renders a square board and leaves in
+one tap) · `sw.js` → `v50`.
