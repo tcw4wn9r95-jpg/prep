@@ -12,9 +12,24 @@
 // Bump this on every change to the shell. The app is served cache-first, so a
 // stale version is not a slow update — it is a returning user permanently
 // looking at the old app while wondering where their changes went.
-const VERSION = 'v48';
+const VERSION = 'v49';
 const SHELL_CACHE = `shell-${VERSION}`;
-const AUDIO_CACHE = `audio-${VERSION}`;
+
+/**
+ * The recordings, deliberately **not** keyed to VERSION.
+ *
+ * They used to be, and that made every shell bump throw away 68 MB of audio
+ * and re-download all 2,480 files. Until that finished, a listening card whose
+ * clip had not come back yet had nothing to play — which is only survivable
+ * online, and is exactly the "audio did not play" a phone sees for a while
+ * after each deploy.
+ *
+ * Nothing is lost by keeping them. A LOD audio id is a content hash, so a file
+ * that is already cached under its id can never be the wrong file: the id
+ * changes if the recording does. Bump this name only if the *scheme* changes —
+ * a different container, or a different id derivation.
+ */
+const AUDIO_CACHE = 'audio-lod-1';
 
 const SHELL = [
   './',
@@ -132,7 +147,15 @@ self.addEventListener('install', (event) => {
         const response = await fetch('data/audio-manifest.json');
         if (response.ok) {
           const { files } = await response.json();
-          await Promise.all(files.map((url) => media.add(url).catch(() => {})));
+          // Only what is missing. `cache.add` always goes to the network, so
+          // adding all 2,480 unconditionally re-downloaded the whole 68 MB on
+          // every single install even when the cache already held it.
+          await Promise.all(
+            files.map(async (url) => {
+              if (await media.match(url)) return;
+              await media.add(url).catch(() => {});
+            }),
+          );
         }
       } catch (error) {
         console.warn('[sw] audio precache skipped', error.message);

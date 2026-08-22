@@ -268,7 +268,9 @@ export function factsFor(card) {
 
   if (item.kind === 'dative' && right) {
     const row = DATIVE_BY_FORM.get(right.toLowerCase());
-    const person = row ? ` — the dative of ${row.nom} (${row.en})` : '';
+    // The nominative belongs *here*, after the answer, where it explains the
+    // change rather than competing with the options — see DATIVE_BY_FORM.
+    const person = row ? ` — the dative of ${row.nom}, so “${row.obj}”` : '';
     return `After "${item.preposition}" the pronoun goes into the dative, so it is "${right}"${person}.`;
   }
 
@@ -833,7 +835,7 @@ function clozeSubject(item) {
   if (item.kind === 'dative' && item.preposition) {
     const answer = item.options_lb?.[item.correct]?.toLowerCase();
     const row = DATIVE_BY_FORM.get(answer);
-    if (row) return `${item.preposition} + ${row.nom} · ${row.en}`;
+    if (row) return `${item.preposition} + ${row.obj}`;
   }
   return null;
 }
@@ -841,20 +843,32 @@ function clozeSubject(item) {
 /**
  * Dative pronoun back to the person it belongs to.
  *
- * The same eight rows the "Change the word" game teaches from, kept here so a
- * grammar card can name the person the gap wants. Listed by dative form, first
- * row wins — `him` is the dative of both hien and hatt, and either reading
- * answers the card.
+ * Named in English, and in the **object** form — "me", not "I". Both halves of
+ * that were bugs.
+ *
+ * Naming the person with its Luxembourgish nominative put a Luxembourgish
+ * pronoun directly above a list of Luxembourgish pronouns, and the two sets
+ * overlap: `mir` is the nominative "we" *and* the dative of `ech`, `dir` is
+ * the nominative "you (plural)" *and* the dative of `du`. So a card headed
+ * `vun + mir · we` offered `mir` as one of its four options and marked it
+ * wrong — the answer being `eis`. On 19 of the 96 cards the prompt printed a
+ * pronoun that was itself a wrong option. Reported from use as "Mir when it
+ * should be ech", which is the same collision seen from the other side: the
+ * card said `no + ech`, `ech` was not among the options, and `mir` was.
+ *
+ * English cannot collide with the options, and the object form carries the
+ * grammar as well as the identity — "after *no*, me" is already a nudge that
+ * the gap does not want a subject pronoun.
  */
 const DATIVE_BY_FORM = new Map(
   [
-    { nom: 'ech', en: 'I', dat: 'mir' },
-    { nom: 'du', en: 'you', dat: 'dir' },
-    { nom: 'hien', en: 'he', dat: 'him' },
-    { nom: 'si', en: 'she', dat: 'hir' },
-    { nom: 'mir', en: 'we', dat: 'eis' },
-    { nom: 'dir', en: 'you (plural)', dat: 'iech' },
-    { nom: 'si', en: 'they', dat: 'hinnen' },
+    { nom: 'ech', obj: 'me', dat: 'mir' },
+    { nom: 'du', obj: 'you', dat: 'dir' },
+    { nom: 'hien', obj: 'him', dat: 'him' },
+    { nom: 'si', obj: 'her', dat: 'hir' },
+    { nom: 'mir', obj: 'us', dat: 'eis' },
+    { nom: 'dir', obj: 'you (plural)', dat: 'iech' },
+    { nom: 'si', obj: 'them', dat: 'hinnen' },
   ].map((row) => [row.dat, row]),
 );
 
