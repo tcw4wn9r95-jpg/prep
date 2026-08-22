@@ -151,6 +151,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     // arriving late, not the answer.
     const fallback = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s3)', fontStyle: 'italic' }, hidden: true });
     const player = audioId ? playButton(card, fallback) : null;
+    const bail = audioOnly(card) ? skipControl(entry) : null;
 
     const prompt = el(
       'div',
@@ -166,6 +167,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
       ...promptBody(card),
       player?.el ?? null,
       fallback,
+      bail,
       revealed,
       feedback,
       rule,
@@ -260,6 +262,65 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
    * intended and the card says so, but reading is a way through and a blank
    * screen is not.
    */
+  /**
+   * A card the recording *is*, rather than one the recording illustrates.
+   *
+   * On a `heard` card the answer is a word inside the clip, and a `listen`
+   * card shows no text at all by design. Everywhere else the audio is a bonus
+   * and losing it costs nothing.
+   */
+  function audioOnly(card) {
+    return card.type === 'listen' || card.item?.kind === 'heard';
+  }
+
+  /**
+   * The way out of a card that cannot be heard.
+   *
+   * Reported from use as several questions where "audio did not play and I
+   * couldn't answer". Both halves of that were real. A `heard` card that fails
+   * to play deliberately withholds the transcript, because the transcript is
+   * the answer — which rescued the exercise's integrity and left the learner
+   * facing four options and no question. And the commoner case is worse,
+   * because it is silent: an iPhone with the ringer switch off, or the volume
+   * down, plays the clip successfully and inaudibly, so nothing fails and no
+   * fallback appears at all.
+   *
+   * So the escape does not wait for an error. It is on every audio-only card
+   * from the start, quiet enough not to be the obvious move, and it names the
+   * likeliest cause — because "check the silent switch" fixes the session,
+   * where skipping only fixes the card.
+   *
+   * Skipping is not an answer. It does not grade, does not touch the Leitner
+   * box and does not file a mistake: nothing was got wrong, the question was
+   * never asked. The card goes to the back of the queue so it can be tried
+   * again if the sound comes back, and is dropped on a second skip rather than
+   * circling forever.
+   */
+  function skipControl(entry) {
+    const note = el('p', { class: 'card__note', hidden: true });
+    const link = el(
+      'button',
+      {
+        type: 'button',
+        class: 'drill__teach-more',
+        onclick: () => {
+          if (note.hidden) {
+            note.textContent =
+              'On an iPhone, check the silent switch on the side and turn the volume up — the clip plays even when the phone is muted, so it can look like nothing happened. Tap again to skip this one.';
+            note.hidden = false;
+            link.textContent = 'Skip this card';
+            return;
+          }
+          if (!entry.skipped) queue.push({ ...entry, skipped: true });
+          index += 1;
+          renderCard();
+        },
+      },
+      'Can’t hear it?',
+    );
+    return el('div', { style: { marginBlockStart: 'var(--s3)' } }, link, note);
+  }
+
   function playButton(card, transcript) {
     const note = el('p', { class: 'card__note', hidden: true });
     const failed = () => {

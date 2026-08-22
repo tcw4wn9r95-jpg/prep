@@ -1497,6 +1497,54 @@ async function main() {
     await shot('21-drill-topic');
   });
 
+  await step('a listening card you cannot hear has a way out that is not a wrong answer', async () => {
+    // Reported from use: "audio did not play and I couldn't answer". A `heard`
+    // card withholds its transcript on purpose — the transcript is the answer —
+    // so without this the learner is left with four options and no question.
+    // The silent-failure case is worse and commoner: a muted phone plays the
+    // clip successfully and inaudibly, so nothing errors and no fallback shows.
+    await clearLearn();
+    await openFresh('#/grammar/heard');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+
+    const escape = page.getByRole('button', { name: /can.t hear it/i });
+    await escape.waitFor({ state: 'visible', timeout: 3000 });
+
+    // Counted as a delta, not against zero: earlier steps answer real cards
+    // and `clearLearn` only empties the `learn` store, not `mistakes`.
+    const countMistakes = () =>
+      page.evaluate(async () => {
+        const store = await import('./js/store.js');
+        const settings = await store.getSettings();
+        return (await store.listMistakes(settings.playerId)).length;
+      });
+    const before_ = await countMistakes();
+
+    // First tap names the likeliest cause rather than skipping — on a phone
+    // the silent switch fixes the whole session, not just this card.
+    await escape.click();
+    const hint = await page.locator('.card__note:visible').allTextContents();
+    if (!hint.some((text) => /silent switch/i.test(text))) throw new Error(`no volume hint shown: ${hint.join(' | ')}`);
+
+    const before = await page.locator('.options .option').first().textContent();
+    await page.getByRole('button', { name: /skip this card/i }).click();
+    await page.waitForFunction(
+      (previous) => document.querySelector('.options .option')?.textContent !== previous,
+      before,
+      { timeout: 5000 },
+    );
+
+    // Skipping is not an answer: nothing is filed as a mistake by it.
+    const after = await countMistakes();
+    if (after !== before_) throw new Error(`skipping filed ${after - before_} mistake(s)`);
+    await shot('00f-audio-escape');
+
+    // A `heard` card autoplays on landing, and the chime is designed to stay
+    // silent while a recording runs — so leaving this page with a clip still
+    // going made the next step measure a chime that was correctly muted.
+    await openFresh('#/today');
+  });
+
   await step('the right-answer chime makes sound, and never over a recording', async () => {
     const measured = await page.evaluate(async () => {
       const fresh = () => import(`./js/chime.js?probe=${Math.random()}`);
