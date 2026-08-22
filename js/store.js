@@ -151,6 +151,45 @@ export async function saveSettings(patch) {
   return settings;
 }
 
+/* ---------------------------------------------------------------- breaks */
+
+/** Today, as the key the break record is filed under. */
+const dayKey = (now = Date.now()) => {
+  const date = new Date(now);
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+};
+
+/**
+ * Which mid-session breaks today has already offered.
+ *
+ * Kept per day rather than per session, because the checkpoints are thirds of
+ * the *daily* goal — two short sessions must not each offer both. The record
+ * resets by simply not matching tomorrow's key, so nothing has to expire it.
+ */
+export async function breaksTakenToday(now = Date.now()) {
+  const settings = await getSettings();
+  const record = settings.breaks;
+  return record?.day === dayKey(now) ? (record.taken ?? []) : [];
+}
+
+/** Mark a checkpoint offered, so it is not offered again today. */
+export async function markBreakTaken(mark, now = Date.now()) {
+  const taken = await breaksTakenToday(now);
+  if (taken.includes(mark)) return taken;
+  const next = [...taken, mark];
+  await saveSettings({ breaks: { day: dayKey(now), taken: next } });
+  return next;
+}
+
+/**
+ * Unset means on: the breaks were asked for, so absence is not a refusal.
+ *
+ * Its own key rather than `breaks`, which holds the per-day record above — one
+ * name for a boolean and an object is how a truthy `{}` quietly becomes "on"
+ * forever.
+ */
+export const breaksEnabled = (settings) => settings?.breaksOff !== true;
+
 /* -------------------------------------------------------------- attempts */
 
 /**

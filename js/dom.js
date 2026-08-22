@@ -27,7 +27,15 @@ export function el(tag, attrs, ...children) {
     } else if (key === 'dataset') {
       Object.assign(node.dataset, value);
     } else if (key === 'style' && typeof value === 'object') {
-      Object.assign(node.style, value);
+      for (const [property, setting] of Object.entries(value)) {
+        if (setting === null || setting === undefined) continue;
+        // Custom properties have to go through setProperty. `Object.assign`
+        // onto a CSSStyleDeclaration drops them silently — no error, no
+        // warning, just a variable that is never set. A grid sized by
+        // `--brk-cols` collapsed to one column of 25 cells that way.
+        if (property.startsWith('--')) node.style.setProperty(property, String(setting));
+        else node.style[property] = setting;
+      }
     } else if (key === 'html') {
       node.innerHTML = value;
     } else if (key === 'hidden') {

@@ -1620,3 +1620,101 @@
   color: var(--text-muted);
   white-space: nowrap;
 }
+
+/* --- the mid-session breaks ---------------------------------------------- */
+
+.brk__choice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s1);
+  width: 100%;
+  text-align: start;
+  cursor: pointer;
+}
+
+.brk__timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s3);
+  margin-block-start: var(--s4);
+}
+
+.brk__ring {
+  width: 160px;
+  height: 160px;
+  /* Start the arc at twelve o'clock rather than three. */
+  transform: rotate(-90deg);
+}
+
+.brk__track {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 6;
+}
+
+.brk__arc {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.brk__label {
+  font-size: var(--size-md);
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+  /* Two lines' worth, so the stretch prompts do not shunt the ring up and down
+     as they change length. */
+  min-height: 2.6em;
+}
+
+.brk__trace {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s3);
+  margin-block-start: var(--s4);
+}
+
+.brk__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--brk-cols), 1fr);
+  gap: var(--s1);
+  width: min(100%, 300px);
+}
+
+.brk__cell {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  font-size: var(--size-sm);
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.brk__cell.is-dot {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.brk__cell.is-on {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.brk__cell.is-head {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brk__arc {
+    transition: none;
+  }
+}

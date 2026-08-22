@@ -12,7 +12,7 @@
  */
 
 import { el, fill, screenHead, button } from '../dom.js';
-import { listFlags, unflagCard, flagActive, FLAG_REASONS, getSettings, saveSettings, DAILY_GOALS, goalCards } from '../store.js';
+import { listFlags, unflagCard, flagActive, FLAG_REASONS, getSettings, saveSettings, DAILY_GOALS, goalCards, breaksEnabled } from '../store.js';
 import { keyWarning, looksLikeApiKey } from '../anthropic.js';
 import { setChimeEnabled, chimePreview } from '../chime.js';
 import { loadDeployInfo } from '../content.js';
@@ -48,6 +48,7 @@ export async function render(root, { navigate }) {
 
   // Same reading, same reason: the A1 filter was asked for, so unset means on.
   const arcadeA1 = el('input', { type: 'checkbox', id: 'arcade-a1', class: 'switch', checked: settings.arcadeA1 !== false });
+  const breaks = el('input', { type: 'checkbox', id: 'breaks', class: 'switch', checked: breaksEnabled(settings) });
   // Applied on tap rather than on save, so the preview below tells the truth.
   sound.addEventListener('change', () => {
     setChimeEnabled(sound.checked);
@@ -102,6 +103,7 @@ export async function render(root, { navigate }) {
         workerUrl: workerUrl.value.trim().replace(/\/$/, ''),
         sound: sound.checked,
         arcadeA1: arcadeA1.checked,
+        breaksOff: !breaks.checked,
         dailyGoal: goal,
       });
       status.textContent = 'Saved.';
@@ -164,6 +166,28 @@ export async function render(root, { navigate }) {
         'p',
         { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } },
         'It stays silent while a recording is playing, so it never covers the listening exercise.',
+      ),
+    ),
+
+    sectionLabel('Breaks'),
+    el(
+      'div',
+      { class: 'card' },
+      el(
+        'label',
+        { class: 'row row--between', for: 'breaks' },
+        el(
+          'span',
+          { class: 'spacer' },
+          el('span', { class: 'card__title' }, 'Offer a break mid-session'),
+          el('span', { class: 'card__note' }, 'A minute to look away, breathe, stretch or trace a path — a third and two thirds of the way through the day’s goal.'),
+        ),
+        breaks,
+      ),
+      el(
+        'p',
+        { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } },
+        'Nothing in them is Luxembourgish and nothing is scored. Short pauses beat none, and the ones that ask least of your attention are the ones the next block of learning benefits from — which is why none of these is a hard puzzle against a clock.',
       ),
     ),
 
