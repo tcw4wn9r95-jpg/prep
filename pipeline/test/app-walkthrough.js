@@ -1519,6 +1519,7 @@ async function main() {
         return (await store.listMistakes(settings.playerId)).length;
       });
     const before_ = await countMistakes();
+    const flagsBefore = await page.evaluate(async () => (await (await import('./js/store.js')).listFlags()).length);
 
     // First tap names the likeliest cause rather than skipping — on a phone
     // the silent switch fixes the whole session, not just this card.
@@ -1527,7 +1528,7 @@ async function main() {
     if (!hint.some((text) => /silent switch/i.test(text))) throw new Error(`no volume hint shown: ${hint.join(' | ')}`);
 
     const before = await page.locator('.options .option').first().textContent();
-    await page.getByRole('button', { name: /skip this card/i }).click();
+    await page.getByRole('button', { name: /skip and report it/i }).click();
     await page.waitForFunction(
       (previous) => document.querySelector('.options .option')?.textContent !== previous,
       before,
@@ -1537,7 +1538,45 @@ async function main() {
     // Skipping is not an answer: nothing is filed as a mistake by it.
     const after = await countMistakes();
     if (after !== before_) throw new Error(`skipping filed ${after - before_} mistake(s)`);
+
+    // But it does not do nothing either. Reported from use: a skipped card kept
+    // coming back, because a card that is never answered never leaves box zero
+    // and so stays due forever. A skip now reports the clip, which suppresses
+    // the card everywhere until it is undone from Settings.
+    const flagged = await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      const settings = await store.getSettings();
+      const flags = await store.listFlags();
+      const silent = flags.filter((flag) => flag.reason === 'silent');
+      return {
+        total: flags.length,
+        silent: silent.length,
+        keys: [...(await store.flaggedCards(settings.playerId))],
+        last: silent[silent.length - 1] ?? null,
+      };
+    });
+    if (flagged.total !== flagsBefore + 1) throw new Error(`expected one new report, got ${flagged.total - flagsBefore}`);
+    if (flagged.silent < 1) throw new Error('the skip did not report the clip as silent');
+    const suppressed = `${flagged.last.source}:${flagged.last.itemId}`;
+    if (!flagged.keys.includes(suppressed)) throw new Error(`${suppressed} was reported but is not suppressed`);
     await shot('00f-audio-escape');
+
+    // And it really is gone: the session builder the grammar screen uses must
+    // not draw it again, however many cards it is asked for.
+    const drawn = await page.evaluate(async (itemId) => {
+      const store = await import('./js/store.js');
+      const content = await import('./js/content.js');
+      const settings = await store.getSettings();
+      const all = (await content.loadGrammar()).filter((item) => item.kind === 'heard');
+      const states = await store.getLearnDeckStates(settings.playerId, 'grammar');
+      const plan = store.buildSession(all, states, {
+        limit: all.length,
+        deckId: 'grammar',
+        flagged: await store.flaggedCards(settings.playerId),
+      });
+      return plan.some((entry) => entry.item.id === itemId);
+    }, flagged.last.itemId);
+    if (drawn) throw new Error(`${flagged.last.itemId} was drawn again after being reported`);
 
     // A `heard` card autoplays on landing, and the chime is designed to stay
     // silent while a recording runs — so leaving this page with a clip still

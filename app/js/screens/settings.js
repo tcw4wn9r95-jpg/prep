@@ -290,7 +290,7 @@ function flagsCard(flags, playerId) {
       el(
         'p',
         { class: 'card__note' },
-        'Nothing reported yet. Every exercise has a “Something wrong with this card?” link at the bottom — use it when a question does not make sense, or when you have seen it far too often.',
+        'Nothing reported yet. Every exercise has a “Something wrong with this card?” link at the bottom — use it when a question does not make sense, or when you have seen it far too often. Skipping a listening card you cannot hear reports it here too.',
       ),
     );
   }
@@ -343,7 +343,7 @@ function flagsCard(flags, playerId) {
     el(
       'p',
       { class: 'source-note', style: { marginBlockStart: 'var(--s3)' } },
-      'A card that does not make sense stays out until you undo it. One you have simply seen too often rests for a fortnight and then comes back — its place in the review schedule is untouched either way.',
+      'A card that does not make sense, or whose recording would not play, stays out until you undo it. One you have simply seen too often rests for a fortnight and then comes back. Your place in the review schedule is untouched either way — reporting a card is not getting it wrong.',
     ),
   );
 }

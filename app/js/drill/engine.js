@@ -16,7 +16,7 @@
 import { el, fill, screenHead, button, plural, emphasise } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
-import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, recordMistake, clearMistake, goalCards, POINTS, touchStreak, breaksTakenToday, markBreakTaken, breaksEnabled } from '../store.js';
+import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, recordMistake, clearMistake, goalCards, POINTS, touchStreak, breaksTakenToday, markBreakTaken, breaksEnabled, flagCard } from '../store.js';
 import { requestExplanation } from '../sync.js';
 import { EXPLAIN_PROMPT_VERSION } from '../anthropic.js';
 import { buildCard, GRAMMAR_RULES, joinArticle, taskFor, factsFor, isStructure, explainTarget } from './cards.js';
@@ -188,7 +188,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     // arriving late, not the answer.
     const fallback = el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s3)', fontStyle: 'italic' }, hidden: true });
     const player = audioId ? playButton(card, fallback) : null;
-    const bail = audioOnly(card) ? skipControl(entry) : null;
+    const bail = audioOnly(card) ? skipControl(entry, card, deck) : null;
 
     const prompt = el(
       'div',
@@ -329,11 +329,21 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
    *
    * Skipping is not an answer. It does not grade, does not touch the Leitner
    * box and does not file a mistake: nothing was got wrong, the question was
-   * never asked. The card goes to the back of the queue so it can be tried
-   * again if the sound comes back, and is dropped on a second skip rather than
-   * circling forever.
+   * never asked.
+   *
+   * But it cannot only do nothing, and the first version's mistake was to think
+   * it could. A card that is never answered never leaves box zero, so it stays
+   * due — and the requeue put it back in the same session on top of that. It
+   * came round again, and again the next day, forever. From the learner's side
+   * that is indistinguishable from being marked wrong.
+   *
+   * So a skip *reports* the card, through the same flag store the "something
+   * wrong with this card" link writes to, under its own reason. That suppresses
+   * it from every future round rather than merely not promoting it, and it
+   * turns up in Settings with an Undo — which is the right shape for a
+   * judgement made in a hurry about a clip that might play fine tomorrow.
    */
-  function skipControl(entry) {
+  function skipControl(entry, card, deck) {
     const note = el('p', { class: 'card__note', hidden: true });
     const link = el(
       'button',
@@ -343,12 +353,22 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
         onclick: () => {
           if (note.hidden) {
             note.textContent =
-              'On an iPhone, check the silent switch on the side and turn the volume up — the clip plays even when the phone is muted, so it can look like nothing happened. Tap again to skip this one.';
+              'On an iPhone, check the silent switch on the side and turn the volume up — the clip plays even when the phone is muted, so it can look like nothing happened. Tap again and this card is reported and put away for good; you can bring it back from Settings.';
             note.hidden = false;
-            link.textContent = 'Skip this card';
+            link.textContent = 'Skip and report it';
             return;
           }
-          if (!entry.skipped) queue.push({ ...entry, skipped: true });
+          flagCard(settings.playerId, {
+            source: deck.id,
+            id: card.item.id,
+            label: flagLabel(card),
+            reason: 'silent',
+          }).catch(() => {});
+          // Out of the rest of this session too, not just future ones. The same
+          // word can sit in the queue twice — once per strand — and hearing
+          // "can't hear it" answered by the same silent clip again is the
+          // complaint, not the fix.
+          queue = queue.filter((other, at) => at <= index || other.item.id !== card.item.id);
           index += 1;
           renderCard();
         },

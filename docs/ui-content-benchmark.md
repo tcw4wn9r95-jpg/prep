@@ -3487,3 +3487,62 @@ and the CSS-token guard) · `validate` PASS, 251 warnings, unchanged ·
 `npm run walkthrough` 67/67 (2 new: the audio escape files no mistake; the
 break is offered once, lists four options, renders a square board and leaves in
 one tap) · `sw.js` → `v50`.
+
+# Follow-up 30 — a skip that did nothing was not neutral
+
+> "For audio questions where I must skip they are treated as mistakes and keep
+> coming back when they should be completely banned from appearing again as
+> defective"
+
+The skip added in Follow-up 29 was careful to do no harm: no grade, no Leitner
+movement, no mistake filed. That was the whole design, and it was half a
+feature.
+
+A card that is never answered never leaves box zero, so it stays **due** — and
+the requeue put it back in the same session on top of that. It came round
+again, then the next day, then the day after. Nothing was ever recorded as a
+mistake, and it made no difference: from the learner's side a card that keeps
+returning is a card you got wrong.
+
+## What it does now
+
+A skip **reports** the card, through the same flag store the "something wrong
+with this card?" link already writes to. That is a different thing from not
+promoting it: a flagged card is filtered out of every session the builders
+construct, so it is gone until it is undone.
+
+Its own reason, `silent` — "The audio would not play" — rather than reusing
+`confusing`. It says something different and more useful: the card may be
+perfectly well written and the *recording* is what did not arrive. It behaves
+like `confusing` rather than `repetitive`, held back for good instead of rested
+for a fortnight, because a fortnight does not fix a file.
+
+Three smaller things followed:
+
+- The in-session requeue is gone. If the clip did not play, playing it again
+  four cards later is the complaint, not the fix.
+- The same word can sit in the queue twice, once per strand, so the rest of the
+  session is filtered too rather than only future ones.
+- The control now says what it does: **"Skip and report it"**, and the note
+  says the card is put away and can be brought back from Settings. A skip that
+  silently bans something is its own kind of surprise.
+
+## Why the flag store was the right home rather than a new mechanism
+
+It already had every property this needed. Suppression that spans decks,
+because `${source}:${itemId}` is the key both the flag list and the session
+builders speak. A list in Settings, so a judgement made in a hurry about a clip
+that might play fine tomorrow is visible and reversible. And a count, so a card
+reported repeatedly is a stronger signal than one reported once.
+
+The only thing missing was a third reason, which is nine lines.
+
+## Verification
+
+`npm test` 322 (2 new in `flags.test.js`: a silent clip is held back for good
+rather than rested, and every reason the app can file has a label — the
+Settings list prints the raw id otherwise) · `validate` PASS, 251 warnings,
+unchanged · `npm run walkthrough` 67/67, with the audio-escape step extended to
+prove the whole chain: still no mistake filed, exactly one new `silent` report,
+the card's key in the suppressed set, and the session builder refusing to draw
+it again when asked for the entire deck · `sw.js` → `v51`.

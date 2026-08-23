@@ -142,3 +142,27 @@ test('flags: the key set the builders use spans decks and respects the rest peri
   const later = store.flaggedCardKeys(flags, 'diego', Date.parse(at) + 20 * DAY);
   assert.deepEqual([...later], ['vocab:A']);
 });
+
+test('flags: a clip that would not play is held back for good, not rested', () => {
+  // Filed by the skip on an audio-only card. It has to behave like `confusing`
+  // rather than like `repetitive`: the complaint is that the recording never
+  // arrived, and a fortnight's rest does not fix a file. Reported from use as
+  // skipped cards that "keep coming back".
+  const at = new Date('2026-08-01T10:00:00Z').toISOString();
+  const silent = flag({ source: 'grammar', itemId: 'gr-heard-1', reason: 'silent', at });
+
+  assert.equal(store.flagActive(silent, Date.parse(at) + DAY), true);
+  assert.equal(store.flagActive(silent, Date.parse(at) + 20 * DAY), true, 'a silent clip must not come back on its own');
+  assert.equal(store.flagActive(silent, Date.parse(at) + 400 * DAY), true);
+
+  const keys = store.flaggedCardKeys([silent], 'diego', Date.parse(at) + 400 * DAY);
+  assert.deepEqual([...keys], ['grammar:gr-heard-1']);
+});
+
+test('flags: every reason the app can file has a label to show for it', () => {
+  // The Settings list prints `FLAG_REASONS[flag.reason]`, so a reason written
+  // by some screen but missing here renders as its own bare id.
+  for (const reason of ['confusing', 'repetitive', 'silent']) {
+    assert.ok(store.FLAG_REASONS[reason], `no label for "${reason}"`);
+  }
+});

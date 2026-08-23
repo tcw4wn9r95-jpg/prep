@@ -1069,6 +1069,12 @@ export const FLAG_REST_DAYS = 14;
 export const FLAG_REASONS = {
   confusing: 'This does not make sense',
   repetitive: 'I have seen this far too often',
+  // Filed by the skip on an audio-only card. Its own reason rather than
+  // `confusing`, because it says something different and more useful: the card
+  // may be perfectly well written and the *recording* is what did not arrive.
+  // Suppressed like `confusing` — permanently, until undone — since a clip that
+  // will not play is not a card that gets better by coming round again.
+  silent: 'The audio would not play',
 };
 
 /**
