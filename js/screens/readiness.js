@@ -10,7 +10,7 @@
 import { el, screenHead, formatPercent, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES } from '../amelie.js';
 import { topicIcon } from '../content.js';
-import { listAttempts, listRecordings, listReviews, readinessFor, PLAYERS, CRITERIA, reviewPercent } from '../store.js';
+import { listAttempts, listRecordings, listReviews, readinessFor, PLAYERS, CRITERIA, reviewPercent, playerName } from '../store.js';
 
 export async function render(root, { settings }) {
   const [attempts, recordings, reviews] = await Promise.all([listAttempts(), listRecordings(), listReviews()]);
@@ -21,7 +21,7 @@ export async function render(root, { settings }) {
   amelie.say(AMELIE_LINES.readiness, 'idle');
 
   root.append(
-    screenHead({ title: 'Readiness', sub: `${me.name} · against the real thresholds` }),
+    screenHead({ title: 'Readiness', sub: `${playerName(settings)} · against the real thresholds` }),
     el('div', { class: 'card' }, amelie.el),
   );
 

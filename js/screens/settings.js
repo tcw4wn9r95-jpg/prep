@@ -12,7 +12,7 @@
  */
 
 import { el, fill, screenHead, button } from '../dom.js';
-import { listFlags, unflagCard, flagActive, FLAG_REASONS, getSettings, saveSettings, DAILY_GOALS, goalCards, breaksEnabled } from '../store.js';
+import { listFlags, unflagCard, flagActive, FLAG_REASONS, getSettings, saveSettings, DAILY_GOALS, goalCards, breaksEnabled, playerName, MAX_NAME } from '../store.js';
 import { keyWarning, looksLikeApiKey } from '../anthropic.js';
 import { setChimeEnabled, chimePreview } from '../chime.js';
 import { loadDeployInfo } from '../content.js';
@@ -49,6 +49,12 @@ export async function render(root, { navigate }) {
   // Same reading, same reason: the A1 filter was asked for, so unset means on.
   const arcadeA1 = el('input', { type: 'checkbox', id: 'arcade-a1', class: 'switch', checked: settings.arcadeA1 !== false });
   const breaks = el('input', { type: 'checkbox', id: 'breaks', class: 'switch', checked: breaksEnabled(settings) });
+
+  // The same label the one-time prompt sets. Here as well as there because a
+  // prompt that appears once and can never be revisited makes a typo permanent.
+  const displayName = field({ id: 'displayname', type: 'text', placeholder: 'Your name', value: playerName(settings) });
+  displayName.setAttribute('maxlength', String(MAX_NAME));
+  displayName.setAttribute('autocapitalize', 'words');
   // Applied on tap rather than on save, so the preview below tells the truth.
   sound.addEventListener('change', () => {
     setChimeEnabled(sound.checked);
@@ -104,6 +110,9 @@ export async function render(root, { navigate }) {
         sound: sound.checked,
         arcadeA1: arcadeA1.checked,
         breaksOff: !breaks.checked,
+        // Blank means "use the default for this player" rather than an empty
+        // heading — `playerName` falls back when it is unset.
+        displayName: displayName.value.trim(),
         dailyGoal: goal,
       });
       status.textContent = 'Saved.';
@@ -131,6 +140,19 @@ export async function render(root, { navigate }) {
         'Create one at ',
         el('a', { href: 'https://console.anthropic.com/settings/keys', target: '_blank', rel: 'noreferrer' }, 'console.anthropic.com'),
         '.',
+      ),
+    ),
+
+    sectionLabel('Your name'),
+    el(
+      'div',
+      { class: 'card' },
+      el('label', { for: 'displayname', class: 'meter__label' }, 'What the app calls you'),
+      displayName,
+      el(
+        'p',
+        { class: 'source-note', style: { marginBlockStart: 'var(--s2)' } },
+        'Only the label changes. Your progress, streak and scores are stored against the player you picked at the start, not against this name, so renaming yourself moves nothing. Leave it empty to go back to the default.',
       ),
     ),
 
