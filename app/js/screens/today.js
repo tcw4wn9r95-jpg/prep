@@ -41,6 +41,7 @@ import {
   goalCards,
   listMistakes,
   PLAYERS,
+  playerName,
 } from '../store.js';
 
 const SPEAKING_GAP_DAYS = 3;
@@ -80,6 +81,8 @@ export async function render(root, { settings, navigate }) {
   ]);
 
   const me = PLAYERS.find((player) => player.id === settings.playerId) ?? PLAYERS[0];
+  // The label the person confirmed for themselves; the partner keeps theirs.
+  const myName = playerName(settings);
   const partner = otherPlayer(settings.playerId);
   const ready = readinessFor(settings.playerId, { attempts, recordings, reviews });
   const state = assess({ settings, attempts, recordings, reviews, due, today, topics });
@@ -91,7 +94,7 @@ export async function render(root, { settings, navigate }) {
 
   root.append(
     screenHead({
-      title: `Moien, ${me.name}`,
+      title: `Moien, ${myName}`,
       sub: streak.current > 0 ? `${plural(streak.current, 'day')} in a row` : 'One session is enough for today',
       trailing: settingsButton('#/settings'),
     }),

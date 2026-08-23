@@ -1648,6 +1648,52 @@ async function main() {
     if (/take a minute/i.test(after)) throw new Error('the same checkpoint offered a break twice');
   });
 
+  await step('the name check appears once, renames the label, and never returns', async () => {
+    // The prompt exists for profiles that already had a player picked before it
+    // shipped, so the flag is cleared to put this profile back in that state.
+    await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      await store.saveSettings({ nameConfirmed: false, displayName: '' });
+    });
+
+    await openFresh('#/today');
+    const heading = page.getByText(/Is this your name\?/i);
+    await heading.waitFor({ state: 'visible', timeout: 5000 });
+    await shot('00i-name-check');
+
+    const field = page.locator('#name-check');
+    await field.fill('Dieguito');
+    await page.getByRole('button', { name: /^Save$/ }).click();
+
+    // The label changes on the screen behind it.
+    await page.waitForFunction(() => /Moien, Dieguito/.test(document.querySelector('#screen')?.textContent ?? ''), {
+      timeout: 5000,
+    });
+
+    // The id everything is keyed by does not.
+    const kept = await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      const settings = await store.getSettings();
+      return { playerId: settings.playerId, displayName: settings.displayName, confirmed: settings.nameConfirmed };
+    });
+    if (kept.playerId !== 'diego') throw new Error(`the player id moved to ${kept.playerId}`);
+    if (kept.displayName !== 'Dieguito') throw new Error(`the name was not stored: ${kept.displayName}`);
+    if (kept.confirmed !== true) throw new Error('the prompt was not marked answered');
+
+    // And it is genuinely once: a fresh load does not ask again.
+    await openFresh('#/today');
+    await page.waitForFunction(() => /Moien, Dieguito/.test(document.querySelector('#screen')?.textContent ?? ''), {
+      timeout: 5000,
+    });
+    if (await page.getByText(/Is this your name\?/i).count()) throw new Error('the name check came back');
+
+    // Put it back, so later steps see the name the rest of the run expects.
+    await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      await store.saveSettings({ displayName: '' });
+    });
+  });
+
   await step('the right-answer chime makes sound, and never over a recording', async () => {
     const measured = await page.evaluate(async () => {
       const fresh = () => import(`./js/chime.js?probe=${Math.random()}`);

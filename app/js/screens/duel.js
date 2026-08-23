@@ -22,6 +22,7 @@ import {
   listLearnSessions,
   readinessFor,
   getStreak,
+  playerName,
   weekSeed,
   POINTS,
 } from '../store.js';
@@ -40,11 +41,17 @@ export async function render(root, { settings }) {
   const seed = weekSeed();
   const streaks = Object.fromEntries(await Promise.all(PLAYERS.map(async (p) => [p.id, await getStreak(p.id)])));
 
-  const weekly = PLAYERS.map((player) => ({
+  // Both sides of the scoreboard, with this device's own name applied to
+  // whichever of them is its player. Substituted once here rather than at each
+  // of the four places a name is printed, so a fifth cannot be forgotten. The
+  // id is untouched: it is what every score below is keyed by.
+  const roster = PLAYERS.map((player) => ({ ...player, name: playerName(settings, player.id) }));
+
+  const weekly = roster.map((player) => ({
     player,
     ...pointsFor(player.id, { attempts, recordings, reviews, learnSessions, since: seed }),
   }));
-  const rolling = PLAYERS.map((player) => ({
+  const rolling = roster.map((player) => ({
     player,
     ...pointsFor(player.id, { attempts, recordings, reviews, learnSessions, since: seed - 4 }),
   }));
@@ -140,7 +147,7 @@ export async function render(root, { settings }) {
         el(
           'div',
           { class: 'stack', style: { marginBlockStart: 'var(--s3)' } },
-          ...PLAYERS.map((player) => {
+          ...roster.map((player) => {
             const ready = readinessFor(player.id, { attempts, recordings, reviews });
             return el(
               'div',
@@ -241,7 +248,7 @@ function topicHeadToHead(attempts) {
           el(
             'span',
             { class: 'row', style: { gap: 'var(--s2)' } },
-            ...PLAYERS.map((player) => {
+            ...roster.map((player) => {
               const side = row[player.id];
               const pct = side ? Math.round((side.correct / side.total) * 100) : null;
               return el('span', { class: pct !== null && pct > 50 ? 'chip chip--ok' : 'chip' }, `${player.initial} ${pct === null ? '—' : `${pct}%`}`);

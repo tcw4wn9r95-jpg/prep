@@ -129,6 +129,48 @@ export function otherPlayer(id) {
   return PLAYERS.find((player) => player.id !== id) ?? PLAYERS[0];
 }
 
+/** Long enough for a real name, short enough not to break a heading. */
+export const MAX_NAME = 24;
+
+/**
+ * The name to show for a player.
+ *
+ * `PLAYERS[].id` is a database key. It is in every `learn` row's compound key,
+ * in five IndexedDB indexes, in `streak:${playerId}`, and in the Worker's
+ * scoreboard — which validates it against its own fixed list. Renaming *that*
+ * would orphan every record the person has and desync the duel, so it never
+ * changes.
+ *
+ * What a person actually means by their name is the label, so the label is the
+ * only thing this touches: `settings.displayName` overrides `PLAYERS[].name`
+ * for the player using this device, and everything else carries on keyed by id.
+ *
+ * Only for the local player. The partner keeps their default name, because the
+ * Worker has no field to carry a name across and inventing one would be a
+ * protocol change rather than a rename.
+ */
+export function playerName(settings, id = settings?.playerId) {
+  const player = PLAYERS.find((entry) => entry.id === id) ?? PLAYERS[0];
+  if (id !== settings?.playerId) return player.name;
+  const chosen = String(settings?.displayName ?? '').trim();
+  return chosen === '' ? player.name : chosen.slice(0, MAX_NAME);
+}
+
+/**
+ * Has this device asked the person whether their name is right?
+ *
+ * Asked once, ever. Someone who came through onboarding chose their name there
+ * and is marked confirmed on the way out, so the prompt is for profiles that
+ * already existed when it was added.
+ */
+export const nameConfirmed = (settings) => settings?.nameConfirmed === true;
+
+/** Store the confirmed name. An empty answer keeps whatever was there. */
+export async function confirmName(name) {
+  const trimmed = String(name ?? '').trim().slice(0, MAX_NAME);
+  return saveSettings(trimmed === '' ? { nameConfirmed: true } : { displayName: trimmed, nameConfirmed: true });
+}
+
 export async function getSettings() {
   return (
     (await get('meta', 'settings')) ?? {

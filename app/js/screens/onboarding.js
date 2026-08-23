@@ -103,6 +103,10 @@ export async function render(root, { navigate }) {
         secret: secret.value.trim(),
         workerUrl: workerUrl.value.trim().replace(/\/$/, ''),
         practiceAnchor: anchor,
+        // Picking yourself here *is* confirming your name, so the one-time
+        // "is this your name?" prompt must not greet a new profile as if it
+        // had inherited someone else's.
+        nameConfirmed: true,
       });
       navigate('#/today');
     },

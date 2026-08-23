@@ -7,6 +7,7 @@
  */
 
 import { getSettings, saveSettings } from './store.js';
+import { askName } from './name-check.js';
 import { el } from './dom.js';
 import { setChimeEnabled } from './chime.js';
 import * as onboarding from './screens/onboarding.js';
@@ -206,6 +207,14 @@ async function route() {
     return;
   }
   current = rendered;
+  // Once per profile, over whatever screen happened to load. After the render
+  // rather than before it, so the dialog opens onto the app instead of onto a
+  // blank frame — and after the splash has something to hide.
+  askName().then((asked) => {
+    // The name is read at render time, so a screen already showing the old one
+    // has to be redrawn. Only when it actually changed.
+    if (asked) route();
+  });
   // Move focus to the screen so a screen reader announces the change without
   // trapping the user at the top of the document.
   screenEl.focus({ preventScroll: true });

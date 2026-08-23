@@ -3546,3 +3546,74 @@ unchanged · `npm run walkthrough` 67/67, with the audio-escape step extended to
 prove the whole chain: still no mistake filed, exactly one new `silent` report,
 the card's key in the suppressed set, and the session builder refusing to draw
 it again when asked for the entire deck · `sw.js` → `v51`.
+
+# Follow-up 31 — confirming your name without moving the key it is not
+
+> "Let's allow users to confirm their name. Add a pop up on the next login that
+> shows up once and asks to confirm the name or change it. This then becomes
+> the new player name forever"
+
+## The one thing that could have gone badly
+
+`PLAYERS[].id` — `'diego'`, `'diana'` — is not a label. It is:
+
+- part of every `learn` row's compound key, `playerId:deck:strand:itemId`
+- the value behind five IndexedDB `byPlayer` indexes
+- the `streak:${playerId}` key
+- what the Worker's scoreboard validates incoming records against, from its
+  own fixed list
+
+Renaming *that* is not a rename. It orphans the person's entire history —
+every box, every mistake, every streak day — and desyncs the duel, because the
+Worker would reject a player it has never heard of.
+
+So the id never moves. `settings.displayName` overrides `PLAYERS[].name`
+through one function, `playerName(settings, id)`, and everything else carries
+on keyed by id exactly as before. There is a test whose only job is to assert
+that `PLAYERS`'s ids are untouched after a rename, because that is the property
+the whole feature rests on and it would fail silently.
+
+## Only the person holding the device
+
+`playerName` returns the default for anyone who is not `settings.playerId`.
+That is a limit rather than a decision: **the Worker's protocol has no field
+for a name**, so this device cannot know what the other player calls
+themselves. Applying our own override to them would put a name nobody chose on
+the scoreboard.
+
+The practical consequence, stated plainly because it will be noticed: if Diego
+renames himself, Diana's phone still says "Diego" wherever it refers to him.
+Fixing that means adding a name to the sync protocol, which is a bigger change
+than was asked for.
+
+## A dialog, and once meaning once
+
+A `<dialog>` rather than a screen, for the same reason the cheat sheet is one:
+a route can be navigated back to, refreshed into and deep-linked, none of which
+suits something that happens once. It opens over whatever screen loaded, after
+the render rather than before it, so it lands on the app rather than on an
+empty frame.
+
+`nameConfirmed` is written whichever way it is dismissed — confirmed, renamed,
+or closed with Escape. A prompt that comes back because you did not answer it
+"properly" has stopped being a question. Anyone arriving through onboarding is
+marked confirmed on the way out, since picking yourself there *is* confirming
+your name.
+
+Two smaller calls:
+
+- **The field is selected, not just focused.** The commonest edit is replacing
+  the whole thing; the commonest answer is not typing at all.
+- **The same field is in Settings.** "Forever" should mean it sticks, not that
+  it is irreversible — a one-shot prompt with no way back makes a typo
+  permanent. Blank there restores the default.
+
+## Verification
+
+`npm test` 328 (6 new in `name.test.js`: the fallback, trimming and the length
+bound, that only the local player is renamed, that the prompt is due exactly
+once, and the one that matters — a rename leaves `PLAYERS`'s ids alone) ·
+`validate` PASS, 251 warnings, unchanged · `npm run walkthrough` 68/68, with a
+new step that answers the prompt, watches the heading behind it change, checks
+`playerId` is still `diego` while `displayName` is the new one, and reloads to
+confirm it does not come back · `sw.js` → `v52`.
