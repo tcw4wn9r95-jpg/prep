@@ -215,12 +215,17 @@ export async function render(root, { settings, navigate }) {
               el('a', { class: 'chip chip--pick', href: `#/arcade/${id}` }, gameTitle(id)),
             ),
             el('a', { class: 'chip', href: '#/arcade' }, 'All games'),
+            // The course verbs, worked one at a time rather than drilled at
+            // random — its own thing, so it sits beside the games rather than
+            // among them.
+            el('a', { class: 'chip chip--pick', href: '#/school' }, 'Verb school'),
           ),
         )
       : el(
           'div',
           { style: { marginBlockStart: 'var(--s4)' } },
           el('a', { class: 'chip chip--pick', href: '#/arcade' }, 'All games'),
+          el('a', { class: 'chip chip--pick', href: '#/school' }, 'Verb school'),
         ),
 
     sectionLabel('Vocabulary decks'),
