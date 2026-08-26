@@ -1722,6 +1722,52 @@ async function main() {
     });
   });
 
+  await step('verb school teaches a course verb through meaning, table and sentence', async () => {
+    await openFresh('#/school');
+    await page.waitForSelector('.school__cat', { timeout: 5000 });
+    const cats = await page.locator('.school__cat').count();
+    if (cats < 8) throw new Error(`expected the categories, got ${cats}`);
+    await shot('00j-school-index');
+
+    // The modals: their own category on the handout, and their own here.
+    await page.locator('.school__cat', { hasText: 'Modal verbs' }).click();
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+
+    // Stage one is the meaning, and no two buttons may read the same thing —
+    // `stoen` and `stellen` are both glossed "to stand" by LOD, which made an
+    // unanswerable card until they were told apart in English.
+    const first = (await page.locator('#screen').innerText());
+    if (!/step 1 of/.test(first)) throw new Error(`did not start at step 1: ${first.slice(0, 120)}`);
+    const options = await page.locator('.options .option > span:not(.option__key)').allTextContents();
+    if (new Set(options).size !== options.length) throw new Error(`two buttons read the same: ${options.join(' / ')}`);
+    await shot('00k-school-meaning');
+
+    // Work forward until the conjugation table appears, whichever answer is
+    // picked — a wrong answer must not strand the course.
+    for (let guard = 0; guard < 12; guard += 1) {
+      const text = await page.locator('#screen').innerText();
+      if (/Which form goes with/.test(text)) break;
+      await page.locator('.options .option').first().click();
+      await page.getByRole('button', { name: /Next|Try the next one/ }).click();
+      await page.waitForTimeout(150);
+    }
+    const table = await page.locator('#screen').innerText();
+    if (!/Which form goes with/.test(table)) throw new Error('never reached the conjugation table');
+    // `flagSlot()` returns a controller, not a node, and putting one in the
+    // tree renders this string. It did, at the bottom of every card.
+    if (/\[object Object\]/.test(table)) throw new Error('an object was rendered as text on the card');
+    // The table shows all six persons, with the one being asked marked.
+    const rows = await page.locator('.school__row').count();
+    if (rows !== 6) throw new Error(`expected six persons in the table, got ${rows}`);
+    await shot('00l-school-table');
+
+    // Progress is kept, so the course can be come back to.
+    await openFresh('#/school');
+    await page.waitForSelector('.school__cat', { timeout: 5000 });
+    const kept = await page.evaluate(async () => (await (await import('./js/store.js')).getSettings()).school ?? []);
+    if (!kept.length) throw new Error('nothing was recorded as finished');
+  });
+
   await step('the right-answer chime makes sound, and never over a recording', async () => {
     const measured = await page.evaluate(async () => {
       const fresh = () => import(`./js/chime.js?probe=${Math.random()}`);

@@ -1718,3 +1718,51 @@
     transition: none;
   }
 }
+
+/* --- verb school --------------------------------------------------------- */
+
+.school__cat {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.school__cat .progress {
+  margin-block-start: var(--s2);
+}
+
+.school__option {
+  text-align: start;
+}
+
+.school__option.is-correct {
+  border-color: var(--ok);
+  background: var(--ok-wash, color-mix(in srgb, var(--ok) 15%, transparent));
+}
+
+.school__option.is-wrong {
+  border-color: var(--bad);
+  background: var(--bad-wash);
+}
+
+.school__table {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+
+.school__row {
+  padding: var(--s1) var(--s2);
+  border-radius: var(--r-md);
+  font-size: var(--size-sm);
+}
+
+.school__row.is-current {
+  background: var(--accent-wash);
+  font-weight: 700;
+}
+
+.cloze__gap.is-filled {
+  font-weight: 700;
+  color: var(--accent);
+}

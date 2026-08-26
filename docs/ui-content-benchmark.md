@@ -3682,3 +3682,104 @@ simply not landed yet. It waits for the row to disappear now.
 change, and the latch is checked before the memoised promise) · `validate`
 PASS, 251 warnings, unchanged · `npm run walkthrough` 68/68, and 67/68 with the
 bug reinstated — the new assertion is the one that fails · `sw.js` → `v53`.
+
+# Follow-up 33 — the course handouts, as a game
+
+> "Create a game to learn and practice the attached verbs (divided in their own
+> categories). For the verbs, provide an opportunity to learn what they mean but
+> also how to conjugate and use in a sentence"
+
+Three PDFs and a photograph of a table. Two of the PDFs were image scans with
+no text layer, so they were rendered and read: one held six more verbs, the
+other was the frequency adverbs. The photograph is the six modals.
+
+| source | what it carries |
+| --- | --- |
+| `Verben_fir_Ufank.pdf` | 30 verbs with full present-tense tables |
+| `Verben_6_Ufank.pdf` (scan) | setzen, leien, soen, sprangen, sangen, heeschen |
+| the modal table (photo) | kënnen, wëllen, däerfen, mussen, sollen, brauchen |
+| `adverbs_1.pdf` | ni, heiansdo, dacks, oft, meeschtens, ëmmer, näischt, eppes, vill, alles |
+
+## The handouts choose; LOD supplies
+
+All 42 verbs and 10 of the 11 adverbs were already in the shipped decks, with
+gloss, full present table, participle, auxiliary, an example sentence and a
+recording. So the handouts are used for the **selection** — which words, which
+grouping — and every form the learner sees comes from LOD.
+
+That is not a formality. The modal table writes the ech form of `kënnen` as
+**`ka(nn)`**, folding the Eifeler Regel into the cell. LOD publishes `kann`,
+and the app has a whole separate deck for when that n drops. Taking the
+handout's spelling would have put a form on screen that contradicts it.
+
+## Why not the handouts' own grouping
+
+"Thirty verbs" and "six more verbs" are batches — they record when a class met
+a word, not what it is for. Grouped by meaning, the set teaches something the
+batches cannot:
+
+```
+sëtzen / setzen      leien / leeën      stoen / stellen
+```
+
+Three pairs where the first is what you *are* doing and the second is what you
+*do to something else*. They are why both handouts carry both members, they are
+the classic confusion, and they only look like a pattern when they sit next to
+each other. Eight categories, and the modals stay their own, which they already
+were.
+
+## Three things you can know about a verb
+
+A verb you can only translate is a verb you cannot use, so each word is worked
+through **meaning → table → sentence**:
+
+- **meaning**, against the other verbs in its own category. "To drink" out of
+  {run, buy, write} tests nothing; out of {eat, cook, make} it tests the
+  distinction that has to be held.
+- **the table**, one person at a time, with options drawn from *that verb's own
+  forms*. The question is then about the ending and nothing else — recognising
+  the stem was the previous stage's job.
+- **the sentence**, LOD's own example with the form gapped, then the recording,
+  offered rather than autoplayed because the clip says the missing word.
+
+## Two things the data made me change
+
+**The sentence stage worked for only 26 of 52 words at first.** Three causes,
+all worth handling rather than skipping. The Eifeler Regel — "ech **liese** grad
+e spannend Buch", "Äre Bouf **ka** gutt zeechnen" — the final n is dropped, so
+an exact search for `liesen` or `kann` finds nothing; `kann` loses both. An
+imperative — "**kuck** mech emol an d'Aen!". And a perfect — "d'Aarbechter hu
+séier an effikass **geschafft**". Searching the participle, the imperative and
+the n-dropped variants too turns the question into "which form does this
+sentence need?", which is a better exercise than the present-only version would
+have been: sometimes the answer is a participle, and noticing that is the point.
+
+**Stages are derived per word, not fixed at three.** An adverb has no table, and
+`kréien`'s example uses `kritt`, which LOD files under a sibling entry, so there
+is nothing in that sentence to gap. A fixed three would have left those
+categories permanently one step short of finished through no fault of the
+learner's. 52 words, 145 stages, every one reachable.
+
+## And one card that could not be answered
+
+LOD glosses **both `stoen` and `stellen` as "to stand"**. The meaning card
+showed "to stand" twice and marked one of them wrong — the same defect that made
+the numbers cards unanswerable. Fixed in English, which this app may write:
+"to stand (yourself)" against "to stand (something) up". LOD's gloss is
+untouched, and the clarifier is applied only where a sibling actually shares it.
+
+## A bug the screenshot caught
+
+`flagSlot()` returns a controller, not a node. Putting it straight into the
+tree rendered the string `[object Object]` at the bottom of every card. Nothing
+failed; it was simply there, and the walkthrough now asserts against it.
+
+## Verification
+
+`npm test` 345 (15 new in `verbschool.test.js`: every handout word resolves in a
+shipped deck, no word is in two categories, the whole handout is covered, every
+word has a path to finished, a category can actually be completed, adverbs are
+never asked to conjugate, no card has two identical buttons, a table question
+only offers that verb's own forms, and the gap reconstructs LOD's sentence
+character for character) · `validate` PASS, 251 warnings, unchanged ·
+`npm run walkthrough` 69/69 · `sw.js` → `v54`.
