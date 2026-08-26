@@ -3617,3 +3617,68 @@ once, and the one that matters — a rename leaves `PLAYERS`'s ids alone) ·
 new step that answers the prompt, watches the heading behind it change, checks
 `playerId` is still `diego` while `displayName` is the new one, and reloads to
 confirm it does not come back · `sw.js` → `v52`.
+
+# Follow-up 32 — the name prompt re-rendered the app 777 times a second
+
+> "The pop up works but when I hit confirm the screen flickers a lot"
+
+An infinite render loop, and the cause was the guard added to prevent a
+different bug.
+
+`askName()` memoised its promise so that a quick second navigation, arriving
+while the first `getSettings()` read was still in flight, could not open a
+second dialog on top of the first. That part was right. What it missed is that
+**a settled promise stays settled**:
+
+```
+route() → askName() → dialog → answered → resolves true
+        → main.js re-routes on true
+        → route() → askName() → `if (asking) return asking`
+        → the same, already-resolved, still-true promise
+        → re-routes again → …
+```
+
+Every turn of that loop re-rendered the whole screen. Measured in a browser:
+**777 renders in a second and a half.**
+
+## The fix, in two parts
+
+**A latch that outlives the promise.** `handled` is set the moment the dialog
+is answered, and checked *before* the memoised promise. Once answered, the
+module reports `false` for the rest of the page's life whatever the old promise
+still says. The ordering of those two checks is the whole fix, so there is a
+test that asserts one line comes before the other.
+
+**Report the change, not the event.** It now resolves `true` only when the
+displayed name actually moved. "That is right, I am Diego" changes nothing on
+screen, so there is nothing to redraw — and a redraw nobody needs is a flash of
+the entire app. Only a real rename costs one re-render, which is the minimum
+that can update the heading behind the dialog.
+
+## Why the existing test did not catch it
+
+This is the part worth keeping. The walkthrough step written for the feature
+checked the *outcome*: the prompt appears, the heading changes, `playerId` is
+untouched, it does not come back. **Every one of those assertions passed while
+the screen was flickering**, because the loop converged on the right state — it
+just kept arriving there, forever.
+
+An outcome is not a behaviour. The step now counts renders across the confirm
+with a `MutationObserver` and fails above three, then waits and checks the
+count has stopped moving. Verified by putting the bug back: the assertion
+reports 777 and fails, which is what a regression test is for.
+
+## One thing found on the way
+
+The "a reported card can be un-reported" step slept a fixed 300 ms after
+clicking Undo and then asserted the row was gone — a race against the
+IndexedDB delete committing. It failed once, on a machine still loaded from
+the deliberately-broken run above, claiming undo did not work when it had
+simply not landed yet. It waits for the row to disappear now.
+
+## Verification
+
+`npm test` 330 (2 new in `name.test.js`: confirming the existing name is not a
+change, and the latch is checked before the memoised promise) · `validate`
+PASS, 251 warnings, unchanged · `npm run walkthrough` 68/68, and 67/68 with the
+bug reinstated — the new assertion is the one that fails · `sw.js` → `v53`.

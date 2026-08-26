@@ -210,10 +210,12 @@ async function route() {
   // Once per profile, over whatever screen happened to load. After the render
   // rather than before it, so the dialog opens onto the app instead of onto a
   // blank frame — and after the splash has something to hide.
-  askName().then((asked) => {
-    // The name is read at render time, so a screen already showing the old one
-    // has to be redrawn. Only when it actually changed.
-    if (asked) route();
+  askName().then((renamed) => {
+    // The name is read at render time, so a screen showing the old one has to
+    // be redrawn — but only when it actually changed. Confirming the existing
+    // name redraws nothing, and `askName` reports `false` on every later call,
+    // which is what stops this re-routing itself in a loop.
+    if (renamed) route();
   });
   // Move focus to the screen so a screen reader announces the change without
   // trapping the user at the top of the document.

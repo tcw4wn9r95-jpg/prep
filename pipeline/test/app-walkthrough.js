@@ -1108,7 +1108,15 @@ async function main() {
     await shot('16y-flag-settings');
 
     await page.getByRole('button', { name: 'Undo' }).first().click();
-    await page.waitForTimeout(300);
+    // Waited for rather than slept through. This was a fixed 300ms, which is a
+    // race against the IndexedDB delete committing — it failed once on a loaded
+    // machine, reporting that undo had not worked when it simply had not landed
+    // yet.
+    await page.waitForFunction(
+      (word) => !(document.querySelector('#screen')?.textContent ?? '').includes(word),
+      flagged,
+      { timeout: 5000 },
+    );
     await openFresh('#/settings');
     const after = await page.locator('#screen').innerText();
     if (after.includes(flagged)) throw new Error('undo did not remove the report');
@@ -1661,6 +1669,17 @@ async function main() {
     await heading.waitFor({ state: 'visible', timeout: 5000 });
     await shot('00i-name-check');
 
+    // Count renders across the confirm. The first version of this re-rendered
+    // in an infinite loop — `askName` memoised a promise that stayed resolved
+    // as "changed", main.js re-routed on that, and re-routing asked again.
+    // Every assertion below still passed while the screen flickered, so the
+    // render count is the only thing that would have caught it.
+    await page.evaluate(() => {
+      window.__renders = 0;
+      const screen = document.querySelector('#screen');
+      new MutationObserver(() => { window.__renders += 1; }).observe(screen, { childList: true });
+    });
+
     const field = page.locator('#name-check');
     await field.fill('Dieguito');
     await page.getByRole('button', { name: /^Save$/ }).click();
@@ -1669,6 +1688,15 @@ async function main() {
     await page.waitForFunction(() => /Moien, Dieguito/.test(document.querySelector('#screen')?.textContent ?? ''), {
       timeout: 5000,
     });
+
+    // One redraw for the rename, and then it settles. A loop shows up here as
+    // a number that keeps climbing.
+    await page.waitForTimeout(1500);
+    const renders = await page.evaluate(() => window.__renders);
+    if (renders > 3) throw new Error(`the screen re-rendered ${renders} times after confirming`);
+    await page.waitForTimeout(1500);
+    const settled = await page.evaluate(() => window.__renders);
+    if (settled !== renders) throw new Error(`still re-rendering: ${renders} then ${settled}`);
 
     // The id everything is keyed by does not.
     const kept = await page.evaluate(async () => {

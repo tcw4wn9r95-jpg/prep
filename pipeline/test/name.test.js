@@ -70,3 +70,37 @@ test('name: the prompt is due once and never again', () => {
   assert.equal(store.nameConfirmed({ playerId: 'diego', nameConfirmed: 'yes' }), false);
   assert.equal(store.nameConfirmed({}), false);
 });
+
+/* ------------------------------------------------------ the re-render loop */
+
+test('name: confirming the existing name is not a change', () => {
+  // The caller redraws the screen when `askName` reports a change. Reporting
+  // one for "That is right, I am Diego" would flash the whole app for nothing.
+  const same = (name, current) => String(name ?? '').trim() !== current;
+  assert.equal(same('Diego', 'Diego'), false);
+  assert.equal(same('  Diego  ', 'Diego'), false, 'trimming happens before the comparison');
+  assert.equal(same('Dieguito', 'Diego'), true);
+});
+
+test('name: the module cannot ask, or report a change, twice', async () => {
+  // The bug this pins, reported as "the screen flickers a lot". `askName`
+  // memoised its promise to stop a second dialog opening — but a settled
+  // promise stays settled, so every later call returned the same `true`, and
+  // main.js re-routes on `true`. Re-routing calls `askName` again: an infinite
+  // render loop. The fix is a latch that outlives the promise.
+  const source = require('node:fs').readFileSync(path.join(ROOT, 'app', 'js', 'name-check.js'), 'utf8');
+
+  assert.match(source, /if \(handled\) return false;/, 'the latch has to be checked before the memoised promise');
+  // And it must be set on the way out of the dialog, not only when the prompt
+  // was never due — otherwise answering it leaves the latch open.
+  const finish = source.slice(source.indexOf('const finish'), source.indexOf('const dialog'));
+  assert.match(finish, /handled = true;/, 'answering the dialog has to close the latch');
+  assert.match(finish, /pending = null;/, 'the settled promise must not be handed out again');
+
+  // The latch is checked first: reordering these two lines would restore the
+  // loop, because the memoised promise would win.
+  assert.ok(
+    source.indexOf('if (handled) return false;') < source.indexOf('if (pending) return pending;'),
+    'the latch has to be checked before the in-flight promise',
+  );
+});

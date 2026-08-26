@@ -31,21 +31,38 @@ import { el, button } from './dom.js';
 import { getSettings, nameConfirmed, confirmName, playerName, MAX_NAME } from './store.js';
 
 /**
- * Shows the prompt if it is due, and resolves once it is out of the way.
+ * The dialog while it is open, and whether this page load is finished with it.
  *
- * Resolves immediately when it is not due, so the caller can await it
- * unconditionally without paying for a check on every navigation.
+ * Both are needed, and the second one was learned the hard way. `pending` alone
+ * stops a quick second navigation opening a second dialog — but a settled
+ * promise stays settled, so once it had resolved `true` every later call handed
+ * the caller that same `true` again. `main.js` re-routes on `true`, and
+ * re-routing calls back in here: the screen re-rendered in a tight loop, which
+ * is what "the screen flickers a lot" was.
+ *
+ * `handled` is the latch. Answered once, this module reports `false` forever
+ * after, whatever the promise it once returned still says.
  */
-let asking = null;
+let pending = null;
+let handled = false;
 
+/**
+ * Shows the prompt if it is due. Resolves `true` only when the displayed name
+ * actually changed, so the caller knows whether anything needs redrawing —
+ * and `false` on every call after the first, so it cannot ask twice.
+ */
 export async function askName() {
+  if (handled) return false;
   // `route()` runs this on every navigation, and it is async — without this a
   // quick second navigation while the first read is in flight opens a second
   // dialog on top of the first.
-  if (asking) return asking;
+  if (pending) return pending;
   const settings = await getSettings();
   // No player yet means onboarding is about to run, and it asks its own way.
-  if (!settings.playerId || nameConfirmed(settings)) return false;
+  if (!settings.playerId || nameConfirmed(settings)) {
+    handled = true;
+    return false;
+  }
 
   const current = playerName(settings);
   const field = el('input', {
@@ -60,15 +77,20 @@ export async function askName() {
     'aria-label': 'Your name',
   });
 
-  asking = new Promise((resolve) => {
+  pending = new Promise((resolve) => {
     let settled = false;
     const finish = async (name) => {
       if (settled) return;
       settled = true;
+      handled = true;
+      pending = null;
       await confirmName(name);
       dialog.close();
       dialog.remove();
-      resolve(true);
+      // Resolves whether the *label* moved, not whether the dialog was seen.
+      // "That is right" changes nothing on screen, so the caller has nothing to
+      // redraw — and a redraw it does not need is a flash of the whole app.
+      resolve(String(name ?? '').trim() !== current);
     };
 
     const dialog = el(
@@ -113,5 +135,5 @@ export async function askName() {
     field.focus();
     field.select();
   });
-  return asking;
+  return pending;
 }
