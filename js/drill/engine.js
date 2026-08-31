@@ -170,7 +170,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     // and three grammar shapes were falling through the sentence lookup here
     // and getting no button at all. See its note in cards.js.
     const target = explainTarget(card, sentenceOf(card, { filled: true }));
-    const explain = target
+    const explainer = target
       ? explainButton(settings, {
           id: card.item.id,
           lb: target.lb,
@@ -181,6 +181,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
           facts: factsFor(card),
         })
       : null;
+    const explain = explainer?.el ?? null;
     if (explain) explain.hidden = true;
 
     // Where the sentence appears if the audio will not play. Its own node
@@ -212,7 +213,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     );
 
     const inputFactory = INPUTS[card.mode];
-    const input = inputFactory(card, (result) => grade(card, entry, result, { revealed, feedback, rule, explain }));
+    const input = inputFactory(card, (result) => grade(card, entry, result, { revealed, feedback, rule, explain, explainer }));
 
     fill(
       body,
@@ -234,6 +235,16 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     );
     nextHolder.hidden = true;
     fill(nextHolder, nextButton(entry));
+
+    // A new card starts at the top of itself.
+    //
+    // This is the one that was reported. `.screen` sets no overflow, so the
+    // window is the scroller, and tapping Next leaves it wherever the Next
+    // button was — near the bottom of a grammar card, which runs 1300-1500px
+    // against an 844px viewport. Measured without this line, the next question
+    // opens 360px past its own top: you land in the middle of a card you have
+    // not read yet.
+    scrollTo(body, 'start');
 
     if (card.mode === 'type' && input.focus) input.focus();
     // Listening cards are useless in silence — play as soon as the card lands,
@@ -542,7 +553,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     });
   }
 
-  function grade(card, entry, result, { revealed, feedback, rule, explain }) {
+  function grade(card, entry, result, { revealed, feedback, rule, explain, explainer }) {
     answeredCount += 1;
     answeredByDeck[card.deck.id] = (answeredByDeck[card.deck.id] ?? 0) + 1;
     // Sentence structure is a slice of the grammar deck, tallied under a key
@@ -585,6 +596,8 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
       revealed.hidden = false;
     }
     if (explain) explain.hidden = false;
+    // Right answer: the translation appears on its own. See `translate()`.
+    if (result.correct && explainer) explainer.translate().catch(() => {});
 
     if (!result.correct || result.partial) {
       feedback.textContent = result.articleWrong
@@ -636,7 +649,22 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
 
     fill(nextHolder, nextButton(entry));
     nextHolder.hidden = false;
+    // Focusing it is also what scrolls it into view: the browser brings a
+    // newly focused element on screen by itself. An explicit scrollIntoView
+    // here as well was measured to change nothing, and two things scrolling
+    // the same node at once is how a jitter starts.
     nextHolder.firstChild?.focus();
+  }
+
+  /**
+   * Scroll a node into view, honouring a reduced-motion preference.
+   *
+   * Smooth scrolling is the sort of thing that makes people motion-sick, and
+   * this fires on every single card.
+   */
+  function scrollTo(node, block) {
+    const still = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    node?.scrollIntoView({ block, behavior: still ? 'auto' : 'smooth' });
   }
 
   /**
@@ -881,6 +909,45 @@ export function explainButton(settings, subject) {
     note.hidden = false;
   };
 
+  /**
+   * Fetch and show only the translation, with no tap.
+   *
+   * Asked for as "show the English translation automatically without me having
+   * to queue Claude". There is no free version of this: LOD publishes no
+   * translation of its example sentences — the `gloss` field on an example is a
+   * Luxembourgish paraphrase of an idiom, not English — so the sentence can only
+   * be translated by asking. What can go is the *asking being manual*.
+   *
+   * The cache is checked first, so a sentence translated once is instant,
+   * offline and free ever after; with a Worker configured it is free for both
+   * players from whoever met it first. Only then does it call out, and it does
+   * so quietly: a failure leaves the card exactly as it was, because an error
+   * message nobody asked for is worse than a missing translation. The button
+   * stays for the grammar explanation, which is the part that is still a choice.
+   */
+  async function translate() {
+    if (!subject.lb) return;
+    const cached = await getSentenceExplanation(key);
+    if (cached) {
+      const value = typeof cached === 'string' ? { explanation: cached, translation: null } : cached;
+      if (!value.translation) return;
+      translation.textContent = value.translation;
+      translation.hidden = false;
+      return;
+    }
+    const result = await requestExplanation(settings, {
+      lb: subject.lb,
+      word: subject.word,
+      en: subject.en,
+      task: subject.task,
+      facts: subject.facts,
+    });
+    if (!result.ok || !result.translation) return;
+    await saveSentenceExplanation(key, { translation: result.translation, explanation: result.explanation });
+    translation.textContent = result.translation;
+    translation.hidden = false;
+  }
+
   const trigger = button(subject.label ?? 'Explain this sentence', {
     variant: 'secondary',
     class: 'btn btn--secondary',
@@ -913,7 +980,11 @@ export function explainButton(settings, subject) {
       }
     },
   });
-  return el('div', {}, trigger, translation, note);
+  // Translation above the button, not below it. The translation arrives on its
+  // own; the button is the optional extra. Built the other way round, the card
+  // read as a button with a stray sentence hanging under it, and the thing the
+  // learner actually wanted was the afterthought on the page.
+  return { el: el('div', {}, translation, trigger, note), translate };
 }
 
 /** A short stable tag for a task string, so cache keys stay readable and short. */
