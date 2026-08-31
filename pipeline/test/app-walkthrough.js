@@ -1768,6 +1768,144 @@ async function main() {
     if (!kept.length) throw new Error('nothing was recorded as finished');
   });
 
+  await step('a right answer shows the English translation without being asked', async () => {
+    // Asked for as "show the English translation automatically without me
+    // having to queue Claude". There is no free version: LOD publishes no
+    // translation of its example sentences, so the only source is Claude. What
+    // goes is the manual tap — and the cache means a sentence is asked about
+    // once, ever.
+    let calls = 0;
+    await page.route('**://api.anthropic.com/**', async (route) => {
+      calls += 1;
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ content: [{ type: 'text', text: '{"translation":"The children are already in bed.","explanation":"leien is the verb here."}' }] }),
+      });
+    });
+    await page.evaluate(async () => {
+      await (await import('./js/store.js')).saveSettings({ apiKey: 'sk-ant-api03-0000000000000000000000000000', workerUrl: '' });
+    });
+
+    await clearLearn();
+    await openFresh('#/grammar');
+
+    // The translation is a reward for a *correct* answer, and the correct
+    // option is not in the DOM until the card has been answered — so a test
+    // that clicks the first option is betting one-in-four per card. The first
+    // version did exactly that, eight cards deep, and lost about a tenth of
+    // the time.
+    //
+    // Made deterministic by using the drill's own re-queueing: a missed card
+    // comes back inside the same session, and answering it reveals the right
+    // option. So remember what each prompt's answer turned out to be, and when
+    // a prompt comes round again, answer it properly.
+    const answers = new Map();
+    let shown = false;
+    for (let guard = 0; guard < 12 && !shown; guard += 1) {
+      await page.waitForSelector('.options .option', { timeout: 5000 });
+      const prompt = (await page.locator('#screen .card').first().innerText()).trim();
+      const known = answers.get(prompt);
+      const options = page.locator('.options .option');
+      if (known) {
+        const match = options.filter({ hasText: known }).first();
+        await ((await match.count()) ? match : options.first()).click();
+      } else {
+        await options.first().click();
+      }
+
+      shown = await page
+        .waitForFunction(() => {
+          const node = document.querySelector('#screen .drill__translation');
+          return Boolean(node && !node.hidden && node.textContent.trim());
+        }, { timeout: 2500 })
+        .then(() => true)
+        .catch(() => false);
+      if (shown) break;
+
+      const right = await page.locator('.options .option.is-correct').first().innerText().catch(() => '');
+      if (right.trim()) answers.set(prompt, right.trim().split('\n').pop().trim());
+      const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+      if (!(await next.count())) break;
+      await next.first().click();
+    }
+    if (!shown) throw new Error('no translation appeared on a correct answer');
+
+    // It arrived without the button being touched.
+    const translated = (await page.locator('.drill__translation').first().textContent())?.trim();
+    if (translated !== 'The children are already in bed.') throw new Error(`unexpected translation: ${translated}`);
+    if (calls === 0) throw new Error('the translation was shown without being fetched');
+
+    // The grammar explanation is still a choice, so its button has to survive
+    // the translation appearing next to it. Asked of the button that is
+    // actually there rather than by name: the label is the card's to pick
+    // ("Why is this the answer?", "Why this gender?", …) and matching a guessed
+    // name found nothing while the button sat there perfectly well.
+    const trigger = await page.evaluate(() => {
+      const node = document.querySelector('#screen .drill__translation');
+      const button = node?.parentElement?.querySelector('button');
+      if (!button || button.hidden || button.disabled) return null;
+      return button.textContent.trim();
+    });
+    if (!trigger) throw new Error('the explanation button went away when the translation arrived');
+    process.stdout.write(`  translation shown automatically after ${calls} call(s); "${trigger}" still offered\n`);
+    await shot('00m-auto-translation');
+
+    await page.unroute('**://api.anthropic.com/**');
+    await page.evaluate(async () => { await (await import('./js/store.js')).saveSettings({ apiKey: '' }); });
+    await openFresh('#/today');
+  });
+
+  await step('answering brings the next step into view, and a new card starts at the top', async () => {
+    // Reported as "I need to scroll down each time when going to the next
+    // question". `.screen` sets no overflow, so the window is the scroller and
+    // the Next button sits below the fold once the feedback, the rule and the
+    // explanation have all appeared under the options.
+    // The grammar deck specifically. Measured on a 390x844 phone, its answered
+    // cards run 1300-1500px against an 844px viewport, because the feedback,
+    // the rule, the explanation, the hint, Amelie and the report link all stack
+    // under the options. Vocabulary cards mostly fit, so testing there passes
+    // whether the fix is present or not — which is exactly what the first
+    // version of this step did.
+    await clearLearn();
+    await openFresh('#/grammar');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+    await page.locator('.options .option').first().click();
+
+    const tall = await page.evaluate(() => document.documentElement.scrollHeight > window.innerHeight + 200);
+    if (!tall) throw new Error('this card fits on screen, so the step is not testing anything');
+
+    const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+    await next.waitFor({ state: 'visible', timeout: 5000 });
+    await page.waitForTimeout(700); // the smooth scroll
+
+    // In view means inside the viewport, not merely present in the DOM.
+    const reachable = await page.evaluate(() => {
+      const button = [...document.querySelectorAll('#screen button')].find((node) => /^(Next|Finish)$/.test(node.textContent.trim()));
+      if (!button) return null;
+      const box = button.getBoundingClientRect();
+      return { top: box.top, bottom: box.bottom, viewport: window.innerHeight };
+    });
+    if (!reachable) throw new Error('no Next button');
+    if (reachable.bottom > reachable.viewport + 1 || reachable.top < 0) {
+      throw new Error(`Next is off screen: ${JSON.stringify(reachable)}`);
+    }
+
+    // And the next card opens at its own top rather than where Next was.
+    await next.click();
+    await page.waitForTimeout(700);
+    const started = await page.evaluate(() => {
+      const card = document.querySelector('#screen .card');
+      return card ? card.getBoundingClientRect().top : null;
+    });
+    if (started === null) throw new Error('no card rendered');
+    if (started < -1) throw new Error(`the new card opens scrolled past its own top (${started}px)`);
+
+    // A grammar card can autoplay a clip, and the chime step that follows
+    // measures a chime that is deliberately silent while one is running.
+    await openFresh('#/today');
+  });
+
   await step('the right-answer chime makes sound, and never over a recording', async () => {
     const measured = await page.evaluate(async () => {
       const fresh = () => import(`./js/chime.js?probe=${Math.random()}`);
@@ -2159,11 +2297,30 @@ async function main() {
     await page.waitForSelector('text=/Questions need the Worker/', { timeout: 5000 });
   });
 
-  await step('duel scoreboard renders both players', async () => {
+  await step('duel scoreboard renders both players, with the topic breakdown', async () => {
+    // Seeded, because the by-topic card is the half of this screen that only
+    // exists once somebody has answered something — and it is the half that
+    // was broken: it read a variable belonging to `render`, so it threw a
+    // ReferenceError and took the screen with it. An empty duel screen renders
+    // it as nothing at all, which is why the check that only counted the two
+    // sides went on passing.
+    await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      await store.saveAttempt({ playerId: 'diego', topic: 'Liewen zu Lëtzebuerg', correct: 4, total: 5 });
+      await store.saveAttempt({ playerId: 'diana', topic: 'Liewen zu Lëtzebuerg', correct: 2, total: 5 });
+    });
     await page.goto(`${base}#/duel`, { waitUntil: 'networkidle' });
     await page.waitForSelector('.scoreboard', { timeout: 5000 });
     const sides = await page.locator('.scoreboard__side').count();
     if (sides !== 2) throw new Error(`expected 2 sides, found ${sides}`);
+
+    const topics = page.locator('.card', { hasText: 'By topic' }).first();
+    if (!(await topics.count())) throw new Error('the by-topic breakdown did not render');
+    // The seeded row only, by name: earlier steps have answered questions on
+    // other topics, so the card carries more rows than this step put there.
+    const row = topics.locator('.row--between', { hasText: 'Liewen zu Lëtzebuerg' }).first();
+    const chips = (await row.locator('.chip').allTextContents()).map((one) => one.trim());
+    if (chips.join(' · ') !== 'D 80% · A 40%') throw new Error(`the topic breakdown reads ${chips.join(' · ') || 'nothing'}`);
     await shot('14-duel');
   });
 

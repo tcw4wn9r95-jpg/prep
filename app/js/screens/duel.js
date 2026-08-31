@@ -166,7 +166,7 @@ export async function render(root, { settings }) {
           'Pass is over 50% on speaking, or over 50% overall.'),
       ),
 
-      topicHeadToHead(attempts),
+      topicHeadToHead(attempts, roster),
       syncCard(settings),
     ),
   );
@@ -220,7 +220,13 @@ function applyHandicap(weekly, rolling) {
 }
 
 /** Per-topic, so it is visible that one of you owns `work` and neither owns `stot`. */
-function topicHeadToHead(attempts) {
+/**
+ * `roster` is passed in rather than reached for: it is a local of `render`, and
+ * this function is a sibling of it, so reading it here was a ReferenceError
+ * that took the whole screen down — but only once there was an attempt to break
+ * down by topic, which is why it survived a walkthrough that starts empty.
+ */
+function topicHeadToHead(attempts, roster) {
   if (attempts.length === 0) return null;
 
   const topics = new Map();

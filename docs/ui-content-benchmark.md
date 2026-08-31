@@ -3783,3 +3783,79 @@ never asked to conjugate, no card has two identical buttons, a table question
 only offers that verb's own forms, and the gap reconstructs LOD's sentence
 character for character) · `validate` PASS, 251 warnings, unchanged ·
 `npm run walkthrough` 69/69 · `sw.js` → `v54`.
+
+# Follow-up 34 — the translation arrives on its own, and so does the top of the card
+
+> "When I answer a question correctly show the English translation for the
+> sentence automatically without me having to queue Claude. This happens only
+> when I say explain the sentence. Also, I need to scroll down each time when
+> going to the next question which is bad UI."
+
+## There is no free translation to show
+
+The first instinct is that the translation must already be in the data and is
+simply not being displayed. It is not. LOD publishes no English rendering of
+its example sentences:
+
+| field | what it actually holds |
+| --- | --- |
+| entry `glosses` | English for the **headword**, not the sentence |
+| example `gloss` | a **Luxembourgish** paraphrase, and only for idioms |
+
+Checked rather than assumed: "hie kuckt mam rietsen A an déi lénks Täsch" has a
+`gloss`, and the gloss is "hie baluckt". That is the idiom explained in
+Luxembourgish, which is a useful thing and not the thing asked for.
+
+So the sentence can only be translated by asking, and what the request removes
+is the **asking being manual**, not the asking. The cache does the rest of the
+work: `translate()` reads `getSentenceExplanation` first, so a sentence
+translated once is instant, offline and free ever after — and with a Worker
+configured, free for both players from whichever of them met it first. A
+failure shows nothing at all, because an error message nobody asked for is
+worse than a missing translation.
+
+The button stays. It now offers the part that is still a choice: the grammar
+explanation, under whatever name the card gives it ("Why is this the answer?",
+"Why this gender?", "Why is this the right order?"). Worth writing down because
+my first version of the test looked for a button called `/Explain/` and reported
+that none was there — the button was there the whole time, wearing the name the
+card had picked for it. The check now asks the button that exists rather than
+one it guessed the name of.
+
+## The scroll, measured
+
+The complaint is easy to nod along with and easy to fix wrongly, so both halves
+of the suspected cause were tested by removal.
+
+| | |
+| --- | --- |
+| viewport | 844px (iPhone) |
+| grammar card | 1319–1535px |
+| a new card, without the fix | opens **360px past its own top** |
+
+That is the fault: not that the *next button* is out of reach, but that the
+next **question** opens scrolled into its own middle, so the first move on
+every card is to scroll up to read what is being asked.
+
+`scrollTo(body, 'start')` in `renderCard` fixes it, and removing it fails the
+new check with that exact −360px. The other half — an explicit
+`scrollTo(nextHolder, 'end')` after answering — turned out to change nothing
+when removed, because `.focus()` already scrolls its element into view. It is
+gone rather than kept "just in case": a line that does nothing is a line that
+will be maintained for no reason. Both honour `prefers-reduced-motion`.
+
+## A screen that was throwing all along
+
+The walkthrough's browser-problem log carried `pageerror: roster is not defined`
+— from the duel screen's by-topic breakdown, which reads a variable belonging to
+`render` from a sibling function. Mine, from the name work in Follow-up 31: that
+is where `roster` was introduced. It threw only once somebody had answered
+something, and the check on that screen counted the two scoreboard sides, which
+render before the throw. The step now seeds two attempts and asserts the row
+they produce, so the half of the screen that only exists after real use is
+actually exercised.
+
+## Verification
+
+`npm test` 345 · `validate` PASS, 251 warnings, unchanged ·
+`npm run walkthrough` 71/71, no `pageerror` remaining · `sw.js` → `v55`.
