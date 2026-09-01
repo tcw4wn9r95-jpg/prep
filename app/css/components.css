@@ -835,6 +835,37 @@
   text-align: start;
 }
 
+/* Next, pinned to the bottom of the viewport.
+
+   Answering a card adds the reveal, the feedback, the rule, the explain button
+   and the translation *above* this button — several hundred pixels on a card
+   that already runs 1300-1500px against an 844px screen — so an in-flow Next
+   lands below the fold at the one moment it is needed. Sticky keeps it where
+   the thumb already is.
+
+   The negative inline margins let the bar's background span the screen's
+   padding, so the card does not show through at its edges as it scrolls under.
+   `bottom: 0` is safe here: the drill routes hide the tab bar (`FOCUS_ROUTES`
+   in main.js), so nothing else is claiming that edge. */
+.drill__next {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  margin-inline: calc(var(--s4) * -1);
+  padding: var(--s3) var(--s4) calc(var(--s3) + env(safe-area-inset-bottom));
+  /* Opaque surface and a hairline, the same treatment `.tabbar` uses and for
+     the same reason: the card scrolls underneath, and a translucent bar left
+     the sentence behind it legible enough to read as part of the button. */
+  background: var(--surface);
+  border-block-start: 1px solid var(--border);
+}
+
+/* Hidden is hidden. Without this the sticky box still reserves its padding and
+   border, which draws a bare line across an unanswered card. */
+.drill__next[hidden] {
+  display: none;
+}
+
 /* The rule behind a missed grammar card. Amber, because on this screen amber
    is Amelie explaining something — see the palette note in the README. */
 .drill__rule {

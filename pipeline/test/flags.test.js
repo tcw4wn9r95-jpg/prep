@@ -166,3 +166,43 @@ test('flags: every reason the app can file has a label to show for it', () => {
     assert.ok(store.FLAG_REASONS[reason], `no label for "${reason}"`);
   }
 });
+
+test('flags: a reported card stops being a mistake', () => {
+  // Reported from use: "the questions with a recording that don't have audio
+  // are marked as defective at the moment but still show as mistakes". They
+  // were. The skip filed the flag and dropped the card from the session, but
+  // the mistake row written when the card was first failed — because it could
+  // not be heard — stayed on the list. That list is meant to be finite and
+  // completable, and the only way a row leaves it is answering the card
+  // correctly, which is exactly what a card with no audio cannot be.
+  const at = new Date('2026-08-01T10:00:00Z').toISOString();
+  const rows = [
+    { key: 'diego:grammar:recv:gr-heard-1', playerId: 'diego', deck: 'grammar', strand: 'recv', itemId: 'gr-heard-1', misses: 2 },
+    { key: 'diego:grammar:prod:gr-heard-1', playerId: 'diego', deck: 'grammar', strand: 'prod', itemId: 'gr-heard-1', misses: 1 },
+    { key: 'diego:vocab:recv:HAUT1', playerId: 'diego', deck: 'vocab', strand: 'recv', itemId: 'HAUT1', misses: 1 },
+  ];
+  const flags = [flag({ source: 'grammar', itemId: 'gr-heard-1', reason: 'silent', at })];
+
+  const left = store.activeMistakes(rows, flags, 'diego', Date.parse(at) + DAY);
+  assert.deepEqual(left.map((row) => row.key), ['diego:vocab:recv:HAUT1'], 'both strands of the reported card must go');
+
+  // Still gone a year later, because `silent` never rests.
+  const later = store.activeMistakes(rows, flags, 'diego', Date.parse(at) + 400 * DAY);
+  assert.equal(later.length, 1);
+});
+
+test('flags: unflagging returns the card without resurrecting the miss', () => {
+  // A "seen too often" flag lapses after a fortnight. The card comes back to
+  // the pool at that point — but the row it left behind was already cleared
+  // when the flag was filed, so the mistakes list does not silently refill
+  // with things the learner reported rather than got wrong.
+  const at = new Date('2026-08-01T10:00:00Z').toISOString();
+  const rows = [{ key: 'diego:vocab:recv:A', playerId: 'diego', deck: 'vocab', strand: 'recv', itemId: 'A', misses: 1 }];
+  const flags = [flag({ source: 'vocab', itemId: 'A', reason: 'repetitive', at })];
+
+  assert.equal(store.activeMistakes(rows, flags, 'diego', Date.parse(at) + DAY).length, 0, 'held while the flag is active');
+  // After the rest the filter stops hiding it; in the store there is nothing
+  // left to show, because `flagCard` deleted the row. The filter is the
+  // backstop for rows written by an older build or the other device.
+  assert.equal(store.activeMistakes(rows, flags, 'diego', Date.parse(at) + 20 * DAY).length, 1);
+});

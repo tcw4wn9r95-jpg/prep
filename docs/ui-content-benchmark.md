@@ -3859,3 +3859,116 @@ actually exercised.
 
 `npm test` 345 · `validate` PASS, 251 warnings, unchanged ·
 `npm run walkthrough` 71/71, no `pageerror` remaining · `sw.js` → `v55`.
+
+# Follow-up 35 — the button, the defective cards, and why it was all numbers
+
+> "Fix the fact that when I select an answer I have to scroll down to press
+> next, move the button higher so it fits on the same screen without scrolling.
+> Also the questions with a recording that don't have audio are marked as
+> defective at the moment but still show as mistakes. Finally make the numbers
+> its own card but check the learning logic because lately I get too many
+> number questions"
+
+## The Next button, and a check that was measuring the wrong browser
+
+Follow-up 34 removed an explicit `scrollTo(nextHolder, 'end')` after measuring
+that it changed nothing, because `.focus()` already brings its element into
+view. That measurement was correct and the conclusion drawn from it was not:
+focus scrolls **in Chromium**, which is what the walkthrough drives. A
+programmatic focus on a button is not required to scroll anywhere, and on iOS
+Safari it does not — so the check went on passing while the bug was live on the
+phone. A test that only ever runs one engine cannot tell "this works" from
+"this works here".
+
+The layout is the actual problem, and it is not subtle. Answering is the moment
+a card *grows*:
+
+| appears on answering | where |
+| --- | --- |
+| the revealed sentence | above the button |
+| the feedback line | above the button |
+| the rule, on a miss | above the button |
+| the explain button | above the button |
+| the translation | above the button |
+
+All of it lands above Next, on a grammar card already running 1300–1500px
+against an 844px viewport. So the button moves down by several hundred pixels
+at the exact instant it is wanted.
+
+`.drill__next` is sticky now, with the same opaque-surface-and-hairline
+treatment `.tabbar` uses and for the same reason — the card scrolls underneath
+it. The drill routes are focus routes, so `bottom: 0` has nothing to clear. The
+walkthrough scrolls back to the top of the answered card before measuring,
+which is what a reader re-checking the question does, and requires Next to
+still be on screen. Only a sticky button passes that; the old layout fails it
+by design rather than by browser.
+
+## A list you had no way of finishing
+
+The skip on a silent audio card filed its flag and dropped the card from the
+session — Follow-up 30 — but never touched the **mistake row** written when the
+card was first failed, back when it was answered blind. `mistakes.js` did not
+filter by flags either. So the card sat on a list whose only exit is answering
+it correctly, which is the one thing a card with no audio cannot be.
+
+Fixed at both ends. `flagCard` clears the card's rows across both strands, and
+`listMistakes` filters actively-flagged cards as a backstop for rows written
+before the flag was filed, on the other device, or by an older build. Unflagging
+in Settings returns the card to the pool without resurrecting the miss, which is
+the right way round — it gets a clean start.
+
+## Why it was all numbers
+
+Two causes, multiplying. The first is in the content:
+
+| unit 2's grammar | count |
+| --- | --- |
+| `numbers` | 22 |
+| `heard` | 205 |
+| — of which `subject: 'number'` | **125** |
+| number cards as a share of the unit | **147 of 227, 65%** |
+
+The second is in `orderGrammar`. It interleaved **one item per kind per round**,
+which means a kind's share of the turns has nothing whatever to do with how
+many cards it holds. `numbers` has 22 items and was taking half of them, so each
+of those 22 came round roughly nine times as often as anything in the other
+kind. It was not a scheduling accident; it was arithmetic.
+
+The round-robin was right about the thing it was built for — ranking by sentence
+length alone had put all 291 auxiliary cards first — but "give every kind an
+equal turn" was the wrong correction. Each item now sits at `(position + 0.5) /
+size` through its own kind and everything merges on that fraction, so a
+200-item kind emits one every 1/200 of the way and a 44-item kind one every
+1/44. Measured over the first 40 cards of each unit:
+
+| unit | pools | before | after |
+| --- | --- | --- | --- |
+| 2 | heard 205 / numbers 22 | 20 / 20 | 36 / 4 |
+| 4 | nrule 250 / wordorder 220 | 21 / 19 | 21 / 19 |
+| 7 | perfect-form 300 / perfect-aux 291 | 20 / 20 | 20 / 20 |
+| 8 | bracket 200 / inversion 44 | 20 / 20 | 33 / 7 |
+
+Units 4 and 7 are unchanged, which is the point — their pools really are
+about equal. Unit 8 had the same defect as unit 2, milder, and nobody had
+noticed it yet. Every kind still lands within the first six cards of its unit,
+so the guarantee the round-robin existed to give survives.
+
+## Numbers as a card of their own
+
+`#/numbers`, holding both shapes of the same lesson: `numbers` shows the
+numeral and asks for the word, `heard`/number plays a clip and asks which was
+said. 147 cards, and they leave the grammar drill and the daily mix. Unit 2's
+grammar becomes 80 coherent cards — weekdays, times and months.
+
+It runs on `DECKS.grammar` with the grammar deck's own Leitner rows. Nothing
+moved and no id changed, so every box, mistake and flag already recorded still
+applies. A new deck id would have orphaned all of it and restarted every number
+card from zero, which is a worse answer to "I see these too often" than doing
+nothing at all.
+
+## Verification
+
+`npm test` 352 (7 new: `mix.test.js` on proportion and the numbers split, plus
+two in `flags.test.js` on a reported card leaving the mistakes list) ·
+`validate` PASS, 251 warnings, unchanged · `npm run walkthrough` with three new
+steps · `sw.js` → `v56`.

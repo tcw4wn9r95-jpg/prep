@@ -1151,6 +1151,21 @@ export async function flagCard(playerId, { source, id, label, reason }) {
     at: new Date().toISOString(),
   };
   await put('flags', record);
+  // A flagged card stops being a mistake.
+  //
+  // Reported as "the questions with a recording that don't have audio are
+  // marked as defective but still show as mistakes". They did: the skip filed
+  // the flag and dropped the card from the queue, but the mistake row written
+  // when the card was first failed — because it could not be heard — stayed
+  // behind, so the card kept its place in the named, finite list the learner is
+  // being asked to clear. It cannot be cleared: the only way a mistake row goes
+  // is answering that card correctly, and this is a card that cannot be
+  // answered at all.
+  //
+  // True of every reason, not just `silent`. Whatever the complaint, the card
+  // has been taken out of circulation, and a to-do list you have no way of
+  // finishing is worse than one that is short.
+  await clearMistakesFor(playerId, source, id);
   return record;
 }
 
@@ -1261,7 +1276,45 @@ export async function clearMistake(playerId, deck, strand, itemId) {
   return promisify(tx(db, 'mistakes', 'readwrite').delete(mistakeKey(playerId, deck, strand, itemId)));
 }
 
-export const listMistakes = (playerId) => allByIndex('mistakes', 'byPlayer', playerId);
+/**
+ * Every mistake row for one card, across both strands.
+ *
+ * A card is missed per strand — `recv` and `prod` are separate rows — so
+ * retiring the card has to clear both. Called by `flagCard`; see the note
+ * there for why a flagged card must not stay on the mistakes list.
+ */
+export async function clearMistakesFor(playerId, deck, itemId) {
+  await Promise.all(Object.values(STRANDS).map((strand) => clearMistake(playerId, deck, strand, String(itemId))));
+}
+
+/**
+ * Mistake rows minus the cards that have been reported.
+ *
+ * Pure, so the rule can be tested without a browser — the store call below is
+ * two reads and this.
+ *
+ * Filtering as well as deleting on flag is deliberate. `flagCard` clears the
+ * rows it knows about, but rows written before a card was flagged, on the
+ * other device, or under an older build would otherwise sit in the list for
+ * good. The list is meant to be finite and completable and the only way a row
+ * leaves is answering that card correctly — which is impossible for a card
+ * that has been taken out of circulation, and doubly so for one whose
+ * recording never plays. That was the report: audio cards "marked as defective
+ * but still show as mistakes".
+ *
+ * Unflagging in Settings returns the card to the pool without resurrecting the
+ * miss, which is the right way round: it gets a clean start.
+ */
+export function activeMistakes(rows, flags, playerId, now = Date.now()) {
+  const blocked = flaggedCardKeys(flags, playerId, now);
+  return (rows ?? []).filter((row) => !blocked.has(`${row.deck}:${row.itemId}`));
+}
+
+/** The cards you have got wrong and can still do something about. */
+export async function listMistakes(playerId, now = Date.now()) {
+  const [rows, flags] = await Promise.all([allByIndex('mistakes', 'byPlayer', playerId), listFlags()]);
+  return activeMistakes(rows, flags, playerId, now);
+}
 
 /**
  * How much practice has actually happened today.

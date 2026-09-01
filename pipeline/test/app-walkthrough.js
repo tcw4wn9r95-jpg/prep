@@ -1592,6 +1592,73 @@ async function main() {
     await openFresh('#/today');
   });
 
+  await step('a card reported as defective stops being a mistake', async () => {
+    // Reported from use: "the questions with a recording that don't have audio
+    // are marked as defective at the moment but still show as mistakes". The
+    // skip filed the flag and dropped the card, but the mistake row written
+    // when the card was first failed — because it could not be heard — stayed
+    // on a list whose only exit is answering that card correctly. Which is the
+    // one thing a card with no audio cannot be.
+    const outcome = await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      const content = await import('./js/content.js');
+      const settings = await store.getSettings();
+      const item = (await content.loadGrammar()).find((one) => one.kind === 'heard');
+      if (!item) return null;
+
+      // Missed in both directions, which is how a real one is recorded.
+      await store.recordMistake(settings.playerId, 'grammar', 'recv', item.id);
+      await store.recordMistake(settings.playerId, 'grammar', 'prod', item.id);
+      const mine = async () =>
+        (await store.listMistakes(settings.playerId)).filter((row) => row.itemId === item.id).length;
+
+      const before = await mine();
+      await store.flagCard(settings.playerId, { source: 'grammar', id: item.id, label: 'a clip', reason: 'silent' });
+      const after = await mine();
+      return { id: item.id, before, after };
+    });
+    if (!outcome) throw new Error('no listening card in the deck to test with');
+    if (outcome.before !== 2) throw new Error(`expected both strands on the list, got ${outcome.before}`);
+    if (outcome.after !== 0) throw new Error(`${outcome.after} mistake row(s) survived the report`);
+    process.stdout.write(`  reporting ${outcome.id} cleared ${outcome.before} mistake row(s)\n`);
+  });
+
+  await step('numbers are a card of their own, and out of the grammar drill', async () => {
+    // Reported as "lately I get too many number questions", and the data
+    // agreed: unit 2's grammar was `numbers` (22 items) plus `heard` (205), of
+    // which 125 are themselves number questions. Two thirds of the unit before
+    // any scheduling, and then the flat round-robin gave the 22-item kind half
+    // the remaining turns.
+    await clearLearn();
+    await openFresh('#/learn');
+    const shortcut = page.locator('a[href="#/numbers"]');
+    if (!(await shortcut.count())) throw new Error('no Numbers card on the Learn hub');
+
+    await openFresh('#/numbers');
+    await page.waitForSelector('.options .option', { timeout: 5000 });
+    const heading = (await page.locator('.screen__head, h1').first().innerText()).trim();
+    if (!/Numbers/i.test(heading)) throw new Error(`the numbers screen is titled "${heading}"`);
+    await shot('00n-numbers');
+
+    // The split itself: the grammar drill must not be serving them any more,
+    // and the numbers screen must have enough of them to be worth opening.
+    const split = await page.evaluate(async () => {
+      const content = await import('./js/content.js');
+      const cards = await import('./js/drill/cards.js');
+      const all = (await content.loadGrammar()).filter((item) => cards.isDrillable(item, 'grammar'));
+      const numbers = all.filter(cards.isNumberCard);
+      const unit2 = all.filter((item) => item.unit === 2 && !cards.isNumberCard(item));
+      return { numbers: numbers.length, rest: all.length - numbers.length, unit2: unit2.length };
+    });
+    if (split.numbers < 40) throw new Error(`only ${split.numbers} number cards`);
+    if (split.unit2 < 1) throw new Error('unit 2 has no grammar left once numbers are taken out');
+    process.stdout.write(`  ${split.numbers} number cards on their own screen; ${split.rest} left in the grammar drill\n`);
+
+    // A number card can be a recording, and it autoplays. See the note on the
+    // audio-escape step above.
+    await openFresh('#/today');
+  });
+
   await step('a break is offered a third of the way through the day, and is optional', async () => {
     // Seeded rather than earned: the checkpoint is a third of the 30-card daily
     // goal, so reaching it honestly would mean answering ten cards here. What
@@ -1879,17 +1946,31 @@ async function main() {
     await next.waitFor({ state: 'visible', timeout: 5000 });
     await page.waitForTimeout(700); // the smooth scroll
 
+    // Reported again as "when I select an answer I have to scroll down to press
+    // next". Focusing the button is supposed to bring it into view and does in
+    // this browser — which is why the first version of this check passed while
+    // the bug was live on the phone. A programmatic focus on a button is not
+    // required to scroll anywhere, and on iOS Safari it does not.
+    //
+    // So the button is measured from *wherever the reader is*, not from where
+    // a scroll happened to leave them: scroll back to the top of the card, as
+    // someone re-reading the question would, and require Next to still be on
+    // screen. Only a sticky footer passes that.
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    await page.waitForTimeout(150);
+
     // In view means inside the viewport, not merely present in the DOM.
     const reachable = await page.evaluate(() => {
       const button = [...document.querySelectorAll('#screen button')].find((node) => /^(Next|Finish)$/.test(node.textContent.trim()));
       if (!button) return null;
       const box = button.getBoundingClientRect();
-      return { top: box.top, bottom: box.bottom, viewport: window.innerHeight };
+      return { top: box.top, bottom: box.bottom, viewport: window.innerHeight, scrolled: window.scrollY };
     });
     if (!reachable) throw new Error('no Next button');
     if (reachable.bottom > reachable.viewport + 1 || reachable.top < 0) {
-      throw new Error(`Next is off screen: ${JSON.stringify(reachable)}`);
+      throw new Error(`Next is off screen from the top of the card: ${JSON.stringify(reachable)}`);
     }
+    process.stdout.write(`  Next sits ${Math.round(reachable.viewport - reachable.bottom)}px off the bottom with the card scrolled to its top\n`);
 
     // And the next card opens at its own top rather than where Next was.
     await next.click();
