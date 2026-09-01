@@ -12,7 +12,7 @@
 // Bump this on every change to the shell. The app is served cache-first, so a
 // stale version is not a slow update — it is a returning user permanently
 // looking at the old app while wondering where their changes went.
-const VERSION = 'v55';
+const VERSION = 'v56';
 const SHELL_CACHE = `shell-${VERSION}`;
 
 /**
@@ -74,6 +74,7 @@ const SHELL = [
   'js/screens/settings.js',
   'js/screens/phrases.js',
   'js/screens/grammar.js',
+  'js/screens/numbers.js',
   'js/screens/structure.js',
   'js/screens/notecards.js',
   'js/screens/gender-sort.js',

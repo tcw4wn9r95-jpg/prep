@@ -17,7 +17,7 @@
 
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadStages } from '../content.js';
 import { getLearnDeckStates, buildMixedSession, listMistakes, mistakeEntryKeys , flaggedCards } from '../store.js';
-import { DECKS, isDrillable, boxIndex, isStructure } from '../drill/cards.js';
+import { DECKS, isDrillable, boxIndex, isStructure, isNumberCard } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 
 const SESSION_SIZE = 12;
@@ -67,7 +67,12 @@ export async function render(root, { params, settings, navigate }) {
     { deck: DECKS.phrase, items: phrases, states: phraseStates },
     { deck: DECKS.grammar, items: grammar, states: grammarStates },
   ].map((group) => {
-    const drillable = group.items.filter((item) => isDrillable(item, group.deck.id));
+    // Number cards have their own screen now (`screens/numbers.js`) and are
+    // kept out of the daily mix. They were 147 of unit 2's 227 grammar items,
+    // so a unit-2 session was mostly numbers whatever else was due.
+    const drillable = group.items.filter(
+      (item) => isDrillable(item, group.deck.id) && !(group.deck.id === 'grammar' && isNumberCard(item)),
+    );
     return {
       ...group,
       // Distractors come from the whole deck even in a stage session: four

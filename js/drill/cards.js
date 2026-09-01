@@ -163,6 +163,28 @@ export const STRUCTURE_KINDS = ['wordorder', 'bracket', 'subclause'];
 export const isStructure = (item) => STRUCTURE_KINDS.includes(item?.kind);
 
 /**
+ * The number cards, which now have an exercise of their own.
+ *
+ * Two shapes, one subject. `numbers` shows the numeral and asks for the word;
+ * `heard` with `subject: 'number'` plays a recording and asks which number was
+ * said. They were built as separate kinds because they are built from different
+ * things — one from LOD's number entries, the other from clips — but to a
+ * learner they are the same lesson, and they were the same complaint.
+ *
+ * Why this predicate exists at all: unit 2's grammar was `numbers` (22 items)
+ * and `heard` (205), and 125 of those `heard` items are this subject. So two
+ * thirds of the unit's grammar deck was numbers, and `orderGrammar`'s interleave
+ * gave the 22-item kind half of the remaining turns on top of that. Reported as
+ * "lately I get too many number questions", which was an understatement.
+ *
+ * Grouped rather than deleted: the cards are good, there were simply far too
+ * many of them in one mixed session. `screens/numbers.js` drills them on
+ * purpose, and the two screens that drill the grammar deck leave them out.
+ */
+export const isNumberCard = (item) =>
+  item?.kind === 'numbers' || (item?.kind === 'heard' && item?.subject === 'number');
+
+/**
  * Every exercise kind pipeline/build-grammar.js emits.
  *
  * Used to build the `#/grammar/<kind>` filters, so each notecard that has a

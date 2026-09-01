@@ -18,7 +18,7 @@
 
 import { loadGrammar } from '../content.js';
 import { getLearnDeckStates, buildSession, listMistakes, mistakeEntryKeys , flaggedCards } from '../store.js';
-import { DECKS, isDrillable, boxIndex, isStructure, GRAMMAR_KINDS } from '../drill/cards.js';
+import { DECKS, isDrillable, boxIndex, isStructure, isNumberCard, GRAMMAR_KINDS } from '../drill/cards.js';
 import { runSession, nothingDue } from '../drill/engine.js';
 import { topicFor } from '../grammar-guide.js';
 
@@ -60,8 +60,13 @@ export async function render(root, { params, settings, navigate }) {
     flaggedCards(settings.playerId),
   ]);
 
+  // Number cards are drilled at #/numbers now, so the general deck leaves them
+  // out — they were two thirds of unit 2 and drowned everything else in it. An
+  // explicit `#/grammar/numbers` filter still reaches them, because the
+  // notecard's "practise this" button links to exactly that and a link that
+  // silently ran a different deck would be worse than no link.
   const drillable = everything.filter((item) => isDrillable(item, 'grammar'));
-  const all = filter ? drillable.filter(filter.match) : drillable;
+  const all = filter ? drillable.filter(filter.match) : drillable.filter((item) => !isNumberCard(item));
   const title = filter ? filter.title : 'Grammar';
   const again = filter ? `#/grammar/${params[0]}` : '#/grammar';
   // Back goes wherever this session was most likely started from: the

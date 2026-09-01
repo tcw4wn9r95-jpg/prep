@@ -102,13 +102,34 @@ export function orderGrammar(items) {
     list.sort((a, b) => (a.level === 'A1' ? 0 : 1) - (b.level === 'A1' ? 0 : 1) || sentenceLength(a) - sentenceLength(b));
   }
 
-  // Round-robin, in a fixed kind order so the sequence is the same on every
-  // device and both players walk the same path.
-  const queues = [...byKind.entries()].sort(([a], [b]) => KIND_ORDER.indexOf(a) - KIND_ORDER.indexOf(b)).map(([, list]) => list);
-  const ordered = [];
-  for (let round = 0; queues.some((queue) => round < queue.length); round += 1) {
-    for (const queue of queues) if (round < queue.length) ordered.push(queue[round]);
+  // Interleaved in proportion to each kind's size, in a fixed kind order so
+  // the sequence is the same on every device and both players walk the same
+  // path.
+  //
+  // It used to be a flat round-robin — one item per kind per round — and that
+  // is a bug in any unit whose kinds are different sizes, because a kind's
+  // *share of the turns* then has nothing to do with how many cards it has. It
+  // was reported as "lately I get too many number questions": unit 2 paired
+  // `numbers` (22 items) with `heard` (205), so the 22 took half the turns and
+  // came round nine times as often as anything in the other kind. Unit 8 has
+  // the same shape more mildly, `bracket` (200) against `inversion` (44).
+  //
+  // Each item is placed at `(position + 0.5) / size` through its own kind, and
+  // everything is merged on that fraction. A kind with 200 items emits one
+  // every 1/200 of the way and a kind with 44 one every 1/44, so the share
+  // tracks the pool — while every kind still lands inside the first per cent of
+  // the deck, which is what the round-robin was for: stopping 290 auxiliary
+  // cards monopolising the first sessions.
+  const queues = [...byKind.entries()].sort(([a], [b]) => KIND_ORDER.indexOf(a) - KIND_ORDER.indexOf(b));
+  const spread = [];
+  for (const [kind, list] of queues) {
+    const rank = KIND_ORDER.indexOf(kind);
+    list.forEach((item, at) => spread.push({ item, at: (at + 0.5) / list.length, rank }));
   }
+  // `rank` breaks ties so two kinds of identical size stay in KIND_ORDER rather
+  // than in whatever order the sort happened to leave them.
+  spread.sort((a, b) => a.at - b.at || a.rank - b.rank);
+  const ordered = spread.map((entry) => entry.item);
 
   // The unit comes from the data now (pipeline/build-grammar.js stamps it from
   // the single unit list), so a rule arrives when the path teaches it rather

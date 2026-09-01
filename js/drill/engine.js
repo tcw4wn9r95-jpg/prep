@@ -539,7 +539,20 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
     );
   }
 
-  const nextHolder = el('div');
+  // Sticky, so answering never pushes Next off the screen.
+  //
+  // Answering is the moment the card grows: the reveal, the feedback, the rule,
+  // the explain button and the translation all appear *above* this, adding
+  // several hundred pixels at the exact moment the button is wanted. Focusing
+  // it is supposed to bring it into view, and does in Chromium — but a
+  // programmatic focus on a button is not required to scroll, and on iOS
+  // Safari it does not, which is the reported bug.
+  //
+  // A sticky footer is the fix that does not depend on that: the button is on
+  // screen from the moment it appears, wherever the card is scrolled to. The
+  // drill routes are focus routes — `FOCUS_ROUTES` in main.js hides the tab bar
+  // — so `bottom: 0` has nothing to clear.
+  const nextHolder = el('div', { class: 'drill__next' });
 
   function nextButton(entry) {
     const last = index >= queue.length - 1;

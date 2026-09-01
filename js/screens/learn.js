@@ -158,14 +158,26 @@ export async function render(root, { settings, navigate }) {
       unit: 'exercise',
       recv: grammarRecv,
       prod: grammarProd,
-      note: 'Gender, n-rule, adjectives, the perfect, word order, numbers, the dative',
+      note: 'Gender, n-rule, adjectives, the perfect, word order, the dative',
     }),
     el(
       'div',
-      { class: 'row', style: { gap: 'var(--s3)', marginBlockStart: 'var(--s3)' } },
+      // Wraps, because this row is four shortcuts now rather than three. Four
+      // across a 360px screen leaves each about 70px, which turns every label
+      // into three wrapped words; a 40% basis makes it two rows of two.
+      { class: 'row', style: { gap: 'var(--s3)', marginBlockStart: 'var(--s3)', flexWrap: 'wrap', alignItems: 'stretch' } },
+      // Numbers used to be mixed into the grammar drill, where they were two
+      // thirds of unit 2 and came round far too often. They are a card of their
+      // own now: read the numeral and say it, or hear it and pick it.
       el(
         'a',
-        { class: 'card', href: '#/gender-sort', style: { display: 'block', flex: 1 } },
+        { class: 'card', href: '#/numbers', style: { display: 'block', flex: '1 1 40%' } },
+        el('p', { style: { fontSize: '22px', textAlign: 'center' } }, '🔢'),
+        el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Numbers'),
+      ),
+      el(
+        'a',
+        { class: 'card', href: '#/gender-sort', style: { display: 'block', flex: '1 1 40%' } },
         el('p', { style: { fontSize: '22px', textAlign: 'center' } }, '⚤'),
         el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Gender Sort'),
       ),
@@ -174,13 +186,13 @@ export async function render(root, { settings, navigate }) {
       // from the deck's own dative cards.
       el(
         'a',
-        { class: 'card', href: '#/forms', style: { display: 'block', flex: 1 } },
+        { class: 'card', href: '#/forms', style: { display: 'block', flex: '1 1 40%' } },
         el('p', { style: { fontSize: '22px', textAlign: 'center' } }, '🔁'),
         el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Change the word'),
       ),
       el(
         'a',
-        { class: 'card', href: '#/reference', style: { display: 'block', flex: 1 } },
+        { class: 'card', href: '#/reference', style: { display: 'block', flex: '1 1 40%' } },
         el('p', { style: { fontSize: '22px', textAlign: 'center' } }, '📖'),
         el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Cheat sheet'),
       ),
