@@ -436,8 +436,10 @@ test('cards: Today cannot demand more structure than a session guarantees', () =
   // the day. That is the same failure as the frozen stage counters, one level
   // up, and it is invisible until someone reports it.
   const fs = require('node:fs');
+  // In `drill/plan.js` since the session's composition was split out of the
+  // screen — this test caught that move, which is the whole point of it.
   const reserve = Number(
-    fs.readFileSync(path.join(ROOT, 'app', 'js', 'screens', 'session.js'), 'utf8').match(/STRUCTURE_RESERVE = (\d+)/)?.[1],
+    fs.readFileSync(path.join(ROOT, 'app', 'js', 'drill', 'plan.js'), 'utf8').match(/STRUCTURE_RESERVE = (\d+)/)?.[1],
   );
   const goal = Number(
     fs.readFileSync(path.join(ROOT, 'app', 'js', 'screens', 'today.js'), 'utf8').match(/STRUCTURE_CARDS_GOAL = (\d+)/)?.[1],

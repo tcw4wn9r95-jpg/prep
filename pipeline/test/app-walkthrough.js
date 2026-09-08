@@ -1867,10 +1867,27 @@ async function main() {
     // comes back inside the same session, and answering it reveals the right
     // option. So remember what each prompt's answer turned out to be, and when
     // a prompt comes round again, answer it properly.
+    // The session is re-opened when it runs out rather than followed past its
+    // own end. `Finish` closes a session onto its summary screen, which has no
+    // options on it — clicking it and then waiting for the next card is how
+    // this step timed out, and it only did so on the runs where the
+    // translation had not appeared before the twelfth card. A fresh session
+    // has the same decks and the same cache, so nothing is lost by restarting.
     const answers = new Map();
     let shown = false;
-    for (let guard = 0; guard < 12 && !shown; guard += 1) {
-      await page.waitForSelector('.options .option', { timeout: 5000 });
+    for (let guard = 0; guard < 16 && !shown; guard += 1) {
+      const ready = await page
+        .waitForSelector('.options .option', { timeout: 5000 })
+        .then(() => true)
+        .catch(() => false);
+      if (!ready) {
+        await openFresh('#/grammar');
+        const restarted = await page
+          .waitForSelector('.options .option', { timeout: 5000 })
+          .then(() => true)
+          .catch(() => false);
+        if (!restarted) throw new Error('the grammar deck offered no card to answer');
+      }
       const prompt = (await page.locator('#screen .card').first().innerText()).trim();
       const known = answers.get(prompt);
       const options = page.locator('.options .option');
@@ -1892,9 +1909,12 @@ async function main() {
 
       const right = await page.locator('.options .option.is-correct').first().innerText().catch(() => '');
       if (right.trim()) answers.set(prompt, right.trim().split('\n').pop().trim());
-      const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
-      if (!(await next.count())) break;
-      await next.first().click();
+
+      // Only `Next`. `Finish` is the last card of a session and leads to the
+      // summary, which the loop above restarts from.
+      const next = page.getByRole('button', { name: /^Next$/ });
+      if (await next.count()) await next.first().click();
+      else await openFresh('#/grammar');
     }
     if (!shown) throw new Error('no translation appeared on a correct answer');
 

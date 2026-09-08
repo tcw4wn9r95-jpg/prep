@@ -3972,3 +3972,101 @@ nothing at all.
 two in `flags.test.js` on a reported card leaving the mistakes list) ·
 `validate` PASS, 251 warnings, unchanged · `npm run walkthrough` with three new
 steps · `sw.js` → `v56`.
+
+# Follow-up 36 — how much of a session is one thing
+
+> "I see a lot of questions about guessing the gender, let's not over index on
+> this. I'd rather improve my vocabulary and learn how to properly conjugate as
+> my goal is the exam"
+
+The third report in a row about **proportion** rather than about any individual
+card. Numbers, then gender — and in between, found while measuring this one, a
+whole unit whose sessions were silently two thirds shorter than the limit.
+
+## Measured first
+
+A simulation of forty unit sessions against the shipped decks, before changing
+anything:
+
+| unit 3 | |
+| --- | --- |
+| gender | **53%** |
+| vocabulary | 47% |
+| verbs | **0%** |
+
+Both halves of the complaint in one table. Unit 3's only grammar kind is
+gender, and gender is 1,134 cards — a third of the whole grammar deck — against
+the unit's 150 new words. It did not win a share of the general pool; it *was*
+the general pool. And the path has 60 verbs at stage 2, none at stage 3, then
+35 at stage 4, so the unit contained no conjugation at all.
+
+## Three changes
+
+**A cap, as the mirror of the reserve.** `buildMixedSession` could already
+guarantee a group a *minimum*; it had no way to express a maximum. Gender is
+now handed in as its own group — the same trick sentence structure already
+used, sharing the grammar deck's Leitner rows while being counted separately —
+and capped at 2 of 12. A cap gives its slots away rather than shrinking the
+session: the freed slots fall through to whatever else is due, which in every
+unit is mostly vocabulary. Nothing was reallocated by hand.
+
+**Verbs carry into a unit that has none of its own.** Vocabulary is a list that
+moves on; the six present-tense endings are a skill that has to keep being
+used. A unit with no verb step is a gap in the practice, not a week off from
+conjugation.
+
+**And a reserve that finds nothing no longer shortens the day.** `generalLimit`
+held back a slot per reserved card whether or not the reserve could fill it.
+Unit 3 has no sentence structure at all, and once gender moved to its own
+capped group its grammar group was empty too — six of twelve slots held for two
+groups with nothing to put in them. Unit-3 sessions had been **six cards long**,
+and had been since the reserves were introduced. Unclaimed slots now go back to
+the general pool, still bound by the day's new-word allowance so the top-up
+cannot become a back door for extra new words.
+
+## What the same simulation says now
+
+| unit 3 | before | after |
+| --- | --- | --- |
+| vocabulary | 47% | **57%** |
+| verbs | 0% | **26%** |
+| gender | 53% | **17%** |
+| cards per session | 6.0 | **10.9** |
+
+## Two things the measurement caught that reasoning had not
+
+**Carrying verbs in unconditionally is the same bug pointing the other way.**
+Applied to every unit it took unit 7 to 49% verbs — revision crowding out the
+unit's own material. Restricted to units with no verbs of their own.
+
+**Even then, carried verbs took over the unit they were meant to support.** New
+cards are drawn in path order, so every carried verb — being from an earlier
+stage — sorts ahead of every word the unit is actually teaching. Unit 3 came out
+47% verbs against 40% vocabulary, inverting the unit whose whole point is 150
+everyday words. Carried verbs are capped at 3; a unit's own verbs are not,
+because there the verbs *are* the material.
+
+Neither was predictable from the code. Both took a run of the real decks.
+
+## Why the composition moved out of the screen
+
+`screens/session.js` cannot be imported outside a browser, so the only way to
+see a session's shape was to sit through one — which is why three proportion
+bugs shipped. It is `app/js/drill/plan.js` now, pure and dependency-free, and
+`mix.test.js` walks thirty real sessions per unit and asserts on the result.
+The existing guard tying `STRUCTURE_CARDS_GOAL` to `STRUCTURE_RESERVE` caught
+the move by failing, which is exactly what it was written for.
+
+## What was deliberately not done
+
+Gender was not cut from the deck. der/déi/dat is genuinely marked under
+Morphosyntax, the cards are sound, and there were simply far too many at once —
+a ceiling is the honest fix, and `#/gender-sort` and `#/grammar/gender` still
+reach all 1,134 on purpose. The structure reserve was not lowered either: it is
+tied to Today's daily goal and to the rubric line an English speaker actually
+loses marks on.
+
+## Verification
+
+`npm test` 359 (7 new in `mix.test.js`) · `validate` PASS, 251 warnings,
+unchanged · `npm run walkthrough` · `sw.js` → `v57`.
