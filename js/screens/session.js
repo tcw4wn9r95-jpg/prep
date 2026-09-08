@@ -17,30 +17,9 @@
 
 import { loadVocab, loadVerbs, loadPhrases, loadGrammar, loadStages } from '../content.js';
 import { getLearnDeckStates, buildMixedSession, listMistakes, mistakeEntryKeys , flaggedCards } from '../store.js';
-import { DECKS, isDrillable, boxIndex, isStructure, isNumberCard } from '../drill/cards.js';
+import { boxIndex } from '../drill/cards.js';
+import { unitGroups, SESSION_SIZE } from '../drill/plan.js';
 import { runSession, nothingDue } from '../drill/engine.js';
-
-const SESSION_SIZE = 12;
-// Grammar's guaranteed share of every session — "mandatory every day" made
-// true by construction rather than by hoping it wins the shuffle against a
-// much bigger vocab+verb+phrase pool. A quarter of the session, not all of
-// it: this deck is a complement to the others, not a replacement.
-const GRAMMAR_RESERVE = 3;
-
-/**
- * Sentence structure, guaranteed in every mixed session.
- *
- * Word order is the thing an English speaker gets wrong most and the thing
- * Morphosyntax is scored on, so it cannot be left to win a shuffle against a
- * 4,000-item pool. The grammar reserve alone does not do it: grammar is nine
- * kinds now, and three reserved cards spread across all of them means a
- * structure card turns up about a third of the time.
- *
- * These are drawn from the same daily new-word budget as everything else, so
- * this changes *which* cards a session contains, never how many new things it
- * introduces.
- */
-const STRUCTURE_RESERVE = 3;
 
 export async function render(root, { params, settings, navigate }) {
   const stage = params?.[0] ? Number(params[0]) : null;
@@ -61,57 +40,39 @@ export async function render(root, { params, settings, navigate }) {
 
   // A few LOD entries carry no English gloss, so there is nothing to ask about
   // them in either direction. They stay in the data and out of the drill.
-  const groups = [
-    { deck: DECKS.vocab, items: vocab, states: vocabStates },
-    { deck: DECKS.verb, items: verbs, states: verbStates },
-    { deck: DECKS.phrase, items: phrases, states: phraseStates },
-    { deck: DECKS.grammar, items: grammar, states: grammarStates },
-  ].map((group) => {
-    // Number cards have their own screen now (`screens/numbers.js`) and are
-    // kept out of the daily mix. They were 147 of unit 2's 227 grammar items,
-    // so a unit-2 session was mostly numbers whatever else was due.
-    const drillable = group.items.filter(
-      (item) => isDrillable(item, group.deck.id) && !(group.deck.id === 'grammar' && isNumberCard(item)),
-    );
-    return {
-      ...group,
-      // Distractors come from the whole deck even in a stage session: four
-      // options drawn from twenty-eight starter words would repeat constantly.
-      pool: drillable,
-      items: stage === null ? drillable : drillable.filter((item) => item.stage === stage),
-    };
+  //
+  // What a session is made of lives in `drill/plan.js` — the reserves, the
+  // gender cap, and which verbs a unit may reach for. It is out of this screen
+  // because it is the part that keeps being wrong and the part that could not
+  // be tested from here: this module cannot be imported outside a browser, so
+  // the only way to see a session's shape was to sit through one.
+  const { groups, options } = unitGroups({
+    vocab,
+    verbs,
+    phrases,
+    grammar,
+    states: { vocab: vocabStates, verb: verbStates, phrase: phraseStates, grammar: grammarStates },
+    stage,
   });
 
   const named = stages.find((candidate) => candidate.n === stage) ?? null;
   const title = named ? named.title : 'Practice';
   const again = stage === null ? '#/session' : `#/session/${stage}`;
-  const total = groups.reduce((sum, group) => sum + group.items.length, 0);
+  // The four real decks; the structure and gender groups that follow them are
+  // slices of grammar and would double-count.
+  const decks = groups.slice(0, 4);
+  const total = decks.reduce((sum, group) => sum + group.items.length, 0);
 
-  // Grammar now carries a stage too (content.js `withGrammarOrder`), keyed to
-  // its level — so a stage-4 or stage-5 session includes the grammar of that
-  // level rather than excluding it for want of the field, and stages 1–3, the
-  // sentence skeleton, stay pure vocabulary. The reserve still guarantees
-  // grammar a share of the general session.
-  // Sentence structure is its own reserved group so it cannot be crowded out
-  // by the other six grammar kinds sharing one deck id.
-  const structureGroup = {
-    deck: DECKS.grammar,
-    items: groups[3].items.filter(isStructure),
-    states: grammarStates,
-    pool: groups[3].pool,
-    reserveId: 'structure',
-  };
-
-  const plan = buildMixedSession([...groups, structureGroup], {
+  const plan = buildMixedSession(groups, {
     limit: SESSION_SIZE,
-    reserve: { grammar: GRAMMAR_RESERVE, structure: STRUCTURE_RESERVE },
+    ...options,
     mistakes,
     flagged,
   });
   if (plan.length === 0) return nothingDue({ root, title, back: '#/learn', navigate, total });
 
   const boxes = new Map();
-  for (const group of groups) boxIndex(group.deck.id, group.states, boxes);
+  for (const group of decks) boxIndex(group.deck.id, group.states, boxes);
 
   return runSession({
     root,

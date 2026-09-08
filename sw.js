@@ -12,7 +12,7 @@
 // Bump this on every change to the shell. The app is served cache-first, so a
 // stale version is not a slow update — it is a returning user permanently
 // looking at the old app while wondering where their changes went.
-const VERSION = 'v56';
+const VERSION = 'v57';
 const SHELL_CACHE = `shell-${VERSION}`;
 
 /**
@@ -88,6 +88,7 @@ const SHELL = [
   'js/anthropic.js',
   'js/drill/engine.js',
   'js/drill/cards.js',
+  'js/drill/plan.js',
   'js/drill/inputs.js',
   'js/drill/match.js',
   'js/drill/hint.js',

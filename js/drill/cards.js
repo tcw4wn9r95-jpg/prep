@@ -185,6 +185,17 @@ export const isNumberCard = (item) =>
   item?.kind === 'numbers' || (item?.kind === 'heard' && item?.subject === 'number');
 
 /**
+ * The gender cards — der, déi or dat.
+ *
+ * Named because they are capped rather than merely counted. There are 1,134 of
+ * them, a third of the grammar deck, because one is generated per noun that
+ * has an article — which is a fact about how many nouns LOD has, not a
+ * decision about how much of a session gender deserves. In unit 3, whose only
+ * grammar kind is this one, that came to 53% of every session.
+ */
+export const isGender = (item) => item?.kind === 'gender';
+
+/**
  * Every exercise kind pipeline/build-grammar.js emits.
  *
  * Used to build the `#/grammar/<kind>` filters, so each notecard that has a

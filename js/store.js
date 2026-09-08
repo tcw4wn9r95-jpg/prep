@@ -803,8 +803,19 @@ export function buildSession(items, states, { deckId, ...options } = {}) {
  * true by luck against a 4,300-item vocab+verb+phrase pool that usually has
  * more due — the reserved deck could go days without appearing at all.
  *
+ * `caps` is the opposite guarantee and exists for the opposite failure. A
+ * group with far more due than anything else does not merely get its share of
+ * the general pool, it *is* the general pool. Unit 3's only grammar kind is
+ * gender, which is 1,134 cards — a third of the whole grammar deck and eight
+ * times the unit's 150 new words — so a measured unit-3 session came out 53%
+ * gender. Reported as "I see a lot of questions about guessing the gender,
+ * let's not over index on this". A cap is a ceiling on one group's slots; the
+ * freed slots fall through to whatever else is due, which is the vocabulary
+ * the learner asked for.
+ *
  * @param {Array<{deck?: object, pool?: Array, items: Array, states: {recv: Map, prod: Map}}>} groups
  * @param {Record<string, number>} [options.reserve] deck id → minimum cards
+ * @param {Record<string, number>} [options.caps] reserve id → maximum cards
  * @param {Set<string>} [options.mistakes] entry keys (`mistakeEntryKey`) of cards
  *   currently in the mistakes list — see the note above `STALE_REVIEW_SAMPLE`.
  */
@@ -815,6 +826,7 @@ export function buildMixedSession(
     newTarget = newSessionTarget(limit),
     now = Date.now(),
     reserve = {},
+    caps = {},
     mistakes = EMPTY_SET,
     // Cards the player has reported, as `deckId:itemId`. Filtered here rather
     // than in each of the five screens that build a session, so one rule
@@ -898,13 +910,33 @@ export function buildMixedSession(
    */
   const entryKey = (entry) => `${entry.deck?.id ?? ''}:${entry.strand}:${entry.item.id}`;
   const taken = new Set();
+
+  // How many slots each capped group has used. A capped group is passed in as
+  // its own group with its own `reserveId`, the same way sentence structure
+  // is, so that it can be counted separately while sharing a deck and its
+  // Leitner rows.
+  const used = {};
+  const capped = (entry) => {
+    const id = entry.reserveId;
+    return caps[id] !== undefined && (used[id] ?? 0) >= caps[id];
+  };
+  const count = (entry) => {
+    const id = entry.reserveId;
+    if (caps[id] !== undefined) used[id] = (used[id] ?? 0) + 1;
+  };
+
   const take = (list, max) => {
     const out = [];
     for (const entry of list) {
       if (out.length >= max) break;
       const key = entryKey(entry);
       if (taken.has(key)) continue;
+      // Skipped rather than stopping the loop: the next entry may belong to an
+      // uncapped group and should still get this slot. A cap must give its
+      // slots away, not shrink the session.
+      if (capped(entry)) continue;
       taken.add(key);
+      count(entry);
       out.push(entry);
     }
     return out;
@@ -930,16 +962,37 @@ export function buildMixedSession(
       (entry) => entry.reserveId === deckId && !taken.has(entryKey(entry)),
     );
     for (const entry of candidates.slice(0, min)) {
+      // A group can be both reserved and capped — the cap wins, because a
+      // reserve is a floor on a deck the learner should meet daily and a cap
+      // is a ceiling on one they have said they are seeing too much of.
+      if (capped(entry)) continue;
       if (entry.isNew) {
         if (freshBudget <= 0) continue;
         freshBudget -= 1;
       }
       reserved.push(entry);
       taken.add(entryKey(entry));
+      count(entry);
     }
   }
 
-  const chosen = [...general, ...reserved];
+  // A reserve that found nothing must not shrink the session.
+  //
+  // `generalLimit` holds back a slot per reserved card whether or not the
+  // reserve can fill it, and some units simply have no cards of a reserved
+  // kind: unit 3 has no sentence structure at all, and once gender moved to
+  // its own capped group its grammar group was empty too. Six of the twelve
+  // slots were being held for two groups that had nothing to put in them, so
+  // a unit-3 session came out six cards long — exposed by the gender cap, but
+  // wrong since the reserves were introduced. Anything still unclaimed goes
+  // back to the general pool in the usual order.
+  const shortfall = limit - general.length - reserved.length;
+  // Still bound by the day's new-word allowance: the point is to fill slots
+  // that were being wasted, not to slip extra new words past `newTarget`.
+  const spareFresh = fresh.filter((entry) => !taken.has(entryKey(entry))).slice(0, Math.max(0, freshBudget));
+  const topUp = shortfall > 0 ? take([...mistakeReviews, ...spareFresh, ...throttledStale], shortfall) : [];
+
+  const chosen = [...general, ...reserved, ...topUp];
   shuffle(chosen, random);
   return chosen;
 }
