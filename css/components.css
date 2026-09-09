@@ -1403,9 +1403,35 @@
    See SPEAKING_READY_WORDS in screens/speaking.js. */
 .stack.is-early { opacity: 0.72; }
 
+/* --- a drill card's own stack -------------------------------------------
+   Tighter than `stack--lg`, which is the right rhythm for a page of cards to
+   browse and the wrong one for a single question you have to answer: at 24px
+   the five gaps between prompt, instruction, options, Amelie and the report
+   link came to 120px, which is most of what pushed the answer options off an
+   iPhone screen. This is one object, not a list of them. */
+
+.drill__body { gap: var(--s3); }
+
+/* The hint and the report link, side by side under the card. Both were
+   full-width rows of their own, which is a lot of screen for two footnotes.
+   `align-items: start` so a one-line link does not stretch to the height of an
+   opened hint, and the margins the two carried as stacked blocks are dropped —
+   the row's own gap does that job now. */
+.drill__aside { align-items: flex-start; gap: var(--s3); }
+.drill__aside > .drill__hint { margin-block-start: 0; align-items: flex-start; text-align: start; flex: 1; }
+.drill__aside > .drill__hint .drill__hint-text { text-align: start; }
+/* `margin-inline-start: auto` rather than relying on `row--between`: the hint
+   is in the DOM from the start but stays hidden until a word safe to gloss is
+   found, and a hidden flex child takes no space — so space-between put the
+   report link on the *left* of every card that had no hint. This pins it to
+   the end whether the hint is there or not. */
+.drill__aside > .flag { margin-block-start: 0; margin-inline-start: auto; text-align: end; }
+.drill__aside > .flag .flag__open { padding-inline: 0; }
+
 /* --- the rule, before the exercise --------------------------------------
-   A teacher explains, then sets the question. Open on a first meeting,
-   collapsed on a review — see `teachBefore` in drill/engine.js. */
+   A teacher explains, then sets the question. Shut on every card — see
+   `teachBefore` in drill/engine.js for why opening it automatically made the
+   question unanswerable without scrolling. */
 
 .drill__teach {
   margin-block: var(--s2) var(--s3);
