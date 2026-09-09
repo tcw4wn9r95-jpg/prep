@@ -19,7 +19,7 @@ import { Clip, unlock } from '../audio.js';
 import { getSentenceExplanation, saveSentenceExplanation, recordLearnResult, recordLearnSession, todayProgress, recordMistake, clearMistake, goalCards, POINTS, touchStreak, breaksTakenToday, markBreakTaken, breaksEnabled, flagCard } from '../store.js';
 import { requestExplanation } from '../sync.js';
 import { EXPLAIN_PROMPT_VERSION } from '../anthropic.js';
-import { buildCard, GRAMMAR_RULES, joinArticle, taskFor, factsFor, isStructure, explainTarget } from './cards.js';
+import { buildCard, GRAMMAR_RULES, joinArticle, taskFor, factsFor, isStructure, isNumberCard, explainTarget } from './cards.js';
 import { loadGlossary } from '../content.js';
 import { hintFor } from './hint.js';
 import { topicFor } from '../grammar-guide.js';
@@ -107,7 +107,23 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
 
   const amelie = new Amelie({ size: 'sm', bubble: true });
   const progressFill = el('div', { class: 'progress__fill', style: { width: '0%' } });
-  const body = el('div', { class: 'stack stack--lg' });
+  // `drill__body`, not `stack--lg`: see the note beside it in components.css.
+  // A question and its options are one object to answer, not a list of cards
+  // to browse, and the browsing rhythm cost 120px of a phone screen.
+  const body = el('div', { class: 'stack drill__body' });
+
+  /**
+   * Amelie, and her seat, which she only takes when she has something to say.
+   *
+   * She is silent on an unanswered card — `say(null)` hides the bubble but the
+   * figure still held 45px of a screen the answer options were being pushed
+   * off. She is a reaction, not furniture: she appears with the feedback and
+   * goes when the next question does, which is also when there is room again.
+   */
+  function speak(line, tone) {
+    amelie.say(line, tone);
+    amelie.el.hidden = !line;
+  }
   const reference = referenceSheet();
 
   root.append(
@@ -148,7 +164,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
 
     // Clear the previous card's feedback. Leaving it up makes Amelie look like
     // she is commenting on a question that has not been answered yet.
-    amelie.say(null, 'idle');
+    speak(null, 'idle');
 
     progressFill.style.width = `${(answeredCount / Math.max(queue.length, 1)) * 100}%`;
 
@@ -220,18 +236,25 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
       prompt,
       el('p', { class: 'drill__instruction' }, card.instruction),
       input.el,
-      hint,
       amelie.el,
       nextHolder,
-      // Last on the card, because it is a footnote about the exercise rather
-      // than part of doing it. `deck.id` and `item.id` together are the key
-      // the deck's own pool filter looks the flag up by.
-      flagButton({
-        playerId: settings.playerId,
-        source: deck.id,
-        id: card.item.id,
-        label: flagLabel(card),
-      }),
+      // The hint and the report link share a row. Both are footnotes about the
+      // exercise rather than part of doing it, and each on its own line cost
+      // ~100px of a screen the answer options were being pushed off. Side by
+      // side they read as what they are: the two things you can ask of a card
+      // you are stuck on. `deck.id` and `item.id` together are the key the
+      // deck's own pool filter looks the flag up by.
+      el(
+        'div',
+        { class: 'row row--between drill__aside' },
+        hint,
+        flagButton({
+          playerId: settings.playerId,
+          source: deck.id,
+          id: card.item.id,
+          label: flagLabel(card),
+        }),
+      ),
     );
     nextHolder.hidden = true;
     fill(nextHolder, nextButton(entry));
@@ -516,14 +539,37 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
    * it is collapsed — still one tap away, but taking it is a decision, and
    * re-reading the rule every time would replace the recall the drill is for.
    */
+  /**
+   * The rule behind this kind of card, offered above the question.
+   *
+   * Shut by default, on every card.
+   *
+   * It used to open itself the first time you met an item, which sounds
+   * helpful and measured terribly: the block is 308-408px, so a grammar card
+   * came to 1,209-1,291px against an iPhone's 874, and the *options* were
+   * pushed off the bottom of the screen. The question could not be answered
+   * without scrolling past the explanation of it. Reported as "the question
+   * cards are too high requiring the user to scroll down".
+   *
+   * The teaching is not lost, it is one tap away and named — the summary says
+   * which rule it is, so the offer is legible without being taken. A learner
+   * who wants the rule can open it; one who wants to answer the question can
+   * see the question.
+   */
   function teachBefore(card) {
-    const topic = topicFor(card.item?.kind);
+    // `heard` maps to the numbers topic, which was right when 125 of its 205
+    // cards were numbers. They are drilled at #/numbers now, so what is left
+    // under this kind is weekdays, months and clock times — and heading those
+    // "The rule — Numbers" is simply false. There is no rule to state for
+    // recognising Mëttwoch; it is vocabulary, and the card says so itself.
+    const spurious = card.item?.kind === 'heard' && !isNumberCard(card.item);
+    const topic = spurious ? null : topicFor(card.item?.kind);
     if (!topic) return null;
     const first = (boxes.get(`${card.deck.id}:${card.strand}:${card.item.id}`) ?? 0) === 0;
 
     return el(
       'details',
-      { class: 'drill__teach', open: first ? true : null },
+      { class: 'drill__teach' },
       el('summary', {}, first ? `The rule — ${topic.title}` : 'Remind me of the rule'),
       el('p', { class: 'drill__teach-rule' }, topic.rule),
       ...topic.points.slice(0, 2).map((point) => el('p', { class: 'drill__teach-point' }, ...emphasise(point))),
@@ -642,7 +688,7 @@ export function runSession({ root, plan, deck: sessionDeck, pool: sessionPool, b
         : result.partial
           ? pickLine(LINES.partial)
           : pickLine(LINES.correct);
-    amelie.say(line, tone);
+    speak(line, tone);
 
     if (!result.correct) scheduleRetest(entry);
 

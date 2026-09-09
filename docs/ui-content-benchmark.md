@@ -4070,3 +4070,71 @@ loses marks on.
 
 `npm test` 359 (7 new in `mix.test.js`) · `validate` PASS, 251 warnings,
 unchanged · `npm run walkthrough` · `sw.js` → `v57`.
+
+# Follow-up 37 — a question you can answer without scrolling
+
+> "The question cards are too high requiring the user to scroll down. Fix the
+> ui so that questions all fit on the iPhone 17 screen. If there are rules make
+> them collapsed by default"
+
+## Measured first, on the phone in question
+
+iPhone 17 is a 402×874 logical viewport. Every drill route, before touching
+anything:
+
+| route | page height | answer options |
+| --- | --- | --- |
+| `#/grammar` | 1209px | **56px below the fold** |
+| `#/numbers` | 1291px | **56px below the fold** |
+| `#/grammar/dative` | 1236px | **18px below the fold** |
+| `#/grammar/gender` | 1206px | fits |
+| `#/vocab`, `#/verbs` | 874–886px | fits |
+
+The worst of it is not that the page scrolled. It is that on three routes the
+**options were off the bottom of the screen** — the question could not be
+answered without first scrolling past the explanation of it.
+
+## The rule was 308–408px of that, and it opened itself
+
+`teachBefore` opened the rule automatically the first time you met an item.
+Well-intentioned and exactly backwards: the one card where you have least
+context is the one where the block pushes the answers out of sight. Shut on
+every card now. Nothing is lost — the summary still names the rule, so the
+offer is legible without being taken, and one tap opens it.
+
+That single change took `#/grammar` from 1209px to 915px and put every route's
+options back on screen.
+
+## Three smaller trims for the rest
+
+- **The drill body used the browsing rhythm.** `stack--lg` is a 24px gap, right
+  for a page of cards to skim and wrong for one question to answer: five gaps
+  came to 120px. `drill__body` is 12px. A question and its options are one
+  object, not a list.
+- **Amelie held a seat while silent.** `say(null)` hides her bubble, but the
+  figure still took 45px on every unanswered card. She is a reaction, not
+  furniture; she appears with the feedback, when there is room again.
+- **The hint and the report link had a full-width row each.** ~100px for two
+  footnotes. They share a line now, which also reads better: the two things you
+  can ask of a card you are stuck on.
+
+## Result
+
+All twelve drill routes fit 402×874 with nothing below the fold — and fit
+393×852 (iPhone 15/16) too, so the fix is not tuned to one handset.
+
+## A wrong label the collapse made obvious
+
+With the rule reduced to its summary, `#/grammar` read **"The rule — Numbers"**
+above a card asking *"Listen. Which day is said?"*. `heard` maps to the numbers
+topic, which was correct when 125 of its 205 cards were numbers — but those
+moved to `#/numbers` in Follow-up 35, so what is left under that kind is
+weekdays, months and clock times. There is no rule to state for recognising
+`Mëttwoch`; it is vocabulary. Those cards get no rule block at all now.
+
+## Verification
+
+`npm test` 359 · `validate` PASS, 251 warnings, unchanged · `npm run
+walkthrough` with a new step that measures all twelve drill routes against the
+viewport and fails on any option below the fold or any rule that opened itself
+· walkthrough viewport moved to iPhone 17's 402×874 · `sw.js` → `v58`.

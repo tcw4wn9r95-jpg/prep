@@ -27,8 +27,10 @@ const paths = require('../lib/paths');
 const APP_DIR = path.join(paths.ROOT, 'app');
 const EXECUTABLE = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 
-// iPhone 15/16 logical viewport.
-const VIEWPORT = { width: 393, height: 852 };
+// iPhone 17 logical viewport — the phone this is actually used on.
+// The drill cards are measured against it by "a question fits on the screen
+// without scrolling"; they also fit the shorter 393x852 of an iPhone 15/16.
+const VIEWPORT = { width: 402, height: 874 };
 const DPR = 3;
 
 const MIME = {
@@ -1948,19 +1950,24 @@ async function main() {
     // question". `.screen` sets no overflow, so the window is the scroller and
     // the Next button sits below the fold once the feedback, the rule and the
     // explanation have all appeared under the options.
-    // The grammar deck specifically. Measured on a 390x844 phone, its answered
-    // cards run 1300-1500px against an 844px viewport, because the feedback,
-    // the rule, the explanation, the hint, Amelie and the report link all stack
-    // under the options. Vocabulary cards mostly fit, so testing there passes
-    // whether the fix is present or not — which is exactly what the first
-    // version of this step did.
+    //
+    // The tall state is *created* rather than hoped for. This step used to
+    // require the answered card to be 200px past the viewport and bail if it
+    // was not — which was true when the rule opened itself, and stopped being
+    // true once cards were made to fit (Follow-up 37). How far an answered card
+    // overruns now depends on which card the deck happens to deal: 86px on one
+    // run, 133px on another. Chasing that with a threshold is measuring the
+    // deck, not the layout. Opening the rule adds a deterministic 300-400px,
+    // and it is a real state — someone reading the rule while they answer.
     await clearLearn();
-    await openFresh('#/grammar');
+    await openFresh('#/grammar/gender'); // always carries a rule to open
     await page.waitForSelector('.options .option', { timeout: 5000 });
+    await page.locator('.drill__teach > summary').first().click();
+    await page.waitForTimeout(200);
     await page.locator('.options .option').first().click();
 
-    const tall = await page.evaluate(() => document.documentElement.scrollHeight > window.innerHeight + 200);
-    if (!tall) throw new Error('this card fits on screen, so the step is not testing anything');
+    const over = await page.evaluate(() => document.documentElement.scrollHeight - window.innerHeight);
+    if (over < 200) throw new Error(`the card is only ${over}px taller than the screen, so the step is not testing anything`);
 
     const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
     await next.waitFor({ state: 'visible', timeout: 5000 });
@@ -2430,6 +2437,85 @@ async function main() {
     await page.goto(`${base}#/journey`, { waitUntil: 'networkidle' });
     await shot('15-journey-dark');
     await page.emulateMedia({ colorScheme: 'light' });
+  });
+
+  await step('an unanswered question fits the phone screen, with the rule shut', async () => {
+    // Reported as "the question cards are too high requiring the user to
+    // scroll down ... If there are rules make them collapsed by default".
+    // Measured at the time on this viewport: a grammar card was 1,209px
+    // against 874, and the answer options were 56px *below the fold* — the
+    // question could not be answered without scrolling past the explanation of
+    // it, because the rule block opened itself and is 308-408px tall.
+    //
+    // Every drill route, not the one that was reported: the same card renderer
+    // serves all of them and the next deck to grow a taller prompt would
+    // reintroduce this silently.
+    const routes = [
+      '#/grammar',
+      '#/numbers',
+      '#/vocab',
+      '#/verbs',
+      '#/phrases',
+      '#/grammar/gender',
+      '#/grammar/nrule',
+      '#/grammar/adjective',
+      '#/grammar/wordorder',
+      '#/grammar/perfect-aux',
+      '#/grammar/dative',
+      '#/grammar/inversion',
+    ];
+    const tall = [];
+    const hidden = [];
+    const opened = [];
+
+    for (const route of routes) {
+      await clearLearn();
+      await openFresh(route);
+      const ready = await page
+        .waitForSelector('.options .option', { timeout: 6000 })
+        .then(() => true)
+        .catch(() => false);
+      if (!ready) continue; // a typed card or an empty deck — nothing to measure
+
+      const m = await page.evaluate(() => {
+        const options = document.querySelectorAll('.options .option');
+        const last = options[options.length - 1];
+        const teach = document.querySelector('.drill__teach');
+        return {
+          page: document.documentElement.scrollHeight,
+          viewport: window.innerHeight,
+          lastOptionBottom: last ? last.getBoundingClientRect().bottom : null,
+          ruleOpen: teach ? teach.open : null,
+        };
+      });
+
+      // The whole card, not merely the options: a page that scrolls at all is
+      // the complaint, and a 4-option card with a hint is the tallest shape.
+      if (m.page > m.viewport + 1) tall.push(`${route} ${m.page}px vs ${m.viewport}`);
+      // The part that actually matters — you cannot answer what you cannot see.
+      if (m.lastOptionBottom !== null && m.lastOptionBottom > m.viewport + 1) {
+        hidden.push(`${route} last option ${Math.round(m.lastOptionBottom - m.viewport)}px below the fold`);
+      }
+      if (m.ruleOpen) opened.push(route);
+    }
+
+    if (hidden.length) throw new Error(`answer options off screen: ${hidden.join('; ')}`);
+    if (tall.length) throw new Error(`card taller than the screen: ${tall.join('; ')}`);
+    if (opened.length) throw new Error(`the rule opened itself on ${opened.join(', ')}`);
+    process.stdout.write(`  ${routes.length} drill routes fit ${VIEWPORT.width}x${VIEWPORT.height} with the rule shut\n`);
+
+    // The rule is still reachable — collapsed, not removed.
+    await clearLearn();
+    await openFresh('#/grammar/gender');
+    await page.waitForSelector('.drill__teach > summary', { timeout: 6000 });
+    await page.locator('.drill__teach > summary').first().click();
+    const grew = await page.evaluate(() => {
+      const teach = document.querySelector('.drill__teach');
+      return { open: teach.open, height: Math.round(teach.getBoundingClientRect().height) };
+    });
+    if (!grew.open || grew.height < 150) throw new Error(`the rule did not open: ${JSON.stringify(grew)}`);
+    await shot('00o-card-fits');
+    await openFresh('#/today');
   });
 
   await step('nothing scrolls horizontally at iPhone width', async () => {
