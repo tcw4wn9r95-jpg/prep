@@ -42,6 +42,7 @@ import {
   listMistakes,
   PLAYERS,
   playerName,
+  builderDoneToday,
 } from '../store.js';
 
 const SPEAKING_GAP_DAYS = 3;
@@ -237,6 +238,7 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics })
   // English speaker down for.
   const structureToday = today.byDeck?.structure ?? 0;
   const grammarDone = grammarToday >= GRAMMAR_CARDS_GOAL && structureToday >= STRUCTURE_CARDS_GOAL;
+  const builtToday = builderDoneToday(settings);
 
   // `for` names the part of the exam each step is actually for. The plan used
   // to read as a study list — words, grammar, listening, speaking — which is
@@ -271,6 +273,18 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics })
       note: grammarDone
         ? `Done — ${grammarToday} grammar, ${structureToday} of them sentence structure`
         : `${grammarToday} of ${GRAMMAR_CARDS_GOAL} grammar · ${structureToday} of ${STRUCTURE_CARDS_GOAL} sentence structure`,
+    },
+    {
+      id: 'builder',
+      title: 'Sentence Builder',
+      for: 'Producing a whole sentence, which is what the interview asks for',
+      href: '#/builder',
+      done: builtToday,
+      // Deliberately not a card count. Everything else on this list is
+      // measured in cards answered; this one is measured in "did you sit down
+      // and build sentences today", because it is required *and* uncounted —
+      // see `builderDoneToday` in store.js for why those two go together.
+      note: builtToday ? 'Done today' : 'One round — say it in Luxembourgish',
     },
     {
       id: 'listening',

@@ -223,6 +223,29 @@ export async function markBreakTaken(mark, now = Date.now()) {
   return next;
 }
 
+/* ------------------------------------------------------- sentence builder */
+
+/**
+ * Whether a Sentence Builder round has been finished today.
+ *
+ * Its own per-day mark rather than a count of cards, because the activity is
+ * deliberately **required but uncounted**: Today lists it as a step of the day,
+ * and none of it reaches `todayProgress`, `answeredByDeck` or any Leitner row.
+ * Those two are not in tension — "do this every day" and "this is not how the
+ * day is measured" are different claims — but they do need different storage,
+ * and reusing the card count for it is exactly how a step starts ticking
+ * itself. Filed the same way the breaks record is: a key that simply stops
+ * matching tomorrow, so nothing has to expire it.
+ */
+export function builderDoneToday(settings, now = Date.now()) {
+  return settings?.builderDay === dayKey(now);
+}
+
+/** Mark today's round finished. */
+export async function markBuilderDone(now = Date.now()) {
+  return saveSettings({ builderDay: dayKey(now) });
+}
+
 /**
  * Unset means on: the breaks were asked for, so absence is not a refusal.
  *

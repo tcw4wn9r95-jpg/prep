@@ -1791,6 +1791,112 @@ async function main() {
     });
   });
 
+  await step('the Sentence Builder asks for a whole sentence, and is required but uncounted', async () => {
+    // The only exercise that asks the learner to *produce* a sentence, which
+    // is what the interview asks for. Every topic board entry, one round, and
+    // the two properties the request named: mandatory, and outside the daily
+    // count.
+    await openFresh('#/builder');
+    await page.waitForSelector('.builder__topic', { timeout: 8000 });
+    const topics = await page.locator('.builder__topic').count();
+    if (topics !== 18) throw new Error(`expected all 18 exam topics on the board, got ${topics}`);
+    await shot('00p-builder-board');
+
+    // A round leads with a real exam answer, and shows the question it answers.
+    await openFresh('#/builder/liesen');
+    await page.waitForSelector('.builder__tile', { timeout: 8000 });
+    const card = await page.evaluate(() => ({
+      en: document.querySelector('.builder__en')?.textContent?.trim() ?? null,
+      question: document.querySelector('.builder__question')?.textContent?.trim() ?? null,
+      tiles: [...document.querySelectorAll('.builder__tile')].map((node) => node.textContent),
+      page: document.documentElement.scrollHeight,
+      viewport: window.innerHeight,
+    }));
+    if (!card.en) throw new Error('no English prompt on the card');
+    if (!card.question) throw new Error('the first card of a round should carry its exam question');
+    if (/[ëéäöü]/i.test(card.en)) throw new Error(`the prompt is not English: ${card.en}`);
+    if (card.page > card.viewport + 1) throw new Error(`the card is ${card.page}px against a ${card.viewport}px screen`);
+    // Decoys: more tiles than the sentence has words, or it is an anagram.
+    await shot('00q-builder-question');
+
+    const answer = await page.evaluate(async () => {
+      const { loadSentences } = await import('./js/content.js');
+      const { buildRound } = await import('./js/sentences.js');
+      const store = await import('./js/store.js');
+      const settings = await store.getSettings();
+      const items = await loadSentences();
+      const plan = buildRound(items, new Set(settings.builder ?? []), {
+        topic: 'liesen',
+        seed: `${settings.playerId}:liesen`,
+      });
+      return plan[0]?.lb ?? null;
+    });
+    if (!answer) throw new Error('no sentence to build');
+    const wanted = answer.split(/\s+/);
+    if (card.tiles.length <= wanted.length) {
+      throw new Error(`${card.tiles.length} tiles for a ${wanted.length}-word sentence — no decoys`);
+    }
+
+    const before = await page.evaluate(async () => (await (await import('./js/store.js')).getSettings()).builderDay ?? null);
+
+    for (const word of wanted) {
+      const tile = page
+        .locator('.builder__tile', { hasText: new RegExp(`^${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`) })
+        .first();
+      await tile.click();
+    }
+    await page.getByRole('button', { name: 'Check' }).click();
+    await page.waitForTimeout(500);
+
+    const marked = await page.evaluate(() => ({
+      correct: document.querySelectorAll('.builder__slot.is-correct').length,
+      wrong: document.querySelectorAll('.builder__slot.is-wrong').length,
+    }));
+    if (marked.wrong > 0 || marked.correct !== wanted.length) {
+      throw new Error(`the published sentence was marked ${marked.correct} right / ${marked.wrong} wrong`);
+    }
+    await shot('00r-builder-built');
+
+    // Round to the end, so the day's mark is written.
+    for (let guard = 0; guard < 20; guard += 1) {
+      const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+      if (!(await next.count())) break;
+      await next.first().click();
+      await page.waitForTimeout(250);
+      const done = await page.locator('.builder__tile').count();
+      if (done === 0) break; // the round is over
+      const options = page.locator('.builder__tile');
+      // Answer the rest any old how — what is being checked from here is the
+      // bookkeeping at the end, not the score.
+      const count = await options.count();
+      for (let i = 0; i < Math.min(count, 3); i += 1) await options.nth(i).click();
+      await page.getByRole('button', { name: 'Check' }).click().catch(() => {});
+      await page.waitForTimeout(200);
+    }
+
+    const after = await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      const settings = await store.getSettings();
+      return {
+        builderDay: settings.builderDay ?? null,
+        doneToday: store.builderDoneToday(settings),
+        built: (settings.builder ?? []).length,
+        cards: (await store.todayProgress(settings.playerId)).cards,
+      };
+    });
+    if (!after.doneToday || after.builderDay === before) throw new Error('finishing a round did not tick the day');
+    if (after.built < 1) throw new Error('no sentence was recorded as built');
+    process.stdout.write(`  builder: ${after.built} sentence(s) built, day marked, daily cards still ${after.cards}\n`);
+
+    // Required: Today lists it as a step of the day.
+    await openFresh('#/today');
+    await page.waitForSelector('.plan', { timeout: 6000 }).catch(() => {});
+    const listed = await page.evaluate(() =>
+      [...document.querySelectorAll('#screen')].some((node) => /Sentence Builder/.test(node.textContent)),
+    );
+    if (!listed) throw new Error('Today does not list the Sentence Builder as a step');
+  });
+
   await step('verb school teaches a course verb through meaning, table and sentence', async () => {
     await openFresh('#/school');
     await page.waitForSelector('.school__cat', { timeout: 5000 });

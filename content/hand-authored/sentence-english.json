@@ -1,0 +1,901 @@
+{
+ "meta": {
+  "purpose": "English for the Sentence Builder. The Luxembourgish is never authored here — every key is a sentence that already exists, verbatim, either in the LOD example sentences or in content/hand-authored/model-answers.json. Only the English is written, which is what the corpus rule allows.",
+  "keyedBy": "the exact Luxembourgish sentence, so nothing depends on the order of any list",
+  "addedAt": "2026-09-10",
+  "topics": "LOD tags an example sentence with every topic of every entry it illustrates, so one sentence arrives under topics it has nothing to do with. Where a sentence is LOD-sourced the topic recorded here is the one it was curated under, and the builder uses it.",
+  "questionTopics": "The tutor grouped the questions into seven sheets, not into the eighteen exam topics — so the book questions sat under media and the sport questions under hobbies. These re-file them where a learner would look."
+ },
+ "questions": {
+  "Liest Dir gäre Bicher?": "Do you like reading books?",
+  "Wat fir e Buch hutt Dir fir d’lescht geliess?": "What book did you read last?",
+  "Benotzt Dir elektronesch Bicher oder liest Dir léiwer richteg Bicher?": "Do you use electronic books, or do you prefer real books?",
+  "Kuckt Dir gären Tëlee?": "Do you like watching television?",
+  "Liest Dir lëtzebuerger Medien?": "Do you read Luxembourgish media?",
+  "Lauschtert Dir Radio?": "Do you listen to the radio?",
+  "Interesséiert Dir Iech fir lëtzebuerger Norichten?": "Are you interested in Luxembourgish news?",
+  "Benotzt Dir sozial Medien op Lëtzebuergesch? Lies du d’Commentaire op RTL.lu?": "Do you use social media in Luxembourgish? Do you read the comments on RTL.lu?",
+  "Kuckt Dir och Youtube Videoen?": "Do you watch YouTube videos too?",
+  "Wéi eng Zort Videoen oder Kanäler hutt Dir gären?": "What sort of videos or channels do you like?",
+  "Kuckt Dir och Sport?": "Do you watch sport too?",
+  "Wat ass Äre Liblingsgenre Filmer?": "What is your favourite genre of film?",
+  "Wéi eng Schauspiller hutt Dir gär?": "Which actors do you like?",
+  "Hutt Dir scho Lëtzebuerger Filmer gesinn?": "Have you seen any Luxembourgish films?",
+  "Kennt Dir Lëtzebuerger Schauspiller oder Schauspillerinnen?": "Do you know any Luxembourgish actors or actresses?",
+  "Wat ass de beschte Film, deen Dir je gesinn hutt?": "What is the best film you have ever seen?",
+  "Gitt Dir oft an de Kino?": "Do you often go to the cinema?",
+  "Kuckt Dir vill Filmer um Internet?": "Do you watch a lot of films on the internet?",
+  "Wéini maacht Dir Kaddoen?": "When do you give presents?",
+  "Wéi eng Zort Kaddoe schenkt Dir gären?": "What sort of presents do you like to give?",
+  "Wat hutt Dir fir d'lescht als Kaddo kritt?": "What did you get as a present last?",
+  "Wéi huet dee Kaddo Iech gefall?": "How did you like that present?",
+  "Wiem hutt Dir fir d'lescht e Kaddo ginn?": "Who did you last give a present to?",
+  "Wat kann ee Kanner schenken?": "What can you give children?",
+  "Wat ass dee beschte Kaddo, deen dir je krut?": "What is the best present you have ever received?",
+  "Wat mengt Dir ass déi populäersten touristech Attraktioun zu Lëtzebuerg?": "What do you think is the most popular tourist attraction in Luxembourg?",
+  "Waart Dir scho Schlässer zu Lëtzebuerg besichen? Wéi een huet Iech am beschte gefall?": "Have you visited castles in Luxembourg? Which one did you like best?",
+  "Waart Dir scho Wéngerten op der Mousel besichen? Wéi war et?": "Have you visited vineyards on the Moselle? What was it like?",
+  "Wat ass Ärer Meenung no déi schéinste touristesch Plaz zu Lëtzebuerg?": "In your opinion, what is the most beautiful tourist spot in Luxembourg?",
+  "Ass Tourismus wichteg fir Lëtzebuerg?": "Is tourism important for Luxembourg?",
+  "Maacht Dir selwer gären Tourismus?": "Do you like being a tourist yourself?",
+  "Wat ass Är Liblingsdestinatioun?": "What is your favourite destination?",
+  "Ass den Tourismus schlecht fir d'Ëmwelt?": "Is tourism bad for the environment?",
+  "Wat haalt Dir vun Airbnb? Ass dat besser oder méi schlecht wéi en Hotel buchen?": "What do you make of Airbnb? Is it better or worse than booking a hotel?",
+  "Sidd Dir scho laang hei zu Lëtzebuerg?": "Have you been here in Luxembourg long?",
+  "Aus wat fir engem Land kommt Dir?": "What country do you come from?",
+  "Wéi ass de Wanter an Ärem Land?": "What is the winter like in your country?",
+  "→ Reent et do vill/schneit et och do?": "Does it rain a lot there, does it snow there too?",
+  "Wéi fannt Dir de Wanter hei zu Lëtzebuerg?": "How do you find the winter here in Luxembourg?",
+  "Wéi verbréngt Dir Är Fräizäit am Wanter?": "How do you spend your free time in winter?",
+  "Watt hutt Dir besonnesch gär am Wanter?": "What do you particularly like about winter?",
+  "Hutt Dir een oder méi Hobbyen?": "Do you have one hobby or more?",
+  "Wat ass eppes wat s du gutt kanns oder wees, an nëmme wéineg aner Leit kënnen/wëssen?": "What is something you are good at or know about that few other people can or do?",
+  "Wéivill Zäit verbréngt Dir mat Ärem Hobby?": "How much time do you spend on your hobby?",
+  "Maacht Dir Sport?": "Do you do sport?",
+  "Hutt Dir ee Liblingsteam?": "Do you have a favourite team?",
+  "Mengt Dir dass professionell Sportler zevill Sue verdéngen?": "Do you think professional sportspeople earn too much money?",
+  "Hutt Dir léiwer e klengt Haus oder e grousst Haus?": "Would you rather have a small house or a big house?",
+  "Ass et fir Iech wichteg, eng voll ekippéiert Kichen ze hunn?": "Is it important to you to have a fully equipped kitchen?",
+  "Gitt Dir gären akafen?": "Do you like going shopping?",
+  "Wat ass deen Hobby, fir deen Dir am meeschten ausgitt?": "What is the hobby you spend the most on?",
+  "Gitt Dir léiwer eleng akafen oder mat anere Leit?": "Do you prefer to go shopping alone or with other people?",
+  "Wann Dir misst en eegent Geschäft opmaachen, wat géift Dir do verkafen?": "If you had to open your own shop, what would you sell there?"
+ },
+ "sentences": {
+  "Jo, ech hu Bicher ganz gären.": {
+   "en": "Yes, I like books very much."
+  },
+  "Ech liese mindestens 2 oder 3 Bicher de Mount.": {
+   "en": "I read at least 2 or 3 books a month."
+  },
+  "Nee, ech hu Bicher net esou gär.": {
+   "en": "No, I don't like books that much."
+  },
+  "Ech liese léiwer méi kuerz Artikelen um Internet oder an der Zeitung.": {
+   "en": "I prefer to read shorter articles on the internet or in the newspaper."
+  },
+  "Ech hunn ee Buch iwwert Pharaoen an Ägypte geliess.": {
+   "en": "I read a book about pharaohs in Egypt."
+  },
+  "Ech hu vill léiwer richteg Bicher.": {
+   "en": "I much prefer real books."
+  },
+  "Ech bréngen et net fäerdeg fir laang op engem Bildschierm ze liesen.": {
+   "en": "I can't manage to read on a screen for long."
+  },
+  "Ech kréien den Kapp wéi.": {
+   "en": "I get a headache."
+  },
+  "Ech hu léiwer elektronesch Bicher.": {
+   "en": "I prefer electronic books."
+  },
+  "Jo, ech kucke gären Tëlee.": {
+   "en": "Yes, I like watching television."
+  },
+  "Nee, eigentlech kucken ech net esou gär Tëlee.": {
+   "en": "No, actually I don't much like watching television."
+  },
+  "Jo, ech liesen RTL.lu an d’Tageblatt.": {
+   "en": "Yes, I read RTL.lu and the Tageblatt."
+  },
+  "Jo, ech lauschteren heiansdo Eldoradio an 100komma7 fir Lëtzebuergesch ze üben.": {
+   "en": "Yes, I sometimes listen to Eldoradio and 100komma7 to practise Luxembourgish."
+  },
+  "Nee, ech hu schonn éiweg kee Radio méi gelauschtert.": {
+   "en": "No, I haven't listened to the radio in ages."
+  },
+  "Nee, ech verfollegen am Allgemenge keng Neiegkeeten.": {
+   "en": "No, I don't generally follow the news."
+  },
+  "Ech hu scho genuch ze denken mat menger Aarbecht.": {
+   "en": "I already have enough to think about with my work."
+  },
+  "Ech liesen heiansdo wat d’Leit op Facebook op Lëtzebuergesch schreiwen.": {
+   "en": "I sometimes read what people write on Facebook in Luxembourgish."
+  },
+  "Ech liesen och d’Commentairer um RTL.lu.": {
+   "en": "I also read the comments on RTL.lu."
+  },
+  "Et ass awer schwéier ze verstoe well d’Leit vill Feeler schreiwen.": {
+   "en": "But it is hard to understand because people write a lot of mistakes."
+  },
+  "D’Leit sinn ëmmer zevill negativ um Internet an dat interesséiert mech net.": {
+   "en": "People are always too negative on the internet and that doesn't interest me."
+  },
+  "Jo, ech kucken oft Videoen um YouTube.": {
+   "en": "Yes, I often watch videos on YouTube."
+  },
+  "All Weekend kucken ech Videoen iwwer Sport a Wëssenschaft.": {
+   "en": "Every weekend I watch videos about sport and science."
+  },
+  "Nee, ech kucke keng YouTube-Videoen.": {
+   "en": "No, I don't watch YouTube videos."
+  },
+  "Ech kucke virun allem Kanäler iwwer Sport a Geschicht.": {
+   "en": "I mainly watch channels about sport and history."
+  },
+  "Heiansdo kucken ech och Videoen iwwer Videospiller.": {
+   "en": "Sometimes I also watch videos about video games."
+  },
+  "Jo, ech kucke Fussball an Tennis op der Tëlee.": {
+   "en": "Yes, I watch football and tennis on television."
+  },
+  "Nee, ech interesséiere mech iwwerhaapt net fir Sport.": {
+   "en": "No, I am not interested in sport at all."
+  },
+  "Mäi Liblingsgenre Filmer sinn Actionfilmer vun Hollywood.": {
+   "en": "My favourite genre of film is Hollywood action films."
+  },
+  "Ech hunn net gär, wann e Film ze intellektuell ass.": {
+   "en": "I don't like it when a film is too intellectual."
+  },
+  "Ech kucke Filmer fir z’entspanen!": {
+   "en": "I watch films to relax!"
+  },
+  "Mäi Liblingsgenre sinn Documentairen iwwert d’Natur.": {
+   "en": "My favourite genre is documentaries about nature."
+  },
+  "Mäi Libling ass den Tom Cruise.": {
+   "en": "My favourite is Tom Cruise."
+  },
+  "Meng Liblingsschauspillerin ass d’Meryl Streep.": {
+   "en": "My favourite actress is Meryl Streep."
+  },
+  "Si huet an esou ville Filmer scho sou vill verschidde Rolle gespillt.": {
+   "en": "She has already played so many different roles in so many films."
+  },
+  "Si huet wierklech en immensen Talent.": {
+   "en": "She really has an immense talent."
+  },
+  "Nee, ech hunn nach ni e Lëtzebuerger Film gesinn, mengen ech.": {
+   "en": "No, I have never seen a Luxembourgish film, I think."
+  },
+  "Ech hu scho ganz vill Lëtzebuerger Filmer gesinn.": {
+   "en": "I have already seen a great many Luxembourgish films."
+  },
+  "Wéi ech jonk war hunn ech vill Filmer vum Andy Bausch gekuckt.": {
+   "en": "When I was young I watched a lot of films by Andy Bausch."
+  },
+  "Nee, ech kenne leider keng Lëtzebuerger Schauspiller.": {
+   "en": "No, unfortunately I don't know any Luxembourgish actors."
+  },
+  "Ech kann dat net grad beäntweren.": {
+   "en": "I can't really answer that."
+  },
+  "Mäi Liblingsfilm ass Blade Runner.": {
+   "en": "My favourite film is Blade Runner."
+  },
+  "D’Atmosfär an deem Film fannen ech immens.": {
+   "en": "I find the atmosphere in that film tremendous."
+  },
+  "Ech hunn net méi vill Zäit, an d’Ticketen sinn ze deier.": {
+   "en": "I don't have much time any more, and the tickets are too expensive."
+  },
+  "Jo, ech ginn déi ganzen Zäit an de Kino.": {
+   "en": "Yes, I go to the cinema all the time."
+  },
+  "Nee, ech kucken net vill Filmer.": {
+   "en": "No, I don't watch many films."
+  },
+  "Weder um Internet nach soss anzwousch.": {
+   "en": "Neither on the internet nor anywhere else."
+  },
+  "Ech hunn einfach keng Zäit dofir.": {
+   "en": "I simply have no time for it."
+  },
+  "Streaming ass mol net méi d’Zukunft.": {
+   "en": "Streaming isn't even the future any more."
+  },
+  "Et ass einfach déi normal Manéier, fir Filmer ze kucken.": {
+   "en": "It is simply the normal way to watch films."
+  },
+  "De Kino ass ze deier.": {
+   "en": "The cinema is too expensive."
+  },
+  "Ech ginn net oft Kaddoen.": {
+   "en": "I don't often give presents."
+  },
+  "Ech schenken ëmmer Bicher.": {
+   "en": "I always give books."
+  },
+  "Dat hänkt ganz dovun of.": {
+   "en": "That depends entirely."
+  },
+  "Heiansdo maachen ech méi grouss Kaddoen.": {
+   "en": "Sometimes I give bigger presents."
+  },
+  "Ech hat mäi Gebuertsdag virun zwou Wochen.": {
+   "en": "I had my birthday two weeks ago."
+  },
+  "Meng Frëndin huet mer e Videospill kaaft, fir meng Konsol.": {
+   "en": "My girlfriend bought me a video game, for my console."
+  },
+  "Ech krut deslescht vun mengen Aarbechtskolleegen eng Taass mat mengem Numm drop.": {
+   "en": "The other day my colleagues gave me a mug with my name on it."
+  },
+  "Dat Videospill wat ech krut war e super Kaddo.": {
+   "en": "The video game I got was a great present."
+  },
+  "Ech wollt mer dat Spill scho méi laang kafen.": {
+   "en": "I had been wanting to buy that game for a while."
+  },
+  "Dee Kaddo huet mer nëmme mëttelméisseg gefall.": {
+   "en": "I only liked that present moderately."
+  },
+  "Ech wees net grad wat ech soll mat enger Taass ufänken.": {
+   "en": "I don't really know what I am supposed to do with a mug."
+  },
+  "Mee ech war trotzdeem frou dass se u mäi Gebuertsdag geduecht haten.": {
+   "en": "But I was glad all the same that they had thought of my birthday."
+  },
+  "Dee leschte Kaddo, deen ech engem ginn hunn, war fir meng Fra.": {
+   "en": "The last present I gave anyone was for my wife."
+  },
+  "Si hat viru kuerzem Gebuertsdag.": {
+   "en": "She had a birthday recently."
+  },
+  "Ech hu mengem klenge Meedchen eng nei Popp fir Kleeserschersdag ginn.": {
+   "en": "I gave my little girl a new doll for Saint Nicholas Day."
+  },
+  "Kanner hautdesdags spille vill Videospiller.": {
+   "en": "Children these days play a lot of video games."
+  },
+  "Dofir kann een hinne Saache schenken, déi domat ze dinn hunn.": {
+   "en": "So you can give them things that have to do with that."
+  },
+  "Dat kann ech net soen.": {
+   "en": "I cannot say."
+  },
+  "Ech hat Harry Potter gären.": {
+   "en": "I liked Harry Potter."
+  },
+  "Mäi klenge Jong ass een Dag no mengem Gebuertsdag gebuer.": {
+   "en": "My little boy was born one day after my birthday."
+  },
+  "Dat war e ganz schéine Kaddo.": {
+   "en": "That was a very lovely present."
+  },
+  "Dat war immens flott.": {
+   "en": "That was tremendously nice."
+  },
+  "Ech wees net genau.": {
+   "en": "I don't know exactly."
+  },
+  "Vläicht d'Schlass zu Veianen?": {
+   "en": "Maybe the castle in Vianden?"
+  },
+  "Ech gi selwer esou seelen déi Saache kucken.": {
+   "en": "I so rarely go and look at those things myself."
+  },
+  "Warscheinlech ass dat d'Stad am Allgemengen.": {
+   "en": "Probably it is the city in general."
+  },
+  "Dat sinn déi populäersten Attraktiounen am Land.": {
+   "en": "Those are the most popular attractions in the country."
+  },
+  "Dat Schlass wat mir am beschte gefällt ass Buerschent.": {
+   "en": "The castle I like best is Bourscheid."
+  },
+  "Nee, ech war nach ni do.": {
+   "en": "No, I have never been there."
+  },
+  "Jo, ech war schonn oft do.": {
+   "en": "Yes, I have often been there."
+  },
+  "Et ass eng ganz schéi Géigend am Land.": {
+   "en": "It is a very beautiful area in the country."
+  },
+  "Déi schéinste Plaz ass menger Meenung no de Mëllerdall.": {
+   "en": "In my opinion the most beautiful place is the Mullerthal."
+  },
+  "Ech gi ganz gär do duerch de Bësch spadséieren.": {
+   "en": "I very much like going for a walk through the forest there."
+  },
+  "Fir mech ass d'Stad déi schéinste Plaz am Land.": {
+   "en": "For me the city is the most beautiful place in the country."
+  },
+  "Jo, ech géif soen, dass den Tourismus wichteg fir Lëtzebuerg ass.": {
+   "en": "Yes, I would say that tourism is important for Luxembourg."
+  },
+  "Vill Leit kommen all Joer op Lëtzebuerg an d'Vakanz.": {
+   "en": "Many people come to Luxembourg on holiday every year."
+  },
+  "Nee, ech mengen Tourismus ass net esou wichteg fir eist Land.": {
+   "en": "No, I think tourism is not that important for our country."
+  },
+  "Finanz ass méi wichteg.": {
+   "en": "Finance is more important."
+  },
+  "Jo, ech reesen oft duerch Europa, fir verschidde Stied ze besichen.": {
+   "en": "Yes, I often travel around Europe to visit different cities."
+  },
+  "D'lescht Joer war ech zu Malta.": {
+   "en": "Last year I was in Malta."
+  },
+  "Nee, ech hunn Tourismus net gär.": {
+   "en": "No, I don't like tourism."
+  },
+  "Ech bleiwe léiwer doheem a spille Videospiller.": {
+   "en": "I prefer to stay at home and play video games."
+  },
+  "Meng Liblingsdestinatioun ass Madeira, eng Insel bei Portugal.": {
+   "en": "My favourite destination is Madeira, an island near Portugal."
+  },
+  "Jo, ech mengen Tourismus ass schlecht fir d'Ëmwelt.": {
+   "en": "Yes, I think tourism is bad for the environment."
+  },
+  "Éischtens si Fligeren am Allgemenge net gutt fir d'Ëmwelt.": {
+   "en": "Firstly, planes are generally not good for the environment."
+  },
+  "Ech hu léiwer e richtegen Hotel.": {
+   "en": "I prefer a proper hotel."
+  },
+  "Ech fannen Airbnb vill besser.": {
+   "en": "I find Airbnb much better."
+  },
+  "Ech wunne réischt zwee Joer zu Lëtzebuerg.": {
+   "en": "I have only been living in Luxembourg for two years."
+  },
+  "Dat ass nach net esou laang.": {
+   "en": "That is not that long yet."
+  },
+  "Ech wunne schonn zanter véier Joer hei zu Lëtzebuerg.": {
+   "en": "I have been living here in Luxembourg for four years now."
+  },
+  "Ech kommen aus Kanada.": {
+   "en": "I come from Canada."
+  },
+  "Ech si viru véier Joer aus Kanada op Lëtzebuerg komm.": {
+   "en": "I came from Canada to Luxembourg four years ago."
+  },
+  "De Wanter a Spuenien ass zimmlech mëll.": {
+   "en": "The winter in Spain is fairly mild."
+  },
+  "Ech géif soen, d'Temperature sinn esou ëm di zwanzeg Grad.": {
+   "en": "I would say the temperatures are around twenty degrees."
+  },
+  "Dofir schneit et awer ganz oft.": {
+   "en": "But because of that it snows very often."
+  },
+  "A Spuenie reent et wärend dem Wanter net besonnesch vill.": {
+   "en": "In Spain it doesn't rain particularly much during the winter."
+  },
+  "A Schnéi gesi mer eigentlech ni.": {
+   "en": "And we practically never see snow."
+  },
+  "De Wanter hei zu Lëtzebuerg gefällt mer net esou gutt.": {
+   "en": "I don't like the winter here in Luxembourg that much."
+  },
+  "Et reent vill an d'Wieder ass am Allgemenge net esou gutt.": {
+   "en": "It rains a lot and the weather is generally not that good."
+  },
+  "Well et esou vill reent verbréngen ech manner Zäit dobausse.": {
+   "en": "Because it rains so much I spend less time outdoors."
+  },
+  "Wat mir am beschten um Wanter gefällt ass d'Chrëschtzäit.": {
+   "en": "What I like best about the winter is the Christmas season."
+  },
+  "Déi verschidde Chrëschtmäert zu Lëtzebuerg si fir mech den Highlight vum Wanter.": {
+   "en": "The various Christmas markets in Luxembourg are the highlight of winter for me."
+  },
+  "Ech hunn zwee Hobbyen: Velo fueren a Videospiller.": {
+   "en": "I have two hobbies: cycling and video games."
+  },
+  "Ech ka mat béiden Hänn gutt schreiwen.": {
+   "en": "I can write well with both hands."
+  },
+  "Ech si lénkshänner, mee ech gouf ëmgewinnt wéi ech kleng war.": {
+   "en": "I am left-handed, but I was retrained when I was small."
+  },
+  "Ech wees vill iwwert d'Geschicht vun Thailand a Cambodscha.": {
+   "en": "I know a lot about the history of Thailand and Cambodia."
+  },
+  "Ech hunn op der Uni zwee Coursen doriwwer geholl.": {
+   "en": "I took two courses about it at university."
+  },
+  "Ech fueren all Woch 2 oder 3 Stonne Velo.": {
+   "en": "I cycle for 2 or 3 hours every week."
+  },
+  "Jo, ech maachen zimmlech vill Sport.": {
+   "en": "Yes, I do quite a lot of sport."
+  },
+  "Ech ginn all Woch een oder zwee Mol an den Gym.": {
+   "en": "I go to the gym once or twice every week."
+  },
+  "Nee, ech maachen net genuch Sport.": {
+   "en": "No, I don't do enough sport."
+  },
+  "Ech misst es méi maachen.": {
+   "en": "I ought to do more of it."
+  },
+  "Nee, ech hu kee Liblingsteam.": {
+   "en": "No, I don't have a favourite team."
+  },
+  "Dofir kucken ech net dacks genuch Sport.": {
+   "en": "That's why I don't watch sport often enough."
+  },
+  "Nee, ech mengen datt se net zevill verdéngen.": {
+   "en": "No, I think they don't earn too much."
+  },
+  "Si gi ville Leit vill Freed mat hire Fäegkeeten.": {
+   "en": "They give a lot of people a lot of joy with their skills."
+  },
+  "Jo, ech mengen datt professionell Sportler vill zevill verdéngen.": {
+   "en": "Yes, I think professional sportspeople earn far too much."
+  },
+  "Déi Sue kéint ee fir aner Saache gebrauchen.": {
+   "en": "That money could be used for other things."
+  },
+  "Ech hunn zwee Kanner, an ech schaffe vun doheem aus.": {
+   "en": "I have two children, and I work from home."
+  },
+  "Ech brauch meng Plaz.": {
+   "en": "I need my space."
+  },
+  "Dofir hunn ech léiwer e grousst Haus.": {
+   "en": "That's why I prefer a big house."
+  },
+  "Dowéinst brauch ech keng Kichen.": {
+   "en": "For that reason I need no kitchen."
+  },
+  "Nee, ech gi guer net gär akafen.": {
+   "en": "No, I don't like going shopping at all."
+  },
+  "Jo, ech kafe gären an, virun allem Kleeder.": {
+   "en": "Yes, I like shopping, clothes above all."
+  },
+  "Ech gi ganz vill aus fir Videospiller.": {
+   "en": "I spend a great deal on video games."
+  },
+  "Dat ass eng Leidenschaft fir mech.": {
+   "en": "That is a passion for me."
+  },
+  "Ech hunn en deiere Computer, fir déi neieste Spiller kënnen ze spillen.": {
+   "en": "I have an expensive computer, to be able to play the newest games."
+  },
+  "Ech gi léiwer eleng akafen.": {
+   "en": "I prefer to go shopping alone."
+  },
+  "Ech gi léiwer mat menger Frëndin akafen.": {
+   "en": "I prefer to go shopping with my girlfriend."
+  },
+  "Ech ka mech ni entscheeden, virun allem wann ech Kleeder soll kafen.": {
+   "en": "I can never decide, above all when I have to buy clothes."
+  },
+  "Ech géif Bicher verkafen.": {
+   "en": "I would sell books."
+  },
+  "Ech liese ganz gär.": {
+   "en": "I very much like reading."
+  },
+  "Ech hunn och den Androck, dass ee vu Bicher ni midd gëtt.": {
+   "en": "I also have the impression that you never get tired of books."
+  },
+  "ech hunn haut Gebuertsdag": {
+   "en": "It is my birthday today.",
+   "topic": "famill"
+  },
+  "wat méchs du do?": {
+   "en": "What are you doing there?",
+   "topic": "famill"
+  },
+  "klak d'Dieren net esou!": {
+   "en": "Do not slam the doors like that!",
+   "topic": "famill"
+  },
+  "säi Grousspapp war Buergermeeschter": {
+   "en": "His grandfather was mayor.",
+   "topic": "famill"
+  },
+  "eis Duechter studéiert Medezin": {
+   "en": "Our daughter is studying medicine.",
+   "topic": "famill"
+  },
+  "de Papp ass dobannen": {
+   "en": "Dad is inside.",
+   "topic": "famill"
+  },
+  "Äre Bouf ka gutt zeechnen": {
+   "en": "Your boy can draw well.",
+   "topic": "famill"
+  },
+  "kuck mech emol an d'Aen!": {
+   "en": "Look me in the eyes!",
+   "topic": "famill"
+  },
+  "has de eise Rendez-vous vergiess?": {
+   "en": "Had you forgotten our appointment?",
+   "topic": "famill"
+  },
+  "wéi geet et denger Tatta?": {
+   "en": "How is your aunt?",
+   "topic": "famill"
+  },
+  "sinn d'Kiischte schonn zeideg?": {
+   "en": "Are the cherries ripe yet?",
+   "topic": "iessen"
+  },
+  "Mëllechschockela huet vill Kalorien": {
+   "en": "Milk chocolate has a lot of calories.",
+   "topic": "iessen"
+  },
+  "mir iessen de Mëtteg Nuddelen": {
+   "en": "We are having noodles at midday.",
+   "topic": "iessen"
+  },
+  "bei eis wiisst kee Kaffi": {
+   "en": "No coffee grows where we live.",
+   "topic": "iessen"
+  },
+  "Schampes ass e beléiften Aperitif": {
+   "en": "Champagne is a popular aperitif.",
+   "topic": "iessen"
+  },
+  "de Kach schneit d'Ënn kleng": {
+   "en": "The cook chops the onions small.",
+   "topic": "iessen"
+  },
+  "d'Ananas wiisst an tropesche Länner": {
+   "en": "The pineapple grows in tropical countries.",
+   "topic": "iessen"
+  },
+  "ech drénke just e Glas Waasser": {
+   "en": "I am just drinking a glass of water.",
+   "topic": "iessen"
+  },
+  "an eise Géigende wiisst keen Téi": {
+   "en": "No tea grows in our region.",
+   "topic": "iessen"
+  },
+  "drénks du däi Kaffi ouni Mëllech?": {
+   "en": "Do you drink your coffee without milk?",
+   "topic": "iessen"
+  },
+  "hie wunnt am noen Ausland": {
+   "en": "He lives just across the border.",
+   "topic": "wunnen"
+  },
+  "mir wunnen an engem Appartement": {
+   "en": "We live in a flat.",
+   "topic": "wunnen"
+  },
+  "hir Wunneng ass elegant ageriicht": {
+   "en": "Her flat is elegantly furnished.",
+   "topic": "wunnen"
+  },
+  "mir wunnen an engem Reienhaus": {
+   "en": "We live in a terraced house.",
+   "topic": "wunnen"
+  },
+  "däi Papp sëtzt an der Stuff": {
+   "en": "Your father is sitting in the living room.",
+   "topic": "wunnen"
+  },
+  "mir wunnen an enger sécherer Strooss": {
+   "en": "We live on a safe street.",
+   "topic": "wunnen"
+  },
+  "mir hunn d'Kannerzëmmer schéi faarweg ugestrach": {
+   "en": "We painted the children’s room nice and colourful.",
+   "topic": "wunnen"
+  },
+  "wat ass dat en héicht Haus!": {
+   "en": "What a tall house that is!",
+   "topic": "wunnen"
+  },
+  "mir hunn hannenaus e grousse Gaart": {
+   "en": "We have a big garden out the back.",
+   "topic": "wunnen"
+  },
+  "eis zwee Kanner wunnen am Ausland": {
+   "en": "Our two children live abroad.",
+   "topic": "wunnen"
+  },
+  "du hues e schwéiere Beruff": {
+   "en": "You have a hard job.",
+   "topic": "aarbecht"
+  },
+  "eis Botzfra kënnt zweemol d'Woch": {
+   "en": "Our cleaner comes twice a week.",
+   "topic": "aarbecht"
+  },
+  "eisen Informatiker schafft nëmmen nuets": {
+   "en": "Our IT specialist works only at night.",
+   "topic": "aarbecht"
+  },
+  "déi Aarbecht schéngt relativ komplizéiert": {
+   "en": "That work seems relatively complicated.",
+   "topic": "aarbecht"
+  },
+  "d'Riichterin huet den Ugeklote fräigesprach": {
+   "en": "The judge acquitted the accused.",
+   "topic": "aarbecht"
+  },
+  "d'Aarbechter hu séier an effikass geschafft": {
+   "en": "The workers worked quickly and efficiently.",
+   "topic": "aarbecht"
+  },
+  "de Schrëftsteller huet de Verlag gewiesselt": {
+   "en": "The writer changed publisher.",
+   "topic": "aarbecht"
+  },
+  "ech hunn e ganz interessante Beruff": {
+   "en": "I have a very interesting job.",
+   "topic": "aarbecht"
+  },
+  "d'Ketten ass ganz verrascht": {
+   "en": "The chain is completely rusted.",
+   "topic": "transport"
+  },
+  "d'Strooss ass wéinst Aarbechte gespaart": {
+   "en": "The road is closed because of roadworks.",
+   "topic": "transport"
+  },
+  "mir ginn an de Wantersport": {
+   "en": "We are going on a winter-sports holiday.",
+   "topic": "transport"
+  },
+  "mir hu keng Parkplaz fonnt": {
+   "en": "We did not find a parking space.",
+   "topic": "transport"
+  },
+  "dëse Bus huet bequeem Sëtzer": {
+   "en": "This bus has comfortable seats.",
+   "topic": "transport"
+  },
+  "d'Doktesch huet mech ofgelauschtert": {
+   "en": "The doctor listened to my chest.",
+   "topic": "gesondheet"
+  },
+  "d'Kanner leie schonn am Bett": {
+   "en": "The children are already in bed.",
+   "topic": "gesondheet"
+  },
+  "Ausdauersport ass gutt fir d'Häerz": {
+   "en": "Endurance sport is good for the heart.",
+   "topic": "gesondheet"
+  },
+  "ech ginn d'nächst Woch operéiert": {
+   "en": "I am having an operation next week.",
+   "topic": "gesondheet"
+  },
+  "d'Patientin krut de Blinddarm erausgeholl": {
+   "en": "The patient had her appendix taken out.",
+   "topic": "gesondheet"
+  },
+  "am Uebst si vill Vitaminnen": {
+   "en": "There are a lot of vitamins in fruit.",
+   "topic": "gesondheet"
+  },
+  "ech hu mer de Fouss verstaucht": {
+   "en": "I have sprained my foot.",
+   "topic": "gesondheet"
+  },
+  "huet schonn een eng Ambulanz geruff?": {
+   "en": "Has anyone called an ambulance yet?",
+   "topic": "gesondheet"
+  },
+  "mäi Monni gëtt mam Knéi operéiert": {
+   "en": "My uncle is having an operation on his knee.",
+   "topic": "gesondheet"
+  },
+  "dat Medikament huet eng Rei Niewewierkungen": {
+   "en": "That medicine has a number of side effects.",
+   "topic": "gesondheet"
+  },
+  "hien huet eng sportlech Figur": {
+   "en": "He has an athletic figure.",
+   "topic": "sport"
+  },
+  "de Fussball ass op d'Strooss gerullt": {
+   "en": "The football rolled onto the street.",
+   "topic": "sport"
+  },
+  "ouni Wellen ass net gutt surfen": {
+   "en": "Without waves surfing is no good.",
+   "topic": "sport"
+  },
+  "gees de mat de Fussballsmatch kucken?": {
+   "en": "Are you coming along to watch the football match?",
+   "topic": "sport"
+  },
+  "d'Kanner spillen an der Paus gär Fänkches": {
+   "en": "The children like playing tag during the break.",
+   "topic": "sport"
+  },
+  "du kanns méi séier lafen ewéi ech": {
+   "en": "You can run faster than me.",
+   "topic": "sport"
+  },
+  "de Sportler huet sech fir d'Meeschterschaft qualifizéiert": {
+   "en": "The athlete qualified for the championship.",
+   "topic": "sport"
+  },
+  "wiem gehéiert dës Jackett?": {
+   "en": "Whose jacket is this?",
+   "topic": "kleeder"
+  },
+  "huel d'Kap vum Kapp!": {
+   "en": "Take the cap off your head!",
+   "topic": "kleeder"
+  },
+  "stiech däin Hiem an d'Box!": {
+   "en": "Tuck your shirt into your trousers!",
+   "topic": "kleeder"
+  },
+  "ech fanne mäin zweete Schong net!": {
+   "en": "I cannot find my other shoe!",
+   "topic": "kleeder"
+  },
+  "fréier haten d'Schoulkanner all Schiertecher un": {
+   "en": "School children all used to wear smocks.",
+   "topic": "kleeder"
+  },
+  "looss deng knaschteg Schong am Gank stoen!": {
+   "en": "Leave your dirty shoes in the hall!",
+   "topic": "kleeder"
+  },
+  "d'Néiesch huet der Cliente hire Rack ëmgeännert": {
+   "en": "The seamstress altered the customer’s skirt.",
+   "topic": "kleeder"
+  },
+  "déi laang Jupe geet der richteg gutt": {
+   "en": "That long skirt really suits you.",
+   "topic": "kleeder"
+  },
+  "ech hu bal nëmmen Hiemer aus Jeans": {
+   "en": "I have almost nothing but denim shirts.",
+   "topic": "kleeder"
+  },
+  "ditt äre Pyjama un a gitt schlofen!": {
+   "en": "Put your pyjamas on and go to sleep!",
+   "topic": "kleeder"
+  },
+  "fir an d'Turnhal brauchen d'Kanner propper Turnschlappen": {
+   "en": "For the gym the children need clean trainers.",
+   "topic": "kleeder"
+  },
+  "a mengen neie Sandale kréien ech Bloderen": {
+   "en": "I get blisters in my new sandals.",
+   "topic": "kleeder"
+  },
+  "d'Kanner fäerten den Houseker": {
+   "en": "The children are afraid of the Houseker.",
+   "topic": "feierdeeg"
+  },
+  "d'Kanner hunn d'Kamellen all beienee giess": {
+   "en": "The children ate all the sweets between them.",
+   "topic": "feierdeeg"
+  },
+  "Chrëschtdag an Ouschtere si grouss Fester": {
+   "en": "Christmas and Easter are big festivals.",
+   "topic": "feierdeeg"
+  },
+  "am Wanter gëtt et fréi däischter": {
+   "en": "In winter it gets dark early.",
+   "topic": "feierdeeg"
+  },
+  "d'Gebuertsdagskand war frou iwwer de Kaddo": {
+   "en": "The birthday child was pleased with the present.",
+   "topic": "feierdeeg"
+  },
+  "ech fäerten, et gëtt hënt Schnéi": {
+   "en": "I am afraid there will be snow tonight.",
+   "topic": "feierdeeg"
+  },
+  "d'Schülerin huet d'Gedicht auswenneg opgesot": {
+   "en": "The pupil recited the poem by heart.",
+   "topic": "liesen"
+  },
+  "ech liese grad e spannend Buch": {
+   "en": "I am reading an exciting book at the moment.",
+   "topic": "liesen"
+  },
+  "kanns de mer d'Buch bis muer loossen?": {
+   "en": "Can you leave me the book until tomorrow?",
+   "topic": "liesen"
+  },
+  "ech studéiere Chimie op enger auslännescher Universitéit": {
+   "en": "I am studying chemistry at a foreign university.",
+   "topic": "liesen"
+  },
+  "dat selwecht Buch gëtt et och als Täschebuch": {
+   "en": "The same book is also available as a paperback.",
+   "topic": "liesen"
+  },
+  "mäi Monni schwätzt fléissend véier Sproochen": {
+   "en": "My uncle speaks four languages fluently.",
+   "topic": "sproochen"
+  },
+  "dat Wuert gëtt bal ni benotzt": {
+   "en": "That word is almost never used.",
+   "topic": "sproochen"
+  },
+  "hien huet duerch en Hiereschlag d'Sprooch verluer": {
+   "en": "He lost his speech through a stroke.",
+   "topic": "sproochen"
+  },
+  "d'Televisioun an de Kino sinn audiovisuell Medien": {
+   "en": "Television and cinema are audiovisual media.",
+   "topic": "sproochen"
+  },
+  "wéi ass déi richteg Schreifweis vun deem Wuert?": {
+   "en": "What is the correct spelling of that word?",
+   "topic": "sproochen"
+  },
+  "an dësem Wuert gëtt déi virlescht Silb betount": {
+   "en": "In this word the second-to-last syllable is stressed.",
+   "topic": "sproochen"
+  },
+  "d'Sängerin huet eng fantastesch Stëmm": {
+   "en": "The singer has a fantastic voice.",
+   "topic": "kreativitéit"
+  },
+  "meng natierlech Hoerfaarf ass brong": {
+   "en": "My natural hair colour is brown.",
+   "topic": "kreativitéit"
+  },
+  "eng wäiss Dauf symboliséiert de Fridden": {
+   "en": "A white dove symbolises peace.",
+   "topic": "kreativitéit"
+  },
+  "dësen Theater spillt nëmme modern Stécker": {
+   "en": "This theatre only puts on modern plays.",
+   "topic": "kreativitéit"
+  },
+  "meng Mamm huet neierdéngs blond Meschen": {
+   "en": "My mother has recently had blonde highlights.",
+   "topic": "kreativitéit"
+  },
+  "wou solle mer dat Bild hei ophänken?": {
+   "en": "Where should we hang this picture?",
+   "topic": "kreativitéit"
+  },
+  "am Wartesall ass eng lues Musek gelaf": {
+   "en": "Slow music was playing in the waiting room.",
+   "topic": "kreativitéit"
+  },
+  "ech hunn déi rout Rousen am léifsten": {
+   "en": "I like the red roses best.",
+   "topic": "kreativitéit"
+  },
+  "ech spille Gei an engem klengen Ensembel": {
+   "en": "I play the violin in a small ensemble.",
+   "topic": "kreativitéit"
+  }
+ },
+ "questionTopics": {
+  "Liest Dir gäre Bicher?": "liesen",
+  "Wat fir e Buch hutt Dir fir d’lescht geliess?": "liesen",
+  "Benotzt Dir elektronesch Bicher oder liest Dir léiwer richteg Bicher?": "liesen",
+  "Kuckt Dir och Sport?": "sport",
+  "Maacht Dir Sport?": "sport",
+  "Hutt Dir ee Liblingsteam?": "sport",
+  "Mengt Dir dass professionell Sportler zevill Sue verdéngen?": "sport",
+  "Sidd Dir scho laang hei zu Lëtzebuerg?": "famill",
+  "Aus wat fir engem Land kommt Dir?": "famill",
+  "Wéi ass de Wanter an Ärem Land?": "joreszäiten",
+  "Gitt Dir gären akafen?": "kleeder",
+  "Gitt Dir léiwer eleng akafen oder mat anere Leit?": "kleeder"
+ }
+}

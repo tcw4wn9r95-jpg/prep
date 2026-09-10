@@ -1,0 +1,991 @@
+{
+ "meta": {
+  "generatedAt": "2026-09-10T23:12:42.940Z",
+  "generator": "pipeline/build-sentences.js",
+  "source": "LOD example sentences (CC0)",
+  "attribution": "Lëtzebuerger Online Dictionnaire (LOD), Zenter fir d'Lëtzebuerger Sprooch, via data.public.lu",
+  "notes": "Luxembourgish quoted verbatim from LOD; the English prompt is authored in content/hand-authored/sentence-english.json."
+ },
+ "items": [
+  {
+   "id": "sb-e0725ae077",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "aarbecht",
+   "level": "A1",
+   "en": "The workers worked quickly and efficiently.",
+   "lb": "d'Aarbechter hu séier an effikass geschafft",
+   "audioId": "cdb190c1cb670f8aa5050814a6c186bd"
+  },
+  {
+   "id": "sb-281ee1a5fb",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "aarbecht",
+   "level": "A1",
+   "en": "The judge acquitted the accused.",
+   "lb": "d'Riichterin huet den Ugeklote fräigesprach",
+   "audioId": "b77d1f9b04b67ebc63a19a4b694635a3"
+  },
+  {
+   "id": "sb-534d60e20d",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "aarbecht",
+   "level": "A2",
+   "en": "The writer changed publisher.",
+   "lb": "de Schrëftsteller huet de Verlag gewiesselt",
+   "audioId": "a2eed5d4d441b5572aac95187722cc08"
+  },
+  {
+   "id": "sb-8999aef843",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "aarbecht",
+   "level": "A1",
+   "en": "That work seems relatively complicated.",
+   "lb": "déi Aarbecht schéngt relativ komplizéiert",
+   "audioId": "0da64e2021bf03e94c703cca75f1a55f"
+  },
+  {
+   "id": "sb-87785af046",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "aarbecht",
+   "level": "A1",
+   "en": "You have a hard job.",
+   "lb": "du hues e schwéiere Beruff",
+   "audioId": "2ef169348f96edc3fac051881b879e87"
+  },
+  {
+   "id": "sb-c9815fe9cc",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "aarbecht",
+   "level": "A1",
+   "en": "I have a very interesting job.",
+   "lb": "ech hunn e ganz interessante Beruff",
+   "audioId": "1031722704d729b75b34bbc766ad4f22"
+  },
+  {
+   "id": "sb-24818537af",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "aarbecht",
+   "level": "A1",
+   "en": "Our cleaner comes twice a week.",
+   "lb": "eis Botzfra kënnt zweemol d'Woch",
+   "audioId": "682aad2c2185cfd80081d9bc841b838d"
+  },
+  {
+   "id": "sb-ab5e32dcba",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "aarbecht",
+   "level": "A1",
+   "en": "Our IT specialist works only at night.",
+   "lb": "eisen Informatiker schafft nëmmen nuets",
+   "audioId": "39e3b54460d10df88d2d815975aab94e"
+  },
+  {
+   "id": "sb-ade25a29b9",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "famill",
+   "level": "A1",
+   "en": "Your boy can draw well.",
+   "lb": "Äre Bouf ka gutt zeechnen",
+   "audioId": "aad915fcb07f84553b1f49c692fc178c"
+  },
+  {
+   "id": "sb-ba98368cce",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "famill",
+   "level": "A2",
+   "en": "Dad is inside.",
+   "lb": "de Papp ass dobannen",
+   "audioId": "1a2aa1e4f1f7e95ee1f583c5be5c5d87"
+  },
+  {
+   "id": "sb-d81db681bb",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "famill",
+   "level": "A1",
+   "en": "It is my birthday today.",
+   "lb": "ech hunn haut Gebuertsdag",
+   "audioId": "b49b988822e0366de882184b16585afe"
+  },
+  {
+   "id": "sb-4b988287ee",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "famill",
+   "level": "A1",
+   "en": "Our daughter is studying medicine.",
+   "lb": "eis Duechter studéiert Medezin",
+   "audioId": "d1e1aac383bf6aac86015010a984fc9b"
+  },
+  {
+   "id": "sb-c358613958",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "famill",
+   "level": "A1",
+   "en": "Had you forgotten our appointment?",
+   "lb": "has de eise Rendez-vous vergiess?",
+   "audioId": "215e094f24a4797b92b16c9d8a7879d1"
+  },
+  {
+   "id": "sb-dcc4ddee42",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "famill",
+   "level": "A2",
+   "en": "Do not slam the doors like that!",
+   "lb": "klak d'Dieren net esou!",
+   "audioId": "cc36790f85403584b88dc9be7f4aba92"
+  },
+  {
+   "id": "sb-22f366bd93",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "famill",
+   "level": "A1",
+   "en": "Look me in the eyes!",
+   "lb": "kuck mech emol an d'Aen!",
+   "audioId": "37674f1846b21b43bd187db7040b8ec1"
+  },
+  {
+   "id": "sb-1de9b3f770",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "famill",
+   "level": "A1",
+   "en": "His grandfather was mayor.",
+   "lb": "säi Grousspapp war Buergermeeschter",
+   "audioId": "0d77dae1c45dfd652651809f8fa7cade"
+  },
+  {
+   "id": "sb-56e5d13c01",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "famill",
+   "level": "A1",
+   "en": "What are you doing there?",
+   "lb": "wat méchs du do?",
+   "audioId": "054d8836b1f67d8500ce82dad3d2fab1"
+  },
+  {
+   "id": "sb-a04f3800f8",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "famill",
+   "level": "A2",
+   "en": "How is your aunt?",
+   "lb": "wéi geet et denger Tatta?",
+   "audioId": "f7c3d75f08a43a12bf1bd1db901cde55"
+  },
+  {
+   "id": "sb-7a1938fd2f",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "feierdeeg",
+   "level": "A1",
+   "en": "In winter it gets dark early.",
+   "lb": "am Wanter gëtt et fréi däischter",
+   "audioId": "457408e30c1a90216919ceb9f55e2922"
+  },
+  {
+   "id": "sb-d3b82f05b3",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "feierdeeg",
+   "level": "A2",
+   "en": "Christmas and Easter are big festivals.",
+   "lb": "Chrëschtdag an Ouschtere si grouss Fester",
+   "audioId": "815e349fcb903ae3fec0f8a34ba86b95"
+  },
+  {
+   "id": "sb-ace092b13c",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "feierdeeg",
+   "level": "A1",
+   "en": "The birthday child was pleased with the present.",
+   "lb": "d'Gebuertsdagskand war frou iwwer de Kaddo",
+   "audioId": "3dfd7a4a36e202b145d44060b73bc371"
+  },
+  {
+   "id": "sb-65405829a8",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "feierdeeg",
+   "level": "A2",
+   "en": "The children are afraid of the Houseker.",
+   "lb": "d'Kanner fäerten den Houseker",
+   "audioId": "062a94ae1cb38c621e485e0399b92f98"
+  },
+  {
+   "id": "sb-f768b7e47c",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "feierdeeg",
+   "level": "A1",
+   "en": "The children ate all the sweets between them.",
+   "lb": "d'Kanner hunn d'Kamellen all beienee giess",
+   "audioId": "655a44f8abd49527a6cf5d5cb48608c6"
+  },
+  {
+   "id": "sb-5ffa7cf22f",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "feierdeeg",
+   "level": "A2",
+   "en": "I am afraid there will be snow tonight.",
+   "lb": "ech fäerten, et gëtt hënt Schnéi",
+   "audioId": "3fcedc9c7f1c066d53f0bad6193345cc"
+  },
+  {
+   "id": "sb-6f18cc3224",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "gesondheet",
+   "level": "A2",
+   "en": "There are a lot of vitamins in fruit.",
+   "lb": "am Uebst si vill Vitaminnen",
+   "audioId": "d9148f1935e687d499dfcf9599442a32"
+  },
+  {
+   "id": "sb-61dd8732a5",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "gesondheet",
+   "level": "A2",
+   "en": "Endurance sport is good for the heart.",
+   "lb": "Ausdauersport ass gutt fir d'Häerz",
+   "audioId": "d4ced6bb96b445d32f116f1b4dd1f9a2"
+  },
+  {
+   "id": "sb-4e3683b434",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "gesondheet",
+   "level": "A2",
+   "en": "The doctor listened to my chest.",
+   "lb": "d'Doktesch huet mech ofgelauschtert",
+   "audioId": "96426c72f487d80b84f42fc89a36cef7"
+  },
+  {
+   "id": "sb-82fa13cff2",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "gesondheet",
+   "level": "A1",
+   "en": "The children are already in bed.",
+   "lb": "d'Kanner leie schonn am Bett",
+   "audioId": "59c8b1899ae7d98796e8073bd99d6fa6"
+  },
+  {
+   "id": "sb-1d0e66cd3a",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "gesondheet",
+   "level": "A2",
+   "en": "The patient had her appendix taken out.",
+   "lb": "d'Patientin krut de Blinddarm erausgeholl",
+   "audioId": "ae1cd1fe26d1c6e56c25627198387041"
+  },
+  {
+   "id": "sb-1863f1a10f",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "gesondheet",
+   "level": "A1",
+   "en": "That medicine has a number of side effects.",
+   "lb": "dat Medikament huet eng Rei Niewewierkungen",
+   "audioId": "c305b4a51cdcf0f8ad34ee1fbffc98e7"
+  },
+  {
+   "id": "sb-8e97badef8",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "gesondheet",
+   "level": "A2",
+   "en": "I am having an operation next week.",
+   "lb": "ech ginn d'nächst Woch operéiert",
+   "audioId": "8ca16054fcc6c35f945b4727372835c5"
+  },
+  {
+   "id": "sb-c27cfd4674",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "gesondheet",
+   "level": "A2",
+   "en": "I have sprained my foot.",
+   "lb": "ech hu mer de Fouss verstaucht",
+   "audioId": "68d08b0999417a8b00f210d3481ab52e"
+  },
+  {
+   "id": "sb-549f3a1682",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "gesondheet",
+   "level": "A2",
+   "en": "Has anyone called an ambulance yet?",
+   "lb": "huet schonn een eng Ambulanz geruff?",
+   "audioId": "4ffd5e1a4a12f1ddaf039903fbabf9d0"
+  },
+  {
+   "id": "sb-c7c571b2a8",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "gesondheet",
+   "level": "A2",
+   "en": "My uncle is having an operation on his knee.",
+   "lb": "mäi Monni gëtt mam Knéi operéiert",
+   "audioId": "d8b1373244c928e29a44aaadc51b2fdc"
+  },
+  {
+   "id": "sb-241062532a",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "iessen",
+   "level": "A1",
+   "en": "No tea grows in our region.",
+   "lb": "an eise Géigende wiisst keen Téi",
+   "audioId": "5d61045febd88271c41a916c99d945eb"
+  },
+  {
+   "id": "sb-080c5a0394",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "iessen",
+   "level": "A1",
+   "en": "No coffee grows where we live.",
+   "lb": "bei eis wiisst kee Kaffi",
+   "audioId": "75d286b5346f434a0a6bfdbfa891c83b"
+  },
+  {
+   "id": "sb-85d5e77844",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "iessen",
+   "level": "A1",
+   "en": "The pineapple grows in tropical countries.",
+   "lb": "d'Ananas wiisst an tropesche Länner",
+   "audioId": "89b59c0acd1b28a2f97975103897ecb8"
+  },
+  {
+   "id": "sb-d8edf1b66b",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "iessen",
+   "level": "A1",
+   "en": "The cook chops the onions small.",
+   "lb": "de Kach schneit d'Ënn kleng",
+   "audioId": "8fe3daeff63860ed386991b144957f1b"
+  },
+  {
+   "id": "sb-d51115796a",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "iessen",
+   "level": "A2",
+   "en": "Do you drink your coffee without milk?",
+   "lb": "drénks du däi Kaffi ouni Mëllech?",
+   "audioId": "25e7d1dbc1dc2fed9b6913ad43479164"
+  },
+  {
+   "id": "sb-d2142379ea",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "iessen",
+   "level": "A1",
+   "en": "I am just drinking a glass of water.",
+   "lb": "ech drénke just e Glas Waasser",
+   "audioId": "8ef1572e3a9716211d5a00aa4d1eca5f"
+  },
+  {
+   "id": "sb-44c44b7627",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "iessen",
+   "level": "A2",
+   "en": "Milk chocolate has a lot of calories.",
+   "lb": "Mëllechschockela huet vill Kalorien",
+   "audioId": "dfa90aeb38bb641d26d4441da10c844c"
+  },
+  {
+   "id": "sb-0d4ec36cdc",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "iessen",
+   "level": "A1",
+   "en": "We are having noodles at midday.",
+   "lb": "mir iessen de Mëtteg Nuddelen",
+   "audioId": "5e9519e356633c585228f11ac2ada6c6"
+  },
+  {
+   "id": "sb-5d5213718e",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "iessen",
+   "level": "A2",
+   "en": "Champagne is a popular aperitif.",
+   "lb": "Schampes ass e beléiften Aperitif",
+   "audioId": "d8a94a6f695a2309ad76ecc32ff3bafa"
+  },
+  {
+   "id": "sb-26860433a8",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "iessen",
+   "level": "A1",
+   "en": "Are the cherries ripe yet?",
+   "lb": "sinn d'Kiischte schonn zeideg?",
+   "audioId": "c72229a0311f5c04b2997d4718135f9a"
+  },
+  {
+   "id": "sb-03aa0d74e9",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kleeder",
+   "level": "A2",
+   "en": "I get blisters in my new sandals.",
+   "lb": "a mengen neie Sandale kréien ech Bloderen",
+   "audioId": "c7f1007c89d8a7f552450281d3dfa747"
+  },
+  {
+   "id": "sb-648b62815b",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kleeder",
+   "level": "A2",
+   "en": "The seamstress altered the customer’s skirt.",
+   "lb": "d'Néiesch huet der Cliente hire Rack ëmgeännert",
+   "audioId": "0e7f24e5990b1a1b9a232e2e550d5a32"
+  },
+  {
+   "id": "sb-949b3c05ce",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kleeder",
+   "level": "A2",
+   "en": "That long skirt really suits you.",
+   "lb": "déi laang Jupe geet der richteg gutt",
+   "audioId": "7d540281e20fa1dae8a22151d2618d16"
+  },
+  {
+   "id": "sb-9f18ac138b",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kleeder",
+   "level": "A2",
+   "en": "Put your pyjamas on and go to sleep!",
+   "lb": "ditt äre Pyjama un a gitt schlofen!",
+   "audioId": "35eef9da7657a5f0873fc45d7e0f0bae"
+  },
+  {
+   "id": "sb-afd4ebd81a",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kleeder",
+   "level": "A2",
+   "en": "I cannot find my other shoe!",
+   "lb": "ech fanne mäin zweete Schong net!",
+   "audioId": "37d834bfcab062f49684aa2b23443a68"
+  },
+  {
+   "id": "sb-0d2f4882eb",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kleeder",
+   "level": "A2",
+   "en": "I have almost nothing but denim shirts.",
+   "lb": "ech hu bal nëmmen Hiemer aus Jeans",
+   "audioId": "b4f56759abe8a8e8815bbe876b5fa598"
+  },
+  {
+   "id": "sb-0138b63f11",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kleeder",
+   "level": "A2",
+   "en": "For the gym the children need clean trainers.",
+   "lb": "fir an d'Turnhal brauchen d'Kanner propper Turnschlappen",
+   "audioId": "f17563285b28db71c65fa438d41f11d3"
+  },
+  {
+   "id": "sb-987f13fe50",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kleeder",
+   "level": "A2",
+   "en": "School children all used to wear smocks.",
+   "lb": "fréier haten d'Schoulkanner all Schiertecher un",
+   "audioId": "ff3a7a16c6e4e8d0852d426ab8ce913e"
+  },
+  {
+   "id": "sb-7345a04df0",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kleeder",
+   "level": "A2",
+   "en": "Take the cap off your head!",
+   "lb": "huel d'Kap vum Kapp!",
+   "audioId": "3ae6cc0dea981000d5643a3b437fd278"
+  },
+  {
+   "id": "sb-21c3de0200",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kleeder",
+   "level": "A2",
+   "en": "Leave your dirty shoes in the hall!",
+   "lb": "looss deng knaschteg Schong am Gank stoen!",
+   "audioId": "df644a7b2fbe94161e77ea698448bbdb"
+  },
+  {
+   "id": "sb-d73dc5579a",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kleeder",
+   "level": "A2",
+   "en": "Tuck your shirt into your trousers!",
+   "lb": "stiech däin Hiem an d'Box!",
+   "audioId": "d215a0fab0422138a0cf8bf597946036"
+  },
+  {
+   "id": "sb-0d719d4018",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kleeder",
+   "level": "A1",
+   "en": "Whose jacket is this?",
+   "lb": "wiem gehéiert dës Jackett?",
+   "audioId": "5df7ec413189f69b4db01f6b60fa37fe"
+  },
+  {
+   "id": "sb-07bce6bcd7",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kreativitéit",
+   "level": "A1",
+   "en": "Slow music was playing in the waiting room.",
+   "lb": "am Wartesall ass eng lues Musek gelaf",
+   "audioId": "3274c3f4543453e675c976541391a916"
+  },
+  {
+   "id": "sb-41bb360015",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kreativitéit",
+   "level": "A2",
+   "en": "The singer has a fantastic voice.",
+   "lb": "d'Sängerin huet eng fantastesch Stëmm",
+   "audioId": "afeec9b403c2d98821b8cd9823d8f23b"
+  },
+  {
+   "id": "sb-c7067f71c5",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kreativitéit",
+   "level": "A1",
+   "en": "This theatre only puts on modern plays.",
+   "lb": "dësen Theater spillt nëmme modern Stécker",
+   "audioId": "c54a07be5860b3110a623fb79fa640f7"
+  },
+  {
+   "id": "sb-be45b6514d",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kreativitéit",
+   "level": "A1",
+   "en": "I like the red roses best.",
+   "lb": "ech hunn déi rout Rousen am léifsten",
+   "audioId": "34bf0fe5c9cfc43cc4bfbb8623621695"
+  },
+  {
+   "id": "sb-95cbc0b2fe",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kreativitéit",
+   "level": "A1",
+   "en": "I play the violin in a small ensemble.",
+   "lb": "ech spille Gei an engem klengen Ensembel",
+   "audioId": "43e5b573051967b6ea5755281585d5df"
+  },
+  {
+   "id": "sb-7a9bb3ed7b",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kreativitéit",
+   "level": "A1",
+   "en": "A white dove symbolises peace.",
+   "lb": "eng wäiss Dauf symboliséiert de Fridden",
+   "audioId": "eacb03a34ba34fcd6f2d93852a844e25"
+  },
+  {
+   "id": "sb-798d8d086b",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kreativitéit",
+   "level": "A1",
+   "en": "My mother has recently had blonde highlights.",
+   "lb": "meng Mamm huet neierdéngs blond Meschen",
+   "audioId": "bff17829fb1826872243496521def552"
+  },
+  {
+   "id": "sb-3727a1e1c4",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kreativitéit",
+   "level": "A2",
+   "en": "My natural hair colour is brown.",
+   "lb": "meng natierlech Hoerfaarf ass brong",
+   "audioId": "108d977b2ec22c7efab2872da7e81518"
+  },
+  {
+   "id": "sb-5bda0ba438",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "kreativitéit",
+   "level": "A2",
+   "en": "Where should we hang this picture?",
+   "lb": "wou solle mer dat Bild hei ophänken?",
+   "audioId": "3e83a7ca6643f1ed4cba327d6f935bfa"
+  },
+  {
+   "id": "sb-adc03bad7c",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "liesen",
+   "level": "A1",
+   "en": "The pupil recited the poem by heart.",
+   "lb": "d'Schülerin huet d'Gedicht auswenneg opgesot",
+   "audioId": "e451d81263270c8d66a4a7bc1a7c4ff8"
+  },
+  {
+   "id": "sb-aad240b9a0",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "liesen",
+   "level": "A1",
+   "en": "The same book is also available as a paperback.",
+   "lb": "dat selwecht Buch gëtt et och als Täschebuch",
+   "audioId": "9a766d837fc1cd0907a1b322e0f4042e"
+  },
+  {
+   "id": "sb-0adc82779f",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "liesen",
+   "level": "A1",
+   "en": "I am reading an exciting book at the moment.",
+   "lb": "ech liese grad e spannend Buch",
+   "audioId": "755618236ed389a5c7293b44a41a3c68"
+  },
+  {
+   "id": "sb-c741468856",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "liesen",
+   "level": "A1",
+   "en": "I am studying chemistry at a foreign university.",
+   "lb": "ech studéiere Chimie op enger auslännescher Universitéit",
+   "audioId": "1981e5ee743b2efdd22d263f2c8db0dd"
+  },
+  {
+   "id": "sb-b0d458fb14",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "liesen",
+   "level": "A2",
+   "en": "Can you leave me the book until tomorrow?",
+   "lb": "kanns de mer d'Buch bis muer loossen?",
+   "audioId": "0a5287e7adb232b8d9e402ee9b8e0fc1"
+  },
+  {
+   "id": "sb-60d5cbdefd",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sport",
+   "level": "A1",
+   "en": "The children like playing tag during the break.",
+   "lb": "d'Kanner spillen an der Paus gär Fänkches",
+   "audioId": "a5e7b9abacf2c150e58940b217b42a98"
+  },
+  {
+   "id": "sb-b4a56ff722",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sport",
+   "level": "A1",
+   "en": "The football rolled onto the street.",
+   "lb": "de Fussball ass op d'Strooss gerullt",
+   "audioId": "c06af10c2473b37d4a91efc543e077ca"
+  },
+  {
+   "id": "sb-1bfae2ebed",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sport",
+   "level": "A1",
+   "en": "The athlete qualified for the championship.",
+   "lb": "de Sportler huet sech fir d'Meeschterschaft qualifizéiert",
+   "audioId": "36ceac7e92149beb0192a35f304c96ae"
+  },
+  {
+   "id": "sb-30644c1a26",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sport",
+   "level": "A1",
+   "en": "You can run faster than me.",
+   "lb": "du kanns méi séier lafen ewéi ech",
+   "audioId": "c7af9f0278417e0d2f2e06f76b445e96"
+  },
+  {
+   "id": "sb-77bd2eaf06",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sport",
+   "level": "A1",
+   "en": "Are you coming along to watch the football match?",
+   "lb": "gees de mat de Fussballsmatch kucken?",
+   "audioId": "fa2952a4d7df2636626cae8155c66931"
+  },
+  {
+   "id": "sb-6f8874b594",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sport",
+   "level": "A2",
+   "en": "He has an athletic figure.",
+   "lb": "hien huet eng sportlech Figur",
+   "audioId": "3a0465d43b18caca62649ba6b85a2cd7"
+  },
+  {
+   "id": "sb-6638ae803e",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sport",
+   "level": "A2",
+   "en": "Without waves surfing is no good.",
+   "lb": "ouni Wellen ass net gutt surfen",
+   "audioId": "596b8436bed387a8be99f48ecbf2c623"
+  },
+  {
+   "id": "sb-a2653f8b16",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sproochen",
+   "level": "A2",
+   "en": "In this word the second-to-last syllable is stressed.",
+   "lb": "an dësem Wuert gëtt déi virlescht Silb betount",
+   "audioId": "b1840deef3cfa1f63c78501b5ca0acad"
+  },
+  {
+   "id": "sb-a04d2a6913",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sproochen",
+   "level": "A2",
+   "en": "Television and cinema are audiovisual media.",
+   "lb": "d'Televisioun an de Kino sinn audiovisuell Medien",
+   "audioId": "e86bf06f047cfa7d7285468b364e8035"
+  },
+  {
+   "id": "sb-622ad5dc3b",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sproochen",
+   "level": "A2",
+   "en": "That word is almost never used.",
+   "lb": "dat Wuert gëtt bal ni benotzt",
+   "audioId": "ba475ecade153bef72bb6f29f623fb48"
+  },
+  {
+   "id": "sb-050e001040",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sproochen",
+   "level": "A1",
+   "en": "He lost his speech through a stroke.",
+   "lb": "hien huet duerch en Hiereschlag d'Sprooch verluer",
+   "audioId": "eb81205953aa6e7676d3b2d8d2e15230"
+  },
+  {
+   "id": "sb-0629961e8c",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sproochen",
+   "level": "A1",
+   "en": "My uncle speaks four languages fluently.",
+   "lb": "mäi Monni schwätzt fléissend véier Sproochen",
+   "audioId": "59444f1440aa975ceca1079a26e7ed3b"
+  },
+  {
+   "id": "sb-fa43719d7d",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "sproochen",
+   "level": "A1",
+   "en": "What is the correct spelling of that word?",
+   "lb": "wéi ass déi richteg Schreifweis vun deem Wuert?",
+   "audioId": "5c44e5052a9ee742a03a3f581957da07"
+  },
+  {
+   "id": "sb-b0833cc161",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "transport",
+   "level": "A2",
+   "en": "The chain is completely rusted.",
+   "lb": "d'Ketten ass ganz verrascht",
+   "audioId": "a3ca7548b7cd974c0771b01ffacf5a8d"
+  },
+  {
+   "id": "sb-bf71e6f181",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "transport",
+   "level": "A1",
+   "en": "The road is closed because of roadworks.",
+   "lb": "d'Strooss ass wéinst Aarbechte gespaart",
+   "audioId": "a7ef8a74765c501963facf1d10253fb3"
+  },
+  {
+   "id": "sb-fa51ab7785",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "transport",
+   "level": "A2",
+   "en": "This bus has comfortable seats.",
+   "lb": "dëse Bus huet bequeem Sëtzer",
+   "audioId": "c36765a46109dbe98c55e6790faa88c7"
+  },
+  {
+   "id": "sb-c464e4f67f",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "transport",
+   "level": "A1",
+   "en": "We are going on a winter-sports holiday.",
+   "lb": "mir ginn an de Wantersport",
+   "audioId": "edbdd771c3101d89336d59f40b024c89"
+  },
+  {
+   "id": "sb-4ce1b64689",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "transport",
+   "level": "A2",
+   "en": "We did not find a parking space.",
+   "lb": "mir hu keng Parkplaz fonnt",
+   "audioId": "73879a3a894cfd4a697adb4f5d42d50b"
+  },
+  {
+   "id": "sb-b0fc4a6b4c",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "wunnen",
+   "level": "A1",
+   "en": "Your father is sitting in the living room.",
+   "lb": "däi Papp sëtzt an der Stuff",
+   "audioId": "86adca313ba8d38f460eac4334319952"
+  },
+  {
+   "id": "sb-f9fa17d288",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "wunnen",
+   "level": "A1",
+   "en": "Our two children live abroad.",
+   "lb": "eis zwee Kanner wunnen am Ausland",
+   "audioId": "6d9553ba36fd75d17542eaeab8dd7a3b"
+  },
+  {
+   "id": "sb-7ed1fe9634",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "wunnen",
+   "level": "A2",
+   "en": "He lives just across the border.",
+   "lb": "hie wunnt am noen Ausland",
+   "audioId": "c63bc9fa4053cd17382ca581db9754b0"
+  },
+  {
+   "id": "sb-200204b992",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "wunnen",
+   "level": "A2",
+   "en": "Her flat is elegantly furnished.",
+   "lb": "hir Wunneng ass elegant ageriicht",
+   "audioId": "1c4eeaec2484f283cca04c14826ccc38"
+  },
+  {
+   "id": "sb-624b1573d9",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "wunnen",
+   "level": "A2",
+   "en": "We painted the children’s room nice and colourful.",
+   "lb": "mir hunn d'Kannerzëmmer schéi faarweg ugestrach",
+   "audioId": "e4c66290c68d008a9c1583171aff2ff5"
+  },
+  {
+   "id": "sb-82951bc5b0",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "wunnen",
+   "level": "A1",
+   "en": "We have a big garden out the back.",
+   "lb": "mir hunn hannenaus e grousse Gaart",
+   "audioId": "cf0ac7a1d32f6eb714d92f6783065705"
+  },
+  {
+   "id": "sb-b40a3c97bf",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "wunnen",
+   "level": "A2",
+   "en": "We live in a flat.",
+   "lb": "mir wunnen an engem Appartement",
+   "audioId": "14931a6334b83cb9610f49db2bad7b3b"
+  },
+  {
+   "id": "sb-0f750db32a",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "wunnen",
+   "level": "A2",
+   "en": "We live in a terraced house.",
+   "lb": "mir wunnen an engem Reienhaus",
+   "audioId": "08b9b1e8cd5046e44f26761e1ad89c42"
+  },
+  {
+   "id": "sb-dc2befdd98",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "wunnen",
+   "level": "A2",
+   "en": "We live on a safe street.",
+   "lb": "mir wunnen an enger sécherer Strooss",
+   "audioId": "c8ef51206499160f0c2b4cfe58c7c154"
+  },
+  {
+   "id": "sb-f73656c65f",
+   "type": "sentence",
+   "source": "lod",
+   "topic": "wunnen",
+   "level": "A2",
+   "en": "What a tall house that is!",
+   "lb": "wat ass dat en héicht Haus!",
+   "audioId": "9e95c218aa2180c27fe59b2f677b7cc2"
+  }
+ ]
+}

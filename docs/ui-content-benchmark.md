@@ -4138,3 +4138,106 @@ weekdays, months and clock times. There is no rule to state for recognising
 walkthrough` with a new step that measures all twelve drill routes against the
 viewport and fails on any option below the fold or any rule that opened itself
 · walkthrough viewport moved to iPhone 17's 402×874 · `sw.js` → `v58`.
+
+# Follow-up 38 — Sentence Builder
+
+> "Build a new mandatory activity called sentence builder. It only asks the
+> user to build sentences by saying the sentence in English and asking the user
+> to write in Luxembourgish using word pickers… Provide a wide array of
+> sentences to translate and also answers to possible questions in the
+> Sproochentest (for example: where are you from). Use all exam topics… It
+> doesn't count toward daily goals"
+
+The only exercise in the app that asks for a **whole sentence**. Everything
+else tests a word, a form, or a choice between four; the interview asks you to
+answer a question out loud, and nothing was rehearsing that.
+
+## The constraint that shaped it
+
+The corpus rule binds Luxembourgish: every token that ships traces to a LOD
+record, and none is ever authored here. An exercise that shows English and asks
+for Luxembourgish needs **pairs**, and the app had none — established in
+Follow-up 34, LOD publishes no English for its example sentences (`example.gloss`
+is a Luxembourgish paraphrase of an idiom, not a translation).
+
+The way through is that the rule is asymmetric. English is free text; only the
+Luxembourgish is locked. So the Luxembourgish is quoted verbatim from sources
+that already existed, and the English is written by hand against it:
+
+| source | what it is | how many |
+| --- | --- | --- |
+| `content/hand-authored/model-answers.json` | real Sproochentest answers written by a human tutor | **143** |
+| LOD example sentences | quoted through the built vocab and verb decks | **98** |
+
+`content/hand-authored/sentence-english.json` is keyed by the exact
+Luxembourgish, so a sentence whose text drifts loses its translation loudly
+instead of silently keeping the wrong one, and an English key matching no
+source sentence fails the build — which is precisely the check that stops
+somebody typing Luxembourgish into the translations file.
+
+The tutor's file is where "where are you from" actually lives: *Aus wat fir
+engem Land kommt Dir?* → *Ech kommen aus Kanada.*
+
+## Two output files, because provenance differs
+
+`content/items/sentences.json` is the LOD half and goes through
+`pipeline/validate.js` token by token. The tutor's sentences are not dictionary
+examples and would fail that gate correctly, so they go to
+`content/hand-authored/sentence-answers.json` — the same directory and the same
+documented exemption `model-answers.json` already has. Keeping them apart is
+what stops the exemption spreading to the validated file.
+
+## All eighteen topics, and evenly
+
+LOD tags an example sentence with every topic of every entry it illustrates, so
+one sentence arrives under topics it has nothing to do with — *d'Brout ass haart
+ewéi Steen!* is filed under famill, sproochen and kreativitéit alike. Which
+topic a sentence is *for* was a judgement made while translating it, and it is
+recorded beside the translation. The tutor's seven question sheets were re-filed
+the same way: the book questions had been under media, the sport questions under
+hobbies.
+
+Result: 241 sentences, 5 to 39 per topic, all eighteen covered.
+
+## What the measurement changed
+
+Driving the finished screen surfaced two faults that reading it had not.
+
+**A bare numeral as a decoy.** Distractor tiles are drawn from other sentences
+on the same topic, and one of those is *"Ech liese mindestens 2 oder 3 Bicher
+de Mount"* — so a tile reading `2` appeared beside eight Luxembourgish words. A
+decoy has to be a word; that was a puzzle about the data.
+
+**A sentence presented as an answer it is only part of.** A tutor's reply runs
+two to four sentences, and the third of them does not stand alone: the first
+card served *"I get a headache."* under *"Do you use electronic books?"* with
+"Answer it in Luxembourgish". The build now marks which sentences **open** an
+answer; a round leads with those, and a continuation is labelled "Part of an
+answer to …" rather than pretending to be the whole of one.
+
+## Required, and uncounted
+
+Both, and they are not in tension: "do this every day" and "this is not how the
+day is measured" are different claims. Today lists it as a step; nothing about
+it reaches `todayProgress`, `answeredByDeck`, or any Leitner row. That needed
+storage of its own — a per-day mark filed like the breaks record, which simply
+stops matching tomorrow — because the day is counted in cards answered and
+reusing that count is exactly how a step starts ticking itself. A test asserts
+the screen never imports the scheduler.
+
+## Verifying the English
+
+241 hand-written translations are 241 chances to attach the right English to
+the wrong sentence, and both halves read fine on their own, so review does not
+catch it. The test compares each translation against **LOD's own glosses** for
+the words in its sentence: 89% share a word, and the threshold is 80%. Every
+miss inspected was the check's crude stemming, not a bad translation — LOD
+glosses `fäerten` as "to be scared of" where the natural English is "afraid".
+It is a smoke alarm, not a proof, and it is written down as one.
+
+## Verification
+
+`npm test` 374 (15 new in `sentences.test.js`) · `validate` PASS, 252 warnings
+— one more than before, an Eifeler Regel note on LOD's own text and no errors
+on the 98 validated sentences · `npm run walkthrough` with a new step ·
+`sw.js` → `v59`.
