@@ -8,7 +8,7 @@
  *
  * This screen makes that decision. It has exactly one primary button, which is
  * always the single most useful thing available right now, and beneath it the
- * three steps of a day laid out in the order they should be done. Everything
+ * steps of a day laid out in the order they should be done. Everything
  * else — the scoreboard, the readiness estimate, the topic path — is reachable
  * but deliberately quieter, because none of it is an action.
  *
@@ -146,9 +146,9 @@ export async function render(root, { settings, navigate }) {
     ),
 
     sectionLabel('Today'),
-    // Says what the list is measured against. Without it the four steps read
-    // as four equal chores; with it, two of them are the exam and two are what
-    // the exam needs.
+    // Says what the list is measured against. Without it the steps read as a
+    // row of equal chores; with it, two of them are the exam itself and the
+    // rest are what those two halves run on.
     el(
       'p',
       { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
@@ -215,7 +215,7 @@ export async function render(root, { settings, navigate }) {
 /**
  * Everything the screen needs to decide, in one pass over local data.
  *
- * `plan` is the visible three-step day; `next` is chosen from the same facts,
+ * `plan` is the visible day, step by step; `next` is chosen from the same facts,
  * so the button and the checklist can never disagree.
  */
 function assess({ settings, attempts, recordings, reviews, due, today, topics }) {

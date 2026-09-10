@@ -222,14 +222,18 @@ async function main() {
     await page.waitForSelector('.plan', { timeout: 5000 });
   });
 
-  await step('today gives exactly one next action and a four-step plan', async () => {
+  await step('today gives exactly one next action and a five-step plan', async () => {
     // The fix for "there is no clear journey": one primary button, and the
     // plan beneath it in the order it should be done.
     const primary = page.locator('#screen > .btn--primary');
     if ((await primary.count()) !== 1) throw new Error(`expected exactly one primary action, found ${await primary.count()}`);
     process.stdout.write(`  next action: ${(await primary.textContent())?.trim()}\n`);
     const order = (await page.locator('.plan .card__title').allTextContents()).map((text) => text.trim());
-    const expected = 'Words & grammar,Grammar & sentence structure,Listening,Speaking';
+    // Sentence Builder sits between the two "what the exam runs on" steps and
+    // the two scored halves, which is where it belongs: it is production
+    // practice for the interview, and it is the last thing that is not itself
+    // one of the two halves.
+    const expected = 'Words & grammar,Grammar & sentence structure,Sentence Builder,Listening,Speaking';
     if (order.join(',') !== expected) throw new Error(`plan out of order: ${order.join(', ')}`);
 
     // Every step says which part of the exam it is for. The plan used to read
