@@ -67,6 +67,28 @@ export function loadGlossary() {
 export const loadGrammar = () => loadJson('grammar').then((file) => orderGrammar(file.items)).catch(() => []);
 
 /**
+ * The Sentence Builder deck, from its two files.
+ *
+ * Two rather than one because the provenance differs and the repository keeps
+ * those apart on purpose: `sentences.json` is LOD's own examples and passes
+ * through `pipeline/validate.js`; `sentence-answers.json` is the tutor's
+ * Sproochentest answers, exempt from that gate exactly as `model-answers.json`
+ * already is. Merging them here rather than in the pipeline is what keeps the
+ * exemption from spreading to the validated file.
+ *
+ * Either file failing degrades to whatever the other one has, so a missing
+ * download costs some sentences rather than the whole activity.
+ */
+let sentencesPromise = null;
+export function loadSentences() {
+  sentencesPromise ??= Promise.all([
+    loadJson('sentences').then((file) => file.items ?? []).catch(() => []),
+    loadJson('sentence-answers').then((file) => file.items ?? []).catch(() => []),
+  ]).then(([lod, answers]) => [...answers, ...lod]);
+  return sentencesPromise;
+}
+
+/**
  * Gives grammar exercises a place on the same path the word decks use.
  *
  * The vocab and verb decks carry `stage` (1–5) and `rank`, and

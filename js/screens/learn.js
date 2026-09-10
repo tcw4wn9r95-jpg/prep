@@ -137,6 +137,25 @@ export async function render(root, { settings, navigate }) {
     ),
     el(
       'a',
+      { class: 'card', href: '#/builder', style: { display: 'block', marginBlockEnd: 'var(--s3)' } },
+      el(
+        'div',
+        { class: 'row' },
+        el('span', { style: { fontSize: '28px' } }, '🧱'),
+        el(
+          'div',
+          { class: 'spacer' },
+          el('p', { class: 'card__title' }, 'Sentence Builder'),
+          el(
+            'p',
+            { class: 'card__note' },
+            'The English, and a pile of Luxembourgish words to tap into order. Real exam answers across all eighteen topics. Required every day, and it does not count towards the daily goal.',
+          ),
+        ),
+      ),
+    ),
+    el(
+      'a',
       { class: 'card', href: '#/structure', style: { display: 'block', marginBlockEnd: 'var(--s3)' } },
       el(
         'div',

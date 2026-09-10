@@ -1823,3 +1823,84 @@
   font-weight: 700;
   color: var(--accent);
 }
+
+/* --- Sentence Builder ----------------------------------------------------
+ * The only exercise that asks for a whole sentence, so it needs a wider,
+ * flatter tile than the letter bank: a word tile carries up to a dozen
+ * characters and there can be sixteen of them on screen at once.
+ *
+ * Tiles are left-aligned rather than centred, unlike `.bank`. A sentence is
+ * built left to right and a centred row of slots re-centres itself on every
+ * tap, so the word you just placed slides out from under your thumb.
+ */
+
+.builder__slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  min-height: 60px;
+  padding: var(--s2);
+  border-block-end: 2px dashed var(--border-strong);
+}
+
+.builder__empty {
+  align-self: center;
+  color: var(--text-faint);
+  font-size: var(--size-sm);
+}
+
+.builder__bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  margin-block-start: var(--s3);
+}
+
+.builder__slot,
+.builder__tile {
+  min-height: 44px;
+  padding: var(--s2) var(--s3);
+  background: var(--surface);
+  border: 2.5px solid var(--border);
+  border-radius: var(--r-sm);
+  box-shadow: 0 3px 0 var(--border);
+  font-family: var(--font);
+  font-size: var(--size-md);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.builder__slot {
+  border-color: var(--accent);
+  box-shadow: 0 3px 0 var(--accent-strong);
+}
+
+/* Marked word by word once the answer is in — see `markPlaces`. Seven of nine
+   in the right place is a different result from a guess, and saying which two
+   moved is the only feedback that teaches word order. */
+.builder__slot.is-correct { border-color: var(--ok); box-shadow: 0 3px 0 var(--ok); }
+.builder__slot.is-wrong { border-color: var(--bad); box-shadow: 0 3px 0 var(--bad); }
+
+.builder__tile:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--border); }
+.builder__tile.is-used { visibility: hidden; }
+.builder__tile:disabled { opacity: 0.5; }
+
+/* The English to say. The largest type on the card, because it is the
+   question — everything else is apparatus. */
+.builder__en {
+  margin-block-start: var(--s2);
+  font-size: var(--size-lg);
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* The exam question the sentence answers, above it and quieter: it is the
+   context, not the task. */
+.builder__question {
+  margin-block-start: var(--s2);
+  font-size: var(--size-sm);
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.builder__topic.is-done { border-color: var(--ok); }

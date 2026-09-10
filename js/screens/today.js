@@ -8,7 +8,7 @@
  *
  * This screen makes that decision. It has exactly one primary button, which is
  * always the single most useful thing available right now, and beneath it the
- * three steps of a day laid out in the order they should be done. Everything
+ * steps of a day laid out in the order they should be done. Everything
  * else — the scoreboard, the readiness estimate, the topic path — is reachable
  * but deliberately quieter, because none of it is an action.
  *
@@ -42,6 +42,7 @@ import {
   listMistakes,
   PLAYERS,
   playerName,
+  builderDoneToday,
 } from '../store.js';
 
 const SPEAKING_GAP_DAYS = 3;
@@ -145,9 +146,9 @@ export async function render(root, { settings, navigate }) {
     ),
 
     sectionLabel('Today'),
-    // Says what the list is measured against. Without it the four steps read
-    // as four equal chores; with it, two of them are the exam and two are what
-    // the exam needs.
+    // Says what the list is measured against. Without it the steps read as a
+    // row of equal chores; with it, two of them are the exam itself and the
+    // rest are what those two halves run on.
     el(
       'p',
       { class: 'card__note', style: { marginBlockEnd: 'var(--s3)' } },
@@ -214,7 +215,7 @@ export async function render(root, { settings, navigate }) {
 /**
  * Everything the screen needs to decide, in one pass over local data.
  *
- * `plan` is the visible three-step day; `next` is chosen from the same facts,
+ * `plan` is the visible day, step by step; `next` is chosen from the same facts,
  * so the button and the checklist can never disagree.
  */
 function assess({ settings, attempts, recordings, reviews, due, today, topics }) {
@@ -237,6 +238,7 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics })
   // English speaker down for.
   const structureToday = today.byDeck?.structure ?? 0;
   const grammarDone = grammarToday >= GRAMMAR_CARDS_GOAL && structureToday >= STRUCTURE_CARDS_GOAL;
+  const builtToday = builderDoneToday(settings);
 
   // `for` names the part of the exam each step is actually for. The plan used
   // to read as a study list — words, grammar, listening, speaking — which is
@@ -271,6 +273,18 @@ function assess({ settings, attempts, recordings, reviews, due, today, topics })
       note: grammarDone
         ? `Done — ${grammarToday} grammar, ${structureToday} of them sentence structure`
         : `${grammarToday} of ${GRAMMAR_CARDS_GOAL} grammar · ${structureToday} of ${STRUCTURE_CARDS_GOAL} sentence structure`,
+    },
+    {
+      id: 'builder',
+      title: 'Sentence Builder',
+      for: 'Producing a whole sentence, which is what the interview asks for',
+      href: '#/builder',
+      done: builtToday,
+      // Deliberately not a card count. Everything else on this list is
+      // measured in cards answered; this one is measured in "did you sit down
+      // and build sentences today", because it is required *and* uncounted —
+      // see `builderDoneToday` in store.js for why those two go together.
+      note: builtToday ? 'Done today' : 'One round — say it in Luxembourgish',
     },
     {
       id: 'listening',
