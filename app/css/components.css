@@ -1904,3 +1904,60 @@
 }
 
 .builder__topic.is-done { border-color: var(--ok); }
+
+/* Translation mode — the toggle, and what a tap does while it is on. */
+
+.builder__toggle {
+  align-self: center;
+  font-size: var(--size-sm);
+  padding-block: var(--s2);
+}
+
+/* The exam question, asked in Luxembourgish. A button because it is tappable
+   in translation mode; styled as text because it is the question, not a
+   control — the affordance comes from the mode being on. */
+.builder__question {
+  display: block;
+  width: 100%;
+  margin-block-start: var(--s2);
+  padding: 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: var(--size-sm);
+  font-style: italic;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: var(--lh-snug);
+}
+
+.builder__lead {
+  margin-block-start: var(--s2);
+  font-size: var(--size-xs);
+  color: var(--text-faint);
+}
+
+/* Flipped to English, and about to flip back. The amber is Amelie's colour —
+   on this screen it means "this is the app explaining", which is exactly what
+   a translation is. */
+.builder__question.is-flipped,
+.builder__tile.is-flipped,
+.builder__slot.is-flipped {
+  background: var(--amelie-wash);
+  border-color: var(--amelie);
+  color: var(--text);
+  font-style: normal;
+}
+
+/* While the mode is on, a tap translates instead of placing — so the tiles
+   stop looking like something to build with, and the ones with no gloss to
+   give are plainly not offering anything. */
+.is-translating .builder__tile,
+.is-translating .builder__slot {
+  border-style: dashed;
+}
+
+.is-translating .builder__tile.is-inert,
+.is-translating .builder__slot.is-inert {
+  opacity: 0.45;
+}

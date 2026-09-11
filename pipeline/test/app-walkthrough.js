@@ -1819,6 +1819,9 @@ async function main() {
     if (!card.en) throw new Error('no English prompt on the card');
     if (!card.question) throw new Error('the first card of a round should carry its exam question');
     if (/[ëéäöü]/i.test(card.en)) throw new Error(`the prompt is not English: ${card.en}`);
+    // The exam question is asked the way the exam asks it. Reported as "let's
+    // ask the question only in Luxembourgish".
+    if (!/[ëéäöü]/i.test(card.question)) throw new Error(`the question is not in Luxembourgish: ${card.question}`);
     if (card.page > card.viewport + 1) throw new Error(`the card is ${card.page}px against a ${card.viewport}px screen`);
     // Decoys: more tiles than the sentence has words, or it is an anagram.
     await shot('00q-builder-question');
@@ -1840,6 +1843,67 @@ async function main() {
     if (card.tiles.length <= wanted.length) {
       throw new Error(`${card.tiles.length} tiles for a ${wanted.length}-word sentence — no decoys`);
     }
+
+    // --- translation mode -------------------------------------------------
+    // "have a way to toggle translation mode … if I have it on and click
+    // either the question or an answer word it translates only this element …
+    // if I touch it again it goes back to Luxembourgish or if no action it
+    // goes back to the original after 3 seconds."
+    const toggle = page.locator('.builder__toggle');
+    if (!(await toggle.count())) throw new Error('no translation-mode toggle');
+    if (!/off/i.test((await toggle.textContent()) ?? '')) throw new Error('translation mode should start off');
+
+    // Off, a tap on a word places it.
+    const placedBefore = await page.locator('.builder__slot').count();
+    await page.locator('.builder__tile:not(.is-inert):not(.is-used)').first().click();
+    if ((await page.locator('.builder__slot').count()) !== placedBefore + 1) {
+      throw new Error('with the mode off, tapping a word should place it');
+    }
+
+    await toggle.click();
+    if (!/on/i.test((await toggle.textContent()) ?? '')) throw new Error('the toggle did not turn on');
+
+    // The question turns over, and only the question.
+    const questionLb = (await page.locator('.builder__question').textContent())?.trim();
+    const enBefore = (await page.locator('.builder__en').textContent())?.trim();
+    await page.locator('.builder__question').click();
+    await page.waitForTimeout(120);
+    const questionEn = (await page.locator('.builder__question').textContent())?.trim();
+    if (questionEn === questionLb) throw new Error('the question did not flip');
+    if (/[ëéäöü]/i.test(questionEn)) throw new Error(`the question flipped to something that is not English: ${questionEn}`);
+    if ((await page.locator('.builder__en').textContent())?.trim() !== enBefore) {
+      throw new Error('flipping the question changed something else on the card');
+    }
+    await shot('00s-builder-translating');
+
+    // A second tap puts it straight back.
+    await page.locator('.builder__question').click();
+    await page.waitForTimeout(120);
+    if ((await page.locator('.builder__question').textContent())?.trim() !== questionLb) {
+      throw new Error('a second tap should put the question back');
+    }
+
+    // A word turns over, is not placed, and falls back on its own.
+    const slotsNow = await page.locator('.builder__slot').count();
+    const word = page.locator('.builder__tile:not(.is-inert):not(.is-used)').first();
+    const wordLb = (await word.textContent())?.trim();
+    await word.click();
+    await page.waitForTimeout(120);
+    const wordEn = (await word.textContent())?.trim();
+    if (wordEn === wordLb) throw new Error(`the word "${wordLb}" did not flip`);
+    if ((await page.locator('.builder__slot').count()) !== slotsNow) {
+      throw new Error('in translation mode a tap must translate, not place');
+    }
+    await page.waitForTimeout(3400);
+    if ((await word.textContent())?.trim() !== wordLb) {
+      throw new Error('a flipped word should fall back to Luxembourgish after three seconds');
+    }
+    process.stdout.write(`  translation mode: "${wordLb}" → "${wordEn}", back after 3s\n`);
+
+    // Back off, and start the round again cleanly for the bookkeeping below.
+    await toggle.click();
+    await openFresh('#/builder/liesen');
+    await page.waitForSelector('.builder__tile', { timeout: 8000 });
 
     const before = await page.evaluate(async () => (await (await import('./js/store.js')).getSettings()).builderDay ?? null);
 

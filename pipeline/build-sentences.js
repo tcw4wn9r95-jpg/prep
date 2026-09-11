@@ -46,6 +46,7 @@ const crypto = require('node:crypto');
 const paths = require('./lib/paths');
 
 const ENGLISH_PATH = path.join(paths.CONTENT_DIR, 'hand-authored', 'sentence-english.json');
+const WORDS_PATH = path.join(paths.CONTENT_DIR, 'hand-authored', 'word-english.json');
 const MODEL_ANSWERS_PATH = path.join(paths.CONTENT_DIR, 'hand-authored', 'model-answers.json');
 const LOD_OUT = path.join(paths.ITEMS_DIR, 'sentences.json');
 const ANSWERS_OUT = path.join(paths.CONTENT_DIR, 'hand-authored', 'sentence-answers.json');
@@ -271,6 +272,12 @@ async function build() {
     },
     items: answerItems,
   });
+
+  // The per-word English the tap-to-translate reads. Copied rather than
+  // generated: it is authored, and the build's job here is only to put it
+  // where the app fetches it from.
+  await fsp.mkdir(APP_DATA, { recursive: true });
+  await fsp.copyFile(WORDS_PATH, path.join(APP_DATA, 'word-english.json'));
 
   const byTopic = {};
   for (const item of [...lodItems, ...answerItems]) byTopic[item.topic] = (byTopic[item.topic] ?? 0) + 1;

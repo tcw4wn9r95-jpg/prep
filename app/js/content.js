@@ -11,6 +11,7 @@
  */
 
 import { buildGlossary } from './drill/hint.js';
+import { buildWordGlossary } from './wordgloss.js';
 
 const cache = new Map();
 
@@ -79,6 +80,25 @@ export const loadGrammar = () => loadJson('grammar').then((file) => orderGrammar
  * Either file failing degrades to whatever the other one has, so a missing
  * download costs some sentences rather than the whole activity.
  */
+/**
+ * form → English, for the Sentence Builder's tap-to-translate.
+ *
+ * The authored file and the two decks, joined by `buildWordGlossary`. Built
+ * once and cached: it is three thousand entries over four thousand deck items,
+ * and the round taps it on every word.
+ */
+let wordGlossaryPromise = null;
+export function loadWordGlossary() {
+  wordGlossaryPromise ??= Promise.all([
+    loadJson('word-english').then((file) => file.words ?? {}).catch(() => ({})),
+    loadVocab(),
+    loadVerbs(),
+  ])
+    .then(([authored, vocab, verbs]) => buildWordGlossary(authored, vocab, verbs))
+    .catch(() => new Map());
+  return wordGlossaryPromise;
+}
+
 let sentencesPromise = null;
 export function loadSentences() {
   sentencesPromise ??= Promise.all([

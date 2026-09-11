@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-09-10T23:12:42.940Z",
+  "generatedAt": "2026-09-11T10:43:26.486Z",
   "generator": "pipeline/build-sentences.js",
   "source": "content/hand-authored/model-answers.json",
   "provenance": "Sproochentest answers written by a human tutor and supplied by the app’s user. Like model-answers.json itself, this is not validated against the LOD corpus — see that file’s header.",

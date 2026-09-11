@@ -264,3 +264,113 @@ test('sentences: finishing a round is tracked on its own, not as cards answered'
   const today = fs.readFileSync(path.join(ROOT, 'app', 'js', 'screens', 'today.js'), 'utf8');
   assert.ok(/id: 'builder'/.test(today), 'Today must list it as a step of the day');
 });
+
+/* --------------------------------------------------------- the word flip */
+
+let wordgloss;
+test.before(async () => {
+  wordgloss = await import(pathToFileURL(path.join(ROOT, 'app', 'js', 'wordgloss.js')).href);
+});
+
+const WORDS = readJson('content', 'hand-authored', 'word-english.json');
+
+function glossary() {
+  return wordgloss.buildWordGlossary(
+    WORDS.words,
+    readJson('content', 'items', 'vocab.json').items,
+    readJson('content', 'items', 'verbs.json').items,
+  );
+}
+
+test('wordgloss: a tile is looked up whatever punctuation and case it carries', () => {
+  const { formKey } = wordgloss;
+  assert.equal(formKey('Bicher.'), 'bicher');
+  assert.equal(formKey('Ech'), 'ech');
+  assert.equal(formKey('d’Aen!'), "d'aen");
+  assert.equal(formKey("d'Aen!"), "d'aen");
+  assert.equal(formKey('“Jo,'), 'jo');
+});
+
+test('wordgloss: the authored English overrides a deck gloss that is wrong here', () => {
+  // The reason the authored file exists. Both the lexicon and the vocab deck
+  // gloss the spelling `de` as "you" — it is a clitic of `du` — and in nearly
+  // every sentence in this deck it is the masculine article. A lookup that
+  // trusted the deck would turn "de Mount" into "you".
+  const found = wordgloss.glossFor(glossary(), 'de');
+  assert.match(found, /the/);
+  assert.notEqual(found, 'you');
+});
+
+test('wordgloss: a spelling two deck entries claim is never silently resolved', () => {
+  // `hunn` is "to have" and also a cockerel. Picking one is a coin flip
+  // presented as a fact, so the deck lookup drops it; the authored file is
+  // then free to say which reading this deck means.
+  const bare = wordgloss.buildWordGlossary(
+    {},
+    readJson('content', 'items', 'vocab.json').items,
+    readJson('content', 'items', 'verbs.json').items,
+  );
+  assert.equal(wordgloss.glossFor(bare, 'hunn'), null, 'an ambiguous spelling must not resolve on its own');
+  assert.ok(wordgloss.glossFor(glossary(), 'hunn'), 'and the authored file must be able to settle it');
+});
+
+test('wordgloss: the clitic article is read, not guessed at', () => {
+  // `d'Kanner` is the article written onto the noun. Splitting it off and
+  // saying "the children" reads the text; inventing an ending would not.
+  const found = glossary();
+  assert.equal(wordgloss.glossFor(found, "d'Kanner"), 'the children');
+  assert.match(wordgloss.glossFor(found, "d'Woch"), /^the /);
+});
+
+test('wordgloss: most of a sentence can be tapped, and the rest says so', () => {
+  // Not all of it — a gloss that is not known is left unknown and the tile is
+  // marked inert on screen, which is honest and visible. But a translation
+  // mode that answered one word in three would not be worth turning on.
+  const found = glossary();
+  let tiles = 0;
+  let glossed = 0;
+  for (const item of ITEMS) {
+    for (const word of item.lb.split(/\s+/)) {
+      tiles += 1;
+      if (wordgloss.glossFor(found, word)) glossed += 1;
+    }
+  }
+  const share = glossed / tiles;
+  assert.ok(share >= 0.8, `only ${(share * 100).toFixed(0)}% of word tiles can be translated`);
+});
+
+test('wordgloss: every authored key is a form that really occurs', () => {
+  // The corpus rule reaching the one file whose *keys* are Luxembourgish. A
+  // key nobody's sentence contains is a Luxembourgish form somebody typed,
+  // unverified, which is exactly what must not accumulate here.
+  const occurring = new Set();
+  for (const item of ITEMS) {
+    for (const word of item.lb.split(/\s+/)) {
+      const key = wordgloss.formKey(word);
+      if (!key) continue;
+      occurring.add(key);
+      const clitic = /^d'(.+)$/.exec(key);
+      if (clitic) occurring.add(clitic[1]);
+    }
+  }
+  const dead = Object.keys(WORDS.words).filter((key) => !occurring.has(wordgloss.formKey(key)));
+  assert.deepEqual(dead, [], `authored glosses for forms that never occur: ${dead.join(', ')}`);
+});
+
+test('wordgloss: the authored values are English', () => {
+  for (const [form, en] of Object.entries(WORDS.words)) {
+    assert.ok(en.trim().length > 0, `no English for ${form}`);
+    assert.ok(!/[ëéäöüËÉÄÖÜ]/.test(en), `Luxembourgish characters in the English for ${form}: ${en}`);
+  }
+});
+
+test('builder: the question is asked in Luxembourgish, and flips on a tap', () => {
+  // "let's ask the question only in Luxembourgish and then have a way to
+  // toggle translation mode". The English question is still shipped — it is
+  // what the flip turns over — but it is not what the card opens with.
+  const source = fs.readFileSync(path.join(ROOT, 'app', 'js', 'screens', 'builder.js'), 'utf8');
+  assert.ok(/builder__question[\s\S]*item\.question_lb/.test(source), 'the question must be rendered in Luxembourgish');
+  assert.ok(/flip\(questionEl, `“\$\{item\.question_en\}”`\)/.test(source), 'tapping it must flip to the English');
+  assert.ok(/HOLD_MS = 3000/.test(source), 'a flip must fall back after three seconds');
+  assert.ok(/builderTranslate/.test(source), 'the mode must be remembered');
+});

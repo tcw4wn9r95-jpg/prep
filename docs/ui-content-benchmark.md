@@ -4241,3 +4241,82 @@ It is a smoke alarm, not a proof, and it is written down as one.
 — one more than before, an Eifeler Regel note on LOD's own text and no errors
 on the 98 validated sentences · `npm run walkthrough` with a new step ·
 `sw.js` → `v59`.
+
+# Follow-up 39 — the question in Luxembourgish, and a translation mode
+
+> "let's ask the question only in Luxembourgish and then have a way to toggle
+> 'translation mode' then if I have it on and click either the question or an
+> answer word it translates only this element (whole question or individual
+> words, like flipping to the other side). If I touch it again it goes back to
+> luxembourgish or if no action it goes back to the original after 3 seconds"
+
+The Sentence Builder shipped asking its exam question in English, which quietly
+did the hardest part of the task: understanding what was being asked. It asks
+in Luxembourgish now — *"Benotzt Dir elektronesch Bicher oder liest Dir léiwer
+richteg Bicher?"* — and a tap turns it over.
+
+The English **sentence** stays. It is the task: there is no way to ask someone
+to build a specific sentence without telling them which one.
+
+## What a word flip needs, and what the app already had
+
+Tapping a word should say what it means, and the app has glosses — but they are
+glosses of **headwords**, and a tile carries whatever form the sentence used:
+`hu`, `liese`, `Bicher`, `d'Kanner`. Measured over the 1,666 tiles:
+
+| lookup | coverage | problem |
+| --- | --- | --- |
+| lexicon form → entry id → deck | 34% | the lexicon's LOD ids are not the decks' ids (`hunn` → `HUNN3`, deck has `HUNN1`) |
+| surface spelling → deck gloss | 54% | **`de` glosses as "you"** |
+| the above, plus authored English | **86%** | — |
+
+That `de` is the whole argument for the authored layer. Both the lexicon and
+the vocab deck gloss the spelling as "you", correctly — it is also a clitic of
+`du` — while in nearly every sentence in this deck it is the masculine article.
+A lookup that trusted the deck would flip *"de Mount"* to *"you"* and teach
+something false. `drill/hint.js` refuses to gloss such spellings at all, which
+is right for a hint that appears uninvited; this is a word the learner has
+deliberately tapped, so `content/hand-authored/word-english.json` says
+**"the / you"** — both readings, the way a dictionary does.
+
+A spelling two deck entries claim is still never resolved silently. `hunn` is
+"to have" and a cockerel; the deck lookup drops it and the authored file settles
+it. A test asserts the bare lookup returns nothing for it.
+
+The one piece of morphology applied is the clitic article: `d'Kanner` → "the
+children". Splitting off `d'` and prefixing "the" is reading Luxembourgish, not
+writing it — the noun's gloss is still LOD's.
+
+## The keys are Luxembourgish, so they are checked
+
+This is the first file in the repo whose *keys* are Luxembourgish forms. A key
+nobody's sentence contains would be an unverified Luxembourgish form
+accumulating in the repo, so a test requires every one of them to occur in a
+shipped sentence. It found 14 on the first run — forms I had glossed on
+spec (`waren`, `muss`, `wéini`) — and they are gone. 167 remain, all attested.
+
+## The flip
+
+Per element, reversible, self-reverting after 3 seconds, and several at once —
+a learner reading an unfamiliar sentence wants two or three words together, so
+each flip keeps its own timer rather than cancelling the last. The mode is
+remembered between rounds.
+
+While it is on, a tap **translates instead of placing**, so the tiles go dashed
+to say the bank has changed what it does, and the 14% with no trustworthy gloss
+are dimmed — plainly not offering anything, which is better than a tap that
+silently does nothing.
+
+## One thing that had to be taken back out
+
+The first version labelled a continuation card *"Deel vun enger Äntwert op:"* —
+Luxembourgish I wrote myself, which is the one thing this project does not do.
+The frame is English ("Part of an answer to"); only the quoted question is
+Luxembourgish, and only it flips, so "translates only this element" is literally
+true of what turns over.
+
+## Verification
+
+`npm test` 382 (8 new) · `validate` PASS, 252 warnings, unchanged ·
+`npm run walkthrough` with the builder step extended to drive the toggle, both
+flips, the second tap and the three-second fallback · `sw.js` → `v60`.
