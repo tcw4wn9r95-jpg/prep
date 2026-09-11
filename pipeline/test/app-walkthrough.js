@@ -1617,7 +1617,14 @@ async function main() {
       const store = await import('./js/store.js');
       const content = await import('./js/content.js');
       const settings = await store.getSettings();
-      const item = (await content.loadGrammar()).find((one) => one.kind === 'heard');
+      // A card that is not *already* reported. The step before this one skips a
+      // listening card, which flags it — and a flagged card's mistakes are
+      // filtered out the moment they are written, so seeding the same card
+      // would measure nothing and read as this behaviour being broken.
+      const flagged = await store.flaggedCards(settings.playerId);
+      const item = (await content.loadGrammar()).find(
+        (one) => one.kind === 'heard' && !flagged.has(`grammar:${one.id}`),
+      );
       if (!item) return null;
 
       // Missed in both directions, which is how a real one is recorded.
