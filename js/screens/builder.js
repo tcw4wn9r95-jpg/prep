@@ -25,8 +25,9 @@
 import { el, fill, screenHead, button, plural } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
 import { Clip, unlock } from '../audio.js';
-import { loadSentences, topicIcon, loadTopics } from '../content.js';
+import { loadSentences, topicIcon, loadTopics, loadWordGlossary } from '../content.js';
 import { touchStreak, getSettings, saveSettings, markBuilderDone } from '../store.js';
+import { glossFor } from '../wordgloss.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
 import { flagSlot } from '../flag.js';
 import {
@@ -60,12 +61,17 @@ async function markDone(ids) {
 /* ----------------------------------------------------------------- index */
 
 export async function render(root, { params, settings, navigate }) {
-  const [items, topics, done] = await Promise.all([loadSentences(), loadTopics(), loadDone()]);
+  const [items, topics, done, glossary] = await Promise.all([
+    loadSentences(),
+    loadTopics(),
+    loadDone(),
+    loadWordGlossary(),
+  ]);
   const names = new Map((topics ?? []).map((topic) => [topic.id, topic.title_en]));
 
   const wanted = params?.[0] ?? null;
   if (wanted && items.some((item) => item.topic === wanted)) {
-    return renderRound(root, wanted, items, done, { settings, navigate, name: names.get(wanted) ?? wanted });
+    return renderRound(root, wanted, items, done, { settings, navigate, glossary, name: names.get(wanted) ?? wanted });
   }
 
   const rows = topicProgress(items, done);
@@ -142,7 +148,7 @@ export async function render(root, { params, settings, navigate }) {
 
 /* ------------------------------------------------------------- one round */
 
-function renderRound(root, topic, items, done, { settings, navigate, name }) {
+function renderRound(root, topic, items, done, { settings, navigate, glossary, name }) {
   const plan = buildRound(items, done, { topic, size: ROUND, seed: `${settings.playerId}:${topic}` });
   const body = el('div', { class: 'stack drill__body' });
   const amelie = new Amelie({ size: 'sm', bubble: true });
@@ -159,6 +165,72 @@ function renderRound(root, topic, items, done, { settings, navigate, name }) {
     if (clip) { clip.destroy(); clip = null; }
   };
 
+  /* ------------------------------------------------------ translation mode */
+
+  /**
+   * Flip one element to its English and back.
+   *
+   * Asked for as "if I have it on and click either the question or an answer
+   * word it translates only this element … if I touch it again it goes back to
+   * Luxembourgish or if no action it goes back to the original after 3
+   * seconds". So: per element, not per card; reversible by a second tap; and
+   * self-reverting, because a card left half in English is a card you cannot
+   * read as a sentence any more.
+   *
+   * Several may be flipped at once — a learner reading an unfamiliar sentence
+   * wants two or three words at a time, not one — so each keeps its own timer
+   * rather than one flip cancelling the last.
+   */
+  const HOLD_MS = 3000;
+  const flipped = new Map();
+
+  function unflip(node) {
+    const state = flipped.get(node);
+    if (!state) return;
+    window.clearTimeout(state.timer);
+    node.textContent = state.original;
+    node.classList.remove('is-flipped');
+    flipped.delete(node);
+  }
+
+  function flip(node, english) {
+    if (!english) return false;
+    if (flipped.has(node)) {
+      unflip(node);
+      return true;
+    }
+    const original = node.textContent;
+    node.textContent = english;
+    node.classList.add('is-flipped');
+    flipped.set(node, { original, timer: window.setTimeout(() => unflip(node), HOLD_MS) });
+    return true;
+  }
+
+  /** Every flip on the current card, undone — called when the card changes. */
+  function unflipAll() {
+    for (const node of [...flipped.keys()]) unflip(node);
+  }
+
+  let translating = settings.builderTranslate === true;
+  const toggle = button('', {
+    variant: 'secondary',
+    class: 'btn btn--secondary builder__toggle',
+    onclick: () => {
+      translating = !translating;
+      saveSettings({ builderTranslate: translating }).catch(() => {});
+      if (!translating) unflipAll();
+      paintToggle();
+    },
+  });
+
+  function paintToggle() {
+    toggle.textContent = translating ? '🔤 Translation mode: on' : '🔤 Translation mode: off';
+    toggle.setAttribute('aria-pressed', translating ? 'true' : 'false');
+    // What the tiles do changes with the mode, so the whole bank says so.
+    body.classList.toggle('is-translating', translating);
+  }
+  paintToggle();
+
   const progressFill = el('div', { class: 'meter__fill' });
   root.append(
     screenHead({ title: name, sub: `${plural(plan.length, 'sentence')}`, back: '#/builder' }),
@@ -173,6 +245,7 @@ function renderRound(root, topic, items, done, { settings, navigate, name }) {
 
   function step() {
     destroyClip();
+    unflipAll();
     amelie.say(null, 'idle');
     amelie.el.hidden = true;
     if (index >= plan.length) return finish();
@@ -191,11 +264,24 @@ function renderRound(root, topic, items, done, { settings, navigate, name }) {
     const after = el('div', { hidden: true });
     const check = button('Check', { variant: 'primary', class: 'btn btn--primary btn--block', disabled: true, onclick: submit });
 
+    // A tile knows its own English, so translation mode is a change of what a
+    // tap *does* rather than a second control beside every word. A tile with
+    // no trustworthy gloss is marked inert: in translation mode it plainly
+    // cannot be tapped, which is better than a tap that silently does nothing.
     const buttons = new Map(
-      tiles.map((tile) => [
-        tile.id,
-        el('button', { type: 'button', class: 'builder__tile', onclick: () => take(tile) }, tile.word),
-      ]),
+      tiles.map((tile) => {
+        const english = glossFor(glossary, tile.word);
+        const node = el(
+          'button',
+          {
+            type: 'button',
+            class: `builder__tile${english ? '' : ' is-inert'}`,
+            onclick: () => (translating ? flip(node, english) : take(tile)),
+          },
+          tile.word,
+        );
+        return [tile.id, node];
+      }),
     );
 
     function draw() {
@@ -203,18 +289,22 @@ function renderRound(root, topic, items, done, { settings, navigate, name }) {
         slots,
         ...(picked.length === 0
           ? [el('span', { class: 'builder__empty' }, 'Tap the words in order')]
-          : picked.map((tile, at) =>
-              el(
+          : picked.map((tile, at) => {
+              // A placed word flips too. It is the same word, and the moment
+              // you most want to check one is after you have committed to it.
+              const english = glossFor(glossary, tile.word);
+              const node = el(
                 'button',
                 {
                   type: 'button',
-                  class: `builder__slot${answered ? (places[at] ? ' is-correct' : ' is-wrong') : ''}`,
-                  'aria-label': `Remove ${tile.word}`,
-                  onclick: () => drop(tile),
+                  class: `builder__slot${answered ? (places[at] ? ' is-correct' : ' is-wrong') : ''}${english ? '' : ' is-inert'}`,
+                  'aria-label': translating ? `Translate ${tile.word}` : `Remove ${tile.word}`,
+                  onclick: () => (translating ? flip(node, english) : drop(tile)),
                 },
                 tile.word,
-              ),
-            )),
+              );
+              return node;
+            })),
       );
       check.disabled = picked.length === 0 || answered;
     }
@@ -290,6 +380,34 @@ function renderRound(root, topic, items, done, { settings, navigate, name }) {
 
     flag.set({ playerId: settings.playerId, source: 'builder', id: item.id, label: item.lb });
 
+    // The exam question, asked in Luxembourgish — which is how the exam asks
+    // it. It used to be shown in English, which quietly did the hardest part
+    // of the task for the learner: understanding what was being asked. In
+    // translation mode a tap turns it over.
+    //
+    // A tutor's reply runs two to four sentences, so most of these sentences
+    // are a *part* of an answer rather than the whole of one, and the card
+    // says which. Presenting the third sentence of a reply as the answer to
+    // the question reads as a non sequitur.
+    // The frame stays English — it is the app talking, not content. Only the
+    // quoted question is Luxembourgish, and only it flips, so "translates only
+    // this element" is literally true of what turns over.
+    const questionEl = item.question_lb
+      ? el(
+          'button',
+          {
+            type: 'button',
+            class: 'builder__question',
+            'aria-label': `Translate the question: ${item.question_lb}`,
+            onclick: () => { if (translating) flip(questionEl, `“${item.question_en}”`); },
+          },
+          `“${item.question_lb}”`,
+        )
+      : null;
+    const questionLead = item.question_lb && !item.opensAnswer
+      ? el('p', { class: 'builder__lead' }, 'Part of an answer to')
+      : null;
+
     fill(
       body,
       el(
@@ -305,16 +423,12 @@ function renderRound(root, topic, items, done, { settings, navigate, name }) {
         // question reads as a non sequitur — "I get a headache." under "Do you
         // use electronic books?" — and tells the learner to produce the wrong
         // thing.
-        item.question_en
-          ? el(
-              'p',
-              { class: 'builder__question' },
-              item.opensAnswer ? `“${item.question_en}”` : `Part of an answer to “${item.question_en}”`,
-            )
-          : null,
+        questionLead,
+        questionEl,
         el('p', { class: 'builder__en' }, item.en),
       ),
       el('p', { class: 'drill__instruction' }, item.opensAnswer ? 'Answer it in Luxembourgish' : 'Say it in Luxembourgish'),
+      toggle,
       slots,
       bank,
       check,
