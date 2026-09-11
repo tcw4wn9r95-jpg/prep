@@ -1550,8 +1550,16 @@ async function main() {
     );
 
     // Skipping is not an answer: nothing is filed as a mistake by it.
+    //
+    // The count may legitimately go *down*. Reporting a card clears its
+    // mistake rows (Follow-up 35: "marked as defective but still show as
+    // mistakes"), so if the card being skipped was already on the list, the
+    // skip takes it off. This used to assert equality, which was right until
+    // that change and then held only by luck — it passed for two runs and
+    // failed as soon as the walkthrough happened to skip a card that had been
+    // missed earlier. What must never happen is the count going up.
     const after = await countMistakes();
-    if (after !== before_) throw new Error(`skipping filed ${after - before_} mistake(s)`);
+    if (after > before_) throw new Error(`skipping filed ${after - before_} mistake(s)`);
 
     // But it does not do nothing either. Reported from use: a skipped card kept
     // coming back, because a card that is never answered never leaves box zero
