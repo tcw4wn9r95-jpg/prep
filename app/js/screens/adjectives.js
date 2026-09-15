@@ -28,7 +28,7 @@ import { touchStreak, getSettings, saveSettings } from '../store.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
 import { flagSlot } from '../flag.js';
 import { seeded } from '../sentences.js';
-import { MODES, ROUND, modeById, poolFor, questionFor, buildRound, doneKey, progress } from '../adjectives.js';
+import { MODES, ROUND, TOPS, modeById, topById, deckFor, poolFor, questionFor, buildRound, doneKey, progress } from '../adjectives.js';
 
 /* -------------------------------------------------------------- progress */
 
@@ -46,53 +46,83 @@ async function markDone(keys) {
   return done;
 }
 
+/* ----------------------------------------------------------- the filter */
+
+/**
+ * How much of the deck to practise, as the same pressed chip the podcast
+ * filters and the onboarding cue picker use.
+ *
+ * It sits on the index and on the table, and what it sets applies to every
+ * round — asked for as a filter "across all these games", and it would be a
+ * strange filter that the table disagreed with.
+ */
+function topFilter(current, total, onPick) {
+  return el(
+    'div',
+    { class: 'chiprow', role: 'group', 'aria-label': 'How many adjectives to practise' },
+    ...TOPS.map((entry) => {
+      const picked = entry.id === current;
+      return el(
+        'button',
+        {
+          type: 'button',
+          class: `chip chip--pick${picked ? ' is-picked' : ''}`,
+          'aria-pressed': picked ? 'true' : 'false',
+          dataset: { top: String(entry.id ?? 'all') },
+          onclick: () => onPick(entry.id),
+        },
+        entry.id === null ? `All ${total}` : entry.label,
+      );
+    }),
+  );
+}
+
 /* ------------------------------------------------------------------ index */
 
 export async function render(root, { params, settings, navigate }) {
-  const [deck, done] = await Promise.all([loadAdjectives(), loadDone()]);
-  const { items, comparisons } = deck;
+  const [full, done] = await Promise.all([loadAdjectives(), loadDone()]);
+  let top = topById(settings.adjectiveTop).id;
+  const pick = (next) => {
+    top = next;
+    // Remembered for next time, and for the other views — the screen never
+    // waits on the write.
+    saveSettings({ adjectiveTop: next }).catch(() => {});
+  };
 
   const wanted = params?.[0] ?? null;
-  if (wanted === 'list') return renderList(root, items);
+  if (wanted === 'list') return renderList(root, full, top, pick);
   if (wanted && modeById(wanted)) {
-    return renderRound(root, wanted, deck, done, { settings, navigate });
+    return renderRound(root, wanted, deckFor(top, full.items, full.comparisons), done, {
+      settings,
+      navigate,
+      top: topById(top),
+    });
   }
 
-  const rows = progress(items, comparisons, done);
   const amelie = new Amelie({ size: 'sm', bubble: true });
   amelie.say('Pick a round. The superlative is the one worth your time.', 'idle');
 
-  root.append(
-    screenHead({ title: 'Adjectives', sub: `${plural(items.length, 'word')}, with both degrees`, back: '#/learn' }),
-    el(
-      'div',
-      { class: 'card' },
-      el('div', { class: 'row' }, amelie.el),
-      el(
-        'p',
-        { class: 'card__note', style: { marginBlockStart: 'var(--s2)' } },
-        'Every comparative and superlative here is the one the dictionary publishes, not one worked out by rule — which is why grouss becomes am gréissten and not am groussten.',
-      ),
-    ),
-    el(
-      'a',
-      { class: 'card', href: '#/adjectives/list', style: { display: 'block', marginBlockStart: 'var(--s3)' } },
-      el(
-        'div',
-        { class: 'row' },
-        el('span', { style: { fontSize: '24px' } }, '📋'),
-        el(
-          'div',
-          { class: 'spacer' },
-          el('p', { class: 'card__title' }, 'The whole table'),
-          el('p', { class: 'card__note' }, 'Every adjective with its opposite, its comparative and its superlative.'),
-        ),
-      ),
-    ),
-    el(
-      'div',
-      { class: 'stack', style: { marginBlockStart: 'var(--s4)' } },
-      ...rows.map((row) => {
+  const head = el('div');
+  const tableNote = el('p', { class: 'card__note' });
+  const list = el('div', { class: 'stack', style: { marginBlockStart: 'var(--s4)' } });
+
+  function draw() {
+    const { items, comparisons } = deckFor(top, full.items, full.comparisons);
+    const named = topById(top);
+
+    fill(
+      head,
+      topFilter(top, full.items.length, (next) => { pick(next); draw(); }),
+      el('p', { class: 'card__note', style: { marginBlockStart: 'var(--s2)' } }, named.blurb),
+    );
+    tableNote.textContent =
+      top === null
+        ? 'Every adjective, with the opposite and both degrees.'
+        : `The ${items.length} most used, with the opposite and both degrees.`;
+
+    fill(
+      list,
+      ...progress(items, comparisons, done).map((row) => {
         const complete = row.total > 0 && row.finished >= row.total;
         return el(
           'a',
@@ -114,14 +144,48 @@ export async function render(root, { params, settings, navigate }) {
           ),
         );
       }),
+    );
+  }
+
+  draw();
+
+  root.append(
+    screenHead({ title: 'Adjectives', sub: 'the opposite, and both degrees', back: '#/learn' }),
+    el(
+      'div',
+      { class: 'card' },
+      el('div', { class: 'row' }, amelie.el),
+      el(
+        'p',
+        { class: 'card__note', style: { marginBlockStart: 'var(--s2)' } },
+        'Every comparative and superlative here is the one the dictionary publishes, not one worked out by rule — which is why grouss becomes am gréissten and not am groussten.',
+      ),
     ),
+    el('div', { style: { marginBlockStart: 'var(--s3)' } }, head),
+    el(
+      'a',
+      { class: 'card', href: '#/adjectives/list', style: { display: 'block', marginBlockStart: 'var(--s3)' } },
+      el(
+        'div',
+        { class: 'row' },
+        el('span', { style: { fontSize: '24px' } }, '📋'),
+        el(
+          'div',
+          { class: 'spacer' },
+          el('p', { class: 'card__title' }, 'The table'),
+          tableNote,
+        ),
+      ),
+    ),
+    list,
   );
   return { destroy() {} };
 }
 
 /* ------------------------------------------------------------- the table */
 
-function renderList(root, items) {
+function renderList(root, full, initialTop, pick) {
+  let top = initialTop;
   const search = el('input', {
     class: 'field',
     type: 'search',
@@ -129,10 +193,24 @@ function renderList(root, items) {
     'aria-label': 'Find an adjective',
     autocomplete: 'off',
   });
+  const filters = el('div');
+  const count = el('p', { class: 'card__note' });
   const body = el('div', { class: 'stack' });
-  const byId = new Map(items.map((item) => [item.id, item]));
+  const byId = new Map(full.items.map((item) => [item.id, item]));
+  const opposites = (item) =>
+    (byId.get(item.id)?.oppositeIds ?? []).map((id) => byId.get(id)?.lb).filter(Boolean);
 
   function draw() {
+    // The table obeys the same filter as the rounds. Read as reference it is
+    // then a list of what is being practised, rather than a second answer to
+    // "which adjectives does this app think matter".
+    const items = deckFor(top, full.items, full.comparisons).items;
+    fill(filters, topFilter(top, full.items.length, (next) => { top = next; pick(next); draw(); }));
+    count.textContent =
+      top === null
+        ? `All ${items.length}, listed alphabetically.`
+        : `The ${items.length} the corpus uses most, listed alphabetically.`;
+
     const needle = search.value.trim().toLocaleLowerCase('lb');
     const shown = needle
       ? items.filter((item) => item.lb.toLocaleLowerCase('lb').includes(needle) || item.en.toLowerCase().includes(needle))
@@ -157,12 +235,12 @@ function renderList(root, items) {
                 el('span', {}, item.comparative),
                 el('span', {}, item.superlative),
               ),
-              item.oppositeIds.length > 0
-                ? el(
-                    'p',
-                    { class: 'source-note' },
-                    `opposite: ${item.oppositeIds.map((id) => byId.get(id)?.lb).filter(Boolean).join(', ')}`,
-                  )
+              // The row tells the truth about the word, so it names every
+              // opposite the deck knows — including one the filter has taken
+              // out of the rounds. The filter decides what you are asked, not
+              // what a word means.
+              opposites(item).length > 0
+                ? el('p', { class: 'source-note' }, `opposite: ${opposites(item).join(', ')}`)
                 : null,
               // Said plainly rather than hidden: gutt is the one adjective in
               // here whose degrees LOD files as separate headwords, so the link
@@ -177,7 +255,8 @@ function renderList(root, items) {
   draw();
 
   root.append(
-    screenHead({ title: 'Every adjective', sub: `${plural(items.length, 'word')}`, back: '#/adjectives' }),
+    screenHead({ title: 'The adjectives', sub: 'with the opposite and both degrees', back: '#/adjectives' }),
+    el('div', { style: { marginBlockEnd: 'var(--s3)' } }, filters, count),
     el('div', { style: { marginBlockEnd: 'var(--s3)' } }, search),
     body,
   );
@@ -186,7 +265,7 @@ function renderList(root, items) {
 
 /* ------------------------------------------------------------- one round */
 
-function renderRound(root, mode, deck, done, { settings, navigate }) {
+function renderRound(root, mode, deck, done, { settings, navigate, top }) {
   const { items, comparisons } = deck;
   const byId = new Map(items.map((item) => [item.id, item]));
   const pool = poolFor(mode, items, comparisons);
@@ -207,7 +286,13 @@ function renderRound(root, mode, deck, done, { settings, navigate }) {
   const destroyClip = () => { if (clip) { clip.destroy(); clip = null; } };
 
   root.append(
-    screenHead({ title: named.title, sub: `${plural(plan.length, 'question')}`, back: '#/adjectives' }),
+    screenHead({
+      title: named.title,
+      // The filter is named here rather than only on the index, so a round of
+      // ten never leaves you wondering which ten it drew from.
+      sub: [plural(plan.length, 'question'), top?.id === null ? null : top?.label].filter(Boolean).join(' · '),
+      back: '#/adjectives',
+    }),
     el('div', { class: 'meter__track', style: { marginBlockEnd: 'var(--s3)' } }, progressFill),
     body,
   );

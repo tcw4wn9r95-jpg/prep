@@ -64,7 +64,59 @@ export const MODES = [
 
 export const modeById = (id) => MODES.find((mode) => mode.id === id) ?? null;
 
-/** The adjectives a mode can actually ask about. */
+/**
+ * How much of the deck to practise.
+ *
+ * 202 adjectives is the comprehensive list that was asked for, and a
+ * comprehensive list is the wrong thing to drill against the week before an
+ * exam: `perfektionistesch` and `verspaant` turn up once each in the whole
+ * corpus, and every question spent on them is a question not spent on `nei` or
+ * `kleng`. `rank` is how often LOD's examples actually use the word, so a cut
+ * at 50 is "the adjectives you will meet", not a guess.
+ *
+ * Null is the whole deck, and stays the default — narrowing what somebody
+ * already has is their call to make, not the app's.
+ */
+export const TOPS = [
+  { id: 50, label: 'Top 50', blurb: 'The ones that carry most sentences.' },
+  { id: 100, label: 'Top 100', blurb: 'Everything common enough to expect.' },
+  { id: null, label: 'All', blurb: 'The whole published list.' },
+];
+
+/** The stored value read back as one of the above; anything else is "all". */
+export const topById = (id) => TOPS.find((top) => top.id === (id ?? null)) ?? TOPS[TOPS.length - 1];
+
+/**
+ * The deck a filter leaves, for every round at once.
+ *
+ * Three things have to move together, which is why this is one function rather
+ * than a filter at each call site:
+ *
+ *   the words        `rank <= top`
+ *   the opposites    trimmed to pairs *wholly* inside the set. Asking for the
+ *                    opposite of a top-50 word and answering with one that is
+ *                    not practised teaches the rarer half by accident — and
+ *                    among three familiar decoys the unfamiliar word is
+ *                    guessable without being read.
+ *   the comparisons  only sentences gapped on a word still in the set.
+ *
+ * The wrong answers come from the same filtered list too, so "top 50" means the
+ * learner reads fifty adjectives, not four times that many with fifty asked
+ * about.
+ */
+export function deckFor(top, items, comparisons) {
+  const limit = top ?? null;
+  if (limit === null) return { items: items ?? [], comparisons: comparisons ?? [] };
+
+  const kept = (items ?? []).filter((item) => item.rank <= limit);
+  const inside = new Set(kept.map((item) => item.id));
+  return {
+    items: kept.map((item) => ({ ...item, oppositeIds: item.oppositeIds.filter((id) => inside.has(id)) })),
+    comparisons: (comparisons ?? []).filter((one) => inside.has(one.adjectiveId)),
+  };
+}
+
+/** The adjectives a mode can actually ask about, within whatever deck it is given. */
 export function poolFor(mode, items, comparisons) {
   if (mode === 'opposite') return (items ?? []).filter((item) => item.oppositeIds?.length > 0);
   if (mode === 'comparison') return comparisons ?? [];

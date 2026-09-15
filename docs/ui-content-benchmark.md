@@ -4448,3 +4448,78 @@ on screen looking wrong — the line the arcade and verb school already hold.
 walkthrough` with a step driving the index, the table, one question of each of
 the five rounds and a correct answer recorded without moving the daily count ·
 `sw.js` → `v61`.
+
+# Follow-up 41 — only the adjectives you will actually meet
+
+> "Add a filter to select only the top most used adjectives across all these
+> games"
+
+202 adjectives is the comprehensive list that was asked for, and a
+comprehensive list is the wrong thing to drill the week before an exam.
+`perfektionistesch` and `verspaant` occur once each in the whole corpus; 33 of
+the 202 occur twice or less. Every question spent on those is a question not
+spent on `nei` or `kleng`.
+
+## The ranking was already in the repo
+
+`pipeline/lib/frequency.js` counts every entry across all 10,777 LOD example
+sentences, splitting a homograph's occurrences in proportion to LOD's own
+headword marks. That count already orders the vocabulary deck and the "100
+verbs" list — and every one of these 202 adjectives is in that deck. So the
+number is **read across rather than counted again**: two rankings from one
+count cannot disagree, and the build stays a second rather than a minute.
+
+The order it gives is the one a learner would recognise:
+
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| nei | gutt | kleng | laang | grouss | al | schéin | no |
+
+`rank` is the position among the adjectives alone — rank 1 is the most used
+*adjective*, not the most used word — because that is what a "top 50" over this
+deck has to mean. The usual caveat stands and is worth repeating: these are
+dictionary examples, not a spoken corpus. Good enough to order a deck, not a
+citable frequency list. The cut is soft at the edges — `ellen` at 50 and
+`bëlleg` at 51 are separated by a third of an occurrence — and nothing pretends
+otherwise.
+
+## What a filter has to move
+
+Three chips — **Top 50 · Top 100 · All 202** — on the index and on the table,
+remembered in `settings.adjectiveTop`. All stays the default: narrowing what
+somebody already has is their call, not the app's.
+
+`deckFor(top, …)` filters the whole deck in one place, because three things
+have to move together or the filter leaks:
+
+| | at Top 50 |
+| --- | --- |
+| the words | 50 |
+| the opposite pairs | 23, being the pairs **wholly** inside the set |
+| the comparison sentences | 43, those gapped on a word still in the set |
+| the wrong answers | drawn from the same 50 |
+
+The opposite round is the one that needed thought. Asking for the opposite of a
+top-50 word and answering with one that is not practised teaches the rarer half
+by accident — and worse, among three familiar decoys the unfamiliar word is the
+answer without being read. So a pair survives the filter only if both halves
+do: `al ↔ jonk` and `al ↔ nei` both stay at 50, `béis ↔ frëndlech` goes.
+
+The decoys matter for the same reason. "Top 50" has to mean fifty adjectives
+*read*, not fifty asked about with 150 more on the buttons. A test asserts that
+every option of every question of every round — answer and decoys alike — is
+one of the fifty.
+
+## The table tells the truth about the word
+
+The list obeys the filter for which rows it shows, so it stays a list of what
+is being practised. But each row names **every** opposite the deck knows, even
+one the filter has taken out of the rounds: the filter decides what you are
+asked, not what a word means.
+
+## Verification
+
+`npm test` 405 (5 new) · `validate` PASS, 252 warnings, unchanged ·
+`npm run walkthrough` with the adjective step extended to switch the filter,
+check every round's total moves at once, check it survives a reload, and check
+no option on a filtered card comes from outside the set · `sw.js` → `v62`.

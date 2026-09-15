@@ -1,10 +1,10 @@
 {
  "meta": {
-  "generatedAt": "2026-09-15T11:22:17.473Z",
+  "generatedAt": "2026-09-15T12:20:24.958Z",
   "generator": "pipeline/build-adjectives.js",
   "source": "LOD Flexiounstabellen (degrees) and LOD example sentences (comparisons), CC0",
   "attribution": "Lëtzebuerger Online Dictionnaire (LOD), Zenter fir d'Lëtzebuerger Sprooch, via data.public.lu",
-  "notes": "Both degrees are quoted from the inflection table, never derived. Opposites are asserted in content/hand-authored/adjective-relations.json as relations between entry ids; LOD has no antonym field."
+  "notes": "Both degrees are quoted from the inflection table, never derived. Opposites are asserted in content/hand-authored/adjective-relations.json as relations between entry ids; LOD has no antonym field. rank orders the adjectives by how often LOD's example sentences use them (see pipeline/lib/frequency.js); these are dictionary examples, not a spoken corpus, so it orders a deck and is not a citable frequency list."
  },
  "items": [
   {
@@ -18,7 +18,9 @@
    "irregular": false,
    "oppositeIds": [
     "RAICH1"
-   ]
+   ],
+   "freq": 12,
+   "rank": 67
   },
   {
    "id": "AGEBILT1",
@@ -29,7 +31,9 @@
    "comparative": "méi agebilt",
    "superlative": "am agebiltsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 147
   },
   {
    "id": "AGGRESSIV1",
@@ -40,7 +44,9 @@
    "comparative": "méi aggressiv",
    "superlative": "am aggressiivsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 7,
+   "rank": 101
   },
   {
    "id": "AKTIV1",
@@ -51,7 +57,9 @@
    "comparative": "méi aktiv",
    "superlative": "am aktiivsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 9,
+   "rank": 87
   },
   {
    "id": "AKTUELL1",
@@ -62,7 +70,9 @@
    "comparative": "méi aktuell",
    "superlative": "am aktuellsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 170
   },
   {
    "id": "AL1",
@@ -76,7 +86,9 @@
    "oppositeIds": [
     "JONK1",
     "NEI1"
-   ]
+   ],
+   "freq": 105.00000000000003,
+   "rank": 6
   },
   {
    "id": "ALMOUDESCH1",
@@ -89,7 +101,9 @@
    "irregular": false,
    "oppositeIds": [
     "MODERN1"
-   ]
+   ],
+   "freq": 4,
+   "rank": 135
   },
   {
    "id": "ARROGANT1",
@@ -100,7 +114,9 @@
    "comparative": "méi arrogant",
    "superlative": "am arrogantsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 6,
+   "rank": 115
   },
   {
    "id": "BATTER1",
@@ -113,7 +129,9 @@
    "irregular": false,
    "oppositeIds": [
     "SEISS1"
-   ]
+   ],
+   "freq": 6.599999999999999,
+   "rank": 113
   },
   {
    "id": "BEIS1",
@@ -126,7 +144,9 @@
    "irregular": false,
    "oppositeIds": [
     "FRENDLECH1"
-   ]
+   ],
+   "freq": 20.75,
+   "rank": 41
   },
   {
    "id": "BEKANNT1",
@@ -137,7 +157,9 @@
    "comparative": "méi bekannt",
    "superlative": "am bekanntsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 19,
+   "rank": 43
   },
   {
    "id": "BELEIFT1",
@@ -148,7 +170,9 @@
    "comparative": "méi beléift",
    "superlative": "am beléiftsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 12,
+   "rank": 68
   },
   {
    "id": "BELLEG1",
@@ -161,7 +185,9 @@
    "irregular": false,
    "oppositeIds": [
     "DEIER2"
-   ]
+   ],
+   "freq": 17,
+   "rank": 51
   },
   {
    "id": "BEQUEEM1",
@@ -172,7 +198,9 @@
    "comparative": "méi bequeem",
    "superlative": "am bequeemsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 5,
+   "rank": 125
   },
   {
    "id": "BERUUMT1",
@@ -183,7 +211,9 @@
    "comparative": "méi berüümt",
    "superlative": "am berüümtsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 148
   },
   {
    "id": "BLEECH1",
@@ -194,7 +224,9 @@
    "comparative": "méi bleech",
    "superlative": "am bleechsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 149
   },
   {
    "id": "BLO1",
@@ -205,7 +237,9 @@
    "comparative": "méi blo",
    "superlative": "am bloosten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 15,
+   "rank": 55
   },
   {
    "id": "BLOD1",
@@ -216,7 +250,9 @@
    "comparative": "méi blöd",
    "superlative": "am blöödsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 4,
+   "rank": 136
   },
   {
    "id": "BLOND1",
@@ -227,7 +263,9 @@
    "comparative": "méi blond",
    "superlative": "am blondsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 5,
+   "rank": 126
   },
   {
    "id": "BRAV1",
@@ -238,7 +276,9 @@
    "comparative": "méi brav",
    "superlative": "am braavsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 150
   },
   {
    "id": "BREET2",
@@ -252,7 +292,9 @@
    "oppositeIds": [
     "SCHMUEL1",
     "ENK1"
-   ]
+   ],
+   "freq": 16,
+   "rank": 53
   },
   {
    "id": "BRONG1",
@@ -263,7 +305,9 @@
    "comparative": "méi brong",
    "superlative": "am brongsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 10,
+   "rank": 79
   },
   {
    "id": "CHARMANT1",
@@ -274,7 +318,9 @@
    "comparative": "méi charmant",
    "superlative": "am charmantsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 171
   },
   {
    "id": "COOL1",
@@ -285,7 +331,9 @@
    "comparative": "méi cool",
    "superlative": "am coolsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 7,
+   "rank": 102
   },
   {
    "id": "COURAGEIERT1",
@@ -296,7 +344,9 @@
    "comparative": "méi couragéiert",
    "superlative": "am couragéiertsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 151
   },
   {
    "id": "DAISCHTER1",
@@ -309,7 +359,9 @@
    "irregular": false,
    "oppositeIds": [
     "HELL1"
-   ]
+   ],
+   "freq": 13,
+   "rank": 61
   },
   {
    "id": "DECK1",
@@ -322,7 +374,9 @@
    "irregular": false,
    "oppositeIds": [
     "DENN1"
-   ]
+   ],
+   "freq": 49.99999999999998,
+   "rank": 12
   },
   {
    "id": "DEIER2",
@@ -335,7 +389,9 @@
    "irregular": false,
    "oppositeIds": [
     "BELLEG1"
-   ]
+   ],
+   "freq": 25,
+   "rank": 35
   },
   {
    "id": "DEIF2",
@@ -348,7 +404,9 @@
    "irregular": false,
    "oppositeIds": [
     "HEICH1"
-   ]
+   ],
+   "freq": 30,
+   "rank": 28
   },
   {
    "id": "DENN1",
@@ -361,7 +419,9 @@
    "irregular": false,
    "oppositeIds": [
     "DECK1"
-   ]
+   ],
+   "freq": 11,
+   "rank": 71
   },
   {
    "id": "DIREKT1",
@@ -372,7 +432,9 @@
    "comparative": "méi direkt",
    "superlative": "am direktsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 34.66666666666668,
+   "rank": 24
   },
   {
    "id": "DOMINANT1",
@@ -383,7 +445,9 @@
    "comparative": "méi dominant",
    "superlative": "am dominantsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 172
   },
   {
    "id": "DOMM1",
@@ -397,7 +461,9 @@
    "oppositeIds": [
     "INTELLIGENT1",
     "GESCHEIT1"
-   ]
+   ],
+   "freq": 31,
+   "rank": 26
   },
   {
    "id": "DONKEL1",
@@ -410,7 +476,9 @@
    "irregular": false,
    "oppositeIds": [
     "HELL1"
-   ]
+   ],
+   "freq": 5,
+   "rank": 127
   },
   {
    "id": "DRECHEN1",
@@ -423,7 +491,9 @@
    "irregular": false,
    "oppositeIds": [
     "NAASS1"
-   ]
+   ],
+   "freq": 21.4,
+   "rank": 40
   },
   {
    "id": "DUUSCHTEREG1",
@@ -434,7 +504,9 @@
    "comparative": "méi duuschtereg",
    "superlative": "am duuschteregsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 152
   },
   {
    "id": "ECKEG1",
@@ -447,7 +519,9 @@
    "irregular": false,
    "oppositeIds": [
     "RONN2"
-   ]
+   ],
+   "freq": 2,
+   "rank": 173
   },
   {
    "id": "EGOISTESCH1",
@@ -460,7 +534,9 @@
    "irregular": false,
    "oppositeIds": [
     "GENEREIS1"
-   ]
+   ],
+   "freq": 2,
+   "rank": 174
   },
   {
    "id": "EGOZENTRESCH1",
@@ -471,7 +547,9 @@
    "comparative": "méi egozentresch",
    "superlative": "am egozentreschsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 1,
+   "rank": 193
   },
   {
    "id": "EIERGAIZEG1",
@@ -482,7 +560,9 @@
    "comparative": "méi éiergäizeg",
    "superlative": "am éiergäizegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 175
   },
   {
    "id": "EIERLECH1",
@@ -493,7 +573,9 @@
    "comparative": "méi éierlech",
    "superlative": "am éierlechsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 8,
+   "rank": 95
   },
   {
    "id": "EINFACH1",
@@ -506,7 +588,9 @@
    "irregular": false,
    "oppositeIds": [
     "KOMPLIZEIERT1"
-   ]
+   ],
+   "freq": 33.75,
+   "rank": 25
   },
   {
    "id": "ELEGANT1",
@@ -517,7 +601,9 @@
    "comparative": "méi elegant",
    "superlative": "am elegantsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 10,
+   "rank": 80
   },
   {
    "id": "ELLEN1",
@@ -530,7 +616,9 @@
    "irregular": false,
    "oppositeIds": [
     "SCHEIN1"
-   ]
+   ],
+   "freq": 17.333333333333336,
+   "rank": 50
   },
   {
    "id": "ENK1",
@@ -543,7 +631,9 @@
    "irregular": false,
    "oppositeIds": [
     "BREET2"
-   ]
+   ],
+   "freq": 18,
+   "rank": 47
   },
   {
    "id": "ERFOLLEGRAICH1",
@@ -554,7 +644,9 @@
    "comparative": "méi erfollegräich",
    "superlative": "am erfollegräichsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 1,
+   "rank": 194
   },
   {
    "id": "ERWUESSEN1",
@@ -565,7 +657,9 @@
    "comparative": "méi erwuessen",
    "superlative": "am erwuessensten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 4.5,
+   "rank": 134
   },
   {
    "id": "EXIGENT1",
@@ -576,7 +670,9 @@
    "comparative": "méi exigent",
    "superlative": "am exigentsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 4,
+   "rank": 137
   },
   {
    "id": "FAARWEG1",
@@ -587,7 +683,9 @@
    "comparative": "méi faarweg",
    "superlative": "am faarwegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 6,
+   "rank": 116
   },
   {
    "id": "FAERDEG1",
@@ -598,7 +696,9 @@
    "comparative": "méi fäerdeg",
    "superlative": "am fäerdegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 13.999999999999995,
+   "rank": 60
   },
   {
    "id": "FALSCH1",
@@ -609,7 +709,9 @@
    "comparative": "méi falsch",
    "superlative": "am falschsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 40,
+   "rank": 18
   },
   {
    "id": "FAMILIAR1",
@@ -620,7 +722,9 @@
    "comparative": "méi familiär",
    "superlative": "am familiäersten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 153
   },
   {
    "id": "FANTASTESCH1",
@@ -631,7 +735,9 @@
    "comparative": "méi fantastesch",
    "superlative": "am fantasteschsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 176
   },
   {
    "id": "FEIN1",
@@ -642,7 +748,9 @@
    "comparative": "méi fein",
    "superlative": "am feinsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 11,
+   "rank": 72
   },
   {
    "id": "FIT1",
@@ -653,7 +761,9 @@
    "comparative": "méi fit",
    "superlative": "am fitsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 5,
+   "rank": 128
   },
   {
    "id": "FIX1",
@@ -664,7 +774,9 @@
    "comparative": "méi fix",
    "superlative": "am fixsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 5,
+   "rank": 129
   },
   {
    "id": "FLAISSEG1",
@@ -677,7 +789,9 @@
    "irregular": false,
    "oppositeIds": [
     "LIDDEREG1"
-   ]
+   ],
+   "freq": 3,
+   "rank": 154
   },
   {
    "id": "FLEXIBEL1",
@@ -688,7 +802,9 @@
    "comparative": "méi flexibel",
    "superlative": "am flexibelsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 155
   },
   {
    "id": "FLOTT2",
@@ -699,7 +815,9 @@
    "comparative": "méi flott",
    "superlative": "am flottsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 31,
+   "rank": 27
   },
   {
    "id": "FORMELL1",
@@ -710,7 +828,9 @@
    "comparative": "méi formell",
    "superlative": "am formellsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 156
   },
   {
    "id": "FRAI1",
@@ -721,7 +841,9 @@
    "comparative": "méi fräi",
    "superlative": "am fräisten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 39.75,
+   "rank": 20
   },
   {
    "id": "FRENDLECH1",
@@ -734,7 +856,9 @@
    "irregular": false,
    "oppositeIds": [
     "BEIS1"
-   ]
+   ],
+   "freq": 13,
+   "rank": 62
   },
   {
    "id": "FRESCH1",
@@ -745,7 +869,9 @@
    "comparative": "méi frësch",
    "superlative": "am frëschsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 38,
+   "rank": 21
   },
   {
    "id": "FRIEM1",
@@ -756,7 +882,9 @@
    "comparative": "méi friem",
    "superlative": "am friemsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 11,
+   "rank": 73
   },
   {
    "id": "FROU1",
@@ -769,7 +897,9 @@
    "irregular": false,
    "oppositeIds": [
     "TRAUEREG1"
-   ]
+   ],
+   "freq": 16,
+   "rank": 54
   },
   {
    "id": "FUTTI1",
@@ -780,7 +910,9 @@
    "comparative": "méi futti",
    "superlative": "am futtisten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 12.999999999999998,
+   "rank": 65
   },
   {
    "id": "GECKEG1",
@@ -791,7 +923,9 @@
    "comparative": "méi geckeg",
    "superlative": "am geckegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 9,
+   "rank": 88
   },
   {
    "id": "GEDELLEG1",
@@ -802,7 +936,9 @@
    "comparative": "méi gedëlleg",
    "superlative": "am gedëllegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 5,
+   "rank": 130
   },
   {
    "id": "GENEE1",
@@ -813,7 +949,9 @@
    "comparative": "méi genee",
    "superlative": "am geneesten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 14,
+   "rank": 56
   },
   {
    "id": "GENEREIS1",
@@ -827,7 +965,9 @@
    "oppositeIds": [
     "KNECKEG1",
     "EGOISTESCH1"
-   ]
+   ],
+   "freq": 2,
+   "rank": 177
   },
   {
    "id": "GENIAL1",
@@ -838,7 +978,9 @@
    "comparative": "méi genial",
    "superlative": "am geniaalsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 157
   },
   {
    "id": "GESCHEIT1",
@@ -851,7 +993,9 @@
    "irregular": false,
    "oppositeIds": [
     "DOMM1"
-   ]
+   ],
+   "freq": 7,
+   "rank": 103
   },
   {
    "id": "GESOND1",
@@ -864,7 +1008,9 @@
    "irregular": false,
    "oppositeIds": [
     "KRANK1"
-   ]
+   ],
+   "freq": 20,
+   "rank": 42
   },
   {
    "id": "GIEL1",
@@ -875,7 +1021,9 @@
    "comparative": "méi giel",
    "superlative": "am gielsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 6,
+   "rank": 117
   },
   {
    "id": "GLAT1",
@@ -886,7 +1034,9 @@
    "comparative": "méi glat",
    "superlative": "am glaatsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 6.000000000000001,
+   "rank": 114
   },
   {
    "id": "GLECKLECH1",
@@ -899,7 +1049,9 @@
    "irregular": false,
    "oppositeIds": [
     "TRAUEREG1"
-   ]
+   ],
+   "freq": 7,
+   "rank": 104
   },
   {
    "id": "GOLDEG1",
@@ -910,7 +1062,9 @@
    "comparative": "méi goldeg",
    "superlative": "am goldegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 178
   },
   {
    "id": "GRAFF1",
@@ -921,7 +1075,9 @@
    "comparative": "méi graff",
    "superlative": "am graffsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 8,
+   "rank": 96
   },
   {
    "id": "GRANZEG1",
@@ -932,7 +1088,9 @@
    "comparative": "méi granzeg",
    "superlative": "am granzegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 4,
+   "rank": 138
   },
   {
    "id": "GRENG1",
@@ -943,7 +1101,9 @@
    "comparative": "méi gréng",
    "superlative": "am gréngsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 11,
+   "rank": 74
   },
   {
    "id": "GRO1",
@@ -954,7 +1114,9 @@
    "comparative": "méi gro",
    "superlative": "am groosten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 10,
+   "rank": 81
   },
   {
    "id": "GROUSS2",
@@ -967,7 +1129,9 @@
    "irregular": false,
    "oppositeIds": [
     "KLENG1"
-   ]
+   ],
+   "freq": 142.66666666666666,
+   "rank": 5
   },
   {
    "id": "GUTT2",
@@ -980,7 +1144,9 @@
    "irregular": true,
    "oppositeIds": [
     "SCHLECHT1"
-   ]
+   ],
+   "freq": 260.5,
+   "rank": 2
   },
   {
    "id": "HAART1",
@@ -993,7 +1159,9 @@
    "irregular": false,
    "oppositeIds": [
     "MELL1"
-   ]
+   ],
+   "freq": 29,
+   "rank": 29
   },
   {
    "id": "HAERZLECH1",
@@ -1004,7 +1172,9 @@
    "comparative": "méi häerzlech",
    "superlative": "am häerzlechsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2.5,
+   "rank": 169
   },
   {
    "id": "HEICH1",
@@ -1017,7 +1187,9 @@
    "irregular": false,
    "oppositeIds": [
     "DEIF2"
-   ]
+   ],
+   "freq": 35.84615384615386,
+   "rank": 23
   },
   {
    "id": "HELL1",
@@ -1031,7 +1203,9 @@
    "oppositeIds": [
     "DAISCHTER1",
     "DONKEL1"
-   ]
+   ],
+   "freq": 8.75,
+   "rank": 93
   },
   {
    "id": "HELLEFSBEREET1",
@@ -1042,7 +1216,9 @@
    "comparative": "méi hëllefsbereet",
    "superlative": "am hëllefsbereetsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 158
   },
   {
    "id": "HONGEREG1",
@@ -1053,7 +1229,9 @@
    "comparative": "méi hongereg",
    "superlative": "am hongeregsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 11,
+   "rank": 75
   },
   {
    "id": "IDEAL2",
@@ -1064,7 +1242,9 @@
    "comparative": "méi ideal",
    "superlative": "am ideaalsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 4,
+   "rank": 139
   },
   {
    "id": "INTELLIGENT1",
@@ -1077,7 +1257,9 @@
    "irregular": false,
    "oppositeIds": [
     "DOMM1"
-   ]
+   ],
+   "freq": 7,
+   "rank": 105
   },
   {
    "id": "INTERESSANT1",
@@ -1090,7 +1272,9 @@
    "irregular": false,
    "oppositeIds": [
     "LANGWEILEG1"
-   ]
+   ],
+   "freq": 12,
+   "rank": 69
   },
   {
    "id": "JALOUS1",
@@ -1101,7 +1285,9 @@
    "comparative": "méi jalous",
    "superlative": "am jalousten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 179
   },
   {
    "id": "JONK1",
@@ -1114,7 +1300,9 @@
    "irregular": false,
    "oppositeIds": [
     "AL1"
-   ]
+   ],
+   "freq": 76,
+   "rank": 9
   },
   {
    "id": "KAL1",
@@ -1127,7 +1315,9 @@
    "irregular": false,
    "oppositeIds": [
     "WAARM1"
-   ]
+   ],
+   "freq": 38,
+   "rank": 22
   },
   {
    "id": "KILL1",
@@ -1138,7 +1328,9 @@
    "comparative": "méi kill",
    "superlative": "am killsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 180
   },
   {
    "id": "KLENG1",
@@ -1151,7 +1343,9 @@
    "irregular": false,
    "oppositeIds": [
     "GROUSS2"
-   ]
+   ],
+   "freq": 161.83333333333343,
+   "rank": 3
   },
   {
    "id": "KLOER1",
@@ -1162,7 +1356,9 @@
    "comparative": "méi kloer",
    "superlative": "am kloersten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 22,
+   "rank": 39
   },
   {
    "id": "KNASCHTEG1",
@@ -1175,7 +1371,9 @@
    "irregular": false,
    "oppositeIds": [
     "PROPPER1"
-   ]
+   ],
+   "freq": 18,
+   "rank": 48
   },
   {
    "id": "KNECKEG1",
@@ -1188,7 +1386,9 @@
    "irregular": false,
    "oppositeIds": [
     "GENEREIS1"
-   ]
+   ],
+   "freq": 2,
+   "rank": 181
   },
   {
    "id": "KOMESCH1",
@@ -1199,7 +1399,9 @@
    "comparative": "méi komesch",
    "superlative": "am komeschsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 8,
+   "rank": 97
   },
   {
    "id": "KOMPLETT1",
@@ -1210,7 +1412,9 @@
    "comparative": "méi komplett",
    "superlative": "am komplettsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 10,
+   "rank": 82
   },
   {
    "id": "KOMPLIZEIERT1",
@@ -1223,7 +1427,9 @@
    "irregular": false,
    "oppositeIds": [
     "EINFACH1"
-   ]
+   ],
+   "freq": 6,
+   "rank": 118
   },
   {
    "id": "KONSEQUENT1",
@@ -1234,7 +1440,9 @@
    "comparative": "méi konsequent",
    "superlative": "am konsequentsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 159
   },
   {
    "id": "KORPULENT1",
@@ -1247,7 +1455,9 @@
    "irregular": false,
    "oppositeIds": [
     "SCHLANK1"
-   ]
+   ],
+   "freq": 1,
+   "rank": 195
   },
   {
    "id": "KRANK1",
@@ -1260,7 +1470,9 @@
    "irregular": false,
    "oppositeIds": [
     "GESOND1"
-   ]
+   ],
+   "freq": 28.60000000000001,
+   "rank": 30
   },
   {
    "id": "KREATIV1",
@@ -1271,7 +1483,9 @@
    "comparative": "méi kreativ",
    "superlative": "am kreatiivsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 160
   },
   {
    "id": "KUERZ1",
@@ -1284,7 +1498,9 @@
    "irregular": false,
    "oppositeIds": [
     "LAANG1"
-   ]
+   ],
+   "freq": 40,
+   "rank": 19
   },
   {
    "id": "LAANG1",
@@ -1297,7 +1513,9 @@
    "irregular": false,
    "oppositeIds": [
     "KUERZ1"
-   ]
+   ],
+   "freq": 157,
+   "rank": 4
   },
   {
    "id": "LANGWEILEG1",
@@ -1311,7 +1529,9 @@
    "oppositeIds": [
     "INTERESSANT1",
     "SPANNEND1"
-   ]
+   ],
+   "freq": 7,
+   "rank": 106
   },
   {
    "id": "LIDDEREG1",
@@ -1324,7 +1544,9 @@
    "irregular": false,
    "oppositeIds": [
     "FLAISSEG1"
-   ]
+   ],
+   "freq": 3,
+   "rank": 161
   },
   {
    "id": "LIICHT1",
@@ -1337,7 +1559,9 @@
    "irregular": false,
    "oppositeIds": [
     "SCHWEIER1"
-   ]
+   ],
+   "freq": 17.400000000000006,
+   "rank": 49
   },
   {
    "id": "LUES1",
@@ -1348,7 +1572,9 @@
    "comparative": "méi lues",
    "superlative": "am luesten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 27,
+   "rank": 31
   },
   {
    "id": "MANNLECH1",
@@ -1359,7 +1585,9 @@
    "comparative": "méi männlech",
    "superlative": "am männlechsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 162
   },
   {
    "id": "MATERIALISTESCH1",
@@ -1370,7 +1598,9 @@
    "comparative": "méi materialistesch",
    "superlative": "am materialisteschsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 182
   },
   {
    "id": "MELL1",
@@ -1384,7 +1614,9 @@
    "oppositeIds": [
     "HAART1",
     "SCHAARF1"
-   ]
+   ],
+   "freq": 13,
+   "rank": 63
   },
   {
    "id": "METTELMEISSEG1",
@@ -1395,7 +1627,9 @@
    "comparative": "méi mëttelméisseg",
    "superlative": "am mëttelméissegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 163
   },
   {
    "id": "MIDD1",
@@ -1406,7 +1640,9 @@
    "comparative": "méi midd",
    "superlative": "am middsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 19,
+   "rank": 44
   },
   {
    "id": "MODERN1",
@@ -1419,7 +1655,9 @@
    "irregular": false,
    "oppositeIds": [
     "ALMOUDESCH1"
-   ]
+   ],
+   "freq": 14,
+   "rank": 57
   },
   {
    "id": "MOF1",
@@ -1430,7 +1668,9 @@
    "comparative": "méi mof",
    "superlative": "am moofsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 183
   },
   {
    "id": "MUSKULEIS1",
@@ -1441,7 +1681,9 @@
    "comparative": "méi muskuléis",
    "superlative": "am muskuléisten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 1,
+   "rank": 196
   },
   {
    "id": "NAASS1",
@@ -1454,7 +1696,9 @@
    "irregular": false,
    "oppositeIds": [
     "DRECHEN1"
-   ]
+   ],
+   "freq": 7,
+   "rank": 107
   },
   {
    "id": "NEGATIV2",
@@ -1467,7 +1711,9 @@
    "irregular": false,
    "oppositeIds": [
     "POSITIV1"
-   ]
+   ],
+   "freq": 8,
+   "rank": 98
   },
   {
    "id": "NEI1",
@@ -1480,7 +1726,9 @@
    "irregular": false,
    "oppositeIds": [
     "AL1"
-   ]
+   ],
+   "freq": 305,
+   "rank": 1
   },
   {
    "id": "NERVOS1",
@@ -1493,7 +1741,9 @@
    "irregular": false,
    "oppositeIds": [
     "ROUEG1"
-   ]
+   ],
+   "freq": 5,
+   "rank": 131
   },
   {
    "id": "NETZLECH1",
@@ -1504,7 +1754,9 @@
    "comparative": "méi nëtzlech",
    "superlative": "am nëtzlechsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 5,
+   "rank": 132
   },
   {
    "id": "NIWWELEG1",
@@ -1517,7 +1769,9 @@
    "irregular": false,
    "oppositeIds": [
     "SONNEG1"
-   ]
+   ],
+   "freq": 1,
+   "rank": 197
   },
   {
    "id": "NO2",
@@ -1530,7 +1784,9 @@
    "irregular": false,
    "oppositeIds": [
     "WAIT1"
-   ]
+   ],
+   "freq": 82.49999999999963,
+   "rank": 8
   },
   {
    "id": "NORMAL1",
@@ -1541,7 +1797,9 @@
    "comparative": "méi normal",
    "superlative": "am normaalsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 4,
+   "rank": 140
   },
   {
    "id": "ONROUEG1",
@@ -1554,7 +1812,9 @@
    "irregular": false,
    "oppositeIds": [
     "ROUEG1"
-   ]
+   ],
+   "freq": 6,
+   "rank": 119
   },
   {
    "id": "ONSECHER1",
@@ -1567,7 +1827,9 @@
    "irregular": false,
    "oppositeIds": [
     "SECHER1"
-   ]
+   ],
+   "freq": 10,
+   "rank": 83
   },
   {
    "id": "ONSERIO1",
@@ -1580,7 +1842,9 @@
    "irregular": false,
    "oppositeIds": [
     "SERIO1"
-   ]
+   ],
+   "freq": 2,
+   "rank": 184
   },
   {
    "id": "ONSPORTLECH1",
@@ -1593,7 +1857,9 @@
    "irregular": false,
    "oppositeIds": [
     "SPORTLECH1"
-   ]
+   ],
+   "freq": 3,
+   "rank": 164
   },
   {
    "id": "ONSYMPATHESCH1",
@@ -1606,7 +1872,9 @@
    "irregular": false,
    "oppositeIds": [
     "SYMPATHESCH1"
-   ]
+   ],
+   "freq": 1,
+   "rank": 198
   },
   {
    "id": "OPPEN1",
@@ -1617,7 +1885,9 @@
    "comparative": "méi oppen",
    "superlative": "am oppensten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 17,
+   "rank": 52
   },
   {
    "id": "ORIGINELL1",
@@ -1628,7 +1898,9 @@
    "comparative": "méi originell",
    "superlative": "am originellsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 1,
+   "rank": 199
   },
   {
    "id": "PERFEKTIONISTESCH1",
@@ -1639,7 +1911,9 @@
    "comparative": "méi perfektionistesch",
    "superlative": "am perfektionisteschsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 1,
+   "rank": 200
   },
   {
    "id": "PLATT1",
@@ -1650,7 +1924,9 @@
    "comparative": "méi platt",
    "superlative": "am plattsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 14,
+   "rank": 58
   },
   {
    "id": "POSITIV1",
@@ -1663,7 +1939,9 @@
    "irregular": false,
    "oppositeIds": [
     "NEGATIV2"
-   ]
+   ],
+   "freq": 7,
+   "rank": 108
   },
   {
    "id": "PRAKTESCH1",
@@ -1674,7 +1952,9 @@
    "comparative": "méi praktesch",
    "superlative": "am prakteschsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 5.5,
+   "rank": 124
   },
   {
    "id": "PRESSEIERT1",
@@ -1685,7 +1965,9 @@
    "comparative": "méi presséiert",
    "superlative": "am presséiertsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3.5,
+   "rank": 146
   },
   {
    "id": "PREZIS1",
@@ -1696,7 +1978,9 @@
    "comparative": "méi prezis",
    "superlative": "am preziisten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 8,
+   "rank": 99
   },
   {
    "id": "PRIVAT1",
@@ -1707,7 +1991,9 @@
    "comparative": "méi privat",
    "superlative": "am privaatsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 7,
+   "rank": 109
   },
   {
    "id": "PROPPER1",
@@ -1720,7 +2006,9 @@
    "irregular": false,
    "oppositeIds": [
     "KNASCHTEG1"
-   ]
+   ],
+   "freq": 19,
+   "rank": 45
   },
   {
    "id": "RAICH1",
@@ -1733,7 +2021,9 @@
    "irregular": false,
    "oppositeIds": [
     "AARM1"
-   ]
+   ],
+   "freq": 8.75,
+   "rank": 94
   },
   {
    "id": "REBELLESCH1",
@@ -1744,7 +2034,9 @@
    "comparative": "méi rebellesch",
    "superlative": "am rebelleschsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 185
   },
   {
    "id": "RELAX1",
@@ -1755,7 +2047,9 @@
    "comparative": "méi relax",
    "superlative": "am relaxsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 7,
+   "rank": 110
   },
   {
    "id": "RELIEIS1",
@@ -1766,7 +2060,9 @@
    "comparative": "méi reliéis",
    "superlative": "am reliéisten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 4,
+   "rank": 141
   },
   {
    "id": "RESERVEIERT1",
@@ -1777,7 +2073,9 @@
    "comparative": "méi reservéiert",
    "superlative": "am reservéiertsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 8,
+   "rank": 100
   },
   {
    "id": "ROMANTESCH1",
@@ -1788,7 +2086,9 @@
    "comparative": "méi romantesch",
    "superlative": "am romanteschsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 186
   },
   {
    "id": "RONN2",
@@ -1801,7 +2101,9 @@
    "irregular": false,
    "oppositeIds": [
     "ECKEG1"
-   ]
+   ],
+   "freq": 11.428571428571429,
+   "rank": 70
   },
   {
    "id": "ROSA1",
@@ -1812,7 +2114,9 @@
    "comparative": "méi rosa",
    "superlative": "am rosasten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 187
   },
   {
    "id": "ROSEN2",
@@ -1823,7 +2127,9 @@
    "comparative": "méi rosen",
    "superlative": "am rosensten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 12.25,
+   "rank": 66
   },
   {
    "id": "ROUEG1",
@@ -1837,7 +2143,9 @@
    "oppositeIds": [
     "ONROUEG1",
     "NERVOS1"
-   ]
+   ],
+   "freq": 26.000000000000007,
+   "rank": 34
   },
   {
    "id": "ROUT1",
@@ -1848,7 +2156,9 @@
    "comparative": "méi rout",
    "superlative": "am routsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 27,
+   "rank": 32
   },
   {
    "id": "SAFTEG1",
@@ -1859,7 +2169,9 @@
    "comparative": "méi säfteg",
    "superlative": "am säftegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 4,
+   "rank": 142
   },
   {
    "id": "SAUER1",
@@ -1872,7 +2184,9 @@
    "irregular": false,
    "oppositeIds": [
     "SEISS1"
-   ]
+   ],
+   "freq": 9,
+   "rank": 89
   },
   {
    "id": "SCHAARF1",
@@ -1885,7 +2199,9 @@
    "irregular": false,
    "oppositeIds": [
     "MELL1"
-   ]
+   ],
+   "freq": 25,
+   "rank": 36
   },
   {
    "id": "SCHEI1",
@@ -1896,7 +2212,9 @@
    "comparative": "méi schei",
    "superlative": "am scheisten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 4,
+   "rank": 143
   },
   {
    "id": "SCHEIN1",
@@ -1909,7 +2227,9 @@
    "irregular": false,
    "oppositeIds": [
     "ELLEN1"
-   ]
+   ],
+   "freq": 90.44999999999996,
+   "rank": 7
   },
   {
    "id": "SCHICK1",
@@ -1920,7 +2240,9 @@
    "comparative": "méi schick",
    "superlative": "am schicksten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 6,
+   "rank": 120
   },
   {
    "id": "SCHLANK1",
@@ -1933,7 +2255,9 @@
    "irregular": false,
    "oppositeIds": [
     "KORPULENT1"
-   ]
+   ],
+   "freq": 2,
+   "rank": 188
   },
   {
    "id": "SCHLECHT1",
@@ -1946,7 +2270,9 @@
    "irregular": false,
    "oppositeIds": [
     "GUTT2"
-   ]
+   ],
+   "freq": 57.26315789473688,
+   "rank": 11
   },
   {
    "id": "SCHLEMM1",
@@ -1957,7 +2283,9 @@
    "comparative": "méi schlëmm",
    "superlative": "am schlëmmsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 25,
+   "rank": 37
   },
   {
    "id": "SCHMUEL1",
@@ -1970,7 +2298,9 @@
    "irregular": false,
    "oppositeIds": [
     "BREET2"
-   ]
+   ],
+   "freq": 6,
+   "rank": 121
   },
   {
    "id": "SCHRECKLECH1",
@@ -1981,7 +2311,9 @@
    "comparative": "méi schrecklech",
    "superlative": "am schrecklechsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 11,
+   "rank": 76
   },
   {
    "id": "SCHWEIER1",
@@ -1994,7 +2326,9 @@
    "irregular": false,
    "oppositeIds": [
     "LIICHT1"
-   ]
+   ],
+   "freq": 46.33333333333331,
+   "rank": 14
   },
   {
    "id": "SECHER1",
@@ -2007,7 +2341,9 @@
    "irregular": false,
    "oppositeIds": [
     "ONSECHER1"
-   ]
+   ],
+   "freq": 26.88095238095238,
+   "rank": 33
   },
   {
    "id": "SEISS1",
@@ -2021,7 +2357,9 @@
    "oppositeIds": [
     "BATTER1",
     "SAUER1"
-   ]
+   ],
+   "freq": 10,
+   "rank": 84
   },
   {
    "id": "SENSIBEL1",
@@ -2032,7 +2370,9 @@
    "comparative": "méi sensibel",
    "superlative": "am sensibelsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 6,
+   "rank": 122
   },
   {
    "id": "SERIO1",
@@ -2045,7 +2385,9 @@
    "irregular": false,
    "oppositeIds": [
     "ONSERIO1"
-   ]
+   ],
+   "freq": 11,
+   "rank": 77
   },
   {
    "id": "SONNEG1",
@@ -2058,7 +2400,9 @@
    "irregular": false,
    "oppositeIds": [
     "NIWWELEG1"
-   ]
+   ],
+   "freq": 2,
+   "rank": 189
   },
   {
    "id": "SPANNEND1",
@@ -2071,7 +2415,9 @@
    "irregular": false,
    "oppositeIds": [
     "LANGWEILEG1"
-   ]
+   ],
+   "freq": 7,
+   "rank": 111
   },
   {
    "id": "SPEIT1",
@@ -2082,7 +2428,9 @@
    "comparative": "méi spéit",
    "superlative": "am spéitsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 45.666666666666664,
+   "rank": 15
   },
   {
    "id": "SPEZIELL1",
@@ -2093,7 +2441,9 @@
    "comparative": "méi speziell",
    "superlative": "am speziellsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 9.25,
+   "rank": 86
   },
   {
    "id": "SPONTAN1",
@@ -2104,7 +2454,9 @@
    "comparative": "méi spontan",
    "superlative": "am spontaansten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 190
   },
   {
    "id": "SPORTLECH1",
@@ -2117,7 +2469,9 @@
    "irregular": false,
    "oppositeIds": [
     "ONSPORTLECH1"
-   ]
+   ],
+   "freq": 10,
+   "rank": 85
   },
   {
    "id": "STAARK1",
@@ -2128,7 +2482,9 @@
    "comparative": "méi staark",
    "superlative": "am stäerksten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 49,
+   "rank": 13
   },
   {
    "id": "STRENG1",
@@ -2141,7 +2497,9 @@
    "irregular": false,
    "oppositeIds": [
     "TOLERANT1"
-   ]
+   ],
+   "freq": 14,
+   "rank": 59
   },
   {
    "id": "STRESSEG1",
@@ -2152,7 +2510,9 @@
    "comparative": "méi stresseg",
    "superlative": "am stressegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 4,
+   "rank": 144
   },
   {
    "id": "STUER1",
@@ -2163,7 +2523,9 @@
    "comparative": "méi stuer",
    "superlative": "am stuersten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 165
   },
   {
    "id": "SUPER1",
@@ -2174,7 +2536,9 @@
    "comparative": "méi super",
    "superlative": "am supersten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 166
   },
   {
    "id": "SYMPATHESCH1",
@@ -2187,7 +2551,9 @@
    "irregular": false,
    "oppositeIds": [
     "ONSYMPATHESCH1"
-   ]
+   ],
+   "freq": 6,
+   "rank": 123
   },
   {
    "id": "TEMPERAMENTVOLL1",
@@ -2198,7 +2564,9 @@
    "comparative": "méi temperamentvoll",
    "superlative": "am temperamentvollsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 167
   },
   {
    "id": "TOLERANT1",
@@ -2211,7 +2579,9 @@
    "irregular": false,
    "oppositeIds": [
     "STRENG1"
-   ]
+   ],
+   "freq": 1,
+   "rank": 201
   },
   {
    "id": "TOURISTESCH1",
@@ -2222,7 +2592,9 @@
    "comparative": "méi touristesch",
    "superlative": "am touristeschsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 4,
+   "rank": 145
   },
   {
    "id": "TRAUEREG1",
@@ -2236,7 +2608,9 @@
    "oppositeIds": [
     "FROU1",
     "GLECKLECH1"
-   ]
+   ],
+   "freq": 9,
+   "rank": 90
   },
   {
    "id": "TREI1",
@@ -2247,7 +2621,9 @@
    "comparative": "méi trei",
    "superlative": "am treisten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 5,
+   "rank": 133
   },
   {
    "id": "UERDENTLECH1",
@@ -2258,7 +2634,9 @@
    "comparative": "méi uerdentlech",
    "superlative": "am uerdentlechsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 13,
+   "rank": 64
   },
   {
    "id": "VERSCHIDDEN1",
@@ -2269,7 +2647,9 @@
    "comparative": "méi verschidden",
    "superlative": "am verschiddensten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 61,
+   "rank": 10
   },
   {
    "id": "VERSPAANT2",
@@ -2280,7 +2660,9 @@
    "comparative": "méi verspaant",
    "superlative": "am verspaantsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 1,
+   "rank": 202
   },
   {
    "id": "VOLL1",
@@ -2291,7 +2673,9 @@
    "comparative": "méi voll",
    "superlative": "am vollsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 45,
+   "rank": 16
   },
   {
    "id": "WAARM1",
@@ -2304,7 +2688,9 @@
    "irregular": false,
    "oppositeIds": [
     "KAL1"
-   ]
+   ],
+   "freq": 42,
+   "rank": 17
   },
   {
    "id": "WAIT1",
@@ -2317,7 +2703,9 @@
    "irregular": false,
    "oppositeIds": [
     "NO2"
-   ]
+   ],
+   "freq": 22.125,
+   "rank": 38
   },
   {
    "id": "WARSCHEINLECH1",
@@ -2328,7 +2716,9 @@
    "comparative": "méi warscheinlech",
    "superlative": "am warscheinlechsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 191
   },
   {
    "id": "WICHTEG1",
@@ -2339,7 +2729,9 @@
    "comparative": "méi wichteg",
    "superlative": "am wichtegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 19,
+   "rank": 46
   },
   {
    "id": "WITZEG1",
@@ -2350,7 +2742,9 @@
    "comparative": "méi witzeg",
    "superlative": "am witzegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 3,
+   "rank": 168
   },
   {
    "id": "WONNERBAR1",
@@ -2361,7 +2755,9 @@
    "comparative": "méi wonnerbar",
    "superlative": "am wonnerbaarsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 9,
+   "rank": 91
   },
   {
    "id": "ZEFRIDDEN1",
@@ -2372,7 +2768,9 @@
    "comparative": "méi zefridden",
    "superlative": "am zefriddensten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 7,
+   "rank": 112
   },
   {
    "id": "ZEIDEG1",
@@ -2383,7 +2781,9 @@
    "comparative": "méi zeideg",
    "superlative": "am zeidegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 9,
+   "rank": 92
   },
   {
    "id": "ZOLIDD1",
@@ -2394,7 +2794,9 @@
    "comparative": "méi zolidd",
    "superlative": "am zolittsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 11,
+   "rank": 78
   },
   {
    "id": "ZOUVERLASSEG1",
@@ -2405,7 +2807,9 @@
    "comparative": "méi zouverlässeg",
    "superlative": "am zouverlässegsten",
    "irregular": false,
-   "oppositeIds": []
+   "oppositeIds": [],
+   "freq": 2,
+   "rank": 192
   }
  ],
  "comparisons": [

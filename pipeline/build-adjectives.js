@@ -124,11 +124,42 @@ function comparisons(sentences, byLemma) {
   return out;
 }
 
+/**
+ * How often each adjective actually turns up, and its place in the order.
+ *
+ * Not counted again here. `pipeline/lib/frequency.js` already counts every
+ * entry across all 10,777 LOD example sentences, splitting a homograph's
+ * occurrences in proportion to LOD's own headword marks, and `build-vocab.js`
+ * writes the result onto the vocabulary deck — which is where the "100 verbs"
+ * list gets its order. Every one of these adjectives is in that deck, so the
+ * number is read across rather than recomputed: two rankings from one count
+ * cannot disagree, and this build stays a second rather than a minute.
+ *
+ * `rank` is the position among the adjectives alone — rank 1 is the most used
+ * adjective, not the most used word — because that is what a "top 50" filter
+ * over this deck has to mean. Ties break on the lemma so the JSON is stable.
+ */
+function rankByUse(items, vocab) {
+  const freq = new Map();
+  for (const item of vocab.items ?? []) freq.set(item.lodId ?? item.id, item.freq ?? 0);
+
+  const ordered = [...items].sort(
+    (a, b) => (freq.get(b.id) ?? 0) - (freq.get(a.id) ?? 0) || a.lb.localeCompare(b.lb),
+  );
+  const rank = new Map(ordered.map((item, index) => [item.id, index + 1]));
+  for (const item of items) {
+    item.freq = freq.get(item.id) ?? 0;
+    item.rank = rank.get(item.id);
+  }
+  return items.filter((item) => item.freq === 0).map((item) => item.lb);
+}
+
 async function build() {
-  const [corpus, lexicon, relations] = await Promise.all([
+  const [corpus, lexicon, relations, vocab] = await Promise.all([
     fsp.readFile(path.join(paths.CONTENT_DIR, 'corpus.json'), 'utf8').then(JSON.parse),
     fsp.readFile(paths.LEXICON_PATH, 'utf8').then(JSON.parse),
     fsp.readFile(RELATIONS_PATH, 'utf8').then(JSON.parse),
+    fsp.readFile(path.join(paths.ITEMS_DIR, 'vocab.json'), 'utf8').then(JSON.parse),
   ]);
 
   const entries = Array.isArray(corpus.entries) ? corpus.entries : Object.values(corpus.entries);
@@ -183,6 +214,11 @@ async function build() {
     byId.get(b).oppositeIds.push(a);
   }
 
+  // A word the corpus never uses cannot be placed in a "most used" order, and
+  // silently ranking it last would be a guess wearing a number.
+  const unseen = rankByUse(items, vocab);
+  if (unseen.length > 0) problems.push(`no corpus frequency for: ${unseen.join(', ')}`);
+
   if (problems.length > 0) {
     throw new Error(`build-adjectives refused:\n  ${problems.join('\n  ')}`);
   }
@@ -199,7 +235,9 @@ async function build() {
       attribution: "Lëtzebuerger Online Dictionnaire (LOD), Zenter fir d'Lëtzebuerger Sprooch, via data.public.lu",
       notes:
         'Both degrees are quoted from the inflection table, never derived. Opposites are asserted in ' +
-        'content/hand-authored/adjective-relations.json as relations between entry ids; LOD has no antonym field.',
+        'content/hand-authored/adjective-relations.json as relations between entry ids; LOD has no antonym field. ' +
+        'rank orders the adjectives by how often LOD\'s example sentences use them (see pipeline/lib/frequency.js); ' +
+        'these are dictionary examples, not a spoken corpus, so it orders a deck and is not a citable frequency list.',
     },
     items,
     comparisons: compared,
@@ -211,10 +249,12 @@ async function build() {
   await fsp.writeFile(path.join(APP_DATA, 'adjectives.json'), json);
 
   const withOpposite = items.filter((item) => item.oppositeIds.length > 0).length;
+  const top = [...items].sort((a, b) => a.rank - b.rank).slice(0, 8).map((item) => item.lb);
   process.stdout.write(
     `adjectives: ${items.length} with both degrees, ${withOpposite} with an opposite, ` +
       `${compared.length} comparison sentences (${compared.filter((one) => one.shape === 'more').length} méi, ` +
-      `${compared.filter((one) => one.shape === 'as').length} esou)\n`,
+      `${compared.filter((one) => one.shape === 'as').length} esou)\n` +
+      `  most used: ${top.join(', ')}\n`,
   );
 }
 

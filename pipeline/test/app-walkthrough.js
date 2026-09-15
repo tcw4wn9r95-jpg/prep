@@ -1994,6 +1994,60 @@ async function main() {
     }
     await shot('00t-adjectives-index');
 
+    // --- the top-most-used filter -----------------------------------------
+    // Asked for as a filter "across all these games", so switching it has to
+    // move every round's total at once, not just the screen it was set on.
+    const totals = () =>
+      page.evaluate(() => [...document.querySelectorAll('a[href^="#/adjectives/"] .chip')].map((node) => node.textContent.trim()));
+    const all = await totals();
+    if (all.length !== 5) throw new Error(`expected five rounds on the index, got ${all.length}`);
+    await page.locator('.chip--pick[data-top="50"]').click();
+    await page.waitForTimeout(200);
+    const fifty = await totals();
+    if (!fifty.every((row, at) => row !== all[at])) throw new Error(`the filter left a round untouched: ${fifty.join(' / ')}`);
+    for (const row of fifty) {
+      const of = Number(row.split('/')[1]);
+      if (!(of > 0 && of <= 50)) throw new Error(`a filtered round still offers ${row}`);
+      // A round is ten questions, so a pool under ten is a screen that cannot
+      // be played.
+      if (of < 10) throw new Error(`a filtered round can only ask ${row}`);
+    }
+    await shot('00t2-adjectives-top50');
+
+    // It sticks, which is what makes it a setting rather than a toggle.
+    await openFresh('#/adjectives');
+    await page.waitForSelector('.chip--pick', { timeout: 8000 });
+    const picked = await page.evaluate(() => document.querySelector('.chip--pick.is-picked')?.dataset.top ?? null);
+    if (picked !== '50') throw new Error(`the filter did not survive a reload: ${picked}`);
+
+    // And the rounds obey it: the card says which set it drew from, and every
+    // option on it — the answer and all three decoys — is inside that set.
+    await openFresh('#/adjectives/superlative');
+    await page.waitForSelector('.options .option', { timeout: 8000 });
+    const filtered = await page.evaluate(async () => {
+      const { loadAdjectives } = await import('./js/content.js');
+      const { deckFor } = await import('./js/adjectives.js');
+      const settings = await (await import('./js/store.js')).getSettings();
+      const full = await loadAdjectives();
+      const deck = deckFor(settings.adjectiveTop, full.items, full.comparisons);
+      const known = new Set(deck.items.map((item) => item.superlative));
+      return {
+        sub: document.querySelector('.screen__sub')?.textContent ?? '',
+        stray: [...document.querySelectorAll('.options .option')].map((node) => node.textContent.trim()).filter((text) => !known.has(text)),
+        size: deck.items.length,
+      };
+    });
+    if (filtered.size !== 50) throw new Error(`the round loaded ${filtered.size} adjectives`);
+    if (!/Top 50/.test(filtered.sub)) throw new Error(`the round does not say what it drew from: "${filtered.sub}"`);
+    if (filtered.stray.length > 0) throw new Error(`options from outside the filter: ${filtered.stray.join(', ')}`);
+
+    // Back to the whole deck for the rest of the step.
+    await openFresh('#/adjectives');
+    await page.waitForSelector('.chip--pick', { timeout: 8000 });
+    await page.locator('.chip--pick[data-top="all"]').click();
+    await page.waitForTimeout(200);
+    process.stdout.write(`  adjectives filter: ${all.join(' / ')} → ${fifty.join(' / ')} at Top 50\n`);
+
     // The reference half. A drill you cannot simply *look at* is one you
     // cannot revise from.
     await openFresh('#/adjectives/list');
@@ -2010,6 +2064,17 @@ async function main() {
     // gives `am groussen`, and Luxembourgish says `am gréissten`.
     if (!found.includes('am gréissten')) throw new Error(`grouss lists ${JSON.stringify(found)}`);
     await shot('00u-adjectives-table');
+
+    // The table obeys the same filter — it would be a strange filter that the
+    // reference list disagreed with.
+    await page.locator('input[type=search]').fill('');
+    await page.locator('.chip--pick[data-top="50"]').click();
+    await page.waitForTimeout(200);
+    const shortlist = await page.locator('.adj__row').count();
+    if (shortlist !== 50) throw new Error(`the table shows ${shortlist} rows at Top 50`);
+    await page.locator('.chip--pick[data-top="all"]').click();
+    await page.waitForTimeout(200);
+    if ((await page.locator('.adj__row').count()) !== rows) throw new Error('switching back did not restore the table');
 
     for (const mode of ['meaning', 'opposite', 'comparative', 'superlative', 'comparison']) {
       await openFresh(`#/adjectives/${mode}`);

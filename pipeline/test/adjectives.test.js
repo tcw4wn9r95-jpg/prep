@@ -307,6 +307,112 @@ test('adjectives: progress is counted per mode against that mode\'s own pool', (
   assert.equal(byMode.get('opposite').finished, 0);
 });
 
+/* ------------------------------------------------------- the top filter */
+
+test('adjectives: the ranking is by how often the corpus uses the word', () => {
+  // Read across from the vocabulary deck rather than counted again, so the
+  // adjective filter and the "100 verbs" list can never disagree about which
+  // words are common. If that join ever silently misses, every rank falls to
+  // the alphabetical tie-break and the filter becomes "the first fifty".
+  const vocab = new Map(
+    (readJson('content', 'items', 'vocab.json').items ?? []).map((item) => [item.lodId ?? item.id, item.freq ?? 0]),
+  );
+  const ranks = [...ITEMS].sort((a, b) => a.rank - b.rank);
+  assert.deepEqual(
+    ranks.map((item) => item.rank),
+    ITEMS.map((_, index) => index + 1),
+    'rank must be 1..n with no gaps or repeats',
+  );
+  for (const item of ITEMS) {
+    assert.equal(item.freq, vocab.get(item.id), `${item.lb}: freq does not match the vocabulary deck`);
+    assert.ok(item.freq > 0, `${item.lb} has no corpus occurrences to be ranked by`);
+  }
+  for (let at = 1; at < ranks.length; at += 1) {
+    assert.ok(ranks[at - 1].freq >= ranks[at].freq, `${ranks[at].lb} outranks a more frequent word`);
+  }
+  // And the order is the one a learner would recognise, not an artefact.
+  assert.deepEqual(ranks.slice(0, 5).map((item) => item.lb), ['nei', 'gutt', 'kleng', 'laang', 'grouss']);
+});
+
+test('adjectives: a filtered deck is the top N, and every round is drawn from it', () => {
+  for (const top of [50, 100]) {
+    const deck = adjectives.deckFor(top, ITEMS, COMPARISONS);
+    assert.equal(deck.items.length, top);
+    assert.ok(deck.items.every((item) => item.rank <= top), 'a word past the cut is still in the deck');
+
+    const inside = new Set(deck.items.map((item) => item.id));
+    for (const one of deck.comparisons) {
+      assert.ok(inside.has(one.adjectiveId), `a comparison gapped on a word outside the top ${top}`);
+    }
+    // Every mode can still fill a round of ten, or the filter has made a
+    // screen that cannot be played.
+    for (const mode of adjectives.MODES.map((one) => one.id)) {
+      const pool = adjectives.poolFor(mode, deck.items, deck.comparisons);
+      assert.ok(pool.length >= adjectives.ROUND, `top ${top}: ${mode} can only ask ${pool.length}`);
+    }
+  }
+  // No filter is the deck untouched — the default has to stay the whole thing.
+  const all = adjectives.deckFor(null, ITEMS, COMPARISONS);
+  assert.equal(all.items.length, ITEMS.length);
+  assert.equal(all.comparisons.length, COMPARISONS.length);
+});
+
+test('adjectives: a filter keeps both halves of an opposite pair or neither', () => {
+  // Asking for the opposite of a top-50 word and answering with one that is
+  // not practised teaches the rarer half by accident — and among three
+  // familiar decoys the unfamiliar word is the answer without being read.
+  for (const top of [50, 100]) {
+    const deck = adjectives.deckFor(top, ITEMS, COMPARISONS);
+    const byId = new Map(deck.items.map((item) => [item.id, item]));
+    for (const item of deck.items) {
+      for (const id of item.oppositeIds) {
+        assert.ok(byId.has(id), `${item.lb} points at ${id}, which the top ${top} does not include`);
+        assert.ok(byId.get(id).oppositeIds.includes(item.id), `${id} does not point back inside the top ${top}`);
+      }
+    }
+    // The trim is a copy, and it drops exactly the half that fell outside —
+    // a word with two opposites keeps the one still in the set (`al` keeps
+    // both jonk and nei at 50; `béis` loses frëndlech and keeps nothing).
+    const split = ITEMS.filter((item) => item.rank <= top && item.oppositeIds.some((id) => !byId.has(id)));
+    assert.ok(split.length > 0, `top ${top} should split at least one pair, or this guards nothing`);
+    for (const item of split) {
+      assert.deepEqual(
+        byId.get(item.id).oppositeIds,
+        item.oppositeIds.filter((id) => byId.has(id)),
+        `${item.lb}: the trim dropped the wrong opposites`,
+      );
+      // And the deck on disk is untouched, so switching back to All restores it.
+      assert.ok(item.oppositeIds.length > byId.get(item.id).oppositeIds.length);
+    }
+  }
+});
+
+test('adjectives: under a filter every option on the card is a word from the filter', () => {
+  // The point of "top 50": fifty adjectives read, not four times that many
+  // with fifty asked about. The wrong answers come from the filtered deck.
+  const deck = adjectives.deckFor(50, ITEMS, COMPARISONS);
+  const byId = new Map(deck.items.map((item) => [item.id, item]));
+  const known = new Set(deck.items.flatMap((item) => [item.lb, item.en, item.comparative, item.superlative]));
+  for (const mode of adjectives.MODES.map((one) => one.id)) {
+    for (const item of adjectives.poolFor(mode, deck.items, deck.comparisons)) {
+      const question = adjectives.questionFor(mode, item, { items: deck.items, byId, random: seeded(`${mode}:${item.id}`) });
+      for (const option of question.options) {
+        assert.ok(known.has(option), `top 50 ${mode}: "${option}" is not one of the fifty`);
+      }
+    }
+  }
+});
+
+test('adjectives: the filter is remembered, and applies to every round and the table', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'app', 'js', 'screens', 'adjectives.js'), 'utf8');
+  assert.ok(/saveSettings\(\{ adjectiveTop/.test(source), 'the choice must be remembered');
+  assert.ok(/topById\(settings\.adjectiveTop\)/.test(source), 'and read back on the way in');
+  // One deck for the whole screen: the rounds and the table are filtered from
+  // the same call, so they cannot drift apart.
+  assert.equal((source.match(/deckFor\(/g) ?? []).length, 3, 'index, round and table each filter once');
+  assert.ok(/renderList[\s\S]*topFilter\(/.test(source), 'the table carries the filter too');
+});
+
 test('adjectives: the game keeps its own progress and does not move the Leitner boxes', () => {
   // Picking one of four is a lighter task than the vocab deck's recall cards.
   // Letting it promote the same rows would drift the review schedule with
