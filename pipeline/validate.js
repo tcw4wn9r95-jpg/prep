@@ -58,6 +58,13 @@ const LUXEMBOURGISH_FIELDS = new Set([
   'participle',
   'moved',
   'conjunction',
+  // pipeline/build-adjectives.js — the two degrees, quoted from LOD's own
+  // Flexiounstabellen, and the adjective as the comparison sentence spells it.
+  // All three are surface forms shown on screen, so they get the same checking
+  // as anything else.
+  'comparative',
+  'superlative',
+  'form',
   // pipeline/build-grammar.js — dativeItems() records the preposition that
   // governs the gapped pronoun; it is a real corpus token, not free text.
   'preposition',
@@ -95,6 +102,14 @@ const FREE_TEXT_FIELDS = new Set([
   'topic',
   'source',
   'sourceUrl',
+  // pipeline/build-adjectives.js — LOD entry ids, not text. Named with the
+  // `Id` suffix so the schema says which fields hold a reference and which
+  // hold a word: `oppositeIds` is a relation between entries, `adjectiveId`
+  // says which adjective a comparison sentence is gapped on.
+  'oppositeIds',
+  'adjectiveId',
+  // Which comparison a sentence makes: 'more' (méi … wéi) or 'as' (esou … wéi).
+  'shape',
   'licence',
   'attribution',
   'notes',

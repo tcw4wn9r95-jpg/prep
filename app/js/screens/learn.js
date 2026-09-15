@@ -196,6 +196,12 @@ export async function render(root, { settings, navigate }) {
       ),
       el(
         'a',
+        { class: 'card', href: '#/adjectives', style: { display: 'block', flex: '1 1 40%' } },
+        el('p', { style: { fontSize: '22px', textAlign: 'center' } }, '🌡️'),
+        el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Adjectives'),
+      ),
+      el(
+        'a',
         { class: 'card', href: '#/gender-sort', style: { display: 'block', flex: '1 1 40%' } },
         el('p', { style: { fontSize: '22px', textAlign: 'center' } }, '⚤'),
         el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Gender Sort'),

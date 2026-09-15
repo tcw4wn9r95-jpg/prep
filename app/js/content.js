@@ -99,6 +99,19 @@ export function loadWordGlossary() {
   return wordGlossaryPromise;
 }
 
+/**
+ * The adjective deck: the words with both degrees, and the mined comparison
+ * sentences. One file, because the comparisons are only useful beside the
+ * adjectives they gap.
+ */
+let adjectivesPromise = null;
+export function loadAdjectives() {
+  adjectivesPromise ??= loadJson('adjectives')
+    .then((file) => ({ items: file.items ?? [], comparisons: file.comparisons ?? [] }))
+    .catch(() => ({ items: [], comparisons: [] }));
+  return adjectivesPromise;
+}
+
 let sentencesPromise = null;
 export function loadSentences() {
   sentencesPromise ??= Promise.all([

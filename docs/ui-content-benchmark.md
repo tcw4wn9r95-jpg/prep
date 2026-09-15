@@ -4320,3 +4320,131 @@ true of what turns over.
 `npm test` 382 (8 new) · `validate` PASS, 252 warnings, unchanged ·
 `npm run walkthrough` with the builder step extended to drive the toggle, both
 flips, the second tap and the three-second fallback · `sw.js` → `v60`.
+
+# Follow-up 40 — the adjectives, and what the dictionary does not say
+
+> "Research on LOD a comprehensive list of adjectives, and make a game for
+> learning them. Add the adjectives, the opposite, the comparative and the
+> superlative. Also make this game so that I can practice making comparisons
+> between things"
+
+Four things were asked for. LOD publishes two of them, does not publish the
+third at all, and the fourth is a sentence — which under the corpus rule means
+it has to be found rather than written.
+
+| asked for | where it comes from |
+| --- | --- |
+| the adjectives | 283 `ADJ` entries in `content/corpus.json`, 278 with an English gloss |
+| the comparative | LOD's Flexiounstabellen, quoted |
+| the superlative | the same table, quoted |
+| the opposite | **nowhere** — see below |
+| comparisons | LOD example sentences that already compare two things, gapped |
+
+## The degrees are quoted, and that is the whole point
+
+`lexicon.forms` tags every spelling with how LOD knows it, and `table:` is the
+inflection table. For an adjective those entries are exactly the two degrees,
+and they tell themselves apart by shape: LOD writes the comparative with `méi`
+and the superlative with `am`. 204 adjectives carry both; 202 of those also
+have an English gloss and are what the deck ships.
+
+Deriving instead would have been one line of code, and wrong for **37 of the
+202** — 18%:
+
+| lemma | a rule gives | LOD says |
+| --- | --- | --- |
+| grouss | am groussten | **am gréissten** |
+| aarm | am aarmsten | **am äermsten** |
+| al | am alsten | **am eelsten** |
+| blo | am blosten | **am bloosten** |
+| aggressiv | am aggressivsten | **am aggressiivsten** |
+
+Those are not edge cases: `grouss`, `aarm`, `al` are the first adjectives
+anybody learns. The comparative, by contrast, is `méi` + the lemma for all 202
+without exception — which is why the two degrees are asked from opposite ends.
+Shown `nëtzlech`, every option reads `méi <word>` and the learner matches the
+word they were just given; so the comparative round asks from the English
+(*"more useful"* → say it) and the superlative from the Luxembourgish, where
+the stem is the only thing telling the four options apart.
+
+`gutt` is the exception and had to be handled by hand: LOD files `besser` and
+`am beschten` as their own headwords, not as gutt's table, so gutt appears in
+the corpus with no comparative at all. The link is asserted in
+`content/hand-authored/adjective-relations.json`; both spellings are checked
+against the lexicon before the build will emit them. It is also the one card in
+the deck where the answer's shape gives it away, because a suppletive form has
+no shape-mates to hide among and manufacturing some would mean inventing
+Luxembourgish.
+
+## LOD has no antonyms
+
+There is no antonym field anywhere in the corpus — glosses and examples, and
+that is all. So "add the opposite" cannot be answered from the data, and
+writing `schéin ↔ ellen` into a file would be authoring a claim about
+Luxembourgish.
+
+What it is instead: a relation between two entries that already exist, named by
+**entry id**.
+
+```json
+["GROUSS2", "KLENG1", "big / small"],
+["AL1", "JONK1", "old / young (a person)"],
+["AL1", "NEI1", "old / new (a thing)"],
+```
+
+Not one word of Luxembourgish is typed in that file — the third column is an
+English note for whoever maintains it, and a test rejects Luxembourgish
+characters in it. The build refuses any id that is not a real adjective with
+both published degrees, which is how nine ids I guessed on the first pass
+(`BREET1`, `DEIF1`, `NERVEIS1`, `RONN1`, …) were caught and corrected against
+the corpus rather than shipped as silently missing pairs. 47 pairs, 84
+adjectives with an opposite.
+
+An adjective can have two, and both can be right — `al` is the opposite of
+`jonk` for a person and of `nei` for a thing. So the game excludes *every*
+known opposite of a word from that word's wrong answers rather than assuming
+there is one. Offering both would mark a correct answer wrong, which is the
+worst thing a drill can do.
+
+## Comparisons are mined, never composed
+
+"X ass méi ADJ ewéi Y" is a frame, and filling it with a new X and Y would
+still be writing a sentence nobody wrote — the same conclusion Follow-up 38
+reached about the Sentence Builder. So the comparison round is built from
+example sentences that already compare two things:
+
+```
+bei de Kanner sinn d'Aen dacks méi grouss ewéi de Mo
+```
+
+The filter is `(méi|esou) <a deck adjective>` with a `(e)wéi` somewhere after
+it — the adjective having to be one of the deck's own is what keeps *"méi wéi
+honnert Joer"* ("more than a hundred years", comparing nothing) out. 51
+sentences, 32 `méi` and 19 `esou`, and both shapes matter because *as big as*
+is a different thing to produce than *bigger than*.
+
+The gap is cut by **offset**, not by replacing the word: the same adjective can
+appear twice in a sentence and a blind replace would blank the wrong one. All
+51 mined forms turn out to be bare lemmas — the frame is predicative — which is
+also what lets the wrong answers be other adjectives' lemmas without the
+answer being the only one wearing an ending. A test pins that.
+
+## The table is half the feature
+
+"Add the adjectives, the opposite, the comparative and the superlative" is a
+reference request as much as a game one, and a drill that never lets you simply
+*look at* the set is one you cannot revise from. `#/adjectives/list` is all 202
+with both degrees and every opposite, searchable in either language, with the
+one asserted link labelled as asserted.
+
+Progress is kept in `settings.adjectives` and the Leitner boxes are not touched.
+Picking one of four is a lighter task than the vocab deck's recall cards, and
+letting it promote the same rows would drift the review schedule with nothing
+on screen looking wrong — the line the arcade and verb school already hold.
+
+## Verification
+
+`npm test` 400 (18 new) · `validate` PASS, 252 warnings, unchanged · `npm run
+walkthrough` with a step driving the index, the table, one question of each of
+the five rounds and a correct answer recorded without moving the daily count ·
+`sw.js` → `v61`.

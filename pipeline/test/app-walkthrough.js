@@ -1980,6 +1980,125 @@ async function main() {
     if (!listed) throw new Error('Today does not list the Sentence Builder as a step');
   });
 
+  await step('the adjective game asks meaning, opposite, both degrees and a real comparison', async () => {
+    // "Add the adjectives, the opposite, the comparative and the superlative.
+    // Also make this game so that I can practice making comparisons between
+    // things" — five rounds, and a table to revise from.
+    await openFresh('#/adjectives');
+    await page.waitForSelector('a[href^="#/adjectives/"]', { timeout: 8000 });
+    const links = await page.evaluate(() =>
+      [...document.querySelectorAll('a[href^="#/adjectives/"]')].map((node) => node.getAttribute('href')),
+    );
+    for (const wanted of ['list', 'meaning', 'opposite', 'comparative', 'superlative', 'comparison']) {
+      if (!links.includes(`#/adjectives/${wanted}`)) throw new Error(`no ${wanted} on the index`);
+    }
+    await shot('00t-adjectives-index');
+
+    // The reference half. A drill you cannot simply *look at* is one you
+    // cannot revise from.
+    await openFresh('#/adjectives/list');
+    await page.waitForSelector('.adj__row', { timeout: 8000 });
+    const rows = await page.locator('.adj__row').count();
+    if (rows < 180) throw new Error(`only ${rows} adjectives in the table`);
+    await page.locator('input[type=search]').fill('grouss');
+    await page.waitForTimeout(200);
+    const found = await page.evaluate(() => {
+      const row = document.querySelector('.adj__row');
+      return row ? [...row.querySelectorAll('.adj__forms span')].map((node) => node.textContent) : [];
+    });
+    // The whole reason the degrees are quoted rather than derived: a rule
+    // gives `am groussen`, and Luxembourgish says `am gréissten`.
+    if (!found.includes('am gréissten')) throw new Error(`grouss lists ${JSON.stringify(found)}`);
+    await shot('00u-adjectives-table');
+
+    for (const mode of ['meaning', 'opposite', 'comparative', 'superlative', 'comparison']) {
+      await openFresh(`#/adjectives/${mode}`);
+      await page.waitForSelector('.options .option', { timeout: 8000 });
+      const card = await page.evaluate(() => ({
+        prompt:
+          document.querySelector('.prompt__word')?.textContent?.trim() ??
+          document.querySelector('.prompt__sentence')?.textContent?.trim() ??
+          null,
+        options: [...document.querySelectorAll('.options .option')].map((node) => node.textContent.trim()),
+        page: document.documentElement.scrollHeight,
+        viewport: window.innerHeight,
+      }));
+      if (!card.prompt) throw new Error(`${mode}: no question`);
+      if (card.options.length !== 4) throw new Error(`${mode}: ${card.options.length} options`);
+      if (card.page > card.viewport + 1) throw new Error(`${mode}: ${card.page}px against a ${card.viewport}px screen`);
+      if (mode === 'comparison' && !/____/.test(card.prompt)) throw new Error('a comparison must be asked with a gap');
+      // Asked from the English, because `nëtzlech → méi nëtzlech` is a
+      // word-matching exercise rather than a question.
+      if (mode === 'comparative' && !/^more /.test(card.prompt)) throw new Error(`the comparative is asked as "${card.prompt}"`);
+      await shot(`00v-adjectives-${mode}`);
+    }
+
+    // Answer one right: the superlative, where the stem is the whole question.
+    await openFresh('#/adjectives/superlative');
+    await page.waitForSelector('.options .option', { timeout: 8000 });
+    const before = await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      const settings = await store.getSettings();
+      return {
+        done: (settings.adjectives ?? []).length,
+        cards: (await store.todayProgress(settings.playerId)).cards,
+      };
+    });
+    const answer = await page.evaluate(async () => {
+      const { loadAdjectives } = await import('./js/content.js');
+      const { buildRound, questionFor, poolFor } = await import('./js/adjectives.js');
+      const { seeded } = await import('./js/sentences.js');
+      const settings = await (await import('./js/store.js')).getSettings();
+      const deck = await loadAdjectives();
+      const pool = poolFor('superlative', deck.items, deck.comparisons);
+      const plan = buildRound('superlative', pool, new Set(settings.adjectives ?? []), {
+        seed: `${settings.playerId}:superlative`,
+      });
+      const byId = new Map(deck.items.map((item) => [item.id, item]));
+      return questionFor('superlative', plan[0], { items: deck.items, byId, random: seeded(`superlative:${plan[0].id}`) }).answer;
+    });
+    await page
+      .locator('.options .option', { hasText: new RegExp(`^${answer.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`) })
+      .first()
+      .click();
+    await page.waitForTimeout(400);
+    const marked = await page.evaluate(() => ({
+      correct: document.querySelectorAll('.option.is-correct').length,
+      wrong: document.querySelectorAll('.option.is-wrong').length,
+      note: document.querySelector('.drill__rule')?.textContent?.trim() ?? null,
+    }));
+    if (marked.correct !== 1 || marked.wrong !== 0) {
+      throw new Error(`the published superlative was marked ${marked.correct} right / ${marked.wrong} wrong`);
+    }
+    // Both degrees come back after the answer, so one question teaches two.
+    if (!marked.note?.includes(answer)) throw new Error(`the feedback does not show the word: ${marked.note}`);
+
+    // Round to the end, so progress is written.
+    for (let guard = 0; guard < 12; guard += 1) {
+      const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+      if (!(await next.count())) break;
+      await next.first().click();
+      await page.waitForTimeout(200);
+      const option = page.locator('.options .option').first();
+      if (!(await option.count())) break;
+      await option.click();
+      await page.waitForTimeout(150);
+    }
+    const after = await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      const settings = await store.getSettings();
+      return {
+        done: (settings.adjectives ?? []).length,
+        cards: (await store.todayProgress(settings.playerId)).cards,
+      };
+    });
+    if (after.done <= before.done) throw new Error('a finished round recorded nothing');
+    // A side game: it keeps its own progress and leaves the review schedule
+    // where it was, the same line the arcade and verb school hold.
+    if (after.cards !== before.cards) throw new Error(`the adjective round moved the daily count to ${after.cards}`);
+    process.stdout.write(`  adjectives: ${rows} in the table, "${answer}" marked right, ${after.done} answered\n`);
+  });
+
   await step('verb school teaches a course verb through meaning, table and sentence', async () => {
     await openFresh('#/school');
     await page.waitForSelector('.school__cat', { timeout: 5000 });
