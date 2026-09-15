@@ -2119,13 +2119,29 @@ async function main() {
     if (new Set(options).size !== options.length) throw new Error(`two buttons read the same: ${options.join(' / ')}`);
     await shot('00k-school-meaning');
 
-    // Work forward until the conjugation table appears, whichever answer is
-    // picked — a wrong answer must not strand the course.
-    for (let guard = 0; guard < 12; guard += 1) {
+    // Work forward until the conjugation table appears, checking on the way
+    // that a wrong answer does not strand the course.
+    //
+    // The right answer is *read off the card* after answering rather than
+    // guessed at. A missed stage is re-asked with the options reshuffled, so
+    // the earlier version — click the first option, hope, repeat — had a
+    // three-in-a-hundred chance of never advancing and failing the step with
+    // nothing wrong in the app. It duly did.
+    for (let guard = 0; guard < 8; guard += 1) {
       const text = await page.locator('#screen').innerText();
       if (/Which form goes with/.test(text)) break;
       await page.locator('.options .option').first().click();
-      await page.getByRole('button', { name: /Next|Try the next one/ }).click();
+      const answer = await page.locator('.options .option.is-correct').first().getAttribute('data-value');
+      if ((await page.locator('.options .option.is-wrong').count()) > 0) {
+        const again = page.getByRole('button', { name: 'Try the next one' });
+        if (!(await again.count())) throw new Error('a missed card left no way forward');
+        await again.click();
+        await page.waitForTimeout(150);
+        // The same stage comes back — take it, this time with the answer the
+        // card just showed.
+        await page.locator(`.options .option[data-value="${answer.replace(/"/g, '\\"')}"]`).first().click();
+      }
+      await page.getByRole('button', { name: 'Next', exact: true }).click();
       await page.waitForTimeout(150);
     }
     const table = await page.locator('#screen').innerText();
