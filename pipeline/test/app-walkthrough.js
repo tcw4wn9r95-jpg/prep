@@ -909,7 +909,12 @@ async function main() {
       { id: 'verb-person', instruction: /Who is doing it/, control: '.options .option' },
       // The instruction names the person and the verb now, rather than saying
       // "Build the form" and leaving the player to guess which one.
-      { id: 'verb-form', instruction: /Build the \w+ form of \w+/, control: '.bank__tile' },
+      //
+      // `\p{L}`, not `\w`: the verb is Luxembourgish and `\w` is ASCII. Six
+      // verbs in the deck start with ë or ä, and dealing one of them —
+      // "Build the hien form of äntweren." — failed this step as a mechanic
+      // fault with the app behaving perfectly.
+      { id: 'verb-form', instruction: /Build the \p{L}+ form of \p{L}+/u, control: '.bank__tile' },
       { id: 'verb-past', instruction: /Tap the helper verb/, control: '.options .option' },
       { id: 'verb-number', instruction: /one person doing this, or more than one/, control: '.options .option' },
     ];
