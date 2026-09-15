@@ -1961,3 +1961,27 @@
 .is-translating .builder__slot.is-inert {
   opacity: 0.45;
 }
+
+/* --- the adjective table --------------------------------------------------
+ * A reference row, not a card to tap: the word, its English, and the two
+ * degrees underneath in a monospaced-feeling row so the endings line up and
+ * -sten reads as a pattern rather than as noise.
+ */
+
+.adj__word {
+  font-size: var(--size-lg);
+  font-weight: 750;
+  color: var(--text);
+}
+
+.adj__forms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s4);
+  margin-block-start: var(--s2);
+  font-size: var(--size-sm);
+  font-weight: 650;
+  color: var(--accent);
+}
+
+.adj__row + .adj__row { margin-block-start: var(--s2); }

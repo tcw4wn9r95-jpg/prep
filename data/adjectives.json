@@ -1,0 +1,2923 @@
+{
+ "meta": {
+  "generatedAt": "2026-09-15T11:22:17.473Z",
+  "generator": "pipeline/build-adjectives.js",
+  "source": "LOD Flexiounstabellen (degrees) and LOD example sentences (comparisons), CC0",
+  "attribution": "Lëtzebuerger Online Dictionnaire (LOD), Zenter fir d'Lëtzebuerger Sprooch, via data.public.lu",
+  "notes": "Both degrees are quoted from the inflection table, never derived. Opposites are asserted in content/hand-authored/adjective-relations.json as relations between entry ids; LOD has no antonym field."
+ },
+ "items": [
+  {
+   "id": "AARM1",
+   "type": "adjective",
+   "lb": "aarm",
+   "en": "poor",
+   "level": "A2",
+   "comparative": "méi aarm",
+   "superlative": "am äermsten",
+   "irregular": false,
+   "oppositeIds": [
+    "RAICH1"
+   ]
+  },
+  {
+   "id": "AGEBILT1",
+   "type": "adjective",
+   "lb": "agebilt",
+   "en": "conceited",
+   "level": "A2",
+   "comparative": "méi agebilt",
+   "superlative": "am agebiltsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "AGGRESSIV1",
+   "type": "adjective",
+   "lb": "aggressiv",
+   "en": "aggressive",
+   "level": "A2",
+   "comparative": "méi aggressiv",
+   "superlative": "am aggressiivsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "AKTIV1",
+   "type": "adjective",
+   "lb": "aktiv",
+   "en": "active",
+   "level": "A2",
+   "comparative": "méi aktiv",
+   "superlative": "am aktiivsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "AKTUELL1",
+   "type": "adjective",
+   "lb": "aktuell",
+   "en": "current",
+   "level": "A2",
+   "comparative": "méi aktuell",
+   "superlative": "am aktuellsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "AL1",
+   "type": "adjective",
+   "lb": "al",
+   "en": "old",
+   "level": "A1",
+   "comparative": "méi al",
+   "superlative": "am eelsten",
+   "irregular": false,
+   "oppositeIds": [
+    "JONK1",
+    "NEI1"
+   ]
+  },
+  {
+   "id": "ALMOUDESCH1",
+   "type": "adjective",
+   "lb": "almoudesch",
+   "en": "old-fashioned",
+   "level": "A2",
+   "comparative": "méi almoudesch",
+   "superlative": "am almoudeschsten",
+   "irregular": false,
+   "oppositeIds": [
+    "MODERN1"
+   ]
+  },
+  {
+   "id": "ARROGANT1",
+   "type": "adjective",
+   "lb": "arrogant",
+   "en": "arrogant",
+   "level": "A2",
+   "comparative": "méi arrogant",
+   "superlative": "am arrogantsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "BATTER1",
+   "type": "adjective",
+   "lb": "batter",
+   "en": "bitter",
+   "level": "A2",
+   "comparative": "méi batter",
+   "superlative": "am battersten",
+   "irregular": false,
+   "oppositeIds": [
+    "SEISS1"
+   ]
+  },
+  {
+   "id": "BEIS1",
+   "type": "adjective",
+   "lb": "béis",
+   "en": "mean",
+   "level": "A1",
+   "comparative": "méi béis",
+   "superlative": "am béisten",
+   "irregular": false,
+   "oppositeIds": [
+    "FRENDLECH1"
+   ]
+  },
+  {
+   "id": "BEKANNT1",
+   "type": "adjective",
+   "lb": "bekannt",
+   "en": "well known",
+   "level": "A2",
+   "comparative": "méi bekannt",
+   "superlative": "am bekanntsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "BELEIFT1",
+   "type": "adjective",
+   "lb": "beléift",
+   "en": "popular",
+   "level": "A2",
+   "comparative": "méi beléift",
+   "superlative": "am beléiftsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "BELLEG1",
+   "type": "adjective",
+   "lb": "bëlleg",
+   "en": "cheap",
+   "level": "A1",
+   "comparative": "méi bëlleg",
+   "superlative": "am bëllegsten",
+   "irregular": false,
+   "oppositeIds": [
+    "DEIER2"
+   ]
+  },
+  {
+   "id": "BEQUEEM1",
+   "type": "adjective",
+   "lb": "bequeem",
+   "en": "comfortable",
+   "level": "A2",
+   "comparative": "méi bequeem",
+   "superlative": "am bequeemsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "BERUUMT1",
+   "type": "adjective",
+   "lb": "berüümt",
+   "en": "famous",
+   "level": "A2",
+   "comparative": "méi berüümt",
+   "superlative": "am berüümtsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "BLEECH1",
+   "type": "adjective",
+   "lb": "bleech",
+   "en": "pale",
+   "level": "A2",
+   "comparative": "méi bleech",
+   "superlative": "am bleechsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "BLO1",
+   "type": "adjective",
+   "lb": "blo",
+   "en": "blue",
+   "level": "A1",
+   "comparative": "méi blo",
+   "superlative": "am bloosten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "BLOD1",
+   "type": "adjective",
+   "lb": "blöd",
+   "en": "stupid",
+   "level": "A2",
+   "comparative": "méi blöd",
+   "superlative": "am blöödsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "BLOND1",
+   "type": "adjective",
+   "lb": "blond",
+   "en": "blond",
+   "level": "A1",
+   "comparative": "méi blond",
+   "superlative": "am blondsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "BRAV1",
+   "type": "adjective",
+   "lb": "brav",
+   "en": "good",
+   "level": "A1",
+   "comparative": "méi brav",
+   "superlative": "am braavsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "BREET2",
+   "type": "adjective",
+   "lb": "breet",
+   "en": "wide",
+   "level": "A2",
+   "comparative": "méi breet",
+   "superlative": "am breetsten",
+   "irregular": false,
+   "oppositeIds": [
+    "SCHMUEL1",
+    "ENK1"
+   ]
+  },
+  {
+   "id": "BRONG1",
+   "type": "adjective",
+   "lb": "brong",
+   "en": "brown",
+   "level": "A1",
+   "comparative": "méi brong",
+   "superlative": "am brongsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "CHARMANT1",
+   "type": "adjective",
+   "lb": "charmant",
+   "en": "charming",
+   "level": "A2",
+   "comparative": "méi charmant",
+   "superlative": "am charmantsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "COOL1",
+   "type": "adjective",
+   "lb": "cool",
+   "en": "cool",
+   "level": "A1",
+   "comparative": "méi cool",
+   "superlative": "am coolsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "COURAGEIERT1",
+   "type": "adjective",
+   "lb": "couragéiert",
+   "en": "brave",
+   "level": "A2",
+   "comparative": "méi couragéiert",
+   "superlative": "am couragéiertsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "DAISCHTER1",
+   "type": "adjective",
+   "lb": "däischter",
+   "en": "dark",
+   "level": "A2",
+   "comparative": "méi däischter",
+   "superlative": "am däischtersten",
+   "irregular": false,
+   "oppositeIds": [
+    "HELL1"
+   ]
+  },
+  {
+   "id": "DECK1",
+   "type": "adjective",
+   "lb": "déck",
+   "en": "big",
+   "level": "A1",
+   "comparative": "méi déck",
+   "superlative": "am décksten",
+   "irregular": false,
+   "oppositeIds": [
+    "DENN1"
+   ]
+  },
+  {
+   "id": "DEIER2",
+   "type": "adjective",
+   "lb": "deier",
+   "en": "expensive",
+   "level": "A1",
+   "comparative": "méi deier",
+   "superlative": "am deiersten",
+   "irregular": false,
+   "oppositeIds": [
+    "BELLEG1"
+   ]
+  },
+  {
+   "id": "DEIF2",
+   "type": "adjective",
+   "lb": "déif",
+   "en": "deep",
+   "level": "A2",
+   "comparative": "méi déif",
+   "superlative": "am déifsten",
+   "irregular": false,
+   "oppositeIds": [
+    "HEICH1"
+   ]
+  },
+  {
+   "id": "DENN1",
+   "type": "adjective",
+   "lb": "dënn",
+   "en": "thin",
+   "level": "A1",
+   "comparative": "méi dënn",
+   "superlative": "am dënnsten",
+   "irregular": false,
+   "oppositeIds": [
+    "DECK1"
+   ]
+  },
+  {
+   "id": "DIREKT1",
+   "type": "adjective",
+   "lb": "direkt",
+   "en": "direct",
+   "level": "A2",
+   "comparative": "méi direkt",
+   "superlative": "am direktsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "DOMINANT1",
+   "type": "adjective",
+   "lb": "dominant",
+   "en": "domineering",
+   "level": "A2",
+   "comparative": "méi dominant",
+   "superlative": "am dominantsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "DOMM1",
+   "type": "adjective",
+   "lb": "domm",
+   "en": "stupid",
+   "level": "A2",
+   "comparative": "méi domm",
+   "superlative": "am dommsten",
+   "irregular": false,
+   "oppositeIds": [
+    "INTELLIGENT1",
+    "GESCHEIT1"
+   ]
+  },
+  {
+   "id": "DONKEL1",
+   "type": "adjective",
+   "lb": "donkel",
+   "en": "dark",
+   "level": "A2",
+   "comparative": "méi donkel",
+   "superlative": "am donkelsten",
+   "irregular": false,
+   "oppositeIds": [
+    "HELL1"
+   ]
+  },
+  {
+   "id": "DRECHEN1",
+   "type": "adjective",
+   "lb": "dréchen",
+   "en": "dry",
+   "level": "A1",
+   "comparative": "méi dréchen",
+   "superlative": "am dréchensten",
+   "irregular": false,
+   "oppositeIds": [
+    "NAASS1"
+   ]
+  },
+  {
+   "id": "DUUSCHTEREG1",
+   "type": "adjective",
+   "lb": "duuschtereg",
+   "en": "thirsty",
+   "level": "A1",
+   "comparative": "méi duuschtereg",
+   "superlative": "am duuschteregsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "ECKEG1",
+   "type": "adjective",
+   "lb": "eckeg",
+   "en": "angular",
+   "level": "A2",
+   "comparative": "méi eckeg",
+   "superlative": "am eckegsten",
+   "irregular": false,
+   "oppositeIds": [
+    "RONN2"
+   ]
+  },
+  {
+   "id": "EGOISTESCH1",
+   "type": "adjective",
+   "lb": "egoistesch",
+   "en": "selfish",
+   "level": "A2",
+   "comparative": "méi egoistesch",
+   "superlative": "am egoisteschsten",
+   "irregular": false,
+   "oppositeIds": [
+    "GENEREIS1"
+   ]
+  },
+  {
+   "id": "EGOZENTRESCH1",
+   "type": "adjective",
+   "lb": "egozentresch",
+   "en": "egocentric",
+   "level": "A2",
+   "comparative": "méi egozentresch",
+   "superlative": "am egozentreschsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "EIERGAIZEG1",
+   "type": "adjective",
+   "lb": "éiergäizeg",
+   "en": "ambitious",
+   "level": "A2",
+   "comparative": "méi éiergäizeg",
+   "superlative": "am éiergäizegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "EIERLECH1",
+   "type": "adjective",
+   "lb": "éierlech",
+   "en": "honest",
+   "level": "A2",
+   "comparative": "méi éierlech",
+   "superlative": "am éierlechsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "EINFACH1",
+   "type": "adjective",
+   "lb": "einfach",
+   "en": "simple",
+   "level": "A1",
+   "comparative": "méi einfach",
+   "superlative": "am einfachsten",
+   "irregular": false,
+   "oppositeIds": [
+    "KOMPLIZEIERT1"
+   ]
+  },
+  {
+   "id": "ELEGANT1",
+   "type": "adjective",
+   "lb": "elegant",
+   "en": "elegant",
+   "level": "A2",
+   "comparative": "méi elegant",
+   "superlative": "am elegantsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "ELLEN1",
+   "type": "adjective",
+   "lb": "ellen",
+   "en": "ugly",
+   "level": "A1",
+   "comparative": "méi ellen",
+   "superlative": "am ellensten",
+   "irregular": false,
+   "oppositeIds": [
+    "SCHEIN1"
+   ]
+  },
+  {
+   "id": "ENK1",
+   "type": "adjective",
+   "lb": "enk",
+   "en": "narrow",
+   "level": "A2",
+   "comparative": "méi enk",
+   "superlative": "am enksten",
+   "irregular": false,
+   "oppositeIds": [
+    "BREET2"
+   ]
+  },
+  {
+   "id": "ERFOLLEGRAICH1",
+   "type": "adjective",
+   "lb": "erfollegräich",
+   "en": "successful",
+   "level": "A2",
+   "comparative": "méi erfollegräich",
+   "superlative": "am erfollegräichsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "ERWUESSEN1",
+   "type": "adjective",
+   "lb": "erwuessen",
+   "en": "adult",
+   "level": "A2",
+   "comparative": "méi erwuessen",
+   "superlative": "am erwuessensten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "EXIGENT1",
+   "type": "adjective",
+   "lb": "exigent",
+   "en": "demanding",
+   "level": "A2",
+   "comparative": "méi exigent",
+   "superlative": "am exigentsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FAARWEG1",
+   "type": "adjective",
+   "lb": "faarweg",
+   "en": "colourful",
+   "level": "A2",
+   "comparative": "méi faarweg",
+   "superlative": "am faarwegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FAERDEG1",
+   "type": "adjective",
+   "lb": "fäerdeg",
+   "en": "finished",
+   "level": "A2",
+   "comparative": "méi fäerdeg",
+   "superlative": "am fäerdegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FALSCH1",
+   "type": "adjective",
+   "lb": "falsch",
+   "en": "wrong",
+   "level": "A1",
+   "comparative": "méi falsch",
+   "superlative": "am falschsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FAMILIAR1",
+   "type": "adjective",
+   "lb": "familiär",
+   "en": "family",
+   "level": "A2",
+   "comparative": "méi familiär",
+   "superlative": "am familiäersten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FANTASTESCH1",
+   "type": "adjective",
+   "lb": "fantastesch",
+   "en": "fantastic",
+   "level": "A2",
+   "comparative": "méi fantastesch",
+   "superlative": "am fantasteschsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FEIN1",
+   "type": "adjective",
+   "lb": "fein",
+   "en": "nice",
+   "level": "A2",
+   "comparative": "méi fein",
+   "superlative": "am feinsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FIT1",
+   "type": "adjective",
+   "lb": "fit",
+   "en": "fit",
+   "level": "A2",
+   "comparative": "méi fit",
+   "superlative": "am fitsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FIX1",
+   "type": "adjective",
+   "lb": "fix",
+   "en": "fixed",
+   "level": "A1",
+   "comparative": "méi fix",
+   "superlative": "am fixsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FLAISSEG1",
+   "type": "adjective",
+   "lb": "fläisseg",
+   "en": "hard-working",
+   "level": "A2",
+   "comparative": "méi fläisseg",
+   "superlative": "am fläissegsten",
+   "irregular": false,
+   "oppositeIds": [
+    "LIDDEREG1"
+   ]
+  },
+  {
+   "id": "FLEXIBEL1",
+   "type": "adjective",
+   "lb": "flexibel",
+   "en": "flexible",
+   "level": "A2",
+   "comparative": "méi flexibel",
+   "superlative": "am flexibelsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FLOTT2",
+   "type": "adjective",
+   "lb": "flott",
+   "en": "nice",
+   "level": "A1",
+   "comparative": "méi flott",
+   "superlative": "am flottsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FORMELL1",
+   "type": "adjective",
+   "lb": "formell",
+   "en": "formal",
+   "level": "A2",
+   "comparative": "méi formell",
+   "superlative": "am formellsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FRAI1",
+   "type": "adjective",
+   "lb": "fräi",
+   "en": "free",
+   "level": "A1",
+   "comparative": "méi fräi",
+   "superlative": "am fräisten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FRENDLECH1",
+   "type": "adjective",
+   "lb": "frëndlech",
+   "en": "friendly",
+   "level": "A2",
+   "comparative": "méi frëndlech",
+   "superlative": "am frëndlechsten",
+   "irregular": false,
+   "oppositeIds": [
+    "BEIS1"
+   ]
+  },
+  {
+   "id": "FRESCH1",
+   "type": "adjective",
+   "lb": "frësch",
+   "en": "fresh",
+   "level": "A2",
+   "comparative": "méi frësch",
+   "superlative": "am frëschsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FRIEM1",
+   "type": "adjective",
+   "lb": "friem",
+   "en": "foreign",
+   "level": "A2",
+   "comparative": "méi friem",
+   "superlative": "am friemsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "FROU1",
+   "type": "adjective",
+   "lb": "frou",
+   "en": "happy",
+   "level": "A1",
+   "comparative": "méi frou",
+   "superlative": "am frousten",
+   "irregular": false,
+   "oppositeIds": [
+    "TRAUEREG1"
+   ]
+  },
+  {
+   "id": "FUTTI1",
+   "type": "adjective",
+   "lb": "futti",
+   "en": "broken",
+   "level": "A2",
+   "comparative": "méi futti",
+   "superlative": "am futtisten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "GECKEG1",
+   "type": "adjective",
+   "lb": "geckeg",
+   "en": "mad",
+   "level": "A2",
+   "comparative": "méi geckeg",
+   "superlative": "am geckegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "GEDELLEG1",
+   "type": "adjective",
+   "lb": "gedëlleg",
+   "en": "patient",
+   "level": "A2",
+   "comparative": "méi gedëlleg",
+   "superlative": "am gedëllegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "GENEE1",
+   "type": "adjective",
+   "lb": "genee",
+   "en": "exact",
+   "level": "A1",
+   "comparative": "méi genee",
+   "superlative": "am geneesten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "GENEREIS1",
+   "type": "adjective",
+   "lb": "generéis",
+   "en": "generous",
+   "level": "A2",
+   "comparative": "méi generéis",
+   "superlative": "am generéisten",
+   "irregular": false,
+   "oppositeIds": [
+    "KNECKEG1",
+    "EGOISTESCH1"
+   ]
+  },
+  {
+   "id": "GENIAL1",
+   "type": "adjective",
+   "lb": "genial",
+   "en": "brilliant",
+   "level": "A1",
+   "comparative": "méi genial",
+   "superlative": "am geniaalsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "GESCHEIT1",
+   "type": "adjective",
+   "lb": "gescheit",
+   "en": "intelligent",
+   "level": "A2",
+   "comparative": "méi gescheit",
+   "superlative": "am gescheitsten",
+   "irregular": false,
+   "oppositeIds": [
+    "DOMM1"
+   ]
+  },
+  {
+   "id": "GESOND1",
+   "type": "adjective",
+   "lb": "gesond",
+   "en": "healthy",
+   "level": "A1",
+   "comparative": "méi gesond",
+   "superlative": "am gesondsten",
+   "irregular": false,
+   "oppositeIds": [
+    "KRANK1"
+   ]
+  },
+  {
+   "id": "GIEL1",
+   "type": "adjective",
+   "lb": "giel",
+   "en": "yellow",
+   "level": "A1",
+   "comparative": "méi giel",
+   "superlative": "am gielsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "GLAT1",
+   "type": "adjective",
+   "lb": "glat",
+   "en": "slippery",
+   "level": "A2",
+   "comparative": "méi glat",
+   "superlative": "am glaatsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "GLECKLECH1",
+   "type": "adjective",
+   "lb": "glécklech",
+   "en": "happy",
+   "level": "A2",
+   "comparative": "méi glécklech",
+   "superlative": "am glécklechsten",
+   "irregular": false,
+   "oppositeIds": [
+    "TRAUEREG1"
+   ]
+  },
+  {
+   "id": "GOLDEG1",
+   "type": "adjective",
+   "lb": "goldeg",
+   "en": "cute",
+   "level": "A1",
+   "comparative": "méi goldeg",
+   "superlative": "am goldegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "GRAFF1",
+   "type": "adjective",
+   "lb": "graff",
+   "en": "rough",
+   "level": "A1",
+   "comparative": "méi graff",
+   "superlative": "am graffsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "GRANZEG1",
+   "type": "adjective",
+   "lb": "granzeg",
+   "en": "grumpy",
+   "level": "A2",
+   "comparative": "méi granzeg",
+   "superlative": "am granzegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "GRENG1",
+   "type": "adjective",
+   "lb": "gréng",
+   "en": "green",
+   "level": "A1",
+   "comparative": "méi gréng",
+   "superlative": "am gréngsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "GRO1",
+   "type": "adjective",
+   "lb": "gro",
+   "en": "grey",
+   "level": "A2",
+   "comparative": "méi gro",
+   "superlative": "am groosten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "GROUSS2",
+   "type": "adjective",
+   "lb": "grouss",
+   "en": "big",
+   "level": "A1",
+   "comparative": "méi grouss",
+   "superlative": "am gréissten",
+   "irregular": false,
+   "oppositeIds": [
+    "KLENG1"
+   ]
+  },
+  {
+   "id": "GUTT2",
+   "type": "adjective",
+   "lb": "gutt",
+   "en": "good",
+   "level": "A1",
+   "comparative": "besser",
+   "superlative": "am beschten",
+   "irregular": true,
+   "oppositeIds": [
+    "SCHLECHT1"
+   ]
+  },
+  {
+   "id": "HAART1",
+   "type": "adjective",
+   "lb": "haart",
+   "en": "hard",
+   "level": "A2",
+   "comparative": "méi haart",
+   "superlative": "am häertsten",
+   "irregular": false,
+   "oppositeIds": [
+    "MELL1"
+   ]
+  },
+  {
+   "id": "HAERZLECH1",
+   "type": "adjective",
+   "lb": "häerzlech",
+   "en": "warm",
+   "level": "A2",
+   "comparative": "méi häerzlech",
+   "superlative": "am häerzlechsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "HEICH1",
+   "type": "adjective",
+   "lb": "héich",
+   "en": "high",
+   "level": "A2",
+   "comparative": "méi héich",
+   "superlative": "am héichsten",
+   "irregular": false,
+   "oppositeIds": [
+    "DEIF2"
+   ]
+  },
+  {
+   "id": "HELL1",
+   "type": "adjective",
+   "lb": "hell",
+   "en": "light",
+   "level": "A2",
+   "comparative": "méi hell",
+   "superlative": "am hellsten",
+   "irregular": false,
+   "oppositeIds": [
+    "DAISCHTER1",
+    "DONKEL1"
+   ]
+  },
+  {
+   "id": "HELLEFSBEREET1",
+   "type": "adjective",
+   "lb": "hëllefsbereet",
+   "en": "helpful",
+   "level": "A2",
+   "comparative": "méi hëllefsbereet",
+   "superlative": "am hëllefsbereetsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "HONGEREG1",
+   "type": "adjective",
+   "lb": "hongereg",
+   "en": "hungry",
+   "level": "A2",
+   "comparative": "méi hongereg",
+   "superlative": "am hongeregsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "IDEAL2",
+   "type": "adjective",
+   "lb": "ideal",
+   "en": "ideal",
+   "level": "A2",
+   "comparative": "méi ideal",
+   "superlative": "am ideaalsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "INTELLIGENT1",
+   "type": "adjective",
+   "lb": "intelligent",
+   "en": "intelligent",
+   "level": "A2",
+   "comparative": "méi intelligent",
+   "superlative": "am intelligentsten",
+   "irregular": false,
+   "oppositeIds": [
+    "DOMM1"
+   ]
+  },
+  {
+   "id": "INTERESSANT1",
+   "type": "adjective",
+   "lb": "interessant",
+   "en": "interesting",
+   "level": "A1",
+   "comparative": "méi interessant",
+   "superlative": "am interessantsten",
+   "irregular": false,
+   "oppositeIds": [
+    "LANGWEILEG1"
+   ]
+  },
+  {
+   "id": "JALOUS1",
+   "type": "adjective",
+   "lb": "jalous",
+   "en": "jealous",
+   "level": "A2",
+   "comparative": "méi jalous",
+   "superlative": "am jalousten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "JONK1",
+   "type": "adjective",
+   "lb": "jonk",
+   "en": "young",
+   "level": "A1",
+   "comparative": "méi jonk",
+   "superlative": "am jéngsten",
+   "irregular": false,
+   "oppositeIds": [
+    "AL1"
+   ]
+  },
+  {
+   "id": "KAL1",
+   "type": "adjective",
+   "lb": "kal",
+   "en": "cold",
+   "level": "A1",
+   "comparative": "méi kal",
+   "superlative": "am keelsten",
+   "irregular": false,
+   "oppositeIds": [
+    "WAARM1"
+   ]
+  },
+  {
+   "id": "KILL1",
+   "type": "adjective",
+   "lb": "kill",
+   "en": "fresh",
+   "level": "A2",
+   "comparative": "méi kill",
+   "superlative": "am killsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "KLENG1",
+   "type": "adjective",
+   "lb": "kleng",
+   "en": "small",
+   "level": "A1",
+   "comparative": "méi kleng",
+   "superlative": "am klengsten",
+   "irregular": false,
+   "oppositeIds": [
+    "GROUSS2"
+   ]
+  },
+  {
+   "id": "KLOER1",
+   "type": "adjective",
+   "lb": "kloer",
+   "en": "light",
+   "level": "A2",
+   "comparative": "méi kloer",
+   "superlative": "am kloersten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "KNASCHTEG1",
+   "type": "adjective",
+   "lb": "knaschteg",
+   "en": "dirty",
+   "level": "A2",
+   "comparative": "méi knaschteg",
+   "superlative": "am knaschtegsten",
+   "irregular": false,
+   "oppositeIds": [
+    "PROPPER1"
+   ]
+  },
+  {
+   "id": "KNECKEG1",
+   "type": "adjective",
+   "lb": "knéckeg",
+   "en": "stingy",
+   "level": "A2",
+   "comparative": "méi knéckeg",
+   "superlative": "am knéckegsten",
+   "irregular": false,
+   "oppositeIds": [
+    "GENEREIS1"
+   ]
+  },
+  {
+   "id": "KOMESCH1",
+   "type": "adjective",
+   "lb": "komesch",
+   "en": "funny",
+   "level": "A2",
+   "comparative": "méi komesch",
+   "superlative": "am komeschsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "KOMPLETT1",
+   "type": "adjective",
+   "lb": "komplett",
+   "en": "complete",
+   "level": "A1",
+   "comparative": "méi komplett",
+   "superlative": "am komplettsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "KOMPLIZEIERT1",
+   "type": "adjective",
+   "lb": "komplizéiert",
+   "en": "complicated",
+   "level": "A1",
+   "comparative": "méi komplizéiert",
+   "superlative": "am komplizéiertsten",
+   "irregular": false,
+   "oppositeIds": [
+    "EINFACH1"
+   ]
+  },
+  {
+   "id": "KONSEQUENT1",
+   "type": "adjective",
+   "lb": "konsequent",
+   "en": "consistent",
+   "level": "A2",
+   "comparative": "méi konsequent",
+   "superlative": "am konsequentsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "KORPULENT1",
+   "type": "adjective",
+   "lb": "korpulent",
+   "en": "corpulent",
+   "level": "A2",
+   "comparative": "méi korpulent",
+   "superlative": "am korpulentsten",
+   "irregular": false,
+   "oppositeIds": [
+    "SCHLANK1"
+   ]
+  },
+  {
+   "id": "KRANK1",
+   "type": "adjective",
+   "lb": "krank",
+   "en": "ill",
+   "level": "A1",
+   "comparative": "méi krank",
+   "superlative": "am kränksten",
+   "irregular": false,
+   "oppositeIds": [
+    "GESOND1"
+   ]
+  },
+  {
+   "id": "KREATIV1",
+   "type": "adjective",
+   "lb": "kreativ",
+   "en": "creative",
+   "level": "A2",
+   "comparative": "méi kreativ",
+   "superlative": "am kreatiivsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "KUERZ1",
+   "type": "adjective",
+   "lb": "kuerz",
+   "en": "short",
+   "level": "A1",
+   "comparative": "méi kuerz",
+   "superlative": "am kierzten",
+   "irregular": false,
+   "oppositeIds": [
+    "LAANG1"
+   ]
+  },
+  {
+   "id": "LAANG1",
+   "type": "adjective",
+   "lb": "laang",
+   "en": "long",
+   "level": "A1",
+   "comparative": "méi laang",
+   "superlative": "am längsten",
+   "irregular": false,
+   "oppositeIds": [
+    "KUERZ1"
+   ]
+  },
+  {
+   "id": "LANGWEILEG1",
+   "type": "adjective",
+   "lb": "langweileg",
+   "en": "boring",
+   "level": "A1",
+   "comparative": "méi langweileg",
+   "superlative": "am langweilegsten",
+   "irregular": false,
+   "oppositeIds": [
+    "INTERESSANT1",
+    "SPANNEND1"
+   ]
+  },
+  {
+   "id": "LIDDEREG1",
+   "type": "adjective",
+   "lb": "liddereg",
+   "en": "lazy",
+   "level": "A2",
+   "comparative": "méi liddereg",
+   "superlative": "am lidderegsten",
+   "irregular": false,
+   "oppositeIds": [
+    "FLAISSEG1"
+   ]
+  },
+  {
+   "id": "LIICHT1",
+   "type": "adjective",
+   "lb": "liicht",
+   "en": "light",
+   "level": "A1",
+   "comparative": "méi liicht",
+   "superlative": "am liichtsten",
+   "irregular": false,
+   "oppositeIds": [
+    "SCHWEIER1"
+   ]
+  },
+  {
+   "id": "LUES1",
+   "type": "adjective",
+   "lb": "lues",
+   "en": "soft",
+   "level": "A1",
+   "comparative": "méi lues",
+   "superlative": "am luesten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "MANNLECH1",
+   "type": "adjective",
+   "lb": "männlech",
+   "en": "male",
+   "level": "A1",
+   "comparative": "méi männlech",
+   "superlative": "am männlechsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "MATERIALISTESCH1",
+   "type": "adjective",
+   "lb": "materialistesch",
+   "en": "materialistic",
+   "level": "A2",
+   "comparative": "méi materialistesch",
+   "superlative": "am materialisteschsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "MELL1",
+   "type": "adjective",
+   "lb": "mëll",
+   "en": "soft",
+   "level": "A2",
+   "comparative": "méi mëll",
+   "superlative": "am mëllsten",
+   "irregular": false,
+   "oppositeIds": [
+    "HAART1",
+    "SCHAARF1"
+   ]
+  },
+  {
+   "id": "METTELMEISSEG1",
+   "type": "adjective",
+   "lb": "mëttelméisseg",
+   "en": "middling",
+   "level": "A2",
+   "comparative": "méi mëttelméisseg",
+   "superlative": "am mëttelméissegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "MIDD1",
+   "type": "adjective",
+   "lb": "midd",
+   "en": "tired",
+   "level": "A1",
+   "comparative": "méi midd",
+   "superlative": "am middsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "MODERN1",
+   "type": "adjective",
+   "lb": "modern",
+   "en": "modern",
+   "level": "A2",
+   "comparative": "méi modern",
+   "superlative": "am modernsten",
+   "irregular": false,
+   "oppositeIds": [
+    "ALMOUDESCH1"
+   ]
+  },
+  {
+   "id": "MOF1",
+   "type": "adjective",
+   "lb": "mof",
+   "en": "mauve",
+   "level": "A2",
+   "comparative": "méi mof",
+   "superlative": "am moofsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "MUSKULEIS1",
+   "type": "adjective",
+   "lb": "muskuléis",
+   "en": "muscular",
+   "level": "A2",
+   "comparative": "méi muskuléis",
+   "superlative": "am muskuléisten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "NAASS1",
+   "type": "adjective",
+   "lb": "naass",
+   "en": "wet",
+   "level": "A2",
+   "comparative": "méi naass",
+   "superlative": "am naassten",
+   "irregular": false,
+   "oppositeIds": [
+    "DRECHEN1"
+   ]
+  },
+  {
+   "id": "NEGATIV2",
+   "type": "adjective",
+   "lb": "negativ",
+   "en": "negative",
+   "level": "A2",
+   "comparative": "méi negativ",
+   "superlative": "am negatiivsten",
+   "irregular": false,
+   "oppositeIds": [
+    "POSITIV1"
+   ]
+  },
+  {
+   "id": "NEI1",
+   "type": "adjective",
+   "lb": "nei",
+   "en": "new",
+   "level": "A1",
+   "comparative": "méi nei",
+   "superlative": "am neitsten",
+   "irregular": false,
+   "oppositeIds": [
+    "AL1"
+   ]
+  },
+  {
+   "id": "NERVOS1",
+   "type": "adjective",
+   "lb": "nervös",
+   "en": "nervous",
+   "level": "A2",
+   "comparative": "méi nervös",
+   "superlative": "am nervöösten",
+   "irregular": false,
+   "oppositeIds": [
+    "ROUEG1"
+   ]
+  },
+  {
+   "id": "NETZLECH1",
+   "type": "adjective",
+   "lb": "nëtzlech",
+   "en": "useful",
+   "level": "A2",
+   "comparative": "méi nëtzlech",
+   "superlative": "am nëtzlechsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "NIWWELEG1",
+   "type": "adjective",
+   "lb": "niwweleg",
+   "en": "foggy",
+   "level": "A1",
+   "comparative": "méi niwweleg",
+   "superlative": "am niwwelegsten",
+   "irregular": false,
+   "oppositeIds": [
+    "SONNEG1"
+   ]
+  },
+  {
+   "id": "NO2",
+   "type": "adjective",
+   "lb": "no",
+   "en": "nearby",
+   "level": "A2",
+   "comparative": "méi no",
+   "superlative": "am noosten",
+   "irregular": false,
+   "oppositeIds": [
+    "WAIT1"
+   ]
+  },
+  {
+   "id": "NORMAL1",
+   "type": "adjective",
+   "lb": "normal",
+   "en": "normal",
+   "level": "A2",
+   "comparative": "méi normal",
+   "superlative": "am normaalsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "ONROUEG1",
+   "type": "adjective",
+   "lb": "onroueg",
+   "en": "restless",
+   "level": "A2",
+   "comparative": "méi onroueg",
+   "superlative": "am onrouegsten",
+   "irregular": false,
+   "oppositeIds": [
+    "ROUEG1"
+   ]
+  },
+  {
+   "id": "ONSECHER1",
+   "type": "adjective",
+   "lb": "onsécher",
+   "en": "unsafe",
+   "level": "A2",
+   "comparative": "méi onsécher",
+   "superlative": "am onséchersten",
+   "irregular": false,
+   "oppositeIds": [
+    "SECHER1"
+   ]
+  },
+  {
+   "id": "ONSERIO1",
+   "type": "adjective",
+   "lb": "onseriö",
+   "en": "unreliable",
+   "level": "A1",
+   "comparative": "méi onseriö",
+   "superlative": "am onseriöösten",
+   "irregular": false,
+   "oppositeIds": [
+    "SERIO1"
+   ]
+  },
+  {
+   "id": "ONSPORTLECH1",
+   "type": "adjective",
+   "lb": "onsportlech",
+   "en": "unathletic",
+   "level": "A1",
+   "comparative": "méi onsportlech",
+   "superlative": "am onsportlechsten",
+   "irregular": false,
+   "oppositeIds": [
+    "SPORTLECH1"
+   ]
+  },
+  {
+   "id": "ONSYMPATHESCH1",
+   "type": "adjective",
+   "lb": "onsympathesch",
+   "en": "unlikeable",
+   "level": "A1",
+   "comparative": "méi onsympathesch",
+   "superlative": "am onsympatheschsten",
+   "irregular": false,
+   "oppositeIds": [
+    "SYMPATHESCH1"
+   ]
+  },
+  {
+   "id": "OPPEN1",
+   "type": "adjective",
+   "lb": "oppen",
+   "en": "open",
+   "level": "A2",
+   "comparative": "méi oppen",
+   "superlative": "am oppensten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "ORIGINELL1",
+   "type": "adjective",
+   "lb": "originell",
+   "en": "original",
+   "level": "A2",
+   "comparative": "méi originell",
+   "superlative": "am originellsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "PERFEKTIONISTESCH1",
+   "type": "adjective",
+   "lb": "perfektionistesch",
+   "en": "perfectionist",
+   "level": "A2",
+   "comparative": "méi perfektionistesch",
+   "superlative": "am perfektionisteschsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "PLATT1",
+   "type": "adjective",
+   "lb": "platt",
+   "en": "flat",
+   "level": "A2",
+   "comparative": "méi platt",
+   "superlative": "am plattsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "POSITIV1",
+   "type": "adjective",
+   "lb": "positiv",
+   "en": "positive",
+   "level": "A2",
+   "comparative": "méi positiv",
+   "superlative": "am positiivsten",
+   "irregular": false,
+   "oppositeIds": [
+    "NEGATIV2"
+   ]
+  },
+  {
+   "id": "PRAKTESCH1",
+   "type": "adjective",
+   "lb": "praktesch",
+   "en": "practical",
+   "level": "A1",
+   "comparative": "méi praktesch",
+   "superlative": "am prakteschsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "PRESSEIERT1",
+   "type": "adjective",
+   "lb": "presséiert",
+   "en": "rushed",
+   "level": "A2",
+   "comparative": "méi presséiert",
+   "superlative": "am presséiertsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "PREZIS1",
+   "type": "adjective",
+   "lb": "prezis",
+   "en": "precise",
+   "level": "A2",
+   "comparative": "méi prezis",
+   "superlative": "am preziisten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "PRIVAT1",
+   "type": "adjective",
+   "lb": "privat",
+   "en": "private",
+   "level": "A2",
+   "comparative": "méi privat",
+   "superlative": "am privaatsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "PROPPER1",
+   "type": "adjective",
+   "lb": "propper",
+   "en": "clean",
+   "level": "A2",
+   "comparative": "méi propper",
+   "superlative": "am proppersten",
+   "irregular": false,
+   "oppositeIds": [
+    "KNASCHTEG1"
+   ]
+  },
+  {
+   "id": "RAICH1",
+   "type": "adjective",
+   "lb": "räich",
+   "en": "rich",
+   "level": "A2",
+   "comparative": "méi räich",
+   "superlative": "am räichsten",
+   "irregular": false,
+   "oppositeIds": [
+    "AARM1"
+   ]
+  },
+  {
+   "id": "REBELLESCH1",
+   "type": "adjective",
+   "lb": "rebellesch",
+   "en": "rebel",
+   "level": "A2",
+   "comparative": "méi rebellesch",
+   "superlative": "am rebelleschsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "RELAX1",
+   "type": "adjective",
+   "lb": "relax",
+   "en": "relaxing",
+   "level": "A1",
+   "comparative": "méi relax",
+   "superlative": "am relaxsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "RELIEIS1",
+   "type": "adjective",
+   "lb": "reliéis",
+   "en": "religious",
+   "level": "A1",
+   "comparative": "méi reliéis",
+   "superlative": "am reliéisten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "RESERVEIERT1",
+   "type": "adjective",
+   "lb": "reservéiert",
+   "en": "reserved",
+   "level": "A2",
+   "comparative": "méi reservéiert",
+   "superlative": "am reservéiertsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "ROMANTESCH1",
+   "type": "adjective",
+   "lb": "romantesch",
+   "en": "Romantic",
+   "level": "A2",
+   "comparative": "méi romantesch",
+   "superlative": "am romanteschsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "RONN2",
+   "type": "adjective",
+   "lb": "ronn",
+   "en": "round",
+   "level": "A2",
+   "comparative": "méi ronn",
+   "superlative": "am ronnsten",
+   "irregular": false,
+   "oppositeIds": [
+    "ECKEG1"
+   ]
+  },
+  {
+   "id": "ROSA1",
+   "type": "adjective",
+   "lb": "rosa",
+   "en": "pink",
+   "level": "A2",
+   "comparative": "méi rosa",
+   "superlative": "am rosasten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "ROSEN2",
+   "type": "adjective",
+   "lb": "rosen",
+   "en": "vicious",
+   "level": "A2",
+   "comparative": "méi rosen",
+   "superlative": "am rosensten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "ROUEG1",
+   "type": "adjective",
+   "lb": "roueg",
+   "en": "quiet",
+   "level": "A2",
+   "comparative": "méi roueg",
+   "superlative": "am rouegsten",
+   "irregular": false,
+   "oppositeIds": [
+    "ONROUEG1",
+    "NERVOS1"
+   ]
+  },
+  {
+   "id": "ROUT1",
+   "type": "adjective",
+   "lb": "rout",
+   "en": "red",
+   "level": "A1",
+   "comparative": "méi rout",
+   "superlative": "am routsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "SAFTEG1",
+   "type": "adjective",
+   "lb": "säfteg",
+   "en": "juicy",
+   "level": "A1",
+   "comparative": "méi säfteg",
+   "superlative": "am säftegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "SAUER1",
+   "type": "adjective",
+   "lb": "sauer",
+   "en": "sour",
+   "level": "A1",
+   "comparative": "méi sauer",
+   "superlative": "am sauersten",
+   "irregular": false,
+   "oppositeIds": [
+    "SEISS1"
+   ]
+  },
+  {
+   "id": "SCHAARF1",
+   "type": "adjective",
+   "lb": "schaarf",
+   "en": "sharp",
+   "level": "A2",
+   "comparative": "méi schaarf",
+   "superlative": "am schäerfsten",
+   "irregular": false,
+   "oppositeIds": [
+    "MELL1"
+   ]
+  },
+  {
+   "id": "SCHEI1",
+   "type": "adjective",
+   "lb": "schei",
+   "en": "shy",
+   "level": "A2",
+   "comparative": "méi schei",
+   "superlative": "am scheisten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "SCHEIN1",
+   "type": "adjective",
+   "lb": "schéin",
+   "en": "beautiful",
+   "level": "A1",
+   "comparative": "méi schéin",
+   "superlative": "am schéinsten",
+   "irregular": false,
+   "oppositeIds": [
+    "ELLEN1"
+   ]
+  },
+  {
+   "id": "SCHICK1",
+   "type": "adjective",
+   "lb": "schick",
+   "en": "chic",
+   "level": "A1",
+   "comparative": "méi schick",
+   "superlative": "am schicksten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "SCHLANK1",
+   "type": "adjective",
+   "lb": "schlank",
+   "en": "slim",
+   "level": "A2",
+   "comparative": "méi schlank",
+   "superlative": "am schlanksten",
+   "irregular": false,
+   "oppositeIds": [
+    "KORPULENT1"
+   ]
+  },
+  {
+   "id": "SCHLECHT1",
+   "type": "adjective",
+   "lb": "schlecht",
+   "en": "bad",
+   "level": "A2",
+   "comparative": "méi schlecht",
+   "superlative": "am schlechtsten",
+   "irregular": false,
+   "oppositeIds": [
+    "GUTT2"
+   ]
+  },
+  {
+   "id": "SCHLEMM1",
+   "type": "adjective",
+   "lb": "schlëmm",
+   "en": "serious",
+   "level": "A2",
+   "comparative": "méi schlëmm",
+   "superlative": "am schlëmmsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "SCHMUEL1",
+   "type": "adjective",
+   "lb": "schmuel",
+   "en": "narrow",
+   "level": "A2",
+   "comparative": "méi schmuel",
+   "superlative": "am schmuelsten",
+   "irregular": false,
+   "oppositeIds": [
+    "BREET2"
+   ]
+  },
+  {
+   "id": "SCHRECKLECH1",
+   "type": "adjective",
+   "lb": "schrecklech",
+   "en": "gruesome",
+   "level": "A2",
+   "comparative": "méi schrecklech",
+   "superlative": "am schrecklechsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "SCHWEIER1",
+   "type": "adjective",
+   "lb": "schwéier",
+   "en": "heavy",
+   "level": "A2",
+   "comparative": "méi schwéier",
+   "superlative": "am schwéiersten",
+   "irregular": false,
+   "oppositeIds": [
+    "LIICHT1"
+   ]
+  },
+  {
+   "id": "SECHER1",
+   "type": "adjective",
+   "lb": "sécher",
+   "en": "safe",
+   "level": "A2",
+   "comparative": "méi sécher",
+   "superlative": "am séchersten",
+   "irregular": false,
+   "oppositeIds": [
+    "ONSECHER1"
+   ]
+  },
+  {
+   "id": "SEISS1",
+   "type": "adjective",
+   "lb": "séiss",
+   "en": "sweet",
+   "level": "A1",
+   "comparative": "méi séiss",
+   "superlative": "am séissten",
+   "irregular": false,
+   "oppositeIds": [
+    "BATTER1",
+    "SAUER1"
+   ]
+  },
+  {
+   "id": "SENSIBEL1",
+   "type": "adjective",
+   "lb": "sensibel",
+   "en": "sensitive",
+   "level": "A2",
+   "comparative": "méi sensibel",
+   "superlative": "am sensibelsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "SERIO1",
+   "type": "adjective",
+   "lb": "seriö",
+   "en": "serious",
+   "level": "A1",
+   "comparative": "méi seriö",
+   "superlative": "am seriöösten",
+   "irregular": false,
+   "oppositeIds": [
+    "ONSERIO1"
+   ]
+  },
+  {
+   "id": "SONNEG1",
+   "type": "adjective",
+   "lb": "sonneg",
+   "en": "sunny",
+   "level": "A1",
+   "comparative": "méi sonneg",
+   "superlative": "am sonnegsten",
+   "irregular": false,
+   "oppositeIds": [
+    "NIWWELEG1"
+   ]
+  },
+  {
+   "id": "SPANNEND1",
+   "type": "adjective",
+   "lb": "spannend",
+   "en": "exciting",
+   "level": "A2",
+   "comparative": "méi spannend",
+   "superlative": "am spannendsten",
+   "irregular": false,
+   "oppositeIds": [
+    "LANGWEILEG1"
+   ]
+  },
+  {
+   "id": "SPEIT1",
+   "type": "adjective",
+   "lb": "spéit",
+   "en": "late",
+   "level": "A2",
+   "comparative": "méi spéit",
+   "superlative": "am spéitsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "SPEZIELL1",
+   "type": "adjective",
+   "lb": "speziell",
+   "en": "special",
+   "level": "A2",
+   "comparative": "méi speziell",
+   "superlative": "am speziellsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "SPONTAN1",
+   "type": "adjective",
+   "lb": "spontan",
+   "en": "spontaneous",
+   "level": "A2",
+   "comparative": "méi spontan",
+   "superlative": "am spontaansten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "SPORTLECH1",
+   "type": "adjective",
+   "lb": "sportlech",
+   "en": "sporting",
+   "level": "A1",
+   "comparative": "méi sportlech",
+   "superlative": "am sportlechsten",
+   "irregular": false,
+   "oppositeIds": [
+    "ONSPORTLECH1"
+   ]
+  },
+  {
+   "id": "STAARK1",
+   "type": "adjective",
+   "lb": "staark",
+   "en": "strong",
+   "level": "A2",
+   "comparative": "méi staark",
+   "superlative": "am stäerksten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "STRENG1",
+   "type": "adjective",
+   "lb": "streng",
+   "en": "strict",
+   "level": "A2",
+   "comparative": "méi streng",
+   "superlative": "am strengsten",
+   "irregular": false,
+   "oppositeIds": [
+    "TOLERANT1"
+   ]
+  },
+  {
+   "id": "STRESSEG1",
+   "type": "adjective",
+   "lb": "stresseg",
+   "en": "stressful",
+   "level": "A2",
+   "comparative": "méi stresseg",
+   "superlative": "am stressegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "STUER1",
+   "type": "adjective",
+   "lb": "stuer",
+   "en": "stubborn",
+   "level": "A2",
+   "comparative": "méi stuer",
+   "superlative": "am stuersten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "SUPER1",
+   "type": "adjective",
+   "lb": "super",
+   "en": "super",
+   "level": "A2",
+   "comparative": "méi super",
+   "superlative": "am supersten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "SYMPATHESCH1",
+   "type": "adjective",
+   "lb": "sympathesch",
+   "en": "likeable",
+   "level": "A1",
+   "comparative": "méi sympathesch",
+   "superlative": "am sympatheschsten",
+   "irregular": false,
+   "oppositeIds": [
+    "ONSYMPATHESCH1"
+   ]
+  },
+  {
+   "id": "TEMPERAMENTVOLL1",
+   "type": "adjective",
+   "lb": "temperamentvoll",
+   "en": "feisty",
+   "level": "A2",
+   "comparative": "méi temperamentvoll",
+   "superlative": "am temperamentvollsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "TOLERANT1",
+   "type": "adjective",
+   "lb": "tolerant",
+   "en": "tolerant",
+   "level": "A2",
+   "comparative": "méi tolerant",
+   "superlative": "am tolerantsten",
+   "irregular": false,
+   "oppositeIds": [
+    "STRENG1"
+   ]
+  },
+  {
+   "id": "TOURISTESCH1",
+   "type": "adjective",
+   "lb": "touristesch",
+   "en": "tourist",
+   "level": "A1",
+   "comparative": "méi touristesch",
+   "superlative": "am touristeschsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "TRAUEREG1",
+   "type": "adjective",
+   "lb": "trauereg",
+   "en": "sad",
+   "level": "A2",
+   "comparative": "méi trauereg",
+   "superlative": "am traueregsten",
+   "irregular": false,
+   "oppositeIds": [
+    "FROU1",
+    "GLECKLECH1"
+   ]
+  },
+  {
+   "id": "TREI1",
+   "type": "adjective",
+   "lb": "trei",
+   "en": "loyal",
+   "level": "A2",
+   "comparative": "méi trei",
+   "superlative": "am treisten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "UERDENTLECH1",
+   "type": "adjective",
+   "lb": "uerdentlech",
+   "en": "respectable",
+   "level": "A2",
+   "comparative": "méi uerdentlech",
+   "superlative": "am uerdentlechsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "VERSCHIDDEN1",
+   "type": "adjective",
+   "lb": "verschidden",
+   "en": "different",
+   "level": "A2",
+   "comparative": "méi verschidden",
+   "superlative": "am verschiddensten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "VERSPAANT2",
+   "type": "adjective",
+   "lb": "verspaant",
+   "en": "stiff",
+   "level": "A2",
+   "comparative": "méi verspaant",
+   "superlative": "am verspaantsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "VOLL1",
+   "type": "adjective",
+   "lb": "voll",
+   "en": "full (of)",
+   "level": "A2",
+   "comparative": "méi voll",
+   "superlative": "am vollsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "WAARM1",
+   "type": "adjective",
+   "lb": "waarm",
+   "en": "hot",
+   "level": "A1",
+   "comparative": "méi waarm",
+   "superlative": "am wäermsten",
+   "irregular": false,
+   "oppositeIds": [
+    "KAL1"
+   ]
+  },
+  {
+   "id": "WAIT1",
+   "type": "adjective",
+   "lb": "wäit",
+   "en": "long",
+   "level": "A1",
+   "comparative": "méi wäit",
+   "superlative": "am wäitsten",
+   "irregular": false,
+   "oppositeIds": [
+    "NO2"
+   ]
+  },
+  {
+   "id": "WARSCHEINLECH1",
+   "type": "adjective",
+   "lb": "warscheinlech",
+   "en": "probable",
+   "level": "A2",
+   "comparative": "méi warscheinlech",
+   "superlative": "am warscheinlechsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "WICHTEG1",
+   "type": "adjective",
+   "lb": "wichteg",
+   "en": "important",
+   "level": "A1",
+   "comparative": "méi wichteg",
+   "superlative": "am wichtegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "WITZEG1",
+   "type": "adjective",
+   "lb": "witzeg",
+   "en": "funny",
+   "level": "A2",
+   "comparative": "méi witzeg",
+   "superlative": "am witzegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "WONNERBAR1",
+   "type": "adjective",
+   "lb": "wonnerbar",
+   "en": "wonderful",
+   "level": "A2",
+   "comparative": "méi wonnerbar",
+   "superlative": "am wonnerbaarsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "ZEFRIDDEN1",
+   "type": "adjective",
+   "lb": "zefridden",
+   "en": "satisfied",
+   "level": "A2",
+   "comparative": "méi zefridden",
+   "superlative": "am zefriddensten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "ZEIDEG1",
+   "type": "adjective",
+   "lb": "zeideg",
+   "en": "ripe",
+   "level": "A1",
+   "comparative": "méi zeideg",
+   "superlative": "am zeidegsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "ZOLIDD1",
+   "type": "adjective",
+   "lb": "zolidd",
+   "en": "strong",
+   "level": "A2",
+   "comparative": "méi zolidd",
+   "superlative": "am zolittsten",
+   "irregular": false,
+   "oppositeIds": []
+  },
+  {
+   "id": "ZOUVERLASSEG1",
+   "type": "adjective",
+   "lb": "zouverlässeg",
+   "en": "reliable",
+   "level": "A2",
+   "comparative": "méi zouverlässeg",
+   "superlative": "am zouverlässegsten",
+   "irregular": false,
+   "oppositeIds": []
+  }
+ ],
+ "comparisons": [
+  {
+   "id": "adjcmp-6be5c17171",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "bei de Kanner sinn d'Aen dacks méi grouss ewéi de Mo",
+   "form": "grouss",
+   "at": 35,
+   "adjectiveId": "GROUSS2",
+   "audioId": "5cdf5e8a90110d654fe7c50cb2c58f7d"
+  },
+  {
+   "id": "adjcmp-779fc6451a",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "bei sengem neie Kostüm ass ee Boxebee méi laang ewéi dat anert",
+   "form": "laang",
+   "at": 42,
+   "adjectiveId": "LAANG1",
+   "audioId": "d42975326e101da812a1fbd9a75a57f9"
+  },
+  {
+   "id": "adjcmp-bc85211b2d",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "d'Beschléi vun den Diere si méi deier ewéi de ganze Rescht",
+   "form": "deier",
+   "at": 32,
+   "adjectiveId": "DEIER2",
+   "audioId": "1a8609fdcaa9c2722491f4dd99ab4cb9"
+  },
+  {
+   "id": "adjcmp-591bfa8830",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "d'Bioproduite si meeschtens méi deier ewéi déi aner",
+   "form": "deier",
+   "at": 32,
+   "adjectiveId": "DEIER2",
+   "audioId": "65021499ef7115575900a1f600f7e1d6"
+  },
+  {
+   "id": "adjcmp-4042b654e2",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "d'Haut ass him méi no ewéi d'Hiem",
+   "form": "no",
+   "at": 19,
+   "adjectiveId": "NO2",
+   "audioId": "f618dc5eca1048a045bfa3d5f35252be"
+  },
+  {
+   "id": "adjcmp-abecf47616",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "d'Kanner sinn heiansdo méi intelligent ewéi d'Elteren",
+   "form": "intelligent",
+   "at": 27,
+   "adjectiveId": "INTELLIGENT1",
+   "audioId": "58a48fee9ba2515de566487b0064b08f"
+  },
+  {
+   "id": "adjcmp-351c80cbab",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "d'Rees huet vill méi deier kascht, wéi mer et geplangt haten",
+   "form": "deier",
+   "at": 21,
+   "adjectiveId": "DEIER2",
+   "audioId": "926bc376360d671ee31b68733d4e6782"
+  },
+  {
+   "id": "adjcmp-29d241b7f4",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "dat ass méi einfach gesot ewéi gemaach",
+   "form": "einfach",
+   "at": 12,
+   "adjectiveId": "EINFACH1",
+   "audioId": "9e6764368c617a77f32616ea03e42d03"
+  },
+  {
+   "id": "adjcmp-562ad861f4",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "dat ass méi einfach gesot ewéi gemaach!",
+   "form": "einfach",
+   "at": 12,
+   "adjectiveId": "EINFACH1",
+   "audioId": "c4773844f0306cfb33b1fb6ba5ff59be"
+  },
+  {
+   "id": "adjcmp-f7d4505f64",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "dat do ass mir esou laang ewéi breet!",
+   "form": "laang",
+   "at": 20,
+   "adjectiveId": "LAANG1",
+   "audioId": "a570cf55636d09a3dd9e929d621c5dfd"
+  },
+  {
+   "id": "adjcmp-1fb4854131",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "dat do ass mir esou wichteg ewéi dat deeglecht Brout!",
+   "form": "wichteg",
+   "at": 20,
+   "adjectiveId": "WICHTEG1",
+   "audioId": "14b9d2eca96ab6cf5c2aa249783f68b2"
+  },
+  {
+   "id": "adjcmp-f14c358aa6",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "dat Framënsch gesäit net méi wäit ewéi seng Nues!",
+   "form": "wäit",
+   "at": 29,
+   "adjectiveId": "WAIT1",
+   "audioId": "13cbad9c20b4266a15a3818e589cfe9b"
+  },
+  {
+   "id": "adjcmp-251e6373c0",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "de Schneider huet ee Bee méi kuerz gemaach ewéi dat anert",
+   "form": "kuerz",
+   "at": 29,
+   "adjectiveId": "KUERZ1",
+   "audioId": "52d70350fb5c4ba454614a259006fdd4"
+  },
+  {
+   "id": "adjcmp-dcf8c4b46d",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "de Wee fir zeréck ass mer méi kuerz virkomm ewéi de Wee fir dohin",
+   "form": "kuerz",
+   "at": 30,
+   "adjectiveId": "KUERZ1",
+   "audioId": "e4e62f7b24c888680abfa11193810a50"
+  },
+  {
+   "id": "adjcmp-69ffd63751",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "dee schwaarze Schockela ass vill méi batter ewéi dee brongen",
+   "form": "batter",
+   "at": 37,
+   "adjectiveId": "BATTER1",
+   "audioId": "a9f4280f2128974c0e26615fe526ca59"
+  },
+  {
+   "id": "adjcmp-1cae69583f",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "deen ale Paschtouer war net esou beléift ewéi deen neien dat elo ass",
+   "form": "beléift",
+   "at": 33,
+   "adjectiveId": "BELEIFT1",
+   "audioId": "b81c35fc8de74450a3d1ffc516b32e50"
+  },
+  {
+   "id": "adjcmp-52e53550e3",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "den Examen ass bestëmmt net esou schwéier, wéi s de mengs",
+   "form": "schwéier",
+   "at": 33,
+   "adjectiveId": "SCHWEIER1",
+   "audioId": "0e44ee70b64f8d46d89d9c03d99aa3bd"
+  },
+  {
+   "id": "adjcmp-ebf0896d66",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "den Examen ass bestëmmt net esou schwéier, wéi s de mengs!",
+   "form": "schwéier",
+   "at": 33,
+   "adjectiveId": "SCHWEIER1",
+   "audioId": "914f9f95e9d92b1a18fc0c75b5a71fc3"
+  },
+  {
+   "id": "adjcmp-af554914e9",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "der Schrëftstellerin hir Erzielunge si méi bekannt ewéi hir Theaterstécker",
+   "form": "bekannt",
+   "at": 43,
+   "adjectiveId": "BEKANNT1",
+   "audioId": "cfdf9a5288dd577050918806d62190dc"
+  },
+  {
+   "id": "adjcmp-3e230501ba",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "dëse Wäi schmaacht méi séiss ewéi dee vu gëschter",
+   "form": "séiss",
+   "at": 23,
+   "adjectiveId": "SEISS1",
+   "audioId": "4f24ad272ea8d66089d199549ac6d13b"
+  },
+  {
+   "id": "adjcmp-6cc42a6b90",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "dësen ass méi bëlleg ewéi deen do",
+   "form": "bëlleg",
+   "at": 14,
+   "adjectiveId": "BELLEG1",
+   "audioId": "7e3641ebdfdedb0677016685b2b716dd"
+  },
+  {
+   "id": "adjcmp-62e590859b",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "du bass esou liddereg ewéi Mëscht!",
+   "form": "liddereg",
+   "at": 13,
+   "adjectiveId": "LIDDEREG1",
+   "audioId": "3b7c21ef4812a1ab239cb8350ce43407"
+  },
+  {
+   "id": "adjcmp-3e6d3438a9",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "du wäerts gesinn, datt alles net esou schlëmm ass, wéi s de mengs!",
+   "form": "schlëmm",
+   "at": 38,
+   "adjectiveId": "SCHLEMM1",
+   "audioId": "1d07d79919038d3197a102fbf48df8bd"
+  },
+  {
+   "id": "adjcmp-3b0b41c675",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "ech fannen et méi bequeem, mam Zuch ze fueren ewéi mam Auto",
+   "form": "bequeem",
+   "at": 18,
+   "adjectiveId": "BEQUEEM1",
+   "audioId": "4e428800439fa980b671183bca4e75eb"
+  },
+  {
+   "id": "adjcmp-0576692674",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "ech hu meng Reegel eng Woch méi spéit kritt ewéi gewéinlech",
+   "form": "spéit",
+   "at": 32,
+   "adjectiveId": "SPEIT1",
+   "audioId": "1d23fe2266e56017b72e316be721751f"
+  },
+  {
+   "id": "adjcmp-d6beac6d76",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "ech hunn de Ball esou héich an d'Luucht gehäit, ewéi ech konnt",
+   "form": "héich",
+   "at": 22,
+   "adjectiveId": "HEICH1",
+   "audioId": "e7108d6fe20ccf6cb38c0dc1234cab33"
+  },
+  {
+   "id": "adjcmp-e872f35f6e",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "ech hunn op der Rees esou gutt ewéi näischt gesot",
+   "form": "gutt",
+   "at": 26,
+   "adjectiveId": "GUTT2",
+   "audioId": "c32b8a58fa6a2069e54c43811ad28073"
+  },
+  {
+   "id": "adjcmp-5ef1c3ec4e",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "ech ka méi héich sprangen ewéi mäi Brudder",
+   "form": "héich",
+   "at": 11,
+   "adjectiveId": "HEICH1",
+   "audioId": "7b09927d28bcde38c65d080bc969fbb2"
+  },
+  {
+   "id": "adjcmp-0f1f00dd2d",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "ech kommen net méi spéit ewéi ëm Hallefnuecht heem",
+   "form": "spéit",
+   "at": 19,
+   "adjectiveId": "SPEIT1",
+   "audioId": "a73be5a28a36b33023b8e22f29a2ddfb"
+  },
+  {
+   "id": "adjcmp-c83cc98a36",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "ech sinn zwee Joer méi al ewéi mäi Brudder",
+   "form": "al",
+   "at": 23,
+   "adjectiveId": "AL1",
+   "audioId": "372c1a44fffbf90093ea4d0a6691c21f"
+  },
+  {
+   "id": "adjcmp-bbaec41b42",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "ech weess net méi genee, ëm wéi vill Auer de Concert ugeet",
+   "form": "genee",
+   "at": 18,
+   "adjectiveId": "GENEE1",
+   "audioId": "b1cd36f5364ca63e4d2b85ffc48a84be"
+  },
+  {
+   "id": "adjcmp-234fbcf87d",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "eis Ekipp huet bei Wäitem net esou gutt gespillt ewéi déi leschte Kéier",
+   "form": "gutt",
+   "at": 35,
+   "adjectiveId": "GUTT2",
+   "audioId": "3036148264431c07b8c65e208221cf0c"
+  },
+  {
+   "id": "adjcmp-15ae4d9c73",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "eis Vakanz ass vill méi deier ginn, wéi mer geplangt haten",
+   "form": "deier",
+   "at": 24,
+   "adjectiveId": "DEIER2",
+   "audioId": "63e80e402aede417081e2ba02266801e"
+  },
+  {
+   "id": "adjcmp-00170d58f8",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "eist neit Haus ass zweemol esou grouss ewéi dat aalt",
+   "form": "grouss",
+   "at": 32,
+   "adjectiveId": "GROUSS2",
+   "audioId": "0739504f0f2e3ad28192b385c2a79eca"
+  },
+  {
+   "id": "adjcmp-f7580911cd",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "et gëtt keng Zopp esou waarm giess, wéi se gekacht gëtt!",
+   "form": "waarm",
+   "at": 23,
+   "adjectiveId": "WAARM1",
+   "audioId": "e7370cb1b65bdc9e14233989f284ef21"
+  },
+  {
+   "id": "adjcmp-83dab3c4c6",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "et gouf méi spéit, wéi mer geduecht haten",
+   "form": "spéit",
+   "at": 12,
+   "adjectiveId": "SPEIT1",
+   "audioId": "f6d1a59f0e7776f9807b2d811f29e793"
+  },
+  {
+   "id": "adjcmp-a094bbd280",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "et war net esou schlëmm, ewéi ech geduecht hat",
+   "form": "schlëmm",
+   "at": 16,
+   "adjectiveId": "SCHLEMM1",
+   "audioId": "058b8dd08911878dabdd3c8cf4a42ed6"
+  },
+  {
+   "id": "adjcmp-f52b714440",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "gehei de Ball esou héich, wéi s de kanns!",
+   "form": "héich",
+   "at": 19,
+   "adjectiveId": "HEICH1",
+   "audioId": "557a3f72a30a31c9d470467dd090b5d6"
+  },
+  {
+   "id": "adjcmp-e65588fc8d",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "gehei de Ball esou wäit, wéi s de kanns!",
+   "form": "wäit",
+   "at": 19,
+   "adjectiveId": "WAIT1",
+   "audioId": "bb787c3e5201aaf2a97e75756304880c"
+  },
+  {
+   "id": "adjcmp-203f14e2b4",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "haut sinn d'Stéit méi kleng ewéi fréier",
+   "form": "kleng",
+   "at": 22,
+   "adjectiveId": "KLENG1",
+   "audioId": "8d808accfcdaccb9faa9c5893d9f005e"
+  },
+  {
+   "id": "adjcmp-11de7afd20",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "hei däerf een net méi héich bauen ewéi véier Stäck",
+   "form": "héich",
+   "at": 22,
+   "adjectiveId": "HEICH1",
+   "audioId": "cf9e3bc086777bb50802f32efb1d29f0"
+  },
+  {
+   "id": "adjcmp-5b7e262637",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "hei ënnen ass et méi kal ewéi do uewen",
+   "form": "kal",
+   "at": 21,
+   "adjectiveId": "KAL1",
+   "audioId": "b75090bd92a68661ae95a41dff7c29f0"
+  },
+  {
+   "id": "adjcmp-191773e688",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "hie gesäit net méi wäit ewéi seng Nues",
+   "form": "wäit",
+   "at": 19,
+   "adjectiveId": "WAIT1",
+   "audioId": "b10d9d35fc2e8d5cb8e563ede2ed8f6f"
+  },
+  {
+   "id": "adjcmp-0db3a15bf7",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "hien ass scho bal esou grouss ewéi ech",
+   "form": "grouss",
+   "at": 23,
+   "adjectiveId": "GROUSS2",
+   "audioId": "8db92f48c3dc871da4a94a07564f70da"
+  },
+  {
+   "id": "adjcmp-e4b80b2c6c",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "jidderee wëllt esou laang ewéi méiglech an d'Schoul goen",
+   "form": "laang",
+   "at": 20,
+   "adjectiveId": "LAANG1",
+   "audioId": "d260b8c77a66b590123fd5018740789b"
+  },
+  {
+   "id": "adjcmp-7763fd4721",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "mäi klenge Brudder ass scho bal esou grouss ewéi ech",
+   "form": "grouss",
+   "at": 37,
+   "adjectiveId": "GROUSS2",
+   "audioId": "2730264a9922f512cbcc2664d746b52d"
+  },
+  {
+   "id": "adjcmp-81e2e21ae6",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "mäin eelste Brudder ass e Kapp méi grouss ewéi ech",
+   "form": "grouss",
+   "at": 35,
+   "adjectiveId": "GROUSS2",
+   "audioId": "10203c30efa7aa2b6285c1050be0e35c"
+  },
+  {
+   "id": "adjcmp-0df216ea01",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "mat Frëndlechkeet kënnt ee meeschtens méi wäit ewéi mat Grant",
+   "form": "wäit",
+   "at": 42,
+   "adjectiveId": "WAIT1",
+   "audioId": "b80964fc13f2189768be349c1afe926a"
+  },
+  {
+   "id": "adjcmp-a4301a26bc",
+   "type": "comparison",
+   "shape": "as",
+   "lb": "mir sinn esou gutt ewéi fäerdeg mat der Aarbecht",
+   "form": "gutt",
+   "at": 14,
+   "adjectiveId": "GUTT2",
+   "audioId": "e3b5332601007d39fb980cb0f6605e25"
+  },
+  {
+   "id": "adjcmp-e1143ad2b8",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "verschidde Leit hunn et am Liewe méi schwéier ewéi anerer",
+   "form": "schwéier",
+   "at": 37,
+   "adjectiveId": "SCHWEIER1",
+   "audioId": "369d7ac548d861cc0f713ceab2c2797b"
+  },
+  {
+   "id": "adjcmp-9c60832b99",
+   "type": "comparison",
+   "shape": "more",
+   "lb": "vill Leit hunn ee Bee méi kuerz ewéi dat anert",
+   "form": "kuerz",
+   "at": 26,
+   "adjectiveId": "KUERZ1",
+   "audioId": "cdf9a428746a0381ee7a52378ec4b210"
+  }
+ ]
+}
