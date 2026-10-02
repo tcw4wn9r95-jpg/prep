@@ -28,7 +28,7 @@
 
 import { el, fill, screenHead, button, plural, formatPercent } from '../dom.js';
 import { Amelie, AMELIE_LINES, pickLine } from '../amelie.js';
-import { Clip } from '../audio.js';
+import { Clip, renderScrubber } from '../audio.js';
 import { chimeCorrect, resetChimeStreak } from '../chime.js';
 import { loadPodcasts, podcastEpisode } from '../content.js';
 import { requestEpisodeQuestions } from '../sync.js';
@@ -356,7 +356,7 @@ async function renderEpisode(root, id, { settings, navigate }) {
     return { destroy() {} };
   }
 
-  const clip = new Clip(episode.audioSrc);
+  const clip = new Clip(episode.audioSrc, { duration: episode.durationSec });
   const amelie = new Amelie({ size: 'sm', bubble: true });
   const body = el('div', { class: 'stack stack--lg' });
 
@@ -372,6 +372,10 @@ async function renderEpisode(root, id, { settings, navigate }) {
   const play = button('Play', { variant: 'primary', class: 'btn btn--primary btn--block' });
   const status = el('p', { class: 'card__note', style: { textAlign: 'center' } });
   const questionHolder = el('div');
+  // Drag it, tap a point on it, or jump fifteen seconds. An episode runs five
+  // minutes on average and the sentence a question is about may be at four, so
+  // without this every question costs a whole re-listen.
+  const scrubber = renderScrubber(clip, { label: 'Position in the episode' });
 
   function setStatus(text) {
     status.textContent = text;
@@ -400,13 +404,19 @@ async function renderEpisode(root, id, { settings, navigate }) {
     amelie.setState('idle');
   });
 
+  // Scrubbing back from the end is a replay, not a finished episode, so the
+  // button has to stop saying "Play again" the moment the playhead moves.
+  clip.on('seeked', () => {
+    if (!clip.isPlaying && play.textContent === 'Play again') play.textContent = 'Play';
+  });
+
   const offline = !navigator.onLine;
   if (offline) {
     play.disabled = true;
     setStatus('Offline. Episodes stream from INLL and are never stored on the phone, so this one needs a connection.');
   }
 
-  amelie.say('Listen the whole way through first. You can answer afterwards.', 'idle');
+  amelie.say('Play it, drag the bar to any point, and answer whenever you like — the episode keeps running.', 'idle');
 
   fill(
     body,
@@ -416,6 +426,7 @@ async function renderEpisode(root, id, { settings, navigate }) {
       el('p', { class: 'meter__label' }, 'Listen'),
       el('p', { style: { fontSize: '40px', marginBlock: 'var(--s3)' } }, '🎧'),
       play,
+      scrubber.el,
       status,
     ),
     el('div', { class: 'card' }, amelie.el),
@@ -468,7 +479,7 @@ async function renderEpisode(root, id, { settings, navigate }) {
           if (!result.noTranscript) ask.disabled = false;
           return;
         }
-        runQuestions(questionHolder, result, { episode, settings, navigate, clip, amelie });
+        runQuestions(questionHolder, result, { episode, settings, navigate, amelie });
       },
     });
     fill(questionHolder, ask);
@@ -476,6 +487,7 @@ async function renderEpisode(root, id, { settings, navigate }) {
 
   return {
     destroy() {
+      scrubber.destroy();
       clip.destroy();
     },
   };
@@ -487,7 +499,7 @@ async function renderEpisode(root, id, { settings, navigate }) {
  * The same shape as a listening set, reusing its markup so the answered /
  * correct / wrong styling and the chime all come for free.
  */
-function runQuestions(holder, { questions, via }, { episode, settings, navigate, clip, amelie }) {
+function runQuestions(holder, { questions, via }, { episode, settings, navigate, amelie }) {
   let index = 0;
   let correctCount = 0;
 
@@ -522,9 +534,17 @@ function runQuestions(holder, { questions, via }, { episode, settings, navigate,
     function answer(chosen) {
       if (answered) return;
       answered = true;
-      // Pause the episode: leaving it running while the answer is revealed
-      // means the next question is playing over the feedback for this one.
-      if (clip.isPlaying) clip.pause();
+      // The episode keeps playing. It used to pause here, on the grounds that
+      // the next question would be talking over the feedback for this one —
+      // but that made answering and listening take turns, when the natural way
+      // to use this is to answer as you hear it. Asked for as "allow to pick
+      // answers while the audio is playing".
+      //
+      // What the pause was really protecting is still protected: `chimeCorrect`
+      // stays silent while a clip is running (see chime.js), so nothing is
+      // mixed on top of a native speaker. The feedback is on screen, where a
+      // learner can read it without losing the thread of what they are hearing,
+      // and the scrub bar is right there for anyone who does want to go back.
       options.classList.add('is-answered');
       buttons[question.correct].classList.add('is-correct');
       const right = chosen === question.correct;

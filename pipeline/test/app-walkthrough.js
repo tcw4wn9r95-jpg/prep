@@ -46,6 +46,37 @@ const MIME = {
 };
 
 /**
+ * A playable recording of `seconds` of silence, built here rather than
+ * committed.
+ *
+ * The podcast steps need audio that really decodes and really runs for long
+ * enough to answer a question over — the 64-byte buffer the streaming step
+ * serves proves where the bytes come from but will not play. 8-bit 8kHz mono
+ * PCM is the smallest thing every browser decodes, and a minute of it is half
+ * a megabyte held in memory for one step, which is cheaper than a binary
+ * fixture in the repository that nobody can read a diff of.
+ */
+function silentWav(seconds = 60) {
+  const rate = 8000;
+  const samples = rate * seconds;
+  const buffer = Buffer.alloc(44 + samples);
+  buffer.write('RIFF', 0);
+  buffer.writeUInt32LE(36 + samples, 4);
+  buffer.write('WAVEfmt ', 8);
+  buffer.writeUInt32LE(16, 16); // PCM header length
+  buffer.writeUInt16LE(1, 20); // PCM
+  buffer.writeUInt16LE(1, 22); // mono
+  buffer.writeUInt32LE(rate, 24);
+  buffer.writeUInt32LE(rate, 28); // byte rate
+  buffer.writeUInt16LE(1, 32); // block align
+  buffer.writeUInt16LE(8, 34); // bits per sample
+  buffer.write('data', 36);
+  buffer.writeUInt32LE(samples, 40);
+  buffer.fill(128, 44); // 8-bit PCM silence is mid-scale, not zero
+  return buffer;
+}
+
+/**
  * Three episodes, always served from memory in place of `app/data/podcasts.json`.
  *
  * That file is built from INLL's live feed by `npm run fetch:podcasts`, so its
@@ -2702,10 +2733,54 @@ async function main() {
     await page.waitForTimeout(400);
     if (hits !== 0) throw new Error(`the episode started downloading on render (${hits} requests) — preload should be none`);
 
+    // --- the seek bar ------------------------------------------------------
+    // "add a way to scroll across the audio to avoid having to listen to
+    // everything". The bar has to be usable *before* the first play, which is
+    // the whole trick: nothing is loaded at this point, so the scale comes
+    // from the duration in the feed and the seek is held until there is a file
+    // to apply it to.
+    const bar = page.locator('.scrub__range');
+    if (!(await bar.count())) throw new Error('no seek bar on the episode');
+    const scale = await page.evaluate(() => ({
+      max: Number(document.querySelector('.scrub__range').max),
+      total: document.querySelectorAll('.scrub__times span')[1].textContent,
+      disabled: document.querySelector('.scrub__range').disabled,
+    }));
+    // pod-test0001 is 512 seconds in the fixture.
+    if (scale.max !== 512) throw new Error(`the bar is scaled to ${scale.max}s, not the episode's 512`);
+    if (scale.total !== '8:32') throw new Error(`the total reads "${scale.total}"`);
+    if (scale.disabled) throw new Error('the bar is dead before the first play');
+
+    const box = await bar.boundingBox();
+    await bar.click({ position: { x: box.width * 0.5, y: box.height / 2 } });
+    await page.waitForTimeout(200);
+    const mid = await page.evaluate(() => ({
+      value: Number(document.querySelector('.scrub__range').value),
+      at: document.querySelectorAll('.scrub__times span')[0].textContent,
+    }));
+    if (Math.abs(mid.value - 256) > 20) throw new Error(`a tap at the midpoint went to ${mid.value}s of 512`);
+    if (!/^4:/.test(mid.at)) throw new Error(`the elapsed label reads "${mid.at}" at the midpoint`);
+    // And scrubbing has still not pulled a byte: a drag across a five-minute
+    // episode must not be five minutes of downloading.
+    if (hits !== 0) throw new Error(`scrubbing started the download (${hits} requests)`);
+
+    // Fifteen seconds either way, from where the bar is rather than from where
+    // the unloaded element thinks it is — those are different numbers until
+    // the file arrives.
+    await page.locator('.scrub__skip').first().click();
+    await page.waitForTimeout(150);
+    const back = await page.evaluate(() => Number(document.querySelector('.scrub__range').value));
+    if (Math.abs(back - (mid.value - 15)) > 1) throw new Error(`−15s went from ${mid.value} to ${back}`);
+    await page.locator('.scrub__skip').last().click();
+    await page.waitForTimeout(150);
+    const forward = await page.evaluate(() => Number(document.querySelector('.scrub__range').value));
+    if (Math.abs(forward - mid.value) > 1) throw new Error(`+15s went from ${back} to ${forward}`);
+
     await page.locator('#screen .btn--primary').first().click();
     await page.waitForTimeout(600);
     if (hits === 0) throw new Error('tapping play fetched nothing from the publisher');
     await shot('26-podcast-episode');
+    process.stdout.write(`  podcast scrub: 0:00–${scale.total}, tapped to ${mid.at}, skips land on ${back}s / ${forward}s\n`);
 
     await page.unroute('**cdn.example/**');
   });
@@ -2729,6 +2804,13 @@ async function main() {
     await page.evaluate(async () => {
       await (await import('./js/store.js')).saveSettings({ workerUrl: 'https://worker.example' });
     });
+    // Real, decodable audio this time: the point below is that the episode is
+    // still running after an answer, which cannot be checked with a stub that
+    // will not play.
+    const wav = silentWav(60);
+    await page.route('**cdn.example/**', async (route) => {
+      await route.fulfill({ status: 200, contentType: 'audio/wav', body: wav });
+    });
 
     await openFresh('#/podcasts/pod-test0001');
     await page.getByRole('button', { name: 'Ask me questions' }).click();
@@ -2737,6 +2819,24 @@ async function main() {
     if (!(await page.locator('.chip', { hasText: 'machine-made' }).first().isVisible())) {
       throw new Error('generated questions are not labelled as machine-made');
     }
+
+    // --- answering does not stop the episode -------------------------------
+    // "allow to pick answers while the audio is playing". It used to pause on
+    // every answer, which made listening and answering take turns. The clip
+    // element is deliberately not in the DOM, so the app's own register of
+    // live clips is what gets asked.
+    const listening = () => page.evaluate(async () => (await import('./js/audio.js')).anyClipPlaying());
+    await page.locator('#screen .btn--primary').first().click();
+    await page.waitForFunction(
+      async () => (await import('./js/audio.js')).anyClipPlaying(),
+      null,
+      { timeout: 5000 },
+    ).catch(() => {});
+    if (!(await listening())) throw new Error('the episode would not start, so this step proves nothing');
+    await page.locator('.options .option').first().click();
+    await page.waitForTimeout(300);
+    if (!(await listening())) throw new Error('answering stopped the episode');
+    await shot('27b-podcast-answer-while-playing');
 
     for (let guard = 0; guard < 5; guard += 1) {
       const options = page.locator('.options .option');
@@ -2764,6 +2864,7 @@ async function main() {
     if (logged !== 1) throw new Error(`expected one podcast attempt logged, found ${logged}`);
 
     await page.unroute('**/episode-questions**');
+    await page.unroute('**cdn.example/**');
     await page.evaluate(async () => {
       await (await import('./js/store.js')).saveSettings({ workerUrl: '' });
     });

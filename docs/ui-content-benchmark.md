@@ -4523,3 +4523,82 @@ asked, not what a word means.
 `npm run walkthrough` with the adjective step extended to switch the filter,
 check every round's total moves at once, check it survives a reload, and check
 no option on a filtered card comes from outside the set · `sw.js` → `v62`.
+
+# Follow-up 42 — scrubbing, and answering while it plays
+
+> "For the audio content add a way to scroll across the audio to avoid having
+> to listen to everything. Also allow to pick answers while the audio is
+> playing"
+
+## Which audio this is about
+
+The app plays three kinds of recording, and only one of them is long enough
+for either half of this to mean anything:
+
+| | length | has a seek bar |
+| --- | --- | --- |
+| LOD clips (listening sets, drill cards, "Hear it") | ~3.7s mean | no, and shouldn't |
+| your own recorded answer | up to a couple of minutes | yes — a native `<audio controls>` already |
+| **INLL podcast episodes** | **4.8 min mean, 81 of 200 over five** | **no — this is the gap** |
+
+A seek bar on a three-second dictionary clip would be furniture. On an episode
+it is the difference between answering a question and re-listening to five
+minutes to find the sentence it is about.
+
+## The bar has to work before anything is loaded
+
+An episode is `preload="none"` — the app streams from INLL and never stores a
+byte, and a walkthrough step asserts nothing is fetched until Play is tapped.
+That makes the obvious implementation wrong twice over: before the first play
+there is no `duration` to scale a bar with, and assigning `currentTime` is
+dropped on the floor.
+
+So two things stand in:
+
+- **The scale** comes from the feed. Every episode in `podcasts.json` carries
+  `durationSec`, so the bar reads `0:00 / 8:32` before anything has been
+  fetched. The element's own duration takes over the moment it has one — the
+  feed rounds, and the two disagree by a second or so on some episodes.
+- **The position** is held in the `Clip` and applied on `loadedmetadata`. Drag
+  the bar to 2:27 without pressing Play, press Play, and it starts at 2:27.
+
+Scrubbing still fetches nothing, which the walkthrough now pins alongside the
+original "not before it is asked for" assertion: dragging across a five-minute
+episode must not be five minutes of downloading.
+
+That design produced exactly one bug, and it is the one worth recording: the
+±15s buttons read `el.currentTime`, which is still 0 while a seek is pending,
+so tapping +15s on a bar reading 2:27 jumped to 0:15. `Clip.position` —
+*where the playhead is or is going to be* — is now what everything on screen
+reads, and a test names that bug.
+
+The control itself is a real `<input type="range">` rather than a div with
+pointer handlers. It costs some CSS (WebKit has no `::-moz-range-progress`, so
+the played portion is painted from a `--at` custom property) and it buys drag,
+tap-to-position, arrow keys and VoiceOver from the platform — the same call
+`.switch` already makes about checkboxes.
+
+## The pause that had to go
+
+Answering a question used to pause the episode. The comment said why: *"leaving
+it running while the answer is revealed means the next question is playing over
+the feedback for this one."* That is a real concern and it was the wrong fix —
+it made listening and answering take turns, when the natural way to use this is
+to answer as you hear it.
+
+What the pause was protecting is still protected. `chimeCorrect()` already
+stays silent while any clip is running, because a reward sound mixed on top of
+a native speaker is the one thing here that could make somebody worse at the
+exam. The feedback is on screen, where it can be read without losing the
+thread — and the bar is right there for anyone who does want to go back.
+
+Amelie's line changed with it: "Listen the whole way through first. You can
+answer afterwards" is no longer true, and was never advice anyone had to take.
+
+## Verification
+
+`npm test` 414 (9 new, in `pipeline/test/audio.test.js` against a fake media
+element) · `validate` PASS, 252 warnings, unchanged · `npm run walkthrough`
+with the streaming step extended to scrub, skip and check nothing downloads,
+and the questions step answering over a minute of real decodable silence to
+check the episode is still running afterwards · `sw.js` → `v63`.
