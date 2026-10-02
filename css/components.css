@@ -1985,3 +1985,95 @@
 }
 
 .adj__row + .adj__row { margin-block-start: var(--s2); }
+
+/* ------------------------------------------------------------------ scrub */
+/* The seek bar on long audio. A real <input type="range"> drawn to match the
+   player, so drag, tap-to-position, arrow keys and VoiceOver all come from the
+   platform rather than from pointer handlers that would have to reimplement
+   them — the same call the switch above makes about checkboxes.
+
+   The played part is painted from `--at`, set by audio.js on every timeupdate:
+   WebKit has no ::-moz-range-progress and no other way to colour the left half
+   of a track. */
+
+.scrub {
+  margin-block-start: var(--s3);
+}
+
+.scrub__range {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  /* The track is 8px; the input is tall so the thumb is a thumb-sized target. */
+  height: var(--tap);
+  background: transparent;
+  cursor: pointer;
+}
+
+.scrub__range:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.scrub__range::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(to right, var(--accent) var(--at, 0%), var(--border) var(--at, 0%));
+}
+
+.scrub__range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-block-start: -7px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.scrub__range::-moz-range-track {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--border);
+}
+
+.scrub__range::-moz-range-progress {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+}
+
+.scrub__range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Elapsed and total, under the ends of the bar it belongs to. Tabular figures
+   so the numbers do not jitter sideways once a second. */
+.scrub__times {
+  display: flex;
+  justify-content: space-between;
+  margin-block-start: calc(var(--s2) * -1);
+  font-size: var(--size-sm);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.scrub__jumps {
+  display: flex;
+  justify-content: center;
+  gap: var(--s3);
+  margin-block-start: var(--s3);
+}
+
+.scrub__skip {
+  font-variant-numeric: tabular-nums;
+}
