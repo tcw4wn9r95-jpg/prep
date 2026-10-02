@@ -2837,6 +2837,10 @@ async function main() {
     await page.waitForTimeout(300);
     if (!(await listening())) throw new Error('answering stopped the episode');
     await shot('27b-podcast-answer-while-playing');
+    // Hand the first question over answered: `is-answered` turns off pointer
+    // events on the whole row, so the loop below has to start on a fresh one.
+    await page.getByRole('button', { name: /^(Next|Finish)$/ }).first().click();
+    await page.waitForTimeout(150);
 
     for (let guard = 0; guard < 5; guard += 1) {
       const options = page.locator('.options .option');
