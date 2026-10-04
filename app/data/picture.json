@@ -1,0 +1,3456 @@
+{
+ "meta": {
+  "generatedAt": "2026-10-04T20:50:05.983Z",
+  "generator": "pipeline/build-picture.js",
+  "source": "LOD A1/A2 corpus (words and example sentences), CC0",
+  "attribution": "Lëtzebuerger Online Dictionnaire (LOD), Zenter fir d'Lëtzebuerger Sprooch, via data.public.lu",
+  "notes": "Fields are selected by English gloss from content/items/vocab.json; see content/hand-authored/picture-fields.json for the English lists and the id corrections. Placements are LOD example sentences that place one thing relative to another, picked from a mined pool by id. No Luxembourgish is authored anywhere in this path."
+ },
+ "fields": [
+  {
+   "id": "clothes",
+   "title_en": "Clothes and accessories",
+   "blurb": "What the people in the picture are wearing.",
+   "cue": "👕",
+   "words": [
+    {
+     "id": "SCHONG1",
+     "lb": "Schong",
+     "en": "shoe",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 213,
+     "cue": "👟",
+     "example": {
+      "lb": "ech fanne mäin zweete Schong net!",
+      "audioId": "37d834bfcab062f49684aa2b23443a68"
+     },
+     "imageUrl": "assets/img/obj-61454805.jpg"
+    },
+    {
+     "id": "BOX1",
+     "lb": "Box",
+     "en": "(pair of) trousers",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 411,
+     "cue": "👖",
+     "example": {
+      "lb": "stiech däin Hiem an d'Box!",
+      "audioId": "d215a0fab0422138a0cf8bf597946036"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "TASCH1",
+     "lb": "Täsch",
+     "en": "pocket",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 426,
+     "cue": null,
+     "example": {
+      "lb": "ech kafe meeschtens Hiemer mat enger Täsch",
+      "audioId": "30fb99333533c44d876b1d92c51acba3"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BRELL1",
+     "lb": "Brëll",
+     "en": "glasses",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 476,
+     "cue": null,
+     "example": {
+      "lb": "meng Fra krut hire Brëll beim Optiker gefléckt",
+      "audioId": "faa1cad05be21b847ee632cfddb300bb"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HIEM1",
+     "lb": "Hiem",
+     "en": "shirt",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 478,
+     "cue": "👕",
+     "example": {
+      "lb": "stiech däin Hiem an d'Box!",
+      "audioId": "d215a0fab0422138a0cf8bf597946036"
+     },
+     "imageUrl": "assets/img/obj-221007.jpg"
+    },
+    {
+     "id": "GEZEI1",
+     "lb": "Gezei",
+     "en": "clothes",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 624,
+     "cue": null,
+     "example": {
+      "lb": "mir hunn d'Gezei nëmme séier an d'Wallisse gedruddelt, fir den Zuch nach ze kréien",
+      "audioId": "0be32b6792f839aa980bc292a6cb483a"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "KLEED1",
+     "lb": "Kleed",
+     "en": "clothes",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 627,
+     "cue": "👗",
+     "example": {
+      "lb": "ech kafe meng Kleeder ëmmer nëmmen an de Solden",
+      "audioId": "a72e2c9d86bda47c73207b08098c5ca1"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "PRABBELI1",
+     "lb": "Prabbeli",
+     "en": "umbrella",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 635,
+     "cue": null,
+     "example": {
+      "lb": "et gëtt Reen, géi net ouni Prabbeli eraus!",
+      "audioId": "7f531732e8f3b72f3d438563952b2cb6"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "MANTEL1",
+     "lb": "Mantel",
+     "en": "coat",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 671,
+     "cue": "🧥",
+     "example": {
+      "lb": "do däi Mantel un, et ass vill Loft!",
+      "audioId": "cdf7358022a16b5d62c5dc4c49ae1112"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "PULLOVER1",
+     "lb": "Pullover",
+     "en": "jumper",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 676,
+     "cue": "🧶",
+     "example": {
+      "lb": "wann et der kal ass, kanns de méi en décke Pullover undinn",
+      "audioId": "5d32ad955681c7a43ab6a18ce4abaaf5"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "TUT3",
+     "lb": "Tut",
+     "en": "bag",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 694,
+     "cue": null,
+     "example": {
+      "lb": "d'Maartfra huet d'Äppel an eng Tut gemaach",
+      "audioId": "f78c8720efd2c6707b287904dc7225a2"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "JACKETT1",
+     "lb": "Jackett",
+     "en": "jacket",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 710,
+     "cue": null,
+     "example": {
+      "lb": "déi eng déck Jackett un, et ass kal dobaussen!",
+      "audioId": "2fc88bc13b68b7ae9698bc0243abad56"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "KOSTUM1",
+     "lb": "Kostüm",
+     "en": "suit",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 714,
+     "cue": null,
+     "example": {
+      "lb": "deng Krawatt passt absolut net bei däi Kostüm!",
+      "audioId": "a64a717a302e3fa2fadd31abc9c00b79"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "PORTMONNI1",
+     "lb": "Portmonni",
+     "en": "purse",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 767,
+     "cue": null,
+     "example": {
+      "lb": "ech hunn e sëllege Gefaacher a mengem neie Portmonni",
+      "audioId": "b42b7ec921591b2f707fbb33417748b6"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "RACK1",
+     "lb": "Rack",
+     "en": "dress",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 768,
+     "cue": "👗",
+     "example": {
+      "lb": "d'Néiesch huet der Cliente hire Rack ëmgeännert",
+      "audioId": "0e7f24e5990b1a1b9a232e2e550d5a32"
+     },
+     "imageUrl": "assets/img/obj-59493305.jpg"
+    },
+    {
+     "id": "KUSCH1",
+     "lb": "Kusch",
+     "en": "coat",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 805,
+     "cue": null,
+     "example": {
+      "lb": "den Usträicher huet déi drëtt Kusch Faarf opgedroen",
+      "audioId": "57ab3aa0400fa38b2fee862e7fd1c40d"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BLUS1",
+     "lb": "Blus",
+     "en": "blouse",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 920,
+     "cue": null,
+     "example": {
+      "lb": "déi dach deng schéi rout Blus haut un!",
+      "audioId": "76e02469dc1cc6de76aa8614eb6e78ac"
+     },
+     "imageUrl": "assets/img/obj-49591671.jpg"
+    },
+    {
+     "id": "POSCH1",
+     "lb": "Posch",
+     "en": "handbag",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 951,
+     "cue": null,
+     "example": {
+      "lb": "ech hunn ëmmer e klenge Kamp an der Posch",
+      "audioId": "570b92d97cdb196849061aa37922c670"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "RIMM1",
+     "lb": "Rimm",
+     "en": "belt",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 956,
+     "cue": null,
+     "example": {
+      "lb": "de Portier huet eng Kludder Schlësselen um Rimm hänken",
+      "audioId": "f3e7aa9f5d9d2451ba485c433f1f2bff"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "JUPE1",
+     "lb": "Jupe",
+     "en": "skirt",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1015,
+     "cue": "👗",
+     "example": {
+      "lb": "déi laang Jupe geet der richteg gutt",
+      "audioId": "7d540281e20fa1dae8a22151d2618d16"
+     },
+     "imageUrl": "assets/img/obj-1507319.jpg"
+    },
+    {
+     "id": "KNAPPCHEN1",
+     "lb": "Knäppchen",
+     "en": "button",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1019,
+     "cue": null,
+     "example": {
+      "lb": "fir den Apparat auszemaachen, muss de op dëse Knäppchen drécken",
+      "audioId": "abe4cf51af3f8af225af5de71a2fbe28"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HANDSCH1",
+     "lb": "Händsch",
+     "en": "glove",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1099,
+     "cue": null,
+     "example": {
+      "lb": "do deng Händschen un, fir am Schnéi ze spillen!",
+      "audioId": "8f8b7a9e23df92c7b00e8c961b83268f"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "KAP1",
+     "lb": "Kap",
+     "en": "cap",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1109,
+     "cue": null,
+     "example": {
+      "lb": "huel d'Kap vum Kapp!",
+      "audioId": "3ae6cc0dea981000d5643a3b437fd278"
+     },
+     "imageUrl": "assets/img/obj-14784102.jpg"
+    },
+    {
+     "id": "KRAWATT1",
+     "lb": "Krawatt",
+     "en": "tie",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1115,
+     "cue": "👔",
+     "example": {
+      "lb": "fir déi Festivitéit muss de eng Krawatt undoen!",
+      "audioId": "d2b25a2f1cf3e9c9d8a156831723f5e4"
+     },
+     "imageUrl": "assets/img/obj-65333642.jpg"
+    },
+    {
+     "id": "STIWWEL1",
+     "lb": "Stiwwel",
+     "en": "boot",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1143,
+     "cue": "🥾",
+     "example": {
+      "lb": "ech brauch e Puer nei Stiwwele fir de Wanter",
+      "audioId": "1ab2156f8aec7f89d824907d04138958"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "TSHIRT1",
+     "lb": "T-Shirt",
+     "en": "T-shirt",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1146,
+     "cue": null,
+     "example": {
+      "lb": "meng kleng Schwëster hëlt ee vu mengen T-Shirten als Nuetshiem",
+      "audioId": "20d2a1abca1b2bf52da505b9bf247e7c"
+     },
+     "imageUrl": "assets/img/obj-47145253.jpg"
+    },
+    {
+     "id": "SCHLAPP1",
+     "lb": "Schlapp",
+     "en": "slipper",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1164,
+     "cue": null,
+     "example": {
+      "lb": "am Schongbuttek hate se keng Schlappen a menger Gréisst",
+      "audioId": "2349b6e9f962cb56ce5dafacb00a7f80"
+     },
+     "imageUrl": "assets/img/obj-47127712.jpg"
+    },
+    {
+     "id": "RANK1",
+     "lb": "Rank",
+     "en": "ring",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1248,
+     "cue": null,
+     "example": {
+      "lb": "de Stéier huet e Rank an der Nues",
+      "audioId": "327ba9cb8ae5265a2ca97657ca9dc808"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "LIESBRELL1",
+     "lb": "Liesbrëll",
+     "en": "reading glasses",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1353,
+     "cue": null,
+     "example": {
+      "lb": "ech hu mäi Liesbrëll um Nuetsdësch leie gelooss",
+      "audioId": "3aafab18043637a6f914221d64c4f613"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "PORTEFEUILLE1",
+     "lb": "Portefeuille",
+     "en": "wallet",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1381,
+     "cue": null,
+     "example": {
+      "lb": "pass op, datt keen der däi Portefeuille klaut!",
+      "audioId": "7f957ba951f171862a26f94ace535b60"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SCHAL1",
+     "lb": "Schal",
+     "en": "scarf",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1393,
+     "cue": "🧣",
+     "example": {
+      "lb": "am Wanter ginn ech ni ouni Schal baussent d'Dier",
+      "audioId": "142a768b30b0bbb2cd8b3181d75f6e3e"
+     },
+     "imageUrl": "assets/img/obj-16880639.jpg"
+    },
+    {
+     "id": "STREMP1",
+     "lb": "Strëmp",
+     "en": "sock",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1405,
+     "cue": "🧦",
+     "example": {
+      "lb": "d'Feeschte vu mengen neie Strëmp si schonn zerrass",
+      "audioId": "cc4bd3ab62df61c4e94ba8782615206a"
+     },
+     "imageUrl": "assets/img/obj-58357349.jpg"
+    },
+    {
+     "id": "COL1",
+     "lb": "Col",
+     "en": "collar",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1465,
+     "cue": null,
+     "example": {
+      "lb": "hien huet de Col vum Mantel erofgediebelt",
+      "audioId": "c16f2a21cfaf53069d1bbd31a8408a21"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "MUTZ1",
+     "lb": "Mutz",
+     "en": "hat",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1538,
+     "cue": "🎩",
+     "example": {
+      "lb": "do eng Mutz op de Kapp, soss kriss de kal Oueren!",
+      "audioId": "4f4d5a7a3338bddb14adf846a3497823"
+     },
+     "imageUrl": "assets/img/obj-15179120.jpg"
+    },
+    {
+     "id": "MAILLOT1",
+     "lb": "Maillot",
+     "en": "swimsuit",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1725,
+     "cue": null,
+     "example": {
+      "lb": "ech hu mäi Maillot an der Kabinn leie gelooss",
+      "audioId": "caae4d6b99bcb064267b615b93a18530"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "TURNSCHLAPP1",
+     "lb": "Turnschlapp",
+     "en": "gym shoe",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1806,
+     "cue": "👟",
+     "example": {
+      "lb": "fir an d'Turnhal brauchen d'Kanner propper Turnschlappen",
+      "audioId": "f17563285b28db71c65fa438d41f11d3"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "FOULARD1",
+     "lb": "Foulard",
+     "en": "scarf",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1891,
+     "cue": "🧣",
+     "example": {
+      "lb": "ech hu mer an de Solden en neie Foulard kaaft",
+      "audioId": "2af739f75fe9ee858dc9e7891ceb90fe"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "JEANSBOX1",
+     "lb": "Jeansbox",
+     "en": "jeans",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1925,
+     "cue": null,
+     "example": {
+      "lb": "däerf ech an der Jeansbox op d'Diplomiwwerreechung goen?",
+      "audioId": "c4b4f1caf132316a65c0587c1ff1a906"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SANDAL1",
+     "lb": "Sandal",
+     "en": "sandal",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1989,
+     "cue": null,
+     "example": {
+      "lb": "a mengen neie Sandale kréien ech Bloderen",
+      "audioId": "c7f1007c89d8a7f552450281d3dfa747"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "TAILLEUR1",
+     "lb": "Tailleur",
+     "en": "(lady's) suit",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 2005,
+     "cue": null,
+     "example": {
+      "lb": "e schicken Tailleur passt fir all Geleeënheet",
+      "audioId": "b20525d2d1b58fc2472b212189e73086"
+     },
+     "imageUrl": null
+    }
+   ]
+  },
+  {
+   "id": "body",
+   "title_en": "The body",
+   "blurb": "Hair, eyes, hands — what a person in the picture looks like.",
+   "cue": "🙋",
+   "words": [
+    {
+     "id": "KAPP1",
+     "lb": "Kapp",
+     "en": "head",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 111,
+     "cue": "🧠",
+     "example": {
+      "lb": "hien huet bal keng Hoer méi um Kapp",
+      "audioId": "aa5317fc8e2b6d00f82b919dadd15d28"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HAND1",
+     "lb": "Hand",
+     "en": "hand",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 131,
+     "cue": "✋",
+     "example": {
+      "lb": "mäi Papp schreift mat der lénkser Hand",
+      "audioId": "3edf541528a4df92e7b3d8efd0414292"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "A1",
+     "lb": "A",
+     "en": "eye",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A1",
+     "rank": 175,
+     "cue": "👁️",
+     "example": {
+      "lb": "déi Blus passt gutt bei deng blo Aen",
+      "audioId": null
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BEEN1",
+     "lb": "Been",
+     "en": "leg",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 206,
+     "cue": "🦵",
+     "example": {
+      "lb": "vill Leit hunn ee Bee méi kuerz ewéi dat anert",
+      "audioId": "cdf9a428746a0381ee7a52378ec4b210"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "FANGER1",
+     "lb": "Fanger",
+     "en": "finger",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 210,
+     "cue": "👆",
+     "example": {
+      "lb": "den Aarbechter huet sech mat der See e Fanger erofgeschnidden",
+      "audioId": "94b7e4085f40a21da5b7cbb1cdea0481"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "FOUSS1",
+     "lb": "Fouss",
+     "en": "foot",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 211,
+     "cue": "🦶",
+     "example": {
+      "lb": "ech hu mer de Fouss verstaucht",
+      "audioId": "68d08b0999417a8b00f210d3481ab52e"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "MOND1",
+     "lb": "Mond",
+     "en": "mouth",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 221,
+     "cue": "👄",
+     "example": {
+      "lb": "du muss de Mikro e bësse méi no bei de Mond halen",
+      "audioId": "fd447c07b4c74aed450cad4ff042a056"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HOER1",
+     "lb": "Hoer",
+     "en": "hair",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A1",
+     "rank": 229,
+     "cue": "💇",
+     "example": {
+      "lb": "meng Fra huet e friemt Hoer op mengem Paltong fonnt",
+      "audioId": "38ddd8a2479cf301f22d6d50355095cd"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "NUES1",
+     "lb": "Nues",
+     "en": "nose",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 243,
+     "cue": "👃",
+     "example": {
+      "lb": "an de Kannerbicher hunn d'Hexen dacks eng Waarzel op der Nues",
+      "audioId": "f08c3d3d760d62d762010e11dd333cbc"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "ZANT1",
+     "lb": "Zant",
+     "en": "tooth",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 271,
+     "cue": "🦷",
+     "example": {
+      "lb": "ech hat eng immens Péng am Zant",
+      "audioId": null
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HAERZ1",
+     "lb": "Häerz",
+     "en": "heart",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 291,
+     "cue": "❤️",
+     "example": {
+      "lb": "Ausdauersport ass gutt fir d'Häerz",
+      "audioId": "d4ced6bb96b445d32f116f1b4dd1f9a2"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "OUER1",
+     "lb": "Ouer",
+     "en": "ear",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A1",
+     "rank": 294,
+     "cue": "👂",
+     "example": {
+      "lb": "eisen Hond ass op engem Ouer daf",
+      "audioId": "41377461204a2afc7d1b8692021790a1"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "AARM2",
+     "lb": "Aarm",
+     "en": "arm",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 307,
+     "cue": "💪",
+     "example": {
+      "lb": "kuck, du hues en Himmelsdéierchen um Aarm sëtzen!",
+      "audioId": "ee719c6ecb54c8416eacf71473a62d3d"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "GESIICHT1",
+     "lb": "Gesiicht",
+     "en": "face",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 355,
+     "cue": null,
+     "example": {
+      "lb": "dat Kand huet e schéint Gesiicht",
+      "audioId": "fb2d17f38a356f3105708bd539959b2d"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "KNEI1",
+     "lb": "Knéi",
+     "en": "knee",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 398,
+     "cue": "🦵",
+     "example": {
+      "lb": "mäi Monni gëtt mam Knéi operéiert",
+      "audioId": "d8b1373244c928e29a44aaadc51b2fdc"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HALS1",
+     "lb": "Hals",
+     "en": "neck",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 477,
+     "cue": null,
+     "example": {
+      "lb": "meng Frëndin hat e wonnerschéine Schal ëm den Hals",
+      "audioId": "06248a58aa5225a52ae2f75ca057cf7e"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SCHELLER1",
+     "lb": "Schëller",
+     "en": "shoulder",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 511,
+     "cue": "💪",
+     "example": {
+      "lb": "et knackt a menger Schëller, wann ech den Aarm hiewen",
+      "audioId": "48cee3b1028bd6bba97efa062aa81464"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BAK1",
+     "lb": "Bak",
+     "en": "cheek",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 618,
+     "cue": null,
+     "example": {
+      "lb": "d'Patientin huet de rietse Bak déck geschwollen",
+      "audioId": "4e48b3bbd47df7f5ef526b34dec0abfc"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BAART1",
+     "lb": "Baart",
+     "en": "beard",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 742,
+     "cue": null,
+     "example": {
+      "lb": "mäi Brudder léisst sech de Baart wuessen, fir méi al auszegesinn",
+      "audioId": "d798e2e7aacb34116f6be5c20a06e579"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "ZEIF1",
+     "lb": "Zéif",
+     "en": "toe",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 780,
+     "cue": null,
+     "example": {
+      "lb": "ech hunn e Kréiena un der rietser décker Zéif",
+      "audioId": "6b03d4d8d2e334311f7429920df3f51b"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "KENN1",
+     "lb": "Kënn",
+     "en": "chin",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1110,
+     "cue": null,
+     "example": {
+      "lb": "hatt huet eng Kailchen am Kënn",
+      "audioId": null
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "KIERPER1",
+     "lb": "Kierper",
+     "en": "body",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1112,
+     "cue": null,
+     "example": {
+      "lb": "vum Äerdbier kréien ech Ausschlag um ganze Kierper",
+      "audioId": "74e7f93643ffe238258e664dd3a20f0c"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "STIER1",
+     "lb": "Stier",
+     "en": "forehead",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1142,
+     "cue": null,
+     "example": {
+      "lb": "wann ech de Kapp wéi hunn, da leeën ech mer en naasse Läppchen op d'Stier",
+      "audioId": "9298c67c30542b549494020b1571cc8d"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "GENECK1",
+     "lb": "Genéck",
+     "en": "neck",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 1205,
+     "cue": null,
+     "example": {
+      "lb": "et ass glat op der Trap, do brécht een sech liicht d'Genéck!",
+      "audioId": "c77ba481a01573df17df7fa2d1207e58"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "IELEBOU1",
+     "lb": "Ielebou",
+     "en": "elbow",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1214,
+     "cue": null,
+     "example": {
+      "lb": "hien huet mech mam Ielebou an d'Säit gestouss",
+      "audioId": "015e11acc4a9d59cf893f6a75d70ab9d"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "MUSKEL1",
+     "lb": "Muskel",
+     "en": "muscle",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1537,
+     "cue": null,
+     "example": {
+      "lb": "nom Lafen hu mer Übunge gemaach, fir d'Muskelen ze entspanen",
+      "audioId": "2233410b7dc32fb1fb4d5cff673dca61"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HOERFAARF1",
+     "lb": "Hoerfaarf",
+     "en": "hair colour",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1684,
+     "cue": null,
+     "example": {
+      "lb": "meng natierlech Hoerfaarf ass brong",
+      "audioId": "108d977b2ec22c7efab2872da7e81518"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "LEPS1",
+     "lb": "Lëps",
+     "en": "lip",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1716,
+     "cue": null,
+     "example": {
+      "lb": "d'Kand huet d'Lëpse blo vu Keelt",
+      "audioId": "91fbb73c623610464d791800370db91f"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HAUTFAARF1",
+     "lb": "Hautfaarf",
+     "en": "skin colour",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1913,
+     "cue": null,
+     "example": {
+      "lb": "et soll kee wéinst senger Hautfaarf diskriminéiert ginn",
+      "audioId": "482069639f65b61acb339b0eae56c5f6"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SCHNAUZ1",
+     "lb": "Schnauz",
+     "en": "moustache",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 1991,
+     "cue": null,
+     "example": {
+      "lb": "an der Vakanz huet mäi Brudder sech e Schnauz wuesse gelooss",
+      "audioId": "1bb966fbd16d43b97f4bc947a984a346"
+     },
+     "imageUrl": null
+    }
+   ]
+  },
+  {
+   "id": "colours",
+   "title_en": "Colours",
+   "blurb": "The colours themselves, and the words for colour.",
+   "cue": "🎨",
+   "words": [
+    {
+     "id": "ROUT1",
+     "lb": "rout",
+     "en": "red",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A1",
+     "rank": 346,
+     "cue": "🔴",
+     "example": {
+      "lb": "ech hunn déi rout Rousen am léifsten",
+      "audioId": "34bf0fe5c9cfc43cc4bfbb8623621695"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "WAISS1",
+     "lb": "wäiss",
+     "en": "white",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A1",
+     "rank": 360,
+     "cue": "⚪",
+     "example": {
+      "lb": "eng wäiss Dauf symboliséiert de Fridden",
+      "audioId": "eacb03a34ba34fcd6f2d93852a844e25"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "FAARF1",
+     "lb": "Faarf",
+     "en": "colour",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 369,
+     "cue": "🎨",
+     "example": {
+      "lb": "dee Rucksak gëtt et an dräi verschiddene Faarwen",
+      "audioId": "8a29c3073f5f7e85feb9a513aadf7083"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SCHWAARZ1",
+     "lb": "schwaarz",
+     "en": "black",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A1",
+     "rank": 373,
+     "cue": "⚫",
+     "example": {
+      "lb": "op engem schwaarze Paltong gesäit een all Fisem",
+      "audioId": "828df2a2ca4386926fa78a6a807444e2"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BLO1",
+     "lb": "blo",
+     "en": "blue",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A1",
+     "rank": 579,
+     "cue": "🔵",
+     "example": {
+      "lb": "de Bouf huet e schéine bloe Vëlo geschenkt kritt",
+      "audioId": "9f5645ba4f3f93b0ea8734617d6adeaf"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "DAISCHTER1",
+     "lb": "däischter",
+     "en": "dark",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A2",
+     "rank": 658,
+     "cue": null,
+     "example": {
+      "lb": "fir d'Begriefnes hat mäin Neveu en däischtere Paltong un",
+      "audioId": "9a9e72a992a40d4cfbebd9fce678d00a"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "GRENG1",
+     "lb": "gréng",
+     "en": "green",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A1",
+     "rank": 754,
+     "cue": "🟢",
+     "example": {
+      "lb": "mir hunn eis an de Solden eng gréng Kusch kaaft",
+      "audioId": "598fad449c99e22cc13cee4b3e3d81c0"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BRONG1",
+     "lb": "brong",
+     "en": "brown",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A1",
+     "rank": 788,
+     "cue": "🟤",
+     "example": {
+      "lb": "deng brong Schong passen net bei däi Kostüm",
+      "audioId": "efc8ce6f83738056ab25171564e08502"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "GRO1",
+     "lb": "gro",
+     "en": "grey",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A2",
+     "rank": 799,
+     "cue": "⚪",
+     "example": {
+      "lb": "ech hu mer e groe Kostüm fir op d'Hochzäit kaaft",
+      "audioId": "4c642c3d5175d483e72c9dfcb0f2e6a0"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "GELLEN1",
+     "lb": "gëllen",
+     "en": "golden",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A2",
+     "rank": 856,
+     "cue": null,
+     "example": {
+      "lb": "d'Bomi deet hire gëllene Bracelet nëmme sonndes un",
+      "audioId": "8c5650357a4e08fdcc2a525f6e6f7b47"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HELL1",
+     "lb": "hell",
+     "en": "light",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A2",
+     "rank": 906,
+     "cue": null,
+     "example": {
+      "lb": "et ass ze hell heibannen, ech kréien de Kapp wéi",
+      "audioId": "28d610c218acaf30d0e95fc95ce029e6"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "FIERWEN1",
+     "lb": "fierwen",
+     "en": "to colour",
+     "pos": "VRB",
+     "article": null,
+     "gender": null,
+     "level": "A1",
+     "rank": 929,
+     "cue": null,
+     "example": {
+      "lb": "eis Léierin huet hir Neel ëmmer rout gefierft",
+      "audioId": "d8ccfaa44e41599a05224f570aaa916d"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "GIEL1",
+     "lb": "giel",
+     "en": "yellow",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A1",
+     "rank": 1097,
+     "cue": "🟡",
+     "example": {
+      "lb": "den Dueder vum Ee ass giel",
+      "audioId": "9776561e851c9852a5f12c0d27b1a5ed"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "DONKEL1",
+     "lb": "donkel",
+     "en": "dark",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A2",
+     "rank": 1188,
+     "cue": null,
+     "example": {
+      "lb": "fir d'Feierlechkeeten hat ech en donkele Paltong un",
+      "audioId": "460c5ef9cbd108467e248a6710b94664"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "ORANGE1",
+     "lb": "Orange",
+     "en": "orange",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 1548,
+     "cue": "🍊",
+     "example": {
+      "lb": "gëff mer eng Zéif vun denger Orange!",
+      "audioId": "f7524057150f70942cadf78872101dc4"
+     },
+     "imageUrl": "assets/img/obj-164959.jpg"
+    },
+    {
+     "id": "HELLBRONG1",
+     "lb": "hellbrong",
+     "en": "light brown",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A2",
+     "rank": 1681,
+     "cue": null,
+     "example": {
+      "lb": "meng Schwëster huet hellbrong Hoer a blo Aen",
+      "audioId": "0f0357793de33b872fbdeadf5da9d482"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HOERFAARF1",
+     "lb": "Hoerfaarf",
+     "en": "hair colour",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1684,
+     "cue": null,
+     "example": {
+      "lb": "meng natierlech Hoerfaarf ass brong",
+      "audioId": "108d977b2ec22c7efab2872da7e81518"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "ROSA1",
+     "lb": "rosa",
+     "en": "pink",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A2",
+     "rank": 1773,
+     "cue": "🩷",
+     "example": {
+      "lb": "dat klengt Meedchen hat e rosae Rack un",
+      "audioId": "907bf41b2ced7398977e7b50d3749732"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "TEINT1",
+     "lb": "Teint",
+     "en": "colour",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1804,
+     "cue": null,
+     "example": {
+      "lb": "no enger Woch um Mier haten d'Kanner all e gesonden Teint",
+      "audioId": "b65df3eef8aed6ba3ae03b3cc632723b"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HAUTFAARF1",
+     "lb": "Hautfaarf",
+     "en": "skin colour",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1913,
+     "cue": null,
+     "example": {
+      "lb": "et soll kee wéinst senger Hautfaarf diskriminéiert ginn",
+      "audioId": "482069639f65b61acb339b0eae56c5f6"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HELLBLO1",
+     "lb": "hellblo",
+     "en": "light blue",
+     "pos": "ADJ",
+     "article": null,
+     "gender": null,
+     "level": "A2",
+     "rank": 1915,
+     "cue": null,
+     "example": {
+      "lb": "de Puppelchen huet hellblo Aen",
+      "audioId": "97bd2d9c0b0de3328f74f510e8129800"
+     },
+     "imageUrl": null
+    }
+   ]
+  },
+  {
+   "id": "weather",
+   "title_en": "The weather",
+   "blurb": "What the sky is doing, which every picture shows and every description needs.",
+   "cue": "🌦️",
+   "words": [
+    {
+     "id": "WIEDER1",
+     "lb": "Wieder",
+     "en": "weather",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A1",
+     "rank": 209,
+     "cue": "🌤️",
+     "example": {
+      "lb": "wa schéint Wieder ass, si vill Cyclisten op der Strooss",
+      "audioId": "fef9b02ea8a96664cdf7fb8ace799f71"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "REENEN1",
+     "lb": "reenen",
+     "en": "to rain",
+     "pos": "VRB",
+     "article": null,
+     "gender": null,
+     "level": "A1",
+     "rank": 265,
+     "cue": "🌧️",
+     "example": {
+      "lb": "et huet esou vill gereent, datt mir bannent e puer Minutte plätschnaass waren",
+      "audioId": "34561579eae7442c4f44e8bc93e0176e"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SONN1",
+     "lb": "Sonn",
+     "en": "sun",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 403,
+     "cue": "☀️",
+     "example": {
+      "lb": "fir d'Himmelsrichtungen ze bestëmmen, kann ee sech un der Sonn orientéieren",
+      "audioId": "cd4b856b36a680d219a183da36093ab2"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "REEN1",
+     "lb": "Reen",
+     "en": "rain",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 489,
+     "cue": "🌧️",
+     "example": {
+      "lb": "nom ville Reen huet d'Wieder sech gebessert",
+      "audioId": "a933a592b9a196c09977aa6fa62bca80"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "HIMMEL1",
+     "lb": "Himmel",
+     "en": "sky",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 504,
+     "cue": "🌌",
+     "example": {
+      "lb": "wat ass den Himmel haut esou schéi blo!",
+      "audioId": "f65b31c61ec9058f452d89d49a96e9cb"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "GRAD1",
+     "lb": "Grad",
+     "en": "degree",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 557,
+     "cue": null,
+     "example": {
+      "lb": "muer gëtt et bis zwee Grad ënner null",
+      "audioId": "f947a2a01b42bef008b9173688178be5"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SCHNEI1",
+     "lb": "Schnéi",
+     "en": "snow",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 600,
+     "cue": "❄️",
+     "example": {
+      "lb": "ech fäerten, et gëtt hënt Schnéi",
+      "audioId": "3fcedc9c7f1c066d53f0bad6193345cc"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "WAND1",
+     "lb": "Wand",
+     "en": "wind",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 691,
+     "cue": "💨",
+     "example": {
+      "lb": "säit de Moie bléist en äiskale Wand",
+      "audioId": "7b4b7d2db0154af04fc7016b01543532"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "WOLLEK1",
+     "lb": "Wollek",
+     "en": "cloud",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 900,
+     "cue": "☁️",
+     "example": {
+      "lb": "et war keng eenzeg Wollek um Himmel",
+      "audioId": "df3fde59df9fcd1131c22a8c2727668d"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "TEMPERATUR1",
+     "lb": "Temperatur",
+     "en": "temperature",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1056,
+     "cue": null,
+     "example": {
+      "lb": "d'Planzen hu staark ënner deenen nidderegen Temperature gelidden",
+      "audioId": "b17850019aaa139d427845c1b5e71bf2"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SCHNEIEN1",
+     "lb": "schneien",
+     "en": "to snow",
+     "pos": "VRB",
+     "article": null,
+     "gender": null,
+     "level": "A1",
+     "rank": 1139,
+     "cue": "❄️",
+     "example": {
+      "lb": "et huet esou vill geschneit, datt bannent enger Stonn de Verkéier komplett blockéiert war",
+      "audioId": "420c8cddba23dd654d5a46804959443e"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "CELSIUS1",
+     "lb": "Celsius",
+     "en": "(degree) Celsius",
+     "pos": "SUBST",
+     "article": null,
+     "gender": null,
+     "level": "A2",
+     "rank": 1312,
+     "cue": null,
+     "example": {
+      "lb": "null Grad Celsius entspriechen 32 Grad Fahrenheit",
+      "audioId": "a3ac038c170a7e5ce6c530e03d060aa2"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "DONNEREN2",
+     "lb": "donneren",
+     "en": "to thunder",
+     "pos": "VRB",
+     "article": null,
+     "gender": null,
+     "level": "A2",
+     "rank": 1320,
+     "cue": "⛈️",
+     "example": {
+      "lb": "et donnert an et blëtzt dobaussen",
+      "audioId": "2e053c0855a5467641d14d517254fe39"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "FAHRENHEIT1",
+     "lb": "Fahrenheit",
+     "en": "(degree) Fahrenheit",
+     "pos": "SUBST",
+     "article": null,
+     "gender": null,
+     "level": "A2",
+     "rank": 1325,
+     "cue": null,
+     "example": {
+      "lb": "null Grad Celsius entspriechen 32 Grad Fahrenheit",
+      "audioId": "a3ac038c170a7e5ce6c530e03d060aa2"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BLETZEN1",
+     "lb": "blëtzen",
+     "en": "there is (a flash of) lightning",
+     "pos": "VRB",
+     "article": null,
+     "gender": null,
+     "level": "A2",
+     "rank": 1458,
+     "cue": null,
+     "example": {
+      "lb": "et blëtzt an donnert, mee nach reent et net!",
+      "audioId": "6204c83f12eb845fd54f7eb18ae43695"
+     },
+     "imageUrl": null
+    }
+   ]
+  },
+  {
+   "id": "nature",
+   "title_en": "Outside: nature",
+   "blurb": "Trees, water, animals — the things in a picture taken out of town.",
+   "cue": "🌳",
+   "words": [
+    {
+     "id": "HOND1",
+     "lb": "Hond",
+     "en": "dog",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 177,
+     "cue": "🐕",
+     "example": {
+      "lb": "et soll een den Hond an d'Léngt huelen",
+      "audioId": "fc77ceb3842cb885943b21c47a953610"
+     },
+     "imageUrl": "assets/img/obj-15170790.jpg"
+    },
+    {
+     "id": "BAM1",
+     "lb": "Bam",
+     "en": "tree",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 308,
+     "cue": "🌳",
+     "example": {
+      "lb": "dëse Bam ass méi ewéi honnert Joer al",
+      "audioId": "fafda794891948f5389576adeb258da0"
+     },
+     "imageUrl": "assets/img/obj-584131.jpg"
+    },
+    {
+     "id": "GAART1",
+     "lb": "Gaart",
+     "en": "garden",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 313,
+     "cue": null,
+     "example": {
+      "lb": "mir hunn hannenaus e grousse Gaart",
+      "audioId": "cf0ac7a1d32f6eb714d92f6783065705"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "KAZ1",
+     "lb": "Kaz",
+     "en": "cat",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 315,
+     "cue": "🐈",
+     "example": {
+      "lb": "d'Kaz sëtzt virun der Fënster ze miauen",
+      "audioId": "16e8f7d8d2789d2023d30babec519943"
+     },
+     "imageUrl": "assets/img/obj-12127693.jpg"
+    },
+    {
+     "id": "BESCH1",
+     "lb": "Bësch",
+     "en": "forest",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 340,
+     "cue": null,
+     "example": {
+      "lb": "mir ginn all Sonndeg an de Bësch spadséieren",
+      "audioId": "675bcdc0762e2cac17f765c8de8797de"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BLAT1",
+     "lb": "Blat",
+     "en": "leaf",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A1",
+     "rank": 364,
+     "cue": null,
+     "example": {
+      "lb": "nom Hierschtstuerm war keen eenzegt Blat méi um Bam",
+      "audioId": "bb883a2ffa5a832c97f156e8ff8f508a"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "FESCH1",
+     "lb": "Fësch",
+     "en": "fish",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 414,
+     "cue": "🐟",
+     "example": {
+      "lb": "beim Tauchen hu mer riseg Schwäerm Fësch gesinn",
+      "audioId": "65b15f486022770ef6adbc8e69e311b9"
+     },
+     "imageUrl": "assets/img/obj-30743307.jpg"
+    },
+    {
+     "id": "PAERD1",
+     "lb": "Päerd",
+     "en": "horse",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 423,
+     "cue": "🐎",
+     "example": {
+      "lb": "d'Päerd sinn iwwer d'Weed galoppéiert",
+      "audioId": "7bf58dc83546f88581ab238ced3d3f81"
+     },
+     "imageUrl": "assets/img/obj-178248.jpg"
+    },
+    {
+     "id": "BIERG1",
+     "lb": "Bierg",
+     "en": "mountain",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 452,
+     "cue": null,
+     "example": {
+      "lb": "ech géif gär eng Kéier op den héchste Bierg vun der Welt klammen",
+      "audioId": "d29575f9ece2f527f2c6cd6e2feeda9a"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "STEEN1",
+     "lb": "Steen",
+     "en": "stone",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 541,
+     "cue": null,
+     "example": {
+      "lb": "bei eis sinn déi meescht Kräizer um Kierfecht aus Steen",
+      "audioId": "021c5cd979264bf09ef23ff5edf70131"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BLUMM1",
+     "lb": "Blumm",
+     "en": "flower",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 619,
+     "cue": "🌸",
+     "example": {
+      "lb": "d'Kanner hunn eng wonnerschéi Blumm am Park gesinn",
+      "audioId": "91013b30248af015e5c67fe9edce3d18"
+     },
+     "imageUrl": "assets/img/obj-863943.jpg"
+    },
+    {
+     "id": "PLANZ1",
+     "lb": "Planz",
+     "en": "plant",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 816,
+     "cue": null,
+     "example": {
+      "lb": "deng Planz huet net genuch Buedem",
+      "audioId": "e595c81d77c6b2e958184da844fa5327"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "MIER1",
+     "lb": "Mier",
+     "en": "sea",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 871,
+     "cue": null,
+     "example": {
+      "lb": "an der Vakanz sinn ech all Dag an d'Mier schwamme gaangen",
+      "audioId": "97db4980ce19398968c0a19bbf1c0d54"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "FLOSS1",
+     "lb": "Floss",
+     "en": "river",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1092,
+     "cue": null,
+     "example": {
+      "lb": "de Floss mécht d'Grenz tëschent deenen zwee Länner",
+      "audioId": "a6321a305c606467becd9a87f1cf0962"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "WISS1",
+     "lb": "Wiss",
+     "en": "meadow",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1153,
+     "cue": null,
+     "example": {
+      "lb": "de Bauer huet schonn de Moie fréi seng Wiss geméit",
+      "audioId": "1edf7221d2aa155382813fcccd75c6a2"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SCHOF1",
+     "lb": "Schof",
+     "en": "sheep",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 1254,
+     "cue": "🐑",
+     "example": {
+      "lb": "mir schueren eis Schof gewéinlech am Juni",
+      "audioId": "4b94ea5b3753dbf78ace189d1a5a6c0d"
+     },
+     "imageUrl": "assets/img/obj-16819.jpg"
+    },
+    {
+     "id": "INSEL1",
+     "lb": "Insel",
+     "en": "island",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1343,
+     "cue": null,
+     "example": {
+      "lb": "an der Vakanz si mir vun Insel zu Insel geseegelt",
+      "audioId": "ac2239f15a6350897d9ed7c3b165fa0a"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "PLAGE1",
+     "lb": "Plage",
+     "en": "beach",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 1559,
+     "cue": null,
+     "example": {
+      "lb": "d'Kanner hunn sech op der Plage an de Sand agegruewen",
+      "audioId": "54a850dc5672fc534e3c68b7382dac8f"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "MUPP1",
+     "lb": "Mupp",
+     "en": "dog",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1739,
+     "cue": "🐕",
+     "example": {
+      "lb": "eise Mupp huet säi Collier verluer",
+      "audioId": "c40104822d6e6b7dc61dbae38e435d94"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SEI1",
+     "lb": "Séi",
+     "en": "lake",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1784,
+     "cue": null,
+     "example": {
+      "lb": "no där äiseger Wanternuecht war de Séi zougefruer",
+      "audioId": "ba3ee200b55c67972f545935fb35ad91"
+     },
+     "imageUrl": null
+    }
+   ]
+  },
+  {
+   "id": "town",
+   "title_en": "Outside: the town",
+   "blurb": "Streets, buildings, traffic — the things in a picture taken in town.",
+   "cue": "🏙️",
+   "words": [
+    {
+     "id": "AUTO1",
+     "lb": "Auto",
+     "en": "car",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 60,
+     "cue": "🚗",
+     "example": {
+      "lb": "ech hu mer en neien Auto kaaft",
+      "audioId": "276318892de565da396f85b7851ef109"
+     },
+     "imageUrl": "assets/img/obj-17226541.jpg"
+    },
+    {
+     "id": "HAUS1",
+     "lb": "Haus",
+     "en": "house",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A1",
+     "rank": 92,
+     "cue": null,
+     "example": {
+      "lb": "mir hunn nach vill Aarbecht ronderëm eist neit Haus",
+      "audioId": "16aa77de612cf26ec7db36d7ba5331aa"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "PLAZ1",
+     "lb": "Plaz",
+     "en": "square",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 109,
+     "cue": "🚪",
+     "example": {
+      "lb": "an der Mëtt vun der Plaz steet e Sprangbuer",
+      "audioId": "ac50097ada45dcb4cba5919f6c285214"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "DIER1",
+     "lb": "Dier",
+     "en": "door",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 137,
+     "cue": null,
+     "example": {
+      "lb": "wann ech fort sinn, däerfs de kengem d'Dier opmaachen!",
+      "audioId": "ae4a6b24c2e571745ac83cae5efc0699"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SCHOUL1",
+     "lb": "Schoul",
+     "en": "school",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 142,
+     "cue": "🏫",
+     "example": {
+      "lb": "meng Kanner hunn an der Schoul geléiert Flütt spillen",
+      "audioId": "4d1794b2014dde0903d7a45d846436ba"
+     },
+     "imageUrl": "assets/img/obj-80224751.jpg"
+    },
+    {
+     "id": "BUS1",
+     "lb": "Bus",
+     "en": "bus",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 148,
+     "cue": "🚌",
+     "example": {
+      "lb": "ech huelen de Bus fir op d'Gare",
+      "audioId": "4b8c1c79c1aab64efaabbfd240909104"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "STROOSS1",
+     "lb": "Strooss",
+     "en": "street",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 166,
+     "cue": null,
+     "example": {
+      "lb": "d'Strooss ass wéinst Aarbechte gespaart",
+      "audioId": "a7ef8a74765c501963facf1d10253fb3"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "STAD1",
+     "lb": "Stad",
+     "en": "city",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 169,
+     "cue": null,
+     "example": {
+      "lb": "géint fënnef Auer nomëttes ass ëmmer décken Trafick an der Stad",
+      "audioId": "772da2ded2b7b21d54dd7b89c3f5d3fd"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "ZUCH1",
+     "lb": "Zuch",
+     "en": "train",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 205,
+     "cue": "🚆",
+     "example": {
+      "lb": "ech huelen den Zuch fir op d'Aarbecht",
+      "audioId": "9bd073fcdace61cad388591e93787e35"
+     },
+     "imageUrl": "assets/img/obj-5875037.jpg"
+    },
+    {
+     "id": "DUERF1",
+     "lb": "Duerf",
+     "en": "village",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A1",
+     "rank": 287,
+     "cue": null,
+     "example": {
+      "lb": "ech sinn an en anert Duerf geplënnert",
+      "audioId": "7dda1995e76523e382a8ea307de22735"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "FENSTER1",
+     "lb": "Fënster",
+     "en": "window",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 288,
+     "cue": null,
+     "example": {
+      "lb": "mir kréie méi eng grouss Fënster an der Stuff",
+      "audioId": "5ae0199d99648eb5d9fe01f9269adec8"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "GESCHAFT1",
+     "lb": "Geschäft",
+     "en": "shop",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 301,
+     "cue": null,
+     "example": {
+      "lb": "ech hu mer dëse Mantel an engem deiere Geschäft kaaft",
+      "audioId": "dcacc5adb7650626bc75f1c050f93b38"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "RESTAURANT1",
+     "lb": "Restaurant",
+     "en": "restaurant",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 317,
+     "cue": "🍽️",
+     "example": {
+      "lb": "an deem klenge Restaurant kritt ee gutt a bëlleg z'iessen",
+      "audioId": "41ccd0655d97d886762a30345a23ff53"
+     },
+     "imageUrl": "assets/img/obj-403639.jpg"
+    },
+    {
+     "id": "HOTEL1",
+     "lb": "Hotel",
+     "en": "hotel",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 320,
+     "cue": "🏨",
+     "example": {
+      "lb": "huet den Hotel eis Reservatioun scho confirméiert?",
+      "audioId": "f27be3cafc7e6fe24c0d9c1f9fd81f7b"
+     },
+     "imageUrl": "assets/img/obj-3112584.jpg"
+    },
+    {
+     "id": "MAUER1",
+     "lb": "Mauer",
+     "en": "wall",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 324,
+     "cue": null,
+     "example": {
+      "lb": "eis Noperen hunn eng Mauer ëm hire Virgäertche gebaut",
+      "audioId": "6a655b0030c9ded2cfd5e2be2ad5b058"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "VELO1",
+     "lb": "Vëlo",
+     "en": "bike",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 375,
+     "cue": "🚲",
+     "example": {
+      "lb": "d'viischt Rad vu mengem Vëlo huet eng Aachtchen",
+      "audioId": "0f173a108e3ccd7310d73b40a1309ae8"
+     },
+     "imageUrl": "assets/img/obj-77740868.jpg"
+    },
+    {
+     "id": "POST1",
+     "lb": "Post",
+     "en": "post office",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 429,
+     "cue": null,
+     "example": {
+      "lb": "hie schafft bei der Post",
+      "audioId": "f4ca00aaedc53f4aea5e979b4f4fd3c6"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "APPARTEMENT1",
+     "lb": "Appartement",
+     "en": "flat",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 434,
+     "cue": null,
+     "example": {
+      "lb": "mir wunnen an engem Appartement",
+      "audioId": "14931a6334b83cb9610f49db2bad7b3b"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BUTTEK1",
+     "lb": "Buttek",
+     "en": "shop",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 461,
+     "cue": null,
+     "example": {
+      "lb": "eise Buttek huet sonndes vun aacht bis zwielef Auer op",
+      "audioId": "d8ce76ba5cded97807d157bdac3e9d94"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "MUSEE1",
+     "lb": "Musée",
+     "en": "museum",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 481,
+     "cue": null,
+     "example": {
+      "lb": "am Ament ass eng flott Ausstellung am archeologesche Musée",
+      "audioId": "7a18220c47685151dfc819484eb1a542"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "VERKEIER1",
+     "lb": "Verkéier",
+     "en": "traffic",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 517,
+     "cue": null,
+     "example": {
+      "lb": "op der Autobunn gëtt de Verkéier den Ament wéinst engem Accident ëmgeleet",
+      "audioId": "65cd43062a10572a25614e4a08336d70"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BANK2",
+     "lb": "Bänk",
+     "en": "bench",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 545,
+     "cue": "🏫",
+     "example": {
+      "lb": "déi al Koppel sëtzt gären am Park op enger Bänk",
+      "audioId": "2c9b534c34593f35a09403c9fbaf8fc7"
+     },
+     "imageUrl": "assets/img/obj-215320.jpg"
+    },
+    {
+     "id": "WUNNENG1",
+     "lb": "Wunneng",
+     "en": "flat",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 571,
+     "cue": null,
+     "example": {
+      "lb": "meng Wunneng ass um drëtte Stack",
+      "audioId": "0f6bbd87c9694419ddc5f5f2df2f90ef"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BRECK1",
+     "lb": "Bréck",
+     "en": "bridge",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 580,
+     "cue": null,
+     "example": {
+      "lb": "ier déi Bréck gebaut gouf, huet ee missen e groussen Ëmwee maachen",
+      "audioId": "6c5f1fdcc7171549feeada2eb8a44ad7"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "KIERCH1",
+     "lb": "Kierch",
+     "en": "Church",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 587,
+     "cue": null,
+     "example": {
+      "lb": "a ville Länner gëtt et eng Trennung vu Kierch a Staat",
+      "audioId": "def6fb68ab7bbfc04624142fe3b32576"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "LYCEE1",
+     "lb": "Lycée",
+     "en": "grammar school",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 628,
+     "cue": "🏫",
+     "example": {
+      "lb": "d'Schoulflicht zu Lëtzebuerg ëmfaasst zéng Joer, no der Primärschoul nach e puer Joer (am) Lycée",
+      "audioId": "c1878eb92fee2dfbcd25353671eca156"
+     },
+     "imageUrl": "assets/img/obj-193347857.jpg"
+    },
+    {
+     "id": "BANK1",
+     "lb": "Bank",
+     "en": "bank",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 654,
+     "cue": null,
+     "example": {
+      "lb": "d'Bank huet en décke Benefice gemaach",
+      "audioId": "b06eabf7f24b67e70e31d9f4490c21a6"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "GEBAI1",
+     "lb": "Gebai",
+     "en": "building",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 707,
+     "cue": null,
+     "example": {
+      "lb": "dëst Gebai gouf vun engem bekannten Architekt entworf",
+      "audioId": "59459210be62f10667df9eee540f566f"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "KLINICK1",
+     "lb": "Klinick",
+     "en": "hospital",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 760,
+     "cue": "🏥",
+     "example": {
+      "lb": "de Mann ass mat enger Gasvergëftung an d'Klinick ageliwwert ginn",
+      "audioId": "5d5b523076d1d12b73d982f6896940a2"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "MAART1",
+     "lb": "Maart",
+     "en": "market",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 807,
+     "cue": null,
+     "example": {
+      "lb": "ech hu mer um Maart eng Bott Spargele kaaft",
+      "audioId": "eeb3c8349e3f380e954b246ac02740bb"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SPIDOL1",
+     "lb": "Spidol",
+     "en": "hospital",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 891,
+     "cue": "🏥",
+     "example": {
+      "lb": "de Kranke gouf mat der Ambulanz an d'Spidol gefouert",
+      "audioId": "bdfe0904cbd9bc44f9ebb5e3fbac41cc"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "PARKING1",
+     "lb": "Parking",
+     "en": "car park",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 947,
+     "cue": null,
+     "example": {
+      "lb": "an der Afaart vum Parking gëtt eng automatesch Barriär installéiert",
+      "audioId": "d79ef544f6e362bd61f1a08bcd60a2a9"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "PARK1",
+     "lb": "Park",
+     "en": "park",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 979,
+     "cue": null,
+     "example": {
+      "lb": "ech sëtze gären am Park op enger Bänk, fir de Leit nozekucken",
+      "audioId": "e724431c42cc448023763086642fe102"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "STAU1",
+     "lb": "Stau",
+     "en": "traffic jam",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 1049,
+     "cue": null,
+     "example": {
+      "lb": "wéinst engem Stau op der Autobunn hat ech gëschter schonn nees Verspéidung",
+      "audioId": "569ae95d64dd77f406d6ba8a0696c180"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "TANKSTELL1",
+     "lb": "Tankstell",
+     "en": "filling station",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 1054,
+     "cue": null,
+     "example": {
+      "lb": "fuer op déi nächst Tankstell, mir hunn net méi genuch Bensinn!",
+      "audioId": "f7e825ba712172497068840ad38f1d61"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "GARE1",
+     "lb": "Gare",
+     "en": "(railway) station",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 1071,
+     "cue": null,
+     "example": null,
+     "imageUrl": null
+    },
+    {
+     "id": "HAAPTSTROOSS1",
+     "lb": "Haaptstrooss",
+     "en": "high street",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1208,
+     "cue": null,
+     "example": {
+      "lb": "d'Miwwelgeschäft läit direkt un der Haaptstrooss",
+      "audioId": "a57c76f080aa2080fab3a6474511fff4"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "PRIMARSCHOUL1",
+     "lb": "Primärschoul",
+     "en": "primary school",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 1244,
+     "cue": "🏫",
+     "example": {
+      "lb": "wou hues du d'Primärschoul gemaach?",
+      "audioId": "f9098a4af055aee4b8ee8fe3a08f2bbc"
+     },
+     "imageUrl": "assets/img/obj-113547475.jpg"
+    },
+    {
+     "id": "SPILLSCHOUL1",
+     "lb": "Spillschoul",
+     "en": "nursery school",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 1263,
+     "cue": "👩‍⚕️",
+     "example": {
+      "lb": "eist Klengt kann nach kee Franséisch, et ass eréischt an der Spillschoul",
+      "audioId": "f78efb7543b051fb1848c37191b03060"
+     },
+     "imageUrl": "assets/img/obj-149451052.jpg"
+    },
+    {
+     "id": "VITRINN1",
+     "lb": "Vitrinn",
+     "en": "(shop) window",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1281,
+     "cue": null,
+     "example": {
+      "lb": "ech hunn e Puer Schong an Ärer Vitrinn gesinn, dat ech nawell wéilt umoossen",
+      "audioId": "cebad9f6564b0f524839fd1989900d55"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "TRAFICK1",
+     "lb": "Trafick",
+     "en": "traffic",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 1416,
+     "cue": null,
+     "example": {
+      "lb": "géint fënnef Auer nomëttes ass ëmmer décken Trafick an der Stad",
+      "audioId": "772da2ded2b7b21d54dd7b89c3f5d3fd"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "KLEEDERBUTTEK1",
+     "lb": "Kleederbuttek",
+     "en": "clothes shop",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1514,
+     "cue": null,
+     "example": {
+      "lb": "fir den Ufank vun de Solde waren d'Kleederbutteker voller Leit",
+      "audioId": "cbb7f94e2cd16f2225f5b038f3a9cc84"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "SCHONGBUTTEK1",
+     "lb": "Schongbuttek",
+     "en": "shoe shop",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1577,
+     "cue": null,
+     "example": {
+      "lb": "am Schongbuttek hate se keng Schlappen a menger Gréisst",
+      "audioId": "2349b6e9f962cb56ce5dafacb00a7f80"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "TRAM1",
+     "lb": "Tram",
+     "en": "tram",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1599,
+     "cue": null,
+     "example": {
+      "lb": "de Mann konnt nach am leschte Moment op den Tram opsprangen",
+      "audioId": "62f20920453426daa268149baf84d565"
+     },
+     "imageUrl": "assets/img/obj-3360147.jpg"
+    },
+    {
+     "id": "FLOUMAART1",
+     "lb": "Floumaart",
+     "en": "flea market",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 1666,
+     "cue": null,
+     "example": {
+      "lb": "déi al Kaffismillen hei hunn ech um Floumaart fonnt",
+      "audioId": "e19c0da16529c4bbb23d237280fa40f3"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "METZLEREI1",
+     "lb": "Metzlerei",
+     "en": "butcher's shop",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1731,
+     "cue": null,
+     "example": {
+      "lb": "bei eis am Duerf ass eng nei Metzlerei opgaangen",
+      "audioId": "b874d6c2e5517667f1540c28ea321faa"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "POLICEBURO1",
+     "lb": "Policebüro",
+     "en": "police station",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 1755,
+     "cue": null,
+     "example": {
+      "lb": "um Policebüro krut de Verdächtege seng Fangerofdréck geholl",
+      "audioId": "ff47a64e05035a19c78214704d36df04"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "REIENHAUS1",
+     "lb": "Reienhaus",
+     "en": "terrace house",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "N",
+     "level": "A2",
+     "rank": 1767,
+     "cue": null,
+     "example": {
+      "lb": "mir wunnen an engem Reienhaus",
+      "audioId": "08b9b1e8cd5046e44f26761e1ad89c42"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BUERG1",
+     "lb": "Buerg",
+     "en": "castle",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 1825,
+     "cue": null,
+     "example": {
+      "lb": "dës Buerg ass iwwer d'Grenzen ewech bekannt",
+      "audioId": "93b756057d84cf3b0aad2c58d6ce6273"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "BUSARRET1",
+     "lb": "Busarrêt",
+     "en": "bus stop",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1858,
+     "cue": null,
+     "example": {
+      "lb": "déi zwee Busarrête leie kilometerwäit vuneneen",
+      "audioId": "b70af6c44e05f4cea90c049b8d018441"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "CHRESCHTMAART1",
+     "lb": "Chrëschtmaart",
+     "en": "Christmas market",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 1864,
+     "cue": "🎄",
+     "example": {
+      "lb": "op eisem Stand um Chrëschtmaart ass vill verkaaft ginn",
+      "audioId": "76d909ea283cee39e53b7f270eb2aeb4"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "GRONDSCHOUL1",
+     "lb": "Grondschoul",
+     "en": "primary school",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A1",
+     "rank": 1908,
+     "cue": "🏫",
+     "example": {
+      "lb": "de Passage vun der Grondschoul an de Lycée fält ville Kanner schwéier",
+      "audioId": "64242b8050faf78ebdac16d52cecbe98"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "NATURPARK1",
+     "lb": "Naturpark",
+     "en": "nature park",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A2",
+     "rank": 1961,
+     "cue": null,
+     "example": {
+      "lb": "am Naturpark gëtt en Deel vun de Bëscher sech selwer iwwerlooss",
+      "audioId": "498545c28045c8b191ba2a2d415237c2"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "ZEITUNGSBUTTEK1",
+     "lb": "Zeitungsbuttek",
+     "en": "paper shop",
+     "pos": "SUBST",
+     "article": "de",
+     "gender": "M",
+     "level": "A1",
+     "rank": 2025,
+     "cue": null,
+     "example": {
+      "lb": "am Zeitungsbuttek um Flughafe kritt een och auslännesch Zeitungen",
+      "audioId": "3ca1014cccc5b5bd900e619cf00a038b"
+     },
+     "imageUrl": null
+    },
+    {
+     "id": "VIISCHTDIER1",
+     "lb": "Viischt Dier",
+     "en": "front door",
+     "pos": "SUBST",
+     "article": "d'",
+     "gender": "F",
+     "level": "A2",
+     "rank": 2047,
+     "cue": null,
+     "example": {
+      "lb": "ech hat an Ongedanke vergiess, fir d'Viischt Dier zouzespären",
+      "audioId": "5528b3680c22f5444a9f4e7d444f4204"
+     },
+     "imageUrl": null
+    }
+   ]
+  }
+ ],
+ "positions": [
+  {
+   "id": "UEWEN1",
+   "lb": "uewen",
+   "en": "at the top",
+   "pos": "ADV",
+   "lodGlosses": [
+    "at the top",
+    "up"
+   ],
+   "example": {
+    "lb": "hei ënnen ass et méi kal ewéi do uewen",
+    "audioId": "b75090bd92a68661ae95a41dff7c29f0"
+   }
+  },
+  {
+   "id": "ENNEN1",
+   "lb": "ënnen",
+   "en": "at the bottom",
+   "pos": "ADV",
+   "lodGlosses": [
+    "down",
+    "at the bottom"
+   ],
+   "example": {
+    "lb": "ech waarden ënnen am Gank op dech",
+    "audioId": "43bb37733bcfefe8f2fe9e653b662075"
+   }
+  },
+  {
+   "id": "LENKS2",
+   "lb": "lénks",
+   "en": "on the left",
+   "pos": "ADV",
+   "lodGlosses": [
+    "(to the) left",
+    "to the left",
+    "left"
+   ],
+   "example": {
+    "lb": "ier een iwwer d'Strooss geet, kuckt ee fir d'éischt no lénks an dann no riets",
+    "audioId": "5a048c3d23bc46a1a202c2ecc68bb82c"
+   }
+  },
+  {
+   "id": "RIETS2",
+   "lb": "riets",
+   "en": "on the right",
+   "pos": "ADV",
+   "lodGlosses": [
+    "(to the) right",
+    "to the right",
+    "right"
+   ],
+   "example": {
+    "lb": "kuck emol no riets, ob keen Auto kënnt!",
+    "audioId": "bc8d506bbed2c2926a52f25a1b9f8bf5"
+   }
+  },
+  {
+   "id": "HANNEN1",
+   "lb": "hannen",
+   "en": "at the back",
+   "pos": "ADV",
+   "lodGlosses": [
+    "at the back",
+    "on the back",
+    "from the back"
+   ],
+   "example": {
+    "lb": "mäin Auto huet hannen eng Téitsch",
+    "audioId": "00693bc59df61ce9435118a36dd544aa"
+   }
+  },
+  {
+   "id": "METT1",
+   "lb": "Mëtt",
+   "en": "the middle",
+   "pos": "SUBST",
+   "lodGlosses": [
+    "middle",
+    "centre"
+   ],
+   "example": {
+    "lb": "an der Mëtt vun der Stad steet e grousst Denkmal",
+    "audioId": "3e2693134d4d6eb4d5a21a3d86e2e565"
+   }
+  },
+  {
+   "id": "ECK1",
+   "lb": "Eck",
+   "en": "the corner",
+   "pos": "SUBST",
+   "lodGlosses": [
+    "corner"
+   ],
+   "example": {
+    "lb": "d'Kand huet sech de Kapp um Eck vum Dësch gestouss",
+    "audioId": "2d7077f46347646c9502a439ed832603"
+   }
+  },
+  {
+   "id": "NIEWENT1",
+   "lb": "niewent",
+   "en": "next to",
+   "pos": "PREP",
+   "lodGlosses": [
+    "next to",
+    "beside",
+    "compared to"
+   ],
+   "example": {
+    "lb": "stell deng Schong niewent de Schaf!",
+    "audioId": "1802a94ab78f4100490347ff72fa54ac"
+   }
+  },
+  {
+   "id": "VIRUN1",
+   "lb": "virun",
+   "en": "in front of",
+   "pos": "PREP",
+   "lodGlosses": [
+    "in front of",
+    "outside",
+    "ahead of"
+   ],
+   "example": {
+    "lb": "et jot ee keen Hond virun d'Dier, wann e Wieder ass!",
+    "audioId": "77c600b101a6bb5486346f2f8a5fea0b"
+   }
+  },
+  {
+   "id": "HANNERT1",
+   "lb": "hannert",
+   "en": "behind",
+   "pos": "PREP",
+   "lodGlosses": [],
+   "example": null
+  },
+  {
+   "id": "IWWER1",
+   "lb": "iwwer",
+   "en": "above, over",
+   "pos": "PREP",
+   "lodGlosses": [
+    "over",
+    "above",
+    "on top of"
+   ],
+   "example": {
+    "lb": "hänk der däin Diplom iwwer d'Bett!",
+    "audioId": "4b145d50484236d2c9a770a6eeddd405"
+   }
+  },
+  {
+   "id": "ENNER1",
+   "lb": "ënner",
+   "en": "under",
+   "pos": "PREP",
+   "lodGlosses": [],
+   "example": null
+  },
+  {
+   "id": "RONDEREM1",
+   "lb": "ronderëm",
+   "en": "around",
+   "pos": "PREP",
+   "lodGlosses": [
+    "round",
+    "around",
+    "around the clock"
+   ],
+   "example": {
+    "lb": "mir hunn en Zonk ronderëm eise Gaart gezunn",
+    "audioId": "43655665fa64e513239de3fb6804ffe6"
+   }
+  },
+  {
+   "id": "TESCHT1",
+   "lb": "tëscht",
+   "en": "between",
+   "pos": "PREP",
+   "lodGlosses": [],
+   "example": null
+  },
+  {
+   "id": "DOBAUSSEN1",
+   "lb": "dobaussen",
+   "en": "outside",
+   "pos": "ADV",
+   "lodGlosses": [
+    "outside",
+    "outdoors"
+   ],
+   "example": {
+    "lb": "do dech waarm un, et ass äiskal dobaussen!",
+    "audioId": "e2c8d04fdc2acf570667dcb5396f77f0"
+   }
+  },
+  {
+   "id": "DOBANNEN1",
+   "lb": "dobannen",
+   "en": "inside",
+   "pos": "ADV",
+   "lodGlosses": [
+    "inside",
+    "indoors"
+   ],
+   "example": {
+    "lb": "de Papp ass dobannen",
+    "audioId": "1a2aa1e4f1f7e95ee1f583c5be5c5d87"
+   }
+  }
+ ],
+ "placements": [
+  {
+   "id": "place-6c8dffc080",
+   "type": "placement",
+   "lb": "an der Mëtt vun der Plaz steet e Sprangbuer",
+   "positionId": "METT1",
+   "form": "Mëtt",
+   "at": 7,
+   "audioId": "ac50097ada45dcb4cba5919f6c285214"
+  },
+  {
+   "id": "place-358db67d3c",
+   "type": "placement",
+   "lb": "an der Mëtt vun der Stad steet e grousst Denkmal",
+   "positionId": "METT1",
+   "form": "Mëtt",
+   "at": 7,
+   "audioId": "3e2693134d4d6eb4d5a21a3d86e2e565"
+  },
+  {
+   "id": "place-ca3594efd1",
+   "type": "placement",
+   "lb": "d'Bouwe sinn iwwer d'Mauer geklommen",
+   "positionId": "IWWER1",
+   "form": "iwwer",
+   "at": 13,
+   "audioId": "1ce8974bda53200669b449995f642d8f"
+  },
+  {
+   "id": "place-c348392bab",
+   "type": "placement",
+   "lb": "d'Brautpuer ass virun der Kierch fotograféiert ginn",
+   "positionId": "VIRUN1",
+   "form": "virun",
+   "at": 16,
+   "audioId": "010f510bc8cf8702d676769794e610e7"
+  },
+  {
+   "id": "place-abf8de7b0a",
+   "type": "placement",
+   "lb": "d'Gemeng ass just niewent der Schoul",
+   "positionId": "NIEWENT1",
+   "form": "niewent",
+   "at": 18,
+   "audioId": "0b4a2cfb6116e1eff6ef644bee6366ef"
+  },
+  {
+   "id": "place-a0c17736a7",
+   "type": "placement",
+   "lb": "d'Kaz sëtzt virun der Fënster ze miauen",
+   "positionId": "VIRUN1",
+   "form": "virun",
+   "at": 12,
+   "audioId": "16e8f7d8d2789d2023d30babec519943"
+  },
+  {
+   "id": "place-b08ea45a38",
+   "type": "placement",
+   "lb": "d'Päerd sinn iwwer d'Weed galoppéiert",
+   "positionId": "IWWER1",
+   "form": "iwwer",
+   "at": 13,
+   "audioId": "7bf58dc83546f88581ab238ced3d3f81"
+  },
+  {
+   "id": "place-5384447fc4",
+   "type": "placement",
+   "lb": "d'Schoul ass direkt niewent der Kierch",
+   "positionId": "NIEWENT1",
+   "form": "niewent",
+   "at": 20,
+   "audioId": "5ebb6bd257c8063ac928257996afeb04"
+  },
+  {
+   "id": "place-759cea44bd",
+   "type": "placement",
+   "lb": "d'Wise stinn ënner Waasser",
+   "positionId": "ENNER1",
+   "form": "ënner",
+   "at": 13,
+   "audioId": "7715930ff29615f0e19f4e62a187218c"
+  },
+  {
+   "id": "place-ff134f2b21",
+   "type": "placement",
+   "lb": "de Concert ass ënner fräiem Himmel",
+   "positionId": "ENNER1",
+   "form": "ënner",
+   "at": 15,
+   "audioId": "d3b75f020ff9dcddfa364a60a833f692"
+  },
+  {
+   "id": "place-04e6c8db2c",
+   "type": "placement",
+   "lb": "déi nei Epicerie ass just niewent der Post",
+   "positionId": "NIEWENT1",
+   "form": "niewent",
+   "at": 26,
+   "audioId": "322c7852039ec01541e719b7de7905ca"
+  },
+  {
+   "id": "place-a80a97f1ac",
+   "type": "placement",
+   "lb": "den Absender steet hannen op der Enveloppe",
+   "positionId": "HANNEN1",
+   "form": "hannen",
+   "at": 19,
+   "audioId": "4df1b689558e72af006876c7cf0745b4"
+  },
+  {
+   "id": "place-92fd6c1d5c",
+   "type": "placement",
+   "lb": "deslescht owes ass eng Fliedermaus ronderëm eis Scheier geflunn",
+   "positionId": "RONDEREM1",
+   "form": "ronderëm",
+   "at": 35,
+   "audioId": "2ac6efaa20bfd464a3c038a75070b12b"
+  },
+  {
+   "id": "place-c31471d0d1",
+   "type": "placement",
+   "lb": "do am Eck ass Plaz fir däi Vëlo",
+   "positionId": "ECK1",
+   "form": "Eck",
+   "at": 6,
+   "audioId": "77a2674556619b04936fbd84ef6475a0"
+  },
+  {
+   "id": "place-890967225f",
+   "type": "placement",
+   "lb": "do ënnen op der Kräizung sinn nei Luuchten opgeriicht ginn",
+   "positionId": "ENNEN1",
+   "form": "ënnen",
+   "at": 3,
+   "audioId": "b764b9ee281daa046b86595bf4329d25"
+  },
+  {
+   "id": "place-b946c07588",
+   "type": "placement",
+   "lb": "dobannen an der Stuff steet en neie Schaf",
+   "positionId": "DOBANNEN1",
+   "form": "dobannen",
+   "at": 0,
+   "audioId": "84b4bc116f2ea1cec66d55e38efb6bf6"
+  },
+  {
+   "id": "place-9e6c64522d",
+   "type": "placement",
+   "lb": "ënnen am Duerf bei der Post ass eng Luedstatioun",
+   "positionId": "ENNEN1",
+   "form": "ënnen",
+   "at": 0,
+   "audioId": "6158814f12dc035cc4f6594439b6b135"
+  },
+  {
+   "id": "place-65e3b01ef9",
+   "type": "placement",
+   "lb": "et ass mer en Euro ënner de Schaf gerullt",
+   "positionId": "ENNER1",
+   "form": "ënner",
+   "at": 19,
+   "audioId": "18e50838aad5196ccc0d6e353c20525c"
+  },
+  {
+   "id": "place-ec23cb5833",
+   "type": "placement",
+   "lb": "et läit Niwwel iwwer dem Dall",
+   "positionId": "IWWER1",
+   "form": "iwwer",
+   "at": 15,
+   "audioId": "fa33d13df69b08287b55ad47be3564e6"
+  },
+  {
+   "id": "place-83944028c5",
+   "type": "placement",
+   "lb": "hannen am Buch sinn déi technesch Wierder definéiert",
+   "positionId": "HANNEN1",
+   "form": "hannen",
+   "at": 0,
+   "audioId": "5a2cf45cba03994d485af1a57031b736"
+  },
+  {
+   "id": "place-8f6929df4d",
+   "type": "placement",
+   "lb": "hannen am Gaart steet en Äppelbam",
+   "positionId": "HANNEN1",
+   "form": "hannen",
+   "at": 0,
+   "audioId": "9268149f07cb8e4d6ef721dab905a29c"
+  },
+  {
+   "id": "place-487c5dd9d0",
+   "type": "placement",
+   "lb": "hannert eiser Spillschoul ass eng ganz flott Spillplaz",
+   "positionId": "HANNERT1",
+   "form": "hannert",
+   "at": 0,
+   "audioId": "2b90e54d0ea7fa8ebd1e24fd61991283"
+  },
+  {
+   "id": "place-5b7e262637",
+   "type": "placement",
+   "lb": "hei ënnen ass et méi kal ewéi do uewen",
+   "positionId": "ENNEN1",
+   "form": "ënnen",
+   "at": 4,
+   "audioId": "b75090bd92a68661ae95a41dff7c29f0"
+  },
+  {
+   "id": "place-7093d5403f",
+   "type": "placement",
+   "lb": "hei uewen an de Bierger ass d'Loft dënn",
+   "positionId": "UEWEN1",
+   "form": "uewen",
+   "at": 4,
+   "audioId": "526f071fa5b5a318cc666413cb5e3dec"
+  },
+  {
+   "id": "place-1c05554cd7",
+   "type": "placement",
+   "lb": "hie läit de ganzen Dag virun der Tëlee",
+   "positionId": "VIRUN1",
+   "form": "virun",
+   "at": 23,
+   "audioId": "e586722f03ba7d17277b112af1ae96af"
+  },
+  {
+   "id": "place-d67db570d9",
+   "type": "placement",
+   "lb": "mäi beschte Kolleeg sëtzt an der Schoul niewent mir",
+   "positionId": "NIEWENT1",
+   "form": "niewent",
+   "at": 40,
+   "audioId": "9348e4764ca29d2ca1ebbafd6e135f99"
+  },
+  {
+   "id": "place-e3a904e89e",
+   "type": "placement",
+   "lb": "niewent dem Schapp läit e Koup Holz",
+   "positionId": "NIEWENT1",
+   "form": "niewent",
+   "at": 0,
+   "audioId": "9ec313d8a17f8d8237a5ac384dc79ed4"
+  },
+  {
+   "id": "place-8a72c22b71",
+   "type": "placement",
+   "lb": "riets niewent der Kierch ass eng Bäckerei",
+   "positionId": "RIETS2",
+   "form": "riets",
+   "at": 0,
+   "audioId": "18be3f5b7dbb2139500b8d2351cb4d61"
+  },
+  {
+   "id": "place-a5fdd49775",
+   "type": "placement",
+   "lb": "ronderëm de ganze Park ass en héicht Gelänner",
+   "positionId": "RONDEREM1",
+   "form": "ronderëm",
+   "at": 0,
+   "audioId": "2c7102e652a67c5880243925c2bc0517"
+  },
+  {
+   "id": "place-8093145806",
+   "type": "placement",
+   "lb": "uewen am Text stinn nach zwee Feeler",
+   "positionId": "UEWEN1",
+   "form": "uewen",
+   "at": 0,
+   "audioId": "ea1d3cf172305c586bab8d4086b6559b"
+  },
+  {
+   "id": "place-fd865832cf",
+   "type": "placement",
+   "lb": "vir um Eck steet eng Police",
+   "positionId": "ECK1",
+   "form": "Eck",
+   "at": 7,
+   "audioId": "9309b4023fad863e4c68f82e87855e43"
+  },
+  {
+   "id": "place-7ac76a9e09",
+   "type": "placement",
+   "lb": "virun der Kinoskeess steet eng meterlaang Schlaang",
+   "positionId": "VIRUN1",
+   "form": "virun",
+   "at": 0,
+   "audioId": "db464a87eb8396b51198e8efa78d598a"
+  }
+ ]
+}

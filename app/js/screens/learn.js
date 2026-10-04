@@ -200,6 +200,14 @@ export async function render(root, { settings, navigate }) {
         el('p', { style: { fontSize: '22px', textAlign: 'center' } }, '🌡️'),
         el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Adjectives'),
       ),
+      // Half the speaking exam is describing a photograph, and the words it
+      // takes are not the words the topic decks teach.
+      el(
+        'a',
+        { class: 'card', href: '#/picture', style: { display: 'block', flex: '1 1 40%' } },
+        el('p', { style: { fontSize: '22px', textAlign: 'center' } }, '🖼️'),
+        el('p', { class: 'card__note', style: { textAlign: 'center' } }, 'Describe a picture'),
+      ),
       el(
         'a',
         { class: 'card', href: '#/gender-sort', style: { display: 'block', flex: '1 1 40%' } },

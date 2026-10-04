@@ -2016,6 +2016,135 @@ async function main() {
     if (!listed) throw new Error('Today does not list the Sentence Builder as a step');
   });
 
+  await step('the picture section teaches the words and where things are, and ends at the real task', async () => {
+    // Part 2b of the speaking exam is a photograph and a description, and a
+    // description is naming plus placing. The section is six word fields and
+    // one position round, and it has to end where the exam task is.
+    await openFresh('#/picture');
+    await page.waitForSelector('.chip--action', { timeout: 8000 });
+    const fields = await page.evaluate(() =>
+      [...document.querySelectorAll('#screen .card .card__title')].map((node) => node.textContent.trim()),
+    );
+    for (const wanted of ['Clothes and accessories', 'The body', 'Colours', 'The weather', 'Outside: nature', 'Outside: the town', 'Where things are']) {
+      if (!fields.some((title) => title.includes(wanted))) throw new Error(`no "${wanted}" on the index — got ${fields.join(' / ')}`);
+    }
+    if (!(await page.locator('a[href="#/speaking/image/image"]').count())) {
+      throw new Error('the section does not link into the 2b speaking task');
+    }
+    await shot('00w-picture-index');
+
+    // Each field reads as a list: the word with its article, the English, and
+    // LOD's own sentence for it.
+    const counts = [];
+    for (const field of ['clothes', 'body', 'colours', 'weather', 'nature', 'town']) {
+      await openFresh(`#/picture/words/${field}`);
+      await page.waitForSelector('.pic__row', { timeout: 8000 });
+      const rows = await page.locator('.pic__row').count();
+      if (rows < 14) throw new Error(`${field} lists only ${rows} words`);
+      counts.push(`${field} ${rows}`);
+      const first = await page.evaluate(() => {
+        const row = document.querySelector('.pic__row');
+        return {
+          word: row.querySelector('.pic__word')?.textContent ?? '',
+          en: row.querySelector('.card__note')?.textContent ?? '',
+          example: row.querySelector('.source-note')?.textContent ?? '',
+        };
+      });
+      if (!first.en.trim()) throw new Error(`${field}: the first word has no English`);
+      // `d'Box`, not `d' Box` — the spacing bug drill/cards.js documents.
+      if (/\bd'\s/.test(first.word)) throw new Error(`the clitic article is spaced off the noun: "${first.word}"`);
+      if (field === 'clothes') await shot('00x-picture-words');
+    }
+    process.stdout.write(`  picture fields: ${counts.join(', ')}\n`);
+
+    // The position list, and the thing it cannot say.
+    await openFresh('#/picture/position');
+    await page.waitForSelector('.pic__row', { timeout: 8000 });
+    const positions = await page.locator('.pic__row').count();
+    if (positions < 12) throw new Error(`only ${positions} position words`);
+    const page_text = await page.locator('#screen').innerText();
+    if (!/foreground/.test(page_text)) throw new Error('the missing foreground word should be said out loud, not hidden');
+    await shot('00y-picture-positions');
+
+    // A word round and a position round, both fitting the phone.
+    for (const route of ['town', 'position/round']) {
+      await openFresh(`#/picture/${route}`);
+      await page.waitForSelector('.options .option', { timeout: 8000 });
+      const card = await page.evaluate(() => ({
+        prompt:
+          document.querySelector('.prompt__word')?.textContent?.trim() ??
+          document.querySelector('.prompt__sentence')?.textContent?.trim() ??
+          null,
+        photo: Boolean(document.querySelector('.pic__shot')),
+        instruction: document.querySelector('.drill__instruction')?.textContent ?? '',
+        options: [...document.querySelectorAll('.options .option')].map((node) => node.textContent.trim()),
+        page: document.documentElement.scrollHeight,
+        viewport: window.innerHeight,
+      }));
+      if (card.options.length !== 4) throw new Error(`${route}: ${card.options.length} options`);
+      if (!card.prompt && !card.photo) throw new Error(`${route}: no question`);
+      if (card.page > card.viewport + 1) throw new Error(`${route}: ${card.page}px against a ${card.viewport}px screen`);
+      if (route === 'position/round' && !/____/.test(card.prompt ?? '')) {
+        throw new Error('a placement must be asked as a gapped sentence');
+      }
+      await shot(`00z-picture-${route.replace('/', '-')}`);
+    }
+
+    // Answer one placement right: the whole sentence comes back to be read,
+    // and the section records it without touching the daily card count.
+    await openFresh('#/picture/position/round');
+    await page.waitForSelector('.options .option', { timeout: 8000 });
+    const before = await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      const settings = await store.getSettings();
+      return { done: (settings.picture ?? []).length, cards: (await store.todayProgress(settings.playerId)).cards };
+    });
+    const answer = await page.evaluate(async () => {
+      const { loadPicture } = await import('./js/content.js');
+      const { buildRound, poolFor, placementQuestion, POSITION } = await import('./js/picture.js');
+      const { seeded } = await import('./js/sentences.js');
+      const settings = await (await import('./js/store.js')).getSettings();
+      const deck = await loadPicture();
+      const plan = buildRound(POSITION, poolFor(POSITION, deck), new Set(settings.picture ?? []), {
+        seed: `${settings.playerId}:${POSITION}`,
+      });
+      return placementQuestion(plan[0], deck.positions, { random: seeded(`${POSITION}:${plan[0].id}`) }).answer;
+    });
+    await page
+      .locator('.options .option', { hasText: new RegExp(`^${answer.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`) })
+      .first()
+      .click();
+    await page.waitForTimeout(400);
+    const marked = await page.evaluate(() => ({
+      correct: document.querySelectorAll('.option.is-correct').length,
+      wrong: document.querySelectorAll('.option.is-wrong').length,
+      note: document.querySelector('.drill__rule')?.textContent?.trim() ?? null,
+    }));
+    if (marked.correct !== 1 || marked.wrong !== 0) {
+      throw new Error(`the published sentence was marked ${marked.correct} right / ${marked.wrong} wrong`);
+    }
+    if (!marked.note?.includes(answer)) throw new Error(`the sentence does not come back whole: ${marked.note}`);
+
+    for (let guard = 0; guard < 12; guard += 1) {
+      const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+      if (!(await next.count())) break;
+      await next.first().click();
+      await page.waitForTimeout(200);
+      const option = page.locator('.options .option').first();
+      if (!(await option.count())) break;
+      await option.click();
+      await page.waitForTimeout(150);
+    }
+    const after = await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      const settings = await store.getSettings();
+      return { done: (settings.picture ?? []).length, cards: (await store.todayProgress(settings.playerId)).cards };
+    });
+    if (after.done <= before.done) throw new Error('a finished round recorded nothing');
+    if (after.cards !== before.cards) throw new Error(`the picture round moved the daily count to ${after.cards}`);
+    process.stdout.write(`  picture: ${positions} position words, "${answer}" marked right, ${after.done} answered\n`);
+  });
+
   await step('the adjective game asks meaning, opposite, both degrees and a real comparison', async () => {
     // "Add the adjectives, the opposite, the comparative and the superlative.
     // Also make this game so that I can practice making comparisons between

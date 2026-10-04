@@ -4602,3 +4602,112 @@ element) · `validate` PASS, 252 warnings, unchanged · `npm run walkthrough`
 with the streaming step extended to scrub, skip and check nothing downloads,
 and the questions step answering over a minute of real decodable silence to
 check the episode is still running afterwards · `sw.js` → `v63`.
+
+# Follow-up 43 — describing a picture
+
+> "Build a section to learn all about describing a picture. So vocabulary of
+> clothes, accessories, body parts, colors, weather, and things you find
+> outside in nature or a city. Also add how to say the position of things on a
+> picture"
+
+Part 2b of the speaking exam is: three photographs are offered, you describe
+one. `docs/exam-format.md` has had that written down since July, and the app
+could already *practise* it — record yourself against a photo, with the
+examiner's grid. What was missing was everything you need in order to open your
+mouth. A description is two things and only two: **naming** what is in the
+picture, and **placing** it.
+
+| | |
+| --- | --- |
+| Clothes and accessories | 40 |
+| The body | 30 |
+| Colours | 21 |
+| The weather | 15 |
+| Outside: nature | 20 |
+| Outside: the town | 55 |
+| **words in total** | **181** — 180 with LOD's own example sentence, 31 with a photograph |
+| Where things are | 16 words, 32 real sentences that place something |
+
+## The word lists are written in English
+
+Choosing *which* Luxembourgish words are "the body" would normally mean writing
+a list of them, which is the one thing this project does not do. So the lists
+are **English**: `content/hand-authored/picture-fields.json` names English
+glosses — `head`, `hand`, `shoulder`, `knee` — and every A1/A2 vocabulary entry
+LOD glosses that way joins the field. The English decides what is being asked
+for; the data decides which words exist.
+
+A gloss match is blunt in both directions, so each field also carries `drop`
+and `add` lists of LOD entry ids. The drops are the interesting half, because
+they are what a gloss match cannot see:
+
+| field | matched | why it is not that |
+| --- | --- | --- |
+| colours | `Boun` | glossed "(green) bean" |
+| weather | `Féiwer` | glossed "temperature" — the one you run a fever at |
+| clothes | `nokucken` | glossed "to watch" |
+| town | `platt` | glossed "flat" — the adjective, not the dwelling |
+| body | `Komoud` | glossed "chest of drawers" |
+
+An id in either list that is not a real entry fails the build, which is how
+sixteen ids guessed on the first pass were caught rather than silently doing
+nothing.
+
+## Position is taught from sentences that place something
+
+`X ass niewent Y` is the sentence a description is made of, and writing new ones
+would be composing Luxembourgish. So the placements are **mined**: LOD example
+sentences containing a position word *and* a verb of being, standing, lying or
+hanging, in a copyable length.
+
+Mining alone is not enough — `iwwer` appears in 185 sentences and almost all of
+them mean "about", not "above". So the pool of 113 candidates is narrowed to 32
+by hand, by id, from a `--candidates` listing. What survives is the good stuff:
+
+```
+an der Mëtt vun der Plaz steet e Sprangbuer
+d'Kaz sëtzt virun der Fënster ze miauen
+niewent dem Schapp läit e Koup Holz
+hannen am Gaart steet en Äppelbam
+et läit Niwwel iwwer dem Dall
+d'Brautpuer ass virun der Kierch fotograféiert ginn
+```
+
+Two rules the build enforces rather than leaving to the curation. The gap is cut
+by **offset**, because `uewen` and `ënnen` are short and can occur twice. And
+where a sentence uses more than one position word, the gap goes on one that
+still has sentence after it — `hei ënnen ass et méi kal ewéi do uewen` is gapped
+at `ënnen`, not at the last word, because a hole with nothing after it is a
+guess rather than a reading.
+
+## What this section cannot say
+
+There is no word here for the foreground. `Virdergrond` is not in LOD at all,
+and `Hannergrond` reaches this build only through the lowercased form index —
+shipping `hannergrond` for a noun would be inventing orthography. The screen
+says so in as many words and points at what to use instead: `uewen`, `ënnen`,
+`lénks`, `riets`, `an der Mëtt`.
+
+`lénks`, `tëscht` and `dobaussen` are taught but never drilled, because the
+corpus has no sentence that uses them to place a thing. They are on the list
+with LOD's own example; they are not in the round.
+
+## The questions
+
+Three shapes, and which one a word gets is not random. A photograph where the
+deck has one — that is as close to the exam task as four options can get.
+Otherwise the round alternates `lb → en` and `en → lb`, so it is always half
+recognition and half production: you cannot describe a photograph by recognising
+words. Wrong answers come from the same field, because four garments is a
+vocabulary question and a garment among three weather words is a sorting puzzle.
+
+The section ends with a button into the real 2b task. Knowing the words is not
+the point of knowing the words.
+
+## Verification
+
+`npm test` 431 (17 new) · `validate` PASS, 256 warnings — four more than before,
+all n-rule notes on LOD's own example sentences now quoted in a second file ·
+`npm run walkthrough` with a step over the index, all six word lists, the
+position list, both kinds of round and a placement answered without moving the
+daily count · `sw.js` → `v64`.

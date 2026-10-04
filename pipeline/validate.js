@@ -110,6 +110,15 @@ const FREE_TEXT_FIELDS = new Set([
   'adjectiveId',
   // Which comparison a sentence makes: 'more' (méi … wéi) or 'as' (esou … wéi).
   'shape',
+  // pipeline/build-picture.js — `positionId` is the LOD entry a placement
+  // sentence is gapped on, `lodGlosses` is LOD's own English shown beside the
+  // app's, and `blurb` is the line under a field's name. The generator and the
+  // timestamp are the file's own provenance, written by every build.
+  'positionId',
+  'lodGlosses',
+  'blurb',
+  'generator',
+  'generatedAt',
   'licence',
   'attribution',
   'notes',

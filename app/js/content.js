@@ -112,6 +112,19 @@ export function loadAdjectives() {
   return adjectivesPromise;
 }
 
+/**
+ * The picture-description deck: six word fields, the words for where things
+ * are, and the LOD sentences that place one thing against another. One file,
+ * because the three are only useful together.
+ */
+let picturePromise = null;
+export function loadPicture() {
+  picturePromise ??= loadJson('picture')
+    .then((file) => ({ fields: file.fields ?? [], positions: file.positions ?? [], placements: file.placements ?? [] }))
+    .catch(() => ({ fields: [], positions: [], placements: [] }));
+  return picturePromise;
+}
+
 let sentencesPromise = null;
 export function loadSentences() {
   sentencesPromise ??= Promise.all([
