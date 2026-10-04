@@ -2077,3 +2077,50 @@
 .scrub__skip {
   font-variant-numeric: tabular-nums;
 }
+
+/* ----------------------------------------------------------------- picture */
+/* The word fields of the picture-description section. A row is a thing to read
+   rather than a card to tap, so the word leads and the photograph — where the
+   deck has one — is a thumbnail beside it rather than a hero above it. */
+
+.pic__word {
+  font-size: var(--size-lg);
+  font-weight: 750;
+  color: var(--text);
+}
+
+.pic__thumb {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  background: var(--bg-sunk);
+}
+
+/* Where there is no photograph there is usually the deck's emoji cue, set in
+   the same box so the words still line up down the page. */
+.pic__cue {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  font-size: 26px;
+  border-radius: var(--r-md);
+  background: var(--bg-sunk);
+}
+
+.pic__row + .pic__row { margin-block-start: var(--s2); }
+
+/* The photograph as the question. Capped by height rather than width so a
+   portrait shot cannot push the four options off the screen — the whole card
+   has to fit a phone. */
+.pic__shot {
+  display: block;
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  margin-block: var(--s2) var(--s3);
+  border-radius: var(--r-md);
+}
