@@ -4711,3 +4711,161 @@ all n-rule notes on LOD's own example sentences now quoted in a second file ·
 `npm run walkthrough` with a step over the index, all six word lists, the
 position list, both kinds of round and a placement answered without moving the
 daily count · `sw.js` → `v64`.
+
+# Follow-up 44 — the course questions, as flash cards
+
+> "Repurpose the speaking section to practice these question and answers. Make
+> it such that it's like a flash card where I see the question in Luxembourgish
+> and I answer myself on my own and then press to see the official answer.
+> There are several topics these are just the first 5, I'll send the rest."
+
+Five Word documents: *De Stot / Kommissioune maachen*, *de Summer – de Wanter*,
+*Gesond Liewen*, *Bildbeschreiwung*, and *Additionals fir de Sproochentest*,
+which is itself fifteen topics under one cover.
+
+## What the documents are
+
+Not a clean list of questions and answers. They are working class notes: a
+question in bold, usually, ending in "?", usually; then one or more answers;
+English glosses and grammar reminders between and around them; a vocabulary
+table; and, in one, an embedded screenshot of somebody's email client and a
+watermarked stock photograph, which has no place in a study tool and was left
+out entirely.
+
+Two things follow that the request does not say, and both are worth knowing:
+
+- **The answers are model answers from a class, not an answer key.** Several are
+  one learner's personal example ("Ech kommen aus Pakistan"), some are
+  templates with a blank ("Ech géif gär ___ vermeiden"), and about a third of
+  the questions have no answer at all. The card says "Model answer", and says
+  "No model answer yet" where there is none, rather than "official".
+- **Some of the answers are mis-spelt**, which matters when the point is to
+  revise exam answers. They are quoted verbatim and **not corrected** —
+  correcting them would be writing Luxembourgish, and which spelling the course
+  intends is not this code's call. They are *reported* instead (below).
+
+## The parse, and the eleven ways it was wrong
+
+`pipeline/build-notes.js` reads the .docx files with no dependencies (a docx is a
+zip of XML; `pipeline/lib/docx.js` is ~150 lines), classifies each line as a
+**question**, a **note**, or an **answer**, and writes
+`content/hand-authored/speaking-notes.json`. Nothing is written by hand: every
+question, answer and note is a line of a document. The only edits are the ones
+that are not words — whitespace, a question's list number, a speaker label, a
+Word list-bullet glyph.
+
+The first version produced 276 cards and was wrong in ways that read plausibly,
+which is the dangerous kind: a card with the wrong text on its back looks fine.
+Reading the whole parse by eye found:
+
+| symptom | cause | fix |
+| --- | --- | --- |
+| `mat mengem Mann/ mat menger Fra…` was a *question* | "mat" opens answers too | a question word must open the line; "mat wiem" / "mat wat" are matched as pairs |
+| `Ech hu kee Gaart. Wat maacht Dir do?` was a question | it contains a follow-up | a "?" anywhere no longer counts |
+| `botzen = to clean` was an answer | LOD spells *clean*, *weekend*, *happy*, *at* — "words LOD doesn't know" can't spot English | a short English-only word list, and the `X = Y` shape |
+| example phrases landed on the previous question | a `_____` rule or a gap ends a block | rule lines, tables and three blank paragraphs end the block |
+| 29 Vakanz questions had no answer | question and answer share a paragraph, split by a line break | the line, not the paragraph, is the unit |
+| an answer on the wrong question | two questions in one paragraph, answer follows both | an explicit `attach` override |
+| a speaker's first name in front of three answers | no colon on one of them | a speaker label is taken from the document's own `Name:` lines |
+| a classmate's name in a *reading* line | labels were stripped from answers only | stripped from every stored line |
+| `=>` read as a gloss | an arrow in `mat=> menger Famill` | `=(?!>)` |
+| a box glyph in front of a question | Word draws list bullets as private-use character U+F0B7 | stripped — and the fix that was supposed to do this **silently didn't apply** the first time, which the new data test caught |
+| a label rule that would eat real words | "unknown capitalised word + capitalised word" also matches `Auchan Amazon …` | a no-colon label is only stripped for a name the document uses with a colon |
+
+Anything the heuristic cannot decide is named in `pipeline/notes-config.js`
+(`forceQuestion`, `forceNote`, `join`, `split`, `attach`, `drop`), and **the build
+refuses any override that no longer matches a line**, so a stale one fails
+instead of quietly rotting.
+
+## 267 cards
+
+| | questions | with an answer |
+| --- | ---: | ---: |
+| Household chores | 45 | 43 |
+| Healthy living | 53 | 44 |
+| Summer and winter | 41 | 36 |
+| Travel and holidays | 29 | 23 |
+| Transport | 14 | 8 |
+| Languages | 12 | 10 |
+| My living space | 11 | 7 |
+| Clothes | 15 | 0 |
+| Sport | 9 | 8 |
+| Reading | 9 | 4 |
+| Hobbies (music) | 7 | 6 |
+| Giving gifts | 6 | 0 |
+| Media and technology | 4 | 2 |
+| Creativity | 4 | 0 |
+| Describe a picture | 8 | 8 |
+| **total** | **267** | **199** |
+
+242 further lines — vocabulary tables, glosses, grammar reminders — are kept as
+*reading* on each topic's notes page rather than dropped.
+
+**Judgement calls to confirm.** *Musek* has no topic of its own among the
+eighteen; it went under Hobbies, and may belong under Media. *Technologien* went
+under Media and technology and *Tourismus* under Travel.
+
+## Bildbeschreiwung is not a Q&A document
+
+It is a worked example of describing a photograph, so each of its headings
+(*Situatioun*, *Wieder dobaussen*, *Beschreiwungen*, …) became a card: the
+heading is the prompt, what follows is the model. A heading is not a sentence
+and several have no English, so those eight cards carry a one-line English
+prompt written for the purpose. The grammar tail (*Verbs:* onward — dative
+after `nieft/virun/hannert`, `zwee/zwou`, `aner`) is reading, not cards.
+
+## The screens
+
+`#/speaking` now opens with the questions: *Ten questions, any topic*, then each
+topic with its progress. Recording for a partner is still there, **below**, under
+"Record for your partner" — the speaking score on the readiness screen is built
+from those recordings, and removing them would have frozen it.
+
+A round is ten cards. The front is the question and nothing else competes with
+it, because the method is *answer out loud first, then look*. One tap reveals the
+model answer(s); **Not yet** deals the card once more at the end of the round
+(once, so a round can always finish) and **Got it** marks it. A round hides the
+tab bar like the drill does, and its action bar sits on the bottom edge, in
+thumb reach. A long back — the picture description runs to fourteen lines — keeps
+the buttons on screen; the walkthrough drives that case.
+
+Questions with no model answer are a switch, off by default: a card you cannot
+check is a worse flash card, and "press to see the answer" was the request. They
+are real exam questions, so a topic that has none says so and offers "Practise
+them anyway".
+
+It keeps its own progress and does not touch the Leitner boxes or the daily
+count, the same line the other side activities hold. "Something wrong with this
+card?" works, and a flagged card stops being dealt — which matters here, since
+the notes are verbatim, typos included.
+
+## What the audit found
+
+`npm run build:notes -- <folder> --audit` lists every Luxembourgish token outside
+a parenthesis that LOD does not know: **97.0%** are LOD spellings. The rest is a
+short list to *check*, not to fix — a name, a loanword and a typo look the same
+from here. The ones that look like slips:
+
+`Sommer` (the notes spell it `Summer` everywhere else) · `Weeer` · `méch` ·
+`emmer` (vs `ëmmer`) · `Heemeschtsland` (vs `Heemechtsland` two lines above) ·
+`Liblingsplaz` / `Liblingsglace` / `Liblingsbeschäftegung` beside
+`Lieblingsglace` / `Lieblingszäit` in the same document · `schloft` · `wichtest`
+· `Medizin` beside `Medezin` · `recommendéiert` / `recommandéiert`.
+
+## Not in the repository
+
+The .docx files are not committed. They are somebody's course notes; what ships
+is their content as a data file, and the build script takes the folder as an
+argument. When the rest arrive, add an entry for each in
+`pipeline/notes-config.js` (the build stops and names any document it has no
+entry for) and re-run it with the full set.
+
+## Verification
+
+`npm test` 464 (33 new: the docx reader against synthetic zips, each parse
+failure above as a regression on a real line reduced, the shipped data's
+invariants, the practice logic) · `validate` PASS, unchanged — the notes sit under
+`content/hand-authored/`, outside the validator, like the tutor's model answers ·
+`npm run walkthrough` with a step that checks the answer is *not* shown before it
+is asked for, grades a card, checks the daily count does not move, and reaches
+the longest card in the deck · `sw.js` → `v65`.

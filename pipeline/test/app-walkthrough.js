@@ -388,13 +388,13 @@ async function main() {
     await page.waitForSelector('a.card', { timeout: 5000 });
     const basics = await page.locator('a.card[href="#/speaking/basics"]').count();
     if (basics !== 1) throw new Error(`expected 1 basics card, found ${basics}`);
-    const topics = await page.locator('a.card[href^="#/speaking/"]:not([href*="/image"]):not([href="#/speaking/basics"])').count();
+    const topics = await page.locator('a.card[href^="#/speaking/"]:not([href*="/image"]):not([href*="/cards"]):not([href="#/speaking/basics"])').count();
     if (topics !== 2) throw new Error(`expected 2 exam topics, found ${topics}`);
     await shot('06-speaking-choose');
   });
 
   await step('interview shows prep timer then records', async () => {
-    await page.locator('a.card[href^="#/speaking/"]:not([href*="/image"]):not([href="#/speaking/basics"])').first().click();
+    await page.locator('a.card[href^="#/speaking/"]:not([href*="/image"]):not([href*="/cards"]):not([href="#/speaking/basics"])').first().click();
     await page.waitForSelector('.timer', { timeout: 5000 });
     await shot('07-interview-prep');
     await page.getByRole('button', { name: 'Start now' }).click();
@@ -2143,6 +2143,121 @@ async function main() {
     if (after.done <= before.done) throw new Error('a finished round recorded nothing');
     if (after.cards !== before.cards) throw new Error(`the picture round moved the daily count to ${after.cards}`);
     process.stdout.write(`  picture: ${positions} position words, "${answer}" marked right, ${after.done} answered\n`);
+  });
+
+  await step('the Speak tab practises the course questions as flash cards: question first, answer on request', async () => {
+    // "see the question in Luxembourgish and I answer myself on my own and then
+    // press to see the official answer". The order is the whole point, so the
+    // step checks that the answer is *not* there until it is asked for.
+    await openFresh('#/speaking');
+    await page.waitForSelector('.notes__mix', { timeout: 8000 });
+    const index = await page.evaluate(() => ({
+      titles: [...document.querySelectorAll('#screen .card .card__title')].map((node) => node.textContent.trim()),
+      practise: document.querySelectorAll('a.chip--action[href^="#/speaking/cards/"]').length,
+      recording: Boolean(document.querySelector('a.card[href="#/speaking/basics"]')) && Boolean(document.querySelector('a.card[href="#/speaking/image/image"]')),
+    }));
+    if (index.practise < 20) throw new Error(`only ${index.practise} practise/notes links on the Speak tab`);
+    // The picture task leads the topic list, ahead of the alphabetical rest.
+    const firstTopic = index.titles.find((title) => /Describe a picture|Clothes|Sport/.test(title)) ?? '';
+    if (!/Describe a picture/.test(firstTopic)) throw new Error(`the topic list does not lead with the picture task: ${firstTopic}`);
+    // Recording for the partner is still reachable — the readiness score is built from it.
+    if (!index.recording) throw new Error('recording for a partner has gone from the Speak tab');
+    await shot('00aa-speaking-questions');
+
+    // The front of a card: the question, no answer, a button, the whole screen.
+    await openFresh('#/speaking/cards/stot');
+    await page.waitForSelector('.nc__q', { timeout: 8000 });
+    const front = await page.evaluate(() => ({
+      question: document.querySelector('.nc__q')?.textContent ?? '',
+      answerShown: Boolean(document.querySelector('.nc__answer')),
+      button: document.querySelector('.drill__next .btn')?.textContent?.trim(),
+      tabs: !document.querySelector('#tabbar')?.hidden,
+      page: document.documentElement.scrollHeight,
+      viewport: window.innerHeight,
+    }));
+    if (!/[?]|[a-zéëä]/i.test(front.question)) throw new Error('no question on the card');
+    if (front.answerShown) throw new Error('the answer is showing before it was asked for');
+    if (front.button !== 'Show the answer') throw new Error(`the front offers "${front.button}"`);
+    if (front.tabs) throw new Error('a round should have the whole screen, with no tab bar');
+    if (front.page > front.viewport + 1) throw new Error(`the front of a card is ${front.page}px against a ${front.viewport}px screen`);
+    await shot('00ab-speaking-card-front');
+
+    // Reveal, and grade. "Not yet" brings the card round once more.
+    await page.locator('.drill__next .btn').click();
+    await page.waitForSelector('.nc__answer', { timeout: 3000 });
+    const back = await page.evaluate(() => ({
+      label: document.querySelector('.nc__label')?.textContent ?? '',
+      grade: [...document.querySelectorAll('.nc__grade .btn')].map((node) => node.textContent.trim()),
+    }));
+    if (!/Model answer/i.test(back.label)) throw new Error(`the back is labelled "${back.label}"`);
+    if (back.grade.join('|') !== 'Not yet|Got it') throw new Error(`the grading buttons are ${back.grade.join(' / ')}`);
+    await shot('00ac-speaking-card-back');
+
+    const before = await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      const settings = await store.getSettings();
+      return { got: (settings.notesGot ?? []).length, cards: (await store.todayProgress(settings.playerId)).cards };
+    });
+    await page.getByRole('button', { name: 'Not yet' }).click();
+    await page.waitForSelector('.nc__q', { timeout: 3000 });
+    const label = await page.locator('.meter__label').first().textContent();
+    if (!/of 11/.test(label ?? '')) throw new Error(`a "not yet" card was not queued again: "${label}"`);
+    await page.locator('.drill__next .btn').click();
+    await page.getByRole('button', { name: 'Got it' }).click();
+    await page.waitForTimeout(300);
+    const after = await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      const settings = await store.getSettings();
+      return { got: (settings.notesGot ?? []).length, cards: (await store.todayProgress(settings.playerId)).cards };
+    });
+    if (after.got !== before.got + 1) throw new Error(`"Got it" recorded ${after.got - before.got} cards`);
+    // A side activity: it keeps its own progress and the daily count stays put.
+    if (after.cards !== before.cards) throw new Error(`a flash card moved the daily count to ${after.cards}`);
+
+    // The longest back in the deck: the buttons must still be on screen, or a
+    // long model answer would hide the way to move on.
+    await openFresh('#/speaking/cards/image');
+    await page.waitForSelector('.nc__q', { timeout: 8000 });
+    let found = false;
+    for (let guard = 0; guard < 12 && !found; guard += 1) {
+      found = (await page.locator('.nc__q').textContent())?.trim() === 'Beschreiwungen';
+      await page.locator('.drill__next .btn').click();
+      await page.waitForSelector('.nc__grade', { timeout: 3000 });
+      if (found) break;
+      await page.getByRole('button', { name: 'Got it' }).click();
+      await page.waitForTimeout(120);
+    }
+    if (!found) throw new Error('never reached the longest card');
+    const longest = await page.evaluate(() => {
+      const box = document.querySelector('.nc__grade')?.getBoundingClientRect();
+      return { bottom: box?.bottom ?? 0, top: box?.top ?? 0, viewport: window.innerHeight, lines: document.querySelectorAll('.nc__answer').length };
+    });
+    if (longest.lines < 10) throw new Error(`expected a long back, got ${longest.lines} lines`);
+    if (longest.bottom > longest.viewport + 1 || longest.top < 0) {
+      throw new Error(`the grading buttons are off screen on a long back (${Math.round(longest.top)}–${Math.round(longest.bottom)} of ${longest.viewport})`);
+    }
+    await shot('00ad-speaking-card-long');
+
+    // A topic with no model answers says so instead of offering nothing.
+    await openFresh('#/speaking/cards/kleeder');
+    await page.waitForSelector('.card', { timeout: 8000 });
+    const none = await page.locator('#screen').innerText();
+    if (!/No questions with an answer here yet/.test(none)) throw new Error(`a topic with no answers says: ${none.slice(0, 120)}`);
+    await page.getByRole('button', { name: 'Practise them anyway' }).click();
+    await page.waitForSelector('.nc__q', { timeout: 3000 });
+    await page.locator('.drill__next .btn').click();
+    await page.waitForSelector('.nc__label', { timeout: 3000 });
+    if (!/No model answer yet/.test(await page.locator('.nc__label').textContent())) throw new Error('a question with no answer should say so on its back');
+    await page.evaluate(async () => (await import('./js/store.js')).saveSettings({ notesAll: false }));
+
+    // The notes page: the topic as a list, with the tab bar back.
+    await openFresh('#/speaking/cards/stot/notes');
+    await page.waitForSelector('.nc__row', { timeout: 8000 });
+    const rows = await page.locator('.nc__row').count();
+    if (rows < 20) throw new Error(`the notes page lists only ${rows} questions`);
+    if (await page.evaluate(() => document.querySelector('#tabbar')?.hidden)) throw new Error('the notes page should keep the tab bar');
+    await shot('00ae-speaking-notes');
+    process.stdout.write(`  speaking cards: ${index.practise / 2} topics, ${rows} questions in chores, a long back of ${longest.lines} lines kept its buttons on screen\n`);
   });
 
   await step('the adjective game asks meaning, opposite, both degrees and a real comparison', async () => {

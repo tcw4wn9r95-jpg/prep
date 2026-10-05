@@ -12,7 +12,7 @@
 // Bump this on every change to the shell. The app is served cache-first, so a
 // stale version is not a slow update — it is a returning user permanently
 // looking at the old app while wondering where their changes went.
-const VERSION = 'v64';
+const VERSION = 'v65';
 const SHELL_CACHE = `shell-${VERSION}`;
 
 /**
@@ -67,6 +67,8 @@ const SHELL = [
   'js/name-check.js',
   'js/screens/listening.js',
   'js/screens/speaking.js',
+  'js/screens/speaking-cards.js',
+  'js/notes.js',
   'js/screens/review.js',
   'js/screens/mistakes.js',
   'js/screens/readiness.js',
@@ -114,6 +116,7 @@ const SHELL = [
   'data/word-english.json',
   'data/adjectives.json',
   'data/picture.json',
+  'data/speaking-notes.json',
   // Episode metadata only. The audio itself is cross-origin and the fetch
   // handler below returns early for that, so episodes are never stored.
   'data/podcasts.json',

@@ -1,0 +1,3049 @@
+{
+ "meta": {
+  "generatedAt": "2026-10-05T20:27:52.601Z",
+  "generator": "pipeline/build-notes.js",
+  "source": "Course study notes supplied by the learner. Every question, answer and note is a line of those documents, verbatim: not LOD-derived and not validated against LOD, so spellings may differ from the dictionary. Only whitespace, list numbers and speaker labels were removed.",
+  "documents": [
+   "De Stot / Kommissioune maachen",
+   "de Summer – de Wanter",
+   "Gesond Liewen",
+   "Additionals fir de Sproochentest",
+   "Bildbeschreiwung"
+  ]
+ },
+ "topics": [
+  {
+   "id": "stot",
+   "title_lb": "Stot",
+   "title_en": "Household chores",
+   "total": 45,
+   "answered": 43
+  },
+  {
+   "id": "joreszäiten",
+   "title_lb": "Joreszäiten",
+   "title_en": "Summer and winter",
+   "total": 41,
+   "answered": 36
+  },
+  {
+   "id": "gesondheet",
+   "title_lb": "Gesondheet",
+   "title_en": "Healthy living",
+   "total": 53,
+   "answered": 44
+  },
+  {
+   "id": "sport",
+   "title_lb": "Sport",
+   "title_en": "Sport",
+   "total": 9,
+   "answered": 8
+  },
+  {
+   "id": "sproochen",
+   "title_lb": "Sproochen",
+   "title_en": "Languages",
+   "total": 12,
+   "answered": 10
+  },
+  {
+   "id": "kleeder",
+   "title_lb": "Kleeder",
+   "title_en": "Clothes",
+   "total": 15,
+   "answered": 0
+  },
+  {
+   "id": "wunnen",
+   "title_lb": "Wunnen",
+   "title_en": "My living space",
+   "total": 11,
+   "answered": 7
+  },
+  {
+   "id": "medien",
+   "title_lb": "Medien",
+   "title_en": "Media and technology",
+   "total": 4,
+   "answered": 2
+  },
+  {
+   "id": "liesen",
+   "title_lb": "Liesen",
+   "title_en": "Reading",
+   "total": 9,
+   "answered": 4
+  },
+  {
+   "id": "hobbyen",
+   "title_lb": "Hobbyen",
+   "title_en": "Hobbies",
+   "total": 7,
+   "answered": 6
+  },
+  {
+   "id": "kaddoen",
+   "title_lb": "Kaddoen",
+   "title_en": "Giving gifts",
+   "total": 6,
+   "answered": 0
+  },
+  {
+   "id": "vakanz",
+   "title_lb": "Vakanz",
+   "title_en": "Travel and holidays",
+   "total": 29,
+   "answered": 23
+  },
+  {
+   "id": "kreativitéit",
+   "title_lb": "Konschthandwierk",
+   "title_en": "Creativity",
+   "total": 4,
+   "answered": 0
+  },
+  {
+   "id": "transport",
+   "title_lb": "Transport",
+   "title_en": "Transport",
+   "total": 14,
+   "answered": 8
+  },
+  {
+   "id": "image",
+   "title_lb": "Bildbeschreiwung",
+   "title_en": "Describe a picture",
+   "total": 8,
+   "answered": 8
+  }
+ ],
+ "cards": [
+  {
+   "id": "n-4358022401",
+   "topic": "stot",
+   "q": "Sinn d’Präisser fir Botzmëttelen deier zu Lëtzebuerg?",
+   "answers": [
+    "Jo, d’Präisser fir B. sinn deier- méi deier wéi a mengem Heemechtsland, dofir kafen ech si um Internet"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-c871a88121",
+   "topic": "stot",
+   "q": "Vergläicht d’Präisser mat Ärem Heemechtsland",
+   "answers": [
+    "D’Präisser a mengem Heemeschtsland si méi bëlleg wéi zu Lëtzebuerg"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-f02bf4d874",
+   "topic": "stot",
+   "q": "Schafft dir de Moment?",
+   "answers": [
+    "Jo, ech schaffen als… bei Amazon um Kierchbierg zu Lëtzebuerg"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-ebb223d746",
+   "topic": "stot",
+   "q": "Wéivill Zäit braucht Dir ,fir dat ganzt Appartement propper ze maachen?",
+   "answers": [
+    "Ech brauch ongeféier 3 Stonnen"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-f340ec1b54",
+   "topic": "stot",
+   "q": "Wéi eng Apparater benotzt Dir am Stot?",
+   "answers": [
+    "Ech benotzen de Staubsauger, e Botzeemer, e Stëbslomp ( cloth for dust)"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-85ae7dbb6b",
+   "topic": "stot",
+   "q": "Maacht Dir heiansdo d‘ Groussbotz doheem?",
+   "answers": [
+    "Jo, ech maachen all Woch d‘ Groussbotz, ëmmer freides ( samschdes..)"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-832c92066d",
+   "topic": "stot",
+   "q": "Wat ass den Ennerscheed zu enger normaler Botz?",
+   "answers": [
+    "Eng normal Botz ass staubsaugen – eng Groussbotz ass och naass opbotzen"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-70161cc308",
+   "topic": "stot",
+   "q": "Wéi oft wäscht Dir Ären Auto? -wou?- wéi vill kascht dat?",
+   "answers": [
+    "Ech wäsche mäin Auto ongeféier 3x pro Joer (d’Joer)- ech fueren an de Waschcenter"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-abbb04cf9e",
+   "topic": "stot",
+   "q": "Wäscht Dir Ären Auto selwer oder fuert Dir an d’Wäsch?",
+   "answers": [
+    "Ech fueren ëmmer an d‘Wäsch"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-db92e6e4cd",
+   "topic": "stot",
+   "q": "Wann Dir op eng Botzaktivitéit verzichte kéint wéi eng wier dat? ( If you could avoid an activitiy, which one would this be?)",
+   "answers": [
+    "Ech géif gär_______________vermeiden, well ( I would like to avoid, because)"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-bab53dafbb",
+   "topic": "stot",
+   "q": "Wéini ass de Supermarché op",
+   "answers": [
+    "De S. ass vu(n)…….. bis ….. Auer op"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-bf47e14138",
+   "topic": "stot",
+   "q": "Ginn et och Produkter, déi Dir net kënnt hei kafen?",
+   "answers": [
+    "Jo, lokal indesch Produkter wéi zum Beispill…"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-9537c654d4",
+   "topic": "stot",
+   "q": "Wann eppes futti geet, wie reparéiert dat?",
+   "answers": [
+    "Ech kann dat net selwer reparéieren, ech gi bei e Spezialist"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-3e09b1fd40",
+   "topic": "stot",
+   "q": "Wat kënnt Dir selwer flécken?",
+   "answers": [
+    "Ech flécken näischt selwer, ech sinn dofir net talentéiert"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-eb10ce22b0",
+   "topic": "stot",
+   "q": "Probéiert Dir Saachen ze reparéiren, oder kaaft Dir einfach nei Saachen?",
+   "answers": [
+    "Ech probéieren ëmmer Saachen ze reparéieren ( flécken) ier ( before) ech nei Saache kafen"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-0794555199",
+   "topic": "stot",
+   "q": "Maacht Dir gär de Stot?",
+   "answers": [
+    "Ech maachen de Stot gär"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-e5761560d4",
+   "topic": "stot",
+   "q": "Wéi oft maacht Dir de Stot?",
+   "answers": [
+    "Ech maachen de Stot zweemol pro Woch"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-23a83ca797",
+   "topic": "stot",
+   "q": "Wéini maacht dir de Stot?",
+   "answers": [
+    "Ech maachen de Stot de Weekend ( wéini genau: freides owes = every Saturday evening ( de Samschdeg ( on Saturday)"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-9331a6c5ae",
+   "topic": "stot",
+   "q": "Wat fir eng Hausaarbecht (house work) maacht Dir gär oder maacht dir net gär? Fir wat?",
+   "answers": [
+    "ech staubsauge gär/ ech strecke Kleeder net gär",
+    "ech kache gär/ ech strecke Kleeder net gär"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-0ac139fd3e",
+   "topic": "stot",
+   "q": "Wéini streckt Dir? – strecken = ironing",
+   "answers": [
+    "Ech strecke freides owes ( wou streckt Dir? - ech strecken an der Stuff= in the living)"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-d36a61562e",
+   "topic": "stot",
+   "q": "Wéi dacks = oft( how often) maacht Dir eng Wäsch? - eng Wäsch machen = to do laundry",
+   "answers": [
+    "Ech maachen eng Wäsch eemol pro Woch"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-7520584f2b",
+   "topic": "stot",
+   "q": "Mat wiem wunnt Dir zesummen? with whom do you live together",
+   "answers": [
+    "mat mengem Mann/ mat menger Fra/ mat mengem Kand- mat menge Kanner , mat menge Frënn ( mat mengen Elteren)",
+    "Ech wunne mat menger Famill zesummen ( mat wiem genau- mat mengem Mann a met menge(n) Kanner)",
+    "Ech wunne mat=> menger Famill zesummen ( mat menger Fra a mat menge Kanner)"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-34179716d7",
+   "topic": "stot",
+   "q": "Wien hëlleft Iech de Stot zu maachen? = Hëlleft een Iech am Stot?",
+   "answers": [
+    "Mäi Mann hëlleft mir, de Stot ze maachen - ( who? = mai Mann)",
+    "Meng Fra hëlleft mir ,de Stot ze maachen"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-867ec2b89c",
+   "topic": "stot",
+   "q": "Hutt Dir eng Spullmaschinn? = dishwasher",
+   "answers": [
+    "Jo, ech hunn eng Spullmaschinn"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-fb66ba870c",
+   "topic": "stot",
+   "q": "Hutt Dir eng Spullmaschinn? Wie raumt se an / aus? – ausraumen ( to put out)",
+   "answers": [
+    "ech raumen d’Spullmaschinn an an (and) aus"
+   ],
+   "notes": [
+    "a(n)raumen ( to put in the dishwascher"
+   ],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-ad283a546b",
+   "topic": "stot",
+   "q": "Wéi oft staubsaugt Dir d’Wunneng? -staubsaugen = to hoover",
+   "answers": [
+    "Ech staubsaugen d’Wunneng zweemol pro Woch"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-fdc904d2ac",
+   "topic": "stot",
+   "q": "Hutt Dir eng Botzfra? Wat mécht si alles?",
+   "answers": [
+    "Nee, ech hu keng Botzfra"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-dd0697a985",
+   "topic": "stot",
+   "q": "Gitt Dir gär Kommissioune maachen?",
+   "answers": [
+    "Jo, ech maache Kommissioune gär"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-11b736bd72",
+   "topic": "stot",
+   "q": "Kaaft Dir och Saachen online?",
+   "answers": [
+    "Jo, ech kafen online, zum Beispill op Amazon"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-ee4b5c6643",
+   "topic": "stot",
+   "q": "Wéi oft gitt Dir Kommissioune maachen?",
+   "answers": [
+    "Ech maache Kommissiounen eemol pro Woch, normalerweis freides owes"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-5e682c5c6a",
+   "topic": "stot",
+   "q": "Wéini gitt Dir Kommissioune maachen?",
+   "answers": [
+    "Ech maache Kommissiounen normalerweis freides owes"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-0c5dfcdfc2",
+   "topic": "stot",
+   "q": "Wuer gitt Dir Kommissioune maachen?",
+   "answers": [
+    "Ech maache Kommissioune beim Auchan"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-92c241fe1b",
+   "topic": "stot",
+   "q": "Wat kaaft Dir do?",
+   "answers": [
+    "Ech kafen Uebst a Geméis a Mëllech beim Auchan"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-5b04879890",
+   "topic": "stot",
+   "q": "Mat wiem ( with whom) gitt Dir normalerweis akafen?",
+   "answers": [
+    "Ech maache mat mengem Mann Kommissiounen",
+    "Ech maache mat menger Fra Kommissiounen"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-c98d92de7a",
+   "topic": "stot",
+   "q": "Gitt Dir och op de Maart akafen?",
+   "answers": [
+    "Heiansdo maachen ech Kommissiounen um Maart"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-927fa97e03",
+   "topic": "stot",
+   "q": "Wie ( who) mécht bei Iech normalerweis d’Kommissiounen?",
+   "answers": [
+    "Mir maachen d’Kommissiounen zesummen ( ech a meng Fra zesummen)"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-d3e6dd5070",
+   "topic": "stot",
+   "q": "Wie mécht wat an Ärem Haus?",
+   "answers": [
+    "Ech kachen an der Kichen , ech strecken d’Kleeder a mäi Mann botzt.",
+    "Ech staubsaugen a meng Fra kacht"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-a8839dc24b",
+   "topic": "stot",
+   "q": "Wéi plangt Dir Är (your) Akaafslëscht a wéi enger Sprooch ?",
+   "answers": [
+    "Ech plange meng Akaafslëscht op Englesch"
+   ],
+   "notes": [],
+   "from": "De Stot / Kommissioune maachen"
+  },
+  {
+   "id": "n-7295799316",
+   "topic": "joreszäiten",
+   "q": "Sidd Dir scho laang hei zu Lëtzebuerg?",
+   "answers": [
+    "Jo, ech wunnen zanter 6 Joer zu L.",
+    "Jo, ech wunnen zu L. zanter 6 Joer"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-4f8827081e",
+   "topic": "joreszäiten",
+   "q": "Aus wat fir engem Land kommt Dir?",
+   "answers": [
+    "Ech kommen aus…",
+    "Ech kommen aus Pakistan. / eemol pro Joer fueren ech an de Pakistan",
+    "ech fueren eemol pro Joer an de P. => time before place at the end Regelen"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-a610ecdd0a",
+   "topic": "joreszäiten",
+   "q": "Wéi ass de Summer an Ärem Land?",
+   "answers": [
+    "De Summer a Pakistan ass ganz waarm. d’Temperatur ass tëscht 35 Grad a 45 waarm"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-108b03c3d0",
+   "topic": "joreszäiten",
+   "q": "Wéini ass de Summer a P. ?",
+   "answers": [
+    "Tëscht Mee an August"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-d0ece032a6",
+   "topic": "joreszäiten",
+   "q": "Wéi fannt Dir de Summer hei zu Lëtzebuerg? Vergläicht mat Ärem Land",
+   "answers": [
+    "De Summer zu L. ass ganz flott. Et ass manner waarm zu L. wéi a Pakistan.",
+    "De Summer zu L. gefält mir gutt. et gi vill Aktivitéiten zu L, zum Beispill Concerten dobaussen, d‘Schueberfouer"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-6dada954ca",
+   "topic": "joreszäiten",
+   "q": "Wéi verbréngt Dir Är Fräizäit am Summer? Vergläicht mat Ärem Land",
+   "answers": [
+    "Am Summer maachen ech vill Aktivitéiten dobaussen z.B. Fussball spillen , lafe goen, mam Vëlo fueren"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-505730e5c4",
+   "topic": "joreszäiten",
+   "q": "Wat hutt Dir besonnesch gär am Summer? Wat gefält Iech net?",
+   "answers": [
+    "Mir gefält besonnesch d‘Schueberfouer"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-367a868bb1",
+   "topic": "joreszäiten",
+   "q": "Wéi verbréngt Dir Är Fräizäit? Hutt Dir e Gaart?",
+   "answers": [
+    "Ech hu kee Gaart- ech si gär dobaussen. Wat maacht Dir do?",
+    "Ech gi gär an der Stad/ am Bësch/ am Park spadséieren",
+    "Playstation spillen",
+    "spadséiere goen"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-d7900340f4",
+   "topic": "joreszäiten",
+   "q": "Waart Dir de leschte Summer hei zu Lëtzebuerg?",
+   "answers": [
+    "Nee, de leschte Summer war ech net zu L./ Wou waart Dir? – de leschte Summer sinn ech an de Pakistan gaangen. Wat hutt Dir do gemaach?",
+    "De Summer a Pakistan ass ze waarm, fir Aktivitéiten dobaussen ze maachen, an ech bleiwen doheem mat menger Famill."
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-da493d8351",
+   "topic": "joreszäiten",
+   "q": "Wa jo - Wéi war d’Wieder?",
+   "answers": [
+    "d’Wieder a Pakistan ass ganz waarm am Summer. D‘ Temperature leien tëscht 35 a 45 Grad. Et reent selten, et reent ze vill"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-380353b371",
+   "topic": "joreszäiten",
+   "q": "Wann neen wou waart Dir dann? Wéi war d’Wieder do?",
+   "answers": [],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-1110c978c5",
+   "topic": "joreszäiten",
+   "q": "Wat fir Projeten hutt Dir fir dësen, fir den nächste Summer? Fuert Dir fort?",
+   "answers": [
+    "Ech ginn op d’Plage a Portugal an d’ Vakanz"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-e9f61b18fb",
+   "topic": "joreszäiten",
+   "q": "Wat fir eng Joreszäit hutt Dir am léifsten? Fuert Dir fort? firwat?",
+   "answers": [
+    "Meng Lieblingszäit ass de Summer. De Summer zu L. ( time before place) ass ganz flott .",
+    "D’T. leien tëscht 20 a 27 Grad. Et gi vill Akt. dobaussen an der Stad -d‘ Schueberfouer um Glacis/ Concerten am Park",
+    "Ech hunn de Summer am léifsten. ech ka vill Aktivitéite maachen , zum Beispill Fussball spillen",
+    "Jo, am Summer ginn ech gär an d’Vakanz – wuer fuert Dir fort?",
+    "Ech hunn d’Plage gär an ech besiche ( ech fuere gär a Länner mat Plagen) gär Länner mat Plagen. ( ech gi gär a Länner mat Plagen an d’Vakanz)"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-7b01bc22c6",
+   "topic": "joreszäiten",
+   "q": "Wéi ass de Wanter an Ärem Land?",
+   "answers": [
+    "de Wanter a Pakistan ass flott, d’Temperature hunn/leien tëscht fënnef an zwielef Grad no adjective",
+    "d’Temperature sinn tëscht 5 an 12 Grad waarm"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-fbd18cb8d0",
+   "topic": "joreszäiten",
+   "q": "Ass et kal do? Schneit et do och oder reent et vill?",
+   "answers": [
+    "Et ass net ganz kal an et schneit normalerweis net. ( wou schneit et?)",
+    "Et schneit am Norde vum Land an de Bierger."
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-2ab2e4399c",
+   "topic": "joreszäiten",
+   "q": "Wéi fannt Dir de Wanter hei zu Lëtzebuerg? Vergläicht mat Ärem Land",
+   "answers": [
+    "De Wanter zu L. ass méi kal wéi de Wanter a Pakistan. Et schneit oft an et reent och oft"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-9f874f762e",
+   "topic": "joreszäiten",
+   "q": "Wéi verbréngt Dir Är Fräizäit am Wanter ? Vergläicht mat Ärem Land",
+   "answers": [
+    "Am Wanter bleiwen ech doheem, mee heiansdo ginn ech op de Chrëschtmaart an an de Kino",
+    "An a Pakistan bleiwen ech mat menger Famill doheem a mir iessen zesummen ( , fir zesummen ze kachen an z‘ iessen"
+   ],
+   "notes": [
+    "verbréngen = to spend"
+   ],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-676742c6a1",
+   "topic": "joreszäiten",
+   "q": "Wat hutt Dir besonnesch gär am Wanter? Wat gefält Iech net?",
+   "answers": [
+    "ech hunn de Wanter net gär, mee ( no inversion) ech hunn de Chrëschtmaart gär"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-5dd44d0850",
+   "topic": "joreszäiten",
+   "q": "Waart Dir de leschte Wanter hei zu Lëtzebuerg?",
+   "answers": [
+    "De leschte Wanter war ech doheem- ( a wat hutt Dir doheem gemaach?",
+    "( maachen) - Ech hunn all Dag mat menge Frënn Playstation gespillt",
+    "Tennis spillen – ech spillen all Dag Tennis / ech hunn all Dag Tennis gespillt"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-92c41d6c17",
+   "topic": "joreszäiten",
+   "q": "Wéi hutt Dir de leschte Wanter fonnt? – fannen – ech hu…. fonnt",
+   "answers": [
+    "De leschte Wanter hunn ech ganz kal fonnt. fir wat?",
+    "Et huet vill geschneit an d’Temperatur war manner wéi 0 Grad kal / et war oft gefruer"
+   ],
+   "notes": [],
+   "from": "de Summer – de Wanter"
+  },
+  {
+   "id": "n-5b693151c8",
+   "topic": "gesondheet",
+   "q": "Wat vermeid Dir z’iessen? ( to avoid)",
+   "answers": [
+    "Ech vermeide Crevetten z’iessen ( fir wat?",
+    "Ech weess et net ( I don’t know it)"
+   ],
+   "notes": [
+    "vermeiden = to avoid"
+   ],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-8e895c44c3",
+   "topic": "gesondheet",
+   "q": "Firwat befollegen ( follow) d'Leit haut keng gesond Iessgewunnechten? food habit",
+   "answers": [
+    "D’Leit hunn haut keng Zäit méi ( not anymore).",
+    "D’Leit sinn ze (too) bequem, fir eppes (something) ze kachen"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-b3b46ca9b5",
+   "topic": "gesondheet",
+   "q": "Maacht Dir Übungen?",
+   "answers": [
+    "Jo, ech maache Stretching- Übungen ( Exercisen)"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-0dfccce207",
+   "topic": "gesondheet",
+   "q": "Wéi eng Zort Kleeder hutt Dir un, wann Dir trainéiert?",
+   "answers": [
+    "Ech hunn eng Joggingsbox an en T-Shirt un / ech hu Sportskleedung un"
+   ],
+   "notes": [
+    "singular + article"
+   ],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-dcad665420",
+   "topic": "gesondheet",
+   "q": "Wat bedeit = wat ass gesond liewen fir Iech ?",
+   "answers": [
+    "Gesond liewen ass fir mech gesond iessen an aacht Stonne schlofen, an dräimol pro Woch Yoga maachen a positiv denken."
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-d445020ebf",
+   "topic": "gesondheet",
+   "q": "Iesst Dir Fast Food ?",
+   "answers": [
+    "Heiansdo iessen ech Fast Food , zum Beispill eng Pizza, e Burger a Fritten"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-1867697acc",
+   "topic": "gesondheet",
+   "q": "Wéi maacht Dir et méiglech, datt Dir gesond liewen kënnt?",
+   "answers": [
+    "Ech versichen aacht Stonnen ze schlofen, vill Waasser ze drénken an Uebst a Geméis z’iessen."
+   ],
+   "notes": [
+    "how do you make it possible, that you can live healthy"
+   ],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-cc71b3ceda",
+   "topic": "gesondheet",
+   "q": "Hutt Dir Hausdéieren? Fir wat net? Fir wat?",
+   "answers": [
+    "Jo, ech hunn e Mupp. ( Zanter dräi Joer)"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-f8e2e6222c",
+   "topic": "gesondheet",
+   "q": "Wéi vill Stonnen schloft Dir pro Nuecht (d’Nuecht/ an der Nuecht)?",
+   "answers": [
+    "Ech schlofe sechs Stonne pro Nuecht"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-8143c3a66c",
+   "topic": "gesondheet",
+   "q": "Wat braucht dir alles (everything), fir Iech gesond a fit ze fillen?",
+   "answers": [
+    "Ech brauch gesond Iessen",
+    "et ass wichteg fir mech, vill Waasser ze drénken ( „to drink“)"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-a3e2a3d5cf",
+   "topic": "gesondheet",
+   "q": "Wat fir Uebstzorten kennt Dir oder hutt Dir gär ?",
+   "answers": [
+    "Ech hunn Hambiere an Orange gär. ech hunn am léifsten Hambieren"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-e0db75b71c",
+   "topic": "gesondheet",
+   "q": "Wat fir Geméisaarten kennt Dir oder hutt Dir gär ? – kennen = to know / kënnen = can",
+   "answers": [
+    "Ech hunn Tomaten a Brokkoli gär."
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-9b4b4b878a",
+   "topic": "gesondheet",
+   "q": "Wat fir Gedrénks kënnt Dir am Restaurant bestellen?",
+   "answers": [
+    "Ech bestelle Waasser , Béier oder Wäin , Jus, Kaffi, Téi, Coca am Restaurant"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-7674fe1732",
+   "topic": "gesondheet",
+   "q": "Denkt un e gutt Iessen ( think of a good food). Wat fir Emotiounen hutt Dir?",
+   "answers": [
+    "Gutt Iessen mécht mech frou ( glécklech) – good food makes me happy"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-9f90c086f5",
+   "topic": "gesondheet",
+   "q": "Wat fir Mëllechprodukter kennt Dir? -do you know",
+   "answers": [
+    "Ech kenne Mëllech, Botter, Kéis, Jughurt, Kefir"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-8351be25d8",
+   "topic": "gesondheet",
+   "q": "iesst Dir léiwer Fësch oder Fleesch? – vergläicht",
+   "answers": [
+    "Ech iesse léiwer Fleesch wéi Fësch"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-ccac89ea2a",
+   "topic": "gesondheet",
+   "q": "Wat maacht Dir, fir ze raschten?",
+   "answers": [
+    "Ech lauschteren de Radio /ech kucken d‘Tëlee"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-ff1d86a7f3",
+   "topic": "gesondheet",
+   "q": "Wéi gesäit eng ideal Ernärung (diet) fir Iech aus?",
+   "answers": [
+    "Eng ideal Ernärung ass vill Geméis an Uebst z’iessen a vill Waasser ze drénken."
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-eb2b12153d",
+   "topic": "gesondheet",
+   "q": "Sidd Dir Vegetarier, Vegetarierin?",
+   "answers": [
+    "Ech si Vegetarier(in)"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-03e4331460",
+   "topic": "gesondheet",
+   "q": "Wa jo, fir wat?",
+   "answers": [
+    "aus kulturelle Grënn"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-48db5d89fa",
+   "topic": "gesondheet",
+   "q": "Iesst dir/ respektiv kaaft Dir Bio Produkter?",
+   "answers": [
+    "Jo, ech iessen a kafe Bio Produkter besonnesch ( especially) fir meng Kanner"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-d6e66a5c7d",
+   "topic": "gesondheet",
+   "q": "Lieft Dir gesond – Hutt Dir e gesonde Liewensstil?",
+   "answers": [
+    "Jo, ech liewe gesond, ech kafe Bioprodukter, ech kache frësch, ech fëmmen net"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-28f2d1ff80",
+   "topic": "gesondheet",
+   "q": "Wat kënnt Dir maachen, fir nach méi ( even more) gesond ze liewen?",
+   "answers": [
+    "D’Leit kéinte (could) méi Sport maachen, manner Stress hunn, op Alkohol verzichten ( avoid)"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-0319d780c3",
+   "topic": "gesondheet",
+   "q": "Hutt Dir schlecht Gewunnechten ( bad food habits, or smoking, no sport, alcohol…)",
+   "answers": [
+    "Ech mengen ech schlofen ze wéineg, ech schaffen ze vill"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-d17920bcb0",
+   "topic": "gesondheet",
+   "q": "Ass d’Kaffidrénke ( Breakfast) wichteg fir Iech ? Iesst Dir moies eppes oder hutt Dir éischter just eng Taass Kaffi virun der Aarbecht?",
+   "answers": [
+    "Jo, de Kaffi ass wichteg fir mech, et ass fir mech déi wichtest Molzecht (meal)"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-5072a08148",
+   "topic": "gesondheet",
+   "q": "Wéi dacks gëtt bei Iech frësch gekacht?",
+   "answers": [
+    "All Dag gëtt bei eis frësch gekacht zum Beispill…."
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-e4d8ce7af0",
+   "topic": "gesondheet",
+   "q": "Kaaft Dir heiansdo preparéiert Plate fir an d’Mikrowell?",
+   "answers": [
+    "Nee, dat maachen ech ni, dat ass net gesond"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-418e85ef6d",
+   "topic": "gesondheet",
+   "q": "Wat war déi lescht ongesond Saach, déi Dir giess hutt?",
+   "answers": [
+    "Virun dräi Wochen hunn ech Pizza giess"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-941e60c051",
+   "topic": "gesondheet",
+   "q": "Wéini war dat?",
+   "answers": [
+    "Virun dräi Wochen"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-8a64352c55",
+   "topic": "gesondheet",
+   "q": "Hutt Dir schon eng Kéier Regimm ( diet) gemaach? Firwat?",
+   "answers": [
+    "Nee, esou eppes hunn ech nach ni gemaach"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-8e5ae03430",
+   "topic": "gesondheet",
+   "q": "Gitt Dir gär bei Dokteren?",
+   "answers": [
+    "Nee, ech ginn net gär bei Dokteren ( fir wat net?",
+    "Ech gleewen un alternativ Medizin."
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-cd631fbb40",
+   "topic": "gesondheet",
+   "q": "Wéi oft gitt Dir bei den Hausdokter – bei den Zänndokter?",
+   "answers": [
+    "Esou oft wéi néideg."
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-85ce7fa3a3",
+   "topic": "gesondheet",
+   "q": "Wat maacht Dir, fir nees gesond ze ginn, wann Dir krank sidd?",
+   "answers": [
+    "Ech schlofe vill, ech drénke vill, an ech schaffen net"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-f4eb099f5e",
+   "topic": "gesondheet",
+   "q": "Wéi fannt Dir d’Medezin hei am Land, ass et anescht wéi an Ärem Land?",
+   "answers": [
+    "Ech fannen d’Medezin gutt zu Lëtzebuerg. Et gi vill gutt Dokteren, si si professionell an hëllefsbereet, just e Rendez-vous ze kréien ass net emmer einfach"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-689bf154ac",
+   "topic": "gesondheet",
+   "q": "Wat fir Symptomer hutt Dir , wann Dir erkaalt sidd?",
+   "answers": [
+    "Wann ech eng Erkältung hunn, hunn ech den Hals wéi, ech hunn och de Schnapp (cold) an den Houscht (coughing)"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-66642e4c35",
+   "topic": "gesondheet",
+   "q": "Gesitt Dir gutt? Wann nee, hutt Dir e Brëll?",
+   "answers": [
+    "Ech gesinn net sou gutt, ech hunn e Brëll- fir mam Auto ze fueren"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-c0ebc46996",
+   "topic": "gesondheet",
+   "q": "Wat maacht Dir, fir fit a gutt gelaunt ze bleiwen?",
+   "answers": [
+    "Ech denke positiv a bleiwen optimistesch"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-ba7685ff6c",
+   "topic": "gesondheet",
+   "q": "Wat recommendéiert Dir , fir gesond ze bleiwen",
+   "answers": [
+    "Ech recommendéieren, positiv ze denken"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-9441ddd98e",
+   "topic": "gesondheet",
+   "q": "Ass et einfach zu L. e gesond Liewen ze féieren?",
+   "answers": [
+    "L ass eng flott Plaz, fir gesond ze liewen. Mir hu vill Infrastrukture fir Sport ze maachen. Et gi vill Parken, Fitnessstudioen , vill Vëlosposten, iwwerall",
+    "An de Bëscher ginn et vill Weeer fir spadséieren ze goen",
+    "Am Supermarché ginn et vill verschidde Liewensmëttel vu gudder Qualitéit",
+    "Ech fannen et einfach zu L. gesond ze bleiwen"
+   ],
+   "notes": [],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-0dc0a701d8",
+   "topic": "gesondheet",
+   "q": "Wat hutt Dir gëschter giess?",
+   "answers": [
+    "Gëschter hunn ech eng Zalot giess"
+   ],
+   "notes": [
+    "iessen = to eat"
+   ],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-e81db13808",
+   "topic": "gesondheet",
+   "q": "Wat hutt Dir gëschter gekacht?",
+   "answers": [
+    "Gëschter hunn ech eng Zopp gekacht"
+   ],
+   "notes": [
+    "kachen= to cook - gekacht"
+   ],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-da0e5da8c0",
+   "topic": "gesondheet",
+   "q": "Wat hutt Dir haut de Mëtteg am Restaurant gedronk.",
+   "answers": [
+    "am Restaurant hunn ech e Béier gedronk"
+   ],
+   "notes": [
+    "drénken = to drink – gedronk"
+   ],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-aa575f1a69",
+   "topic": "gesondheet",
+   "q": "Wat hutt Dir am Auchan kaaft?",
+   "answers": [
+    "Ech hunn Uebst am Auchan kaaft",
+    "Am Auchan hunn ech Uebst kaaft"
+   ],
+   "notes": [
+    "kafen = to buy"
+   ],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-e0daed3d26",
+   "topic": "gesondheet",
+   "q": "Wat fir e Plat hutt Dir am Restaurant bestellt?",
+   "answers": [
+    "Ech hu Poulet bestellt"
+   ],
+   "notes": [
+    "bestellen = to order -- bestellt"
+   ],
+   "from": "Gesond Liewen"
+  },
+  {
+   "id": "n-9b5e111b96",
+   "topic": "sport",
+   "q": "Denkt Dir, datt jiddereen e bëssen Sport soll maachen? Firwat",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-576831049c",
+   "topic": "sport",
+   "q": "Wéi motivéiert Dir Iech, Sport ze maachen, wann Dir midd oder beschäftegt (busy) sidd ?",
+   "answers": [
+    "Ech wëll gesond bleiwen - ech wëll gesond liewen"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-1d0383ae11",
+   "topic": "sport",
+   "q": "Wéi hëlleft Sport Iech am Alldag (z. B. fir de Stress oder de Schlof)?",
+   "answers": [
+    "Sport mécht méch frou am Alldag. Sport relaxéiert mech"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-047f809906",
+   "topic": "sport",
+   "q": "Wat geschitt, wann Dir laang kee Sport maacht?",
+   "answers": [
+    "Ech fille mech liddereg."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-3f9603eacd",
+   "topic": "sport",
+   "q": "Wéi eng Roll spillt d’Ernierung (diet) fir Iech, wann Dir Sport maacht?",
+   "answers": [
+    "D’Ernierung (Ernärung) ass wichteg fir mech , wann ech Sport maachen",
+    "Ech iesse gär gesond"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-fcfc0ecf98",
+   "topic": "sport",
+   "q": "Wéi eng Sportaarten si gutt fir eeler Leit? ( Senioren)",
+   "answers": [
+    "Spadséiere goen, schwamme goe si gutt fir eeler Leit"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-bcf6ec03bc",
+   "topic": "sport",
+   "q": "Hutt Dir schonn un engem Laf oder Marathon deelgeholl",
+   "answers": [
+    "Ech sinn nach ni e Marathon gelaf"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e2e526df7c",
+   "topic": "sport",
+   "q": "Hutt Dir Iech scho (ee)mol beim Sport blesséiert (hurt)? Wat ass geschitt?",
+   "answers": [
+    "Neen, dat ass nach net geschitt"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-90ed1f0c1e",
+   "topic": "sport",
+   "q": "Wéi eng Ausrüstung braucht Dir fir Äre Sport? ( e Rackett, eng Yogamatt)",
+   "answers": [
+    "Jo, ech brauch e Pingpongsdesch , eng Rackett an e Partner",
+    "Jo, ech brauch e Schwammbaseng an e Maillot"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-c1c9d633a0",
+   "topic": "sproochen",
+   "q": "Mat wat fir Methoden (methods) hutt Dir L. geléiert",
+   "answers": [
+    "Ech hu mat Bicher a mat enger Léierin an engem Onlinecours geléiert"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-fa4c515636",
+   "topic": "sproochen",
+   "q": "Firwat ass et wichteg, Friemsproochen ze léieren?",
+   "answers": [
+    "Et ass wichteg fir d’Kommunikatioun"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-1777239244",
+   "topic": "sproochen",
+   "q": "Wéi fillt Dir Iech, wann Dir eng Friemsprooch schwätzt",
+   "answers": [
+    "ech fille mech gutt"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-02f53d7436",
+   "topic": "sproochen",
+   "q": "Wat fir eng Sprooch fannt Dir am schéinsten? ( nicest)",
+   "answers": [
+    "ech fannen Englesch am beschten ( the best)"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-0bddbe371f",
+   "topic": "sproochen",
+   "q": "Wéi probéiert Dir, nei Wierder ze léieren oder ze behalen?",
+   "answers": [
+    "ech léieren nei Wierder um Internet, an ech maachen eng Lëscht ( a list)"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-754ca94a1d",
+   "topic": "sproochen",
+   "q": "Wat maacht Dir, wann Dir e Wuert (word) net verstitt? verstoen ( to understand)",
+   "answers": [
+    "ech sichen d’Wuert op lod punkt lu"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-33211b8748",
+   "topic": "sproochen",
+   "q": "Denkt Dir, datt d‘ Technologie (singular) et méi einfach mécht, eng Sprooch ze léieren",
+   "answers": [
+    "Jo, d’Technologie mécht et einfach d’Sproochen ze léieren"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-999be301c2",
+   "topic": "sproochen",
+   "q": "Gëtt et eng Sprooch, déi Dir nëmme (only) mat Ärer Famill schwätzt?",
+   "answers": [
+    "Ech schwätze Gujerati mat menger Famill"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-76c2739bb9",
+   "topic": "sproochen",
+   "q": "Denkt Dir, datt méi Leit Lëtzebuergesch solle léieren",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-2f7ab55f66",
+   "topic": "sproochen",
+   "q": "Wéi eng Sprooch war fir Iech am einfachsten ze léieren?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-4b849b6f65",
+   "topic": "sproochen",
+   "q": "Hëlleft Lëtzebuergesch Iech am Kontakt mat anere Leit hei?",
+   "answers": [
+    "Jo, et ass wichteg fir d’Kommunikatioun"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-20fefa9e09",
+   "topic": "sproochen",
+   "q": "Wat huet Iech beim Léieren am meeschte Spaass (most of fun)gemaach?",
+   "answers": [
+    "Ech hunn am léifsten d’Grammatik geléiert"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-74e03c1e98",
+   "topic": "kleeder",
+   "q": "Wat ass fir Iech wichteg, wann Dir Kleeder kaaft?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-6fd108f8e4",
+   "topic": "kleeder",
+   "q": "Sidd Dir e Fan / en Amateur vu Moudetrends oder net ?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-cc40cb1da2",
+   "topic": "kleeder",
+   "q": "Wéi eng Kleeder drot Dir bei engem offizielle Rendez-vous?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e7f6c96525",
+   "topic": "kleeder",
+   "q": "Wéi eng Kleeder hutt Dir gär fir Vakanz oder Reesen?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-619e5d9a97",
+   "topic": "kleeder",
+   "q": "Ginn et Kleeder, déi Dir guer net gär hutt?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-38119a734f",
+   "topic": "kleeder",
+   "q": "Kaaft Dir dacks nei Kleeder oder benotzt Dir se laang?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-8900f567b9",
+   "topic": "kleeder",
+   "q": "Kaaft Dir gär Second-Hand Kleeder (aus zweeter Hand)?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-c028dc926b",
+   "topic": "kleeder",
+   "q": "Wéi wichteg ass et fir Iech, datt Kleeder ëmweltfrëndlech (sustainabel) sinn ?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e661e004f4",
+   "topic": "kleeder",
+   "q": "Hutt Dir e Lieblingsbuttek?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-7bd38ff22f",
+   "topic": "kleeder",
+   "q": "Wéi fillt Dir Iech, wann Dir nei Kleeder drot?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-af093b62ab",
+   "topic": "kleeder",
+   "q": "Mengt Dir, datt Kleeder eppes iwwer d’Perséinlechkeet vum Mënsch soen?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-beb596986f",
+   "topic": "kleeder",
+   "q": "Wéi beaflosst Moud Är Stëmmung?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-d5002c70ef",
+   "topic": "kleeder",
+   "q": "Wéi eng Kleeder drot Dir am léifste, wann Dir relax sidd?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-3fd4d3d129",
+   "topic": "kleeder",
+   "q": "Wéi eng Roll spillt d’Ëmwelt beim Kaf vu Kleeder fir Iech?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-4f255a410f",
+   "topic": "kleeder",
+   "q": "Kaaft Dir gäre lokal Marken oder vu grousse Firmen?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-494f95f25d",
+   "topic": "joreszäiten",
+   "q": "Wéi fillt Dir Iech am Summer?",
+   "answers": [
+    "Ech fille mech gutt am Sommer, et ass waarm a sonneg"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-53f7118263",
+   "topic": "joreszäiten",
+   "q": "Wat ass fir Iech dat Schéinst um Summer?",
+   "answers": [
+    "Ech ka vill dobausse maachen, dat ass dat Schéinst fir mech"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-d047ae9e4f",
+   "topic": "joreszäiten",
+   "q": "Wat bedeit de Summer fir ech perséinlech?",
+   "answers": [],
+   "notes": [
+    "only you can answer this question"
+   ],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-9442515ba0",
+   "topic": "joreszäiten",
+   "q": "Hutt Dir eng Liblingsplaz am Summer? Wéi beaflosst (influence) waarmt Wieder Ären Alldag?",
+   "answers": [
+    "Meng Liblingsplaz am Summer ass meng Terrass. Wann et ze waarm ass, fillen ech mech net gutt"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-3a4807df97",
+   "topic": "joreszäiten",
+   "q": "Wat maacht Dir, wann et ze waarm ass?",
+   "answers": [
+    "Wann et ze waarm ass, bleiwen ech dobannen"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-9598888522",
+   "topic": "joreszäiten",
+   "q": "Gitt Dir dacks eng Glace iessen? Wéi eng ass Är Liblingsglace?",
+   "answers": [
+    "Meng Lieblingsglace ass Schockela"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-bb0a291ac7",
+   "topic": "joreszäiten",
+   "q": "Gitt Dir gär op eng Terrasse fir eppes ze drénken? ( fir e Patt ze huelen means the same)",
+   "answers": [
+    "Jo, ech gi gär op eng Terrass, fir eppes ze drénken"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-0b8ace365a",
+   "topic": "joreszäiten",
+   "q": "Kacht Dir am Summer anescht wéi am Wanter",
+   "answers": [],
+   "notes": [
+    "only you can answer this question"
+   ],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-a7045db4e5",
+   "topic": "joreszäiten",
+   "q": "Wéi erënnert Dir Iech un d'Summeren als Kand",
+   "answers": [
+    "d’Summere waren ëmmer manner waarm"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-667fc8b60a",
+   "topic": "joreszäiten",
+   "q": "Wat ass Är Liblingsbeschäftegung (activity), wann et ze waarm ass fir eraus ze goen?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-c41129dfec",
+   "topic": "joreszäiten",
+   "q": "Wéi wichteg ass et fir Iech, am Summer Zäit dobaussen ze verbréngen?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-afb1d5bad0",
+   "topic": "joreszäiten",
+   "q": "Wéi fillt Dir Iech am Wanter?",
+   "answers": [
+    "De Wanter mécht mech net frou, et ass ze kal am Wanter"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-d4130b020f",
+   "topic": "joreszäiten",
+   "q": "Wat bedeit de Wanter fir Iech perséinlech?",
+   "answers": [
+    "De Wanter bedeit zum Beispill Chrëschtdag, Schnéi, eng Taass Kaffi/Téi a sou weider fir mech"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-d4388d0bc5",
+   "topic": "joreszäiten",
+   "q": "Wat maacht Dir, wann et schneit?",
+   "answers": [
+    "Ech bleiwen doheem an ech kucken d’Tëlee"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-8fc0338dbc",
+   "topic": "joreszäiten",
+   "q": "Wéi schützt (protect) Dir Iech géint d’Keelt (the cold)",
+   "answers": [
+    "Ech kafe waarm Kleeder an ech bleiwen doheem"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-978df31027",
+   "topic": "joreszäiten",
+   "q": "Kacht Dir am Wanter anescht (differently) wéi am Summer",
+   "answers": [
+    "Neen, ech kachen Indesch Kichen am Summer an am Wanter"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-4322f57a6b",
+   "topic": "joreszäiten",
+   "q": "Wéi fillt Dir Iech, wann et wéineg (little) Sonn gëtt net vill = wéineg",
+   "answers": [
+    "E bësse Sonn am Wanter mécht mech frou"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-cc6a76d25e",
+   "topic": "joreszäiten",
+   "q": "Maacht Dir eppes fir gesond ze bleiwen am Wanter",
+   "answers": [
+    "Ech maache Fitness am Wanter doheem , fir gesond ze bleiwen ( time before place at the end)"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-42c3cbbd98",
+   "topic": "joreszäiten",
+   "q": "Fuert Dir gär am Wanter an d’Bierger",
+   "answers": [
+    "Neen, ech fueren net gär am Wanter an d’Bierger - ech kann net schifueren"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-a40f4d1830",
+   "topic": "joreszäiten",
+   "q": "Wéi soll ee sech op de Wanter virbereeden?",
+   "answers": [
+    "Ech kafe waarm Kleeder an ech huele Vitamin D,C"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-3619d9e93e",
+   "topic": "joreszäiten",
+   "q": "Wéi wier Äre perfekte Wanterdag?",
+   "answers": [
+    "Ech bleiwen doheem ,ech kucken e Film , et schneit dobaussen",
+    "Ech maachen eng Pizza, ech maachen eng Zalot",
+    "Ech baken e Kuch"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-893abda21c",
+   "topic": "wunnen",
+   "q": "Wéi hutt Dir Är aktuell Wunneng fonnt? (z. B. iwwer den Internet, Frënn, Agence immobilière?",
+   "answers": [
+    "Ech hu mäin Appartement um Internet fonnt"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-dabf7df73b",
+   "topic": "wunnen",
+   "q": "Wat géift Dir an Ärer Wunneng änneren (change) , wann Dir kéint?",
+   "answers": [
+    "Mäin Appartement ass schéin , ech änneren näischt ( nothing)"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-d7e91685fd",
+   "topic": "wunnen",
+   "q": "Sidd Dir zefridden mat Ärem Proprietär / mat der Locatioun",
+   "answers": [
+    "Jo mäi P. ass frëndlech"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-ace39a7720",
+   "topic": "wunnen",
+   "q": "Wéi eng Raim (rooms) sinn am hellsten an Ärer Wunneng ?",
+   "answers": [
+    "Meng Stuff ass am hellsten."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-291a21a8f1",
+   "topic": "wunnen",
+   "q": "Hutt Dir vill Plaz? Oder wier et Iech léiwer méi grouss/ méi kleng?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-2e356141af",
+   "topic": "wunnen",
+   "q": "Ass Är Wunneng gutt isoléiert (géint Kaméidi oder Keelt)",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-58d3eb3f50",
+   "topic": "wunnen",
+   "q": "Wéi wichteg ass et fir Iech, gutt Relatioune mat den Noperen ze hunn?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-fb17e6defd",
+   "topic": "wunnen",
+   "q": "Wat maacht Dir, wann et Problemer mat Noperen oder Geräischer gëtt ?",
+   "answers": [
+    "Ech schwätze frëndlech mat mengen Noperen"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-c9965f7f9e",
+   "topic": "wunnen",
+   "q": "Wéi ënnerscheet sech Är Wunneng hei vun där an Ärem Heemechtsland?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-779c77d58a",
+   "topic": "wunnen",
+   "q": "Wéi fannt Dir de Liewensstandard zu Lëtzebuerg am Verglach (comparison) mat Ärem Heemechtsland",
+   "answers": [
+    "De L. ass besser zu L. wéi an Indien. D Kalitéit vum Iessen ass besser, d’Loft ass besser"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-9cc7a89bdc",
+   "topic": "wunnen",
+   "q": "Wat bedeit “Doheem” fir Iech perséinlech",
+   "answers": [
+    "Doheem bedeit, mat mengem Mann a mat mengem Hond zesummen ze sinn."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-659c43974b",
+   "topic": "medien",
+   "q": "Denkt Dir, datt Kanner hautdesdaags ze vill Zäit viru Schierme ( Ecranen, Computeren) verbréngen?",
+   "answers": [
+    "Jo, ech mengen, d’Kanner verbrénge vill ze vill Zäit virun Ecranen"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-d60985a850",
+   "topic": "medien",
+   "q": "Wéi eng digital Fäegkeeten sinn hautdesdaags wichteg fir d’Aarbecht?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-6e244efefc",
+   "topic": "medien",
+   "q": "Mengt Dir, datt d’kënschtlech Intelligenz (KI / AI) eng Chance oder eng Gefor (danger) ass ? =( Virdeeler , Nodeeler )",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-c885f7651d",
+   "topic": "medien",
+   "q": "Wéi schützt Dir Är perséinlech Donnéeën online ?",
+   "answers": [
+    "Mat Passwierder"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-bfcafa3a49",
+   "topic": "liesen",
+   "q": "Liest Dir éischter ( I think they mean léiwer) um Pabeier oder um Ecran (E-Book, Handy, Tablet)",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-f28c810ecd",
+   "topic": "liesen",
+   "q": "Firwat ass liese wichteg, wat mengt Dir ?",
+   "answers": [
+    "Liesen ass ganz wichteg fir d’mental Gesondheet"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-fdb04e0006",
+   "topic": "liesen",
+   "q": "Wat léiert een duerch d’Liesen?",
+   "answers": [
+    "Liesen ass gutt fir d’Konzentratioun, d’Leit kréien e bessert Sproochverständnis (comprehension) duerch d’Liesen"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-76703e9f20",
+   "topic": "liesen",
+   "q": "Wéi eng Bicher recommandéiert Dir engem Frënd oder enger Frëndin",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-54b9d46ac7",
+   "topic": "liesen",
+   "q": "Wéi reagéiert Dir, wann Dir eppes liest, mat deem Dir net averstan sidd?",
+   "answers": [
+    "ech bilde mir meng eege Meenung ( I build my own opinion)"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-475df80da3",
+   "topic": "liesen",
+   "q": "Liest Dir gären verschidde Meenungen iwwer datselwecht Thema",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-f642042c2d",
+   "topic": "liesen",
+   "q": "Mengt Dir, datt d’Leit haut nach vill liesen?",
+   "answers": [
+    "Ech mengen d’Leit kucke méi d’Tëlee wéi Bicher liesen"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-81a1b56d6c",
+   "topic": "liesen",
+   "q": "Wéi wäert d’Liesen an der Zukunft ausgesinn, mengt Dir?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-869039dee8",
+   "topic": "liesen",
+   "q": "Sollt d‘Liesen an der Schoul méi gefërdert ( more supported) ginn",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-d9a9268f9b",
+   "topic": "hobbyen",
+   "q": "Lauschtert Dir éischter ( “more” ) al oder nei Musek?",
+   "answers": [
+    "ech lauschtere méi modern Musek"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-831ee2ed4d",
+   "topic": "hobbyen",
+   "q": "Wéi beaflosst Musek Är Stëmmung? (mood)",
+   "answers": [
+    "Musek ass ganz wichteg fir eng gutt Stëmmung ze kréien"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-c581b3e33c",
+   "topic": "hobbyen",
+   "q": "Lauschtert Dir Musek fir Iech ze entspanen oder fir Energie ze kréien",
+   "answers": [
+    "Béid (both)"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-d676efad5e",
+   "topic": "hobbyen",
+   "q": "Mengt Dir, datt d’Leit nach ëmmer CDen oder Vinyl kafen",
+   "answers": [
+    "Ech mengen et gi Leit déi nach ëmmer CD en oder Vinyl kafen"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-ae8ba29ee3",
+   "topic": "hobbyen",
+   "q": "Wat fir eng Roll spillen sozial Medie bei der Verbreedung (spread) vu Musek?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-f045903fa7",
+   "topic": "hobbyen",
+   "q": "Wat bedeit Musek fir Iech perséinlech?",
+   "answers": [
+    "Musek ass ganz wichteg fir mech fir ze relaxen"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-d05db65df8",
+   "topic": "hobbyen",
+   "q": "Kënnt Dir Iech e Liewen ouni Musek virstellen (imagine)",
+   "answers": [
+    "Nee, ech ka mir e Liewen ouni Musek net virstellen"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-4470879920",
+   "topic": "kaddoen",
+   "q": "Wéi entscheed Dir, wat Dir engem schenkt? No Persoun, Occasion oder Präis?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-228982c6a2",
+   "topic": "kaddoen",
+   "q": "Ginn et Kaddoen, déi Dir ëmmer gär kritt? Firwat?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-610fe2dc64",
+   "topic": "kaddoen",
+   "q": "Wat ass de beschten Kaddo, deen Dir jeemools kritt hutt?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-62da8ecdab",
+   "topic": "kaddoen",
+   "q": "Ginn et Kaddoen, déi Iech méi Freed maachen, wann Dir se gitt wéi wann Dir se kritt?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-83c53b5a44",
+   "topic": "kaddoen",
+   "q": "Kënnt Dir eng Situatioun beschreiwen, wou Dir e Kaddo gesammelt hutt mat Frënn oder der Famill (Kollektivkaddo)?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-1f6cf70600",
+   "topic": "kaddoen",
+   "q": "Wat ass de schlëmmsten ( the worst) oder komeschste (most funny) Kaddo, deen Dir kritt hutt ?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-78dee73804",
+   "topic": "vakanz",
+   "q": "Wéi vill Zäit braucht Dir fir Är Vakanz ze preparéieren?",
+   "answers": [
+    "Ech preparéiere meng Vakanz eng oder zwou Wochen am Viraus. ( in advance)"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-ae20315fbc",
+   "topic": "vakanz",
+   "q": "Wéi vill Gepäck hëlt Dir normalerweis mat?",
+   "answers": [
+    "Ech huele just eng Wallis a meng Posch mat ( mathuelen) = to take with you"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-a83e06eea3",
+   "topic": "vakanz",
+   "q": "Hutt Dir eng Reesversécherung?",
+   "answers": [
+    "Jo, ech hunn ëmmer eng Reesversécherung, fir all Fall."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-4657157010",
+   "topic": "vakanz",
+   "q": "Wéi wielt Dir d’Destinatioun fir Är Vakanz aus?",
+   "answers": [
+    "Ech sichen um Internet no bëllege Fliger a schéine Plazen."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-8da0dc12f5",
+   "topic": "vakanz",
+   "q": "Wat maacht Dir gär an der Vakanz?",
+   "answers": [
+    "Ech liesen vill, ech spadséieren an ech relaxen."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-131522573d",
+   "topic": "vakanz",
+   "q": "Maacht Dir gär Ausflich oder bleift Dir léiwer am Hotel?",
+   "answers": [
+    "Ech maachen léiwer Ausflich, well ech gär nei Plazen entdecken."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e855d168aa",
+   "topic": "vakanz",
+   "q": "Maacht Dir Sport an der Vakanz?",
+   "answers": [
+    "Jo, ech ginn joggen oder schwammen all Dag."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-c2b4343bab",
+   "topic": "vakanz",
+   "q": "Besicht Dir gär Muséeën oder kulturell Plazen?",
+   "answers": [
+    "Jo, ech besiche gär Muséeën, well ech mech fir Geschicht interesséieren."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-bcda40d5e6",
+   "topic": "vakanz",
+   "q": "Kaaft Dir och Souveniren?",
+   "answers": [
+    "Jo, ech kafen ëmmer eppes Klenges fir meng Frënn oder meng Famill."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e44a2415d6",
+   "topic": "vakanz",
+   "q": "Wéi verbréngt Dir en typeschen Dag an der Vakanz?",
+   "answers": [
+    "Moies gi mir spadséiere, mëttes iessen mir an owes si mir am Restaurant."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-eb4b199bc1",
+   "topic": "vakanz",
+   "q": "Wat war Är schlëmmst Vakanz?",
+   "answers": [
+    "Meng schlëmmst Vakanz war, wéi et all Dag gereent huet."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-becf3f8714",
+   "topic": "vakanz",
+   "q": "Hutt Dir schonn eng Vakanz missen ofbriechen? (to cancel/stop early)",
+   "answers": [
+    "Jo, eemol, well ech krank ginn sinn."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-dc843b6e8a",
+   "topic": "vakanz",
+   "q": "Wat war Är gréisst Iwwerraschung an enger Vakanz?",
+   "answers": [
+    "Ech hu Leit getraff, déi aus menger Stad koumen !"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-28af81ecd1",
+   "topic": "vakanz",
+   "q": "Wat hätt Dir gär an der nächster Vakanz anescht?",
+   "answers": [
+    "Ech géif méi Zäit fir mech huelen, an net ze vill Plaze besichen."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e31c95d5a3",
+   "topic": "vakanz",
+   "q": "Wat fir eng Länner wëllt Dir nach besichen?",
+   "answers": [
+    "Ech wëll nach Japan a Kanada bereesen."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-4fa062dc4f",
+   "topic": "vakanz",
+   "q": "Wéi wichteg ass et fir Iech, d’Sprooch vum Land ze schwätzen?",
+   "answers": [
+    "Ech fannen et wichteg, e puer Wierder ze kennen, dat weist Respekt."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-ee16e6d17f",
+   "topic": "vakanz",
+   "q": "Wéi gesäit Är Dramvakanz aus?",
+   "answers": [
+    "Meng Dramvakanz wier op enger Insel mat rouegem Mier a kee Stress."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-cdfa748745",
+   "topic": "vakanz",
+   "q": "Wéi eng Aart vun Aktivitéite wëllt Dir an Zukunft méi maachen?",
+   "answers": [
+    "Ech wëll méi wanderen an d’Natur entdecken."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-36d13dc962",
+   "topic": "vakanz",
+   "q": "Firwat ass Vakanz wichteg fir Iech?",
+   "answers": [
+    "Well ech mech erhuelen an nei Energie kréien."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-fe98877441",
+   "topic": "vakanz",
+   "q": "Léiert Dir gär eppes Neies an der Vakanz?",
+   "answers": [
+    "Jo, ech probéieren ëmmer nei Liewensmëttel oder Sitten entdecken."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-51307cdae1",
+   "topic": "vakanz",
+   "q": "Wéi vill Sue gitt Dir normalerweis fir eng Vakanz aus?",
+   "answers": [
+    "Et hänkt vum Land of, awer ongeféier 1000 Euro."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-1ec51aa40d",
+   "topic": "vakanz",
+   "q": "Gitt Dir gär spontan an d’Vakanz oder plangt Dir am Viraus?",
+   "answers": [
+    "Ech plangen am Viraus, well ech näischt vergiessen wëll."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-8310e92d8a",
+   "topic": "vakanz",
+   "q": "Wat bedeit “Vakanz” fir Iech perséinlech?",
+   "answers": [
+    "Vakanz ass Zäit fir mech selwer a fir meng Famill."
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-dcdc3111b0",
+   "topic": "vakanz",
+   "q": "( Gefält et Iech) Dir et, mat lokale Leit ze schwätzen, wann Dir reest?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-25d431eb78",
+   "topic": "vakanz",
+   "q": "Ginn et Reesen, déi Dir net gutt fonnt hutt? Firwat?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-cb450542c4",
+   "topic": "vakanz",
+   "q": "Wat war déi längste Rees, déi Dir gemaach hutt?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-5567604f7b",
+   "topic": "vakanz",
+   "q": "Hutt Dir schonn eemol eppes verluer oder vergiess beim Reesen?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e00178ae52",
+   "topic": "vakanz",
+   "q": "Hutt Dir eng Dramdestinatioun? Wou? Firwat?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-95a307a4b6",
+   "topic": "vakanz",
+   "q": "Wéi wielt Dir Är Reesdestinatioun aus?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-3298260b6d",
+   "topic": "stot",
+   "q": "Wéi dacks raumt Dir op?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-77ba1b1cd1",
+   "topic": "stot",
+   "q": "Wéi eng Hausaarbecht gëtt am heefegsten bei Iech vergiess? ( which do you forget mostly)",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-f1981784a1",
+   "topic": "stot",
+   "q": "Wéi war et, wéi Dir Kand waart — wien huet de Stot gemaach?",
+   "answers": [
+    "Meng Elteren hunn de Stot gemaach"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-01fd9bd6e1",
+   "topic": "stot",
+   "q": "Wat maacht Dir mat ale Kleeder oder Saachen, déi Dir net méi braucht?",
+   "answers": [
+    "Ech bréngen al Kleeder an de Recycling Center"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-f04bc1007f",
+   "topic": "stot",
+   "q": "Wéi kéint ee Leit motivéieren, méi doheem ze hëllefen ?",
+   "answers": [
+    "Hëllefe mécht frou"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-847eb90f3d",
+   "topic": "stot",
+   "q": "Wat halt Dir vun neien Technologien am Stot?",
+   "answers": [
+    "e Roboter Staubsauger ass ganz nëtzlech"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-fc81b76679",
+   "topic": "stot",
+   "q": "Wat géif Iech hëllefen, fir manner Zäit mam Botzen ze verléieren",
+   "answers": [
+    "e Roboter Staubsauger zum Beispill"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e5a0fbbebf",
+   "topic": "kreativitéit",
+   "q": "Hutt Dir léiwer aktiv oder passiv Aktivitéiten?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-b3acfc86ca",
+   "topic": "kreativitéit",
+   "q": "Hutt Dir eng “Bucket List” mat Aktivitéiten oder Hobbyen, déi Dir nach wëllt probéieren",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e8a1f907ee",
+   "topic": "kreativitéit",
+   "q": "Wéi entspaant ( synonym: relaxen) Dir Iech nom Aarbechtsdag?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-78059c0fa3",
+   "topic": "kreativitéit",
+   "q": "Wat war Äre léifsten Hobby, wéi Dir e Kand waart?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-8aad6a0ad5",
+   "topic": "transport",
+   "q": "Wat stéiert ( disturbs) Iech am meeschten, wann Dir ënnerwee ( on the road) sidd?",
+   "answers": [
+    "e Stau stéiert mech am meeschten"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-2840c2ba19",
+   "topic": "transport",
+   "q": "Wéi zefridden ( satisfied) sidd Dir mam ëffentlechen Transport zu L.?",
+   "answers": [
+    "den ëffentlechen Transport ass tiptop"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e7f4e51cbd",
+   "topic": "transport",
+   "q": "Wat kéint een maachen, fir méi Leit ze motivéieren, den ëffentlechen Transport ze benotzen?",
+   "answers": [
+    "zum Beispill Parkplaze méi deier maachen"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-5840b385c6",
+   "topic": "transport",
+   "q": "Wat maacht Dir perséinlech, fir méi ëmweltfrëndlech ze fueren?",
+   "answers": [
+    "ech benotzen dacks de Bus"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-665348f605",
+   "topic": "transport",
+   "q": "Wéi eng Transportmëttel si fir d’Ëmwelt am beschten?",
+   "answers": [],
+   "notes": [
+    "you decide what you want to answer"
+   ],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-d2e466a2a5",
+   "topic": "transport",
+   "q": "Gëtt et Alternativen zum Fliger fir d’Ëmwelt ze schützen (to protect)?",
+   "answers": [
+    "zum Beispill den Zuch"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-86bee7c7b9",
+   "topic": "transport",
+   "q": "Wéi preparéiert Dir Iech, wann Dir eng laang Rees maacht (mam Auto oder mam Fliger)?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-32a4a0aed1",
+   "topic": "transport",
+   "q": "Wat halt Dir vun de Park-and-Ride-Parkingen zu Lëtzebuerg?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-d031d8d086",
+   "topic": "transport",
+   "q": "Wéi ass den Transport an Ärem Heemechtsland am Verglach ( in comparison to) zu Lëtzebuerg?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-0f26672076",
+   "topic": "transport",
+   "q": "Wéi wichteg ass et fir Iech, eng gutt Verbindung tëscht Wunnuert an Aarbecht ze hunn?",
+   "answers": [
+    "et ass immens wichteg – ech wunnen um Land"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-03e7dba0f4",
+   "topic": "transport",
+   "q": "Hutt Dir schonn eng schlecht Erfarung (experience) mam E-Scooter oder mam Vëlo gemaach?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-5b326a79e3",
+   "topic": "transport",
+   "q": "Mengt Dir, datt et sécher ass, mam E-Scooter zu Lëtzebuerg ze fueren?",
+   "answers": [
+    "nee, ech mengen net, et ginn net vill Pisten dofir"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e22f084361",
+   "topic": "transport",
+   "q": "Sollt et méi Pistë fir E-Scooteren ginn?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-9dfe0ac30b",
+   "topic": "transport",
+   "q": "Wéi eng Transportmëttel sinn, Är Meenung no, am beschten fir d’Gesondheet?",
+   "answers": [
+    "ech mengen de Vëlo ass am beschte fir d‘Gesondheet"
+   ],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-7aa8e244a8",
+   "topic": "gesondheet",
+   "q": "Wéi oft iesst Dir Séissegkeeten (sweets) oder Snacks?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e1feee2649",
+   "topic": "gesondheet",
+   "q": "Drénkt Dir Kaffi all Dag? Wéi vill Tasen? (cups)",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-aa1f276e63",
+   "topic": "gesondheet",
+   "q": "Lauschtert Dir Musek oder e Podcast fir anzeschlofen?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-3f50ab6896",
+   "topic": "gesondheet",
+   "q": "Fëmmt (smoke) Dir oder hutt Dir schonn eemol gefëmmt? fëmmen = to smoke",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-6fd6056a4e",
+   "topic": "gesondheet",
+   "q": "Maacht Dir eppes fir Är Immunitéit ze stäerken?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-e6d9f578c5",
+   "topic": "gesondheet",
+   "q": "Wat géift Dir engem Frënd roden ( to give an advice), fir méi gesond ze liewen?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-6c56ba2bf5",
+   "topic": "gesondheet",
+   "q": "Wat géift Dir änneren (change), wann Dir méi Zäit hätt?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-554621e75b",
+   "topic": "gesondheet",
+   "q": "Wéi wichteg ass d‘Gesondheet fir Iech am Verglach mat der Aarbecht oder de Suen?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-5c3846ea84",
+   "topic": "gesondheet",
+   "q": "Hutt Dir d’Gefill, Dir hutt e gesonde Liewensstil?",
+   "answers": [],
+   "notes": [],
+   "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-01f515c5c0",
+   "topic": "image",
+   "kind": "section",
+   "q": "Dobaussen, dobannen",
+   "hint_en": "Was the photo taken outside or inside?",
+   "answers": [
+    "D’Bild ass dobausse gemaach ginn. – dobaussen ( outside)/ dobannen (inside)",
+    "d’Bild ass dobanne gemaach ginn"
+   ],
+   "notes": [],
+   "from": "Bildbeschreiwung"
+  },
+  {
+   "id": "n-943c311c0b",
+   "topic": "image",
+   "kind": "section",
+   "q": "faarweg, schwaarz wäiss, Comicbild",
+   "hint_en": "Colour, black and white, or a drawing?",
+   "answers": [
+    "Et ass faarweg ( colourful)/ et ass schwaarz a wäiss/ et ass e Comicbild"
+   ],
+   "notes": [],
+   "from": "Bildbeschreiwung"
+  },
+  {
+   "id": "n-d15db67b24",
+   "topic": "image",
+   "kind": "section",
+   "q": "Wieder dobaussen",
+   "hint_en": "The weather, when the picture is outside.",
+   "answers": [
+    "d’Wieder (dobaussen)",
+    "Den Himmel ( sky) ass blo= et gi keng Wolleken (clouds) um Himmel / den Himmel ass gro",
+    "et ass bedeckt ( cloudy)",
+    "et ass sonneg = it is sunny",
+    "et ass hell = it is bright/ et ass donkel = it is dark",
+    "it is not bright outside = et ass net hell dobaussen.",
+    "et reent = it reans/ et reent net",
+    "et schneit = it snows/ et schneit net",
+    "ech mengen et ass Summer, well d’Leit liicht (light) Kleeder unhunn",
+    "ech mengen et ass Wanter, well d’Leit waarm Kleeder unhunn",
+    "ech mengen ( I mean, I think, I guess, I believe)"
+   ],
+   "notes": [],
+   "from": "Bildbeschreiwung"
+  },
+  {
+   "id": "n-89db3332ff",
+   "topic": "image",
+   "kind": "section",
+   "q": "Wieder dobannen",
+   "hint_en": "The weather, when the picture is inside: what are people wearing?",
+   "answers": [
+    "ech mengen et ass Summer, well d’Leit liicht (light) Kleeder unhunn",
+    "ech mengen et ass Wanter, well d’Leit (Lait) waarm Kleeder unhunn"
+   ],
+   "notes": [],
+   "from": "Bildbeschreiwung"
+  },
+  {
+   "id": "n-7509801265",
+   "topic": "image",
+   "kind": "section",
+   "q": "Situatioun",
+   "hint_en": "What is the situation — where are they, how many, doing what?",
+   "answers": [
+    "Et ass eng Situatioun am Gaart, op der Spillplaz, am Restaurant, an der Kichen.",
+    "oder",
+    "Ech gesinn d’Schueberfouer vu Lëtzebuerg, d’Towerbridge vu London a sou weider",
+    "how many people , the situation, where they sit, or stand + age of people",
+    "to describe the people and ( the table...)- they are normally in the middle"
+   ],
+   "notes": [],
+   "from": "Bildbeschreiwung"
+  },
+  {
+   "id": "n-2aec99d035",
+   "topic": "image",
+   "kind": "section",
+   "q": "Beschreiwungen",
+   "hint_en": "Describe the people: who, where, what they look like.",
+   "answers": [
+    "people = Leit",
+    "Um Bild an der Mëtt gesinn ech 3 Persounen, e Mann , eng Fra an e Kand.",
+    "Si trëppelen um Trottoir (Trottwa)",
+    "Ech beschreiwen (to describe) de Mann op der rietser Säit. Hien huet kuerz, gro Hoer.... hien huet e bloen T-Shirt, eng blo Jeansbox a schwaarz ( schwaarts) Schong un.",
+    "Hien ass ongeféier (around) drësseg Joer al.",
+    "ech beschreiwen d’Fra op der lénkser Säit nieft dem Mann. ( Dativ -explanation)",
+    "Si huet laang, schwaarz, krauseleg Hoer. Si huet kee Brëll un",
+    "si huet e gesträiften T-Shirt un. Den T Shirt ass wäiss, schwaarz (schwaartz) a rout.",
+    "Si ass ongeféier drësseg Joer al.",
+    "d’Fra dréckt d’Kannerkutsch. - drécken = to push",
+    "e Jong sëtzt an der Kannerkutsch. (“in” = in Luxemburgish “an”)",
+    "Hien huet kuerz, brong Hoer.",
+    "Hien huet wäiss a blo Kleeder un",
+    "Hien ass ongeféier fënnef Joer al."
+   ],
+   "notes": [],
+   "from": "Bildbeschreiwung"
+  },
+  {
+   "id": "n-566045a4bf",
+   "topic": "image",
+   "kind": "section",
+   "q": "op der lénkser Säit, op der rietser Säit, am Hannergrond",
+   "hint_en": "Say where things are, with the verb in second place.",
+   "answers": [
+    "6. op der lénkser Säit, op der rietser Säit, am Hannergrond + verb 2nd place ( inversion)",
+    "left, right, middle, background places: 2nd is the verb",
+    "op der lénkser Säit gesinn ech e puer al Gebaier (buildings), Haiser (houses) Hecken ( bushes)",
+    "a Blummen",
+    "op der rietser parkt en Auto op der Strooss"
+   ],
+   "notes": [],
+   "from": "Bildbeschreiwung"
+  },
+  {
+   "id": "n-8fb5ac94eb",
+   "topic": "image",
+   "kind": "section",
+   "q": "Schluss (end)",
+   "hint_en": "Finish: the atmosphere, and whether people look happy.",
+   "answers": [
+    "D’Atmosphär ass relax ( net relax)/ ... net relax",
+    "d’Leit gesi frou aus / d’Leit gesinn net frou aus",
+    "Si hu Spaass",
+    "si laachen zesummen = the laugh together",
+    "ausgesinn = to look like / unfänken - de Cours fänkt um 19 Auer un",
+    "d’Leit gesi frou (happy) aus = people look happy",
+    "de Fra gesäit frou aus",
+    "de Mann gesäit frou aus"
+   ],
+   "notes": [],
+   "from": "Bildbeschreiwung"
+  }
+ ],
+ "extras": [
+  {
+   "topic": "stot",
+   "from": "De Stot / Kommissioune maachen",
+   "lines": [
+    "de Stot (household)",
+    "Akaafslëscht (shopping list)",
+    "Plang ( plan)",
+    "Saach,en ( thing)",
+    "Virdeel = Avantage",
+    "Nodeel = Desavantage",
+    "Auer ( watch)",
+    "um 8 Auer ( at 8 o clock)",
+    "Groussbotz ( big cleaning)",
+    "Stonn,en ( hours)",
+    "en Dag huet 24 Stonnen",
+    "Ennerscheed = difference",
+    "d’lescht Woch ( the last week)",
+    "Auer ( watch)",
+    "um 8 Auer ( at 8 o clock)",
+    "de Weekend = at the weekend",
+    "all Weekend = every Weekend",
+    "botzen = to clean",
+    "strecken = ironing",
+    "staubsaugen = to hoover",
+    "kachen = to cook",
+    "botzen = to clean",
+    "Sport maachen",
+    "Ech maachen oft Sport",
+    "Kommissioune maachen",
+    "Ech maache freides owes Kommissiounen",
+    "zu Mëtteg iessen",
+    "Ech iessen um 13 Auer zu Mëtteg",
+    "um 8 Auer = at 8 o‘clock",
+    "plangen = to plan",
+    "de Stot (household)",
+    "Akaafslëscht (shopping list)",
+    "Plang ( plan)",
+    "Saach,en ( thing)",
+    "Auer ( watch)",
+    "um 8 Auer ( at 8 o clock)",
+    "Stonn,en ( hours)",
+    "en Dag huet 24 Stonnen",
+    "d’lescht Woch ( the last week)"
+   ]
+  },
+  {
+   "topic": "gesondheet",
+   "from": "Gesond Liewen",
+   "lines": [
+    "bequem",
+    "to wear:",
+    "unhunn",
+    "Ech fueren heiansdo mam Vëlo",
+    "Äerdbieren (strawberries), Hambieren ( framboises)",
+    "et gëtt = there is",
+    "et gi(nn) = there are",
+    "schlofen = to sleep",
+    "raschten = to rest",
+    "versichen = to try - versicht = tried",
+    "schmaachen = to taste",
+    "richen = to smell",
+    "fannen = to find",
+    "kennen = to know",
+    "brauchen = to need/ ech brauch = I need",
+    "kënnen = ech kann ( I can)",
+    "adjectives",
+    "séier = fast",
+    "lues = slow",
+    "gesond = healthy",
+    "krank = sick",
+    "frou, glécklech = happy",
+    "bequem – comfortable",
+    "op d’mannst = minimum",
+    "Fësch",
+    "Iessgewunnecht,en ( food habit)",
+    "Fleesch (meat)",
+    "Schlof",
+    "Mëllech",
+    "Geméis ( vegetable)",
+    "Hausdéier,en",
+    "Zäit",
+    "Uebst ( fruits)",
+    "Kéis ( cheese)",
+    "Jughurt",
+    "Botter",
+    "Übung, (en) = exercises",
+    "Gedrénks ( drink, drinks)",
+    "Äppel",
+    "Banann,en",
+    "Waasser",
+    "Brokkoli",
+    "Orang,en",
+    "Béier (beer)",
+    "Tomaten",
+    "Wäin (wine)",
+    "Schmier ( tartine)",
+    "Zalot ( salot)",
+    "Gebeess ( confiture)",
+    "Zopp (soup=",
+    "fir + Adjektiv oder Objekt + ze + infinitiv",
+    "fir spadséieren ze goen",
+    "fir am Bësch spadséieren ze goen",
+    "fir an de Restaurant ze goen"
+   ]
+  },
+  {
+   "topic": "stot",
+   "from": "Additionals fir de Sproochentest",
+   "lines": [
+    "opraumen = to range"
+   ]
+  },
+  {
+   "topic": "transport",
+   "from": "Additionals fir de Sproochentest",
+   "lines": [
+    "am heefegsten = am meeschten ( the most)"
+   ]
+  },
+  {
+   "topic": "image",
+   "from": "Bildbeschreiwung",
+   "lines": [
+    "Verbs:",
+    "gesi(nn) = to see",
+    "ech gesinn eng Famill an enger Stuff",
+    "ginn:",
+    "et gëtt = there is - et gëtt en Auto op der Strooss/ en Auto parkt op der Strooss",
+    "et gi(nn) = there are",
+    "et gi vill Leit op der Strooss",
+    "et gi vill Autoen op der Strooss",
+    "et gi vill Telleren, Glieser... um Dësch",
+    "sëtzen: hie/ si / hatt sëtzt = he sits plural: si sëtzen= they sit/ d’Leit sëtzen um Gras",
+    "stoen: hie steet, si, hatt steet = he stands plural si sti(nn) = they stand",
+    "De Stull steet um Buedem",
+    "sinn",
+    "d’Wieder ass gutt/ d’Leit sinn am Gaart",
+    "hunn",
+    "hien huet vill Spass / d’Leit hu vill Spaass = the people have lots of fun",
+    "for the end to look like = ausgesinn",
+    "gesinn:",
+    "d’Leit gesi frou aus = the people look happy",
+    "d’Leit gesinn net frou aus = the people don’t look happy",
+    "hie gesäit frou aus ( ausgesinn) = he looks happy/ hie gesäit net frou aus = he does not look happy",
+    "d’Leit gesi(nn) frou aus = the people look happy/ d’Leit gesinn net frou aus",
+    "si gesi frou aus",
+    "2 : zwee noun is male",
+    "2: zwou noun is female",
+    "2: zwee noun is neutral",
+    "Leit:",
+    "men, boys , girls: zwee",
+    "Männer, Jongen, Meedercher",
+    "women, couple, families, : zwou",
+    "Fraen, Koppelen, Familljen, Persounen",
+    "zwee - - zwou – zwee -",
+    "e Mann, zwee Männer, dräi Männer",
+    "e Jong , zwee Jongen",
+    "e Puppelchen (baby), zwee Puppelcher",
+    "eng Fra, zwou Fraen, e puer ( some) Fraen",
+    "eng Koppel (couple) , zwou Koppelen",
+    "eng Famill, zwou Familljen",
+    "e Meedchen, zwee Meedercher",
+    "d’Elteren/ d’Grousselteren",
+    "Frënn",
+    "eng Kaz/ Kazen",
+    "e Mupp (small dog), Muppen",
+    "en Hond ( normal dog) Hënn",
+    "Meedchen: hatt ass = she is",
+    "Fra: si ass = she is",
+    "female teacher for kids: eng Joffer - si ass",
+    "female teacher for students as of 12: eng Léierin - si ass",
+    "male teacher: e Schoulmeeschter: hien ass",
+    "Leit = people in general",
+    "Persounen + numbers -ech gesinn 3 Persounen um Bild",
+    "ech gesinn eng Persoun, zwou Persounen, dräi Persounen, sechs Persounen",
+    "ech gesi vill Leit um Bild = a lot of people",
+    "ech gesinn e puer Leit um Bild = some people",
+    "ech mengen et ass eng Famill = I think, I guess, I believe",
+    "ech menge si si Frënn",
+    "ech mengen et ass Summer, well d’Leit liicht Kleeder unhunn/ well hie liicht Kleeder unhuet",
+    "ech mengen et ass Wanter, well d’Leit waarm Kleeder unhunn",
+    "well: verb at the end",
+    "wann: verb at the end",
+    "ech hunn, du hues, hien huet, mir hunn, dir hutt si hunn",
+    "Inversion after places: ( verb second place)",
+    "Op der lénkser Säit ( on the left handside) gesinn ech e Mann...",
+    "Op der rietser Säit ( on the right) ginn et vill Beem (+ plural )/ gesinn ech vill Beem// gëtt et + Singular",
+    "et ginn = there are",
+    "Am Hannergrond ( in the background) ass / gëtt et / ginn et",
+    "An der Mëtt ( in the middle) gesinn ech 3 Persounen.",
+    "(Am Vierdergrond ( in the foreground) ass e Séi lake)",
+    "dem / der/ dem / de(n)",
+    "op + dem =um on the",
+    "on + male: um – um Dësch gesinn ech vill Geschier (dishes)",
+    "on + female: op der- op der Kommoud ginn et vill Dekoratiounen",
+    "on + neutral. um",
+    "anere(n) aner (other) anert aner",
+    "nieft dem Mann sëtzt en anere Mann",
+    "nieft dem Mann sëtzt eng aner Fra",
+    "nieft der Fra setzt en anert Meedchen",
+    "nieft = next to",
+    "Jong, Mann nieft dem Mann sëtzt en anere Mann/ eng aner Fra",
+    "riets, nieft dem Mann ( right, next to the man) sëtzt en anere Mann/ eng aner Fra/ en anert Kand",
+    "en anert Meedchen",
+    "lénks, nieft dem Mann ( left, next to the man)",
+    "nieft dem Mann sëtzt en anere Mann = another man",
+    "nieft der Fra sëtzt eng aner Fra = another woman/ ech gesinn eng aner Spillaktivitéit",
+    "nieft dem Meedchen sëtzt en anert Meedchen = another girl",
+    "aner Spillaktivitéiten",
+    "lénks nieft der Fra sëtzt eng aner Fra/ sëtzt an anere Mann",
+    "riets, nieft der Fra",
+    "lénks nieft dem Mann",
+    "Meedchen nieft dem Meedchen sëtzt en anert Meedchen",
+    "viru(n) = in front of",
+    "virun dem Mann ( virun dem = virum) steet eng aner Fra/ en anert Meedchen",
+    "virun der Fra",
+    "virun dem Meedchen - - d’Haaptstrooss ass virum Haus",
+    "hannert = behind",
+    "hannert dem Canapé gesinn ech Planzen",
+    "hannert der",
+    "hannert dem",
+    "ënnert = under",
+    "ënnert dem Dësch gesinn ech en Tëppech",
+    "ënnert der",
+    "ënnert dem meng Garage ass ënnert mengem Appartement",
+    "d’Parkplaz ass ënnert dem Haus",
+    "iwwert = over",
+    "iwwert dem",
+    "iwwert der",
+    "iwwert dem",
+    "tëscht = between",
+    "tëscht dem .....",
+    "tëscht der Kichen an dem Iesszëmmer gesinn ech Planzen / ginn et Planzen/ steet eng Planz",
+    "tëscht dem Iesszëmmer an der Kichen",
+    "wärend = during",
+    "wärend dem Cours",
+    "wärend der Vakanz",
+    "wärend dem + neutral",
+    "un",
+    "e Bild hänkt un der Mauer /Biller hänken un der Mauer = on the wall",
+    "aner = other / (blo, gréng)",
+    "aner = other",
+    "op der rietser Säit gesinn ech eng aner Spillaktivitéit",
+    "Spillaktivitéit",
+    "other people: aner Leit",
+    "um: on the when the noun is male or neutral",
+    "um Bild = in the picture",
+    "um Dësch = on the table, around the table",
+    "um Internet = on the internet - - ( op zoom = on zoom)",
+    "si sëtzen um Dësch ( 1 table) = they are sitting around the table",
+    "si sëtzen um Dësch ( 5 tables)",
+    "de Papp sëtzt um Canapé, um Stull ( on the chair)",
+    "d ‘Meedchen sëtzt um Stull ( 1 chair)",
+    "5 Kanner sëtzen um Stull ( 5 chairs)",
+    "et gi keng Wolleken um Himmel ( in the sky)",
+    "um Trottoir ( on the side walk)",
+    "um Regal ( on the shelf)",
+    "am Regal ( in the shelf)",
+    "female noun",
+    "ech gesi vill Dekoratiounen op der Kommoud",
+    "Strooss",
+    "en Auto parkt op der Strooss",
+    "movement",
+    "Plaz: Schueberfouer, Floumaart, Maart",
+    "d’Leit trëppelen iwwert d’Plaz",
+    "iwwert d’ Schueberfouer, de Floumaart,de Maart",
+    "d’Leit ginn iwwert d’Strooss ( the cross the street)",
+    "d’Leit ginn iwwert den Zebrasträifen",
+    "Foussgängerzon ( pedestrian area) Groussgaass (Grand-Rue)",
+    "d’Leit trëppelen duerch d’ Foussgängerzon"
+   ]
+  }
+ ]
+}
