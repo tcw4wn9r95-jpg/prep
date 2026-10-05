@@ -204,7 +204,11 @@ async function route() {
   screenEl.className = 'screen';
   screenEl.scrollTop = 0;
 
-  const showTabs = routeName !== 'onboarding' && !FOCUS_ROUTES.has(routeName);
+  // A flash-card round on the Speak tab is a focused task like the drill, and
+  // gets the whole screen; the topic list and the notes page are where you
+  // choose and read, and keep the bar.
+  const inRound = routeName === 'speaking' && params[0] === 'cards' && params[1] !== undefined && params[2] !== 'notes';
+  const showTabs = routeName !== 'onboarding' && !FOCUS_ROUTES.has(routeName) && !inRound;
   tabbarEl.hidden = !showTabs;
   // base.css pads the screen's bottom to clear the bar; without the class that
   // padding leaves a dead strip under a focused card.

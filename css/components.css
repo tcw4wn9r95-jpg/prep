@@ -2124,3 +2124,115 @@
   margin-block: var(--s2) var(--s3);
   border-radius: var(--r-md);
 }
+
+/* ------------------------------------------------------------ speaking notes */
+/* The flash cards for the course questions. The front is the question and
+   nothing competes with it — the whole method is "answer before you look" — and
+   the back is the model answer, set apart so it reads as a quotation from the
+   notes rather than as the app talking. */
+
+.nc__card {
+  text-align: center;
+  padding-block: var(--s5);
+}
+
+/* The question. Luxembourgish at reading size, not heading size: several are
+   two lines long and have to fit a phone above the Show button without a scroll. */
+.nc__q {
+  margin-block-start: var(--s3);
+  font-size: var(--size-lg);
+  font-weight: 750;
+  line-height: var(--lh-snug);
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.nc__topic {
+  margin-block-start: var(--s2);
+  font-size: var(--size-sm);
+  font-weight: 650;
+  color: var(--text-muted);
+}
+
+/* Once the answer is showing the question steps back, so the answer is what the
+   eye lands on, and the question is still there for context. */
+.nc__card.is-revealed .nc__q {
+  font-size: var(--size-md);
+  color: var(--text-muted);
+}
+
+.nc__label {
+  font-size: var(--size-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* One model answer. A rule down the left so several read as several, not as one
+   paragraph that has lost its punctuation. */
+.nc__answer {
+  padding-inline-start: var(--s3);
+  border-inline-start: 3px solid var(--accent);
+  font-size: var(--size-md);
+  line-height: var(--lh-base);
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+/* The glosses and reminders from beside the question: quieter than the answer. */
+.nc__notes {
+  margin-block-start: var(--s3);
+  display: grid;
+  gap: var(--s1);
+}
+
+.nc__note {
+  font-size: var(--size-sm);
+  line-height: var(--lh-base);
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.nc__back {
+  text-align: start;
+  margin-block-start: var(--s3);
+}
+
+.nc__back .nc__label { margin-block-end: var(--s2); }
+
+/* Not yet / Got it, side by side in the sticky bar. "Got it" is the wider one:
+   it is what you press more often, and it should be the easier target. */
+.nc__grade {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--s3);
+}
+
+/* The notes page: every question in the topic, answer behind a tap. */
+.nc__row > summary {
+  cursor: pointer;
+  list-style: none;
+}
+.nc__row > summary::-webkit-details-marker { display: none; }
+.nc__rowq {
+  font-weight: 700;
+  line-height: var(--lh-snug);
+  overflow-wrap: anywhere;
+}
+.nc__row + .nc__row { margin-block-start: var(--s2); }
+.nc__reading > summary { cursor: pointer; }
+
+.notes__mix { text-decoration: none; color: inherit; }
+
+/* The action bar sits on the bottom edge of the screen, not wherever a short
+   card happens to end. The screen is a flex column that fills the viewport, so
+   an auto top margin pushes the bar down; the negative bottom margin gives back
+   the padding a focused screen keeps under its content, so the bar is flush with
+   the edge and the home-indicator inset is the bar's own. */
+.nc__bar {
+  margin-block-start: auto;
+  margin-block-end: calc((var(--s5) + env(safe-area-inset-bottom)) * -1);
+}
+
+.nc__back .source-note { margin-block-start: var(--s3); }

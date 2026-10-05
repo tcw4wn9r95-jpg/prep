@@ -125,6 +125,28 @@ export function loadPicture() {
   return picturePromise;
 }
 
+/**
+ * The course notes as flash cards: questions, model answers, and the reading
+ * material that sat beside them. One file; see `app/js/notes.js` for what a card
+ * is and why it is verbatim.
+ *
+ * Absent is a state, not an error. The file is somebody's study notes and may
+ * not be shipped at all, so a missing one gives an empty deck and the screen says
+ * so, rather than a section that fails to open.
+ */
+let notesPromise = null;
+export function loadSpeakingNotes() {
+  notesPromise ??= loadJson('speaking-notes')
+    .then((file) => ({
+      topics: file.topics ?? [],
+      cards: file.cards ?? [],
+      extras: file.extras ?? [],
+      documents: file.meta?.documents ?? [],
+    }))
+    .catch(() => ({ topics: [], cards: [], extras: [], documents: [] }));
+  return notesPromise;
+}
+
 let sentencesPromise = null;
 export function loadSentences() {
   sentencesPromise ??= Promise.all([

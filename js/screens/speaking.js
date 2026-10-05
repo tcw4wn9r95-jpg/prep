@@ -17,6 +17,7 @@ import { interviewForTopic, loadInterviews, loadImages, loadPhrases, topicIcon, 
 import { Recorder, isSupported, unsupportedReason } from '../recorder.js';
 import { saveRecording, touchStreak, otherPlayer, POINTS, CRITERIA, getMachineFeedback, saveMachineFeedback, learnProgress, STRANDS } from '../store.js';
 import { requestMachineFeedback } from '../sync.js';
+import { renderCards, notesSection } from './speaking-cards.js';
 
 const PREP_SECONDS = 30;
 const MAX_MS = 5 * 60 * 1000;
@@ -27,6 +28,8 @@ export async function render(root, { params, settings, navigate }) {
 
   if (!topicId) return renderChooser(root, { settings, navigate });
   if (topicId === 'basics') return renderBasics(root, { settings, navigate });
+  // The flash-card questions: see screens/speaking-cards.js.
+  if (topicId === 'cards') return renderCards(root, { params, settings, navigate });
   if (mode === 'image') return renderImageTask(root, { topicId, settings, navigate });
   return renderInterview(root, { topicId, settings, navigate });
 }
@@ -34,12 +37,13 @@ export async function render(root, { params, settings, navigate }) {
 /* ------------------------------------------------- the two-topic offer (2a) */
 
 async function renderChooser(root, { settings, navigate }) {
-  const [interviews, phraseItems, wordProd, verbProd, phraseProd] = await Promise.all([
+  const [interviews, phraseItems, wordProd, verbProd, phraseProd, questions] = await Promise.all([
     loadInterviews(),
     loadPhrases(),
     learnProgress(settings.playerId, 'vocab', STRANDS.prod, 0),
     learnProgress(settings.playerId, 'verb', STRANDS.prod, 0),
     learnProgress(settings.playerId, 'phrase', STRANDS.prod, 0),
+    notesSection({ settings }),
   ]);
   const offered = pickTwo(interviews);
 
@@ -50,17 +54,18 @@ async function renderChooser(root, { settings, navigate }) {
   const frames = phraseProd.started;
   const ready = words >= SPEAKING_READY_WORDS && frames >= SPEAKING_READY_FRAMES;
 
+  // The questions come first now: answering them out loud, then checking, is
+  // what the interview is made of. Recording for a partner is still here, below,
+  // because the speaking score on the readiness screen is built from it.
   const amelie = new Amelie({ size: 'md', bubble: true });
-  amelie.say(
-    ready
-      ? 'You have enough to build answers with. The interview is worth trying now.'
-      : 'Recording five minutes of speech is not the place to start. Listen and repeat first — the interview needs words to build answers out of.',
-    'idle',
-  );
+  amelie.say('Answer out loud first, then check your notes. Recording for your partner is further down.', 'idle');
 
   root.append(
     screenHead({ title: 'Speaking', sub: 'Practice saying things in Luxembourgish', back: '#/journey' }),
     el('div', { class: 'card' }, amelie.el),
+
+    el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, 'Practise the questions'),
+    questions,
 
     el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, 'Start here'),
     el(
@@ -79,7 +84,7 @@ async function renderChooser(root, { settings, navigate }) {
       ),
     ),
 
-    el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, 'Exam format'),
+    el('p', { class: 'meter__label', style: { marginBlockStart: 'var(--s5)' } }, 'Record for your partner'),
     readinessNote({ words, frames, ready, totalFrames: phraseItems.length }),
     el(
       'div',
