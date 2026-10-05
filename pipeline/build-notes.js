@@ -36,6 +36,7 @@ const crypto = require('node:crypto');
 
 const paths = require('./lib/paths');
 const { readDocx } = require('./lib/docx');
+const { readPdf } = require('./lib/pdf');
 const config = require('./notes-config');
 
 const OUT = path.join(paths.CONTENT_DIR, 'hand-authored', 'speaking-notes.json');
@@ -54,13 +55,20 @@ const QUESTION_OPENERS = new Set([
   'maacht', 'gitt', 'kaaft', 'iesst', 'denkt', 'mengt', 'liest', 'lauschtert', 'kënnt', 'ginn',
   'gëtt', 'ass', 'wier', 'schafft', 'fuert', 'besicht', 'waart', 'kacht', 'drénkt', 'fëmmt',
   'lieft', 'gesitt', 'sollt', 'hëlleft', 'wäscht', 'probéiert', 'streckt', 'léiert', 'vergläicht',
+  // Yes/no questions open with the verb, so each verb that does is a question word.
+  'drot', 'schenkt', 'däerf', 'musst', 'spillt', 'huet', 'reest', 'interesséiert', 'kuckt', 'sangt',
+  'benotzt',
+  'schwätzt', 'wunnt', 'deelt',
+  'kennt', 'ka', 'kann', 'brauchen', 'beschreift', 'fueren', 'flitt', 'kascht', 'mussen', 'kommentéiert',
+  'präferéiert', 'war', 'ennerscheed',
 ]);
 
 /** Openers that make a question only when a "?" follows: "Wann ech eng Erkältung hunn…" is an answer. */
-const CONDITIONAL_OPENERS = new Set(['wann', 'wa']);
+const CONDITIONAL_OPENERS = new Set(['wann', 'wa', 'virdeeler', 'nodeeler']);
 
 /** Two-word openers, because the first word alone ("mat", "aus", "fir") opens plenty of answers. */
-const QUESTION_PHRASES = new Set(['mat wiem', 'mat wat', 'aus wat', 'fir wat']);
+const QUESTION_PHRASES = new Set(['mat wiem', 'mat wat', 'aus wat', 'fir wat', 'a wéi', 'a wat', 'u wat',
+  'a wéini', 'a wou', 'zanter wéini', 'säit wéini', 'um wéi', 'op wat', 'vu wou', 'bis wéini']);
 
 /**
  * Words that are English and nothing else, so that a gloss is recognised even
@@ -90,6 +98,8 @@ const normalise = (text) =>
     // Word draws list bullets in the Symbol font as private-use glyphs (U+F0B7
     // here); they are formatting, and render as a box anywhere but Word.
     .replace(/[\uE000-\uF8FF\u200b-\u200d\ufeff]/g, '')
+    // Dingbat bullets (❖ • ● ▪ ■ ✓) that some notes use to chain two questions.
+    .replace(/[\u2756\u2022\u25cf\u25aa\u25a0\u2713\u2714]/g, ' ')
     .replace(/[\u00a0\u2007\u202f\t]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
@@ -111,6 +121,17 @@ function outsideParens(text) {
   return out;
 }
 
+/** Where a question ends: its first "?" outside any parenthesis, or -1. */
+function questionMark(text) {
+  let depth = 0;
+  for (let at = 0; at < text.length; at += 1) {
+    if (text[at] === '(') depth += 1;
+    else if (text[at] === ')') depth = Math.max(0, depth - 1);
+    else if (text[at] === '?' && depth === 0) return at;
+  }
+  return -1;
+}
+
 /** True for a line with nothing to say: rules, underscores, bare numbers. */
 const isBlank = (text) => !/[\p{L}]/u.test(text);
 
@@ -126,10 +147,12 @@ const isBlank = (text) => !/[\p{L}]/u.test(text);
  * notes were typed with no question mark at all.
  */
 function isQuestion(text) {
-  const bare = outsideParens(normalise(text)).trim();
+  const bare = outsideParens(questionText(text)).trim();
   const list = words(bare).map((word) => word.toLocaleLowerCase('lb'));
   if (list.length === 0) return false;
   const asked = bare.includes('?');
+  // "brauchen = to need": a gloss that happens to open with a verb that opens questions.
+  if (!asked && /=(?!>)/.test(bare)) return false;
 
   if (QUESTION_PHRASES.has(`${list[0]} ${list[1] ?? ''}`)) return asked || list.length >= 3;
   if (CONDITIONAL_OPENERS.has(list[0])) return asked;
@@ -137,8 +160,17 @@ function isQuestion(text) {
   return asked || (!/[.!]$/.test(bare) && list.length >= 3);
 }
 
-/** A question as it is shown: its list number is not part of it. */
-const questionText = (text) => normalise(text).replace(/^\d+\s*[.)]?\s*/, '');
+/**
+ * A question as it is shown: a bullet, its list number and an "a)" label are
+ * formatting around it, not part of it.
+ */
+const questionText = (text) =>
+  normalise(text)
+    .replace(/^[-–—•*]+\s*/, '')
+    .replace(/^\d+\s*[.)]?\s*/, '')
+    .replace(/^[a-z]\)+\s*/i, '')
+    // "A Wéini war dat?" / "B Wou war dat?": a capital enumerator before a capitalised word.
+    .replace(/^[A-D]\s+(?=\p{Lu})/u, '');
 
 /**
  * Is this line not an answer — an English gloss or a grammar reminder?
@@ -195,11 +227,15 @@ function englishShare(text, isKnown) {
  * "Auchan Amazon …".
  */
 function answerText(text, speakers = new Set()) {
-  const flat = normalise(text);
+  // A bullet or an "a)" label in front is list formatting, like a number.
+  const flat = normalise(text).replace(/^[-–—•*]+\s*/, '').replace(/^[a-d]\)+\s*/i, '');
   const labelled = flat.replace(/^\p{Lu}\p{L}+\s*:\s+/u, '');
   if (labelled !== flat) return labelled;
   const bare = /^(\p{Lu}\p{L}+)\s+(?=\S)/u.exec(flat);
-  return bare && speakers.has(bare[1]) ? flat.slice(bare[0].length) : flat;
+  if (bare && speakers.has(bare[1])) return flat.slice(bare[0].length);
+  // "M. …", "V: …", "M …": a speaker's initial, for the documents that use them.
+  const initial = /^(\p{Lu})(?:\s*[.:]\s*|\s+)(?=\S)/u.exec(flat);
+  return initial && speakers.has(initial[1]) ? flat.slice(initial[0].length) : flat;
 }
 
 /** The names a document puts in front of an answer with a colon: its speakers. */
@@ -227,7 +263,9 @@ function lines(blocks) {
       out.push(block);
       continue;
     }
-    for (const line of String(block.text ?? '').split(/\n+/)) out.push({ ...block, text: line });
+    // "…Concert // b)Hutt Dir …": the notes use "//" to put the next lettered
+    // question on the same line as an answer.
+    for (const line of String(block.text ?? '').split(/\n+|\s+\/\/\s+(?=[a-d]\)+)/)) out.push({ ...block, text: line });
   }
   return out;
 }
@@ -260,18 +298,21 @@ function parseQa(blocks, doc, isKnown) {
   const forceNote = keys(config.forceNote);
   const dropLines = keys(config.drop);
   const ignore = keys(doc.ignore);
-  const splits = new Map((config.split ?? []).map((line) => [key(line), line]));
+  const splits = new Map([...(config.split ?? []), ...(config.splitNote ?? [])].map((line) => [key(line), line]));
+  const splitNotes = keys(config.splitNote);
   const attach = new Map((config.attach ?? []).map((one) => [key(one.line), one.to]));
   const sections = new Map(Object.entries(doc.sections ?? {}).map(([heading, topic]) => [key(heading), topic]));
   const joins = new Map(config.join.map(([a, b]) => [key(b), key(a)]));
   const joinStarts = new Set(config.join.map(([a]) => key(a)));
 
   const speakers = speakersIn(blocks);
+  for (const initial of doc.initials ?? []) speakers.add(initial);
 
   let topic = doc.topic ?? null;
   let current = null;
   let previous = null; // the last answer line, which a continuation extends
   let blanks = 0;
+  const attached = []; // answers that belong to a question, wherever in the document it is
 
   const reading = (text) => {
     const line = answerText(text, speakers);
@@ -326,20 +367,57 @@ function parseQa(blocks, doc, isKnown) {
     // A line that is a question and an answer together: "Wéini ass … ? Tëscht Mee an August".
     let text = raw;
     let tail = null;
+    let tailIsNote = splitNotes.has(k);
     if (splits.has(k)) {
       const at = raw.indexOf('?');
       text = raw.slice(0, at + 1);
       tail = raw.slice(at + 1).trim();
+    } else if (isQuestion(raw)) {
+      // "Wéi oft tankt Dir? - tanken = to fill gaz": a gloss typed on the same
+      // line is a note on the question, not part of it.
+      const at = questionMark(raw);
+      const rest = at < 0 ? '' : raw.slice(at + 1).replace(/^[\s\-–—/]+/, '');
+      const glossed =
+        rest !== '' &&
+        (/^=/.test(raw.slice(at + 1).trim()) || (!rest.includes('?') && (isNote(rest, isKnown) || outsideParens(rest).trim() === '')));
+      if (glossed) {
+        text = raw.slice(0, at + 1);
+        tail = rest;
+        tailIsNote = true;
+      }
+    }
+
+    // "oder" between two alternative answers is the notes' own punctuation.
+    if (/^(oder|or)$/i.test(raw)) {
+      dropped.push(raw);
+      continue;
+    }
+
+    // "= Wéi eng Occassioune si wichteg…" under a question is the same question
+    // asked another way, not a new one. It annotates the card; the answer that
+    // follows still belongs to it.
+    if (/^=\s*\S/.test(raw) && current) {
+      if (current.answers.length === 0) current.notes.push(raw);
+      else reading(raw);
+      continue;
     }
 
     const asking = forceQuestion.has(k) || (!forceAnswer.has(k) && !forceNote.has(k) && isQuestion(text));
     if (asking) {
-      current = { topic, q: questionText(text), answers: [], notes: [], from: doc.title };
+      // A document that spans two exam topics routes a question by what it asks
+      // about; the rest take the document's topic.
+      const routed = (doc.route ?? []).find((rule) => rule.match.test(text));
+      current = { topic: routed?.topic ?? topic, q: questionText(text).replace(/\s*[–—-]+$/, ''), answers: [], notes: [], from: doc.title };
       cards.push(current);
       previous = null;
       if (tail) {
-        current.answers.push(tail);
-        previous = { text: tail };
+        tail = tail.replace(/^[\s\-–—]+/, '');
+        if (tailIsNote) {
+          current.notes.push(tail);
+        } else {
+          current.answers.push(answerText(tail, speakers));
+          previous = { text: answerText(tail, speakers) };
+        }
       }
       continue;
     }
@@ -355,7 +433,12 @@ function parseQa(blocks, doc, isKnown) {
       // Before the first answer, a note belongs to the question it annotates.
       // After one it is reading — "botzen = to clean" under a finished answer
       // is vocabulary for the topic, not for that card.
-      if (current.answers.length === 0) current.notes.push(answerText(raw, speakers));
+      //
+      // An English *question* is neither: the Kaddoen notes put the English
+      // version of the next question on a line of its own, and attached to the
+      // card above it that is a translation of the wrong question.
+      const englishQuestion = /\?\s*$/.test(outsideParens(raw).trim());
+      if (current.answers.length === 0 && !englishQuestion) current.notes.push(answerText(raw, speakers));
       else reading(raw);
       continue;
     }
@@ -365,21 +448,30 @@ function parseQa(blocks, doc, isKnown) {
     // This answer belongs to a different question than the one above it: two
     // questions share a paragraph and the answer follows both.
     if (attach.has(k)) {
-      const target = cards.find((card) => key(card.q) === key(questionText(attach.get(k))));
-      if (!target) throw new Error(`attach: no question "${attach.get(k)}" before "${raw}"`);
-      target.answers.push(line);
+      attached.push({ to: attach.get(k), line, raw });
       continue;
     }
 
     // A sentence cut across two paragraphs: the first ends on a comma, or the
     // config says the second continues the first.
-    if (previous && (joins.get(k) === key(previous.text) || /,$/.test(previous.text))) {
+    // A line that opens with a comma carries on the one above, unless that one
+    // ended its sentence.
+    const continues = /^,/.test(raw) && previous && !/[.!?]$/.test(previous.text.trim());
+    if (previous && (joins.get(k) === key(previous.text) || /,$/.test(previous.text) || continues)) {
       previous.text = `${previous.text} ${line}`;
       current.answers[current.answers.length - 1] = previous.text;
     } else {
       current.answers.push(line);
       previous = { text: line };
     }
+  }
+
+  // An answer can come before the question it belongs to, so these wait until
+  // every question is known.
+  for (const one of attached) {
+    const target = cards.find((card) => key(card.q) === key(questionText(one.to)));
+    if (!target) throw new Error(`attach: no question "${one.to}" for "${one.raw}"`);
+    target.answers.push(one.line);
   }
 
   return { cards, extras, dropped, used };
@@ -432,6 +524,52 @@ function parseSections(blocks, doc) {
   return { cards, extras, dropped, used };
 }
 
+/* ----------------------------------------------------------- reading files */
+
+/**
+ * Does this PDF line start a new item rather than continue the one above?
+ *
+ * A bullet, a list number, an "a)" label, or a question word. Everything else
+ * after a long line is the rest of a sentence the page was too narrow for.
+ */
+function startsItem(line) {
+  return /^([-–—•*]\s*|\d+\s*[.)]?\s+|[a-z]\)\s*)/i.test(line) || isQuestion(line);
+}
+
+/**
+ * A PDF has lines, not paragraphs: the page wraps a sentence wherever it runs
+ * out of room. A line that reaches the wrap width and is followed by something
+ * that does not start a new item is the front of a sentence cut in two.
+ */
+function unwrap(lines, wrapAt) {
+  const out = [];
+  let physical = 0; // the length of the line above as the page printed it, not as joined
+  for (const line of lines) {
+    const previous = out[out.length - 1];
+    if (wrapAt && previous && physical >= wrapAt && !startsItem(normalise(line))) {
+      out[out.length - 1] = `${previous} ${line}`;
+    } else {
+      out.push(line);
+    }
+    physical = normalise(line).length;
+  }
+  return out;
+}
+
+/** A document as blocks: paragraphs and tables from a .docx, lines from a .pdf. */
+function readBlocks(file, doc) {
+  if (!/\.pdf$/i.test(file)) {
+    const blocks = readDocx(file);
+    if (!doc.tablesAsContent) return blocks;
+    // A document whose text sits inside a table: the cells are its paragraphs.
+    return blocks.flatMap((block) =>
+      block.kind === 'table' ? block.rows.flat().flat().map((text) => ({ kind: 'p', text })) : [block],
+    );
+  }
+  const lines = readPdf(file).flat();
+  return unwrap(lines, doc.wrapAt ?? 0).map((text) => ({ kind: 'p', text }));
+}
+
 /* --------------------------------------------------------------- build */
 
 /** Merge cards that ask the same question: one card, every answer. */
@@ -455,14 +593,14 @@ function merge(cards) {
 const cardId = (card) => `n-${crypto.createHash('sha1').update(`${card.topic}|${key(card.q)}`).digest('hex').slice(0, 10)}`;
 
 function documentFor(file) {
-  const stem = path.basename(file).replace(/\.docx$/i, '').replace(/^[0-9a-f]{8}-/i, '');
+  const stem = path.basename(file).replace(/\.(docx|pdf)$/i, '').replace(/^[0-9a-f]{8}-/i, '');
   return config.documents.find((doc) => doc.file.test(stem)) ?? null;
 }
 
 async function build({ dir, audit = false }) {
   if (!dir) throw new Error('usage: npm run build:notes -- <folder of .docx files> [--audit]');
-  const files = fs.readdirSync(dir).filter((name) => /\.docx$/i.test(name) && !name.startsWith('~$'));
-  if (files.length === 0) throw new Error(`no .docx files in ${dir}`);
+  const files = fs.readdirSync(dir).filter((name) => /\.(docx|pdf)$/i.test(name) && !name.startsWith('~$'));
+  if (files.length === 0) throw new Error(`no .docx or .pdf files in ${dir}`);
 
   const unknown = files.filter((name) => !documentFor(name));
   if (unknown.length > 0) {
@@ -488,7 +626,7 @@ async function build({ dir, audit = false }) {
   for (const doc of config.documents) {
     const file = files.find((name) => documentFor(name) === doc);
     if (!file) continue;
-    const blocks = readDocx(path.join(dir, file));
+    const blocks = readBlocks(path.join(dir, file), doc);
     const parsed = doc.kind === 'sections' ? parseSections(blocks, doc) : parseQa(blocks, doc, isKnown);
     all.push(...parsed.cards);
     extras.push(...parsed.extras);
@@ -515,6 +653,7 @@ async function build({ dir, audit = false }) {
     ...config.drop,
     ...config.join.flat(),
     ...(config.split ?? []),
+    ...(config.splitNote ?? []),
     ...(config.attach ?? []).map((one) => one.line),
   ];
   for (const line of wanted) if (!used.has(key(line))) problems.push(`override matches no line: ${line}`);
@@ -629,4 +768,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { build, parseQa, parseSections, isQuestion, isNote, questionText, answerText, speakersIn, normalise, key, merge };
+module.exports = { build, readBlocks, parseQa, parseSections, isQuestion, isNote, questionText, answerText, speakersIn, normalise, key, merge, unwrap };

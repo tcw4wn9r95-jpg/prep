@@ -28,6 +28,7 @@ const ROOT = path.join(__dirname, '..', '..');
 const readJson = (...parts) => JSON.parse(fs.readFileSync(path.join(ROOT, ...parts), 'utf8'));
 
 const { readDocx } = require('../lib/docx.js');
+const { readPdf } = require('../lib/pdf.js');
 const build = require('../build-notes.js');
 
 let notes;
@@ -104,6 +105,41 @@ test('docx: tables are read as rows of cells of lines', () => {
 
 test('docx: a file that is not a docx says so', () => {
   assert.throws(() => readDocx(Buffer.from('not a zip at all, just text')), /not a zip/);
+});
+
+/** A one-page PDF whose single font maps byte codes straight to Latin-1, with a Flate content stream. */
+function pdf(content, { flate = true, toUnicode = true } = {}) {
+  const cmap = '/CIDInit /ProcSet findresource begin\n1 begincodespacerange\n<00> <FF>\nendcodespacerange\n1 beginbfrange\n<20> <FF> <0020>\nendbfrange\nend';
+  const body = flate ? zlib.deflateSync(Buffer.from(content, 'latin1')) : Buffer.from(content, 'latin1');
+  const objects = [
+    '<< /Type /Catalog /Pages 2 0 R >>',
+    '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
+    '<< /Type /Page /Parent 2 0 R /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>',
+    [`<< ${flate ? '/Filter /FlateDecode ' : ''}/Length ${body.length} >>\nstream\n`, body, '\nendstream'],
+    `<< /Type /Font /Subtype /Type1 /BaseFont /Test${toUnicode ? ' /ToUnicode 6 0 R' : ''} >>`,
+    [`<< /Length ${cmap.length} >>\nstream\n`, Buffer.from(cmap), '\nendstream'],
+  ];
+  const parts = [Buffer.from('%PDF-1.4\n')];
+  objects.forEach((object, at) => {
+    parts.push(Buffer.from(`${at + 1} 0 obj\n`));
+    for (const piece of Array.isArray(object) ? object : [object]) parts.push(Buffer.isBuffer(piece) ? piece : Buffer.from(piece, 'latin1'));
+    parts.push(Buffer.from('\nendobj\n'));
+  });
+  parts.push(Buffer.from('trailer\n<< /Root 1 0 R >>\n%%EOF'));
+  return Buffer.concat(parts);
+}
+
+test('pdf: lines come out top to bottom whatever order they were drawn in, and accents survive', () => {
+  const page = readPdf(
+    pdf('BT /F1 12 Tf 72 680 Td (Jo, ech w\\353ess et) Tj ET\nBT /F1 12 Tf 72 700 Td [(Wat ) -20 (ass dat?)] TJ ET'),
+  );
+  assert.deepEqual(page, [['Wat ass dat?', 'Jo, ech wëess et']]);
+});
+
+test('pdf: what it cannot read reliably stops it, rather than coming out almost right', () => {
+  assert.throws(() => readPdf(Buffer.from('not a pdf')), /not a PDF/);
+  assert.throws(() => readPdf(pdf('BT ET', { toUnicode: false })), /no ToUnicode/);
+  assert.throws(() => readPdf(Buffer.from(pdf('BT ET').toString('latin1').replace('/FlateDecode', '/LZWDecode'), 'latin1')), /only FlateDecode/);
 });
 
 /* ---------------------------------------------------------- classifiers */
@@ -233,6 +269,69 @@ test('parse: the same question asked twice is one card with every answer', () =>
   assert.deepEqual(merged[0].answers, ['Jo', 'Nee']);
 });
 
+test('parse: a gloss typed on the question\'s own line is a note on it, not part of the question', () => {
+  const { cards } = parse([p('Wéi oft tankt Dir? - tanken = to fill gaz'), p('Eemol de Mount'), p('Hutt Dir en Auto? (a car)'), p('Jo')]);
+  assert.equal(cards[0].q, 'Wéi oft tankt Dir?');
+  assert.deepEqual(cards[0].notes, ['tanken = to fill gaz']);
+  assert.deepEqual(cards[0].answers, ['Eemol de Mount']);
+  assert.equal(cards[1].q, 'Hutt Dir en Auto?', 'a parenthesis on its own is a gloss too');
+});
+
+test('parse: a second question on the line is not a gloss', () => {
+  const { cards } = parse([p('Hutt Dir Hausdéieren? Wien? Firwat?'), p('Nee')]);
+  assert.equal(cards[0].q, 'Hutt Dir Hausdéieren? Wien? Firwat?');
+});
+
+test('parse: a speaker initial is removed only where the document uses initials', () => {
+  const blocks = [p('Wat maacht Dir?'), p('M. Ech schaffen'), p('V Ech kucken Filmer'), p('L. huet vill Schlässer')];
+  assert.deepEqual(parse(blocks, { initials: ['M', 'V'] }).cards[0].answers, ['Ech schaffen', 'Ech kucken Filmer', 'L. huet vill Schlässer']);
+  assert.deepEqual(parse(blocks).cards[0].answers, ['M. Ech schaffen', 'V Ech kucken Filmer', 'L. huet vill Schlässer']);
+});
+
+test('parse: a line that opens with a comma carries on the answer above, unless that ended its sentence', () => {
+  const { cards } = parse([p('Wat ass dat?'), p('Jo, ech kucke gär Filmer'), p(', well ech dat interessant fannen'), p('Nee.'), p(', well ech keng Zäit hunn')]);
+  assert.deepEqual(cards[0].answers, ['Jo, ech kucke gär Filmer , well ech dat interessant fannen', 'Nee.', ', well ech keng Zäit hunn']);
+});
+
+test('parse: "= …" under a question is the same question another way, and a lettered label is list formatting', () => {
+  const { cards } = parse([p('Wat ass dat?'), p('= Wat ass dat do?'), p('b) Jo, et ass gutt')]);
+  assert.deepEqual(cards[0].notes, ['= Wat ass dat do?']);
+  assert.deepEqual(cards[0].answers, ['Jo, et ass gutt']);
+});
+
+test('parse: a gloss that opens with a question verb is still a gloss', () => {
+  assert.ok(!build.isQuestion('brauchen = to need/ ech brauch = I need'));
+  assert.ok(build.isQuestion('Brauchen Touristen e Visa?'));
+});
+
+test('parse: "Virdeeler sinn:" is an answer; "Virdeeler an Nodeeler vum Online Shopping?" is a question', () => {
+  assert.ok(!build.isQuestion('Virdeeler sinn:/ e Virdeel ass'));
+  assert.ok(build.isQuestion('Virdeeler an Nodeeler vum Online Shopping?'));
+});
+
+test('parse: a capital "A"/"B" in front of a question is an enumerator', () => {
+  assert.equal(build.questionText('B Wou war dat?'), 'Wou war dat?');
+  assert.equal(build.questionText('A wéi enger Sprooch liest Dir?'), 'A wéi enger Sprooch liest Dir?', 'but "a wéi" is a real opener');
+});
+
+test('pdf notes: a wrapped sentence is joined by the width of the printed line, not of the joined one', () => {
+  const long = 'x'.repeat(90);
+  // Line 2 ends the sentence on line 1; line 3 is not a continuation of the joined line.
+  assert.deepEqual(build.unwrap([long, 'perséinlech getraff?', 'Ech war am Juli'], 88), [`${long} perséinlech getraff?`, 'Ech war am Juli']);
+  assert.deepEqual(build.unwrap(['Wat ass dat?', 'Jo'], 88), ['Wat ass dat?', 'Jo']);
+});
+
+test('docx notes: a document whose text sits in a table is read cell by cell when it says so', () => {
+  const file = path.join(require('node:os').tmpdir(), `notes-table-${process.pid}.docx`);
+  fs.writeFileSync(file, docx('<w:tbl><w:tr><w:tc>' + para(run('Wat ass dat?')) + para(run('Jo')) + '</w:tc></w:tr></w:tbl>'));
+  try {
+    assert.equal(build.readBlocks(file, {})[0].kind, 'table');
+    assert.deepEqual(build.readBlocks(file, { tablesAsContent: true }).map((block) => [block.kind, block.text]), [['p', 'Wat ass dat?'], ['p', 'Jo']]);
+  } finally {
+    fs.rmSync(file, { force: true });
+  }
+});
+
 test('parse: a section document makes a card per heading and keeps the reference apart', () => {
   const sections = {
     title: 'Bild',
@@ -286,7 +385,7 @@ test('notes data: no card is a speaker label, a number, or a bare fragment prete
     // The first version made "mat mengem Mann/ mat menger Fra" a question.
     // The two the config forces are questions the heuristic cannot see: one ends
     // on a full stop, one opens with a parenthesis.
-    const forced = require('../notes-config.js').forceQuestion.map(build.key);
+    const forced = require('../notes-config.js').forceQuestion.map((line) => build.key(build.questionText(line)));
     if (card.kind !== 'section' && !forced.includes(build.key(card.q))) {
       assert.ok(build.isQuestion(card.q) || /[?]/.test(card.q), `does not read as a question: ${card.q}`);
     }

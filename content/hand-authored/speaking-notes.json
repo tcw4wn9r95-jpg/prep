@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-10-05T20:27:52.601Z",
+  "generatedAt": "2026-10-05T21:09:05.291Z",
   "generator": "pipeline/build-notes.js",
   "source": "Course study notes supplied by the learner. Every question, answer and note is a line of those documents, verbatim: not LOD-derived and not validated against LOD, so spellings may differ from the dictionary. Only whitespace, list numbers and speaker labels were removed.",
   "documents": [
@@ -8,6 +8,17 @@
    "de Summer – de Wanter",
    "Gesond Liewen",
    "Additionals fir de Sproochentest",
+   "Moud a Kleeder",
+   "Liesen",
+   "Kaddoen",
+   "Kreativitéit / Fräizäit / Hobbyen",
+   "Musek",
+   "Tourismus",
+   "Sport",
+   "Transportmëttelen",
+   "Wunnen",
+   "Technologien / Technik / Medien",
+   "Sproochen",
    "Bildbeschreiwung"
   ]
  },
@@ -23,8 +34,8 @@
    "id": "joreszäiten",
    "title_lb": "Joreszäiten",
    "title_en": "Summer and winter",
-   "total": 41,
-   "answered": 36
+   "total": 40,
+   "answered": 35
   },
   {
    "id": "gesondheet",
@@ -37,78 +48,78 @@
    "id": "sport",
    "title_lb": "Sport",
    "title_en": "Sport",
-   "total": 9,
-   "answered": 8
+   "total": 39,
+   "answered": 38
   },
   {
    "id": "sproochen",
    "title_lb": "Sproochen",
    "title_en": "Languages",
-   "total": 12,
-   "answered": 10
+   "total": 42,
+   "answered": 35
   },
   {
    "id": "kleeder",
    "title_lb": "Kleeder",
    "title_en": "Clothes",
-   "total": 15,
-   "answered": 0
+   "total": 28,
+   "answered": 13
   },
   {
    "id": "wunnen",
    "title_lb": "Wunnen",
    "title_en": "My living space",
-   "total": 11,
-   "answered": 7
+   "total": 63,
+   "answered": 59
   },
   {
    "id": "medien",
    "title_lb": "Medien",
    "title_en": "Media and technology",
-   "total": 4,
-   "answered": 2
+   "total": 56,
+   "answered": 53
   },
   {
    "id": "liesen",
    "title_lb": "Liesen",
    "title_en": "Reading",
-   "total": 9,
-   "answered": 4
+   "total": 30,
+   "answered": 25
   },
   {
    "id": "hobbyen",
    "title_lb": "Hobbyen",
    "title_en": "Hobbies",
-   "total": 7,
-   "answered": 6
+   "total": 74,
+   "answered": 55
   },
   {
    "id": "kaddoen",
    "title_lb": "Kaddoen",
    "title_en": "Giving gifts",
-   "total": 6,
-   "answered": 0
+   "total": 40,
+   "answered": 33
   },
   {
    "id": "vakanz",
    "title_lb": "Vakanz",
    "title_en": "Travel and holidays",
-   "total": 29,
-   "answered": 23
+   "total": 47,
+   "answered": 37
   },
   {
    "id": "kreativitéit",
    "title_lb": "Konschthandwierk",
    "title_en": "Creativity",
-   "total": 4,
-   "answered": 0
+   "total": 7,
+   "answered": 3
   },
   {
    "id": "transport",
    "title_lb": "Transport",
    "title_en": "Transport",
-   "total": 14,
-   "answered": 8
+   "total": 53,
+   "answered": 47
   },
   {
    "id": "image",
@@ -311,56 +322,66 @@
    "from": "De Stot / Kommissioune maachen"
   },
   {
-   "id": "n-0ac139fd3e",
+   "id": "n-6e27d27de4",
    "topic": "stot",
-   "q": "Wéini streckt Dir? – strecken = ironing",
+   "q": "Wéini streckt Dir?",
    "answers": [
     "Ech strecke freides owes ( wou streckt Dir? - ech strecken an der Stuff= in the living)"
    ],
-   "notes": [],
+   "notes": [
+    "strecken = ironing"
+   ],
    "from": "De Stot / Kommissioune maachen"
   },
   {
-   "id": "n-d36a61562e",
+   "id": "n-5c0fb51694",
    "topic": "stot",
-   "q": "Wéi dacks = oft( how often) maacht Dir eng Wäsch? - eng Wäsch machen = to do laundry",
+   "q": "Wéi dacks = oft( how often) maacht Dir eng Wäsch?",
    "answers": [
     "Ech maachen eng Wäsch eemol pro Woch"
    ],
-   "notes": [],
+   "notes": [
+    "eng Wäsch machen = to do laundry"
+   ],
    "from": "De Stot / Kommissioune maachen"
   },
   {
-   "id": "n-7520584f2b",
+   "id": "n-040ef041a0",
    "topic": "stot",
-   "q": "Mat wiem wunnt Dir zesummen? with whom do you live together",
+   "q": "Mat wiem wunnt Dir zesummen?",
    "answers": [
     "mat mengem Mann/ mat menger Fra/ mat mengem Kand- mat menge Kanner , mat menge Frënn ( mat mengen Elteren)",
     "Ech wunne mat menger Famill zesummen ( mat wiem genau- mat mengem Mann a met menge(n) Kanner)",
     "Ech wunne mat=> menger Famill zesummen ( mat menger Fra a mat menge Kanner)"
    ],
-   "notes": [],
+   "notes": [
+    "with whom do you live together"
+   ],
    "from": "De Stot / Kommissioune maachen"
   },
   {
-   "id": "n-34179716d7",
+   "id": "n-bc8a84fb80",
    "topic": "stot",
-   "q": "Wien hëlleft Iech de Stot zu maachen? = Hëlleft een Iech am Stot?",
+   "q": "Wien hëlleft Iech de Stot zu maachen?",
    "answers": [
     "Mäi Mann hëlleft mir, de Stot ze maachen - ( who? = mai Mann)",
     "Meng Fra hëlleft mir ,de Stot ze maachen"
    ],
-   "notes": [],
+   "notes": [
+    "= Hëlleft een Iech am Stot?"
+   ],
    "from": "De Stot / Kommissioune maachen"
   },
   {
-   "id": "n-867ec2b89c",
+   "id": "n-116e7dd44f",
    "topic": "stot",
-   "q": "Hutt Dir eng Spullmaschinn? = dishwasher",
+   "q": "Hutt Dir eng Spullmaschinn?",
    "answers": [
     "Jo, ech hunn eng Spullmaschinn"
    ],
-   "notes": [],
+   "notes": [
+    "= dishwasher"
+   ],
    "from": "De Stot / Kommissioune maachen"
   },
   {
@@ -376,13 +397,15 @@
    "from": "De Stot / Kommissioune maachen"
   },
   {
-   "id": "n-ad283a546b",
+   "id": "n-c0b3a1dc48",
    "topic": "stot",
-   "q": "Wéi oft staubsaugt Dir d’Wunneng? -staubsaugen = to hoover",
+   "q": "Wéi oft staubsaugt Dir d’Wunneng?",
    "answers": [
     "Ech staubsaugen d’Wunneng zweemol pro Woch"
    ],
-   "notes": [],
+   "notes": [
+    "staubsaugen = to hoover"
+   ],
    "from": "De Stot / Kommissioune maachen"
   },
   {
@@ -726,27 +749,30 @@
    "from": "de Summer – de Wanter"
   },
   {
-   "id": "n-5b693151c8",
+   "id": "n-e2dcb263b0",
    "topic": "gesondheet",
-   "q": "Wat vermeid Dir z’iessen? ( to avoid)",
+   "q": "Wat vermeid Dir z’iessen?",
    "answers": [
     "Ech vermeide Crevetten z’iessen ( fir wat?",
     "Ech weess et net ( I don’t know it)"
    ],
    "notes": [
+    "( to avoid)",
     "vermeiden = to avoid"
    ],
    "from": "Gesond Liewen"
   },
   {
-   "id": "n-8e895c44c3",
+   "id": "n-77c6b5f4ee",
    "topic": "gesondheet",
-   "q": "Firwat befollegen ( follow) d'Leit haut keng gesond Iessgewunnechten? food habit",
+   "q": "Firwat befollegen ( follow) d'Leit haut keng gesond Iessgewunnechten?",
    "answers": [
     "D’Leit hunn haut keng Zäit méi ( not anymore).",
     "D’Leit sinn ze (too) bequem, fir eppes (something) ze kachen"
    ],
-   "notes": [],
+   "notes": [
+    "food habit"
+   ],
    "from": "Gesond Liewen"
   },
   {
@@ -845,13 +871,15 @@
    "from": "Gesond Liewen"
   },
   {
-   "id": "n-e0db75b71c",
+   "id": "n-91bd1fb1bf",
    "topic": "gesondheet",
-   "q": "Wat fir Geméisaarten kennt Dir oder hutt Dir gär ? – kennen = to know / kënnen = can",
+   "q": "Wat fir Geméisaarten kennt Dir oder hutt Dir gär ?",
    "answers": [
     "Ech hunn Tomaten a Brokkoli gär."
    ],
-   "notes": [],
+   "notes": [
+    "kennen = to know / kënnen = can"
+   ],
    "from": "Gesond Liewen"
   },
   {
@@ -875,23 +903,27 @@
    "from": "Gesond Liewen"
   },
   {
-   "id": "n-9f90c086f5",
+   "id": "n-e5faa71174",
    "topic": "gesondheet",
-   "q": "Wat fir Mëllechprodukter kennt Dir? -do you know",
+   "q": "Wat fir Mëllechprodukter kennt Dir?",
    "answers": [
     "Ech kenne Mëllech, Botter, Kéis, Jughurt, Kefir"
    ],
-   "notes": [],
+   "notes": [
+    "do you know"
+   ],
    "from": "Gesond Liewen"
   },
   {
-   "id": "n-8351be25d8",
+   "id": "n-2cb272997c",
    "topic": "gesondheet",
-   "q": "iesst Dir léiwer Fësch oder Fleesch? – vergläicht",
+   "q": "iesst Dir léiwer Fësch oder Fleesch?",
    "answers": [
     "Ech iesse léiwer Fleesch wéi Fësch"
    ],
-   "notes": [],
+   "notes": [
+    "vergläicht"
+   ],
    "from": "Gesond Liewen"
   },
   {
@@ -1190,11 +1222,13 @@
    "from": "Gesond Liewen"
   },
   {
-   "id": "n-9b5e111b96",
+   "id": "n-0b0b70963f",
    "topic": "sport",
-   "q": "Denkt Dir, datt jiddereen e bëssen Sport soll maachen? Firwat",
+   "q": "Denkt Dir, datt jiddereen e bëssen Sport soll maachen?",
    "answers": [],
-   "notes": [],
+   "notes": [
+    "Firwat"
+   ],
    "from": "Additionals fir de Sproochentest"
   },
   {
@@ -1239,13 +1273,15 @@
    "from": "Additionals fir de Sproochentest"
   },
   {
-   "id": "n-fcfc0ecf98",
+   "id": "n-57d1fa57c6",
    "topic": "sport",
-   "q": "Wéi eng Sportaarten si gutt fir eeler Leit? ( Senioren)",
+   "q": "Wéi eng Sportaarten si gutt fir eeler Leit?",
    "answers": [
     "Spadséiere goen, schwamme goe si gutt fir eeler Leit"
    ],
-   "notes": [],
+   "notes": [
+    "( Senioren)"
+   ],
    "from": "Additionals fir de Sproochentest"
   },
   {
@@ -1269,14 +1305,16 @@
    "from": "Additionals fir de Sproochentest"
   },
   {
-   "id": "n-90ed1f0c1e",
+   "id": "n-502f4a5cf9",
    "topic": "sport",
-   "q": "Wéi eng Ausrüstung braucht Dir fir Äre Sport? ( e Rackett, eng Yogamatt)",
+   "q": "Wéi eng Ausrüstung braucht Dir fir Äre Sport?",
    "answers": [
     "Jo, ech brauch e Pingpongsdesch , eng Rackett an e Partner",
     "Jo, ech brauch e Schwammbaseng an e Maillot"
    ],
-   "notes": [],
+   "notes": [
+    "( e Rackett, eng Yogamatt)"
+   ],
    "from": "Additionals fir de Sproochentest"
   },
   {
@@ -1310,13 +1348,15 @@
    "from": "Additionals fir de Sproochentest"
   },
   {
-   "id": "n-02f53d7436",
+   "id": "n-9350c29f23",
    "topic": "sproochen",
-   "q": "Wat fir eng Sprooch fannt Dir am schéinsten? ( nicest)",
+   "q": "Wat fir eng Sprooch fannt Dir am schéinsten?",
    "answers": [
     "ech fannen Englesch am beschten ( the best)"
    ],
-   "notes": [],
+   "notes": [
+    "( nicest)"
+   ],
    "from": "Additionals fir de Sproochentest"
   },
   {
@@ -1330,13 +1370,15 @@
    "from": "Additionals fir de Sproochentest"
   },
   {
-   "id": "n-754ca94a1d",
+   "id": "n-367e5bcc99",
    "topic": "sproochen",
-   "q": "Wat maacht Dir, wann Dir e Wuert (word) net verstitt? verstoen ( to understand)",
+   "q": "Wat maacht Dir, wann Dir e Wuert (word) net verstitt?",
    "answers": [
     "ech sichen d’Wuert op lod punkt lu"
    ],
-   "notes": [],
+   "notes": [
+    "verstoen ( to understand)"
+   ],
    "from": "Additionals fir de Sproochentest"
   },
   {
@@ -1576,13 +1618,15 @@
    "from": "Additionals fir de Sproochentest"
   },
   {
-   "id": "n-bb0a291ac7",
+   "id": "n-66381de1fb",
    "topic": "joreszäiten",
-   "q": "Gitt Dir gär op eng Terrasse fir eppes ze drénken? ( fir e Patt ze huelen means the same)",
+   "q": "Gitt Dir gär op eng Terrasse fir eppes ze drénken?",
    "answers": [
     "Jo, ech gi gär op eng Terrass, fir eppes ze drénken"
    ],
-   "notes": [],
+   "notes": [
+    "( fir e Patt ze huelen means the same)"
+   ],
    "from": "Additionals fir de Sproochentest"
   },
   {
@@ -1666,16 +1710,8 @@
    "topic": "joreszäiten",
    "q": "Kacht Dir am Wanter anescht (differently) wéi am Summer",
    "answers": [
-    "Neen, ech kachen Indesch Kichen am Summer an am Wanter"
-   ],
-   "notes": [],
-   "from": "Additionals fir de Sproochentest"
-  },
-  {
-   "id": "n-4322f57a6b",
-   "topic": "joreszäiten",
-   "q": "Wéi fillt Dir Iech, wann et wéineg (little) Sonn gëtt net vill = wéineg",
-   "answers": [
+    "Neen, ech kachen Indesch Kichen am Summer an am Wanter",
+    "Wéi fillt Dir Iech, wann et wéineg (little) Sonn gëtt net vill = wéineg",
     "E bësse Sonn am Wanter mécht mech frou"
    ],
    "notes": [],
@@ -1844,11 +1880,13 @@
    "from": "Additionals fir de Sproochentest"
   },
   {
-   "id": "n-6e244efefc",
+   "id": "n-3a12064e28",
    "topic": "medien",
-   "q": "Mengt Dir, datt d’kënschtlech Intelligenz (KI / AI) eng Chance oder eng Gefor (danger) ass ? =( Virdeeler , Nodeeler )",
+   "q": "Mengt Dir, datt d’kënschtlech Intelligenz (KI / AI) eng Chance oder eng Gefor (danger) ass ?",
    "answers": [],
-   "notes": [],
+   "notes": [
+    "=( Virdeeler , Nodeeler )"
+   ],
    "from": "Additionals fir de Sproochentest"
   },
   {
@@ -1952,13 +1990,15 @@
    "from": "Additionals fir de Sproochentest"
   },
   {
-   "id": "n-831ee2ed4d",
+   "id": "n-78d9ac4f8f",
    "topic": "hobbyen",
-   "q": "Wéi beaflosst Musek Är Stëmmung? (mood)",
+   "q": "Wéi beaflosst Musek Är Stëmmung?",
    "answers": [
     "Musek ass ganz wichteg fir eng gutt Stëmmung ze kréien"
    ],
-   "notes": [],
+   "notes": [
+    "(mood)"
+   ],
    "from": "Additionals fir de Sproochentest"
   },
   {
@@ -2168,13 +2208,15 @@
    "from": "Additionals fir de Sproochentest"
   },
   {
-   "id": "n-becf3f8714",
+   "id": "n-e7fd1434bf",
    "topic": "vakanz",
-   "q": "Hutt Dir schonn eng Vakanz missen ofbriechen? (to cancel/stop early)",
+   "q": "Hutt Dir schonn eng Vakanz missen ofbriechen?",
    "answers": [
     "Jo, eemol, well ech krank ginn sinn."
    ],
-   "notes": [],
+   "notes": [
+    "(to cancel/stop early)"
+   ],
    "from": "Additionals fir de Sproochentest"
   },
   {
@@ -2344,11 +2386,13 @@
    "from": "Additionals fir de Sproochentest"
   },
   {
-   "id": "n-77ba1b1cd1",
+   "id": "n-615f4b12dc",
    "topic": "stot",
-   "q": "Wéi eng Hausaarbecht gëtt am heefegsten bei Iech vergiess? ( which do you forget mostly)",
+   "q": "Wéi eng Hausaarbecht gëtt am heefegsten bei Iech vergiess?",
    "answers": [],
-   "notes": [],
+   "notes": [
+    "( which do you forget mostly)"
+   ],
    "from": "Additionals fir de Sproochentest"
   },
   {
@@ -2588,11 +2632,13 @@
    "from": "Additionals fir de Sproochentest"
   },
   {
-   "id": "n-3f50ab6896",
+   "id": "n-0978c2a8c1",
    "topic": "gesondheet",
-   "q": "Fëmmt (smoke) Dir oder hutt Dir schonn eemol gefëmmt? fëmmen = to smoke",
+   "q": "Fëmmt (smoke) Dir oder hutt Dir schonn eemol gefëmmt?",
    "answers": [],
-   "notes": [],
+   "notes": [
+    "fëmmen = to smoke"
+   ],
    "from": "Additionals fir de Sproochentest"
   },
   {
@@ -2634,6 +2680,3748 @@
    "answers": [],
    "notes": [],
    "from": "Additionals fir de Sproochentest"
+  },
+  {
+   "id": "n-90de354ee6",
+   "topic": "kleeder",
+   "q": "Wou kaaft Dir Kleeder?",
+   "answers": [
+    "ech kafe Kleeder am Internet",
+    "Virdeeler (advantages) an Nodeeler ( disadvantages) fir Kleeder online ze kafen",
+    "Virdeeler sinn:",
+    "Heiansdo ass et méi bëlleg",
+    "Nodeeler sinn :",
+    "Ech kann d’Kleeder net probéieren"
+   ],
+   "notes": [],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-2b8bcb587e",
+   "topic": "kleeder",
+   "q": "Wat ass Äre Stil?",
+   "answers": [
+    "mäi Stil ass/ ech droe gär schwarz T-Shirten a Jeansboxen",
+    "mäi Stil ass einfach a praktesch zum Beispill"
+   ],
+   "notes": [],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-1fa0fb360f",
+   "topic": "kleeder",
+   "q": "Wat hutt Dir normalerweis un? ( Wat drot Dir normalerweis=?",
+   "answers": [
+    "Normalerweis droen ech e schwaarzen T-Shirt an eng Jeansbox"
+   ],
+   "notes": [],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-2306be1c4a",
+   "topic": "kleeder",
+   "q": "Wat drot Dir op der Aarbecht?",
+   "answers": [
+    "Op der Aarbecht droen ech wäiss oder gro Hiemer a blo Jeansboxen"
+   ],
+   "notes": [
+    "= Wat hutt Dir … un"
+   ],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-d8473787d2",
+   "topic": "kleeder",
+   "q": "Hutt Dir e Dress-Code?",
+   "answers": [
+    "Mir hu keen Dresscode"
+   ],
+   "notes": [],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-e1ef30f4ce",
+   "topic": "kleeder",
+   "q": "Wat denkt Dir iwwert Schouluniformen?",
+   "answers": [
+    "Ech menge Schouluniforme si wichteg, well et fair ass",
+    "Virdeeler, Nodeeler Schouluniformen",
+    "Virdeeler sinn:",
+    "Et ass fair, et ass méi einfach, well d’Kanner net wiele mussen",
+    "Nodeeler sinn:",
+    "Et ass net interessant."
+   ],
+   "notes": [],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-99628cb1eb",
+   "topic": "kleeder",
+   "q": "Kaaft Dir Kleeder vun Zäitschrëften?",
+   "answers": [
+    "Nee, ech kafe keng Kleeder vun Zäitschrëften"
+   ],
+   "notes": [
+    "(magazine)"
+   ],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-82f7a2ecf0",
+   "topic": "kleeder",
+   "q": "Mat wiem gitt Dir normalerweis akafen?",
+   "answers": [
+    "Ech ginn eleng akafen"
+   ],
+   "notes": [],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-6810111d1a",
+   "topic": "kleeder",
+   "q": "Drot Dir gär Bijouen?",
+   "answers": [
+    "Jo, ech droe gär Bijouen, zum Beispill Ketten oder e Rank ( wéini.",
+    "zum Beispill fir d’Aarbecht oder fir Invitatiounen",
+    "Nee, ech droe keng Bijouen/ ech droen ni Bijouen"
+   ],
+   "notes": [],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-c9db55e5f5",
+   "topic": "kleeder",
+   "q": "Hutt Dir schick Kleedung gär?",
+   "answers": [
+    "Nee, ech hunn einfach a praktesch Kleedung gär"
+   ],
+   "notes": [],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-fdea19f449",
+   "topic": "kleeder",
+   "q": "Wat ass dat schick Kleedung ?",
+   "answers": [
+    "schick Kleeder sinn (ze) deier Kleeder zum Beispill e Kostüm"
+   ],
+   "notes": [],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-6c634606f3",
+   "topic": "kleeder",
+   "q": "Wat drot Dir als schick Kleedung?",
+   "answers": [
+    "Ech hunn zum Beipill e Kostüm an en Hiem als schick Kleedung un"
+   ],
+   "notes": [],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-b5471c125c",
+   "topic": "kleeder",
+   "q": "Wéini hutt Dir fir d’lescht schick Kleedung gedroen? droen- ech hunn….gedroen- unhunn- ech hat…. un",
+   "answers": [
+    "Ech hu schick Kleeder op enger Hochzäit gedroen"
+   ],
+   "notes": [],
+   "from": "Moud a Kleeder"
+  },
+  {
+   "id": "n-ad351c1ee2",
+   "topic": "liesen",
+   "q": "A wéi enger Sprooch liest Dir? (A wat fir enger Sprooch liest Dir?) Firwat?",
+   "answers": [
+    "Normalerweis liesen ech op Englesch.."
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-a346b67101",
+   "topic": "liesen",
+   "q": "Liest Dir gär?",
+   "answers": [
+    "Jo, ech liese ganz gär/ nee, ech liesen net esou gär"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-9e2b66b606",
+   "topic": "liesen",
+   "q": "Wat fir e Genre Literatur hutt Dir am léifsten?",
+   "answers": [
+    "ech liesen am léifsten Krimien"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-6713798e85",
+   "topic": "liesen",
+   "q": "Wat liest Dir ausser Bicher?",
+   "answers": [
+    "Heiansdo liesen ech Zeitungen.."
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-e149d348c1",
+   "topic": "liesen",
+   "q": "Wéini hutt Dir Zäit, fir Bicher ze liesen?",
+   "answers": [
+    "Owes am Bett"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-9bb56e0298",
+   "topic": "liesen",
+   "q": "Wat liest Dir de Moment? Wéi gefält Iech d’Buch?",
+   "answers": [
+    "Ech liesen de Moment…. D’Buch gefält mir ganz gutt"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-6cb7a130bc",
+   "topic": "liesen",
+   "q": "Wéini hutt Dir fir d’lescht ( for the last time) e Buch gelies?",
+   "answers": [
+    "Gëschter hunn ech fir d’lescht e Buch gelies"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-4840558d5a",
+   "topic": "liesen",
+   "q": "Hutt Dir e Liblingsauteur?",
+   "answers": [
+    "Mäi Liblingsauteur ass …..Hien ass Amerikaner/ Englänner"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-43d7205ddd",
+   "topic": "liesen",
+   "q": "Liest Dir och d’Zeitung?",
+   "answers": [
+    "Meechtens liesen ech d’Zeitung online um Handy"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-864860a79d",
+   "topic": "liesen",
+   "q": "Wat fir eng Rubrik / Sektioun liest Dir an enger Zeitung?",
+   "answers": [
+    "Normalerwiess liesen ech gär"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-51f0166242",
+   "topic": "liesen",
+   "q": "Wat maacht Dir léiwer: Tëlee kucken oder liesen? Firwat?",
+   "answers": [
+    "Ech kucke léiwer d’Tëlee wéi e Buch ze liesen."
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-1bf5025467",
+   "topic": "liesen",
+   "q": "Wat ass Är Mammesprooch? Huet si hir eege Schrëft?",
+   "answers": [
+    "Meng Mammesprooch ass"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-066b5bab04",
+   "topic": "liesen",
+   "q": "Wie recommendéiert Iech d’Bicher?",
+   "answers": [
+    "Den Internet recommendéiert mir d‘Bicher"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-9a3f683ac1",
+   "topic": "liesen",
+   "q": "Liest Dir Äre Kanner e Märche virum Schlofegoen vir ?",
+   "answers": [
+    "Ech hu keng Kanner / ech liese mengem Jong ëmmer e puer Märecher vir, soss wëll hien net schlofen."
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-c39e61c1d6",
+   "topic": "liesen",
+   "q": "Liest Dir an der Vakanz méi wéi soss?",
+   "answers": [
+    "Jo, do hunn ech méi Zäit."
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-ddd67a9684",
+   "topic": "liesen",
+   "q": "Wat sinn d’Virdeeler vun Héierbicher?",
+   "answers": [
+    "Fir mech hunn Héierbicher keng Virdeeler, ech preferéiere Pabeiersbicher"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-5619a24531",
+   "topic": "liesen",
+   "q": "Wéi eng aner Bicher liest Dir nieft dësem Genre?",
+   "answers": [
+    "Ech liese och nach gär Biographien"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-154cbc41dd",
+   "topic": "liesen",
+   "q": "Wat ass de Virdeel vu Bicher online ze kafen?",
+   "answers": [
+    "Normalerwiess sinn d’Rabatter gutt online."
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-3f7c0c294f",
+   "topic": "liesen",
+   "q": "Gitt Dir an d'Bibliothéik ?",
+   "answers": [
+    "Jo , heiandso ginn ech an d’Bibliothéik.",
+    "Nee, ech hu keng Zäit dofir."
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-b82e4be5ae",
+   "topic": "liesen",
+   "q": "Wat ass d'Sprooch an Ärem Land?",
+   "answers": [
+    "D’Sprooch vu mengem Heemechtsland ass.."
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-5fa8f890fe",
+   "topic": "liesen",
+   "q": "Liest Dir léiwer elektronesch oder Pabeiersbicher?",
+   "answers": [
+    "Ech liese léiwer Pabeiersbicher – si richen och gutt"
+   ],
+   "notes": [],
+   "from": "Liesen"
+  },
+  {
+   "id": "n-68cbf18f4d",
+   "topic": "kaddoen",
+   "q": "Wou kaaft Dir Kaddoen?",
+   "answers": [
+    "Meeschteens kafen ech Kaddoen am Buttek an der Stad/",
+    "Meeschtens bestellen ech Kaddoen online um Internet"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-b977ea0310",
+   "topic": "kaddoen",
+   "q": "Schenkt Dir léiwer perséinlech oder léiwer onperséinlech Kaddoen ?",
+   "answers": [
+    "Ech schenke léiwer perséinlech Kaddoen"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-decaf337ae",
+   "topic": "kaddoen",
+   "q": "Wat schenkt Dir Äre Frënn fir Chrëschtdag?",
+   "answers": [
+    "Ech schenke gär Bicher…"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-7a682bb489",
+   "topic": "kaddoen",
+   "q": "Wéini schenkt Dir engem eppes?",
+   "answers": [
+    "Normalerweis schenken ech eppes fir de Gebuertsdag oder fir Chrëschtdag"
+   ],
+   "notes": [
+    "(Gebuertsdag, Chrëschtdag ….)",
+    "= Wéi eng Occassioune si wichteg , fir Kaddoen ze ginn"
+   ],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-a63e9ad659",
+   "topic": "kaddoen",
+   "q": "Wat ass fir Iech en ideale Kaddo?",
+   "answers": [
+    "En ideale Kaddo ass fir mech eppes Perséinleches"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-5b1b1d8783",
+   "topic": "kaddoen",
+   "q": "Wéi décidéiert Dir, wat Dir schenke wëllt?",
+   "answers": [],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-223603e10a",
+   "topic": "kaddoen",
+   "q": "Wat fir Kaddoen hutt Dir gär?",
+   "answers": [
+    "Ech kréie gär e Buch oder eppes Technesches"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-35a1e95bdb",
+   "topic": "kaddoen",
+   "q": "Wat fir Kaddoe maachen Iech keng Freed / hutt Dir net gär?",
+   "answers": [
+    "Ech kréien net gär Kleeder oder Parfüm"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-c9978095a5",
+   "topic": "kaddoen",
+   "q": "Wéini hutt Dir fir d’lescht e Kaddo kritt? Wéi huet Iech de Kaddo gefall? = wat hutt Dir fir d’lescht geschenkt kritt?",
+   "answers": [
+    "Dat war fir mäi Gebuertsdag. De Kaddo huet mir gut gefall."
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-7e8eed8f8c",
+   "topic": "kaddoen",
+   "q": "Wat mengt Dir: muss e Kaddo ëmmer deier sinn?",
+   "answers": [
+    "Nee, e Kaddo muss net deier, awer perséinlech sinn."
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-9b324a7875",
+   "topic": "kaddoen",
+   "q": "Wat maacht Dir, wann Dir e Kaddo kritt, deen Iech net gefält?",
+   "answers": [
+    "Meeschtens spenden ech de Kaddo oder ech ginn de Kaddo mengen Elteren oder menge Frënn"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-fdaf05ebcb",
+   "topic": "kaddoen",
+   "q": "Wat schenks du denger Mamm an dengem Heemschtsland fir de Mammesdag?",
+   "answers": [
+    "Fir de Mammendag schenken ech menger Mamm Blummen."
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-0efac865a1",
+   "topic": "kaddoen",
+   "q": "Wat schenks du an dengem Heemechtsland als Hochzäitsgeschenk?",
+   "answers": [
+    "Als Hochzäitsgeschenk schenken ech Suen."
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-6ea6e57ea1",
+   "topic": "kaddoen",
+   "q": "Wéi ass et mat Suen? Ass et e gudde Kaddo?",
+   "answers": [
+    "Jo, firwat net? Zum Beispill fir Hochzäiten."
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-0f87610723",
+   "topic": "kaddoen",
+   "q": "Musst Dir ëmmer Kaddoe ginn /schenken, wann Dir een trefft ( meet) gesitt ( you see) ?",
+   "answers": [
+    "Nee, dat ass net néideg (necessary)"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-d8b8aa8862",
+   "topic": "kaddoen",
+   "q": "Wéini schenkt Dir Kaddoen an Ärem Heemechtsland (n)/ a menger Heemecht (f)",
+   "answers": [
+    "A mengem Heemechtsland schenke mir Kaddoe fir Gebuertsdeeg, Chrëschtdag an Hochzäiten."
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-f298c5fc85",
+   "topic": "kaddoen",
+   "q": "Wie gëtt Kaddoen?",
+   "answers": [
+    "Frënn, Elteren, Kanner, Kollegen, Nopere gi Kaddoen"
+   ],
+   "notes": [
+    "( who gives presents)"
+   ],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-81e658efe9",
+   "topic": "kaddoen",
+   "q": "Fir wat fir Eventer/ Geleeenheeten",
+   "answers": [
+    "Wann ee(n) aner Leit besicht"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-64ad055906",
+   "topic": "kaddoen",
+   "q": "Wéini maacht Dir Kollektivkaddoen?",
+   "answers": [
+    "Heiandso gi mir op der Aarbecht engem Kollegen/ enger Kollegin zesummen e Kaddo"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-614a1b507a",
+   "topic": "kaddoen",
+   "q": "Wéini schenkt Dir haaptsächlech Kaddoen?",
+   "answers": [
+    "Normalerweis schenken ech Kaddoe fir Gebuertsdeeg a fir Chrëschtdag an Hochzäiten"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-b0b58070a7",
+   "topic": "kaddoen",
+   "q": "Kaaft Dir gär Kaddoen ?",
+   "answers": [
+    "Jo, dat gefält mir? Jo, ech kafe gär Kaddoen"
+   ],
+   "notes": [
+    "( Gefält et Iech, Kaddoen ze kafen)"
+   ],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-208c9a4698",
+   "topic": "kaddoen",
+   "q": "Wat fir Kaddoe kaaft Dir? Wat fir Kaddozorten/aarten kaaft Dir?",
+   "answers": [
+    "Ech kafe gär perséinlech Kaddoen"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-749e376de1",
+   "topic": "kaddoen",
+   "q": "Wat schenkt Dir, wann Dir keng Iddi hutt?",
+   "answers": [
+    "Wann ech keng Iddi hunn, schenken ech Suen – oder Akafsbongen"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-7770ad0531",
+   "topic": "kaddoen",
+   "q": "Wat ass e perséinleche Kaddo fir Iech?",
+   "answers": [
+    "E perséinleche Kaddo fir mech ass eppes, wat + Subject - - - Verb at the end",
+    "Wat ee(n) mat Léift schenkt."
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-4e431c8732",
+   "topic": "kaddoen",
+   "q": "Wéi eng Critère ass Iech wichteg, fir e Kaddo ze verschenken?",
+   "answers": [
+    "Mit ass et wichtig, mat Léift ze schenken"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-3f1cc45cce",
+   "topic": "kaddoen",
+   "q": "Wéi e Souvenir bréngt Dir aus der Vakanz mat?",
+   "answers": [
+    "Ech brénge gär Postkaarten als Souvenir mat"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-f6f52277a3",
+   "topic": "kaddoen",
+   "q": "Wann dir bei Kollegen invitéiert sidd, Wat bréngt Dir mat als Kaddo?",
+   "answers": [
+    "Ech schenke gär Wäin oder Schockela, wann ech d’Kollegen net gutt kennen, wann ech d’Kollege gutt kennen, bréngen ech eppes Perséinleches mat"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-97b7aa8fc1",
+   "topic": "kaddoen",
+   "q": "Däerf een och ouni Kaddo kommen , mat eidelen Hänn ( with empty hands=?=",
+   "answers": [
+    "Fir mech ass dat kee Problem"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-c571651027",
+   "topic": "kaddoen",
+   "q": "Wéini hutt Dir Äre Gebuertsdag?",
+   "answers": [
+    "Mäi G. ass den 31. Januar"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-0b293aca54",
+   "topic": "kaddoen",
+   "q": "Wéi feiert Dir normalerweis Äre Gebuertsdag?",
+   "answers": [
+    "Ech feiere mäi G. mat menger Famill a mat menge Frënn"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-e1da9348f1",
+   "topic": "kaddoen",
+   "q": "An Ärer Famill, wien huet als nächst Persoun Gebuertsdag?",
+   "answers": [
+    "Meng Mamm huet als nächst Persoun G. – an zwar de…"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-bb84bb536a",
+   "topic": "kaddoen",
+   "q": "Firwat ass et praktesch. online ze kafen?",
+   "answers": [
+    "Et ass bequem, vun doheem aus – um Canapé eppes ze bestellen"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-d96706e2c2",
+   "topic": "kaddoen",
+   "q": "Ginn et Feierdeeg, déi Dir net feiert?",
+   "answers": [
+    "Ech hu Chrëschtdag gär, mech ech feiere kee Chrëschtdag, ech sinn Hindi"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-2de5daef32",
+   "topic": "kaddoen",
+   "q": "Technesch Apparater, ass dat a gudde Kaddo?",
+   "answers": [
+    "Dat kënnt drop un ( it depends)",
+    "Fir mech ass dat net interessant, mee vläicht fir eng aner Persoun"
+   ],
+   "notes": [],
+   "from": "Kaddoen"
+  },
+  {
+   "id": "n-5d9a637e8a",
+   "topic": "hobbyen",
+   "q": "Wat fir Hobbye praktizéiert Dir am Summer/am Wanter?",
+   "answers": [
+    "Am Summer spillen ech Badminton.",
+    "Am Wanter spillen ech Criquet"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-0aebf03ccf",
+   "topic": "hobbyen",
+   "q": "Wat fir Aktivitéiten hutt Dir net gär?",
+   "answers": [
+    "Am Summer schaffen ech net gär",
+    "Am Wanter bleiwen ech net gär doheem/ am Wanter wanderen ech net gär."
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-a053f429fb",
+   "topic": "kreativitéit",
+   "q": "Sidd dir kreativ? Molt Dir als Beispill",
+   "answers": [
+    "Ech si kreativ.ech mole gär ( to paint)"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-97be7d6811",
+   "topic": "hobbyen",
+   "q": "Wat bedeit Flexibilitéit fir Iech?",
+   "answers": [
+    "Flexibilitéit ass zum Beispill ( for example) Homeoffice."
+   ],
+   "notes": [
+    "bedeiden ( to mean)"
+   ],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-4410a1f5f5",
+   "topic": "hobbyen",
+   "q": "Kacht Dir gär? Wa jo, wat kacht Dir gär? (wann = if, when)",
+   "answers": [
+    "Jo, ech kache gär. Ech kachen indesch Kiche gär / ech kache gär indesch Rezepter"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-0c2ba44591",
+   "topic": "hobbyen",
+   "q": "Spillt Dir e Museksinstrument oder (or) kënnt (can) Dir sangen ( sing)?",
+   "answers": [
+    "Jo, ech spille Gittar. Jo, ech sangen och."
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-7f2f0be61d",
+   "topic": "hobbyen",
+   "q": "Huet een (one) zu Lëtzebuerg vill Méiglechkeeten (possibilities), fir mam Vëlo ze fueren?",
+   "answers": [
+    "Jo, et gi ( there are) vill Vëlospisten"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-1be0e6e480",
+   "topic": "hobbyen",
+   "q": "Maacht Dir vill (a lot) Sport?",
+   "answers": [
+    "Jo, ech maache vill Sport zum Beispill Badminton, Cricket"
+   ],
+   "notes": [
+    "maachen = to make / to do"
+   ],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-ffad301311",
+   "topic": "hobbyen",
+   "q": "Liest Dir gär, wa(nn) jo ( if yes) – wat fir Bicherzorten(Bicheraarten) interesséieren Iech?",
+   "answers": [
+    "Jo, ech liese immens, mega gär",
+    "Jo, ech liesen indesch Kachbicher gär/ ech liese Krimie gär"
+   ],
+   "notes": [
+    "liesen = to read",
+    "e Buch (n) = a book",
+    "Bicher = books",
+    "Bicherzorten, Bicheraarten = kind of books"
+   ],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-045c82c21d",
+   "topic": "hobbyen",
+   "q": "Wou kënnt Dir iwwerall schwamme goen? Wou ginn et Méiglechkeeten, fir schwammen ze (tse) goen ?",
+   "answers": [
+    "Ech kann an der Schwämm oder am Séi (lake) schwammen"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-c3d7d938c8",
+   "topic": "hobbyen",
+   "q": "Wann (when/if) Dir wandere goe wëllt, wou kënnt Dir dat maachen?",
+   "answers": [
+    "Ech wanderen am Bësch zum Beispill am Bambësch oder am Mëllerdall.",
+    "zesumme mat der Famill"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-3e2614f698",
+   "topic": "hobbyen",
+   "q": "Wéi oft ( how often) kuckt Dir d’Tëlee?",
+   "answers": [
+    "Ech kucken d’Tëlee all Dag zum Beispill RTL"
+   ],
+   "notes": [
+    "= de Fernseeër",
+    "kucken = to watch"
+   ],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-d3c88e9fe7",
+   "topic": "hobbyen",
+   "q": "U wat fir Emmissioune sidd Dir interesséiert?",
+   "answers": [
+    "Ech hu Comedie gär"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-b6df388723",
+   "topic": "kreativitéit",
+   "q": "Wat bedeit Kreativitéit fir Iech?",
+   "answers": [
+    "Kreativitéit ass zum Beispill molen"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-36a914cfdd",
+   "topic": "hobbyen",
+   "q": "Hutt Dir de Wantersport gär?",
+   "answers": [
+    "Ech hunn de Wantersport net gär, well ech d’Keelt net gär hunn",
+    "(well ech net Skifuere kann)"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-cb82864ef6",
+   "topic": "hobbyen",
+   "q": "Wuer gitt Dir an de Wantersport?",
+   "answers": [
+    "Ech ginn ni an de Wantersport"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-f08be843ea",
+   "topic": "hobbyen",
+   "q": "Gitt Dir gär am Bësch spadséieren?",
+   "answers": [
+    "Jo, ech gi ganz gär am Bësch spadséieren ( fir wat?, wéi oft..)"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-d08e7ea9da",
+   "topic": "hobbyen",
+   "q": "Reest Dir gär? Wuer?",
+   "answers": [
+    "Ech reese gär. Ech reese ganz gär a mäin Heemechtsland"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-1edbeb841d",
+   "topic": "hobbyen",
+   "q": "Wou waart Dir fir d’lescht?",
+   "answers": [
+    "Fir d’lescht war ech an Ägypten, a mengem Heemechtsland"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-a0ee1db3d3",
+   "topic": "hobbyen",
+   "q": "Wéi oft lauschtert Dir Musek? - Wat fir Musek lauschert Dir gär?/ am léifsten?",
+   "answers": [
+    "Ech lauschteren all Dag Musek ( All Dag lauschteren ech Musek ech hu gär Rockmusek, Popmusek, Klassik)"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-c1f59e2c5d",
+   "topic": "hobbyen",
+   "q": "Hutt Dir e Liblingsmuseker?",
+   "answers": [
+    "Nee ech hu kee Liblingsmuseker. Jo, ech hunn e L, oder eng Liblingsmusekering, dat ass Depeche Mode, dat ass de… dat ass d‘"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-1fdf93b343",
+   "topic": "hobbyen",
+   "q": "Interesséiert Dir Iech fir Konscht?",
+   "answers": [
+    "Nee ech interesséiere mech net fir Konscht"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-f443ebe2da",
+   "topic": "hobbyen",
+   "q": "Wéini waart Dir fir d’lescht am Musée a wou?",
+   "answers": [
+    "Ech ginn ni an de Musée"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-36a5b29216",
+   "topic": "hobbyen",
+   "q": "Hutt Dir de Musée gär? Wéi oft gitt Dir dohin? Wat ass Äre Lieblingsmuseum hei zu Lëtzebuerg – an der Welt?",
+   "answers": [
+    "Nee, ech hunn de Musée net gär, ech langweile mech"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-0cce6af639",
+   "topic": "hobbyen",
+   "q": "Waart Dir am Conservatoire um Concert?",
+   "answers": [
+    "Nee, ech war nach ni am Conservatoire, mee ech war schon an der Philharmonie"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-37455eac1b",
+   "topic": "hobbyen",
+   "q": "Hutt Dir den Theater gär? Wa jo, wat sinn Är LIeblingsschauspiller?",
+   "answers": [
+    "Ech hunn den Theater gär , mee ech hu kee L."
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-21dfa8f7a8",
+   "topic": "hobbyen",
+   "q": "Waart Dir zu Lëtzebuerg am Theater?",
+   "answers": [
+    "Nee, ech war leider nach ni zu L. am Theater"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-a714ff661c",
+   "topic": "kreativitéit",
+   "q": "Ass Kreativitéit wichteg fir Är Aarbecht?",
+   "answers": [
+    "Jo, Kreativitéit ass wichteg fir meng Aarbecht, all Dag ass anescht."
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-907a469506",
+   "topic": "hobbyen",
+   "q": "Wéi Dir kleng waart, hat Dir do en Hobby ( when you were young, did you have a hobby)",
+   "answers": [
+    "Wéi ech kleng war, hunn ech ganz vill gelies"
+   ],
+   "notes": [],
+   "from": "Kreativitéit / Fräizäit / Hobbyen"
+  },
+  {
+   "id": "n-b956b30e5b",
+   "topic": "hobbyen",
+   "q": "Wéi laang hutt Dir haut Musek gelauschtert?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-898c7a34ef",
+   "topic": "hobbyen",
+   "q": "Waart Dir schonn op engem Concert?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-00f210e58b",
+   "topic": "hobbyen",
+   "q": "Wat jo, war dat Är éischt Kéier?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-84c4dc13a4",
+   "topic": "hobbyen",
+   "q": "Wat hutt Dir léiwer, e Concert, e Museksfestival oder d’Oper?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-f49a1e16f4",
+   "topic": "hobbyen",
+   "q": "Wat fir eng Aart Musek ass populär an Ärem Heemechtland?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-aeecb9db65",
+   "topic": "hobbyen",
+   "q": "Ginn et aner berümt(populär) Instrumenter an Ärer Heemecht?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-9537efa46b",
+   "topic": "hobbyen",
+   "q": "Gëtt et en internationale Sänger / eng international Sängerin an Ärem Land?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-6d5b2e7ffc",
+   "topic": "hobbyen",
+   "q": "Wat ass Är Liblingsgrupp/Liblingsband?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-26617f2850",
+   "topic": "hobbyen",
+   "q": "Fir wat gefält si Iech/ Fir wat hutt Dir si gär?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-b608ce4530",
+   "topic": "hobbyen",
+   "q": "Wat ass Äert Liblingslidd vun hinnen?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-5f6584ff49",
+   "topic": "hobbyen",
+   "q": "Wat fir Musek hutt Dir als Jugendleche(n) = Teenager gelauschtert?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-34de7076c8",
+   "topic": "hobbyen",
+   "q": "Wat fir Musekaarte lauschtert Dir net gär? Fir wat net?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-f170656e07",
+   "topic": "hobbyen",
+   "q": "Wéi lauschtert Dir Musek?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-00f30fad01",
+   "topic": "hobbyen",
+   "q": "Wat fir Servicer benotzt Dir?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-4bbd44a057",
+   "topic": "hobbyen",
+   "q": "Virdeeler an Nodeeler dovun?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-832e39ea2e",
+   "topic": "hobbyen",
+   "q": "Wéi oft lauschtert Dir Musek?",
+   "answers": [
+    "Ech lauschteren all Dag Musek/ a)wéini / b)wou/ wéi laang?",
+    "ech lauschtere moies/ owes Musek/ normalerweis lauschteren ech moies Musek",
+    "ech lauschtere gär Musek am Auto/ doheem",
+    "ech lauschtere eng Stonn pro Dag Musek"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-eaabc0053b",
+   "topic": "hobbyen",
+   "q": "wéi fillt Dir Iech, wann Dir Musek lauschtert?",
+   "answers": [
+    "ech fille mech gutt, et relaxt mech."
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-aef21446a8",
+   "topic": "hobbyen",
+   "q": "fir wat fir Occassioune lauschtert Dir Musek?",
+   "answers": [
+    "ech lauschtere Musek fir ze relaxen, wann ech vill Stress hunn/ wann ech midd sinn."
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-25aff6a11c",
+   "topic": "hobbyen",
+   "q": "lauschtert Dir léiwer eleng Musek oder op engem Concert?",
+   "answers": [
+    "ech lauschtere léiwer eleng Musek wéi op engem Concert"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-ad961e8bbd",
+   "topic": "hobbyen",
+   "q": "Wat fir e Genre Musek lauschtert Dir gär?/= wat fir eng Musekrichtung (direction) lauschtert Dir gär?",
+   "answers": [
+    "Ech lauschtere gär Pop- a Rockmusek"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-7a0add0e2e",
+   "topic": "hobbyen",
+   "q": "Hutt Dir e Liblingsmuseker? eng Liblingsmusekerin?/ eng Liblingsband",
+   "answers": [
+    "Meng Liblingsband ass Metallica",
+    "Meng Liblingsmusekerin ass d’Taylor Swift"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-f864bec47d",
+   "topic": "hobbyen",
+   "q": "Hutt Dir an der Schoul sange geléiert?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-05e8eb95c0",
+   "topic": "hobbyen",
+   "q": "Spillt Dir en Instrument?",
+   "answers": [
+    "Nee, ech spille kee Museksinstrument"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-962ed7052b",
+   "topic": "hobbyen",
+   "q": "Spillt een an Ärer Famill en Instrument?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-cf287a9bfd",
+   "topic": "hobbyen",
+   "q": "Kennt Dir bekannt/ berühmt (popular) lëtzebuergesch Museker?",
+   "answers": [
+    "Nee, ech kenne kee lëtzebuergesche Museker ( e mofe Pullover)",
+    "ech keen leider keen"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-e71990ad0b",
+   "topic": "hobbyen",
+   "q": "Lauschtert Dir klassesch Musek (Klassik)?",
+   "answers": [
+    "Jo, ech lauschteren heiansdo klassesch Musek ( Klassik)",
+    "Nee, ech lauschteren net gär klassesch Musek"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-bd1dd480cc",
+   "topic": "hobbyen",
+   "q": "wat fir traditionell Musek / Museksinstrumenter ginn et an Ärem Heemechtsland?",
+   "answers": [],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-858e767b53",
+   "topic": "hobbyen",
+   "q": "Gitt Dir gär op e Concert ( op Concerten)?",
+   "answers": [
+    "Jo, ech ginn heiansdo gär op e Concert/ ech gi gär op Concerten"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-488c24facf",
+   "topic": "hobbyen",
+   "q": "Wéini waart Dir fir d’lescht op engem Concert?",
+   "answers": [
+    "Ech war d’lescht Joer op engem Concert"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-15bdaef34d",
+   "topic": "hobbyen",
+   "q": "Hutt Dir schonn eng Kéier Äre Lieblingsmuseker perséinlech getraff?",
+   "answers": [
+    "Nee, ech hunn nach ni meng Lieblingsband perséinlech getraff"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-50a0160baf",
+   "topic": "hobbyen",
+   "q": "Wien huet gespillt?",
+   "answers": [
+    "d’Taylor Swift huet um ( op + dem) Concert gesongen // oder op engem",
+    "Ech war am Juli op engem Concert. Wou? – de Concert war zu London?"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-535ff3fcda",
+   "topic": "hobbyen",
+   "q": "wien huet gespillt? c) wou war et? d)wéi war et?",
+   "answers": [
+    "d’Taylor Swift huet gesongen ( sung)",
+    "et war zu London",
+    "et war immens gutt./ wat war gutt?- D’Atmosphär war immens"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-ceceaee666",
+   "topic": "hobbyen",
+   "q": "Waart Dir schonn eng Kéier an der Philharmonie? Wou ass d’Ph.?",
+   "answers": [
+    "ech war nach ni an der Philharmonie? fir wat net?",
+    "Klassesch Musek ass net interessant fir mech / Singular or plural verb",
+    "ech lauschtere léiwer Popmusek wéi klassesch Musek",
+    "d’Ph. ass um Kierchbierg"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-136bf63d74",
+   "topic": "hobbyen",
+   "q": "Hutt Dir als Kand (as a child) vill Musek gelauschtert? Wat fir?",
+   "answers": [
+    "Jo, ech hunn als Kand Musek gelauschtert, ech hu Pop- a Rockmusek gelauschtert."
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-3b07052ca2",
+   "topic": "hobbyen",
+   "q": "Wat fir eng Art/ Zort Musek hunn Är Eltere gelauschtert?",
+   "answers": [
+    "Meng Elteren hu klassesch Musek gelauschtert"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-6e9c16c4cd",
+   "topic": "hobbyen",
+   "q": "Wat fir eng App oder Platform benotzt Dir, fir Musek ze lauschteren?",
+   "answers": [
+    "ech lauschtere Musek um Radio oder um (on the) Internet Musek zum Beispill op (on) Spotify oder op YouTube"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-2328cb0a69",
+   "topic": "hobbyen",
+   "q": "Lauschtert Dir léiwer Musek am Auto oder doheem?",
+   "answers": [
+    "ech lauschtere léiwer Musek am Auto wéi doheem/ fir wat?- et ass méi bequem"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-688505afc3",
+   "topic": "hobbyen",
+   "q": "sangt Dir an engem Chouer (choir)? an enger Band? – wou sangt Dir am léifsten?",
+   "answers": [
+    "nee, ech sangen net an engem Chouer (Kouer)"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-56b06d2ff2",
+   "topic": "hobbyen",
+   "q": "Hutt Dir als Kand an engem Chouer gesongen?",
+   "answers": [
+    "nee, ech hunn nach ni an engem Chouer gesongen"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-90664f273e",
+   "topic": "hobbyen",
+   "q": "Wou sangt Dir am léifsten?",
+   "answers": [
+    "ech sangen am léifsten doheem / um Canapé an der Stuff"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-8b035238bc",
+   "topic": "hobbyen",
+   "q": "Benotzt Dir Kopfhörer wann Dir Musek lauschtert / beim Museklauschteren",
+   "answers": [
+    "Jo, ech benotze Kopfhörer, fir M. ze lauschteren (beim Museklauschteren)"
+   ],
+   "notes": [],
+   "from": "Musek"
+  },
+  {
+   "id": "n-1b7a3ff00b",
+   "topic": "vakanz",
+   "q": "Sinn d’Phil. e Reesland?/ Ass Pakistan e Reesland",
+   "answers": [
+    "Jo, d’Phil. sinn e Reesland , well mir Plagen hunn, mir hunn d’Mier, vill Inselen.",
+    "Jo, Pakistan ass e Reesland, well mir Bierger an eng gutt Kichen hunn."
+   ],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-1f391684fa",
+   "topic": "vakanz",
+   "q": "Spillt de Tourismus a Pakistan eng wichteg Roll an der Wirtschaft ( economy) ?",
+   "answers": [
+    "Den Tourismus huet eng kleng Roll an der Wirtschaft",
+    "Den T. ass ganz wichteg fir mäin Heemechtsland, well vill international Touristen op d’Phil kommen.",
+    "datt.. Touristen d’Ph. besichen"
+   ],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-58e6319f01",
+   "topic": "vakanz",
+   "q": "Wat fir touristesch Attraktiounen ginn et a Pakistan",
+   "answers": [
+    "mir hu vill Bierger, fir ze wanderen."
+   ],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-54d5a66d6a",
+   "topic": "vakanz",
+   "q": "Wat fir Tourismusaarten ginn et an Ärem Heemechtsland",
+   "answers": [
+    "et gi Wandertourismus a kulinarischen Tourismus am Pakistan.",
+    "et gi Plagentourismus op de Phil"
+   ],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-a912e5e5d4",
+   "topic": "vakanz",
+   "q": "Wat ass déi bescht Zäit fir Pakistan ze besichen",
+   "answers": [
+    "Vu Januar bis Mee ass déi bescht Zäit, well d’Wieder agreabel ass. Et reent net",
+    "( well d’Temperature agreabel sinn)",
+    "All Joreszäite si gutt . De Summer an d’Fréijoer si gutt fir d’Bierger an de Wanter an den Hierscht si gutt fir dir de kulinarischen Tourismus"
+   ],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-dd6b15f0a6",
+   "topic": "vakanz",
+   "q": "Wat mussen Touristen am Pakistan onbedéngt besichen?",
+   "answers": [
+    "Et ass wichteg, d’Bierger ze gesinn.",
+    "Dir musst Plagen besichen, well mir d’Top 3 Plagen op der Welt hunn"
+   ],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-2505106e7f",
+   "topic": "vakanz",
+   "q": "Ka Pakistan vill Kultur bidden?",
+   "answers": [
+    "Jo, mäin Heemechtland ka vill Kultur bidden (offeréieren) zum Beispill…"
+   ],
+   "notes": [
+    "offeréieren"
+   ],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-df7880e52e",
+   "topic": "vakanz",
+   "q": "Wat fir kulinaresch Spezialitéiten géift Dir Touristen empfielen (recommandéieren)",
+   "answers": [],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-5a2037dd27",
+   "topic": "vakanz",
+   "q": "Wéi heeschen déi international Fluchhäfen am Pakistan, op de Philippinnen?",
+   "answers": [],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-94f6d5d240",
+   "topic": "vakanz",
+   "q": "Brauchen Touristen e Visa, fir a Pakistan, fir op d’Philippinnen ze reesen …?",
+   "answers": [],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-5f1f7fd7c7",
+   "topic": "vakanz",
+   "q": "Wat mengt Dir, vu wou kommen déi meescht Touristen ?",
+   "answers": [
+    "Déi meescht Touriste kommen aus.."
+   ],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-753de58651",
+   "topic": "vakanz",
+   "q": "Wat fir touristesch Attraktiounen ginn et zu Lëtzebuerg",
+   "answers": [
+    "L. huet vill touristesch Attraktiounen, zum Beispill de Mëllerdall, de Gronn, vill Schlässer a Buergen ( Veianen, Clierf)"
+   ],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-a1502283b4",
+   "topic": "vakanz",
+   "q": "Vergläicht den Tourismus zu Lëtzebuerg mam Tourismus an Ärem Heemechtsland",
+   "answers": [
+    "L. huet vill Schlässer a Buergen, Am Pakistan ginn et héich Bierger / op de Philippinnen ginn et vill Inselen, vill Plagen"
+   ],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-95f0d37db7",
+   "topic": "vakanz",
+   "q": "Ass Lëtzebuerg e Reesland?",
+   "answers": [
+    "Jo, L. ass e Reesland, déi meescht Touristen kommen aus China"
+   ],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-888018c749",
+   "topic": "vakanz",
+   "q": "Huet sech de Tourismus an de leschte Jore verännert ?",
+   "answers": [
+    "Jo, duerch eng Pandemie huet sech sech de Tourismus verännert.",
+    "D’Leit konnten net reesen. Hotelen, Restauranten si Bankrott ( bancrupty) gaangen"
+   ],
+   "notes": [
+    "changed"
+   ],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-01701b7fc3",
+   "topic": "vakanz",
+   "q": "Ginn et méi gënschteg a méi deier Plazen an Ärem Heemechtsland?",
+   "answers": [
+    "Jo am Norden ass et",
+    "am Süden",
+    "am Osten oder am Westen"
+   ],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-8b6f35a27b",
+   "topic": "vakanz",
+   "q": "Hutt Dir méi Wanter- oder méi Summertourismus?",
+   "answers": [
+    "Mir hunn nëmme Summertourismus"
+   ],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-1d22268b6f",
+   "topic": "vakanz",
+   "q": "Wat fir Aktivitéiten kann een am Wanter respektiv am Summer maachen?",
+   "answers": [],
+   "notes": [],
+   "from": "Tourismus"
+  },
+  {
+   "id": "n-67c0ff00f7",
+   "topic": "sport",
+   "q": "Hutt Dir vill Fräizäit, wéini, wéi oft?",
+   "answers": [
+    "nee ech hunn net vill Fräizäit , ech schaffe vill."
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-2798e6226a",
+   "topic": "sport",
+   "q": "Wat fir Sportaarten ( Sportzorten) kennt Dir?",
+   "answers": [
+    "Ech mengen et ginn zwou Sportaarten – fir dobannen oder dobaussen."
+   ],
+   "notes": [
+    "kennen = to know",
+    "kënnen = to be able",
+    "hie kënnt aus Ägypten _ he comes from Ä."
+   ],
+   "from": "Sport"
+  },
+  {
+   "id": "n-ce417f8022",
+   "topic": "sport",
+   "q": "Maacht Dir gär Sport an Ärer Fräizäit?",
+   "answers": [
+    "Jo, ech maache gär .. ,,"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-a653e8bf1d",
+   "topic": "sport",
+   "q": "Firwat maacht dir Sport ? (wat ass Är Motivatioun?)",
+   "answers": [
+    "Ech maache Sport, fir ze relaxen.",
+    ", well et gutt fir d’Gesondheet ass"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-9a68d52bea",
+   "topic": "sport",
+   "q": "Wat fir e Sport maacht Dir?",
+   "answers": [
+    "ech schwamme gär, oder….",
+    "ech gi gär an de Fitness-Studio"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-a492c0c2b7",
+   "topic": "sport",
+   "q": "Säit ( zanter) weini? Wei laang schonn?",
+   "answers": [
+    "Zanter 10 Joer oder…."
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-863a4d8654",
+   "topic": "sport",
+   "q": "Ass dëse Sport deier, kascht ee vill?",
+   "answers": [
+    "Jo e kascht 50 Euro pro Mount."
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-3898651f7b",
+   "topic": "sport",
+   "q": "Wat ass dodrun(ner) interessant?",
+   "answers": [
+    "E relaxt mech"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-20496955a7",
+   "topic": "sport",
+   "q": "Mat wiem maacht Dir dat?",
+   "answers": [
+    "ech fuere Vëlo mat menger Fra oder mat mengem Mann zesummen"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-33d8f5b944",
+   "topic": "sport",
+   "q": "Wei oft?",
+   "answers": [
+    "2,3 Mol pro Woch oder pro Mount…"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-51f2ff0a47",
+   "topic": "sport",
+   "q": "Wéi laang ( how long) dauert den Training?",
+   "answers": [
+    "den Training dauert ongeféiert eng Stonn",
+    "ech bleiwen eng Stonn am Training- am Fitness-Studio"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-feb450b4e2",
+   "topic": "sport",
+   "q": "Wéi fillt Dir Iech nom Training?",
+   "answers": [
+    "ech sinn entspaant a frou – ech si relaxt nom Training/ midd ( tired)"
+   ],
+   "notes": [
+    "no = after no + dem = nom",
+    "“nom Cours= = after the course”"
+   ],
+   "from": "Sport"
+  },
+  {
+   "id": "n-c9d4b6de58",
+   "topic": "sport",
+   "q": "Wéi reagéiert Är Famill op Ären Hobby?",
+   "answers": [
+    "Meng Famill ass frou domat ( with this)"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-90250587b5",
+   "topic": "sport",
+   "q": "Kënnt Dir Ären Hobby professionell maachen?",
+   "answers": [
+    "Nee, dat ass net méiglech/ ech mengen net"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-c5a13c4511",
+   "topic": "sport",
+   "q": "Wat fir e Sport ass populär an Ärem Land?",
+   "answers": [
+    "Fussball a populär an Ägypten."
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-b572831b1e",
+   "topic": "sport",
+   "q": "Kuckt Dir Sport op der Tëlee?",
+   "answers": [
+    "Jo, ech kucke Sport op der Tëlee / um Fernseh"
+   ],
+   "notes": [
+    "( um Fernseh)"
+   ],
+   "from": "Sport"
+  },
+  {
+   "id": "n-33d1e3e01f",
+   "topic": "sport",
+   "q": "Kennt Dir bekannt (popular)Lëtzebuergesch Sportler?",
+   "answers": [
+    "Ech kennen den Andy Schleck ( Cyclist) an de Josy Barthel (Liichtathletik)"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-160c1fe936",
+   "topic": "sport",
+   "q": "Sidd Dir Member an engem Veräin / Club?",
+   "answers": [
+    "Jo ech si Member an engem Veräin, oder nee, ech si kee Member an engem Veräin"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-f2ee923e2c",
+   "topic": "sport",
+   "q": "Maacht dir Sport doheem? Fir wat? Fir wat net!",
+   "answers": [
+    "Jo, ech…. oder nee, ech maache kee Sport doheem",
+    "ech maache kee Sport doheem, well ech léiwer dobausse sinn, fir Sport ze maachen"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-8849392079",
+   "topic": "sport",
+   "q": "Hutt Dir scho(nn) = already Sport lieweg (live) gesinn?",
+   "answers": [
+    "Nee, ech hu keng Zäit dofir. ( for this)",
+    "Nee, ech fannen dat net interessant",
+    "Jo, ech hu scho Sport lieweg gesinn"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-0368132a07",
+   "topic": "sport",
+   "q": "Wéini war dat?",
+   "answers": [
+    "Dat war 2019 oder…"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-344940db4e",
+   "topic": "sport",
+   "q": "Wou war dat?",
+   "answers": [
+    "Dat war zu Lëtzebuerg oder an Indien oder …"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-f75806ab1c",
+   "topic": "sport",
+   "q": "Wéi kann ee(n) = one Kanner motivéiere méi Sport ze maachen?",
+   "answers": [
+    "Fir Kanner ass et wichteg, eppes mat Frënn zesummen ze maachen , ze gewannen ( to win), Erfolleg ( success) am Sport ze hunn"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-f0bd8240d3",
+   "topic": "sport",
+   "q": "Präferéiert Dir online Sport Spiller oder Sport dobaussen?",
+   "answers": [
+    "Ech preferéieren Sport dobaussen",
+    "ech hu léiwer Sport dobausse wéi online Sport Spiller",
+    "ech spille léiwer.."
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-953e104562",
+   "topic": "sport",
+   "q": "Kënnt Dir Ski fueren?",
+   "answers": [
+    "Jo, ech ka Ski fueren, oder nee, ech kann net Ski fueren"
+   ],
+   "notes": [
+    "Schi=Ski"
+   ],
+   "from": "Sport"
+  },
+  {
+   "id": "n-32f6fc1cfd",
+   "topic": "sport",
+   "q": "wéini fannt dir Zäit , fir Sport ze maachen?",
+   "answers": [
+    "een, zwee, dräimol pro Woch (d’Woch), oder all Dag…"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-ec571a520c",
+   "topic": "sport",
+   "q": "Gitt Dir an de Fitnessstudio ?",
+   "answers": [
+    "Nee, ech ginn net an de Fitnessstudio/ jo ech ginn an de Fitnessstudio"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-9596ce83b5",
+   "topic": "sport",
+   "q": "Virdeeler Nodeeler Fitnessstudio?",
+   "answers": [
+    "Virdeeler sinn:/ e Virdeel ass",
+    "et ass dobannen, ech treffe meng Frënn",
+    "ech maache Sport mat menge Frënn",
+    "Nodeeler sinn:",
+    "ech verbrénge vill Zäit, fir an de Fitnessclub ze goen",
+    "et ass deier, d‘Loft ass net gutt"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-46e30fa864",
+   "topic": "sport",
+   "q": "Wat maacht Dir am Fitnessstudio?",
+   "answers": [
+    "Ech fuere mam Vëlo",
+    "ech ginn oft lafen"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-76cb10789c",
+   "topic": "sport",
+   "q": "Ennerscheed tëscht engem E-Scooter an engem E-bike?",
+   "answers": [
+    "en E-Scooter ass méi deier en E-bike"
+   ],
+   "notes": [],
+   "from": "Sport"
+  },
+  {
+   "id": "n-0b0ec5e67d",
+   "topic": "transport",
+   "q": "Wou wunnt Dir?",
+   "answers": [
+    "Ech wunnen zu Stroossen"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-162c3339d0",
+   "topic": "transport",
+   "q": "Wéi sidd Dir haut an den INL komm?",
+   "answers": [
+    "Ech si mam Tram an den INL komm"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-35cd6a4752",
+   "topic": "transport",
+   "q": "Hutt Dir en Auto?",
+   "answers": [
+    "Jo ech hunn en Auto, En Toyota Auris- ech hunn e groen Auto"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-e0dbd598f4",
+   "topic": "transport",
+   "q": "Fuert Dir gär mam Vëlo?",
+   "answers": [
+    "Nee, ech fueren net gär mam Vëlo"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-5f2820edeb",
+   "topic": "transport",
+   "q": "Wou fuert Dir mam Vëlo? wéi oft..?",
+   "answers": [
+    "Ech fueren heiandso dobanne mam Vëlo, mat mengem Fitnessvëlo, oft dobaussen, iwwert d‘Velosweeër"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-0c22bdc74a",
+   "topic": "transport",
+   "q": "Wéi fuert Dir op d’Aarbecht?",
+   "answers": [
+    "Ech fuere mam Auto op d‘Aarbecht"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-48e4afe1b0",
+   "topic": "transport",
+   "q": "Wéi laang braucht Dir?",
+   "answers": [
+    "Ech brauch ongeféier 20 Minutten"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-2076e83318",
+   "topic": "transport",
+   "q": "Firwat fuert Dir mam Auto op d‘Aarbecht?",
+   "answers": [
+    "Meng Aarbecht ass 20 km ewech"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-554ba38599",
+   "topic": "transport",
+   "q": "Wéi fuert Dir an d‘Vakanz?",
+   "answers": [
+    "Ech fléie mam Fliger an d‘Vakanz"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-b53525fcbf",
+   "topic": "transport",
+   "q": "Wéi maacht Dir Kommissiounen (wéi gitt Dir akafen?)",
+   "answers": [
+    "Ech fuere mam Auto, fir Kommissiounen ze maachen"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-7824bc2bcf",
+   "topic": "transport",
+   "q": "Wéi oft benotzt Dir den Taxi?",
+   "answers": [
+    "Ech huele bal ni en Taxi"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-7c4665482f",
+   "topic": "transport",
+   "q": "Wat maacht Dir gär während dem Fluch?",
+   "answers": [
+    "Während dem Fluch versichen ech ze schlofen"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-41147ea696",
+   "topic": "transport",
+   "q": "Wat fir Fluchgesellschaften hutt Dir scho benotzt?",
+   "answers": [
+    "Ech hu schonn d‘ Lufthansa benotzt"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-969cfeb190",
+   "topic": "transport",
+   "q": "Sidd Dir schon eng Kéier mat der elektrischer Trottinett gefuer?",
+   "answers": [
+    "Nee, dat hunn ech nach ni gemaach"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-ddae83343f",
+   "topic": "transport",
+   "q": "Gitt Dir iwwerhaapt zu Fouss?",
+   "answers": [
+    "Jo, ech ginn all Dag zu Fouss- ech gi gär spadséieren"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-357d0c578f",
+   "topic": "transport",
+   "q": "Flitt Dir vu Lëtzebuerg aus?",
+   "answers": [
+    "Jo, ech fléie vu L. Aus"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-27f76aa977",
+   "topic": "transport",
+   "q": "Fueren d’Leit gutt zu Lëtzebuerg? an an Ärem Land?",
+   "answers": [
+    "Et ginn iwwerall Leit, déi gutt oder schlecht kënne fueren"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-1c6cd6da7c",
+   "topic": "transport",
+   "q": "Wéi laang hutt Dir de Führerschäi schonn?",
+   "answers": [
+    "Ech hu mäi Führerschäin zanter 1987"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-b49bd9b673",
+   "topic": "transport",
+   "q": "Beschreift Ären Auto",
+   "answers": [
+    "Mäin Auto ass gro a grouss mat siwe Sëtzplazen"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-65f78317f4",
+   "topic": "transport",
+   "q": "Sidd Dir beschäftegt?",
+   "answers": [
+    "Jo ech hunn eng Aarbecht",
+    "Wou? – um Kierchbierg"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-f1615debbf",
+   "topic": "transport",
+   "q": "Wéi gitt Dir op d'Aarbecht?",
+   "answers": [
+    "Ech fuere mam Auto op d‘Aarbecht"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-e2de661901",
+   "topic": "transport",
+   "q": "Wéi vill Zäit braucht ( to need) Dir?",
+   "answers": [
+    "Ech brauch zwanzeg Minutten"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-5f7a7dc6bf",
+   "topic": "transport",
+   "q": "Wéi gitt Dir an d'Vakanz?",
+   "answers": [
+    "Ech fuere mam Auto an d‘Vakanz"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-fa6607943c",
+   "topic": "transport",
+   "q": "Wéi en Transportmëttel hutt Dir an der Vakanz benotzt?",
+   "answers": [
+    "Ech hu mäin Auto benotzt."
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-a98f659c07",
+   "topic": "transport",
+   "q": "Wéi gitt Dir shoppen?",
+   "answers": [
+    "Ech fuere mam Auto"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-0407905310",
+   "topic": "transport",
+   "q": "Wéini hutt Dir fir d'lescht de Bus geholl?",
+   "answers": [
+    "De leschte Mëttwoch"
+   ],
+   "notes": [
+    "huelen ( to take)"
+   ],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-06dfa48d35",
+   "topic": "transport",
+   "q": "Wéi gitt Dir an d'Stad?",
+   "answers": [
+    "Ech fuere mam Auto an d’Stad"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-2e6cc2f22b",
+   "topic": "transport",
+   "q": "Wéi ass d’Situatioun mat Parkingen an der Stad?",
+   "answers": [
+    "D‘Situatioun ass net gutt"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-55584be0ac",
+   "topic": "transport",
+   "q": "Wat fir en Transportmëttel benotzt Dir am dacksten?",
+   "answers": [
+    "Ech fueren am léifste mam Tram. - am léifsten = I prefer most"
+   ],
+   "notes": [
+    "dacks = often",
+    "benotzen = to use"
+   ],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-e85df4762e",
+   "topic": "transport",
+   "q": "Virdeeler vum Tram",
+   "answers": [
+    "Den Tram ass gratis a propper"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-09f0e87aef",
+   "topic": "transport",
+   "q": "Fuert Dir méi oft mam Tram säit et gratis ass?",
+   "answers": [
+    "Jo, elo méi oft"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-caa4fb8aad",
+   "topic": "transport",
+   "q": "Wéi ass de Verkéier zu Lëtzebuerg?",
+   "answers": [
+    "Et ass net immens. Et gi vill Stauen an der Stad ( there are a lot of traffic jams )"
+   ],
+   "notes": [
+    "Verkéier = traffic"
+   ],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-ce865f0780",
+   "topic": "transport",
+   "q": "Hutt Dir gutt Verkéiersverbindungen, do wou Dir wunnt?",
+   "answers": [
+    "Jo, ech kréien oft e Bus, nee ech muss mam Auto fueren"
+   ],
+   "notes": [
+    "all",
+    "= to you have good traffic connections where you live?"
+   ],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-b17e4005a2",
+   "topic": "transport",
+   "q": "Wéi oft tankt Dir?",
+   "answers": [
+    "Ech tanken eemol de Mount ( once a month)"
+   ],
+   "notes": [
+    "tanken = to fill gaz"
+   ],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-a2e2c1bb73",
+   "topic": "transport",
+   "q": "Wou tankt Dir Ären Auto?",
+   "answers": [
+    "Ech tanken op der Tankstell."
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-ef510b2957",
+   "topic": "transport",
+   "q": "Kascht et vill an der Stad ze parken?",
+   "answers": [
+    "Jo, et ass deier"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-53c691801f",
+   "topic": "transport",
+   "q": "Wat fir en Transportmëttel benotzt Dir an Ärem Heemechtsland?",
+   "answers": [
+    "Ech benotzen den Auto ( I use the care)"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-8a6d2aad1b",
+   "topic": "transport",
+   "q": "Wéi gitt Dir shoppen?/wéi gitt Dir an d’Stad? / Wéi gitt Dir an d’Vakanz?",
+   "answers": [
+    "Ech fueren mam Auto shoppen",
+    "Ech fuere mam Auto an d’Stad",
+    "Ech fuere mam Auto an d’Vakanz"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-1346d034b2",
+   "topic": "transport",
+   "q": "Vergläicht den Auto mat ëffentlechen Transportmëttelen",
+   "answers": [
+    "Den Tram ass gratis a propper",
+    "Den Auto ass deier"
+   ],
+   "notes": [],
+   "from": "Transportmëttelen"
+  },
+  {
+   "id": "n-af1b689b86",
+   "topic": "wunnen",
+   "q": "Wou wunnt Dir? b) zanter (säit) wéini wunnt Dir do?",
+   "answers": [
+    "Ech wunnen zu Rippech zanter 4 Joer."
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-2fc99183fc",
+   "topic": "wunnen",
+   "q": "Wat hutt Dir do gär – wat hutt Dir do net gär?",
+   "answers": [
+    "Et ass roueg zu Rippech, dat hunn ech gär",
+    "Et gi keng Butteker, dat ass net gutt"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-750e1eebf6",
+   "topic": "wunnen",
+   "q": "Beschreift Äert Appartement?",
+   "answers": [
+    "Ech hunn en Haus. et huet 300 Quadratmeter",
+    "Et huet eng Kichen, eng Stuff, 7 Schlofzëmmeren, fënnef Buedzëmmeren",
+    "an e Gaart."
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-72c765ac6a",
+   "topic": "wunnen",
+   "q": "Schwätzt Dir mat Ären Noperen?",
+   "answers": [
+    "Jo, ech schwätze mat mengen Noperen"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-dcffa206da",
+   "topic": "wunnen",
+   "q": "Wou gitt Dir akafen/ Wou maacht Dir Kommissiounen?",
+   "answers": [
+    "Ech maachen am Cactus Kommissiounen"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-fcbfc9544c",
+   "topic": "wunnen",
+   "q": "Fuert Dir mam ëffentlechen Transport. Benotzt Dir..",
+   "answers": [
+    "Nee, ech fueren net mam ëffentlechen Transport"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-d4dcdf5394",
+   "topic": "wunnen",
+   "q": "Wat sinn d’Virdeeler (advantages) vum ëffentlechen Transport?",
+   "answers": [
+    "d’Virdeeler sinn: et ass gutt fir d’Klima. et ass gratis"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-5b1954359e",
+   "topic": "wunnen",
+   "q": "Hutt Dir vill Verkéier op der Haaptstrooss / oder do wou Dir wunnt?",
+   "answers": [
+    "Nee , et ass roueg"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-684e431ee4",
+   "topic": "wunnen",
+   "q": "Hutt Dir eng Parkplaz?",
+   "answers": [
+    "Jo, ech hunn dräi Parkplazen"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-0377508406",
+   "topic": "wunnen",
+   "q": "Wéi eng Faarf sinn d'Maueren vun Ärem Haus?",
+   "answers": [
+    "Meng Mauere si wäiss"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-457dfc0a24",
+   "topic": "wunnen",
+   "q": "Ginn et Biller un de Maueren",
+   "answers": [
+    "Jo, et gi Biller un de Maueren ( Biller mat menger Famill)"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-bfd5ac713c",
+   "topic": "wunnen",
+   "q": "Op wat fir engem Stack wunnt Dir?",
+   "answers": [
+    "Ech wunnen um éischte Stack"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-2099d2ad99",
+   "topic": "wunnen",
+   "q": "Ginn et Hausregelen ?",
+   "answers": [
+    "Nee, ech et gi keng Hausregelen"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-d43d0fe4f2",
+   "topic": "wunnen",
+   "q": "Gëtt et eng Spillplaz bei Ärem Haus?",
+   "answers": [
+    "Jo, et gëtt eng Spillplaz nobai."
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-9feebc2586",
+   "topic": "wunnen",
+   "q": "Gëtt et eng Apdikt bei Ärem Haus?",
+   "answers": [
+    "Nee, et gëtt keng Apdikt nobäi"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-93248f5224",
+   "topic": "wunnen",
+   "q": "Gëtt et eng Praxis do? Wou ass Ärem Hausdokter seng Praxis?",
+   "answers": [
+    "Jo, et gëtt eng Praxis. Mengem Hausdokter seng Praxis ass 500 m ewech vu mengem Haus"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-1db5d1cb55",
+   "topic": "wunnen",
+   "q": "Wéi wäit ass d'Haaptstrooss ewech vun Ärem Haus ?",
+   "answers": [
+    "D‘Haaptstrooss ass 5 Minutte ewech ( vu mengem Haus)"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-de838ca7e3",
+   "topic": "wunnen",
+   "q": "Wou parkt dir Ären Auto?",
+   "answers": [
+    "Ech parke mäin Auto nobai mengem Haus"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-d2ba73181c",
+   "topic": "wunnen",
+   "q": "Wou ass de Busarret?",
+   "answers": [
+    "De Busarret ass dräi Minutten ewech"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-24474cf1e5",
+   "topic": "wunnen",
+   "q": "Ass Är Uertschaft sécher, fiwat ?",
+   "answers": [
+    "Meng Uertschaft ass sécher. Et gëtt e Policebüro nobai"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-9a29a7bf83",
+   "topic": "wunnen",
+   "q": "Wou wunnt Dir?",
+   "answers": [
+    "Ech wunnen zu Rippech zu Lëtzebuerg"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-89e99963cc",
+   "topic": "wunnen",
+   "q": "Gefält et Iech do ( do you like it)",
+   "answers": [
+    "Jo, et gefält mir ganz gutt zu Rippech"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-299dbc9b29",
+   "topic": "wunnen",
+   "q": "Wou hutt Dir virdru gewunnt?",
+   "answers": [
+    "Virdrun hunn ech an Ägyten gewunnt"
+   ],
+   "notes": [
+    "virdrun = before"
+   ],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-1c4a6b37e0",
+   "topic": "wunnen",
+   "q": "Sidd Dir Proprietaire oder Locataire?",
+   "answers": [
+    "Ech si Locataire"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-db9eb9ea54",
+   "topic": "wunnen",
+   "q": "Wéi sinn Är Noperen?",
+   "answers": [
+    "Meng Nopere si frëndlech ( friendly)"
+   ],
+   "notes": [
+    "how are your neighbours"
+   ],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-3678dc4ef8",
+   "topic": "wunnen",
+   "q": "Gitt Dir zesummen eraus oder trefft Dir Iech regelméisseg?",
+   "answers": [
+    "Ech treffe meng Noperen, mee mir ginn net an de Restaurant zesummen."
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-e4513a9a01",
+   "topic": "wunnen",
+   "q": "Beschreift mir Är Uertschaft",
+   "answers": [
+    "Zu Rippech ginn et nëmmen (only) Haiser , keng Butteker a keng Restauranten."
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-618133d675",
+   "topic": "wunnen",
+   "q": "Beschreift mir Är Wunneng?",
+   "answers": [
+    "Mäin Haus huet 7 Schlofzëmmeren a véier Buedzëmmeren, eng Stuff, eng Kichen, e Gaart an eng Garage."
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-a5543798aa",
+   "topic": "wunnen",
+   "q": "Wéi gesäit Är Stuff aus?",
+   "answers": [
+    "Meng Stuff dräi Canapéen, eng Tëlee, en Iessdësch a Still (chairs)"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-3e043b4347",
+   "topic": "wunnen",
+   "q": "Hutt dir ee Gaart, eng Terrass, ee Balkon?",
+   "answers": [
+    "Jo, ech hunn ee Gaart an eng Terrass"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-494a903096",
+   "topic": "wunnen",
+   "q": "Säit wéini?",
+   "answers": [
+    "Säit 2019 wunnen ech zu Rippech"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-13cd5560c7",
+   "topic": "wunnen",
+   "q": "Wat fir eng Zort Wunneng ass et?",
+   "answers": [
+    "Et ass en Haus ( en Eefamilljenhaus)"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-91bc47a074",
+   "topic": "wunnen",
+   "q": "Hutt Dir Hausdéieren? Wann net: Firwat net? sinn Hausdéiere gutt fir d’Gesondheet?",
+   "answers": [
+    "Ech hu keng Hausdéieren, si stierwen fréi.",
+    "Jo, ech menge jo- si maachen d’Leit frou"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-763415ee2d",
+   "topic": "wunnen",
+   "q": "Wat kann een an Ärem Quartier / Duerf maachen? Wat fir Aktivitéiten?",
+   "answers": [
+    "Ech ka spadséiere goen ( I can…)",
+    "spadséiere goen",
+    "Sport maachen",
+    "Zu Mëtteg iessen"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-8a964ebe71",
+   "topic": "wunnen",
+   "q": "Gëtt et do och e Veräin oder e Club?",
+   "answers": [
+    "Et ginn nëmmen Haiser , keng Veräiner"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-110fb27bf0",
+   "topic": "wunnen",
+   "q": "Wat fir Butteker / Geschäfter ginn et do?",
+   "answers": [
+    "Et ginn nëmmen Haiser , keng Veräiner"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-958631c152",
+   "topic": "wunnen",
+   "q": "Wat kann ee mat Kanner an Ärem Quartier / Duerf maachen?",
+   "answers": [
+    "Et gëtt keng Spillplaz"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-16e94a8816",
+   "topic": "wunnen",
+   "q": "Wéi gefält Iech Äre Quartier / Äert Duerf?",
+   "answers": [
+    "Et gefält mir ganz gutt = ech hu mäin Duerf mega gär"
+   ],
+   "notes": [
+    "Gefalen + Dativ"
+   ],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-88b4f672ff",
+   "topic": "wunnen",
+   "q": "Wat gefält Iech net sou gutt do?",
+   "answers": [
+    "Et gi keng Butteker do."
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-fc65be8b86",
+   "topic": "wunnen",
+   "q": "Wéi sinn d’Verbindunge (traffic connections) vun Ärem Wunnuert op d’Aarbecht / an d’Stad?",
+   "answers": [
+    "Et gi gutt Verbindungen an d’Stad/ op d‘Aarbecht"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-373e227657",
+   "topic": "wunnen",
+   "q": "Kennt Dir Är Noperen? Wéi si(nn) si?",
+   "answers": [
+    "Si si frëndlech vill Quartieren / Gemengen organiséieren d’Nopeschfest. Fannt Dir dat eng gutt Initiative? Firwat ?",
+    "Jo, ech fannen dat eng gutt Initiative , fir d’Leit kennenzeléieren"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-4a7dfd3943",
+   "topic": "wunnen",
+   "q": "Wou parkt Dir Ären Auto? Gëtt et genuch Plaz fir ze parken?",
+   "answers": [
+    "Ech parke mäin Auto op menger Parkplaz. Jo natierlech et gëtt genuch Plaze fir ze parken"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-38d57a451e",
+   "topic": "wunnen",
+   "q": "Gëtt et vill Trafic?",
+   "answers": [
+    "Nee, et gëtt net vill Trafic"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-479ba7b8ed",
+   "topic": "wunnen",
+   "q": "Gëtt et eng Post an Ärer Uertschaft? an Ärem Quarteier?",
+   "answers": [
+    "Et gëtt keng Post (f)"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-99a34d87ff",
+   "topic": "wunnen",
+   "q": "Wéini ass d’Apditk bei Iech op?",
+   "answers": [
+    "Et gëtt eng Apdikt"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-213dc800b5",
+   "topic": "wunnen",
+   "q": "Wéini mécht si zou?",
+   "answers": [
+    "Si mécht um 18 Auer zou"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-f045408f54",
+   "topic": "wunnen",
+   "q": "Op wat fir engem Stack (floor) wunnt Dir?",
+   "answers": [
+    "Ech wunnen an engem Haus, et huet dräi Stäck"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-aa938fab9d",
+   "topic": "wunnen",
+   "q": "Wunnt Dir léiwer an der Stad oder um Land?",
+   "answers": [
+    "Ech wunne léiwer um Land wéi an der Stad"
+   ],
+   "notes": [
+    "Vergläicht"
+   ],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-85c67b7d16",
+   "topic": "wunnen",
+   "q": "Hutt Dir e Balkon oder eng Terrass?",
+   "answers": [
+    "Ech hunn eng Terrass"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-3ab640b847",
+   "topic": "wunnen",
+   "q": "Wéivill Quadratmeter huet Är Wunneng?",
+   "answers": [
+    "Mäin Haus huet dräihonnert Quadratmeter"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-736b41677b",
+   "topic": "wunnen",
+   "q": "Wunnt Dir léiwer roueg?",
+   "answers": [
+    "Jo, ech wunne léiwer roueg"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-0331da820b",
+   "topic": "wunnen",
+   "q": "Ass et wichtig, datt d’Emgéigend propper ass?",
+   "answers": [
+    "Jo, et wichteg, datt d’Emgéigend propper ass",
+    "Jo et ass wichteg fir mech"
+   ],
+   "notes": [],
+   "from": "Wunnen"
+  },
+  {
+   "id": "n-e321cc24be",
+   "topic": "medien",
+   "q": "Wat bedeit „Technologie“ fir Iech?",
+   "answers": [
+    "Technologie ass meng Aarbecht bei Amazon",
+    "Technologie ass fir mech zum Beispill den Internet an elektronesch Apparater ( den Handy, de Computer)"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-fc816ec37f",
+   "topic": "medien",
+   "q": "Kuckt dir gär Filmer?",
+   "answers": [
+    "jo, ech kucke gär Filmer ( gär) -Fir wat , well ech dat interessant fannen"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-5c7081ea10",
+   "topic": "medien",
+   "q": "Wat fir e Film hutt Dir fir d’lescht (last time) gekuckt?",
+   "answers": [
+    "Gëschter hunn ech den Oppenheimer gekuckt.",
+    "Gëschter hunn ech d‘Barbie gekuckt."
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-479a60a90f",
+   "topic": "medien",
+   "q": "Wat war d’Thema (de Sujet) vum Film? Wéi huet de Film Iech gefall?",
+   "answers": [
+    "Et ass iwwert d‘ Geschicht.(history) -de Film ass gutt.",
+    "d’Thema ass iwwert Spillsaachen ( Spillgezei)",
+    "De Film ass gutt ( en ass gutt)",
+    "Mir huet de Film gefall"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-fd6f594471",
+   "topic": "medien",
+   "q": "Gitt dir gär an de Kino?",
+   "answers": [
+    "Jo, ech gi gär an de Kino- firwat?"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-303f348bf8",
+   "topic": "medien",
+   "q": "Wéi dacks ( oft) gitt Dir an de Kino?",
+   "answers": [
+    "Zweemol pro Mount ginn ech an de Kino",
+    "Ech ginn emol pro Mount an de Kino.",
+    "tëscht een an zweemol pro Mount"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-c430fae344",
+   "topic": "medien",
+   "q": "wat fir eng Zort (Aart) Filmer hutt Dir am léifsten?",
+   "answers": [
+    "Ech kucken am léifsten Agentefilmer / Comedy Filmer",
+    "Meng Liblingsfilmer sinn Agentefilmer"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-c86d4e3f7e",
+   "topic": "medien",
+   "q": "Hutt Dir e Liblingsschauspiller (actor)? Wien? Firwat?",
+   "answers": [
+    "Nee , ech hu kee Liblingsschauspiller.",
+    "Jo, mäi Liblingsschauspiller ass den Tom Cruise.",
+    "Hie mécht Agentefilmer"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-0fdf514b46",
+   "topic": "medien",
+   "q": "Mat wiem (with whom) gitt Dir normalerweis an de Kino?",
+   "answers": [
+    "Ech gi mat Frënn an de Kino",
+    "Ech ginn normalerweis mat mengem Brudder an de Kino"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-c041411ca3",
+   "topic": "medien",
+   "q": "Gitt Dir och eleng an de Kino?",
+   "answers": [
+    "Nee, ech ginn net gär eleng an de Kino",
+    "Heiansdo ginn ech eleng an de Kino"
+   ],
+   "notes": [
+    "eleng = alone"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-a0d5af78ca",
+   "topic": "medien",
+   "q": "Kuckt Dir vill d‘ Tëlee? Wann nee: Firwat net?",
+   "answers": [
+    "Nee, ech kucken net vill d’Tëlee. ech kucke Filmer um Internet.",
+    "Ech spille gär Playstation",
+    "Neen, ech kucken ni d‘Tëlee"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-72869da044",
+   "topic": "medien",
+   "q": "Wat fir Sendere ( Emissiounen) / Programmer (channel) kuckt Dir?",
+   "answers": [
+    "Ech kucke keng Tëlee (TV)"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-446a09f866",
+   "topic": "medien",
+   "q": "A wéi enger Sprooch kuckt Dir d’Noriichten?",
+   "answers": [
+    "Ech kucken d’Noriichten op Englesch"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-97924b60bd",
+   "topic": "medien",
+   "q": "A wat fir enger Sprooch kuckt Dir Filmer?",
+   "answers": [
+    "Ech kucken d‘Filmer op Englesch"
+   ],
+   "notes": [
+    "( Äntwert „op“..)"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-de928096ed",
+   "topic": "medien",
+   "q": "A wat fir enger Sprooch liest Dir Ennertitelen (subtitles)",
+   "answers": [
+    "Ech liesen d‘Ennertitelen op Englesch"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-023863564c",
+   "topic": "medien",
+   "q": "Kuckt Dir och Filmer um Internet? Wat sinn d’Virdeeler (advantages) dovun?",
+   "answers": [
+    "Jo, ech kucke Filmer um Internet. et gëtt vill Choix (choice) -there is a lot of choice",
+    "Et ass bëlleg"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-aefbd72435",
+   "topic": "medien",
+   "q": "Wat maacht Dir, wa (nn) = if, when Reklammen op der Tëlee kommen?",
+   "answers": [
+    "Ech kucke gär Reklammen./ ech wiesselen ( to change) de Programm"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-4bfc643cd7",
+   "topic": "medien",
+   "q": "Ass d‘ Tëlee wichteg fir Iech? Firwat?",
+   "answers": [
+    "Nee, d’Tëlee ass net wichteg fir mech. ( ech kucke keng Tëlee) den Internet ass wichteg fir mech.",
+    "Ech spille gär Playstation"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-aca96d5b55",
+   "topic": "medien",
+   "q": "Wat maacht Dir léiwer: d‘Tëlee kucken oder liesen? Firwat ?",
+   "answers": [
+    "Ech liese léiwer wéi d’Tëlee ze kucken",
+    "Ech kucke léiwer d’Tëlee wéi Bicher ze liesen"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-a46c666043",
+   "topic": "medien",
+   "q": "Wéini hutt Dir Ären éischten (first)Handy kaaft?",
+   "answers": [
+    "Ech hu mäin éischten Handy 2003 (zweedausenddräi) kaaft"
+   ],
+   "notes": [
+    "= mat wéivill Joer hutt Dir Ären éischten Handy kaaft? – fir wat an dem Alter ( why at that age)"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-a04d17e334",
+   "topic": "medien",
+   "q": "Wat fir eng Technologie benotzt Dir fir d‘ Noriichten?",
+   "answers": [
+    "Ech benotze mäin Handy a mäi Laptop fir d‘Noriichten ze kucken/ liesen"
+   ],
+   "notes": [
+    "benotzen = to use"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-8d51265adb",
+   "topic": "medien",
+   "q": "Wéi informéiert Dir Iech iwwert Noriichten?",
+   "answers": [
+    "Ech liesen d‘Noriichten um Handy./ ech benotze mäin Handy a mäi Laptop fir d‘Noriichten."
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-ff709d32ad",
+   "topic": "medien",
+   "q": "Wéi wichteg ass Ären Handy fir Iech ?",
+   "answers": [
+    "Mäin Handy ass ganz wichteg fir mech -firwat – ech schreiwen Emailen , well ech meng Frënn uruffen."
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-d22b0e82d6",
+   "topic": "medien",
+   "q": "Benotzt Dir den Handy wann Dir iesst?",
+   "answers": [
+    "Ech benotze keen Handy, wann ech iessen."
+   ],
+   "notes": [
+    "wann ( if, when) verb at the end"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-3fa0cb2a1d",
+   "topic": "medien",
+   "q": "Wou ass Är Tëlee (f) / wou ass Äre Fernsee?",
+   "answers": [
+    "Meng Tëlee ass an der Stuff./ Mäi Fernsee ass an der Stuff",
+    "mä mäi Laptop ass an der Stuff"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-4cb2d88e13",
+   "topic": "medien",
+   "q": "Kuckt Dir Filmer mat Ennertitelen?",
+   "answers": [
+    "Jo, ech kucke Filmer mat Ennertitelen"
+   ],
+   "notes": [
+    "subtitles"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-fdf97cca41",
+   "topic": "medien",
+   "q": "Wat si sozial Medien?",
+   "answers": [
+    "Dat sinn Internetsiten, zum Beispill Facebook, Instagram, LinkedIn",
+    "asouweider (and so on) a.s.w."
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-75f576afb1",
+   "topic": "medien",
+   "q": "Benotzt Dir oft sozial Medien ?",
+   "answers": [
+    "Heiansdo benotzen ech Sozial Medien",
+    "Ech benotzen sozial Medien all Dag",
+    "All Dag benotzen ech sozial Medien"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-c77dd9f14d",
+   "topic": "medien",
+   "q": "Firwat benotzt Dir Sozial Medien?",
+   "answers": [
+    "Ech benotze Sozial Medie fir mat menge Frënn a Kontakt ze sinn",
+    "Ech benotze Sozial Medie fir meng Famill a meng Frënn ze treffen.",
+    "(ech benotze Sozial Medien fir Informatiounen ze kréien)"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-64d3a840bd",
+   "topic": "medien",
+   "q": "Wéi wichteg si sozial Medien fir Iech ?",
+   "answers": [
+    "Et ass ganz wichteg fir mech, ech wëll ëmmer a Kontakt mat menge Frënn sinn."
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-dd198cb017",
+   "topic": "medien",
+   "q": "Wat fir = wéi eng (which) Technologie benotzt Dir?",
+   "answers": [
+    "Ech benotzen e Laptop, en Handy an den Internet",
+    "Ech benotzen e Laptop, en Handy, den Internet an eng Playstation"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-b910c5ec64",
+   "topic": "medien",
+   "q": "Wat maacht Dir mam Internet?",
+   "answers": [
+    "Ech spille Playstation, ech schaffen, ech kucken Netflix, ech bestellen, an ech liesen d’Noriichten, ( ech maachen Iwwerweisungen ( bank transfer)",
+    "Ech liesen d’Noriichten, ech kucke Filmer, ech schaffen, ech maachen och Shopping um Internet"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-5560bde7ba",
+   "topic": "medien",
+   "q": "Maacht Dir Fotoen op Ärem Handy?",
+   "answers": [
+    "Jo, ech maache Fotoen op mengem Handy -vun de Bierger, vun der Natur",
+    "ech maache Fotoen op mengem Handy, mee ech maache keng Selfien"
+   ],
+   "notes": [
+    "( where do you make photos)"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-1f10470ed8",
+   "topic": "medien",
+   "q": "Deelt Dir Fotoen op Facebook?",
+   "answers": [
+    "Nee, ech deele keng Fotoen op Facebook",
+    "Jo, ech hu scho(nn) Fotoen op Facebook gedeelt ( I have already shared photos on Facebook)"
+   ],
+   "notes": [
+    "deelen = to share / en Deel = a part"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-9bbbe4a043",
+   "topic": "medien",
+   "q": "Kommentéiert Dir op Siten?",
+   "answers": [
+    "Nee, ech kommentéieren selten ( rarely)",
+    "Nee, ech kommentéieren ni"
+   ],
+   "notes": [
+    "kommentéieren"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-36afb71db7",
+   "topic": "medien",
+   "q": "Liest Dir Kommentaren?",
+   "answers": [
+    "Nee, ech liesen keng Kommentaren",
+    "Heiansdo liesen ech Kommentaren iwwert d‘Kultur"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-701cd813bc",
+   "topic": "medien",
+   "q": "Wéini denkt Dir, datt d'Leit en neien Handy (m) kafen ?",
+   "answers": [
+    "Ech mengen, d’Leit kafen en neien Handy, wann den Handy futti ass ( futti = broken)",
+    "Ech mengen d’Leit kafen en Handy, wann et eng Promo gëtt"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-9ea70ab532",
+   "topic": "medien",
+   "q": "Wéini kaaft Dir en neien Handy?",
+   "answers": [
+    "Ech kafen en neien Handy, wann e futti ass - -",
+    "… wann en ze lues ( too slow) ass …. wann en al ass"
+   ],
+   "notes": [
+    "(m) „it“ for male things: e(n)"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-b679877f4a",
+   "topic": "medien",
+   "q": "Wat kaaft Dir am Internet?",
+   "answers": [
+    "ech kafen zum Beispill Kleedung a Botzsaachen am Internet",
+    "ech kafen alles ausser Iessen am Internet."
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-24c575be2b",
+   "topic": "medien",
+   "q": "Virdeeler an Nodeeler vum Online Shopping?",
+   "answers": [
+    "Virdeeler sinn:",
+    "Et ass séier, et ass méi bëlleg ( cheaper) an einfach ( easy)",
+    "Et ass bequem, et gëtt méi Choix",
+    "Nodeeler sinn:",
+    "Ech kann d’Kleedung net probéieren",
+    "Ech kafen ze vill",
+    "D‘lokal Butteker gi futti"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-5ad6431f70",
+   "topic": "medien",
+   "q": "Wéini maacht Dir Fotoen op Ärem Handy ?",
+   "answers": [
+    "Heiansdo maachen ech Fotoen op mengem Handy , wann",
+    "ech wanderen.",
+    "…. wann ech an der Vakanz sinn."
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-5b434fd9d7",
+   "topic": "medien",
+   "q": "Wat maacht Dir, wann Dir den Handy doheem vergiesst ?",
+   "answers": [
+    "Dat geschitt net ( this does not happen) – geschéien",
+    "Ech fueren heem, fir mäin Handy ze huelen",
+    "Ech ginn heem, fir mäin Handy ze huelen",
+    "Ech loossen den Handy doheem leien, ech brauch den Handy net ëmmer ( bei mir )."
+   ],
+   "notes": [
+    "vergiessen = to forget"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-322cf7a0e7",
+   "topic": "medien",
+   "q": "Mat wiem chatt Dir am meeschten?",
+   "answers": [
+    "Ech chatten am meeschte mat menge Frënn"
+   ],
+   "notes": [
+    "(mostly)"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-3d019c8455",
+   "topic": "medien",
+   "q": "Fir wat sinn Technologie wichteg?",
+   "answers": [
+    "Technologie si wichteg fir jiddereen, fir d’Aarbecht a fir privat"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-033300052b",
+   "topic": "medien",
+   "q": "Sinn Technologie wichteg fir Är Aarbecht?",
+   "answers": [
+    "Jo, d’Technologie si ganz wichteg fir meng Aarbecht- ech schaffe mat elektroneschen Apparater"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-c1b4500d42",
+   "topic": "medien",
+   "q": "Wat maacht Dir mam Computer op der Aarbecht?",
+   "answers": [
+    "Ech liese meng Emailen, ech äntweren op Mailen, ech sinn a Reuniounen."
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-4ab789cb01",
+   "topic": "medien",
+   "q": "Wéi eng Online Servicer benotzt Dir?",
+   "answers": [],
+   "notes": [
+    "(Facebook…)"
+   ],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-04e9c28645",
+   "topic": "medien",
+   "q": "Wat ass den Avantage (= Virdeel) vum Onlinebanking)?",
+   "answers": [
+    "Onlinebanking ass séier a praktesch"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-28851213c7",
+   "topic": "medien",
+   "q": "Lauschtert Dir och de Radio a wéini?",
+   "answers": [
+    "Jo, ech lauschteren de Radio, zum Beispill um Radio, wann ech op d’Aarbecht fueren"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-7c0e478869",
+   "topic": "medien",
+   "q": "Hutt Dir eng LIeblingsstatioun ( = Lieblingssender) zu L.",
+   "answers": [
+    "Am léifsten lauschteren ech RTL an Eldoradio"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-e9d7760e13",
+   "topic": "medien",
+   "q": "Wat fir e Genre Musek lauschtert Dir gär um Radio?",
+   "answers": [
+    "Ech lauschtere gär Pop/Rock/Klassikmusek"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-d9a3be56b5",
+   "topic": "medien",
+   "q": "Wéi vill Tëlee däerfen Är Kanner kucken?",
+   "answers": [
+    "Ech hu keng Kanner"
+   ],
+   "notes": [],
+   "from": "Technologien / Technik / Medien"
+  },
+  {
+   "id": "n-b2e6477f23",
+   "topic": "sproochen",
+   "q": "Wéi eng Friemsproochen hutt Dir an der Schoul geléiert?",
+   "answers": [
+    "Ech hunn Englesch an der Schoul geléiert"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-c62a370740",
+   "topic": "sproochen",
+   "q": "War et obligatoresch, eng Friemsprooch ze léieren?",
+   "answers": [
+    "Jo, et war obligatoresch"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-9edbaf6dab",
+   "topic": "sproochen",
+   "q": "Wéi eng Friemsprooche léiere Kanner an Ärem Land?",
+   "answers": [],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-0d09c9aa98",
+   "topic": "sproochen",
+   "q": "Um wéi vill Auer fänkt Äre Lëtzebuergeschcours un?",
+   "answers": [
+    "Eise Lëtzebuergeschcours fänkt um Véierel fir sechs an um Véier Auer un"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-169e35a770",
+   "topic": "sproochen",
+   "q": "Wat maacht Dir am Cours?",
+   "answers": [
+    "Mir maachen Dialoger , Grammatik , Héierübungen"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-508f714c55",
+   "topic": "sproochen",
+   "q": "Ass Lëtzebuergesch eng schwéier Sprooch?",
+   "answers": [
+    "Lëtzebuergesch ass net einfach, mee d’Sprooch ass interessant, well si verschidde Aflëss huet zum Besispill Franséisch, Däitsch"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-a48124819d",
+   "topic": "sproochen",
+   "q": "Wat motiviéiert Iech, fir d’Sprooch ze léieren?",
+   "answers": [
+    "Ech léiere fir d‘Integratioun a fir de Sproochentest, well ech gär d’Nationalitéit hätt"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-9e75ca4ceb",
+   "topic": "sproochen",
+   "q": "Wat sinn déi offiziell Sprooche vu Lëtzebuerg?",
+   "answers": [],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-0be931cca6",
+   "topic": "sproochen",
+   "q": "Wat sinn déi offiziell Sprooche vun Ärem Land?",
+   "answers": [],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-793574ffc8",
+   "topic": "sproochen",
+   "q": "Wat fir eng Sprooch wëllt Dir fir d’nächst léieren?",
+   "answers": [
+    "Fir d’nächst machen ech eng Paus"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-4a4f84082e",
+   "topic": "sproochen",
+   "q": "Wat ass Är Haaptsprooch?",
+   "answers": [
+    "Meng Haaptsprooch ass Hindi ( oder Englesch)"
+   ],
+   "notes": [
+    "mäin language"
+   ],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-8613ff38c0",
+   "topic": "sproochen",
+   "q": "Wat fir aner Sprooche schwätzt Dir nach?",
+   "answers": [
+    "Ech schwätzen och.."
+   ],
+   "notes": [
+    "other language"
+   ],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-e415f296ed",
+   "topic": "sproochen",
+   "q": "Wou hutt Dir déi aner Sprooche geléiert?",
+   "answers": [
+    "Ech hunn Englesch an der Schoul geléiert"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-a9f5951a3e",
+   "topic": "sproochen",
+   "q": "Zanter wéini léiert Dir Lëtzebuergesch?",
+   "answers": [
+    "Ech léiere L. zanter",
+    "Ech léiere Lëtzebuergesch zanter zwee Joer"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-6e13bcdcda",
+   "topic": "sproochen",
+   "q": "Fir wat léiert Dir Lëtzebuergesch?",
+   "answers": [
+    "Ech léiere L. fir d‘Integratioun a fir d’Nationalitéit ze kréien"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-39000f717f",
+   "topic": "sproochen",
+   "q": "Wéi hutt Dir versicht (tried) Lëtzebuergesch ze léieren a mat wiem?",
+   "answers": [
+    "Ech hat mat de Bicher „Schwätzt Dir Lëtzebuergesch geléiert a mat enger Lëtzebuergueschléierin – Wéi? = online op zoom"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-f72fc75bcf",
+   "topic": "sproochen",
+   "q": "Lauschtert Dir och de Radio?",
+   "answers": [
+    "Jo, ech lauschtere heianso de Radio – am Auto an zwar RTL.LU"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-5f521cb942",
+   "topic": "sproochen",
+   "q": "Wat ass Är Mammesprooch (f)?",
+   "answers": [
+    "Meng Mammessprooch ass Hindi"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-42daa92ae7",
+   "topic": "sproochen",
+   "q": "Wéi vill Sprooche schwätzt Dir? Wat fir?",
+   "answers": [
+    "Ech schwätze véier Sproochen",
+    "Ech schwätzen Englesch, Hindi, Lëtzebuergesch a Bengali"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-532a9ce46b",
+   "topic": "sproochen",
+   "q": "Wat fir Sproochen hutt Dir an der Schoul geléiert?",
+   "answers": [
+    "Ech hunn Englesch an der Schoul geléiert"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-30c2eb77a5",
+   "topic": "sproochen",
+   "q": "Wat fir = Wéi eng Sprooch schwätzt Dir doheem?",
+   "answers": [
+    "Ech schwätzen Hindi an Englesch doheem"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-47fb9f03bf",
+   "topic": "sproochen",
+   "q": "Wat fir / Wéi eng Sprooch schwätzt Dir mat Ärem Partner?",
+   "answers": [
+    "Ech schwätzen Hindi mat menger Fra",
+    "Ech schwätzen Hindi mat mengem Mann"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-bdb9024e1a",
+   "topic": "sproochen",
+   "q": "Wat fir / Wéi eng Sprooch schwätzt Dir mat Äre Kanner?",
+   "answers": [
+    "Ech schwätzen Englesch mat menge Kanner"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-989382e5dc",
+   "topic": "sproochen",
+   "q": "Wéi léiert / übt Dir Lëtzebuergesch am Alldag?",
+   "answers": [
+    "Ech lauschteren zum Beispill de Radio./ ech kucken d’Tëlee zum Beispill RTL"
+   ],
+   "notes": [
+    "üben ( to train)"
+   ],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-005b734d01",
+   "topic": "sproochen",
+   "q": "A wat fir („in“ which)enger Sprooch kuckt / liest Dir d’Noriichten?",
+   "answers": [
+    "Ech kucken d’Noriichten op Englesch/ ech liesen d’Noriichten op Englesch"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-5dfcea8dd5",
+   "topic": "sproochen",
+   "q": "A wéi enger Sprooch kuckt Dir Filmer?",
+   "answers": [
+    "Ech kucke Filmer op Englesch an Hindi"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-9a4a5424f8",
+   "topic": "sproochen",
+   "q": "A wéi enger Sprooch denkt Dir?",
+   "answers": [
+    "Ech denken op Hindi"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-85d1613e90",
+   "topic": "sproochen",
+   "q": "Wat mengt Dir: Ass et wichteg, méi (more) Sproochen ze schwätzen? Firwat?",
+   "answers": [
+    "Jo, ech mengen, et ass immens wichteg ( important) fir d‘Integratioun",
+    "et hëlleft fir d’Integratioun"
+   ],
+   "notes": [],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-e311a7c506",
+   "topic": "sproochen",
+   "q": "Wat mengt Dir: Kann een (one) eng Sprooch duerch d’Medie léieren / verbesseren ( to improve)?",
+   "answers": [],
+   "notes": [
+    "verbesseren (improve)"
+   ],
+   "from": "Sproochen"
+  },
+  {
+   "id": "n-16e1c49502",
+   "topic": "sproochen",
+   "q": "sinn Dialekter wichteg?",
+   "answers": [],
+   "notes": [],
+   "from": "Sproochen"
   },
   {
    "id": "n-01f515c5c0",
@@ -2890,6 +6678,165 @@
    "from": "Additionals fir de Sproochentest",
    "lines": [
     "am heefegsten = am meeschten ( the most)"
+   ]
+  },
+  {
+   "topic": "kaddoen",
+   "from": "Kaddoen",
+   "lines": [
+    "schenken + Dativ",
+    "What about money? Is it a good gift?",
+    "Do you need to give gifts every time you go to see someone?",
+    "Do you have any specific occasion to give gifts in your country? Who is giving gifts? Why that?",
+    "Do you do collective gifts? When?",
+    "Do you like buying gifts?",
+    "What kind of gifts do you buy?",
+    "What do you give when you don’t know what to give?",
+    "Bong (m) = voucher",
+    "Bongen=vouchers",
+    "What is a personal gift for you?"
+   ]
+  },
+  {
+   "topic": "hobbyen",
+   "from": "Kreativitéit / Fräizäit / Hobbyen",
+   "lines": [
+    "m",
+    "f",
+    "n"
+   ]
+  },
+  {
+   "topic": "hobbyen",
+   "from": "Musek",
+   "lines": [
+    "Have you been to a concert?",
+    "Was it your first time?",
+    "What do you prefer, concert or music festival or opera?",
+    "net: “not”",
+    "d’Wieder ass net gutt",
+    "kee(n)- keng – kee(n)- keng: no - not any- you negate the following noun:",
+    "ech hu keen Auto",
+    "ech hu keng Fra",
+    "ech spille kee Museksinstrument",
+    "ech hu keng Kanner/ ech hu keng Haiser, .."
+   ]
+  },
+  {
+   "topic": "sport",
+   "from": "Sport",
+   "lines": [
+    "Dëschtennis",
+    "fit",
+    "wie(n)= who",
+    "de Weekend owes = at the weekend"
+   ]
+  },
+  {
+   "topic": "transport",
+   "from": "Transportmëttelen",
+   "lines": [
+    "Stau = traffic jam",
+    "Auto",
+    "Zuch",
+    "Haus",
+    "Bus",
+    "Ausland ( abroad)",
+    "Fliger ( plane)"
+   ]
+  },
+  {
+   "topic": "wunnen",
+   "from": "Wunnen",
+   "lines": [
+    "et gëtt e Buttek = there is a shop",
+    "et gi(nn) keng Butteker",
+    "= there are no shops",
+    "wäit ewech = far ewech",
+    "Et gëtt = there is",
+    "Et gi(nn) = there are",
+    "Kenne(n)léieren = to get to know – ech léiere vill Leit kennen",
+    "opmaachen- ech maachen d’Fënster op",
+    "et ass wichteg, d’Fënster opzemaachen",
+    "m",
+    "de(n)/e(n)",
+    "kee(n)",
+    "Persounen.hien",
+    "Saachen ee(n)",
+    "mäi(n)",
+    "zwee",
+    "f",
+    "d’/eng",
+    "keng",
+    "Persounen si",
+    "si",
+    "meng",
+    "zwou",
+    "n",
+    "d’/e(n)",
+    "kee(n)",
+    "Persounen hatt",
+    "et",
+    "mäi(n)",
+    "zwee",
+    "plural",
+    "d’ ( the )",
+    "keng",
+    "Persounen si",
+    "Saachen si",
+    "meng",
+    "Quadratmeter",
+    "Stuff",
+    "Haus",
+    "Trafic , Verkéier ( traffic)",
+    "Kichen",
+    "Zëmmer,en",
+    "Virdeel,er ( advantage)",
+    "Schlofzëmmer",
+    "Nodeel,er (disadvantage)",
+    "Buedzëmmer",
+    "Iesszëmmer"
+   ]
+  },
+  {
+   "topic": "medien",
+   "from": "Technologien / Technik / Medien",
+   "lines": [
+    "Präsens Past",
+    "kucken ech kucken e Film ech hunn e Film gekuckt",
+    "kafen ech kafen en Handy ech hunn en Handy kaaft",
+    "it is about",
+    "benotzen + Artikel- ech benotzen de Bus",
+    "treffen = to meet",
+    "kréien = to get",
+    "bestellen = to order",
+    "mat mengem Frënd (m)",
+    "mat menger Frëndin (f)",
+    "mat mengem Kand (n)",
+    "mat menge (n) Frënn (pl)",
+    "wann ( when, if) verb at the end",
+    "wéini ( when only for questions)"
+   ]
+  },
+  {
+   "topic": "sproochen",
+   "from": "Sproochen",
+   "lines": [
+    "Friemsprooch = foreign language",
+    "schwätzen = to speak",
+    "lauschteren ( to listen to)",
+    "héieren ( to hear)",
+    "kucken = to watch",
+    "liesen = read",
+    "denken = to think",
+    "is it important to speak more languages, why?",
+    "hëllefen = to help",
+    "ech mengen = I think, I believe, I guess, I mean",
+    "de Radio",
+    "Sprooch",
+    "Mammessprooch",
+    "d’Tëlee",
+    "d‘Noriichten"
    ]
   },
   {

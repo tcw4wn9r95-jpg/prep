@@ -2243,7 +2243,18 @@ async function main() {
     }
     await shot('00ad-speaking-card-long');
 
-    // A topic with no model answers says so instead of offering nothing.
+    // A topic with no model answers says so instead of offering nothing. Every
+    // topic has some now, so take them away the way a learner can: flag them.
+    const flaggedIds = await page.evaluate(async () => {
+      const store = await import('./js/store.js');
+      const { loadSpeakingNotes } = await import('./js/content.js');
+      const settings = await store.getSettings();
+      const deck = await loadSpeakingNotes();
+      const answered = deck.cards.filter((card) => card.topic === 'kleeder' && card.answers.length > 0);
+      for (const card of answered) await store.flagCard(settings.playerId, { source: 'speaking-notes', id: card.id, label: card.q });
+      return answered.map((card) => card.id);
+    });
+    if (flaggedIds.length === 0) throw new Error('expected Clothes to have answered cards to set aside');
     await openFresh('#/speaking/cards/kleeder');
     await page.waitForSelector('.card', { timeout: 8000 });
     const none = await page.locator('#screen').innerText();
@@ -2253,7 +2264,12 @@ async function main() {
     await page.locator('.drill__next .btn').click();
     await page.waitForSelector('.nc__label', { timeout: 3000 });
     if (!/No model answer yet/.test(await page.locator('.nc__label').textContent())) throw new Error('a question with no answer should say so on its back');
-    await page.evaluate(async () => (await import('./js/store.js')).saveSettings({ notesAll: false }));
+    await page.evaluate(async (ids) => {
+      const store = await import('./js/store.js');
+      const settings = await store.getSettings();
+      for (const id of ids) await store.unflagCard(settings.playerId, 'speaking-notes', id);
+      await store.saveSettings({ notesAll: false });
+    }, flaggedIds);
 
     // The notes page: the topic as a list, with the tab bar back.
     await openFresh('#/speaking/cards/stot/notes');

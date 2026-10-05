@@ -4869,3 +4869,77 @@ invariants, the practice logic) · `validate` PASS, unchanged — the notes sit 
 `npm run walkthrough` with a step that checks the answer is *not* shown before it
 is asked for, grades a card, checks the daily count does not move, and reaches
 the longest card in the deck · `sw.js` → `v65`.
+
+# Follow-up 45 — the rest of the course questions
+
+Five more documents were attached (Moud a Kleeder, Liesen, Kaddoen, Kreativitéit /
+Hobbyen, and Musek as a **PDF**). Six more were already in the same uploads folder
+(Tourismus, Sport, Transportmëttelen, Wunnen, Technologien / Technik / Medien,
+Sproochen) and were never attached to a message, so the decision to include them
+is mine and is called out in the hand-off: they went through the same "publish
+them as-is" answer, and they are the "rest" the first message promised.
+
+**267 → 625 cards**, 15 topics, 528 with a model answer, 353 reading lines.
+
+## A PDF reader, with no dependencies
+
+`pipeline/lib/pdf.js` reads Flate content streams, ToUnicode CMaps and `/Widths`
+(a gap between two text runs is a space only if it is wider than a fifth of an em,
+which is what separates a list marker from a style change inside a word). Anything
+else — object streams, other filters, a font with no ToUnicode map — stops with a
+message, because text that is *almost* right is the failure that matters here. It
+was compared with `pypdf` on all four pages of the Musek file: identical once
+whitespace is collapsed. A synthetic one-page PDF in the tests covers ordering, TJ
+arrays with literal strings (a real bug: a literal inside a `TJ` array went through
+the object parser and was not decoded) and the refusals.
+
+A PDF has lines, not paragraphs. The page wraps at about 90 characters, so a line
+that reached the wrap width and is followed by something that does not start an
+item is the front of a sentence cut in two — measured on the **printed** line, not
+the joined one (the first version joined three lines of an answer to the question
+above because the joined line was long).
+
+## What the new documents needed
+
+* **Sport keeps its questions in a table.** `tablesAsContent` reads cells as
+  paragraphs.
+* **Speaker initials** (`M.`, `V`, `V:`) are removed, but only where the document's
+  config names the initials; `L. huet vill Schlässer` is a sentence about
+  Luxembourg.
+* **A gloss typed on the question's line** (`Wéi oft tankt Dir? - tanken = to fill
+  gaz`) is a note on the card, not part of the question. This changed 22 of the 267
+  earlier questions — their glosses moved to notes, so those cards have new ids.
+  (Nothing had been graded in the app yet; a `Got it` on one of those would have
+  been lost.)
+* New question openers, two-word openers (`zanter wéini`, `um wéi`, `op wat`),
+  `Virdeeler` / `Nodeeler` as openers only with a "?" (`Virdeeler sinn:` is an
+  answer), and a line with `=` and no "?" is never a question (`brauchen = to
+  need`).
+* `A`/`B` before a capitalised question word is an enumerator; `a)` / `b)` labels
+  are removed from answers; a line that opens with a comma continues the answer
+  above unless that ended its sentence.
+* `attach` now waits until the whole document is read, because the Musek PDF puts
+  an answer before the question it belongs to.
+* Kreativitéit / Hobbyen is one document for two topics; `route` sends questions
+  that mention creativity to Creativity.
+* Musek has no topic of its own in the exam's eighteen. It joins **Hobbies**. That
+  is a judgement and the one most likely to be wrong.
+
+Every card in every new topic was read by eye. What is left is the notes' own
+quirks (`Wat jo, war dat Är éischt Kéier?` — a typo for `Wa jo`), kept verbatim.
+
+## What the audit found
+
+96.6% of the Luxembourgish tokens are LOD spellings. The rest, to check and not
+fix: `Heemeschtsland` / `Heemschtsland` / `Heemechtland` for `Heemechtsland`,
+`Liblingsmuseker` / `Liblingsschauspiller` beside `Lieblings…`, `Normalerwiess`,
+`Ennerscheed`, `Hausregelen`, `heiandso` / `heianso` for `heiansdo`, `Besispill` /
+`Beipill`, `Apditk`, `Ägyten`, `Geleeenheeten`, `Emmissioune`, `emmer`, `schon`.
+
+## Verification
+
+`npm test` (new: the PDF reader, the gloss-on-the-question's-line rule, initials,
+comma continuation, `=` and lettered labels, unwrap by printed width, a table
+document) · `validate` unchanged · `npm run walkthrough` — the no-answers check
+now sets a topic's answered cards aside by flagging them, since no topic is
+without answers any more · `sw.js` → `v66`.
