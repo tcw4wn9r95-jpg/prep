@@ -2199,7 +2199,12 @@ async function main() {
       return { got: (settings.notesGot ?? []).length, cards: (await store.todayProgress(settings.playerId)).cards };
     });
     await page.getByRole('button', { name: 'Not yet' }).click();
-    await page.waitForSelector('.nc__q', { timeout: 3000 });
+    // The old card stays on screen while the grade is saved, so wait for the
+    // *next* one to be dealt — the count of cards in the round has gone up by
+    // one, which is what "dealt once more at the end" means.
+    await page
+      .waitForFunction(() => /of 11/.test(document.querySelector('.meter__label')?.textContent ?? ''), null, { timeout: 3000 })
+      .catch(() => {});
     const label = await page.locator('.meter__label').first().textContent();
     if (!/of 11/.test(label ?? '')) throw new Error(`a "not yet" card was not queued again: "${label}"`);
     await page.locator('.drill__next .btn').click();
